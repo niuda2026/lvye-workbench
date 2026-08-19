@@ -1,0 +1,535 @@
+{
+  "verifyField": "mobile",
+  "adminPass": "admin123",
+  "users": [
+    {
+      "name": "赵飞翔",
+      "mobile": "9024",
+      "code": "",
+      "role": "安全专员",
+      "area": "中南大区/安徽区域/马鞍山",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail",
+        "rider_control"
+      ],
+      "areas": [
+        "中南大区"
+      ]
+    },
+    {
+      "name": "唐超",
+      "mobile": "8795",
+      "code": "",
+      "role": "大区总经理",
+      "area": "华北三区",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail"
+      ],
+      "areas": [
+        "中南大区",
+        "兴达总部",
+        "华东大区",
+        "华北一区",
+        "华北三区",
+        "华北二区"
+      ]
+    },
+    {
+      "name": "包玉佳",
+      "mobile": "0123",
+      "code": "",
+      "role": "大区总经理",
+      "area": "华北一区",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail"
+      ],
+      "areas": [
+        "中南大区",
+        "兴达总部",
+        "华东大区",
+        "华北一区",
+        "华北三区",
+        "华北二区"
+      ]
+    },
+    {
+      "name": "石瑞",
+      "mobile": "3105",
+      "code": "",
+      "role": "安全专员",
+      "area": "华东大区/北京区域/北京",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail",
+        "rider_control"
+      ],
+      "areas": [
+        "华东大区"
+      ]
+    },
+    {
+      "name": "张庆胜",
+      "mobile": "5999",
+      "code": "",
+      "role": "安全专员",
+      "area": "华东大区/上海区域/上海",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail",
+        "rider_control"
+      ],
+      "areas": [
+        "华东大区"
+      ]
+    },
+    {
+      "name": "卢生有",
+      "mobile": "2720",
+      "code": "",
+      "role": "安全专员",
+      "area": "中南大区/山东区域",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail",
+        "rider_control"
+      ],
+      "areas": [
+        "中南大区"
+      ]
+    },
+    {
+      "name": "张旭阳",
+      "mobile": "8818",
+      "code": "",
+      "role": "安全专员",
+      "area": "中南大区/安徽区域",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail",
+        "rider_control"
+      ],
+      "areas": [
+        "中南大区"
+      ]
+    },
+    {
+      "name": "王小龙",
+      "mobile": "8941",
+      "code": "",
+      "role": "大区总经理",
+      "area": "华北二区",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail"
+      ],
+      "areas": [
+        "中南大区",
+        "兴达总部",
+        "华东大区",
+        "华北一区",
+        "华北三区",
+        "华北二区"
+      ]
+    },
+    {
+      "name": "汪星",
+      "mobile": "3882",
+      "code": "",
+      "role": "大区总经理",
+      "area": "华东大区",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail"
+      ],
+      "areas": [
+        "中南大区",
+        "兴达总部",
+        "华东大区",
+        "华北一区",
+        "华北三区",
+        "华北二区"
+      ]
+    },
+    {
+      "name": "杨超",
+      "mobile": "3005",
+      "code": "",
+      "role": "大区总经理",
+      "area": "中南大区",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail"
+      ],
+      "areas": [
+        "中南大区",
+        "兴达总部",
+        "华东大区",
+        "华北一区",
+        "华北三区",
+        "华北二区"
+      ]
+    },
+    {
+      "name": "李志宇",
+      "mobile": "0302",
+      "code": "",
+      "role": "运营部总监",
+      "area": "兴达总部/履约核心业务部/履约管理组"
+    },
+    {
+      "name": "那龙",
+      "mobile": "3333",
+      "code": "",
+      "role": "大区副总",
+      "area": "中南大区",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail"
+      ],
+      "areas": [
+        "中南大区",
+        "兴达总部",
+        "华东大区",
+        "华北一区",
+        "华北三区",
+        "华北二区"
+      ]
+    },
+    {
+      "name": "王静",
+      "mobile": "5583",
+      "code": "",
+      "role": "安全专员",
+      "area": "华东大区/苏北区域/南京",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail",
+        "rider_control"
+      ],
+      "areas": [
+        "华东大区"
+      ]
+    },
+    {
+      "name": "裴磊",
+      "mobile": "7465",
+      "code": "",
+      "role": "安全专员",
+      "area": "华北一区/辽宁区域",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail",
+        "rider_control"
+      ],
+      "areas": [
+        "华北一区"
+      ]
+    },
+    {
+      "name": "郭邦河",
+      "mobile": "2895",
+      "code": "",
+      "role": "安全专员",
+      "area": "华北二区/河南区域",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail",
+        "rider_control"
+      ],
+      "areas": [
+        "华北二区"
+      ]
+    },
+    {
+      "name": "纪如意",
+      "mobile": "9485",
+      "code": "",
+      "role": "安全专员",
+      "area": "华北一区/黑吉区域/通辽",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail",
+        "rider_control"
+      ],
+      "areas": [
+        "华北一区"
+      ]
+    },
+    {
+      "name": "黄可鑫",
+      "mobile": "7777",
+      "code": "",
+      "role": "安全专员",
+      "area": "华北一区/津冀区域/秦皇岛",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail",
+        "rider_control"
+      ],
+      "areas": [
+        "华北一区"
+      ]
+    },
+    {
+      "name": "赵光远",
+      "mobile": "8891",
+      "code": "",
+      "role": "安全专员",
+      "area": "华北一区/津冀区域/天津",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail",
+        "rider_control"
+      ],
+      "areas": [
+        "华北一区"
+      ]
+    },
+    {
+      "name": "李彬",
+      "mobile": "7788",
+      "code": "",
+      "role": "安全专员",
+      "area": "华北二区/河南区域/洛阳",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail",
+        "rider_control"
+      ],
+      "areas": [
+        "华北二区"
+      ]
+    },
+    {
+      "name": "吕维欢",
+      "mobile": "1347",
+      "code": "",
+      "role": "安全专员",
+      "area": "华北三区/中西区域/西安",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail",
+        "rider_control"
+      ],
+      "areas": [
+        "华北三区"
+      ]
+    },
+    {
+      "name": "牛艳朝",
+      "mobile": "1626",
+      "code": "",
+      "role": "安全专员",
+      "area": "兴达总部/华北三区/中西区域",
+      "admin": true
+    },
+    {
+      "name": "李文龙",
+      "mobile": "9904",
+      "code": "",
+      "role": "安全专员",
+      "area": "华北一区/津冀区域/唐山",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail",
+        "rider_control"
+      ],
+      "areas": [
+        "华北一区"
+      ]
+    },
+    {
+      "name": "孟健",
+      "mobile": "4983",
+      "code": "",
+      "role": "安全专员",
+      "area": "华北一区/津冀区域/张家口",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail",
+        "rider_control"
+      ],
+      "areas": [
+        "华北一区"
+      ]
+    },
+    {
+      "name": "朱诗瑶",
+      "mobile": "0320",
+      "code": "",
+      "role": "安全专员",
+      "area": "华北一区/黑吉区域",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail",
+        "rider_control"
+      ],
+      "areas": [
+        "华北一区"
+      ]
+    },
+    {
+      "name": "田发发",
+      "mobile": "2257",
+      "code": "",
+      "role": "安全专员",
+      "area": "中南大区/安徽区域/阜阳",
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "project",
+        "clothing_main",
+        "clothing_rate",
+        "rider_detail",
+        "rider_control"
+      ],
+      "areas": [
+        "中南大区"
+      ]
+    },
+    {
+      "name": "郭栋",
+      "mobile": "6688",
+      "code": "",
+      "role": "人事专员",
+      "area": "兴达总部/人资部"
+    }
+  ]
+}

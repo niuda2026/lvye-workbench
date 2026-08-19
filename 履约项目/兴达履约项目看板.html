@@ -1,0 +1,2307 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>兴达丨履约项目看板</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F0F6FC;color:#1a2e45;font-family:'Segoe UI','Microsoft YaHei','PingFang SC',Arial,sans-serif;font-size:13px;min-height:100vh}
+.header{background:linear-gradient(135deg,#0B4F8A 0%,#1E88E5 50%,#1e88e5 100%);padding:14px 24px;border-bottom:3px solid #0A3D6B;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;box-shadow:0 2px 8px rgba(11,79,138,.4)}
+.header-title{font-size:20px;font-weight:700;color:#ffffff;letter-spacing:1px;text-shadow:0 1px 3px rgba(0,0,0,.3)}
+.header-sub{font-size:12px;color:#B3D0E8;margin-top:3px}
+.header-right{text-align:right;font-size:12px;color:#B3D0E8;line-height:1.8}
+.tab-bar{display:flex;background:#0B4F8A;border-bottom:2px solid #0A3D6B;padding:0 16px;gap:4px;overflow-x:auto}
+.tab-item{padding:10px 16px;cursor:pointer;color:#8FB8DA;border-bottom:3px solid transparent;font-size:12px;font-weight:500;transition:all .2s;white-space:nowrap}
+.tab-item:hover{color:#fff;background:rgba(255,255,255,.1)}
+.tab-item.active{color:#fff;border-bottom:3px solid #fff;background:rgba(255,255,255,.15)}
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding:10px 16px;background:#F2F7FB;border-bottom:1px solid #8FB8DA}
+.filter-bar label{color:#0B4F8A;font-size:12px;white-space:nowrap;font-weight:500}
+.ms-wrap{position:relative;display:inline-block;vertical-align:top;}
+.ms-btn{display:flex;align-items:center;justify-content:space-between;min-width:90px;max-width:160px;padding:5px 8px;background:#fff;border:1px solid #8FB8DA;border-radius:4px;font-size:12px;color:#1a2e45;cursor:pointer;user-select:none;gap:4px;}
+.ms-btn:hover{border-color:#0B4F8A;}
+.ms-label{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ms-arrow{font-size:10px;color:#4F6E87;transition:transform .2s;}
+.ms-wrap.open .ms-arrow{transform:rotate(180deg);}
+.ms-drop{display:none;position:absolute;top:calc(100% + 2px);left:0;min-width:120px;max-width:220px;max-height:220px;overflow-y:auto;background:#fff;border:1px solid #8FB8DA;border-radius:4px;box-shadow:0 4px 12px rgba(0,0,0,.12);z-index:9999;padding:4px 0;}
+.ms-wrap.open .ms-drop{display:block;}
+.ms-item{display:flex;align-items:center;gap:6px;padding:5px 10px;font-size:12px;color:#1a2e45;cursor:pointer;white-space:nowrap;}
+.ms-item:hover{background:#EAF2F9;}
+.ms-item input[type=checkbox]{margin:0;cursor:pointer;accent-color:#0B4F8A;}
+.ms-item.checked{background:#e8f5e9;font-weight:600;}
+.filter-bar select{background:#fff;color:#1a2e45;border:1px solid #8FB8DA;padding:5px 8px;border-radius:4px;font-size:12px;outline:none;max-width:180px}
+.btn{padding:5px 14px;border-radius:4px;border:none;cursor:pointer;font-size:12px;font-weight:500;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+.btn-secondary{background:#EAF2F9;color:#0B4F8A;border:1px solid #8FB8DA}
+.btn-secondary:hover{background:#B3D0E8}
+.btn-export{background:#0B4F8A;color:#fff;border:1px solid #0A3D6B}
+.btn-export:hover{background:#0A3D6B}
+.summary-row{display:flex;gap:10px;padding:12px 16px;flex-wrap:wrap;background:#f0f7ff}
+.card{background:#ffffff;border:1px solid #d6e4f0;border-radius:6px;padding:12px 16px;min-width:140px;flex:1;max-width:220px;box-shadow:0 1px 4px rgba(11,79,138,.08)}
+.card .c-label{font-size:11px;color:#4F6E87;margin-bottom:4px;letter-spacing:.3px}
+.card .c-value{font-size:22px;font-weight:700;color:#0B4F8A;font-variant-numeric:tabular-nums;letter-spacing:.2px}
+.card .c-sub{font-size:11px;color:#90a4ae;margin-top:3px}
+.card.green .c-value{color:#2e7d32}
+.card.yellow .c-value{color:#e65100}
+.card.red .c-value{color:#c62828}
+.panel{display:none}
+.panel.active{display:block}
+.table-wrap{overflow:auto}
+.table-wrap-station{max-height:calc(100vh - 200px)}
+.table-wrap-rider{max-height:calc(100vh - 260px)}
+table.dt{width:100%;border-collapse:collapse;font-size:12px}
+table.dt th{background:#0B4F8A;color:#fff;padding:8px 10px;text-align:center;border:1px solid #1E88E5;white-space:normal;position:sticky;top:0;z-index:4;line-height:1.4;font-size:12px;letter-spacing:.5px;font-weight:600}
+table.dt td{padding:7px 10px;border:1px solid #e3edf7;text-align:center;white-space:nowrap;background:#fff;font-variant-numeric:tabular-nums}
+table.dt td.name-cell{text-align:left;max-width:300px;overflow:hidden;text-overflow:ellipsis}
+table.dt th.sticky-col,table.dt td.sticky-col{position:sticky;z-index:1;background:#fff}
+table.dt th.sticky-col{background:#0B4F8A;z-index:5}
+tr.lv-total td.sticky-col{background:#dbeafe!important}
+tr.lv-subregion td.sticky-col{background:#F0F6FC!important}
+tr.lv-merchant td.sticky-col{background:#F2F7FB!important}
+tr.lv-site:hover td.sticky-col{background:#f0f7ff!important}
+table.dt th.sticky-last,table.dt td.sticky-last{border-right:1px solid #e0e0e0!important;box-shadow:2px 0 4px rgba(11,79,138,.15)}
+tr.lv-total td{background:#dbeafe!important;font-weight:700;color:#0A3D6B;font-size:13px;border-bottom:2px solid #8FB8DA;position:sticky;top:30px;z-index:2}
+tr.lv-total td.sticky-col{z-index:3!important}
+tr.lv-subregion td{background:#F0F6FC!important;font-weight:700;color:#0B4F8A}
+tr.lv-merchant td{background:#F2F7FB!important;font-weight:500;color:#1E88E5;font-style:italic}
+tr.lv-site td{background:#fff}
+tr.lv-site:nth-child(even) td{background:#f8fafc}
+tr.lv-site:hover td{background:#f0f7ff}
+.rg{background:#e8f5e9!important;color:#2e7d32!important;font-weight:600}
+.ry{background:#fff3e0!important;color:#e65100!important;font-weight:600}
+.rr{background:#ffebee!important;color:#c62828!important;font-weight:600}
+.rn{color:#90a4ae}
+.region-cards-row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:12px;}
+.region-card{padding:16px 14px;text-align:center;min-height:110px;min-width:0;display:flex;flex-direction:column;justify-content:center;flex:none;max-width:none;}
+@media(max-width:1100px){.region-cards-row{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:640px){.region-cards-row{grid-template-columns:repeat(2,1fr);}}
+.lv-btn{padding:4px 12px;border-radius:4px;border:1px solid #0B4F8A;background:#0B4F8A;color:#fff;font-size:12px;cursor:pointer;transition:all .2s;}
+.lv-btn:not(.active){background:transparent;color:#90a4ae;border-color:#546e7a;}
+.lv-btn-reset{padding:4px 10px;border-radius:4px;border:1px solid #546e7a;background:transparent;color:#90a4ae;font-size:12px;cursor:pointer;}
+.lv-btn-reset:hover{border-color:#0B4F8A;color:#8FB8DA;}
+.pagination{display:flex;gap:6px;padding:10px 16px;align-items:center;background:#EAF2F9;border-top:1px solid #8FB8DA;flex-wrap:wrap}
+.pagination button{background:#fff;color:#0B4F8A;border:1px solid #8FB8DA;padding:4px 10px;border-radius:3px;cursor:pointer;font-size:12px}
+.pagination button:hover{background:#EAF2F9}
+.pagination button.cur{background:#0B4F8A;color:#fff;border-color:#0B4F8A}
+.pagination button:disabled{opacity:.4;cursor:default}
+.pagination .pg-info{color:#4F6E87;font-size:12px}
+.safety-hl{background:#ffd4d0!important;color:#b71c1c!important;font-weight:600}
+/* second-level sticky header row */
+table.dt thead tr:nth-child(2) th{position:sticky;top:29px;z-index:3}
+table.dt thead tr:nth-child(2) th.sticky-col{background:#0B4F8A;z-index:4}
+table.dt thead{background:transparent}
+
+/* ─── 视图切换 Sub-Tab-Bar ─── */
+.sub-tab-bar{display:flex;align-items:center;gap:8px;padding:8px 16px;background:#EAF2F9;border-bottom:1px solid #8FB8DA;flex-wrap:wrap}
+.sub-tab-bar .sub-tab-label{font-size:12px;color:#4F6E87;font-weight:600;margin-right:4px}
+.sub-tab-sep{width:1px;height:18px;background:#B3D0E8;margin:0 4px}
+.lv-btn{padding:4px 12px;border-radius:4px;border:1px solid #0B4F8A;background:#0B4F8A;color:#fff;font-size:12px;cursor:pointer;transition:all .2s;font-weight:500}
+.lv-btn:not(.active){background:transparent;color:#4F6E87;border-color:#90a4ae}
+.lv-btn:not(.active):hover{color:#0B4F8A;border-color:#0B4F8A;background:rgba(11,79,138,.08)}
+.lv-btn-reset{padding:4px 10px;border-radius:4px;border:1px solid #90a4ae;background:transparent;color:#4F6E87;font-size:12px;cursor:pointer}
+.lv-btn-reset:hover{border-color:#0B4F8A;color:#0B4F8A}
+
+/* ─── 操作按钮 ─── */
+.btn-upload{background:#f57c00;color:#fff;border:1px solid #e65100;padding:5px 12px;border-radius:4px;cursor:pointer;font-size:12px;font-weight:500;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.btn-upload:hover{background:#e65100}
+.btn-export{background:#0B4F8A;color:#fff;border:1px solid #0A3D6B;padding:5px 12px;border-radius:4px;cursor:pointer;font-size:12px;font-weight:500;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.btn-export:hover{background:#0A3D6B}
+.btn-screenshot{background:#2e7d32;color:#fff;border:1px solid #1b5e20;padding:5px 12px;border-radius:4px;cursor:pointer;font-size:12px;font-weight:500;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.btn-screenshot:hover{background:#1b5e20}
+
+/* ─── 上传与进度 ─── */
+.upload-area{display:inline-flex;align-items:center;gap:6px}
+.upload-progress{display:none;align-items:center;gap:8px;padding:2px 0}
+.progress-bar-wrap{width:120px;height:6px;background:#e0e0e0;border-radius:3px;overflow:hidden}
+.progress-bar-fill{height:100%;width:0;background:linear-gradient(90deg,#0B4F8A,#1E88E5);border-radius:3px;transition:width .3s}
+.progress-text{font-size:11px;color:#4F6E87}
+
+/* ─── 记录统计栏 ─── */
+.filter-count{font-size:12px;color:#0B4F8A;font-weight:600;margin-left:auto;white-space:nowrap}
+
+/* ─── 数据加载提示 ─── */
+.status-bar{padding:6px 16px;background:#fff8e1;border-bottom:1px solid #ffe082;font-size:11px;color:#795548;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.status-bar .status-text{flex:1}
+.status-bar .cache-status{color:#90a4ae;font-size:11px}
+
+/* ─── 审核规则弹窗 ─── */
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.45);z-index:99999;justify-content:center;align-items:center}
+.modal-overlay.show{display:flex}
+.modal-content{background:#fff;border-radius:10px;max-width:650px;width:90%;max-height:85vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,.28);animation:modalIn .25s ease}
+@keyframes modalIn{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #e0e0e0}
+.modal-title{font-size:17px;font-weight:700;color:#0B4F8A}
+.modal-close{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:none;background:transparent;color:#90a4ae;font-size:22px;cursor:pointer;border-radius:50%;line-height:1}
+.modal-close:hover{background:#f5f5f5;color:#333}
+.modal-body{padding:20px 24px;font-size:13px;color:#333;line-height:1.9}
+.modal-body ol{margin:0;padding-left:20px}
+.modal-body li{margin-bottom:12px}
+.modal-body li b,.modal-body li .hl{color:#c62828}
+.modal-body .highlight{color:#c62828;font-weight:700}
+
+/* 审核规则按钮 */
+.btn-rules{padding:4px 14px;border-radius:4px;border:1.5px solid #0B4F8A;background:transparent;color:#0B4F8A;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .2s;margin-left:auto}
+.btn-rules:hover{background:#EAF2F9}
+
+
+/* ─── 服装标准化率 / 抽检不合格明细 ─── */
+.cell-good{background:#e8f5e9!important;color:#2e7d32!important;font-weight:600}
+.cell-bad{background:#ffebee!important;color:#c62828!important;font-weight:600}
+.clothing-summary-card{max-width:360px;margin:8px 16px;padding:12px 16px;border-radius:6px;display:inline-block}
+.clothing-summary-card .c-label{font-size:12px;color:#4F6E87;margin-bottom:4px}
+.clothing-summary-card .c-value{font-size:24px;font-weight:700}
+.clothing-summary-card .c-sub{font-size:11px;color:#90a4ae;margin-top:3px}
+.clothing-summary-card.card.green{background:#e8f5e9;border:1px solid #a5d6a7}
+.clothing-summary-card.card.green .c-value{color:#2e7d32}
+.clothing-summary-card.card.red{background:#ffebee;border:1px solid #ef9a9a}
+.clothing-summary-card.card.red .c-value{color:#c62828}
+#checkFailTable{width:100%;border-collapse:collapse;font-size:12px}
+#checkFailTable th{background:#f57c00;color:#fff;padding:6px 8px;text-align:center;border:1px solid #e65100;white-space:nowrap;position:sticky;top:0;z-index:4}
+#checkFailTable td{padding:5px 8px;border:1px solid #ffe0b2;text-align:center;white-space:nowrap;background:#fff}
+#checkFailTable tbody tr:hover td{background:#fff3e0}
+#clothing-table-wrap .lv-total td{font-weight:700;color:#0A3D6B;font-size:13px}
+#clothing-table-wrap .lv-subregion td{font-weight:700;color:#0B4F8A;font-size:12px}
+#clothing-table-wrap .lv-merchant td{font-weight:500;color:#1E88E5;font-style:italic;font-size:12px}
+#clothing-table-wrap .lv-total td.sticky-col,#clothing-table-wrap .lv-subregion td.sticky-col,#clothing-table-wrap .lv-merchant td.sticky-col,#clothing-table-wrap .lv-site td.sticky-col{background:#fff}
+#clothing-table-wrap .lv-total td.sticky-col{background:#dbeafe!important}
+#clothing-table-wrap .lv-subregion td.sticky-col{background:#F0F6FC!important}
+#clothing-table-wrap .lv-merchant td.sticky-col{background:#F2F7FB!important}
+#clothing-table-wrap .lv-site:hover td.sticky-col{background:#f0f7ff!important}
+.photo-modal{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;overflow:auto;background:rgba(0,0,0,.8)}
+.photo-modal .photo-content{margin:5% auto;display:block;max-width:80%;max-height:80%}
+.photo-modal .photo-close{position:absolute;top:20px;right:35px;color:#fff;font-size:40px;font-weight:700;cursor:pointer}
+.pagination{display:flex;flex-wrap:wrap;gap:4px;align-items:center;padding:10px 12px;background:#F2F7FB;border-top:1px solid #8FB8DA;font-size:12px}
+.pagination .pg-info{color:#4F6E87;margin-right:8px}
+.pagination button{padding:4px 10px;border-radius:4px;border:1px solid #0B4F8A;background:#0B4F8A;color:#fff;font-size:12px;cursor:pointer}
+.pagination button:disabled,.pagination button.cur{background:#8FB8DA;border-color:#8FB8DA;cursor:default}
+.pagination button:not(:disabled):not(.cur):hover{background:#0A3D6B}
+.clothing-view-bar{display:flex;align-items:center;gap:6px;padding:6px 16px;background:#fff8e1;border-bottom:1px solid #ffcc02;flex-wrap:wrap}
+.clothing-view-bar .view-label{font-size:12px;color:#4F6E87;font-weight:600;margin-right:4px}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <div>
+      <div class="header-title">兴达丨履约项目看板</div>
+      <div class="header-sub">站点早会 · 履约安全检查 · 骑手装备标准化率 · 餐箱消毒看板 · 带刀巡检看板 · 充换电血压看板 · 线上线下考培 · 骑手维度执行</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div id="dataRange">数据加载中...</div>
+    <div>看板版本 v2.0</div>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <div class="tab-item active" data-tab="morning" onclick="switchTab('morning')">站点早会</div>
+  <div class="tab-item" data-tab="safety" onclick="switchTab('safety')">履约安全检查</div>
+  <div class="tab-item" data-tab="equip" onclick="switchTab('equip')">骑手装备标准化率</div>
+  <div class="tab-item" data-tab="box" onclick="switchTab('box')">餐箱消毒看板</div>
+  <div class="tab-item" data-tab="knife" onclick="switchTab('knife')">带刀巡检看板</div>
+  <div class="tab-item" data-tab="chargebp" onclick="switchTab('chargebp')">充换电血压看板</div>
+  <div class="tab-item" data-tab="training" onclick="switchTab('training')">线上线下考培</div>
+  <div class="tab-item" data-tab="rider" onclick="switchTab('rider')">骑手维度执行</div>
+</div>
+
+
+<!-- Tab: morning -->
+<div class="panel active" id="panel-morning">
+  <div class="summary-row" id="summary-cards-morning"></div>
+    <div class="sub-tab-bar">
+    <span class="sub-tab-label">显示层级：</span>
+    <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleViewBtn('subregion')">区域行</button>
+    <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleViewBtn('merchant')">城市行</button>
+    <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
+    <span class="sub-tab-sep"></span>
+    <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
+    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
+  </div>
+<div class="filter-bar" id="filter-bar-morning">
+    <label>大区</label><div class="ms-wrap" id="ms-region-morning"><div class="ms-btn" onclick="toggleMs('region-morning')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>区域</label><div class="ms-wrap" id="ms-subregion-morning"><div class="ms-btn" onclick="toggleMs('subregion-morning')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>城市</label><div class="ms-wrap" id="ms-city-morning"><div class="ms-btn" onclick="toggleMs('city-morning')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>站点</label><div class="ms-wrap" id="ms-site-morning"><div class="ms-btn" onclick="toggleMs('site-morning')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <button class="btn btn-secondary" onclick="clearFilter('morning')">清除筛选</button>
+    <button class="btn btn-export" onclick="exportTable('morning')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
+    <button class="btn btn-screenshot" onclick="screenshotPanel('morning')" title="截取当前看板">&#128247; 截图</button>
+    <span class="filter-count" id="filter-count-morning"></span>
+  </div>
+  <div class="table-wrap table-wrap-station">
+    <table class="dt" id="tbl-morning">
+      <thead id="thead-morning"></thead>
+      <tbody id="tbody-morning"></tbody>
+    </table>
+  </div>
+  
+</div>
+<!-- Tab: safety -->
+<div class="panel" id="panel-safety">
+  <div class="summary-row" id="summary-cards-safety"></div>
+    <div class="sub-tab-bar">
+    <span class="sub-tab-label">显示层级：</span>
+    <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleViewBtn('subregion')">区域行</button>
+    <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleViewBtn('merchant')">城市行</button>
+    <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
+    <span class="sub-tab-sep"></span>
+    <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
+    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
+  </div>
+<div class="filter-bar" id="filter-bar-safety">
+    <label>大区</label><div class="ms-wrap" id="ms-region-safety"><div class="ms-btn" onclick="toggleMs('region-safety')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>区域</label><div class="ms-wrap" id="ms-subregion-safety"><div class="ms-btn" onclick="toggleMs('subregion-safety')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>城市</label><div class="ms-wrap" id="ms-city-safety"><div class="ms-btn" onclick="toggleMs('city-safety')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>站点</label><div class="ms-wrap" id="ms-site-safety"><div class="ms-btn" onclick="toggleMs('site-safety')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <button class="btn btn-secondary" onclick="clearFilter('safety')">清除筛选</button>
+    <button class="btn btn-export" onclick="exportTable('safety')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
+    <button class="btn btn-screenshot" onclick="screenshotPanel('safety')" title="截取当前看板">&#128247; 截图</button>
+    <span class="filter-count" id="filter-count-safety"></span>
+  </div>
+  <div class="table-wrap table-wrap-station">
+    <table class="dt" id="tbl-safety">
+      <thead id="thead-safety"></thead>
+      <tbody id="tbody-safety"></tbody>
+    </table>
+  </div>
+  
+</div>
+<!-- Tab: equip -->
+<div class="panel" id="panel-equip">
+  <div class="summary-row" id="summary-cards-equip"></div>
+  <div class="sub-tab-bar">
+    <span class="sub-tab-label">显示层级：</span>
+    <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleViewBtn('subregion')">区域行</button>
+    <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleViewBtn('merchant')">城市行</button>
+    <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
+    <span class="sub-tab-sep"></span>
+    <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
+    <button class="btn-rules" onclick="openEquipRulesModal()">骑手装备处罚规则</button>
+  </div>
+<div class="filter-bar" id="filter-bar-equip">
+    <label>大区</label><div class="ms-wrap" id="ms-region-equip"><div class="ms-btn" onclick="toggleMs('region-equip')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>区域</label><div class="ms-wrap" id="ms-subregion-equip"><div class="ms-btn" onclick="toggleMs('subregion-equip')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>城市</label><div class="ms-wrap" id="ms-city-equip"><div class="ms-btn" onclick="toggleMs('city-equip')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>站点</label><div class="ms-wrap" id="ms-site-equip"><div class="ms-btn" onclick="toggleMs('site-equip')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>日期</label><div class="ms-wrap" id="ms-date-equip"><div class="ms-btn" onclick="toggleMs('date-equip')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <button class="btn btn-secondary" onclick="clearFilter('equip')">清除筛选</button>
+    <button class="btn btn-export" onclick="exportTable('equip')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
+    <button class="btn btn-screenshot" onclick="screenshotPanel('equip')" title="截取当前看板">&#128247; 截图</button>
+    <span class="filter-count" id="filter-count-equip"></span>
+  </div>
+  <!-- 服装视图切换按钮 -->
+  <div class="clothing-view-bar">
+    <span class="view-label">数据视图：</span>
+    <button class="lv-btn active" id="view-btn-equip-main" onclick="switchEquipView('main')">装备标准不合规处罚</button>
+    <button class="lv-btn" id="view-btn-equip-clothing" onclick="switchEquipView('clothing')">骑手服装标准化率</button>
+    <button class="lv-btn" id="view-btn-equip-checkfail" onclick="switchEquipView('checkfail')">抽检不合格骑手明细</button>
+  </div>
+  <!-- 服装汇总卡片 -->
+  <div class="clothing-summary-card card green" id="clothing-summary-card" style="display:none"></div>
+  <!-- 主视图：装备标准合规率 -->
+  <div class="table-wrap table-wrap-station" id="equip-table-wrap">
+    <table class="dt" id="tbl-equip">
+      <thead id="thead-equip"></thead>
+      <tbody id="tbody-equip"></tbody>
+    </table>
+  </div>
+  <!-- 服装标准化率视图 -->
+  <div class="table-wrap table-wrap-station" id="clothing-table-wrap" style="display:none">
+    <table class="dt" id="clothing-table">
+      <thead id="clothing-thead"></thead>
+      <tbody id="clothing-tbody"></tbody>
+    </table>
+  </div>
+  <!-- 抽检不合格骑手明细视图 -->
+  <div class="table-wrap table-wrap-station" id="checkfail-table-wrap" style="display:none">
+    <table id="checkFailTable">
+      <thead>
+        <tr>
+          <th>大区</th><th>区域</th><th>城市</th><th>站点</th><th>日期</th>
+          <th>骑手ID</th><th>姓名</th><th>服装</th><th>头盔</th><th>餐箱</th>
+          <th>服装合格</th><th>头盔合格</th><th>餐箱合格</th><th>照片</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  
+</div>
+<!-- Tab: box -->
+<div class="panel" id="panel-box">
+  <div class="summary-row" id="summary-cards-box"></div>
+    <div class="sub-tab-bar">
+    <span class="sub-tab-label">显示层级：</span>
+    <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleViewBtn('subregion')">区域行</button>
+    <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleViewBtn('merchant')">城市行</button>
+    <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
+    <span class="sub-tab-sep"></span>
+    <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
+    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
+  </div>
+<div class="filter-bar" id="filter-bar-box">
+    <label>大区</label><div class="ms-wrap" id="ms-region-box"><div class="ms-btn" onclick="toggleMs('region-box')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>区域</label><div class="ms-wrap" id="ms-subregion-box"><div class="ms-btn" onclick="toggleMs('subregion-box')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>城市</label><div class="ms-wrap" id="ms-city-box"><div class="ms-btn" onclick="toggleMs('city-box')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>站点</label><div class="ms-wrap" id="ms-site-box"><div class="ms-btn" onclick="toggleMs('site-box')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <button class="btn btn-secondary" onclick="clearFilter('box')">清除筛选</button>
+    <button class="btn btn-export" onclick="exportTable('box')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
+    <button class="btn btn-screenshot" onclick="screenshotPanel('box')" title="截取当前看板">&#128247; 截图</button>
+    <span class="filter-count" id="filter-count-box"></span>
+  </div>
+  <div class="table-wrap table-wrap-station">
+    <table class="dt" id="tbl-box">
+      <thead id="thead-box"></thead>
+      <tbody id="tbody-box"></tbody>
+    </table>
+  </div>
+  
+</div>
+<!-- Tab: knife -->
+<div class="panel" id="panel-knife">
+  <div class="summary-row" id="summary-cards-knife"></div>
+    <div class="sub-tab-bar">
+    <span class="sub-tab-label">显示层级：</span>
+    <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleViewBtn('subregion')">区域行</button>
+    <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleViewBtn('merchant')">城市行</button>
+    <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
+    <span class="sub-tab-sep"></span>
+    <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
+    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
+  </div>
+<div class="filter-bar" id="filter-bar-knife">
+    <label>大区</label><div class="ms-wrap" id="ms-region-knife"><div class="ms-btn" onclick="toggleMs('region-knife')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>区域</label><div class="ms-wrap" id="ms-subregion-knife"><div class="ms-btn" onclick="toggleMs('subregion-knife')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>城市</label><div class="ms-wrap" id="ms-city-knife"><div class="ms-btn" onclick="toggleMs('city-knife')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>站点</label><div class="ms-wrap" id="ms-site-knife"><div class="ms-btn" onclick="toggleMs('site-knife')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <button class="btn btn-secondary" onclick="clearFilter('knife')">清除筛选</button>
+    <button class="btn btn-export" onclick="exportTable('knife')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
+    <button class="btn btn-screenshot" onclick="screenshotPanel('knife')" title="截取当前看板">&#128247; 截图</button>
+    <span class="filter-count" id="filter-count-knife"></span>
+  </div>
+  <div class="table-wrap table-wrap-station">
+    <table class="dt" id="tbl-knife">
+      <thead id="thead-knife"></thead>
+      <tbody id="tbody-knife"></tbody>
+    </table>
+  </div>
+  
+</div>
+<!-- Tab: chargebp -->
+<div class="panel" id="panel-chargebp">
+  <div class="summary-row" id="summary-cards-chargebp"></div>
+    <div class="sub-tab-bar">
+    <span class="sub-tab-label">显示层级：</span>
+    <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleViewBtn('subregion')">区域行</button>
+    <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleViewBtn('merchant')">城市行</button>
+    <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
+    <span class="sub-tab-sep"></span>
+    <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
+    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
+  </div>
+<div class="filter-bar" id="filter-bar-chargebp">
+    <label>大区</label><div class="ms-wrap" id="ms-region-chargebp"><div class="ms-btn" onclick="toggleMs('region-chargebp')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>区域</label><div class="ms-wrap" id="ms-subregion-chargebp"><div class="ms-btn" onclick="toggleMs('subregion-chargebp')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>城市</label><div class="ms-wrap" id="ms-city-chargebp"><div class="ms-btn" onclick="toggleMs('city-chargebp')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>站点</label><div class="ms-wrap" id="ms-site-chargebp"><div class="ms-btn" onclick="toggleMs('site-chargebp')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <button class="btn btn-secondary" onclick="clearFilter('chargebp')">清除筛选</button>
+    <button class="btn btn-export" onclick="exportTable('chargebp')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
+    <button class="btn btn-screenshot" onclick="screenshotPanel('chargebp')" title="截取当前看板">&#128247; 截图</button>
+    <span class="filter-count" id="filter-count-chargebp"></span>
+  </div>
+  <div class="table-wrap table-wrap-station">
+    <table class="dt" id="tbl-chargebp">
+      <thead id="thead-chargebp"></thead>
+      <tbody id="tbody-chargebp"></tbody>
+    </table>
+  </div>
+  
+</div>
+<!-- Tab: training -->
+<div class="panel" id="panel-training">
+  <div class="summary-row" id="summary-cards-training"></div>
+    <div class="sub-tab-bar">
+    <span class="sub-tab-label">显示层级：</span>
+    <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleViewBtn('subregion')">区域行</button>
+    <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleViewBtn('merchant')">城市行</button>
+    <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
+    <span class="sub-tab-sep"></span>
+    <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
+    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
+  </div>
+<div class="filter-bar" id="filter-bar-training">
+    <label>大区</label><div class="ms-wrap" id="ms-region-training"><div class="ms-btn" onclick="toggleMs('region-training')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>区域</label><div class="ms-wrap" id="ms-subregion-training"><div class="ms-btn" onclick="toggleMs('subregion-training')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>城市</label><div class="ms-wrap" id="ms-city-training"><div class="ms-btn" onclick="toggleMs('city-training')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>站点</label><div class="ms-wrap" id="ms-site-training"><div class="ms-btn" onclick="toggleMs('site-training')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <button class="btn btn-secondary" onclick="clearFilter('training')">清除筛选</button>
+    <button class="btn btn-export" onclick="exportTable('training')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
+    <button class="btn btn-screenshot" onclick="screenshotPanel('training')" title="截取当前看板">&#128247; 截图</button>
+    <span class="filter-count" id="filter-count-training"></span>
+  </div>
+  <div class="table-wrap table-wrap-station">
+    <table class="dt" id="tbl-training">
+      <thead id="thead-training"></thead>
+      <tbody id="tbody-training"></tbody>
+    </table>
+  </div>
+  
+</div>
+<!-- Tab: rider -->
+<div class="panel" id="panel-rider">
+  <div class="summary-row" id="summary-cards-rider"></div>
+    <div class="sub-tab-bar">
+    <span class="sub-tab-label">显示层级：</span>
+    <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleViewBtn('subregion')">区域行</button>
+    <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleViewBtn('merchant')">城市行</button>
+    <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
+    <span class="sub-tab-sep"></span>
+    <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
+    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
+  </div>
+<div class="filter-bar" id="filter-bar-rider">
+    <label>大区</label><div class="ms-wrap" id="ms-region-rider"><div class="ms-btn" onclick="toggleMs('region-rider')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>区域</label><div class="ms-wrap" id="ms-subregion-rider"><div class="ms-btn" onclick="toggleMs('subregion-rider')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>城市</label><div class="ms-wrap" id="ms-city-rider"><div class="ms-btn" onclick="toggleMs('city-rider')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>站点</label><div class="ms-wrap" id="ms-site-rider"><div class="ms-btn" onclick="toggleMs('site-rider')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label style="margin-left:8px">头盔合规</label><div class="ms-wrap" id="ms-helmetComp-rider"><div class="ms-btn" onclick="toggleMs('helmetComp-rider')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>带刀</label><div class="ms-wrap" id="ms-knife-rider"><div class="ms-btn" onclick="toggleMs('knife-rider')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>血压</label><div class="ms-wrap" id="ms-bp-rider"><div class="ms-btn" onclick="toggleMs('bp-rider')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>餐箱消毒</label><div class="ms-wrap" id="ms-boxDisinfect-rider"><div class="ms-btn" onclick="toggleMs('boxDisinfect-rider')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <button class="btn btn-secondary" onclick="clearFilter('rider')">清除筛选</button>
+    <button class="btn btn-export" onclick="exportTable('rider')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
+    <button class="btn btn-screenshot" onclick="screenshotPanel('rider')" title="截取当前看板">&#128247; 截图</button>
+    <span class="filter-count" id="filter-count-rider"></span>
+  </div>
+  <div class="table-wrap table-wrap-rider">
+    <table class="dt" id="tbl-rider">
+      <thead id="thead-rider"></thead>
+      <tbody id="tbody-rider"></tbody>
+    </table>
+  </div>
+  <div class="pagination" id="pagination-rider"></div>
+</div>
+
+<script src="../交通安全行为看板/data.js"></script>
+<script src="data.js"></script>
+<script>
+
+// ─── 服装标准化率：数据与变量 ────────────────────────────
+var METRIC_CFG = { clothing: { rows: [], target: 95 } };
+
+var CHECK_PHOTO_MAP = {"54656299": ["https://p0.meituan.net/banma/5f368ecac3a20bc4fdcdd1fae20b159d2841067.jpg"],"71591150": ["https://p0.meituan.net/banma/70a14b86a3d6f1876a6b07c74b4e36941776413.jpg"],"72187543": ["https://p1.meituan.net/banma/ce2f14dd7b4f114939b7edee00e40f4d2515092.jpg"],"72816079": ["https://p0.meituan.net/banma/7160b6118472ad098df7effc0e5328bc1847749.jpg"],"72991512": ["https://p0.meituan.net/banma/e64b294d5fee011a5a6f0ddf61c9b6c11051622.jpg"],"73688322": ["https://p1.meituan.net/banma/bed164fc0ea33aac3b3363aae7211dfa940948.jpg"],"74039510": ["https://p0.meituan.net/banma/d9615b8dc03ba01552c54be49915e13f1890996.jpg"],"74775436": ["https://p0.meituan.net/banma/fdaceb24cffe34bddd02e27da5c47b7a2315554.jpg"],"75365433": ["https://p0.meituan.net/banma/0409cfaaa6056d4e4a3c9380fd56f94c2736598.jpg"],"75481468": ["https://p0.meituan.net/banma/58ed4e320478c9f86fa4954b8dbb39612243116.jpg"],"75558279": ["https://p0.meituan.net/banma/4a97936247fb6875b9cabfea70298c2e1901159.jpg"],"76674248": ["https://p0.meituan.net/banma/06a66fe35e1d366269a84efae67207ce2304817.jpg"],"24352164": ["https://p1.meituan.net/banma/3d8361e6430ec43716eb1ab10a700bfd2906715.jpg"],"3554154": ["https://p0.meituan.net/banma/e8f4be929e54596be98ec063208942e4963757.jpg"],"54359571": ["https://p1.meituan.net/banma/2c8dbec7566e27ad871891fbd4ca615b1823720.jpg"],"63013859": ["https://p1.meituan.net/banma/419d4ea8cc34287e7aabb6ad4da697f2492237.jpg"],"63987104": ["https://p0.meituan.net/banma/108945006e347adff0a3ea5c9232777a939015.jpg"],"64854014": ["https://p0.meituan.net/banma/ad7bb30a3080451479ba40b3789d1366576469.jpg"],"64939233": ["https://p0.meituan.net/banma/3310f123de73a72babe1e0fd51cd84be916000.jpg"],"66832004": ["https://p0.meituan.net/banma/2496163306f26d918f1d27cccb3901c02807046.jpg"],"67048499": ["https://p0.meituan.net/banma/83fc94e5db4313604abf5ca9736fe2e5548337.jpg"],"67633998": ["https://p0.meituan.net/banma/7ae24158d66182f16d63f128ab5f1874561121.jpg"],"68294665": ["https://p0.meituan.net/banma/9ad172fa81f97000b8732d91c3dc0cca571466.jpg"],"69186785": ["https://p0.meituan.net/banma/a95aebad6679b0acd4c1ddd43002df2f865843.jpg"],"69562995": ["https://p0.meituan.net/banma/b50baebd194302ce2948275e04b408b5491095.jpg"],"69969907": ["https://p0.meituan.net/banma/1bd048b123fce3e0a2d3c029a9ef6f7b575417.jpg"],"70065866": ["https://p0.meituan.net/banma/7ef03e8226a0ba1243d56ced0136218c622350.jpg"],"70113585": ["https://p1.meituan.net/banma/816f269eff6e9ce4a5bdc0f0cf9f9b402080669.jpg"],"70113613": ["https://p0.meituan.net/banma/39020d4d1835995aa14ee705460b9133621723.jpg"],"70114216": ["https://p0.meituan.net/banma/d15d82a3065bf7244563bc3bd4973a1f616820.jpg"],"70349533": ["https://p0.meituan.net/banma/ee47939f18f2fcfdddb5a86e6252ce2e623082.jpg"],"70528343": ["https://p0.meituan.net/banma/da5ec630ea50b5fe8e2aa7e9a88adf241005202.jpg"],"70584207": ["https://p0.meituan.net/banma/0440eb7f2e8e8095e242f8c5b4366730958474.jpg"],"70595378": ["https://p0.meituan.net/banma/89fd323c76ad4d4c1196535b4feda8e7470557.jpg"],"70657209": ["https://p1.meituan.net/banma/7978143177e04f1ee06748e81179979a987939.jpg"],"70748330": ["https://p0.meituan.net/banma/07121e4f56340fdcd177d1c472deab52482274.jpg"],"70881690": ["https://p1.meituan.net/banma/a3c1d94a4b9b8be1c64a5feaa7de1929948673.jpg"],"71327871": ["https://p1.meituan.net/banma/e576718f29d3e1b35c05abbab0d4dc66550195.jpg"],"71427591": ["https://p0.meituan.net/banma/b198f1146f32c58837f474e7451526e41021962.jpg","https://p0.meituan.net/banma/7a7f7439fee4ab9c2bbdee5829f40880927043.jpg"],"72058093": ["https://p0.meituan.net/banma/0991c085c133f50b733abe7736c1c86f936994.jpg"],"72144618": ["https://p1.meituan.net/banma/f6a99eade928113526267dfb265034fe597045.jpg"],"72191842": ["https://p0.meituan.net/banma/43ace3945ffdfd64bbc71cfe89bf8710662805.jpg"],"72291422": ["https://p0.meituan.net/banma/f2116eaa5c3616416ad24a26768611fa490651.jpg"],"72496895": ["https://p1.meituan.net/banma/cfecb71a35f2c2cd67c29b1e3cc93f591018119.jpg"],"72661615": ["https://p0.meituan.net/banma/6e0363ccf7dd3699f7869f2752430156569638.jpg"],"72662027": ["https://p0.meituan.net/banma/3e7a789e634584e7bf3c8581682dbabd2056641.jpg"],"72813694": ["https://p0.meituan.net/banma/a6a2cf326b519fb723106f20989c0c35559483.jpg"],"72813855": ["https://p1.meituan.net/banma/a46773d9be7046c7560026ee21d33f76522573.jpg"],"72873685": ["https://p0.meituan.net/banma/2cdead884417f7f151e7bcb896a650cb1722090.jpg"],"73232021": ["https://p0.meituan.net/banma/e7924f222b42ccb519b36c7141396c0d1017511.jpg"],"73232109": ["https://p0.meituan.net/banma/272ee1f4450d1e7b6b2eb7eafb45293a989121.jpg"],"73319465": ["https://p0.meituan.net/banma/f5e5063e73191be6bfb80239bab7b6821703704.jpg"],"73642720": ["https://p0.meituan.net/banma/cc58b6179deda25404451a8be5fe20b3615807.jpg"],"73659521": ["https://p1.meituan.net/banma/c56fe519b454ab40cdbdd9a318a8ece51040260.jpg"],"73763013": ["https://p0.meituan.net/banma/aa16111cb1debf8c762871926013b5501011066.jpg"],"73944049": ["https://p0.meituan.net/banma/fe2b30768b30d541e1f4f279e05500b22242436.jpg","https://p0.meituan.net/banma/63c70c6345abb2e4e4bef05ce23e59b52408720.jpg"],"74018282": ["https://p1.meituan.net/banma/706abaa1c2b8641506bb712cef0a2ea7550506.jpg"],"74158042": ["https://p0.meituan.net/banma/078d926c9a7ee066e69fc7c092e5916d1053655.jpg"],"74162099": ["https://p0.meituan.net/banma/bb2592b3dfd689356bd50a137feade0c1036045.jpg"],"74474044": ["https://p0.meituan.net/banma/aba0fabaa0a291a08961779274992cd92461016.jpg"],"74603607": ["https://p0.meituan.net/banma/ad3b152a0ea6b4db402f8baea3798d29926858.jpg"],"74633032": ["https://p0.meituan.net/banma/500ffa72e228d3463d55621e1bad10b0481962.jpg"],"74712830": ["https://p0.meituan.net/banma/09c3e223fc56f47d611d9eef56d7fe212664509.jpg"],"74761045": ["https://p0.meituan.net/banma/46656a972a4dc9e6d396905ec7addb25468948.jpg"],"74840945": ["https://p0.meituan.net/banma/ef4a52a34f1864e6e94b9d5a7e2f13491056633.jpg"],"74885494": ["https://p1.meituan.net/banma/72187600ec19764a4b622be49d49d912590386.jpg"],"74926354": ["https://p0.meituan.net/banma/e09597eaddc731a734dc273958cbca7d1026380.jpg"],"74930912": ["https://p1.meituan.net/banma/56c880232da3f0b9d2fd0cfce7447f6b499558.jpg","https://p0.meituan.net/banma/e6ebe71feb2d79b77e1b29c1108e1000505229.jpg"],"74942344": ["https://p0.meituan.net/banma/f725a0de584b1ba84516a55b4f3918eb486868.jpg"],"74999914": ["https://p0.meituan.net/banma/090efa0fe89224b493f73abad3cc46ad2534091.jpg"],"75173773": ["https://p0.meituan.net/banma/8cfc098d91cb628eb8f54132569b1cac1012528.jpg"],"75189143": ["https://p1.meituan.net/banma/536f1fcddb02d65d7f2391d0b3b3d5ed952290.jpg"],"75211898": ["https://p0.meituan.net/banma/2a81218a2a7205bdb460c85c9e805aed539055.jpg"],"75217199": ["https://p0.meituan.net/banma/121de7bff36a2f1976cb76b83cf9c5ae2112928.jpg"],"75374909": ["https://p0.meituan.net/banma/ad95375adb53dad6c0bd2e88b9ef9e19484748.jpg"],"75465099": ["https://p1.meituan.net/banma/8bbd1eeb3d78cceb3bd2906b865404142183357.jpg"],"75467372": ["https://p0.meituan.net/banma/275f7c2edc4fdf6c1448258db65f02be974699.jpg"],"75602491": ["https://p0.meituan.net/banma/d8444b5ba7471861cca48831ed1535f4601123.jpg"],"75723811": ["https://p0.meituan.net/banma/ab7e2517c737976afeb2bc46fa7fd291961620.jpg"],"76035233": ["https://p1.meituan.net/banma/14408198e404d4f62e57eafeb677aeed847504.jpg"],"76161981": ["https://p0.meituan.net/banma/049827706ffddd8a608572147201fb3b525771.jpg"],"76162039": ["https://p0.meituan.net/banma/c5fe824845b54414759de8fc0536717b2617345.jpg"],"76201687": ["https://p1.meituan.net/banma/fa69fbe8103d37d75afb728259f623442527964.jpg"],"76342642": ["https://p0.meituan.net/banma/d77d3f1a92a61616619e0aaf4ae42cd02209972.jpg"],"76356993": ["https://p0.meituan.net/banma/3706944dbcf1a1a9ad86af80906aa4312302289.jpg"],"76433570": ["https://p0.meituan.net/banma/a1cabb1279399fabfd8e2873eb819675998854.jpg"],"76433833": ["https://p1.meituan.net/banma/ed761edc6b8b5acbf8f48ea2d42d6bf41002496.jpg"],"76433889": ["https://p0.meituan.net/banma/8b70ca895c1aa3f2e62b0fc0f2c242691028429.jpg"],"76439038": ["https://p0.meituan.net/banma/3e300bfe3055f7f22477c2d7a2765e39989344.jpg"],"76499002": ["https://p0.meituan.net/banma/978b0f26b97cb11dd93cb397941cc790928258.jpg"],"76536594": ["https://p0.meituan.net/banma/6e0a8bafcd4dabc0c6f4ae70a77b5ae12421305.jpg"],"76579683": ["https://p0.meituan.net/banma/6fe8fc78626d537ac373bf4a4d986c2f996350.jpg","https://p0.meituan.net/banma/988917e7ccb65b721b652c331dad92de893570.jpg"],"76580950": ["https://p0.meituan.net/banma/ea92cfafe65e6394bbd6522c2eed8ac5917835.jpg"],"9329093": ["https://p0.meituan.net/banma/8acbdde0e63cdfc7a7a707e7cf19f424907881.jpg"],"45666169": ["https://p0.meituan.net/banma/abfc443f8cba8c1d3dd2d7e83ddbabba633135.jpg"],"62761864": ["https://p0.meituan.net/banma/4403fc7e47bc807254e41d878fc56d2f753233.jpg"],"63546149": ["https://p0.meituan.net/banma/eac9ad5cc9ad19f702dea0c124b2a357460348.jpg"],"66542233": ["https://p0.meituan.net/banma/7af7e26e88c6c73e82048308b3b9536a2200651.jpg"],"67037886": ["https://p0.meituan.net/banma/fabf038d0119bc3d3bdfc04f7630c21d390567.jpg"],"67458226": ["https://p1.meituan.net/banma/32cbcdb7df4f1c89404ee9f94c33c9881844532.jpg","https://p1.meituan.net/banma/a9baec8cafd7577bb7e7688cceb2f2872166464.jpg"],"70109367": ["https://p0.meituan.net/banma/cda65cbb40954ad783465e88ff8ec82f619246.jpg"],"70205103": ["https://p1.meituan.net/banma/12e5fdee16dc6dbfa25c72362648e618660826.jpg"],"70294979": ["https://p0.meituan.net/banma/dbd8f34a67f429dc2cbcfcbb0442e9b6495293.jpg"],"71289492": ["https://p0.meituan.net/banma/e6ab4019603f027e4249a0e4bac5ded0464687.jpg"],"71905413": ["https://p0.meituan.net/banma/68faeeafb0da28d4efa63ff1599c562b477524.jpg"],"72059294": ["https://p0.meituan.net/banma/612f0689f57e9d735cb2df59efc2571a370527.jpg"],"72438724": ["https://p0.meituan.net/banma/57a270bdc2141b706627f0f94d502ec12045404.jpg"],"72525905": ["https://p0.meituan.net/banma/bb708aacafd2d30980663d4397931bbf322160.jpg"],"72617188": ["https://p0.meituan.net/banma/ee07a5b5750db27d13ef1563384ecc75602928.jpg"],"72673256": ["https://p0.meituan.net/banma/9bac7a4b024622e7cec411acc1ca5c58656537.jpg"],"72921351": ["https://p0.meituan.net/banma/6c74badf24ca4291ffd90dc22ffcf0633662041.jpg","https://p0.meituan.net/banma/4e19aa6489a269e4e5708de07f1fdc712292799.jpg"],"73015594": ["https://p0.meituan.net/banma/1bb668c5d03ebb87207ddad85f9edb69330678.jpg"],"73056998": ["https://p0.meituan.net/banma/9cb1f03e954f46f7b86385eb26db591b382773.jpg"],"73074214": ["https://p0.meituan.net/banma/ecd79134584ac7d10fef62c3bf29829a939168.jpg"],"73173286": ["https://p0.meituan.net/banma/c2b5bc113cd2e3089497e4ca260ea2ff2194892.jpg"],"73256366": ["https://p1.meituan.net/banma/5120cfd9eff7495ba9736919948dc5ac428255.jpg"],"73438353": ["https://p0.meituan.net/banma/87cfc9eab6b68a3ae0dcdea18f638a0b635587.jpg"],"73688009": ["https://p0.meituan.net/banma/cb1be72fd5df3d93d725bd342fa0b2a81887256.jpg"],"73716619": ["https://p1.meituan.net/banma/98f39c1d2f887052411a12cca5455957652114.jpg"],"73717631": ["https://p0.meituan.net/banma/b9627690687d328e2214e7e64f84664c406474.jpg"],"73763306": ["https://p0.meituan.net/banma/5e7d88e7f490e639dfb72d21b93323be1989014.jpg"],"73941428": ["https://p0.meituan.net/banma/e31d22e4fab091ef488b80fb2cc2991c1897037.jpg"],"74106711": ["https://p1.meituan.net/banma/7bb8fe9388a8b7b557a5067493d3bb44545285.jpg"],"74271790": ["https://p0.meituan.net/banma/4051fb55c72c114b56ae341560d42031634385.jpg"],"74273631": ["https://p0.meituan.net/banma/88bdf27f6b741119faeaf10db0f3c2b22094555.jpg"],"74555887": ["https://p0.meituan.net/banma/35f9d143c6017c11b10fcc0b40d1e624810570.jpg","https://p1.meituan.net/banma/7f3dccb1b95ed7c54df524608382c017874894.jpg"],"74818694": ["https://p0.meituan.net/banma/cd7b99e833c6769f7247e2c2752cd3c4790211.jpg"],"74984524": ["https://p0.meituan.net/banma/16b4e7ee2dd6857335c52753b91bfad8373359.jpg"],"75187804": ["https://p0.meituan.net/banma/809119fbe12a66f88f9930e3150f6e441920841.jpg","https://p0.meituan.net/banma/13d886b46bb1b3d83fd7a7df8fe15b0d2139114.jpg"],"75187925": ["https://p0.meituan.net/banma/9a21b0135ecaf311e8e44da772c620a11912232.jpg"],"75290574": ["https://p0.meituan.net/banma/8922c6617bff90485cbc4732f44107ba322869.jpg"],"75407711": ["https://p0.meituan.net/banma/964bc6cecb12f7cd5cdec3aea193b430470300.jpg"],"75471177": ["https://p0.meituan.net/banma/c25339222842fd42df356942184b21e7648109.jpg"],"75970463": ["https://p0.meituan.net/banma/43179e07d8f6bf665168bae58a3b80c1365677.jpg"],"76103280": ["https://p0.meituan.net/banma/bd3331d0c4ee132725e69bff5242f60c834986.jpg"],"76115081": ["https://p0.meituan.net/banma/7b272b111e2a93a10c70fe6b281717771903739.jpg","https://p0.meituan.net/banma/b3b1e776b06de68a685be905412b4ba31826758.jpg"],"76153789": ["https://p0.meituan.net/banma/50194d6ae9b658ae49eacf06f41897be643715.jpg"],"76207316": ["https://p0.meituan.net/banma/fff00d658a3ce83d6ac5c77541040370469977.jpg"],"76485352": ["https://p1.meituan.net/banma/8ea9bf986ee601750441c3c2e333abf9701023.jpg"],"76487480": ["https://p1.meituan.net/banma/59c227d34dc9bacb90fd20a4e56e6038609267.jpg"],"76529123": ["https://p1.meituan.net/banma/64a95d5c46374d77b17e2a4d3f9dbbcb492747.jpg"],"76529273": ["https://p1.meituan.net/banma/9c790c5506ded22dd02abdb1fd7bebec2408044.jpg"],"76726258": ["https://p0.meituan.net/banma/dd603e4cdf07e955a74525fc46c78872821706.jpg"],"76799154": ["https://p0.meituan.net/banma/1d979612afb33dad77b25ab9f2a1431b389085.jpg"],"27744806": ["https://p0.meituan.net/banma/3f9d9e212b7ed3697eb20114fbe2b18f884151.jpg"],"50123": ["https://p0.meituan.net/banma/ecaa3b30d726516bc15c9bb011513c9f938863.jpg","https://p0.meituan.net/banma/9481debdf6453caee846bca8628b140b958836.jpg"],"51003544": ["https://p0.meituan.net/banma/12a7aa863b2cafe8bf870d404540797d929382.jpg","https://p1.meituan.net/banma/9b8f22f80754918cf337e768dcca6008929279.jpg"],"51492788": ["https://p1.meituan.net/banma/bc876493724c901b11d9b10a273970aa837213.jpg"],"51532087": ["https://p0.meituan.net/banma/01d0a7b74576a1ccca280912dea1bb8e1018801.jpg"],"52455706": ["https://p0.meituan.net/banma/5ce8435963d06a250ef7e1df4945736f946167.jpg"],"53044348": ["https://p0.meituan.net/banma/0c05a6e121c22d81c5313a2b16f0a49e951263.jpg"],"55650127": ["https://p0.meituan.net/banma/2d93b7cf99b3727a52051fb310b0434f1022249.jpg","https://p0.meituan.net/banma/eeb6306dd76f72d9d8cc70f5458610c7975884.jpg","https://p0.meituan.net/banma/e8fbdaf9450b28fe3a354cd54bb23dc9833322.jpg"],"62754106": ["https://p0.meituan.net/banma/32f96549c02b56590813f32fdc8d52be971912.jpg"],"63447542": ["https://p0.meituan.net/banma/bade49bd2935bcdd32c746e212c016f7972911.jpg"],"64538664": ["https://p0.meituan.net/banma/967fd915319953379a8b63d4ad039d46941674.jpg"],"66061194": ["https://p0.meituan.net/banma/9bb55b1d98d5a9d9a1bade815261b273975415.jpg"],"67353215": ["https://p0.meituan.net/banma/2df3839c3a061cda13d73b57df61efdd720235.jpg"],"68088206": ["https://p1.meituan.net/banma/038547ea17de968d4583fea27b0fd0eb834105.jpg"],"68447863": ["https://p0.meituan.net/banma/9613fcb1984793898edfcf59b018834c1037449.jpg","https://p1.meituan.net/banma/94fdcc02b6a5aeaf8f9cb8b8fa5cf029915968.jpg"],"68727686": ["https://p0.meituan.net/banma/14c7f1162000c327f1e105772fa87cdd871173.jpg"],"69726863": ["https://p1.meituan.net/banma/0ecdeae110e57d894f6bfe95f977bb77878183.jpg","https://p1.meituan.net/banma/ccad78c0720100c1ec2e0ce41a755bc9705671.jpg","https://p1.meituan.net/banma/42b13f3976ede0aff41da099e9253f98852705.jpg"],"70110325": ["https://p0.meituan.net/banma/055b1ec4ac9b839bbfd6881144a102dd1040800.jpg"],"70192420": ["https://p0.meituan.net/banma/f5c3f517996102f991096e2f62400ef1886564.jpg"],"70937800": ["https://p0.meituan.net/banma/32de05f7c8e5424a5cbbe20eecb8f406905958.jpg"],"71383507": ["https://p0.meituan.net/banma/904931cbd83aef365690939a487701431046916.jpg","https://p0.meituan.net/banma/d43b3c5cdcee2898eb5fcd934270d77d1001619.jpg"],"71483042": ["https://p0.meituan.net/banma/f6737b0a90e672b75f67416585124b39723027.jpg"],"71735004": ["https://p0.meituan.net/banma/03a30b48f83b7fc8cfefe6740fb8b744956754.jpg"],"71749118": ["https://p0.meituan.net/banma/0df59f014d13296ac8862566c493fff9887784.jpg","https://p0.meituan.net/banma/c4c81d13d5f91933f5a02691e721a237952272.jpg"],"71898005": ["https://p1.meituan.net/banma/feb77d7784ddf012ac5531ec8d69f483807009.jpg"],"72022252": ["https://p0.meituan.net/banma/a298b10bc70f578a7bef1d865584c777870275.jpg"],"72371206": ["https://p1.meituan.net/banma/9c0d56a16121da8a2ca818fda9e86ba8838352.jpg","https://p0.meituan.net/banma/1623ee2d49cdda8aa1302616784a8e43728572.jpg"],"72563504": ["https://p1.meituan.net/banma/0a5c15e2df03b081e58ad2003090875d835142.jpg"],"72615579": ["https://p0.meituan.net/banma/d1ace023d0c7170cc6d0cfaa7fa9c3e0822506.jpg"],"72911633": ["https://p0.meituan.net/banma/0b899b6404c73556f813f66959c47796840310.jpg"],"73312589": ["https://p0.meituan.net/banma/7a809d1d6b8b357122ad28db825d9f6d980419.jpg"],"73561658": ["https://p0.meituan.net/banma/5927c15b44bb874f549f0c81ccdf0db0891649.jpg"],"73631741": ["https://p1.meituan.net/banma/0cc03455ed581fa47350bb4a5f3a3ced1031811.jpg"],"73674643": ["https://p0.meituan.net/banma/39baa21e33df09002c0ea5f1e10981a4924383.jpg","https://p0.meituan.net/banma/8fbf92d787b1b53672b0c7cd334d9849896245.jpg"],"73675693": ["https://p0.meituan.net/banma/bbe90732adfd47ecc93f6e75d6a91bd9702965.jpg","https://p0.meituan.net/banma/cca4e88f284b45ab1f928e58d2f990e2832743.jpg"],"73761951": ["https://p0.meituan.net/banma/0157a67396cd72e7b988c88b2dd77c19871907.jpg"],"73786814": ["https://p0.meituan.net/banma/024308829260fdcf4a65a4796a4abc75996863.jpg"],"73852333": ["https://p0.meituan.net/banma/2c71940efb1150a1bc674027b7e25495789496.jpg","https://p0.meituan.net/banma/a82e45c804d9a646d05deaede868503b858441.jpg"],"73895979": ["https://p0.meituan.net/banma/a6f14432902e1d1af30550bdec602f32966666.jpg"],"74018302": ["https://p1.meituan.net/banma/cae7f5748d2954097ef8a4a45a32d2df938544.jpg"],"74084952": ["https://p0.meituan.net/banma/668a621dcad6ab776271783412fce7ea878337.jpg"],"74232436": ["https://p0.meituan.net/banma/c771399d0ff6fbcb66011024012f902b931018.jpg"],"74327943": ["https://p0.meituan.net/banma/bc2aafef049a16323b1e88f7f1d25b9c1006940.jpg"],"74331948": ["https://p0.meituan.net/banma/c91a1e202ef67cf6e50cd35f128d0bf5992354.jpg","https://p0.meituan.net/banma/3a56ece23f6f104dde3a445bb67104ee952223.jpg"],"74393827": ["https://p0.meituan.net/banma/f9eaede3a62cbe937ecc40293ad51cc2968296.jpg"],"74604253": ["https://p0.meituan.net/banma/027b8146effbaaa8ceb8d0025c4ab2731041083.jpg","https://p0.meituan.net/banma/ccd9f95b6af9d1d46fd4e048440a042e936063.jpg","https://p0.meituan.net/banma/f429dd3b1c709c7b597823a6fc39c9081029947.jpg"],"74605906": ["https://p0.meituan.net/banma/2ba122f1931a4424d3d48e814607e9d5963793.jpg"],"74710567": ["https://p0.meituan.net/banma/f61e1252f17923e83aeb45dfac57c2b0945184.jpg","https://p0.meituan.net/banma/6dfc950389ac444c83af9581b42f9625907548.jpg"],"74723459": ["https://p1.meituan.net/banma/c7d7fe8a4e0ea35fe6d00c85c4bf5b10746020.jpg"],"74731150": ["https://p0.meituan.net/banma/bf3952ed259029a6ba0bf7ea6836f287974844.jpg"],"74769964": ["https://p1.meituan.net/banma/426b61a87bed07474aee64fa4e9085e3826872.jpg"],"74812230": ["https://p0.meituan.net/banma/501c520e7c0bebce2d82a29f187ff16a1027197.jpg","https://p1.meituan.net/banma/9f6991d5a63f87a5e025f0ab86e0ea9c918941.jpg","https://p0.meituan.net/banma/c42d9e906b297a72187fcc8774b6f319980731.jpg","https://p0.meituan.net/banma/b1679815731b173a9f609be2e724e9de1037809.jpg"],"74928264": ["https://p1.meituan.net/banma/19a8c7bf7fa5923553e88155f6c7e8ab972148.jpg"],"75148464": ["https://p1.meituan.net/banma/d7c1a49c26e731af2348f05595ae67ee895248.jpg"],"75168723": ["https://p0.meituan.net/banma/4917c56d8de078ff66abaa2d862793d1737459.jpg","https://p0.meituan.net/banma/0277cee6e37c15e80f96faa2cc1913ea983502.jpg"],"75213876": ["https://p1.meituan.net/banma/09f0fd6a40acece46f1e07f76b2562b01005676.jpg","https://p0.meituan.net/banma/94f66d1ccce553f79f88c4cef8506aec802853.jpg"],"75246371": ["https://p0.meituan.net/banma/2ce67060db62b68c033bb3faaa4d071a957694.jpg"],"75299358": ["https://p0.meituan.net/banma/637feecfcec9055f34dfc169f33d2f0d925341.jpg"],"75363211": ["https://p0.meituan.net/banma/453d25775858b40a341b6d5a72a237dd822305.jpg","https://p1.meituan.net/banma/247ffe258676f0ca87429673dd445eaa792623.jpg"],"75366645": ["https://p0.meituan.net/banma/2b9f20ef180aab872a691bb86df4c9d71052728.jpg"],"75411100": ["https://p1.meituan.net/banma/ec39f7644b871daeb1e916985bab93bf831983.jpg"],"75490378": ["https://p0.meituan.net/banma/49dd4939c98f0ddf98d110c11bb799eb863801.jpg","https://p1.meituan.net/banma/f789ca2a1f0d39a49cb7f54f3d4fc0ed774115.jpg"],"75677085": ["https://p0.meituan.net/banma/b3662d2ff3f12ae4577cccae9e2ccb8b960943.jpg"],"75968194": ["https://p0.meituan.net/banma/c1d3e96641e246035fb7221d6cdc1d39886052.jpg","https://p0.meituan.net/banma/95f572fc62e4b9ecad575cc571ecb62f906504.jpg"],"76151970": ["https://p0.meituan.net/banma/7bd8456467860315e18572fe61422c2c877921.jpg","https://p0.meituan.net/banma/20fbbf1209ee36d673ab0ead7b67be3b902315.jpg"],"76348386": ["https://p0.meituan.net/banma/f867a02a2d3e68e1e0a0d32aad3f0b681030098.jpg"],"76388655": ["https://p0.meituan.net/banma/5c8ba5b5c4435a4188ddef96398047b0717870.jpg","https://p0.meituan.net/banma/2041487e84eff7572d3124878e9c8e3d957091.jpg"],"76497763": ["https://p0.meituan.net/banma/01ba3a7317dfaf898c685070567c2c5f911706.jpg"],"76541289": ["https://p0.meituan.net/banma/8005f875b09d450f9ee2db0c5a03048a1039956.jpg"],"76622617": ["https://p0.meituan.net/banma/bd843daf7e444fabc8147b83a3550c19878656.jpg","https://p0.meituan.net/banma/650f551649aa0d0995207c4448a140531032544.jpg"],"76808715": ["https://p1.meituan.net/banma/bff308a39957af92e292446ff16868f1968543.jpg"],"76863660": ["https://p0.meituan.net/banma/67ea32f64263834d4e403f569d0005bc873110.jpg","https://p0.meituan.net/banma/772de193da7c7e6c1285f8c528c85c48840633.jpg","https://p1.meituan.net/banma/7616cfe9b8e4cf8be17c218dc56c19a8781344.jpg","https://p1.meituan.net/banma/d6994224c34e6b234e9a63ec963e8b40997630.jpg"],"38319703": ["https://p0.meituan.net/banma/132a9a331fc4314a1d4447efa3a34171777556.jpg"],"54358825": ["https://p0.meituan.net/banma/ebfc9dda67434cadfee699dad36bbae4920304.jpg","https://p0.meituan.net/banma/f6ba5faf27c5f45f19447ae40b69d2af939174.jpg"],"70078788": ["https://p0.meituan.net/banma/ba919ef484734e8b713181cd292ca466901217.jpg"],"71073224": ["https://p0.meituan.net/banma/d91bea28803645878051bc47a5a68a1f896040.jpg"],"71713680": ["https://p0.meituan.net/banma/8ad5627d929e8c6aa076d76df709a0ad929215.jpg"],"71947172": ["https://p0.meituan.net/banma/a6e24d6c7a5a702d4a6fb57aacd5a8de1004953.jpg","https://p0.meituan.net/banma/c3cf7b4803fcccacb39ad0c07bec292d938661.jpg"],"72774944": ["https://p0.meituan.net/banma/ab5f3edd4c409ceee1c2eaeea58e7ae0889197.jpg"],"74812646": ["https://p0.meituan.net/banma/b91a7e497c12c42c401c44d699e6c3ec834425.jpg"],"76201340": ["https://p0.meituan.net/banma/981723997bf5f711cf9ce2eaa57c57f9749863.jpg","https://p0.meituan.net/banma/7e513dd04c56bb9a0b8810a71083a6bc714981.jpg"],"76222740": ["https://p1.meituan.net/banma/e323a411eefc2a4ed2fb9b757bc96efc945120.jpg","https://p0.meituan.net/banma/fe735722ca7fb6bf1d0b63a15333945c1016781.jpg"],"76356257": ["https://p0.meituan.net/banma/5dc7cdce91aac115638ff7ea348f6a451020428.jpg","https://p0.meituan.net/banma/db85796796e4737eb78fc47a3bd9a47f1013542.jpg"],"76708046": ["https://p0.meituan.net/banma/dd8906604aa0ebdd62e7d484dab76ef6764980.jpg"],"76755815": ["https://p0.meituan.net/banma/fad902308039c474d88533b4a02c22b8938102.jpg"],"76776157": ["https://p0.meituan.net/banma/f16223eb2f8623e41755419b88d27037941830.jpg"],"76822590": ["https://p0.meituan.net/banma/bafa03cd21352d3a379bd5a4ee7f2497934108.jpg"],"32270022": ["https://p1.meituan.net/banma/109dd9559e0428cabd8780c7c7083fde2816639.jpg"],"50395408": ["https://p0.meituan.net/banma/4680432ae10d754c03b26f29b9311b19870300.jpg","https://p0.meituan.net/banma/df9f7583d7bc7f82793c910e7bca6ee3938509.jpg"],"52558816": ["https://p0.meituan.net/banma/bdaf683f2c7b5a42599ff630b34209032831407.jpg","https://p1.meituan.net/banma/cc91325f13dcfc85a182993e1213c5b31203202.jpg"],"57859510": ["https://p0.meituan.net/banma/1b6a64f0e64aeff8cfc8a77185c8bb2e2637079.jpg"],"58765736": ["https://p0.meituan.net/banma/6b2933256607f3025c27ed2e72b56255783321.jpg","https://p0.meituan.net/banma/afe2aec9482ba92944bc8dc524776771768125.jpg"],"60653160": ["https://p0.meituan.net/banma/19c4f687044c4a136f832b11aba5a46f2501666.jpg","https://p0.meituan.net/banma/cb0b55b667fe43f2497ae9dfa62e2d4d2146924.jpg"],"64010684": ["https://p0.meituan.net/banma/c2185fa1b59f98ad0385751546a67f38849136.jpg"],"64183239": ["https://p0.meituan.net/banma/537198af54441266fb20303324b8f6642765757.jpg"],"70768582": ["https://p0.meituan.net/banma/b089d3619fb9879520faf3e2ad9c174e886658.jpg"],"70984038": ["https://p0.meituan.net/banma/61529973b5d210c555f073f834473169941254.jpg"],"71375336": ["https://p1.meituan.net/banma/0f66718876d67e90b6717ca8349582201846469.jpg","https://p0.meituan.net/banma/fae7e4c9d6302573e5e810090e93de021839982.jpg"],"72186652": ["https://p1.meituan.net/banma/73bb19f95d17b7c5931d181c1b3b3778949291.jpg"],"72258434": ["https://p0.meituan.net/banma/c6aa621528566414877ccb1c186db034825126.jpg"],"73859880": ["https://p0.meituan.net/banma/e6d7b4ed819c4f14a44a04086f93f430717556.jpg","https://p0.meituan.net/banma/dca6fbfcf5ae9768577e187f58f8aa46979249.jpg"],"73907082": ["https://p0.meituan.net/banma/8478e08c155fe3f9461b10a85db51d72918387.jpg"],"74720968": ["https://p0.meituan.net/banma/8f2c0440b82bb7047c1929bacd29b47a869681.jpg"],"74722614": ["https://p0.meituan.net/banma/8102eb135af02fce4149b0098c0ccf79865631.jpg","https://p1.meituan.net/banma/c09885f29a520a5378ff257d3fa2778f1037400.jpg"],"74959141": ["https://p0.meituan.net/banma/5c21398acdb55bc611d955f551ef4aa3734883.jpg"],"74961218": ["https://p1.meituan.net/banma/fd28384ef7f8a7fba537bdf36a8a1629928602.jpg"],"74962793": ["https://p1.meituan.net/banma/51567edd3623fc887682e76fa728084b713370.jpg","https://p0.meituan.net/banma/0033f04af7290961927a748ce9cc59381017598.jpg"],"74962894": ["https://p0.meituan.net/banma/38139b71ce30202b23bab632525fbfc2912099.jpg"],"75036613": ["https://p0.meituan.net/banma/01f66c65dc2034d0d0f95066e21f2fdf1036057.jpg","https://p1.meituan.net/banma/3a01e3aaf419e76813a538991c2b9efc892138.jpg"],"75149091": ["https://p0.meituan.net/banma/8f5d65e011a85d5450d0b8302c2839f72646591.jpg"],"75291672": ["https://p0.meituan.net/banma/af19f93ccfb23f0b53193ad1a74dfdf7999144.jpg"],"75351276": ["https://p1.meituan.net/banma/55bd433e5871b4310bc55b948a237dfe922857.jpg"],"75532923": ["https://p0.meituan.net/banma/ac66c6ef1282ff54e8a0a39244fb2123816399.jpg"],"75598830": ["https://p1.meituan.net/banma/9b137a0f2099c2bd0d12591b2a770568877130.jpg"],"75599927": ["https://p0.meituan.net/banma/f1a6a259b1980db7c01d7a815b40ad49681550.jpg"],"75609203": ["https://p0.meituan.net/banma/4651cf9ccd3afc290d92cf64b2db9da11011826.jpg"],"75662630": ["https://p0.meituan.net/banma/4b3601117245f6b41b07353e6405bb55824574.jpg"],"75794390": ["https://p0.meituan.net/banma/a24f8807d36fc3dfad29195a2525ae55741207.jpg"],"75856564": ["https://p0.meituan.net/banma/7bcd364a90f2570c4df258905ef050ef2654038.jpg"],"75937940": ["https://p0.meituan.net/banma/325c64c6d1d0f845cc5e428a594ba7c22633807.jpg"],"75973962": ["https://p0.meituan.net/banma/2205795923944e609c32e0b472683190933549.jpg"],"76092264": ["https://p0.meituan.net/banma/850ebdbd64e13d53441ddce49e3e46022819634.jpg"],"76206791": ["https://p0.meituan.net/banma/127c92b1e27d6248cffe90cb48835887734531.jpg"],"76252064": ["https://p1.meituan.net/banma/f05d7050d7ff12a40f99d38eb710a59b1007811.jpg"],"76392499": ["https://p0.meituan.net/banma/0b77dd7c61fcacf03b56ab763aed14c0832807.jpg"],"76636165": ["https://p0.meituan.net/banma/c1604d836c842c7890429caf21a106932426994.jpg"],"76664472": ["https://p0.meituan.net/banma/ff2d0706461b2bb94f262adea59702cf810980.jpg"],"76758334": ["https://p0.meituan.net/banma/b68304e3e96e93fd37f6a6c2f7ecc0a7871273.jpg"],"76841348": ["https://p0.meituan.net/banma/754664d6deae78b43c66f7eedf7d42412641490.jpg"],"38955803": ["https://p0.meituan.net/banma/d07732971903f674757a8b826636ca8a763032.jpg"],"49001882": ["https://p0.meituan.net/banma/218690bad6d15461a0aa2eb1097b88df1034294.jpg","https://p0.meituan.net/banma/b4a0216278c25c82fddc0d69c1300171926860.jpg"],"70453600": ["https://p0.meituan.net/banma/dc8b08f6088f420d158ca1d631c313ed1007647.jpg"],"71332087": ["https://p1.meituan.net/banma/e116f549b54a2d1883c58d62a854c437697457.jpg"],"71375864": ["https://p0.meituan.net/banma/431592d057363bd1e344d35e2df072f3530762.jpg","https://p1.meituan.net/banma/d8c30cac5f6af9c1d27852954f063221954164.jpg"],"71990153": ["https://p0.meituan.net/banma/885f6e86d02343b7f23b0474d5ec27d2704196.jpg"],"72619051": ["https://p1.meituan.net/banma/7edba9b8b0a3b5857089729d98fdac29530033.jpg","https://p0.meituan.net/banma/503d618eb6aaaf97930d8dbfd2be547b849663.jpg"],"72696096": ["https://p0.meituan.net/banma/64b02a36ff0fb0f267f4000788ae02c21057023.jpg","https://p1.meituan.net/banma/132e37a9fa2e516ba4d83bb420e3892c977155.jpg"],"73190238": ["https://p1.meituan.net/banma/ab51af57a951a565e17c69a5874bf869925280.jpg"],"73700892": ["https://p0.meituan.net/banma/fadc8127a0b9f397973600896be499db958056.jpg","https://p1.meituan.net/banma/2124e7f29dd97593c13233237503c246926139.jpg"],"74755223": ["https://p0.meituan.net/banma/1254bf3527db2dfeefdcb2ffb7e3f97b858651.jpg"],"74836745": ["https://p1.meituan.net/banma/20fdec712879cfd21a23e9052f597133927142.jpg"],"74944282": ["https://p0.meituan.net/banma/0a990c569d06412badd8c7547ed6d23f876036.jpg","https://p0.meituan.net/banma/64838da4c1cbe33d70ee98999f955c57964251.jpg"],"75161050": ["https://p0.meituan.net/banma/7a74f65c03d3b7dc7a0e3081f432b7e51010314.jpg"],"75529215": ["https://p0.meituan.net/banma/7636dbd0ef249db990bc614239f883ac822323.jpg","https://p0.meituan.net/banma/c6f53bcfea87a740eebb773ca7f1da181011369.jpg"],"75695903": ["https://p0.meituan.net/banma/d05085a172dcab3a457be64d368ac6a5929528.jpg"],"75977726": ["https://p0.meituan.net/banma/e2ce90218d6378e178fa1a57f74eeb47775553.jpg"],"76439782": ["https://p1.meituan.net/banma/b9b97ed6bbad8272533555f6331733be887293.jpg"],"76759218": ["https://p0.meituan.net/banma/ae05a83a949964f3ace4250942ed3178886625.jpg"],"14974836": ["https://p1.meituan.net/banma/d006ed357b7d35dd409eaef58a12b343478137.jpg"],"36820457": ["https://p0.meituan.net/banma/50dd04515e943c5b4f99a4943bbd9974629394.jpg"],"51509193": ["https://p0.meituan.net/banma/5cda4139c54d76f7eb50495eba674d48511087.jpg","https://p0.meituan.net/banma/efc3202b4d09080a7668f8376aa65f77560942.jpg"],"67958448": ["https://p1.meituan.net/banma/7ff9fb604f4d6ceecc0bb17012726a2f638906.jpg","https://p1.meituan.net/banma/df6400544f23b6c3709ffc3049cf912c627412.jpg"],"68038575": ["https://p0.meituan.net/banma/24c0ca35b02717f59d020737d9138fa6645908.jpg","https://p0.meituan.net/banma/4b54e2f39d2a12064a774f90885ceba7600477.jpg"],"71216431": ["https://p0.meituan.net/banma/bef8df70a7c70935a6a9c20889eefc43653886.jpg","https://p0.meituan.net/banma/2e453b2c284fd5aded2c71606e942482725713.jpg"],"71986090": ["https://p0.meituan.net/banma/f43f1f06182e8e4cdf199b654c949591933404.jpg"],"73437926": ["https://p0.meituan.net/banma/cf92deac1738716a848cdf92c17e21be910769.jpg"],"73444367": ["https://p0.meituan.net/banma/7690f8aaa39b76c35c6655a8d3eb986e483721.jpg","https://p1.meituan.net/banma/2b0a668dc0555de3ab8095b7d2a3f056488859.jpg"],"74826542": ["https://p1.meituan.net/banma/805d346b9049dab071c3108b3c805c9e941640.jpg"],"74988614": ["https://p1.meituan.net/banma/0976341bb2fb6dfe4b8acb2b77544b2b761710.jpg"],"75213963": ["https://p0.meituan.net/banma/1413a13dbb1f0574a29c4e7611e197bd714857.jpg"],"76436412": ["https://p0.meituan.net/banma/26aad50e1c5971b8e2e3782c29b0915d952035.jpg"],"76712248": ["https://p0.meituan.net/banma/9f5a436dfd76a7661ca9eb5a24cdf21d837307.jpg"],"35419498": ["https://p0.meituan.net/banma/549f53408cc5063844fb5bb76cb67699807076.jpg"],"68241009": ["https://p0.meituan.net/banma/def928f5ff4fecfdc53e0cd1d104c2ed959832.jpg"],"69758678": ["https://p0.meituan.net/banma/09ac27c0e96f98c0aa6c96d7c60d0b30809203.jpg"],"73729819": ["https://p0.meituan.net/banma/e9c840ecfeeb9ea646153ffbeadbabeb868568.jpg"],"74679951": ["https://p0.meituan.net/banma/a09f20c528b01595b10c9bf421d601d4951935.jpg"],"75107483": ["https://p0.meituan.net/banma/fd66d1571508080c2804575d01755925795498.jpg"],"75531653": ["https://p1.meituan.net/banma/814e70eea029d26124479ae1c174b77b816047.jpg"],"16834125": ["https://p1.meituan.net/banma/69aac9705a23c4a33cd85ab6f2926e1c2249298.jpg"],"20323330": ["https://p0.meituan.net/banma/dbe20924522c5dca215ce6fb3bd89cd12243127.jpg"],"28345825": ["https://p1.meituan.net/banma/ff938971c66e22dba43a9bdb180896332269039.jpg"],"37267198": ["https://p0.meituan.net/banma/14b1e7d98c76832558cb344920732f611941289.jpg"],"50434447": ["https://p0.meituan.net/banma/c6dbe006459a2b5669752632ea2e847d2217953.jpg"],"53004007": ["https://p0.meituan.net/banma/e41f0399509931063e9c9c619b7fa8702297449.jpg"],"60057855": ["https://p0.meituan.net/banma/db95305cac68f3c46eae90bf105947042243160.jpg"],"62442255": ["https://p0.meituan.net/banma/9d617dd796bbd870074ade9c78f642da1412592.jpg"],"65770973": ["https://p0.meituan.net/banma/4065521db5065ebcb09a22a4697f88c62488382.jpg"],"70720056": ["https://p1.meituan.net/banma/f2097a1d9f3b8d331404c24b3fa510db2269929.jpg"],"72955551": ["https://p0.meituan.net/banma/284dadf3cb60fdc448a3a3d665ba43f32066094.jpg"],"73354602": ["https://p0.meituan.net/banma/2b0455f5b61860f8643aa7a3ad5605402372307.jpg"],"73530110": ["https://p0.meituan.net/banma/d068147d5f7433ba160be40e8db39d322776088.jpg"],"74427523": ["https://p0.meituan.net/banma/c559fb53def689b255c51afb7f7106f02358586.jpg"],"74892779": ["https://p1.meituan.net/banma/c37b5dade2db2988dc421bcc5b91e7eb1893875.jpg"],"75407880": ["https://p1.meituan.net/banma/49306093482ff573e397aece3c9db6ef2398322.jpg"],"75539251": ["https://p0.meituan.net/banma/2817b94c653abff3388fd8438dff6d1c2804865.jpg"],"75922577": ["https://p0.meituan.net/banma/b9631ba61be8cf879422de2bc2960b1b2148259.jpg"],"75975960": ["https://p0.meituan.net/banma/9abeeec2bfb29b337ebb9774d3c403ad2245050.jpg"],"76115107": ["https://p0.meituan.net/banma/98f55d349338c1c088d6d6417db1e64f2033516.jpg"],"76154460": ["https://p0.meituan.net/banma/34ea8a968ee269708dcb0ac17eae9d4f2198765.jpg"],"76274268": ["https://p0.meituan.net/banma/e9cad0586604e46b9f465d7439abbf9e2250452.jpg"],"76491186": ["https://p0.meituan.net/banma/6b634c5e762ccd0793f76415fc7eff592178056.jpg"],"76922699": ["https://p0.meituan.net/banma/3b7a1673c1cfe285063164219d3ffc252348082.jpg"],"76960951": ["https://p1.meituan.net/banma/6774993116f86031389cab71aae8ccdc2443284.jpg"],"77066607": ["https://p1.meituan.net/banma/b3b5a8ba536143cb62e4bfa48f0036332244615.jpg"],"26943568": ["https://p0.meituan.net/banma/02729681520dbb3d3112dc15ed51f43c1894698.jpg"],"43763916": ["https://p0.meituan.net/banma/e6851e80ca438019966baab67e93faf01780779.jpg"],"52924529": ["https://p0.meituan.net/banma/0a260015a0c5672bd73210fb7726f5922160876.jpg"],"66941835": ["https://p0.meituan.net/banma/3b4378dd98f9a32d553dc0e9bdac6f0a2012962.jpg"],"67480772": ["https://p0.meituan.net/banma/f1133b1950a7d2773673b5eb4d32190f2102550.jpg"],"67537608": ["https://p1.meituan.net/banma/3b21b76e9cb0c7bbdcb8f400039b73451937972.jpg"],"70986002": ["https://p0.meituan.net/banma/db391e86b96eeb389d5d12e02a7512561898815.jpg"],"71768412": ["https://p0.meituan.net/banma/a2db5c6b462455b30ae295261a3dbd48841827.jpg","https://p0.meituan.net/banma/cf7bf4bb0ff8eeb7c692ce0265e2b60e886727.jpg"],"72785186": ["https://p0.meituan.net/banma/c1e1b236cae2f23ca39607c0ebaa2aeb1953598.jpg"],"73128514": ["https://p0.meituan.net/banma/0519c9508e034c79561b6f8b7b3679fc1017751.jpg","https://p0.meituan.net/banma/b3b016e1c86908ba72b1b25615e34ed0874994.jpg"],"73525632": ["https://p0.meituan.net/banma/27a0bbe69e166d5c74fcc384d8eafd7d2078534.jpg"],"73652821": ["https://p0.meituan.net/banma/a7045869be93bb8df01c38b800404d7e1874755.jpg"],"73859574": ["https://p0.meituan.net/banma/4f7a80e778cd43e04b7c7d4259f281932179271.jpg"],"74075515": ["https://p0.meituan.net/banma/ce49cabbf5281513a7b4af6dbaa9f1592233284.jpg"],"74146655": ["https://p0.meituan.net/banma/97c8a7c5da38954d576a0cc88024286e1019501.jpg","https://p0.meituan.net/banma/7c28452e565d4f1926568938c6a36ec9979842.jpg"],"74330301": ["https://p0.meituan.net/banma/1c9c498fa3fd5f9968c3ec11152aedec886327.jpg","https://p0.meituan.net/banma/f798fb11f1a4bd79d03a3b6ddf26cb97910842.jpg"],"74672970": ["https://p0.meituan.net/banma/3f361563c706a93cebc285aae23cd1621054212.jpg"],"75274547": ["https://p0.meituan.net/banma/d41f21f5aaac8c75c33d7e5fc749b0682295036.jpg"],"75349508": ["https://p1.meituan.net/banma/f7f69d923c9d9b69db0c9117ebf676f11837986.jpg"],"75490225": ["https://p0.meituan.net/banma/19b4ed74f7bae044eee98f4b8733c8fe978218.jpg","https://p0.meituan.net/banma/d5ad79d0d4e8f04e8ed17a34615769ee968233.jpg"],"75968447": ["https://p0.meituan.net/banma/17597271bfafe5f40eb10bb083ed096e928155.jpg"],"76150316": ["https://p0.meituan.net/banma/f05f3449c92f31e4704aa326ea34c7bf2089202.jpg"],"76991054": ["https://p1.meituan.net/banma/65c242f5b82351a0687d431b477acfb71039096.jpg","https://p0.meituan.net/banma/17908163f68fb6d11a3868128e690b99895855.jpg"],"76993674": ["https://p0.meituan.net/banma/f14bffb68167b6d86fd01a532f55063a1854465.jpg"],"77099351": ["https://p0.meituan.net/banma/a6e0adb891e4ab14be35f68546948ad1984152.jpg"]};;
+
+var currentEquipView = 'main';
+var checkFailPage = 1;
+var checkFailPageSize = 20;
+
+// ─── 工具函数 ──────────────────────────────────────────────
+function extractCity(siteName) {
+  var m = siteName.match(/【(.+?)】/);
+  return m ? m[1] : '';
+}
+function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function textColorForBg(bg) { return bg === 'rg' || bg === 'ry' || bg === 'rr' ? '#fff' : ''; }
+function fr(v) { return (v == null || v === '' || v === undefined) ? '-' : v; }
+function rc(v) { return (v != null && v !== '' && v !== undefined) ? Number(v) : 0; }
+function frate(v) {
+  if (v == null || v === '' || v === undefined) return {text:'-',cls:'rn'};
+  var n = Number(v);
+  if (isNaN(n)) return {text:'-',cls:'rn'};
+  var t = n.toFixed(1) + '%';
+  if (n >= 95) return {text:t,cls:'rg'};
+  if (n >= 85) return {text:t,cls:'ry'};
+  return {text:t,cls:'rr'};
+}
+
+// ─── 维度信息 ──────────────────────────────────────────────
+function getSiteInfo(siteName) {
+  if (typeof SITE_INFO !== 'undefined' && SITE_INFO[siteName]) return SITE_INFO[siteName];
+  return {大区:'',区域:'',城市:''};
+}
+function siteInfoCols(siteName) {
+  var info = getSiteInfo(siteName);
+  return '<td class="sticky-col" style="left:0;min-width:80px">'+escHtml(info.大区)+'</td>'+
+         '<td class="sticky-col" style="left:80px;min-width:80px">'+escHtml(info.区域)+'</td>'+
+         '<td class="sticky-col" style="left:160px;min-width:70px">'+escHtml(info.城市)+'</td>'+
+         '<td class="sticky-col sticky-last name-cell" style="left:230px;min-width:150px">'+escHtml(siteName)+'</td>';
+}
+
+// ─── 颜色标记 ──────────────────────────────────────────────
+function pctCls(v) {
+  if (v == null || v === '' || v === undefined || isNaN(Number(v))) return 'rn';
+  var n = Number(v);
+  if (n >= 95) return 'rg';
+  if (n >= 85) return 'ry';
+  return 'rr';
+}
+
+// ─── REGION_ORDER ──────────────────────────────────────────
+var REGION_ORDER = ['华北一区','华北二区','华北三区','华东大区','中南大区'];
+
+// ─── SUBREGION_ORDER ──────────────────────────────────────
+var SUBREGION_ORDER = {
+    "华北一区": ["黑吉区域","辽宁区域","津冀区域"],
+    "华北二区": ["河南区域"],
+    "华北三区": ["中西区域"],
+    "华东大区": ["北京区域","上海区域","苏北区域"],
+    "中南大区": ["山东区域","安徽区域"]
+};
+
+// ─── 筛选系统 ──────────────────────────────────────────────
+var sfState = {};
+function toggleMs(id) {
+  var wrap = document.getElementById('ms-'+id);
+  if (!wrap) return;
+  var wasOpen = wrap.classList.contains('open');
+  // Close all
+  var all = document.querySelectorAll('.ms-wrap');
+  for (var i=0;i<all.length;i++) all[i].classList.remove('open');
+  if (!wasOpen) wrap.classList.add('open');
+}
+function onMsCheck(id, val, label) {
+  if (!sfState[id]) sfState[id] = [];
+  var state = sfState[id];
+  var idx = state.indexOf(val);
+  if (idx >= 0) state.splice(idx,1); else state.push(val);
+  // Update label
+  var wrap = document.getElementById('ms-'+id);
+  var lbl = wrap.querySelector('.ms-label');
+  if (state.length === 0) lbl.textContent = '全部';
+  else if (state.length <= 2) lbl.textContent = state.join(',');
+  else lbl.textContent = state.length+'项';
+  // Update checkboxes
+  var items = wrap.querySelectorAll('.ms-item');
+  for (var i=0;i<items.length;i++) {
+    var cb = items[i].querySelector('input');
+    items[i].classList.toggle('checked', state.indexOf(cb.value)>=0);
+  }
+  // If region filter changed, refresh subregion options
+  if (id.indexOf('region-') === 0) {
+    var tabId = id.replace('region-', '');
+    var srOpts = getSubregionOptions(tabId);
+    initMsFilter('subregion-'+tabId, srOpts, sfState['subregion-'+tabId] || []);
+  }
+  applyFilter();
+}
+function clearFilter(tabId) {
+  // Clear all filter states for this tab
+  var prefixes = ['region-'+tabId,'subregion-'+tabId,'city-'+tabId,'site-'+tabId,'date-'+tabId];
+  for (var p=0;p<prefixes.length;p++) {
+    if (sfState[prefixes[p]]) sfState[prefixes[p]] = [];
+    var wrap = document.getElementById('ms-'+prefixes[p]);
+    if (wrap) {
+      wrap.querySelector('.ms-label').textContent = '全部';
+      var items = wrap.querySelectorAll('.ms-item');
+      for (var i=0;i<items.length;i++) {
+        items[i].classList.remove('checked');
+        items[i].querySelector('input').checked = false;
+      }
+    }
+  }
+  // Also clear rider-specific filters
+  if (tabId === 'rider') {
+    var rpfx = ['helmetComp-rider','knife-rider','bp-rider','boxDisinfect-rider'];
+    for (var r=0;r<rpfx.length;r++) {
+      if (sfState[rpfx[r]]) sfState[rpfx[r]] = [];
+      var w = document.getElementById('ms-'+rpfx[r]);
+      if (w) {
+        w.querySelector('.ms-label').textContent = '全部';
+        var its = w.querySelectorAll('.ms-item');
+        for (var j=0;j<its.length;j++) { its[j].classList.remove('checked'); its[j].querySelector('input').checked = false; }
+      }
+    }
+  }
+  applyFilter();
+}
+function applyFilter() {
+  // Refresh subregion options for region-cascading tabs
+  var tabIds2 = ['morning','safety','equip','box','knife','chargebp','training'];
+  tabIds2.forEach(function(tid) {
+    var srOpts = getSubregionOptions(tid);
+    initMsFilter('subregion-'+tid, srOpts, sfState['subregion-'+tid] || []);
+  });
+
+  var activePanel = document.querySelector('.panel.active');
+  if (!activePanel) return;
+  var panelId = activePanel.id;
+  var tabId = panelId.replace('panel-','');
+  if (tabId === 'rider') { renderRiderTabPage(1); return; }
+  // For equip tab, re-render based on current sub-view to avoid resetting view state
+  if (tabId === 'equip') {
+    METRIC_CFG.clothing.rows = (typeof CLOTHING_ROWS !== 'undefined') ? CLOTHING_ROWS : [];
+    METRIC_CFG.clothing.target = 95;
+    if (currentEquipView === 'clothing') { renderClothingTable(); updateClothingSummaryCard(); updateClothingRegionCards(); }
+    else if (currentEquipView === 'checkfail') { renderCheckFailTable(); updateClothingRegionCards(); }
+    else { renderEquipTab(); }
+  } else {
+    // Rerender the current tab
+    switchTab(tabId);
+  }
+}
+
+// Close dropdowns on outside click
+document.addEventListener('click', function(e) {
+  var target = e.target;
+  var inside = false;
+  var wrap = target.closest('.ms-wrap');
+  if (!wrap) {
+    var all = document.querySelectorAll('.ms-wrap.open');
+    for (var i=0;i<all.length;i++) all[i].classList.remove('open');
+  }
+});
+
+// ─── 多选下拉初始化 ────────────────────────────────────────
+function initMsFilter(id, options, selectedVals) {
+  var wrap = document.getElementById('ms-'+id);
+  if (!wrap) return;
+  var drop = wrap.querySelector('.ms-drop');
+  drop.innerHTML = '';
+  if (!sfState[id]) sfState[id] = selectedVals || [];
+  var state = sfState[id];
+  for (var i=0;i<options.length;i++) {
+    var opt = options[i];
+    var checked = (state.indexOf(opt) >= 0);
+    var chkAttr = checked ? ' checked' : '';
+    var cls = checked ? ' ms-item checked' : ' ms-item';
+    drop.innerHTML += '<div class="'+cls+'"><input type="checkbox" value="'+escHtml(opt)+'"'+chkAttr+' onchange="onMsCheck(\''+id+'\',\''+escHtml(opt)+'\')">'+escHtml(opt)+'</div>';
+  }
+  if (state.length === 0) wrap.querySelector('.ms-label').textContent = '全部';
+  else if (state.length <= 2) wrap.querySelector('.ms-label').textContent = state.join(',');
+  else wrap.querySelector('.ms-label').textContent = state.length+'项';
+}
+
+// ─── 辅助：获取区域排序索引 ─────────────────────────────
+function subregionSortKey(region, subr) {
+    var order = (SUBREGION_ORDER || {})[region];
+    if (order) {
+        var idx = order.indexOf(subr);
+        if (idx >= 0) return idx;
+    }
+    return 99;
+}
+
+// ─── 站点排序 ──────────────────────────────────────────────
+function sortSites(sites) {
+  var mapped = [];
+  for (var i=0;i<sites.length;i++) {
+    var info = getSiteInfo(sites[i]);
+    var ri = REGION_ORDER.indexOf(info.大区);
+    if (ri < 0) ri = 99;
+    mapped.push({site:sites[i], region:info.大区, subr:info.区域, city:info.城市, regionIdx:ri});
+  }
+  mapped.sort(function(a,b) {
+    if (a.regionIdx !== b.regionIdx) return a.regionIdx - b.regionIdx;
+    var sa = subregionSortKey(a.region, a.subr);
+    var sb = subregionSortKey(b.region, b.subr);
+    if (sa !== sb) return sa - sb;
+    if (a.city !== b.city) return a.city.localeCompare(b.city);
+    return a.site.localeCompare(b.site);
+  });
+  return mapped;
+}
+
+// ─── 通用筛选逻辑 ──────────────────────────────────────────
+function isFiltered(siteName, tabId) {
+  var regionState = sfState['region-'+tabId] || [];
+  var subregionState = sfState['subregion-'+tabId] || [];
+  var cityState = sfState['city-'+tabId] || [];
+  var siteState = sfState['site-'+tabId] || [];
+  if (regionState.length > 0 || subregionState.length > 0 || cityState.length > 0 || siteState.length > 0) {
+    var info = getSiteInfo(siteName);
+    if (regionState.length > 0 && regionState.indexOf(info.大区) < 0) return true;
+    if (subregionState.length > 0 && subregionState.indexOf(info.区域) < 0) return true;
+    if (cityState.length > 0 && cityState.indexOf(info.城市) < 0) return true;
+    if (siteState.length > 0 && siteState.indexOf(siteName) < 0) return true;
+  }
+  return false;
+}
+
+// ─── 通用渲染模板：带层级汇总的表格 ─────────────────────────
+// dataVar: global variable name string
+// columns: [{key, label, isPct}] - isPct means use frate for coloring
+// extraCols: additional columns after siteInfoCols (array of {key,label,isPct,isSum})
+function renderStandardTab(tabId, dataVar, columns, extra, headerGroups) {
+  var data = window[dataVar];
+  if (!data) { console.warn('No data for '+tabId); return; }
+  var sites = Object.keys(data);
+  var sorted = sortSites(sites);
+
+  // Collect all unique regions & cities for filters
+  var allRegions = [], allCities = [], allSiteNames = [];
+  var regionSet = {}, citySet = {};
+  for (var i=0;i<sorted.length;i++) {
+    var r = sorted[i].region;
+    if (!regionSet[r]) { regionSet[r]=true; allRegions.push(r); }
+    var c = sorted[i].city;
+    if (!citySet[c]) { citySet[c]=true; allCities.push(c); }
+    allSiteNames.push(sorted[i].site);
+  }
+  allRegions.sort(); allCities.sort();
+
+  // Ensure filter inits exist
+  if (typeof sfState['region-'+tabId] === 'undefined') sfState['region-'+tabId] = [];
+  if (typeof sfState['city-'+tabId] === 'undefined') sfState['city-'+tabId] = [];
+  if (typeof sfState['site-'+tabId] === 'undefined') sfState['site-'+tabId] = [];
+
+  initMsFilter('region-'+tabId, allRegions, []);
+  initMsFilter('city-'+tabId, allCities, []);
+  initMsFilter('site-'+tabId, allSiteNames, []);
+
+  // Build thead
+  var numSticky = 4; // 大区,区域,城市,站点名称
+  if (headerGroups) {
+    // Multi-level header: row1 = parent groups, row2 = sub-columns
+    var thead = '<tr>';
+    thead += '<th class="sticky-col" style="left:0;min-width:80px" rowspan="2">大区</th>';
+    thead += '<th class="sticky-col" style="left:80px;min-width:80px" rowspan="2">区域</th>';
+    thead += '<th class="sticky-col" style="left:160px;min-width:70px" rowspan="2">城市</th>';
+    thead += '<th class="sticky-col sticky-last" style="left:230px;min-width:150px" rowspan="2">站点名称</th>';
+    for (var g=0;g<headerGroups.length;g++) {
+      var hg = headerGroups[g];
+      var styleParts = [];
+      if (hg.bgColor) { styleParts.push('background-color:'+hg.bgColor); }
+      if (hg.textColor) { styleParts.push('color:'+hg.textColor); }
+      var hgStyle = styleParts.length > 0 ? ' style="'+styleParts.join(';')+'"' : '';
+      if (hg.colspan === 1) {
+        thead += '<th rowspan="2"'+hgStyle+'>'+hg.label+'</th>';
+      } else {
+        thead += '<th colspan="'+hg.colspan+'"'+hgStyle+'>'+hg.label+'</th>';
+      }
+    }
+    thead += '</tr><tr>';
+    var colBase = 0;
+    for (var g=0;g<headerGroups.length;g++) {
+      var hg = headerGroups[g];
+      if (hg.colspan > 1) {
+        var subStyleParts = [];
+        if (hg.bgColor) { subStyleParts.push('background-color:'+hg.bgColor); }
+        if (hg.textColor) { subStyleParts.push('color:'+hg.textColor); }
+        if (hg.bgColor) { subStyleParts.push('box-shadow:0 -2px 0 0 '+hg.bgColor); }
+        var subStyle = subStyleParts.length > 0 ? ' style="'+subStyleParts.join(';')+'"' : '';
+        for (var c=colBase;c<colBase+hg.colspan;c++) {
+          thead += '<th'+subStyle+'>'+columns[c].label+'</th>';
+        }
+      }
+      colBase += hg.colspan;
+    }
+    thead += '</tr>';
+  } else {
+    var thead = '<tr>';
+    thead += '<th class="sticky-col" style="left:0;min-width:80px">大区</th>';
+    thead += '<th class="sticky-col" style="left:80px;min-width:80px">区域</th>';
+    thead += '<th class="sticky-col" style="left:160px;min-width:70px">城市</th>';
+    thead += '<th class="sticky-col sticky-last" style="left:230px;min-width:150px">站点名称</th>';
+    var colIdx = 0;
+    for (var c=0;c<columns.length;c++) {
+      thead += '<th>'+columns[c].label+'</th>';
+    }
+    thead += '</tr>';
+  }
+  document.getElementById('thead-'+tabId).innerHTML = thead;
+
+  // Build rows with hierarchy
+  var rows = '';
+  var prevRegion = '', prevCity = '';
+
+  // --- Totals ---
+  var totals = {};
+  for (var k=0;k<columns.length;k++) {
+    var key = columns[k].key;
+    if (columns[k].isSumRatio) {
+      totals[key+'_num'] = 0;
+      totals[key+'_den'] = 0;
+    }
+    totals[key] = 0;
+  }
+  // --- Region/merchant aggregates ---
+  var regionAgg = {};
+  var merchantAgg = {};
+
+  // First pass: collect rows and compute aggregates
+  var visibleRows = [];
+  for (var i=0;i<sorted.length;i++) {
+    var s = sorted[i];
+    if (isFiltered(s.site, tabId)) continue;
+    var d = data[s.site];
+    if (!d) continue;
+    visibleRows.push(s);
+
+    var rk = s.subr;
+    var mk = s.subr + '||' + s.city;
+
+    if (!regionAgg[rk]) {
+      regionAgg[rk] = {};
+      for (var k=0;k<columns.length;k++) {
+        var key = columns[k].key;
+        if (columns[k].isSumRatio) { regionAgg[rk][key+'_num']=0; regionAgg[rk][key+'_den']=0; }
+        regionAgg[rk][key] = 0;
+      }
+    }
+    if (!merchantAgg[mk]) {
+      merchantAgg[mk] = {};
+      for (var k=0;k<columns.length;k++) {
+        var key2 = columns[k].key;
+        if (columns[k].isSumRatio) { merchantAgg[mk][key2+'_num']=0; merchantAgg[mk][key2+'_den']=0; }
+        merchantAgg[mk][key2] = 0;
+      }
+    }
+
+    for (var k=0;k<columns.length;k++) {
+      var key = columns[k].key;
+      var v = rc(d[key]);
+      if (columns[k].isSumRatio) {
+        regionAgg[rk][key+'_num'] += rc(d[key+'_num'] || d.num);
+        regionAgg[rk][key+'_den'] += rc(d[key+'_den'] || d.den);
+        merchantAgg[mk][key+'_num'] += rc(d[key+'_num'] || d.num);
+        merchantAgg[mk][key+'_den'] += rc(d[key+'_den'] || d.den);
+        totals[key+'_num'] += rc(d[key+'_num'] || d.num);
+        totals[key+'_den'] += rc(d[key+'_den'] || d.den);
+      }
+      regionAgg[rk][key] += v;
+      merchantAgg[mk][key] += v;
+      totals[key] += v;
+    }
+  }
+
+  // --- Render total row ---
+  rows += '<tr class="lv-total">' +
+    '<td class="sticky-col" style="left:0;min-width:80px">-</td>' +
+    '<td class="sticky-col" style="left:80px;min-width:80px">-</td>' +
+    '<td class="sticky-col" style="left:160px;min-width:70px">-</td>' +
+    '<td class="sticky-col name-cell" style="left:230px;min-width:150px">总商汇总</td>';
+  for (var k=0;k<columns.length;k++) {
+    var key = columns[k].key;
+    if (columns[k].isSumRatio) {
+      var tn = totals[key+'_num'];
+      var td = totals[key+'_den'];
+      var tr = td > 0 ? (tn/td*100) : 0;
+      var r = frate(tr);
+      rows += '<td class="'+r.cls+'">'+r.text+'</td>';
+    } else if (columns[k].isPct) {
+      var r = frate(totals[key]);
+      rows += '<td class="'+r.cls+'">'+r.text+'</td>';
+    } else {
+      rows += '<td>'+fr(totals[key])+'</td>';
+    }
+  }
+  rows += '</tr>';
+
+  // --- Render region / city / site rows ---
+  for (var i=0;i<visibleRows.length;i++) {
+    var s = visibleRows[i];
+    var d = data[s.site];
+    var rk = s.subr;
+    var mk = s.subr + '||' + s.city;
+
+    // Region header
+    if (s.subr !== prevRegion) {
+      rows += '<tr class="lv-subregion">' +
+        '<td class="sticky-col" style="left:0;min-width:80px">'+escHtml(s.region)+'</td>' +
+        '<td class="sticky-col" style="left:80px;min-width:80px">'+escHtml(s.subr)+'</td>' +
+        '<td class="sticky-col" style="left:160px;min-width:70px">-</td>' +
+        '<td class="sticky-col name-cell" style="left:230px;min-width:150px">'+escHtml(s.subr)+'</td>';
+      var ra = regionAgg[rk];
+      for (var k=0;k<columns.length;k++) {
+        var key = columns[k].key;
+        if (columns[k].isSumRatio) {
+          var rn = ra[key+'_num']||0, rd = ra[key+'_den']||0;
+          var rr = rd > 0 ? (rn/rd*100) : 0;
+          var r = frate(rr);
+          rows += '<td class="'+r.cls+'">'+r.text+'</td>';
+        } else if (columns[k].isPct) {
+          var r = frate(ra[key]);
+          rows += '<td class="'+r.cls+'">'+r.text+'</td>';
+        } else {
+          rows += '<td>'+fr(ra[key])+'</td>';
+        }
+      }
+      rows += '</tr>';
+      prevRegion = s.subr;
+      prevCity = '';
+    }
+
+    // City header
+    if (s.city !== prevCity) {
+      rows += '<tr class="lv-merchant">' +
+        '<td class="sticky-col" style="left:0;min-width:80px">'+escHtml(s.region)+'</td>' +
+        '<td class="sticky-col" style="left:80px;min-width:80px">'+escHtml(s.subr)+'</td>' +
+        '<td class="sticky-col" style="left:160px;min-width:70px">'+escHtml(s.city)+'</td>' +
+        '<td class="sticky-col name-cell" style="left:230px;min-width:150px">'+escHtml(s.city)+'</td>';
+      var ma = merchantAgg[mk];
+      for (var k=0;k<columns.length;k++) {
+        var key = columns[k].key;
+        if (columns[k].isSumRatio) {
+          var cn = ma[key+'_num']||0, cd = ma[key+'_den']||0;
+          var cr = cd > 0 ? (cn/cd*100) : 0;
+          var r = frate(cr);
+          rows += '<td class="'+r.cls+'">'+r.text+'</td>';
+        } else if (columns[k].isPct) {
+          var r = frate(ma[key]);
+          rows += '<td class="'+r.cls+'">'+r.text+'</td>';
+        } else {
+          rows += '<td>'+fr(ma[key])+'</td>';
+        }
+      }
+      rows += '</tr>';
+      prevCity = s.city;
+    }
+
+    // Site row
+    rows += '<tr class="lv-site">';
+    rows += siteInfoCols(s.site);
+    for (var k=0;k<columns.length;k++) {
+      var key = columns[k].key;
+      var v = d[key];
+      if (columns[k].isPct) {
+        var r = frate(v);
+        rows += '<td class="'+r.cls+'">'+r.text+'</td>';
+      } else if (columns[k].isSafetyHl) {
+        // For training counts: >0 highlight red
+        var nv = rc(v);
+        if (nv > 0) rows += '<td class="safety-hl">'+nv+'</td>';
+        else rows += '<td>0</td>';
+      } else {
+        rows += '<td>'+fr(v)+'</td>';
+      }
+    }
+    rows += '</tr>';
+  }
+
+  document.getElementById('tbody-'+tabId).innerHTML = rows;
+
+  // Apply view mode filtering
+  applyViewModeToTable(tabId);
+
+  // Update summary cards
+  var cardHtml = '<div class="card"><div class="c-label">站点数</div><div class="c-value">'+visibleRows.length+'</div></div>';
+
+  // Update filter count
+  updateViewFilterCount(tabId);
+  if (tabId === 'equip' && (currentEquipView === 'clothing' || currentEquipView === 'checkfail')) {
+    updateClothingRegionCards();
+  } else {
+    document.getElementById('summary-cards-'+tabId).innerHTML = cardHtml;
+  }
+}
+
+
+// Apply view mode (sub-tab-bar) to filter visible rows
+function applyViewModeToTable(tabId) {
+  if (gViewMode === 'all') return;
+  var tbody = document.getElementById('tbody-' + tabId);
+  if (!tbody) return;
+  var allRows = tbody.querySelectorAll('tr');
+  allRows.forEach(function(tr) {
+    if (tr.classList.contains('lv-total')) {
+      tr.style.display = (gViewMode === 'subregion' || gViewMode === 'merchant') ? 'none' : '';
+    } else if (tr.classList.contains('lv-subregion')) {
+      tr.style.display = (gViewMode === 'subregion') ? '' : 'none';
+    } else if (tr.classList.contains('lv-merchant')) {
+      tr.style.display = (gViewMode === 'merchant') ? '' : 'none';
+    } else if (tr.classList.contains('lv-site')) {
+      tr.style.display = (gViewMode === 'site') ? '' : 'none';
+    }
+  });
+  updateViewFilterCount(tabId);
+}
+
+
+// ─── Tab 1: 站点早会 ────────────────────────────────────────
+function renderMorningTab() {
+  var columns = [
+    {key:'total_fine', label:'早会-总罚款（累计）', isPct:false, isSumRatio:false},
+    {key:'daily_key_reject', label:'重点内容交流<br>驳回数', isPct:false, isSumRatio:false},
+    {key:'daily_key_fine', label:'重点内容交流<br>罚款', isPct:false, isSumRatio:false},
+    {key:'daily_app_reject', label:'仪容仪表<br>驳回数', isPct:false, isSumRatio:false},
+    {key:'daily_app_fine', label:'仪容仪表<br>罚款', isPct:false, isSumRatio:false},
+    {key:'daily_sign_reject', label:'签到<br>驳回数', isPct:false, isSumRatio:false},
+    {key:'daily_sign_fine', label:'签到<br>罚款', isPct:false, isSumRatio:false},
+    {key:'report_reject', label:'驳回数', isPct:false, isSumRatio:false},
+    {key:'report_fine', label:'罚款', isPct:false, isSumRatio:false},
+    {key:'not_held_count', label:'未开数', isPct:false, isSumRatio:false},
+    {key:'not_held_fine', label:'罚款', isPct:false, isSumRatio:false},
+    {key:'fake_count', label:'虚假数', isPct:false, isSumRatio:false},
+    {key:'fake_fine', label:'罚款', isPct:false, isSumRatio:false}
+  ];
+  var headerGroups = [
+    {label:'总罚款', colspan:1},
+    {label:'日常早会', colspan:6, bgColor:'#93c5fd', textColor:'#10324F'},
+    {label:'报备（情景举证）', colspan:2, bgColor:'#fdba74', textColor:'#7c2d12'},
+    {label:'未召开', colspan:2, bgColor:'#d1d5db', textColor:'#374151'},
+    {label:'虚假', colspan:2, bgColor:'#fca5a5', textColor:'#7f1d1d'}
+  ];
+  renderStandardTab('morning', 'MORNING_TAB_DATA', columns, null, headerGroups);
+}
+
+// ─── Tab 2: 履约安全检查 ─────────────────────────────────────
+function renderSafetyCheckTab() {
+  var columns = [
+    {key:'self_month', label:'履约月驳回数', isPct:false, isSumRatio:false},
+    {key:'self_week', label:'履约本周驳回数', isPct:false, isSumRatio:false},
+    {key:'supervisor', label:'督导驳回数', isPct:false, isSumRatio:false}
+  ];
+  renderStandardTab('safety', 'SAFETY_CHECK_DATA', columns, null);
+}
+
+// ─── Tab 3: 骑手装备标准化率 ─────────────────────────────────
+function renderEquipTab() {
+  var columns = [
+    {key:'rate', label:'装备标准合规率', isPct:true, isSumRatio:false},
+    {key:'fail_count', label:'服装不合格数', isPct:false, isSumRatio:false},
+    {key:'helmet_fail', label:'头盔不合格数', isPct:false, isSumRatio:false},
+    {key:'box_fail', label:'餐箱不合格数', isPct:false, isSumRatio:false},
+    {key:'fine', label:'装备罚款', isPct:false, isSumRatio:false}
+  ];
+  renderEquipMainTable(columns);
+}
+
+// ─── equip main 视图：四列层级与服装标准化率对齐 ─────────
+function renderEquipMainTable(columns) {
+  var data = window['EQUIP_DATA'];
+  if (!data) { console.warn('No data for equip'); return; }
+  var sites = Object.keys(data);
+  var sorted = sortSites(sites);
+
+  // 从「抽检不合格骑手明细」(CHECK_FAIL_ROWS) 按站点聚合三类不合格数，联动到 equip 主表
+  var cfFailMap = {};
+  if (typeof CHECK_FAIL_ROWS !== 'undefined') {
+    for (var cfi = 0; cfi < CHECK_FAIL_ROWS.length; cfi++) {
+      var cfr = CHECK_FAIL_ROWS[cfi];
+      var cfsn = cfr && cfr.name;
+      if (!cfsn) continue;
+      if (!cfFailMap[cfsn]) cfFailMap[cfsn] = { fail_count: 0, helmet_fail: 0, box_fail: 0, fine: 0 };
+      if (cfr.helmet_qualified === '不合格') { cfFailMap[cfsn].helmet_fail++; cfFailMap[cfsn].fine += 200; }
+      if (cfr.clothing_qualified === '不合格') {
+        cfFailMap[cfsn].fail_count++;
+        cfFailMap[cfsn].fine += 100;
+      }
+      if (cfr.box_qualified === '不合格') {
+        cfFailMap[cfsn].box_fail++;
+        cfFailMap[cfsn].fine += 100;
+      }
+    }
+  }
+  for (var cfs = 0; cfs < sites.length; cfs++) {
+    var cfsite = sites[cfs];
+    var cfm = cfFailMap[cfsite];
+    data[cfsite].fail_count = cfm ? cfm.fail_count : 0;
+    data[cfsite].helmet_fail = cfm ? cfm.helmet_fail : 0;
+    data[cfsite].box_fail = cfm ? cfm.box_fail : 0;
+    data[cfsite].fine = cfm ? cfm.fine : 0;
+  }
+
+  var allRegions = [], allCities = [], allSiteNames = [];
+  var regionSet = {}, citySet = {};
+  for (var i=0;i<sorted.length;i++) {
+    var r = sorted[i].region;
+    if (!regionSet[r]) { regionSet[r]=true; allRegions.push(r); }
+    var c = sorted[i].city;
+    if (!citySet[c]) { citySet[c]=true; allCities.push(c); }
+    allSiteNames.push(sorted[i].site);
+  }
+  allRegions.sort(); allCities.sort();
+
+  if (typeof sfState['region-equip'] === 'undefined') sfState['region-equip'] = [];
+  if (typeof sfState['city-equip'] === 'undefined') sfState['city-equip'] = [];
+  if (typeof sfState['site-equip'] === 'undefined') sfState['site-equip'] = [];
+
+  initMsFilter('region-equip', allRegions, []);
+  initMsFilter('city-equip', allCities, []);
+  initMsFilter('site-equip', allSiteNames, []);
+
+  // thead 四列 sticky 位置与列宽对齐 renderClothingTable
+  var th = '<tr>' +
+    '<th style="position:sticky;left:0;z-index:3;min-width:80px;">大区</th>' +
+    '<th style="position:sticky;left:80px;z-index:3;min-width:80px;">区域</th>' +
+    '<th style="position:sticky;left:160px;z-index:3;min-width:70px;">城市</th>' +
+    '<th style="position:sticky;left:230px;z-index:3;min-width:150px;">站点名称</th>';
+  for (var c=0;c<columns.length;c++) { th += '<th>'+columns[c].label+'</th>'; }
+  th += '</tr>';
+  document.getElementById('thead-equip').innerHTML = th;
+
+  // 聚合：总计 / 区域 / 城市
+  var totals = {}, regionAgg = {}, merchantAgg = {};
+  for (var k=0;k<columns.length;k++) {
+    var key = columns[k].key;
+    if (columns[k].isSumRatio) { totals[key+'_num']=0; totals[key+'_den']=0; }
+    totals[key] = 0;
+  }
+  var visibleRows = [];
+  for (var i=0;i<sorted.length;i++) {
+    var s = sorted[i];
+    if (isFiltered(s.site, 'equip')) continue;
+    var d = data[s.site];
+    if (!d) continue;
+    visibleRows.push(s);
+    var rk = s.subr;
+    var mk = s.subr + '||' + s.city;
+    if (!regionAgg[rk]) {
+      regionAgg[rk] = {};
+      for (var k=0;k<columns.length;k++) {
+        var key = columns[k].key;
+        if (columns[k].isSumRatio) { regionAgg[rk][key+'_num']=0; regionAgg[rk][key+'_den']=0; }
+        regionAgg[rk][key] = 0;
+      }
+    }
+    if (!merchantAgg[mk]) {
+      merchantAgg[mk] = {};
+      for (var k=0;k<columns.length;k++) {
+        var key2 = columns[k].key;
+        if (columns[k].isSumRatio) { merchantAgg[mk][key2+'_num']=0; merchantAgg[mk][key2+'_den']=0; }
+        merchantAgg[mk][key2] = 0;
+      }
+    }
+    for (var k=0;k<columns.length;k++) {
+      var key = columns[k].key;
+      var v = rc(d[key]);
+      if (columns[k].isSumRatio) {
+        regionAgg[rk][key+'_num'] += rc(d[key+'_num'] || d.num);
+        regionAgg[rk][key+'_den'] += rc(d[key+'_den'] || d.den);
+        merchantAgg[mk][key+'_num'] += rc(d[key+'_num'] || d.num);
+        merchantAgg[mk][key+'_den'] += rc(d[key+'_den'] || d.den);
+        totals[key+'_num'] += rc(d[key+'_num'] || d.num);
+        totals[key+'_den'] += rc(d[key+'_den'] || d.den);
+      }
+      regionAgg[rk][key] += v;
+      merchantAgg[mk][key] += v;
+      totals[key] += v;
+    }
+  }
+
+  var clothRate = {};
+  if (typeof CLOTHING_ROWS !== 'undefined') {
+    for (var ci=0; ci<CLOTHING_ROWS.length; ci++) {
+      var cr = CLOTHING_ROWS[ci];
+      var ck = '';
+      if (cr.level === 'total') ck = 'total';
+      else if (cr.level === 'subregion') ck = 'subregion|' + cr.subregion;
+      else if (cr.level === 'merchant') ck = 'merchant|' + cr.subregion + '||' + cr.city;
+      else if (cr.level === 'site') ck = 'site|' + cr.name;
+      if (ck && cr.clothing_rate != null) clothRate[ck] = cr.clothing_rate;
+    }
+  }
+
+  function aggCells(a, clothKey) {
+    var out = '';
+    for (var k=0;k<columns.length;k++) {
+      var key = columns[k].key;
+      if (key === 'rate') {
+        var rv = clothRate[clothKey];
+        if (rv == null || rv === '') { out += '<td>-</td>'; }
+        else { var r = frate(rv); out += '<td class="'+r.cls+'">'+r.text+'</td>'; }
+      } else if (columns[k].isSumRatio) {
+        var n = a[key+'_num']||0, dn = a[key+'_den']||0;
+        var rr = dn > 0 ? (n/dn*100) : 0;
+        var r = frate(rr);
+        out += '<td class="'+r.cls+'">'+r.text+'</td>';
+      } else if (columns[k].isPct) {
+        var r = frate(a[key]);
+        out += '<td class="'+r.cls+'">'+r.text+'</td>';
+      } else {
+        out += '<td>'+fr(a[key])+'</td>';
+      }
+    }
+    return out;
+  }
+
+  var companyName = '总商汇总';
+  if (typeof TAB2_ROWS !== 'undefined') {
+    for (var ti=0;ti<TAB2_ROWS.length;ti++) {
+      if (TAB2_ROWS[ti].level === 'total') { companyName = TAB2_ROWS[ti].name || '总商汇总'; break; }
+    }
+  }
+
+  var rows = '';
+
+  // 总商汇总行（lv-total），四列分层显示对齐 clothing
+  rows += '<tr class="lv-total">' +
+    '<td class="sticky-col" style="position:sticky;left:0;z-index:1;">-</td>' +
+    '<td class="sticky-col" style="position:sticky;left:80px;z-index:1;">-</td>' +
+    '<td class="sticky-col" style="position:sticky;left:160px;z-index:1;">-</td>' +
+    '<td class="sticky-col name-cell" style="position:sticky;left:230px;z-index:1;">'+escHtml(companyName)+'</td>';
+  rows += aggCells(totals, 'total');
+  rows += '</tr>';
+
+  var prevRegion = '', prevCity = '';
+  for (var i=0;i<visibleRows.length;i++) {
+    var s = visibleRows[i];
+    var d = data[s.site];
+    var rk = s.subr;
+    var mk = s.subr + '||' + s.city;
+
+    // 区域层（lv-subregion）：大区 + 区域
+    if (s.subr !== prevRegion) {
+      rows += '<tr class="lv-subregion">' +
+        '<td class="sticky-col" style="position:sticky;left:0;z-index:1;">'+escHtml(s.region)+'</td>' +
+        '<td class="sticky-col" style="position:sticky;left:80px;z-index:1;">'+escHtml(s.subr)+'</td>' +
+        '<td class="sticky-col" style="position:sticky;left:160px;z-index:1;">-</td>' +
+        '<td class="sticky-col name-cell" style="position:sticky;left:230px;z-index:1;">'+escHtml(s.subr)+'</td>';
+      rows += aggCells(regionAgg[rk], 'subregion|'+s.subr);
+      rows += '</tr>';
+      prevRegion = s.subr;
+      prevCity = '';
+    }
+
+    // 城市层（lv-merchant）：大区 + 区域 + 城市
+    if (s.city !== prevCity) {
+      rows += '<tr class="lv-merchant">' +
+        '<td class="sticky-col" style="position:sticky;left:0;z-index:1;">'+escHtml(s.region)+'</td>' +
+        '<td class="sticky-col" style="position:sticky;left:80px;z-index:1;">'+escHtml(s.subr)+'</td>' +
+        '<td class="sticky-col" style="position:sticky;left:160px;z-index:1;">'+escHtml(s.city)+'</td>' +
+        '<td class="sticky-col name-cell" style="position:sticky;left:230px;z-index:1;">'+escHtml(s.city)+'</td>';
+      rows += aggCells(merchantAgg[mk], 'merchant|'+s.subr+'||'+s.city);
+      rows += '</tr>';
+      prevCity = s.city;
+    }
+
+    // 站点层（lv-site）：四列完整
+    rows += '<tr class="lv-site">' +
+      '<td class="sticky-col" style="position:sticky;left:0;z-index:1;">'+escHtml(s.region)+'</td>' +
+      '<td class="sticky-col" style="position:sticky;left:80px;z-index:1;">'+escHtml(s.subr)+'</td>' +
+      '<td class="sticky-col" style="position:sticky;left:160px;z-index:1;">'+escHtml(s.city)+'</td>' +
+      '<td class="sticky-col name-cell" style="position:sticky;left:230px;z-index:1;">'+escHtml(s.site)+'</td>';
+    for (var k=0;k<columns.length;k++) {
+      var key = columns[k].key;
+      var v = d[key];
+      if (key === 'rate') {
+        var sv = clothRate['site|'+s.site];
+        if (sv == null || sv === '') { rows += '<td>-</td>'; }
+        else { var sr = frate(sv); rows += '<td class="'+sr.cls+'">'+sr.text+'</td>'; }
+      } else if (columns[k].isPct) {
+        var r = frate(v);
+        rows += '<td class="'+r.cls+'">'+r.text+'</td>';
+      } else if (columns[k].isSafetyHl) {
+        var nv = rc(v);
+        rows += nv > 0 ? '<td class="safety-hl">'+nv+'</td>' : '<td>0</td>';
+      } else {
+        rows += '<td>'+fr(v)+'</td>';
+      }
+    }
+    rows += '</tr>';
+  }
+
+  document.getElementById('tbody-equip').innerHTML = rows;
+  applyViewModeToTable('equip');
+  updateViewFilterCount('equip');
+  updateClothingRegionCards();
+}
+
+
+// ══════════════════════════════════════════════════════════
+// ★ 骑手装备标准化率：服装视图切换
+// ══════════════════════════════════════════════════════════
+function switchEquipView(view) {
+  currentEquipView = view;
+  document.getElementById('view-btn-equip-main').classList.toggle('active', view === 'main');
+  document.getElementById('view-btn-equip-clothing').classList.toggle('active', view === 'clothing');
+  document.getElementById('view-btn-equip-checkfail').classList.toggle('active', view === 'checkfail');
+  document.getElementById('equip-table-wrap').style.display = (view === 'main') ? '' : 'none';
+  document.getElementById('clothing-table-wrap').style.display = (view === 'clothing') ? '' : 'none';
+  document.getElementById('checkfail-table-wrap').style.display = (view === 'checkfail') ? '' : 'none';
+  if (view === 'main') {
+    renderEquipTab();
+  } else if (view === 'checkfail') {
+    renderCheckFailTable();
+  } else {
+    renderClothingTable();
+  }
+  updateClothingSummaryCard();
+  if (view !== 'main') { updateClothingRegionCards(); }
+}
+
+// ══════════════════════════════════════════════════════════
+// ★ 骑手服装标准化率：汇总卡片
+// ══════════════════════════════════════════════════════════
+function updateClothingSummaryCard() {
+  var el = document.getElementById('clothing-summary-card');
+  if (!el) return;
+  if (!METRIC_CFG.clothing || !METRIC_CFG.clothing.rows || !METRIC_CFG.clothing.rows.length) { el.innerHTML = ''; return; }
+  var totalRow = null;
+  for (var i = 0; i < METRIC_CFG.clothing.rows.length; i++) {
+    if (METRIC_CFG.clothing.rows[i].level === 'total') { totalRow = METRIC_CFG.clothing.rows[i]; break; }
+  }
+  if (!totalRow) { el.innerHTML = ''; return; }
+  var checkCount = totalRow.clothing_check_count != null ? totalRow.clothing_check_count : 0;
+  var compliantCount = totalRow.clothing_compliant_count != null ? totalRow.clothing_compliant_count : 0;
+  var rate = totalRow.clothing_rate != null ? totalRow.clothing_rate : 0;
+  var target = METRIC_CFG.clothing.target || 95;
+  var isGreen = rate >= target;
+  var cardCls = isGreen ? 'card green' : 'card red';
+  el.className = cardCls;
+  el.innerHTML = '<div class="c-label">骑手服装标准化率（累计）</div>' +
+    '<div class="c-value">' + rate.toFixed(2) + '%</div>' +
+    '<div class="c-sub">目标 ≥ ' + target + '%，检查 ' + checkCount + ' 合规 ' + compliantCount + '</div>';
+}
+
+function updateClothingRegionCards() {
+  var container = document.getElementById('clothing-region-cards');
+  if (!container) {
+    var el = document.getElementById('summary-cards-equip');
+    if (el) {
+      el.innerHTML = '<div class="region-cards-row" id="clothing-region-cards"></div>';
+      container = document.getElementById('clothing-region-cards');
+    }
+  }
+  if (!container) return;
+  var rows = (METRIC_CFG.clothing && METRIC_CFG.clothing.rows) ? METRIC_CFG.clothing.rows : [];
+  var target = (METRIC_CFG.clothing && METRIC_CFG.clothing.target) || 95;
+  var agg = {};
+  rows.forEach(function(r) {
+    if (!r.region || r.level !== 'subregion') return;
+    if (r.clothing_check_count == null || r.clothing_compliant_count == null) return;
+    if (!agg[r.region]) agg[r.region] = {check:0, compliant:0};
+    agg[r.region].check += r.clothing_check_count;
+    agg[r.region].compliant += r.clothing_compliant_count;
+  });
+  // 罚款按大区聚合（与主表罚款标准一致：头盔不合格200、服装不合格100、餐箱不合格100）
+  var fineAgg = {};
+  if (typeof CHECK_FAIL_ROWS !== 'undefined') {
+    CHECK_FAIL_ROWS.forEach(function(cfr) {
+      if (!cfr || !cfr.region) return;
+      if (!fineAgg[cfr.region]) fineAgg[cfr.region] = 0;
+      if (cfr.helmet_qualified === '不合格') fineAgg[cfr.region] += 200;
+      if (cfr.clothing_qualified === '不合格') fineAgg[cfr.region] += 100;
+      if (cfr.box_qualified === '不合格') fineAgg[cfr.region] += 100;
+    });
+  }
+  var order = (typeof REGION_ORDER !== 'undefined' && REGION_ORDER) ? REGION_ORDER : Object.keys(agg);
+  var html = '';
+  order.forEach(function(reg) {
+    var d = agg[reg] || {check:0, compliant:0};
+    var rate = d.check > 0 ? d.compliant / d.check * 100 : 0;
+    var color = d.check === 0 ? '#4F6E87' : (rate >= target ? '#2e7d32' : '#c62828');
+    var fine = fineAgg[reg] || 0;
+    html += '<div class="card region-card">' +
+      '<div class="c-label" style="font-weight:700;color:#0B4F8A;margin-bottom:6px;">' + reg + '</div>' +
+      '<div class="c-value" style="color:' + color + ';">' + (d.check > 0 ? rate.toFixed(2) + '%' : '-') + '</div>' +
+      '<div class="c-sub">检核 ' + d.check + ' · 合格 ' + d.compliant + '</div>' +
+      '<div class="c-sub" style="color:#c62828;">罚款：' + fine + ' 元</div>' +
+    '</div>';
+  });
+  container.innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════════
+// ★ 骑手服装标准化率：表格
+// ══════════════════════════════════════════════════════════
+function renderClothingTable() {
+  var orgRows = (METRIC_CFG.rating && METRIC_CFG.rating.rows) ? METRIC_CFG.rating.rows : [];
+  var clothRows = (METRIC_CFG.clothing && METRIC_CFG.clothing.rows) ? METRIC_CFG.clothing.rows : [];
+  if (!orgRows.length) return;
+  var clothMap = {};
+  clothRows.forEach(function(r) {
+    var k = [r.level, r.region || '', r.subregion || '', r.city || '', r.name || ''].join('\u0001');
+    clothMap[k] = r;
+  });
+  var rows = orgRows.map(function(o) {
+    var k = [o.level, o.region || '', o.subregion || '', o.city || '', o.name || ''].join('\u0001');
+    var c = clothMap[k];
+    if (c) return c;
+    return {level: o.level, region: o.region, subregion: o.subregion, city: o.city, name: o.name};
+  });
+  var regionRank = {};
+  if (typeof REGION_ORDER !== 'undefined') {
+    REGION_ORDER.forEach(function(reg, i) { regionRank[reg] = i; });
+  }
+  rows.sort(function(a, b) {
+    if (a.level === 'total') return -1;
+    if (b.level === 'total') return 1;
+    var ra = regionRank[a.region] !== undefined ? regionRank[a.region] : 99;
+    var rb = regionRank[b.region] !== undefined ? regionRank[b.region] : 99;
+    return ra - rb;
+  });
+  var dates = [];
+  if (typeof DATES !== 'undefined') {
+    dates = DATES.filter(function(d) { return d && d.length === 5; }).reverse();
+  }
+
+  var th = '<tr><th style="position:sticky;left:0;z-index:3;min-width:80px;">大区</th>' +
+    '<th style="position:sticky;left:80px;z-index:3;min-width:80px;">区域</th>' +
+    '<th style="position:sticky;left:160px;z-index:3;min-width:70px;">城市</th>' +
+    '<th style="position:sticky;left:230px;z-index:3;min-width:150px;">站点名称</th>';
+  th += '<th style="position:sticky;left:380px;z-index:3;min-width:80px;">检查数量</th><th style="position:sticky;left:460px;z-index:3;min-width:80px;">合规数量</th>';
+  th += '<th style="min-width:80px;background:#00695c!important;position:sticky;left:540px;z-index:3;">累计达成</th>';
+  dates.forEach(function(d) { th += '<th>' + d + '</th>'; });
+  th += '</tr>';
+  document.getElementById('clothing-thead').innerHTML = th;
+
+  var regionF = sfState['region-equip'] || [];
+  var subregionF = sfState['subregion-equip'] || [];
+  var cityF = sfState['city-equip'] || [];
+  var siteF = sfState['site-equip'] || [];
+  var dateF = sfState['date-equip'] || [];
+
+  var target = METRIC_CFG.clothing.target || 95;
+  var html = '';
+  rows.forEach(function(r) {
+    if (regionF.length > 0 && regionF.indexOf(r.region) < 0) return;
+    if (subregionF.length > 0 && subregionF.indexOf(r.subregion) < 0) return;
+    if (cityF.length > 0 && cityF.indexOf(r.city) < 0) return;
+    if (siteF.length > 0 && siteF.indexOf(r.name) < 0) return;
+    if (dateF.length) return;
+
+    var cls = 'lv-' + r.level;
+    var hasData = r.clothing_check_count !== null && r.clothing_check_count !== undefined && r.clothing_check_count > 0;
+
+    html += '<tr class="' + cls + '">' +
+      '<td class="sticky-col" style="position:sticky;left:0;z-index:1;">' + (r.region || '-') + '</td>' +
+      '<td class="sticky-col" style="position:sticky;left:80px;z-index:1;">' + (r.subregion || '-') + '</td>' +
+      '<td class="sticky-col" style="position:sticky;left:160px;z-index:1;">' + (r.city || '-') + '</td>' +
+      '<td class="sticky-col name-cell" style="position:sticky;left:230px;z-index:1;">' + (r.name || '-') + '</td>';
+
+    var checkCount = r.clothing_check_count != null ? r.clothing_check_count : '-';
+    var compliantCount = r.clothing_compliant_count != null ? r.clothing_compliant_count : '-';
+    html += '<td class="sticky-col" style="position:sticky;left:380px;z-index:1;">' + checkCount + '</td><td class="sticky-col" style="position:sticky;left:460px;z-index:1;">' + compliantCount + '</td>';
+
+    if (hasData) {
+      var cumRate = r.clothing_rate != null ? r.clothing_rate : 0;
+      var cumCls = cumRate >= target ? 'cell-good' : 'cell-bad';
+      html += '<td class="sticky-col ' + cumCls + '" style="position:sticky;left:540px;z-index:1;">' + cumRate.toFixed(2) + '%</td>';
+    } else {
+      html += '<td class="sticky-col" style="position:sticky;left:540px;z-index:1;">-</td>';
+    }
+
+    if (r.clothing_daily) {
+      dates.forEach(function(d) {
+        var dd = r.clothing_daily[d];
+        if (dd && dd.check > 0) {
+          var rate = dd.compliant / dd.check * 100;
+          var cellCls = rate >= target ? 'cell-good' : 'cell-bad';
+          html += '<td class="' + cellCls + '">' + rate.toFixed(2) + '%</td>';
+        } else {
+          html += '<td>-</td>';
+        }
+      });
+    } else {
+      dates.forEach(function(d) { html += '<td>-</td>'; });
+    }
+    html += '</tr>';
+  });
+
+  document.getElementById('clothing-tbody').innerHTML = html || '<tr><td colspan="99" style="text-align:center;color:#4F6E87;padding:20px;">暂无数据</td></tr>';
+  renderCheckFailTable();
+}
+
+// ══════════════════════════════════════════════════════════
+// ★ 抽检不合格骑手明细：表格
+// ══════════════════════════════════════════════════════════
+function renderCheckFailTable() {
+  var tbody = document.querySelector('#checkFailTable tbody');
+  if (!tbody) return;
+  var regionF = sfState['region-equip'] || [];
+  var subregionF = sfState['subregion-equip'] || [];
+  var cityF = sfState['city-equip'] || [];
+  var siteF = sfState['site-equip'] || [];
+  var dateF = sfState['date-equip'] || [];
+
+  var rows = (typeof CHECK_FAIL_ROWS !== 'undefined' ? CHECK_FAIL_ROWS : []).filter(function(r) {
+    if (regionF.length && regionF.indexOf(r.region) < 0) return false;
+    if (subregionF.length && subregionF.indexOf(r.subregion) < 0) return false;
+    if (cityF.length && cityF.indexOf(r.city) < 0) return false;
+    if (siteF.length && siteF.indexOf(r.name) < 0) return false;
+    if (dateF.length) {
+      var dayVal = (r.day && r.day.length === 8) ? (r.day.slice(4, 6) + '-' + r.day.slice(6, 8)) : r.day;
+      if (dateF.indexOf(dayVal) < 0) return false;
+    }
+    return true;
+  });
+  var failRegionOrder = ['华北一区', '华北二区', '华北三区', '华东大区', '中南大区'];
+  var failRegionRank = {};
+  failRegionOrder.forEach(function(rg, idx) { failRegionRank[rg] = idx; });
+  rows.sort(function(a, b) {
+    var ra = failRegionRank[a.region] !== undefined ? failRegionRank[a.region] : 99;
+    var rb = failRegionRank[b.region] !== undefined ? failRegionRank[b.region] : 99;
+    return ra - rb;
+  });
+  if (!rows || rows.length === 0) { tbody.innerHTML = '<tr><td colspan="14" style="text-align:center;color:#999;">暂无抽检不合格数据</td></tr>'; renderCheckFailPagination(0, 0); return; }
+  var totalPages = Math.ceil(rows.length / checkFailPageSize);
+  if (checkFailPage < 1) checkFailPage = 1;
+  if (checkFailPage > totalPages) checkFailPage = totalPages;
+  var start = (checkFailPage - 1) * checkFailPageSize;
+  var end = Math.min(start + checkFailPageSize, rows.length);
+  var html = '';
+  for (var i = start; i < end; i++) {
+    var r = rows[i];
+    var rid = String(r.rid);
+    var photos = CHECK_PHOTO_MAP[rid] || [];
+    var photoLinks = '';
+    if (photos.length > 0) {
+      for (var p = 0; p < photos.length; p++) {
+        photoLinks += '<a href="javascript:void(0)" class="photo-link" data-idx="' + p + '" data-photos="' + encodeURIComponent(JSON.stringify(photos)) + '" style="margin-right:6px;color:#1E88E5;text-decoration:underline;">照片' + (p + 1) + '</a>';
+      }
+    } else {
+      photoLinks = '<span style="color:#ccc;">无</span>';
+    }
+    html += '<tr>' +
+      '<td>' + (r.region || '') + '</td>' +
+      '<td>' + (r.subregion || '') + '</td>' +
+      '<td>' + (r.city || '') + '</td>' +
+      '<td>' + (r.name || '') + '</td>' +
+      '<td>' + ((r.day && r.day.length === 8) ? (r.day.slice(4, 6) + '-' + r.day.slice(6, 8)) : (r.day || '')) + '</td><td>' + rid + '</td>' +
+      '<td>' + (r.rider_name || '') + '</td>' +
+      '<td>' + (r.clothing_label || '') + '</td>' +
+      '<td>' + (r.helmet_label || '') + '</td>' +
+      '<td>' + (r.box_label || '') + '</td>' +
+      '<td>' + (r.clothing_qualified || '') + '</td>' +
+      '<td>' + (r.helmet_qualified || '') + '</td>' +
+      '<td>' + (r.box_qualified || '') + '</td>' +
+      '<td>' + photoLinks + '</td>' +
+      '</tr>';
+  }
+  tbody.innerHTML = html;
+  var links = tbody.querySelectorAll('.photo-link');
+  for (var k = 0; k < links.length; k++) {
+    links[k].addEventListener('click', function(e) {
+      e.preventDefault();
+      var idx = parseInt(this.getAttribute('data-idx'));
+      var photos = JSON.parse(decodeURIComponent(this.getAttribute('data-photos')));
+      document.getElementById('photoModalImg').src = photos[idx];
+      document.getElementById('photoModal').style.display = 'block';
+    });
+  }
+  renderCheckFailPagination(totalPages, rows.length);
+}
+
+function renderCheckFailPagination(totalPages, totalRows) {
+  var wrap = document.getElementById('checkfail-table-wrap');
+  if (!wrap) return;
+  var pg = document.getElementById('checkFailPagination');
+  if (!pg) {
+    pg = document.createElement('div');
+    pg.id = 'checkFailPagination';
+    pg.className = 'pagination';
+    wrap.appendChild(pg);
+  }
+  if (totalPages <= 1) { pg.innerHTML = ''; return; }
+  var h = '<span class="pg-info">第 ' + checkFailPage + ' / ' + totalPages + ' 页，共 ' + totalRows + ' 条</span>&nbsp;';
+  h += '<button onclick="checkFailPage=1;renderCheckFailTable();" ' + (checkFailPage === 1 ? 'disabled' : '') + '>首页</button>';
+  h += '<button onclick="checkFailPage--;renderCheckFailTable();" ' + (checkFailPage === 1 ? 'disabled' : '') + '>上一页</button>';
+  var s = Math.max(1, checkFailPage - 2), e = Math.min(totalPages, checkFailPage + 2);
+  for (var i = s; i <= e; i++) {
+    h += '<button class="' + (i === checkFailPage ? 'cur' : '') + '" onclick="checkFailPage=' + i + ';renderCheckFailTable();">' + i + '</button>';
+  }
+  h += '<button onclick="checkFailPage++;renderCheckFailTable();" ' + (checkFailPage === totalPages ? 'disabled' : '') + '>下一页</button>';
+  h += '<button onclick="checkFailPage=' + totalPages + ';renderCheckFailTable();" ' + (checkFailPage === totalPages ? 'disabled' : '') + '>末页</button>';
+  pg.innerHTML = h;
+}
+
+// ─── Tab 4: 餐箱消毒看板 ─────────────────────────────────────
+function renderBoxTab() {
+  var columns = [
+    {key:'rate', label:'消毒标准化率', isPct:false, isSumRatio:true},
+    {key:'num', label:'消毒合格数', isPct:false, isSumRatio:false},
+    {key:'den', label:'应消毒数', isPct:false, isSumRatio:false}
+  ];
+  renderStandardTab('box', 'BOX_DATA', columns, null);
+}
+
+// ─── Tab 5: 带刀巡检看板 ─────────────────────────────────────
+function renderKnifeTab() {
+  var columns = [
+    {key:'rate', label:'带刀合规率', isPct:false, isSumRatio:true},
+    {key:'num', label:'已检查数', isPct:false, isSumRatio:false},
+    {key:'den', label:'注册骑手数', isPct:false, isSumRatio:false}
+  ];
+  renderStandardTab('knife', 'KNIFE_DATA', columns, null);
+}
+
+// ─── Tab 6: 充换电血压看板 ───────────────────────────────────
+function renderChargeBPTab() {
+  var columns = [
+    {key:'bp_rate', label:'血压检测率', isPct:false, isSumRatio:true},
+    {key:'bp_num', label:'血压_num', isPct:false, isSumRatio:false},
+    {key:'bp_den', label:'血压_den', isPct:false, isSumRatio:false},
+    {key:'vehicle_rate', label:'载具审核通过率', isPct:false, isSumRatio:true},
+    {key:'vehicle_num', label:'载具_num', isPct:false, isSumRatio:false},
+    {key:'vehicle_den', label:'载具_den', isPct:false, isSumRatio:false},
+    {key:'charge_up_rate', label:'充换电上传提交率', isPct:false, isSumRatio:true},
+    {key:'charge_up_num', label:'上传_num', isPct:false, isSumRatio:false},
+    {key:'charge_up_den', label:'上传_den', isPct:false, isSumRatio:false},
+    {key:'charge_check_rate', label:'充换电审核通过率', isPct:false, isSumRatio:true},
+    {key:'charge_check_num', label:'审核_num', isPct:false, isSumRatio:false},
+    {key:'charge_check_den', label:'审核_den', isPct:false, isSumRatio:false}
+  ];
+  renderStandardTab('chargebp', 'CHARGEBP_DATA', columns, null);
+}
+
+// ─── Tab 7: 线上线下考培 ─────────────────────────────────────
+function renderTrainingTab() {
+  var columns = [
+    {key:'train_north', label:'华北新骑手培训', isPct:false, isSumRatio:false, isSafetyHl:true},
+    {key:'train_risk', label:'风险骑手培训', isPct:false, isSumRatio:false, isSafetyHl:true},
+    {key:'exam_entry_rate', label:'入门测试通过率', isPct:false, isSumRatio:true},
+    {key:'exam_july_rate', label:'七月重点规则测评通过率', isPct:false, isSumRatio:true}
+  ];
+  renderStandardTab('training', 'TRAINING_DATA', columns, null);
+}
+
+// ─── Tab 8: 骑手维度执行 ─────────────────────────────────────
+
+// ─── 证书日期计算 ──────────────────────────────────────────
+function parseDateStr(s) {
+  if (!s) return null;
+  var m = String(s).match(/(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})/);
+  if (m) return new Date(parseInt(m[1]), parseInt(m[2])-1, parseInt(m[3]));
+  return null;
+}
+function fmtDate(d) {
+  if (!d) return '-';
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function calcCertDates(r) {
+  // r[6]=入职时间, r[19]=证书类型("健康证"/"回执单"), r[20]=健康证发证日期
+  var type = r.length > 19 ? (r[19] || '') : '';
+  var certDateRaw = r.length > 20 ? (r[20] || '') : '';
+  var entryDateRaw = (r[6] || '');
+  var today = new Date(); today.setHours(0,0,0,0);
+  var issueDate = null, expireDate = null, remainDays = null;
+  if (type === '回执单' && entryDateRaw) {
+    issueDate = parseDateStr(entryDateRaw);
+    if (issueDate) {
+      expireDate = new Date(issueDate);
+      expireDate.setDate(expireDate.getDate() + 20);
+      remainDays = Math.ceil((expireDate - today) / (1000*60*60*24));
+    }
+  } else if (type === '健康证' && certDateRaw) {
+    issueDate = parseDateStr(certDateRaw);
+    if (issueDate) {
+      expireDate = new Date(issueDate);
+      expireDate.setFullYear(expireDate.getFullYear() + 1);
+      remainDays = Math.ceil((expireDate - today) / (1000*60*60*24));
+    }
+  }
+  var remainCls = '';
+  if (remainDays !== null) {
+    if (remainDays < 0) remainCls = 'rr';
+    else if (remainDays <= 7) remainCls = 'ry';
+    else remainCls = 'rg';
+  }
+  return {
+    issueText: issueDate ? fmtDate(issueDate) : '-',
+    expireText: expireDate ? fmtDate(expireDate) : '-',
+    remainText: remainDays !== null ? String(remainDays) + '天' : '-',
+    remainCls: remainCls
+  };
+}
+
+var gRiderFilteredData = [];
+function getFilteredRiderData() {
+  var data = window.RIDER_DATA || [];
+  if (data.length === 0) return [];
+  var out = [];
+  for (var i=0;i<data.length;i++) {
+    var r = data[i];
+    var info = getSiteInfo(r[3]);
+    var regionState = sfState['region-rider'] || [];
+    var cityState = sfState['city-rider'] || [];
+    var siteState = sfState['site-rider'] || [];
+    if (regionState.length > 0 && regionState.indexOf(info.大区) < 0) continue;
+    if (cityState.length > 0 && cityState.indexOf(info.城市) < 0) continue;
+    if (siteState.length > 0 && siteState.indexOf(r[3]) < 0) continue;
+    // Rider-specific filters (col indexes: 消毒=9, 带刀=10, 血压=11, 载具=12)
+    var helmetState = sfState['helmetComp-rider']||[];
+    var knifeState = sfState['knife-rider']||[];
+    var bpState = sfState['bp-rider']||[];
+    var boxState = sfState['boxDisinfect-rider']||[];
+    if (helmetState.length > 0 && helmetState.indexOf(r[9]) < 0) continue;
+    if (knifeState.length > 0 && knifeState.indexOf(r[10]) < 0) continue;
+    if (bpState.length > 0 && bpState.indexOf(r[11]) < 0) continue;
+    if (boxState.length > 0 && boxState.indexOf(String(r[13]||'')) < 0) continue;
+    out.push(r);
+  }
+  return out;
+}
+
+function renderRiderTabPage(page) {
+  var data = getFilteredRiderData();
+  gRiderFilteredData = data;
+  var perPage = 50;
+  var totalPages = Math.ceil(data.length / perPage);
+  if (page < 1) page = 1;
+  if (page > totalPages) page = Math.max(1,totalPages);
+  var start = (page-1) * perPage;
+  var end = Math.min(start + perPage, data.length);
+  var pageData = data.slice(start, end);
+
+  // Collect filter options
+  var allRegions = [], allCities = [], allSites = [];
+  var rSet = {}, cSet = {}, sSet = {};
+  for (var i=0;i<data.length;i++) {
+    var info = getSiteInfo(data[i][3]);
+    if (!rSet[info.大区]) { rSet[info.大区]=true; allRegions.push(info.大区); }
+    if (!cSet[info.城市]) { cSet[info.城市]=true; allCities.push(info.城市); }
+    if (!sSet[data[i][3]]) { sSet[data[i][3]]=true; allSites.push(data[i][3]); }
+  }
+  allRegions.sort(); allCities.sort(); allSites.sort();
+
+  if (typeof sfState['region-rider'] === 'undefined') sfState['region-rider']=[];
+  if (typeof sfState['city-rider'] === 'undefined') sfState['city-rider']=[];
+  if (typeof sfState['site-rider'] === 'undefined') sfState['site-rider']=[];
+  if (typeof sfState['helmetComp-rider'] === 'undefined') sfState['helmetComp-rider']=[];
+  if (typeof sfState['knife-rider'] === 'undefined') sfState['knife-rider']=[];
+  if (typeof sfState['bp-rider'] === 'undefined') sfState['bp-rider']=[];
+  if (typeof sfState['boxDisinfect-rider'] === 'undefined') sfState['boxDisinfect-rider']=[];
+
+  initMsFilter('region-rider', allRegions, []);
+  initMsFilter('city-rider', allCities, []);
+  initMsFilter('site-rider', allSites, []);
+  initMsFilter('helmetComp-rider', ['是','否'], []);
+  initMsFilter('knife-rider', ['是','否'], []);
+  initMsFilter('bp-rider', ['是','否'], []);
+  initMsFilter('boxDisinfect-rider', ['是','否'], []);
+
+  // Thead
+  var thead = '<tr>';
+  thead += '<th class="sticky-col" style="left:0;min-width:80px">大区</th>';
+  thead += '<th class="sticky-col" style="left:80px;min-width:100px">区域</th>';
+  thead += '<th class="sticky-col sticky-last" style="left:180px;min-width:400px" colspan="7">站点信息 / 骑手维度</th>';
+  thead += '<th>骑手ID</th><th>姓名</th><th>入职时间</th><th>有单天数</th><th>小组</th>';
+  thead += '<th>消毒</th><th>带刀</th><th>血压</th><th>载具</th><th>充换电</th>';
+  thead += '<th>华北新骑手安全专项培训</th><th>风险骑手安全培训(26年6月)</th>';
+  thead += '<th>新骑手入门测试</th><th>热浪来袭 我有秘籍</th><th>骑手七月重点关注事项-2026</th>';
+  thead += '<th>发证日期</th><th>到期时间</th><th>剩余天数</th>';
+  thead += '</tr>';
+  document.getElementById('thead-rider').innerHTML = thead;
+
+  // Tbody
+  var rows = '';
+  var prevRegion = '', prevCity = '';
+  // Pre-compute city/region aggregates
+  var regionStats = {}, cityStats = {};
+  for (var i=0;i<data.length;i++) {
+    var r = data[i];
+    var info = getSiteInfo(r[3]);
+    if (!regionStats[info.大区]) regionStats[info.大区] = {total:0,pass:0};
+    if (!cityStats[info.城市]) cityStats[info.城市] = {total:0,pass:0};
+    regionStats[info.大区].total++;
+    cityStats[info.城市].total++;
+  }
+
+  for (var i=0;i<pageData.length;i++) {
+    var r = pageData[i];
+    var info = getSiteInfo(r[3]);
+
+    if (info.区域 !== prevRegion) {
+      rows += '<tr class="lv-subregion"><td class="sticky-col" style="left:0;min-width:80px" colspan="21">'+escHtml(info.区域)+'汇总</td></tr>';
+      prevRegion = info.区域;
+      prevCity = '';
+    }
+    if (info.城市 !== prevCity) {
+      rows += '<tr class="lv-merchant"><td class="sticky-col" style="left:0;min-width:80px" colspan="21">'+escHtml(info.城市)+'</td></tr>';
+      prevCity = info.城市;
+    }
+
+    rows += '<tr class="lv-site">';
+    rows += '<td class="sticky-col" style="left:0;min-width:80px">'+escHtml(info.大区)+'</td>';
+    rows += '<td class="sticky-col" style="left:80px;min-width:100px">'+escHtml(info.区域)+'</td>';
+    rows += '<td class="sticky-col sticky-last" style="left:180px;min-width:80px">'+escHtml(info.城市)+'</td>';
+    rows += '<td class="sticky-col sticky-last name-cell" style="left:260px;min-width:180px">'+escHtml(r[3])+'</td>';
+    var maxJ = Math.min(r.length, 19);
+    for (var j=4;j<maxJ;j++) {
+      var v = r[j];
+      if (v === '是') rows += '<td class="rg">是</td>';
+      else if (v === '否') rows += '<td class="rr">否</td>';
+      else if (v == null || v === '') rows += '<td class="rn">-</td>';
+      else rows += '<td>'+escHtml(String(v))+'</td>';
+    }
+    // 证书日期列（发证日期、到期时间、剩余天数）
+    var certInfo = calcCertDates(r);
+    rows += '<td>'+escHtml(certInfo.issueText)+'</td>';
+    rows += '<td>'+escHtml(certInfo.expireText)+'</td>';
+    rows += '<td class="'+certInfo.remainCls+'">'+escHtml(certInfo.remainText)+'</td>';
+    rows += '</tr>';
+  }
+  document.getElementById('tbody-rider').innerHTML = rows;
+
+  // Summary cards
+  var cardHtml = '<div class="card"><div class="c-label">骑手总数</div><div class="c-value">'+data.length+'</div></div>';
+  document.getElementById('summary-cards-rider').innerHTML = cardHtml;
+
+  // Pagination
+  var pag = '';
+  if (totalPages > 1) {
+    pag = '<span class="pg-info">共'+data.length+'条 '+totalPages+'页</span>';
+    pag += '<button'+(page<=1?' disabled':'')+' onclick="renderRiderTabPage('+(page-1)+')">上一页</button>';
+    for (var p=1;p<=totalPages;p++) {
+      pag += '<button class="'+(p===page?'cur':'')+'" onclick="renderRiderTabPage('+p+')">'+p+'</button>';
+    }
+    pag += '<button'+(page>=totalPages?' disabled':'')+' onclick="renderRiderTabPage('+(page+1)+')">下一页</button>';
+  }
+  document.getElementById('pagination-rider').innerHTML = pag;
+}
+
+// ─── 冻结骑手维度列 ──────────────────────────────────────────
+function fixRiderSticky() {
+  // Sticky columns already applied via CSS sticky-col classes
+}
+
+// ─── Tab 切换 ───────────────────────────────────────────────
+function switchTab(tab) {
+  // Deactivate all tabs
+  var items = document.querySelectorAll('.tab-item');
+  for (var i=0;i<items.length;i++) items[i].classList.remove('active');
+  var panels = document.querySelectorAll('.panel');
+  for (var i=0;i<panels.length;i++) panels[i].classList.remove('active');
+
+  // Activate target
+  var tabItem = document.querySelector('.tab-item[data-tab="'+tab+'"]');
+  if (tabItem) tabItem.classList.add('active');
+  var panel = document.getElementById('panel-'+tab);
+  if (panel) panel.classList.add('active');
+  syncViewBtns();
+
+  // Render
+  if (tab === 'morning') { renderMorningTab(); }
+  else if (tab === 'safety') { renderSafetyCheckTab(); }
+  else if (tab === 'equip') { METRIC_CFG.clothing.rows = (typeof CLOTHING_ROWS !== 'undefined') ? CLOTHING_ROWS : []; METRIC_CFG.clothing.target = 95; renderEquipTab(); switchEquipView('main'); }
+  else if (tab === 'box') { renderBoxTab(); }
+  else if (tab === 'knife') { renderKnifeTab(); }
+  else if (tab === 'chargebp') { renderChargeBPTab(); }
+  else if (tab === 'training') { renderTrainingTab(); }
+  else if (tab === 'rider') { renderRiderTabPage(1); }
+
+  // Initialize subregion filter for this tab
+  if (tab !== 'rider') {
+    var srOpts = getSubregionOptions(tab);
+    initMsFilter('subregion-'+tab, srOpts, []);
+  }
+
+  // Apply view mode after render
+  setTimeout(function(){ applyViewModeToTable(tab); }, 50);
+}
+
+
+
+// ══════════════════════════════════════════════════════════
+// ★ 视图切换（区域行 / 城市行 / 站点行 / 全部显示）
+// ══════════════════════════════════════════════════════════
+var gViewMode = 'all';  // 'site' | 'merchant' | 'subregion' | 'all'
+
+function syncViewBtns() {
+  var activePanel = document.querySelector('.panel.active');
+  if (!activePanel) return;
+  var bar = activePanel.querySelector('.sub-tab-bar');
+  if (!bar) return;
+  if (gViewMode === 'all') {
+    ['subregion','merchant','site'].forEach(function(k){
+      var b = bar.querySelector('.lv-btn[onclick*="toggleViewBtn(\''+k+'\')"]');
+      if (b) b.classList.add('active');
+    });
+    var rb = bar.querySelector('.lv-btn-reset');
+    if (rb) rb.style.display = 'none';
+  } else {
+    ['subregion','merchant','site'].forEach(function(k){
+      var b = bar.querySelector('.lv-btn[onclick*="toggleViewBtn(\''+k+'\')"]');
+      if (b) b.classList.toggle('active', k === gViewMode);
+    });
+    var rb = bar.querySelector('.lv-btn-reset');
+    if (rb) rb.style.display = 'inline-block';
+  }
+}
+
+function toggleViewBtn(lv) {
+  if (gViewMode === lv) {
+    resetViewBtns();
+    return;
+  }
+  gViewMode = lv;
+  syncViewBtns();
+  rerenderCurrentTab();
+}
+
+function resetViewBtns() {
+  gViewMode = 'all';
+  syncViewBtns();
+  rerenderCurrentTab();
+}
+
+// Filter visible rows by view mode
+function filterRowsByView(rowsHtml, sorted, data, tabId, columns, extra, headerGroups) {
+  // rowsHtml is the innerHTML string produced by renderStandardTab
+  // We need to post-process the rendered table to hide rows based on gViewMode
+  if (gViewMode === 'all') return;
+  
+  var tbody = document.getElementById('tbody-' + tabId);
+  if (!tbody) return;
+  var allRows = tbody.querySelectorAll('tr');
+  var totalRow = tbody.querySelector('tr.lv-total');
+  
+  allRows.forEach(function(tr) {
+    if (tr.classList.contains('lv-total')) {
+      // Always show total row when not in 'site' mode; hide in 'site' mode
+      tr.style.display = (gViewMode === 'site') ? '' : '';
+    } else if (tr.classList.contains('lv-subregion')) {
+      tr.style.display = (gViewMode === 'subregion') ? '' : 'none';
+    } else if (tr.classList.contains('lv-merchant')) {
+      tr.style.display = (gViewMode === 'merchant') ? '' : 'none';
+    } else if (tr.classList.contains('lv-site')) {
+      tr.style.display = (gViewMode === 'site') ? '' : 'none';
+    }
+  });
+  
+  // Hide total row in non-site modes if it exists
+  if (totalRow) {
+    totalRow.style.display = (gViewMode === 'subregion' || gViewMode === 'merchant') ? 'none' : '';
+  }
+  
+  // Update filter count
+  updateViewFilterCount(tabId);
+}
+
+function updateViewFilterCount(tabId) {
+  var tbody = document.getElementById('tbody-' + tabId);
+  if (!tbody) return;
+  var allRows = tbody.querySelectorAll('tr');
+  var visibleCount = 0;
+  var siteCount = 0;
+  allRows.forEach(function(tr) {
+    if (tr.style.display !== 'none') {
+      visibleCount++;
+      if (tr.classList.contains('lv-site')) siteCount++;
+    }
+  });
+  var cntEl = document.getElementById('filter-count-'+tabId);
+  if (cntEl) {
+    cntEl.textContent = '共 ' + visibleCount + ' 行（站点 ' + siteCount + ' 个）';
+  }
+
+}
+
+function rerenderCurrentTab() {
+  var activeTabItem = document.querySelector('.tab-item.active');
+  if (!activeTabItem) return;
+  var tab = activeTabItem.getAttribute('data-tab');
+  if (tab === 'morning') { renderMorningTab(); }
+  else if (tab === 'safety') { renderSafetyCheckTab(); }
+  else if (tab === 'equip') { METRIC_CFG.clothing.rows = (typeof CLOTHING_ROWS !== 'undefined') ? CLOTHING_ROWS : []; METRIC_CFG.clothing.target = 95; renderEquipTab(); switchEquipView('main'); }
+  else if (tab === 'box') { renderBoxTab(); }
+  else if (tab === 'knife') { renderKnifeTab(); }
+  else if (tab === 'chargebp') { renderChargeBPTab(); }
+  else if (tab === 'training') { renderTrainingTab(); }
+  else if (tab === 'rider') { renderRiderTabPage(1); }
+
+  // Initialize subregion filter for this tab
+  if (tab !== 'rider') {
+    var srOpts = getSubregionOptions(tab);
+    initMsFilter('subregion-'+tab, srOpts, []);
+  }
+
+  // Apply view mode after render
+  setTimeout(function(){ applyViewModeToTable(tab); }, 50);
+}
+
+// ══════════════════════════════════════════════════════════
+// ★ 区域筛选选项生成
+// ══════════════════════════════════════════════════════════
+function getSubregionOptions(tabId) {
+  var rSet = {};
+  var allSites = SITE_INFO ? Object.keys(SITE_INFO) : [];
+  var regionState = sfState['region-'+tabId] || [];
+  allSites.forEach(function(sn) {
+    var info = getSiteInfo(sn);
+    if (!info.区域) return;
+    // Filter by selected regions
+    if (regionState.length > 0 && regionState.indexOf(info.大区) < 0) return;
+    rSet[info.区域] = true;
+  });
+  var regions = Object.keys(rSet).sort(function(a,b){return a.localeCompare(b,'zh');});
+  return regions;
+}
+
+
+
+// ══════════════════════════════════════════════════════════
+// ★ 导出 Excel（CSV）
+// ══════════════════════════════════════════════════════════
+function exportTable(tabId) {
+  // Handle equip tab sub-views
+  var theadId = 'thead-'+tabId;
+  var tbodyId = 'tbody-'+tabId;
+  if (tabId === 'equip' && currentEquipView === 'clothing') {
+    theadId = 'clothing-thead';
+    tbodyId = 'clothing-tbody';
+  } else if (tabId === 'equip' && currentEquipView === 'checkfail') {
+    // checkFailTable has its own structure
+    var tbody = document.querySelector('#checkFailTable tbody');
+    if (!tbody) { alert('未找到表格'); return; }
+    var rows = [];
+    var thead = document.querySelector('#checkFailTable thead');
+    var headerCells = thead.querySelectorAll('tr:last-child th');
+    var headerRow = [];
+    headerCells.forEach(function(th) { headerRow.push('"'+th.textContent.replace(/"/g,'""').replace(/\n/g,' ')+'"'); });
+    rows.push(headerRow.join(','));
+    var bodyRows = tbody.querySelectorAll('tr');
+    bodyRows.forEach(function(tr) {
+      if (tr.style.display === 'none') return;
+      var cells = tr.querySelectorAll('th, td');
+      var row = [];
+      cells.forEach(function(cell) {
+        var txt = cell.textContent.replace(/"/g,'""').replace(/\n/g,' ').trim();
+        row.push('"'+txt+'"');
+      });
+      rows.push(row.join(','));
+    });
+    var csv = '\uFEFF' + rows.join('\n');
+    var blob = new Blob([csv], {type:'text/csv;charset=utf-8'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    var now = new Date();
+    var ts = now.getFullYear()+('0'+(now.getMonth()+1)).slice(-2)+('0'+now.getDate()).slice(-2);
+    a.download = '履约项目看板_抽检不合格骑手明细_'+ts+'.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+    return;
+  }
+
+  var table = document.getElementById('tbl-'+tabId);
+  if (!table && !(tabId === 'equip')) { alert('未找到表格'); return; }
+  if (tabId === 'equip' && currentEquipView === 'clothing') {
+    table = document.getElementById('clothing-table');
+    theadId = 'clothing-thead';
+    tbodyId = 'clothing-tbody';
+  }
+  if (!table && tabId === 'equip') { alert('未找到表格'); return; }
+  
+  var rows = [];
+  // Get visible rows only
+  var tbody = document.getElementById(tbodyId);
+  var thead = document.getElementById(theadId);
+  
+  // Headers
+  var headerCells = thead.querySelectorAll('tr:last-child th');
+  var headerRow = [];
+  headerCells.forEach(function(th) {
+    headerRow.push('"'+th.textContent.replace(/"/g,'""').replace(/\n/g,' ')+'"');
+  });
+  rows.push(headerRow.join(','));
+  
+  // Body - only visible rows
+  var bodyRows = tbody.querySelectorAll('tr');
+  bodyRows.forEach(function(tr) {
+    if (tr.style.display === 'none') return;
+    var cells = tr.querySelectorAll('th, td');
+    var row = [];
+    cells.forEach(function(cell) {
+      var txt = cell.textContent.replace(/"/g,'""').replace(/\n/g,' ').trim();
+      row.push('"'+txt+'"');
+    });
+    rows.push(row.join(','));
+  });
+  
+  // Add BOM for Excel UTF-8
+  var csv = '\uFEFF' + rows.join('\n');
+  var blob = new Blob([csv], {type:'text/csv;charset=utf-8'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  var tabNames = {
+    'morning':'站点早会','safety':'履约安全检查','equip':'骑手装备标准化率',
+    'box':'餐箱消毒看板','knife':'带刀巡检看板','chargebp':'充换电血压看板',
+    'training':'线上线下考培','rider':'骑手维度执行'
+  };
+  var now = new Date();
+  var ts = now.getFullYear()+('0'+(now.getMonth()+1)).slice(-2)+('0'+now.getDate()).slice(-2);
+    var expName = (tabNames[tabId]||tabId);
+  if (tabId === 'equip' && currentEquipView === 'clothing') expName = '骑手服装标准化率';
+  if (tabId === 'equip' && currentEquipView === 'checkfail') expName = '抽检不合格骑手明细';
+  a.download = '履约项目看板_'+ expName +'_'+ts+'.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ══════════════════════════════════════════════════════════
+// ★ 截图（html2canvas）
+// ══════════════════════════════════════════════════════════
+function screenshotPanel(tabId) {
+  if (typeof html2canvas === 'undefined') {
+    alert('截图库未加载，请检查网络连接后刷新页面');
+    return;
+  }
+  var panelEl = document.getElementById('panel-'+tabId);
+  if (!panelEl) { alert('未找到面板'); return; }
+  
+  var savedStyles = [];
+  panelEl.querySelectorAll('.table-wrap').forEach(function(el) {
+    savedStyles.push({el:el, maxHeight:el.style.maxHeight, overflow:el.style.overflow});
+    el.style.maxHeight = 'none';
+    el.style.overflow = 'visible';
+  });
+  
+  html2canvas(panelEl, {
+    height: panelEl.scrollHeight,
+    windowHeight: panelEl.scrollHeight,
+    scale: 2
+  }).then(function(canvas) {
+    savedStyles.forEach(function(item) {
+      item.el.style.maxHeight = item.maxHeight;
+      item.el.style.overflow = item.overflow;
+    });
+    var now = new Date();
+    var ts = now.getFullYear()+('0'+(now.getMonth()+1)).slice(-2)+('0'+now.getDate()).slice(-2)+'_'+('0'+now.getHours()).slice(-2)+('0'+now.getMinutes()).slice(-2)+('0'+now.getSeconds()).slice(-2);
+    var tabNames = {
+      'morning':'站点早会','safety':'履约安全检查','equip':'骑手装备标准化率',
+      'box':'餐箱消毒看板','knife':'带刀巡检看板','chargebp':'充换电血压看板',
+      'training':'线上线下考培','rider':'骑手维度执行'
+    };
+    var name = (tabNames[tabId]||tabId)+'_'+ts+'.png';
+    var a = document.createElement('a');
+    a.download = name;
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+  }).catch(function(e) {
+    savedStyles.forEach(function(item) {
+      item.el.style.maxHeight = item.maxHeight;
+      item.el.style.overflow = item.overflow;
+    });
+    console.error('截图失败', e);
+    alert('截图失败: '+e.message);
+  });
+}
+
+// ─── 初始化 ─────────────────────────────────────────────────
+window.onload = function() {
+  if (typeof LATEST_DATE !== 'undefined') { LATEST_DATE = '08-13'; }
+  if (typeof LATEST_DATE !== 'undefined') {
+    document.getElementById('dataRange').textContent = '数据日期: 2026年8月 | 更新: '+LATEST_DATE;
+  }
+  // Initialize filter states
+  var tabIds = ['morning','safety','equip','box','knife','chargebp','training','rider'];
+  for (var t=0;t<tabIds.length;t++) {
+    var tid = tabIds[t];
+    sfState['region-'+tid] = [];
+    sfState['subregion-'+tid] = [];
+    sfState['city-'+tid] = [];
+    sfState['site-'+tid] = [];
+  }
+  sfState['helmetComp-rider'] = [];
+  sfState['knife-rider'] = [];
+  sfState['bp-rider'] = [];
+  sfState['boxDisinfect-rider'] = [];
+
+  METRIC_CFG.clothing.rows = (typeof CLOTHING_ROWS !== 'undefined') ? CLOTHING_ROWS : [];
+  METRIC_CFG.clothing.target = 95;
+  METRIC_CFG.rating = { rows: (typeof TAB2_ROWS !== 'undefined') ? TAB2_ROWS : [] };
+  if (typeof DATES !== 'undefined') { initMsFilter('date-equip', DATES, []); }
+  // Render default tab (morning)
+  switchTab('morning');
+};
+
+/* ─── 审核规则弹窗 ─── */
+function openRulesModal() {
+  document.getElementById('rulesModal').classList.add('show');
+}
+function closeRulesModal() {
+  document.getElementById('rulesModal').classList.remove('show');
+}
+function openEquipRulesModal() {
+  document.getElementById('equipRulesModal').classList.add('show');
+}
+function closeEquipRulesModal() {
+  document.getElementById('equipRulesModal').classList.remove('show');
+}
+</script>
+
+<!-- ─── 审核规则弹窗 ─── -->
+<div class="modal-overlay" id="rulesModal" onclick="if(event.target===this)closeRulesModal()">
+<div class="modal-content">
+<div class="modal-header">
+<span class="modal-title">站点早会审核规则</span>
+<button class="modal-close" onclick="closeRulesModal()">&times;</button>
+</div>
+<div class="modal-body">
+<ol>
+<li>
+<b>站点自检（站长任务）提交日：</b><br>
+华东、中南站点：<span class="highlight">偶数日</span>提交<br>
+华北、华南站点：<span class="highlight">奇数日</span>提交
+</li>
+<li>
+<b>当月新B1建站（首单日期当月）：</b><br>
+每日提交，次月按大区任务自查
+</li>
+<li>
+<b>早会提交时间（日常早会/报备早会）：</b><br>
+需在<span class="highlight">当日 20:00 前</span>通过星火APP（加盟站点）或骑手APP（驻点站点）完成提交，不区分奇数日/偶数日，每天都需要按时提交。
+</li>
+<li>
+<b>早会提交以系统签到时间为准：</b><br>
+不早于当日 <span class="highlight">7:00</span>，最晚不晚于 <span class="highlight">20:00</span>。<br>
+未在规定时间内提交早会，视为<span class="highlight">"未召开早会"</span>，按 <span class="highlight">1000元/站/天</span> 承担违约责任。
+</li>
+<li>
+<b>恶劣天气报备早会：</b><br>
+情景举证不通过按 <span class="highlight">500元/站/天</span> 承担违约责任。
+</li>
+<li>
+<b>日常早会驳回处罚标准：</b><br>
+① 重点内容交流驳回 = <span class="highlight">50元/站/天</span><br>
+② 仪容仪表驳回 = <span class="highlight">100元/站/天</span><br>
+③ 签到驳回 = <span class="highlight">100元/站/天</span>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<!-- ─── 骑手装备处罚规则弹窗 ─── -->
+<div class="modal-overlay" id="equipRulesModal" onclick="if(event.target===this)closeEquipRulesModal()">
+<div class="modal-content">
+<div class="modal-header">
+<span class="modal-title">骑手装备处罚规则</span>
+<button class="modal-close" onclick="closeEquipRulesModal()">&times;</button>
+</div>
+<div class="modal-body">
+<div style="font-weight:700;color:#0B4F8A;margin:6px 0 4px;">一、骑手装备检核违规处罚标准</div>
+<ul style="margin:0 0 8px;padding-left:20px;">
+<li><b>头盔：</b>不合规 <span class="highlight">200元/人/次</span>。</li>
+<li><b>服装：</b>
+  <ul style="margin:0;padding-left:20px;">
+  <li>不合规：<span class="highlight">100元/人/次</span>。</li>
+  <li>使用其他平台服装：<span class="highlight">150元/人/次</span>。</li>
+  </ul>
+</li>
+<li><b>餐箱：</b>
+  <ul style="margin:0;padding-left:20px;">
+  <li>不合规：<span class="highlight">100元/人/次</span>。</li>
+  <li>使用其他平台餐箱：<span class="highlight">150元/人/次</span>。</li>
+  <li>餐箱内存放非配送商品相关物品：<span class="highlight">100元/人/次</span>。</li>
+  </ul>
+</li>
+</ul>
+<div style="font-weight:700;color:#0B4F8A;margin:6px 0 4px;">二、SKA品牌（如喜茶、奈雪等）线下装备检核处罚标准</div>
+<ul style="margin:0 0 8px;padding-left:20px;">
+<li><b>头盔：</b>不合规 <span class="highlight">200元/人/次</span>。</li>
+<li><b>服装：</b>
+  <ul style="margin:0;padding-left:20px;">
+  <li>不合规：<span class="highlight">200元/人/次</span>。</li>
+  <li>使用其他平台服装：<span class="highlight">300元/人/次</span>。</li>
+  </ul>
+</li>
+<li><b>餐箱：</b>
+  <ul style="margin:0;padding-left:20px;">
+  <li>不合规：<span class="highlight">200元/人/次</span>。</li>
+  <li>使用其他平台餐箱：<span class="highlight">300元/人/次</span>。</li>
+  <li>餐箱内存放非配送商品相关物品：<span class="highlight">100元/人/次</span>。</li>
+  </ul>
+</li>
+</ul>
+<div style="font-weight:700;color:#0B4F8A;margin:6px 0 4px;">三、其他关键点</div>
+<ul style="margin:0 0 8px;padding-left:20px;">
+<li><b>装备要求：</b>工作期间必须配备头盔、正版服装、外卖箱，三件缺一不可。</li>
+<li><b>禁止行为：</b>禁止使用破损、掉色、LOGO不清的装备；禁止穿着不符合当季气候要求的服装；禁止使用盗版装备。</li>
+<li><b>虚假申诉：</b>当月同一站点发生1次虚假申诉，按 <span class="highlight">1500元/项/次</span> 承担违约金；超过2次（含），按 <span class="highlight">2000元/项/次</span> 承担。</li>
+</ul>
+<div style="margin-top:8px;padding-top:8px;border-top:1px dashed #e0e0e0;"><b>总结：</b>请务必确保骑手装备合规，特别是头盔、工服和餐箱。SKA品牌的处罚标准更高，需重点关注。</div>
+</div>
+</div>
+</div>
+<!-- ─── 照片弹窗 ─── -->
+<div class="photo-modal" id="photoModal" onclick="if(event.target===this)document.getElementById('photoModal').style.display='none'">
+  <span class="photo-close" onclick="document.getElementById('photoModal').style.display='none'">&times;</span>
+  <img class="photo-content" id="photoModalImg" src="" />
+</div>
+
+
+</body>
+</html>

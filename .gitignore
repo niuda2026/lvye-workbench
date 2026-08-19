@@ -1,0 +1,12 @@
+﻿*.py
+*.ps1
+*.bat
+*.log
+*.txt
+*.bak*
+temp_*
+update_log.txt
+run_log.txt
+update_run_*
+update_data.log
+temp_output.txt

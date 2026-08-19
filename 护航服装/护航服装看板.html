@@ -1,0 +1,2004 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>兴达丨全国护航服装订单视觉市占看板</title>
+<!-- SheetJS CDN（离线可用，已内嵌） -->
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F0F6FC;color:#1a2e45;font-family:'Segoe UI','Microsoft YaHei','PingFang SC',Arial,sans-serif;font-size:13px;min-height:100vh}
+.header{background:linear-gradient(135deg,#0B4F8A 0%,#1E88E5 50%,#1e88e5 100%);padding:14px 24px;border-bottom:3px solid #0A3D6B;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;box-shadow:0 2px 8px rgba(11,79,138,.4)}
+.header-title{font-size:20px;font-weight:700;color:#ffffff;letter-spacing:1px;text-shadow:0 1px 3px rgba(0,0,0,.3)}
+.header-sub{font-size:12px;color:#B3D0E8;margin-top:3px}
+.header-right{text-align:right;font-size:12px;color:#B3D0E8;line-height:1.8}
+.tab-bar{display:flex;background:#0B4F8A;border-bottom:2px solid #0A3D6B;padding:0 16px;gap:4px}
+.tab-item{padding:10px 22px;cursor:pointer;color:#8FB8DA;border-bottom:3px solid transparent;font-size:13px;font-weight:500;transition:all .2s;white-space:nowrap}
+.tab-item:hover{color:#fff;background:rgba(255,255,255,.1)}
+.tab-item.active{color:#fff;border-bottom:3px solid #fff;background:rgba(255,255,255,.15)}
+.sub-tab-bar{display:flex;background:#EAF2F9;border-bottom:2px solid #8FB8DA;padding:0 16px}
+.sub-tab{padding:8px 20px;cursor:pointer;color:#0B4F8A;border-bottom:2px solid transparent;font-size:12px;font-weight:500;transition:all .2s}
+.sub-tab:hover{color:#0A3D6B;background:#B3D0E8}
+.sub-tab.active{color:#0A3D6B;border-bottom:2px solid #0B4F8A;background:#B3D0E8;font-weight:700}
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:flex-start;padding:10px 16px;background:#ffffff;border-bottom:1px solid #d6e4f0;flex-wrap:wrap;align-items:center;box-shadow:0 1px 3px rgba(11,79,138,.06)}
+.filter-bar label{color:#0B4F8A;font-size:12px;white-space:nowrap;font-weight:500}
+.ms-wrap{position:relative;display:inline-block;vertical-align:top;}
+.ms-btn{display:flex;align-items:center;justify-content:space-between;min-width:90px;max-width:160px;padding:5px 8px;background:#fff;border:1px solid #8FB8DA;border-radius:4px;font-size:12px;color:#1a2e45;cursor:pointer;user-select:none;gap:4px;}
+.ms-btn:hover{border-color:#0B4F8A;}
+.ms-label{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ms-arrow{font-size:10px;color:#4F6E87;transition:transform .2s;}
+.ms-wrap.open .ms-arrow{transform:rotate(180deg);}
+.ms-drop{display:none;position:absolute;top:calc(100% + 2px);left:0;min-width:120px;max-width:220px;max-height:220px;overflow-y:auto;background:#fff;border:1px solid #8FB8DA;border-radius:4px;box-shadow:0 4px 12px rgba(0,0,0,.12);z-index:9999;padding:4px 0;}
+.ms-wrap.open .ms-drop{display:block;}
+.ms-item{display:flex;align-items:center;gap:6px;padding:5px 10px;font-size:12px;color:#1a2e45;cursor:pointer;white-space:nowrap;}
+.ms-item:hover{background:#EAF2F9;}
+.ms-item input[type=checkbox]{margin:0;cursor:pointer;accent-color:#0B4F8A;}
+.ms-item.checked{background:#e8f5e9;font-weight:600;}
+.filter-bar select{background:#fff;color:#1a2e45;border:1px solid #8FB8DA;padding:5px 8px;border-radius:4px;font-size:12px;outline:none;max-width:180px}
+.filter-bar select:focus{border-color:#0B4F8A;box-shadow:0 0 0 2px rgba(11,79,138,.2)}
+.btn{padding:5px 14px;border-radius:4px;border:none;cursor:pointer;font-size:12px;font-weight:500;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+.btn-secondary{background:#EAF2F9;color:#0B4F8A;border:1px solid #8FB8DA}
+.btn-secondary:hover{background:#B3D0E8}
+.btn-export{background:#0B4F8A;color:#fff;border:1px solid #0A3D6B}
+.btn-screenshot{background:#2e7d32;color:#fff;border:1px solid #1b5e20}
+.btn-export:hover{background:#0A3D6B}
+.btn-upload{background:#fff;color:#0B4F8A;border:2px solid #0B4F8A;font-weight:600}
+.btn-upload:hover{background:#EAF2F9}
+.upload-area{margin-left:auto;display:flex;align-items:center;gap:8px;padding:4px 0}
+.upload-status{font-size:12px;max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.upload-progress{display:none;align-items:center;gap:8px;font-size:12px;color:#0B4F8A}
+.progress-bar-wrap{width:120px;height:6px;background:#cce0f5;border-radius:3px;overflow:hidden}
+.progress-bar{height:100%;background:#0B4F8A;border-radius:3px;transition:width .3s}
+.summary-row{display:flex;gap:10px;padding:12px 16px;flex-wrap:wrap;background:#f0f7ff}
+.card{background:#ffffff;border:1px solid #d6e4f0;border-radius:6px;padding:12px 16px;min-width:140px;flex:1;max-width:220px;box-shadow:0 1px 4px rgba(11,79,138,.08)}
+.card .c-label{font-size:11px;color:#4F6E87;margin-bottom:4px;letter-spacing:.3px}
+.card .c-value{font-size:22px;font-weight:700;color:#0B4F8A;font-variant-numeric:tabular-nums;letter-spacing:.2px}
+.card .c-sub{font-size:11px;color:#90a4ae;margin-top:3px}
+.card.green .c-value{color:#2e7d32}
+.card.yellow .c-value{color:#e65100}
+.card.red .c-value{color:#c62828}
+.panel{display:none}
+.panel.active{display:block}
+.table-wrap{overflow:auto}
+.table-wrap-station{max-height:calc(100vh - 170px)}
+.table-wrap-rider{max-height:calc(100vh - 260px)}
+table.dt{width:100%;border-collapse:collapse;font-size:12px}
+table.dt th{background:#0B4F8A;color:#fff;padding:8px 10px;text-align:center;border:1px solid #1E88E5;white-space:normal;position:sticky;top:0;z-index:2;line-height:1.4;font-size:12px;letter-spacing:.5px;font-weight:600}
+table.dt td{padding:7px 10px;border:1px solid #e3edf7;text-align:center;white-space:nowrap;background:#fff;font-variant-numeric:tabular-nums}
+table.dt td.name-cell{text-align:left;max-width:300px;overflow:hidden;text-overflow:ellipsis}
+/* 列冻结：前9列固定，日维度列横向滚动 */
+table.dt th.sticky-col,table.dt td.sticky-col{position:sticky;z-index:1;background:#fff}
+table.dt th.sticky-col{background:#0B4F8A;z-index:3}
+tr.lv-total td.sticky-col{background:#dbeafe!important}
+tr.lv-subregion td.sticky-col{background:#F0F6FC!important}
+tr.lv-merchant td.sticky-col{background:#F2F7FB!important}
+tr.lv-site:hover td.sticky-col{background:#f0f7ff!important}
+/* 最后一个固定列右侧加阴影分隔线 */
+table.dt th.sticky-last,table.dt td.sticky-last{border-right:2px solid #0B4F8A!important;box-shadow:2px 0 4px rgba(11,79,138,.15)}
+tr.lv-total td{background:#dbeafe!important;font-weight:700;color:#0A3D6B;font-size:13px;border-bottom:2px solid #8FB8DA}
+tr.lv-subregion td{background:#F0F6FC!important;font-weight:700;color:#0B4F8A}
+tr.lv-merchant td{background:#F2F7FB!important;font-weight:500;color:#1E88E5;font-style:italic}
+tr.lv-site td{background:#fff}
+tr.lv-site:nth-child(even) td{background:#f8fafc}
+tr.lv-site:hover td{background:#f0f7ff}
+.rg{background:#e8f5e9!important;color:#2e7d32!important;font-weight:600}
+.ry{background:#fff3e0!important;color:#e65100!important;font-weight:600}
+.rr{background:#ffebee!important;color:#c62828!important;font-weight:600}
+.rn{color:#90a4ae}
+/* 操作列样式 */
+.op-col{width:36px;min-width:36px;padding:2px!important;text-align:center!important;background:#f8fbff!important}
+.region-cards-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:12px;}
+.region-card{padding:14px 10px;text-align:center;min-height:90px;display:flex;flex-direction:column;justify-content:center;}
+@media(max-width:900px){.region-cards-row{grid-template-columns:repeat(3,1fr);}}
+
+.lv-btn{padding:4px 12px;border-radius:4px;border:1px solid #0B4F8A;background:#0B4F8A;color:#fff;font-size:12px;cursor:pointer;transition:all .2s;}
+.lv-btn:not(.active){background:transparent;color:#90a4ae;border-color:#546e7a;}
+.lv-btn-reset{padding:4px 10px;border-radius:4px;border:1px solid #546e7a;background:transparent;color:#90a4ae;font-size:12px;cursor:pointer;}
+.lv-btn-reset:hover{border-color:#0B4F8A;color:#8FB8DA;}
+th.op-col{background:#0B4F8A!important;color:#fff!important}
+.th-filter{cursor:pointer;user-select:none;position:relative;}
+.th-filter:hover{background:#1E88E5!important;}
+.th-arrow{font-size:10px;opacity:0.8;margin-left:2px;}
+.col-filter-dropdown{position:fixed;background:#1a2a3a;border:1px solid #0B4F8A;border-radius:6px;box-shadow:0 4px 16px rgba(11,79,138,0.4);z-index:9998;min-width:160px;max-width:260px;max-height:320px;overflow-y:auto;padding:4px 0;}
+.col-filter-dropdown input{width:calc(100% - 16px);margin:6px 8px;padding:5px 8px;background:#0d1b2a;color:#EAF2F9;border:1px solid #0B4F8A;border-radius:4px;font-size:12px;box-sizing:border-box;}
+.col-filter-item{padding:6px 14px;font-size:13px;color:#EAF2F9;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.col-filter-item:hover{background:#0B4F8A;}
+.col-filter-item.selected{color:#80deea;font-weight:bold;}
+.col-filter-item.clear-item{color:#90a4ae;border-bottom:1px solid #0B4F8A;margin-bottom:2px;}
+th.op-col{background:#0B4F8A!important;color:#fff!important}
+.op-btn{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:3px;border:none;cursor:pointer;font-size:13px;background:transparent;padding:0;line-height:1}
+.op-btn:hover{background:#EAF2F9}
+.op-menu{position:fixed;background:#fff;border:1px solid #8FB8DA;border-radius:6px;box-shadow:0 4px 16px rgba(11,79,138,.18);z-index:9999;min-width:160px;padding:4px 0;font-size:13px}
+.op-menu-item{padding:8px 16px;cursor:pointer;color:#1a2e45;white-space:nowrap}
+.op-menu-item:hover{background:#EAF2F9;color:#0B4F8A}
+.op-menu-item.danger{color:#c62828}
+.op-menu-item.danger:hover{background:#ffebee}
+/* 编辑弹窗 */
+.edit-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:10000;display:flex;align-items:center;justify-content:center}
+.edit-modal{background:#fff;border-radius:10px;padding:24px 28px;min-width:380px;max-width:520px;box-shadow:0 8px 32px rgba(11,79,138,.25)}
+.edit-modal h3{color:#0B4F8A;font-size:15px;margin-bottom:16px;font-weight:700}
+.edit-modal label{display:block;color:#4F6E87;font-size:12px;margin-bottom:4px;margin-top:10px}
+.edit-modal input,.edit-modal select{width:100%;border:1px solid #8FB8DA;border-radius:4px;padding:7px 10px;font-size:13px;outline:none;color:#1a2e45}
+.edit-modal input:focus,.edit-modal select:focus{border-color:#0B4F8A;box-shadow:0 0 0 2px rgba(11,79,138,.15)}
+.edit-modal-btns{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
+.pagination{display:flex;gap:6px;padding:10px 16px;align-items:center;background:#EAF2F9;border-top:1px solid #8FB8DA;flex-wrap:wrap}
+.pagination button{background:#fff;color:#0B4F8A;border:1px solid #8FB8DA;padding:4px 10px;border-radius:3px;cursor:pointer;font-size:12px}
+.pagination button:hover{background:#EAF2F9}
+.pagination button.cur{background:#0B4F8A;color:#fff;border-color:#0B4F8A}
+.pagination button:disabled{opacity:.4;cursor:default}
+.pagination .pg-info{color:#4F6E87;font-size:12px}
+</style>
+
+<script src="护航服装数据_202607.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<script src="data.js?20260819"></script>
+</head>
+<body>
+
+<div class="header">
+  <div style="display:flex;align-items:center;gap:10px;">
+    
+    <div>
+      <div class="header-title">🦺 全国护航服装订单视觉市占看板（未剔除恶劣天气）</div>
+      <div class="header-sub">工装检核率 · 订单视觉覆盖率（美团工服率）</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div id="dataRange">数据加载中...</div>
+    <div>工装检核率目标 ≥ <strong style="color:#B3D0E8">100%</strong> &nbsp;|&nbsp; 订单视觉覆盖率（美团工服率）≥ <strong style="color:#80deea">98%</strong></div>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <div class="tab-item active" data-tab="station" onclick="switchTab('station')">📊 站点维度看板</div>
+  <div class="tab-item" data-tab="rider" onclick="switchTab('rider')">👤 骑手维度明细</div>
+</div>
+
+<!-- ══ 站点维度面板 ══ -->
+<div class="panel active" id="panel-station">
+  <div class="summary-row" id="summary-cards"></div>
+  <div class="sub-tab-bar" style="display:flex;align-items:center;gap:8px;padding:6px 16px;">
+    <span style="color:#546e7a;font-size:12px;white-space:nowrap;">显示层级：</span>
+    <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleLvBtn('subregion')">区域行</button>
+    <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleLvBtn('merchant')">城市行</button>
+    <button class="lv-btn active" id="lv-btn-site" onclick="toggleLvBtn('site')">站点行</button>
+    <button class="lv-btn-reset" onclick="resetLvBtns()">全部显示</button>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
+      <label for="upload-xlsx" class="btn btn-upload">📂 上传新增数据</label>
+      <input type="file" id="upload-xlsx" accept=".xlsx,.xls" style="display:none" onchange="handleUpload(this)">
+      <button class="btn btn-secondary" onclick="doClearCache()" title="清除本地缓存，恢复初始数据">🗑 清除缓存</button>
+      <div class="upload-progress" id="upload-progress">
+        <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
+        <span id="progress-text">解析中...</span>
+      </div>
+      <span class="upload-status" id="upload-status" style="color:#4F6E87;"></span>
+      <span id="cache-status" style="color:#90a4ae;font-size:11px;">缓存：检查中...</span>
+    </div>
+  </div>
+  <div class="filter-bar">
+    <label>大区</label>
+    <div class="ms-wrap" id="sf-region"><div class="ms-btn" onclick="toggleMs('sf-region')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="sf-region-drop"></div></div>
+    <label>区域</label>
+    <div class="ms-wrap" id="sf-subregion"><div class="ms-btn" onclick="toggleMs('sf-subregion')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="sf-subregion-drop"></div></div>
+    <label>城市</label>
+    <div class="ms-wrap" id="sf-city"><div class="ms-btn" onclick="toggleMs('sf-city')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="sf-city-drop"></div></div>
+    <label>日期</label>
+    <div class="ms-wrap" id="sf-date"><div class="ms-btn" onclick="toggleMs('sf-date')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="sf-date-drop"></div></div>
+    <label>站点</label>
+    <div class="ms-wrap" id="sf-site"><div class="ms-btn" onclick="toggleMs('sf-site')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="sf-site-drop"></div></div>
+    <button class="btn btn-secondary" onclick="clearFilter()">清除筛选</button>
+    <button class="btn btn-export" onclick="exportTable()">⬇ 导出Excel</button>
+    <button class="btn btn-screenshot" onclick="screenshotPanel('station')">📷 截图</button>
+    <span id="filter-count" style="color:#4F6E87;font-size:12px;margin-left:4px"></span>
+  </div>
+  <div class="table-wrap table-wrap-station">
+    <table class="dt" id="station-table">
+      <thead id="station-thead"></thead>
+      <tbody id="station-tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══ 骑手维度面板 ══ -->
+<div class="panel" id="panel-rider">
+  <div class="filter-bar">
+    <label>大区</label>
+    <div class="ms-wrap" id="ms-region"><div class="ms-btn" onclick="toggleMs('ms-region')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="ms-region-drop"></div></div>
+    <label>区域</label>
+    <div class="ms-wrap" id="ms-subregion"><div class="ms-btn" onclick="toggleMs('ms-subregion')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="ms-subregion-drop"></div></div>
+    <label>城市</label>
+    <div class="ms-wrap" id="ms-city"><div class="ms-btn" onclick="toggleMs('ms-city')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="ms-city-drop"></div></div>
+    <label>站点</label>
+    <div class="ms-wrap" id="ms-site"><div class="ms-btn" onclick="toggleMs('ms-site')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="ms-site-drop"></div></div>
+    <label>日期</label>
+    <div class="ms-wrap" id="ms-date"><div class="ms-btn" onclick="toggleMs('ms-date')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="ms-date-drop"></div></div>
+    <label>搜索</label>
+    <input type="text" id="rider-search" placeholder="骑手/站点/城市..." style="padding:5px 8px;border:1px solid #8FB8DA;border-radius:4px;font-size:12px;min-width:140px;outline:none;" oninput="onRiderSearch()" />
+    <label style="color:#ffb74d;font-weight:600;">昨日覆盖率&lt;</label>
+    <input type="number" id="filter-dayrate" min="0" max="100" step="1" placeholder="%" style="width:60px;padding:4px 6px;border:1px solid #e65100;border-radius:4px;font-size:12px;background:#fff8f0;color:#e65100;font-weight:600;outline:none;" oninput="applyRateFilter()" title="筛选07-17视觉覆盖率（美团工装率）小于此值的骑手" />
+    <label style="color:#ffb74d;font-weight:600;">月覆盖率&lt;</label>
+    <input type="number" id="filter-monrate" min="0" max="100" step="1" placeholder="%" style="width:60px;padding:4px 6px;border:1px solid #e65100;border-radius:4px;font-size:12px;background:#fff8f0;color:#e65100;font-weight:600;outline:none;" oninput="applyRateFilter()" title="筛选订单视觉覆盖率（月）小于此值的骑手" />
+    <button class="btn btn-secondary" onclick="clearRiderFilter()">清除</button>
+    <button class="btn btn-screenshot" onclick="screenshotPanel('rider')">📷 截图</button>
+    <span id="rider-count" style="color:#4F6E87;font-size:12px;margin-left:4px"></span>
+  </div>
+  <div class="table-wrap table-wrap-rider">
+    <table class="dt" id="rider-table">
+      <thead id="rider-thead"></thead>
+      <tbody id="rider-tbody"></tbody>
+    </table>
+  </div>
+  <div class="pagination" id="rider-pagination"></div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════
+// 初始数据（由Python注入，首次打开直接显示）
+// ══════════════════════════════════════════════════════════
+
+
+// ══════════════════════════════════════════════════════════
+// 常量
+// ══════════════════════════════════════════════════════════
+var TARGET_CLOTH = 100;
+var TARGET_VIS   = 98;
+var curTab = 'station';
+var curSubTab = 'all';
+var stationFilter = {};
+var riderFilter   = {};
+var riderPage = 1;
+var RIDER_PAGE_SIZE = 300;
+var filteredRiders = [];
+
+// ══════════════════════════════════════════════════════════
+// 工具函数
+// ══════════════════════════════════════════════════════════
+function rc(v,tgt){
+  if(v===null||v===undefined||isNaN(v))return '';
+  var t=tgt||TARGET_CLOTH;
+  return v>=t?'rg':v>=(t-5)?'ry':'rr';
+}
+function fr(v){
+  if(v===null||v===undefined||isNaN(v))return '<span class="rn">-</span>';
+  return v.toFixed(2)+'%';
+}
+function fn(v){
+  if(v===null||v===undefined||isNaN(v))return '-';
+  return Math.round(v).toLocaleString();
+}
+function pct(v){
+  if(v===null||v===undefined||isNaN(v))return null;
+  if(v>1)return Math.round(v*100)/100;
+  if(v>0&&v<=1)return Math.round(v*10000)/100;
+  return null;
+}
+function fmtDate(v){
+  if(!v)return '';
+  var s=String(v).replace(/\.0+$/,'').trim();
+  var m=s.match(/^(\d{4})(\d{2})(\d{2})$/);
+  return m?(m[2]+'-'+m[3]):s;
+}
+function sf(v){
+  if(v===null||v===undefined||v===''||String(v).trim()==='#DIV/0!')return null;
+  var f=parseFloat(String(v).replace(/,/g,''));
+  return isNaN(f)?null:f;
+}
+
+// ══════════════════════════════════════════════════════════
+// Tab 切换
+// ══════════════════════════════════════════════════════════
+function syncStationFilterToRider(){
+  msState.region    = sfState.region.slice();
+  msState.subregion = sfState.subregion.slice();
+  msState.city      = sfState.city.slice();
+  msState.site      = sfState.site.slice();
+  msState.date      = sfState.date.slice();
+  ['region','subregion','city','site','date'].forEach(function(k){updateMsLabel(k);});
+  applyRiderFilter();
+}
+function switchTab(tab){
+  curTab=tab;
+  document.querySelectorAll('.tab-item').forEach(function(el){el.classList.toggle('active',el.dataset.tab===tab);});
+  document.querySelectorAll('.panel').forEach(function(el){el.classList.toggle('active',el.id==='panel-'+tab);});
+  if(tab==='rider'){syncStationFilterToRider();}
+}
+function switchSubTab(sub){
+  curSubTab=sub;
+  document.querySelectorAll('.sub-tab').forEach(function(el){el.classList.toggle('active',el.dataset.sub===sub);});
+  renderStation();
+}
+// ══════════════════════════════════════════════════════════
+// 骑手维度明细
+// ══════════════════════════════════════════════════════════
+
+// 从站点维度ROWS建立 站点名→{region,subregion} 映射
+function buildSiteOrgMap(){
+  var m={};
+  ROWS.forEach(function(r){
+    if(r.level==='site'&&r.name){
+      m[r.name]={region:r.region||'',subr:r.subregion||''};
+    }
+  });
+  return m;
+}
+
+// 初始化骑手筛选器下拉选项
+function initRiderFilters(){
+  var siteMap=buildSiteOrgMap();
+  // 当前已选值
+  var selRegion   =msState.region    ||[];
+  var selSubr     =msState.subregion ||[];
+  var selCity     =msState.city      ||[];
+  var selSite     =msState.site      ||[];
+
+  // ── 大区：始终全量 ──
+  var allRegions=[...new Set(ROWS.filter(function(r){return r.level==='subregion';}).map(function(r){return r.region;}))].filter(Boolean);
+  var REGION_ORDER=['华北一区','华北二区','华北三区','华东大区','中南大区'];
+  allRegions.sort(function(a,b){
+    var i=REGION_ORDER.indexOf(a),j=REGION_ORDER.indexOf(b);
+    if(i===-1)i=99;if(j===-1)j=99;return i-j;
+  });
+
+  // ── 区域：按已选大区过滤 ──
+  var allSubrs=ROWS.filter(function(r){return r.level==='subregion';});
+  var filtSubrs=(selRegion.length?allSubrs.filter(function(r){return selRegion.indexOf(r.region)>=0;}):allSubrs)
+    .map(function(r){return r.name;}).filter(Boolean);
+  filtSubrs=[...new Set(filtSubrs)].sort(function(a,b){return a.localeCompare(b,'zh');});
+
+  // ── 城市：按已选大区+区域过滤 ──
+  var ridersForCity=RIDERS.filter(function(r){
+    var org=siteMap[r.site]||{region:'',subr:''};
+    var rg=org.region||r.region||'';
+    var sb=org.subr  ||r.subr  ||'';
+    if(selRegion.length&&selRegion.indexOf(rg)<0)return false;
+    if(selSubr.length  &&selSubr.indexOf(sb)<0)return false;
+    return true;
+  });
+  var filtCities=[...new Set(ridersForCity.map(function(r){return r.city||r.merch;}))].filter(Boolean).sort(function(a,b){return a.localeCompare(b,'zh');});
+
+  // ── 站点：按已选大区+区域+城市过滤 ──
+  var ridersForSite=ridersForCity.filter(function(r){
+    if(selCity.length&&selCity.indexOf(r.city||r.merch)<0)return false;
+    return true;
+  });
+  var filtSites=[...new Set(ridersForSite.map(function(r){return r.site;}))].filter(Boolean).sort(function(a,b){return a.localeCompare(b,'zh');});
+
+  // ── 日期：始终全量 ──
+  var allDates=[...new Set(RIDERS.map(function(r){return r.d;}))].filter(Boolean).sort();
+
+  fillMs('region',   allRegions);
+  fillMs('subregion',filtSubrs);
+  fillMs('city',     filtCities);
+  fillMs('site',     filtSites);
+  fillMs('date',     allDates);
+}
+
+function getFilteredRiders(){
+  var rf=riderFilter;
+  var siteMap=buildSiteOrgMap();
+  return RIDERS.filter(function(r){
+    var org=siteMap[r.site]||{region:'',subr:''};
+    var finalRegion=org.region||r.region||'';
+    var finalSubr  =org.subr  ||r.subr  ||'';
+    if(rf.region   &&rf.region.length   &&rf.region.indexOf(finalRegion)<0)return false;
+    if(rf.subregion&&rf.subregion.length &&rf.subregion.indexOf(finalSubr)<0)return false;
+    if(rf.city     &&rf.city.length      &&rf.city.indexOf(r.city||r.merch)<0)return false;
+    if(rf.site     &&rf.site.length      &&rf.site.indexOf(r.site)<0)return false;
+    if(rf.date     &&rf.date.length      &&rf.date.indexOf(r.d)<0)return false;
+    // 搜索关键词过滤（骑手ID、骑手名称、站点、城市）
+    if(riderSearchText){
+      var haystack=[(r.rid||""),(r.rider||""),(r.site||""),(r.city||r.merch||"")].join(" ").toLowerCase();
+      if(haystack.indexOf(riderSearchText)<0)return false;
+    }
+    return true;
+  });
+}
+
+// 覆盖率筛选阈值
+var rateFilter={dayrate:"",monrate:""};
+
+function applyRateFilter(){
+  var d=document.getElementById("filter-dayrate");
+  var m=document.getElementById("filter-monrate");
+  rateFilter.dayrate=d?d.value.trim():"";
+  rateFilter.monrate=m?m.value.trim():"";
+  riderPage=1;
+  renderRider();
+}
+
+// 骑手搜索关键词
+var riderSearchText="";
+function onRiderSearch(){
+  var el=document.getElementById("rider-search");
+  riderSearchText=el?el.value.trim().toLowerCase():"";
+  riderPage=1;
+  renderRider();
+}
+
+// 多选下拉组件状态
+var msState={region:[],subregion:[],city:[],site:[],date:[]};
+
+function getMsVals(key){return msState[key]||[];}
+
+function toggleMs(wrapId){
+  var wrap=document.getElementById(wrapId);
+  if(!wrap)return;
+  var isOpen=wrap.classList.contains('open');
+  // 关闭所有
+  document.querySelectorAll('.ms-wrap.open').forEach(function(w){w.classList.remove('open');});
+  if(!isOpen)wrap.classList.add('open');
+}
+
+function fillMs(key,opts){
+  var dropId='ms-'+key+'-drop';
+  var drop=document.getElementById(dropId);
+  if(!drop)return;
+  var sel=msState[key]||[];
+  var html=opts.map(function(o){
+    var chk=sel.indexOf(o)>=0;
+    return '<label class="ms-item'+(chk?' checked':'')+'" onclick="event.stopPropagation()"><input type="checkbox" value="'+o+'" '+(chk?'checked':'')+' onchange="onMsChange(\''+ key +'\',this)"> '+o+'</label>';
+  }).join('');
+  drop.innerHTML=html;
+  updateMsLabel(key);
+}
+
+function onMsChange(key,cb){
+  var val=cb.value;
+  var sel=msState[key]||[];
+  if(cb.checked){
+    if(sel.indexOf(val)<0)sel.push(val);
+  } else {
+    sel=sel.filter(function(v){return v!==val;});
+  }
+  msState[key]=sel;
+  var item=cb.parentElement;
+  if(item){item.classList.toggle('checked',cb.checked);}
+  updateMsLabel(key);
+  applyRiderFilter();
+}
+
+function updateMsLabel(key){
+  var wrap=document.getElementById('ms-'+key);
+  if(!wrap)return;
+  var lbl=wrap.querySelector('.ms-label');
+  if(!lbl)return;
+  var sel=msState[key]||[];
+  lbl.textContent=sel.length===0?'全部':sel.length===1?sel[0]:sel.length+' 项已选';
+}
+
+// 点击外部关闭下拉
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.ms-wrap')){
+    document.querySelectorAll('.ms-wrap.open').forEach(function(w){w.classList.remove('open');});
+  }
+});
+
+function applyRiderFilter(){
+  riderFilter={
+    region:    getMsVals('region'),
+    subregion: getMsVals('subregion'),
+    city:      getMsVals('city'),
+    site:      getMsVals('site'),
+    date:      getMsVals('date')
+  };
+  riderPage=1;
+  renderRider();
+}
+
+function clearRiderFilter(){
+  msState={region:[],subregion:[],city:[],site:[],date:[]};
+  riderSearchText='';
+  var se=document.getElementById('rider-search');if(se)se.value='';
+  rateFilter={dayrate:"",monrate:""};
+  var fd=document.getElementById("filter-dayrate");if(fd)fd.value="";
+  var fm=document.getElementById("filter-monrate");if(fm)fm.value="";
+  ['region','subregion','city','site','date'].forEach(function(k){
+    updateMsLabel(k);
+    var drop=document.getElementById('ms-'+k+'-drop');
+    if(drop){drop.querySelectorAll('input[type=checkbox]').forEach(function(cb){cb.checked=false;cb.parentElement.classList.remove('checked');});}
+  });
+  riderFilter={};
+  riderPage=1;
+  renderRider();
+}
+
+function renderRider(){
+  var siteMap=buildSiteOrgMap();
+  initRiderFilters();
+  filteredRiders=getFilteredRiders();
+
+  // 取最新日期和前一日
+  var allDates=[...new Set(filteredRiders.map(function(r){return r.d;}))].filter(Boolean).sort();
+  var latestDate=allDates.length?allDates[allDates.length-1]:'';
+  var prevDate  =allDates.length>1?allDates[allDates.length-2]:'';
+
+  // ── 按骑手ID去重聚合 ──
+  // 最新日期字段（当日数据）：vn/vv/vr/to 取最新日期那条
+  // 累计字段：sumVN=所有天vn之和，sumVV=所有天vv之和
+  // 订单视觉覆盖率（月）= sumVN / sumVV
+  var riderMap={};
+  filteredRiders.forEach(function(r){
+    var org=siteMap[r.site]||{region:'',subr:''};
+    var finalRegion=org.region||r.region||'';
+    var finalSubr  =org.subr  ||r.subr  ||'';
+    var key=(r.rid||r.rider)+'||'+r.site;
+    if(!riderMap[key]){
+      riderMap[key]={
+        d:r.d,
+        region:finalRegion, subr:finalSubr,
+        city:r.city||r.merch,
+        site:r.site, rid:r.rid, rider:r.rider,
+        // 最新日期字段（初始化，后面遇到更新日期时覆盖）
+        vn:r.vn||0, vv:r.vv||0, vr:r.vr, to:r.to||0,
+        // 累计字段：所有天累加
+        sumVN:r.vn||0, sumVV:r.vv||0
+      };
+    } else {
+      // 累计字段：每条记录都累加
+      riderMap[key].sumVN+=(r.vn||0);
+      riderMap[key].sumVV+=(r.vv||0);
+      // 最新日期字段：只取最新日期那条
+      if(r.d>riderMap[key].d){
+        riderMap[key].d=r.d;
+        riderMap[key].vn=r.vn||0;
+        riderMap[key].vv=r.vv||0;
+        riderMap[key].vr=r.vr;
+        riderMap[key].to=r.to||0;
+        riderMap[key].region=finalRegion;
+        riderMap[key].subr=finalSubr;
+        riderMap[key].city=r.city||r.merch;
+        riderMap[key].rider=r.rider;
+      }
+    }
+  });
+
+  var riderList=Object.values(riderMap);
+
+  // ── 只保留全局最新日期有记录的骑手（过滤已离职/历史幽灵骑手）──
+  var latestDate=DATES.filter(function(d){return d&&d.length===5;}).slice().sort(function(a,b){return b>a?1:b<a?-1:0;})[0]||'';
+  if(latestDate){
+    riderList=riderList.filter(function(r){return r.d===latestDate;});
+  }
+
+  // 月累计订单视觉覆盖率 < 阈值过滤（聚合后才有 sumVN/sumVV）
+  if(rateFilter.monrate!==""){
+    var thrM=parseFloat(rateFilter.monrate);
+    if(!isNaN(thrM)){
+      riderList=riderList.filter(function(r){
+        var monRate=(r.sumVV>0)?(r.sumVN/r.sumVV*100):null;
+        return monRate!==null&&monRate<thrM;
+      });
+    }
+  }
+
+  // 昨日视觉覆盖率 < 阈值过滤（聚合后 vn/vv 是最新日期那条）
+  if(rateFilter.dayrate!==""){
+    var thrD=parseFloat(rateFilter.dayrate);
+    if(!isNaN(thrD)){
+      riderList=riderList.filter(function(r){
+        var dayRate=(r.vv>0)?(r.vn/r.vv*100):null;
+        return dayRate!==null&&dayRate<thrD;
+      });
+    }
+  }
+
+  // 按指定大区顺序→区域→站点排序
+  var REGION_ORDER=['华北一区','华北二区','华北三区','华东大区','中南大区'];
+  riderList.sort(function(a,b){
+    var ri=REGION_ORDER.indexOf(a.region||'');
+    var rj=REGION_ORDER.indexOf(b.region||'');
+    if(ri===-1)ri=99; if(rj===-1)rj=99;
+    if(ri!==rj)return ri-rj;
+    var sc=(a.subr||'').localeCompare(b.subr||'','zh');
+    if(sc!==0)return sc;
+    return (a.site||'').localeCompare(b.site||'','zh');
+  });
+
+  var total=riderList.length;
+  var totalPages=Math.max(1,Math.ceil(total/RIDER_PAGE_SIZE));
+  if(riderPage>totalPages)riderPage=totalPages;
+  var start=(riderPage-1)*RIDER_PAGE_SIZE;
+  var pageRows=riderList.slice(start,start+RIDER_PAGE_SIZE);
+
+  // 顶部摘要
+  var sumCN=0,sumON=0;
+  riderList.forEach(function(r){sumCN+=(r.cn||0);sumON+=(r.on||0);});
+  var totalRate=sumON>0?(sumCN/sumON*100):null;
+  var cnt=document.getElementById('rider-count');
+  if(cnt)cnt.textContent='共 '+total+' 名骑手 | 月累计工装检核率: '+(totalRate!==null?totalRate.toFixed(2)+'%':'-')+(latestDate?' | 数据截至: '+latestDate:'');
+
+  // ── 表头 ──
+  var latestLabel=latestDate||'当日';
+  var prevLabel  =prevDate  ||'前日';
+  var thead=document.getElementById('rider-thead');
+  if(thead)thead.innerHTML='<tr>'+
+    '<th style="position:sticky;left:0;z-index:3;min-width:90px;">大区</th>'+
+    '<th style="position:sticky;left:90px;z-index:3;min-width:90px;">区域</th>'+
+    '<th style="min-width:70px;">城市</th>'+
+    '<th style="min-width:130px;">站点名称</th>'+
+    '<th style="min-width:90px;">骑手</th>'+
+    '<th style="min-width:80px;">骑手名称</th>'+
+    '<th style="min-width:80px;">'+latestLabel+'<br>配送完成运单量</th>'+
+    '<th style="min-width:70px;">'+latestLabel+'<br>美团工装数</th>'+
+    '<th style="min-width:70px;">'+latestLabel+'<br>服装有效数</th>'+
+    '<th style="min-width:70px;">'+latestLabel+'<br>视觉覆盖率<br>（美团工装率）</th>'+
+    '<th style="min-width:70px;">累计<br>工服数</th>'+
+    '<th style="min-width:70px;">累计<br>服装有效数</th>'+
+    '<th style="min-width:70px;">订单视觉<br>覆盖率（月）</th>'+
+    '</tr>';
+
+  // ── 表体 ──
+  function frate(v){
+    if(v===null||v===undefined||isNaN(v))return '-';
+    var color=v>=TARGET_CLOTH?'#2e7d32':v>=(TARGET_CLOTH-5)?'#e65100':'#c62828';
+    return '<span style="font-weight:700;color:'+color+';">'+v.toFixed(2)+'%</span>';
+  }
+  function fn(v){return (v!==null&&v!==undefined)?v:'-';}
+
+  var html=pageRows.map(function(r){
+    var visRate=r.sumVV>0?(r.sumVN/r.sumVV*100):null;
+    return '<tr>'+
+      '<td style="position:sticky;left:0;background:inherit;z-index:1;">'+r.region+'</td>'+
+      '<td style="position:sticky;left:90px;background:inherit;z-index:1;">'+r.subr+'</td>'+
+      '<td>'+(r.city||'-')+'</td>'+
+      '<td>'+r.site+'</td>'+
+      '<td style="text-align:center;">'+(r.rid||'-')+'</td>'+
+      '<td>'+r.rider+'</td>'+
+      '<td style="text-align:center;">'+fn(r.to)+'</td>'+
+      '<td style="text-align:center;">'+fn(r.vn)+'</td>'+
+      '<td style="text-align:center;">'+fn(r.vv)+'</td>'+
+      '<td style="text-align:center;">'+frate(r.vv>0?(r.vn/r.vv*100):null)+'</td>'+
+      '<td style="text-align:center;">'+fn(r.sumVN)+'</td>'+
+      '<td style="text-align:center;">'+fn(r.sumVV)+'</td>'+
+      '<td style="text-align:center;">'+frate(visRate)+'</td>'+
+      '</tr>';
+  }).join('');
+
+  var tbody=document.getElementById('rider-tbody');
+  if(tbody)tbody.innerHTML=html||'<tr><td colspan="13" style="text-align:center;color:#4F6E87;padding:20px;">暂无数据</td></tr>';
+
+  renderPagination(totalPages, total);
+}
+
+// ══════════════════════════════════════════════════════════
+// 初始化筛选器
+// ══════════════════════════════════════════════════════════
+function initFilters(){
+  var realDates=DATES.filter(function(d){return d&&d.length===5;});
+  document.getElementById('dataRange').textContent='数据范围: '+(realDates[0]||'')+' ~ '+(realDates[realDates.length-1]||'');
+
+  var regions=[...new Set(ROWS.filter(function(r){return r.level==='subregion';}).map(function(r){return r.region;}))].sort(function(a,b){return a.localeCompare(b,'zh');});
+  var subrs=[...new Set(ROWS.filter(function(r){return r.level==='subregion';}).map(function(r){return r.name;}))].sort(function(a,b){return a.localeCompare(b,'zh');});
+  var merchants=[...new Set(ROWS.filter(function(r){return r.level==='merchant';}).map(function(r){return r.city||r.merchant||r.name;}))].sort(function(a,b){return a.localeCompare(b,'zh');});
+
+  // 站点维度筛选器由 initStationFilters() 处理（已改为自定义多选下拉组件）
+  // 骑手筛选器由 initRiderFilters() 单独处理
+  initStationFilters();
+}
+
+// ══════════════════════════════════════════════════════════
+// 站点维度渲染
+// ══════════════════════════════════════════════════════════
+// 站点维度多选状态
+var sfState={region:[],subregion:[],city:[],site:[],date:[]};
+
+function getSfVals(key){return sfState[key]||[];}
+
+function onSfChange(key,cb){
+  var val=cb.value;
+  var sel=sfState[key]||[];
+  if(cb.checked){
+    if(sel.indexOf(val)<0)sel.push(val);
+  } else {
+    sel=sel.filter(function(v){return v!==val;});
+  }
+  sfState[key]=sel;
+  var item=cb.parentElement;
+  if(item){item.classList.toggle('checked',cb.checked);}
+  updateSfLabel(key);
+  initStationFilters(); // 级联刷新其他选项
+  applyFilter();
+}
+
+function updateSfLabel(key){
+  var wrap=document.getElementById('sf-'+key);
+  if(!wrap)return;
+  var lbl=wrap.querySelector('.ms-label');
+  if(!lbl)return;
+  var sel=sfState[key]||[];
+  lbl.textContent=sel.length===0?'全部':sel.length===1?sel[0]:sel.length+' 项已选';
+}
+
+function fillSf(key,opts){
+  var dropId='sf-'+key+'-drop';
+  var drop=document.getElementById(dropId);
+  if(!drop)return;
+  var sel=sfState[key]||[];
+  var html=opts.map(function(o){
+    var chk=sel.indexOf(o)>=0;
+    return '<label class="ms-item'+(chk?' checked':'')+'" onclick="event.stopPropagation()"><input type="checkbox" value="'+o+'" '+(chk?'checked':'')+' onchange="onSfChange(\''+ key +'\',this)"> '+o+'</label>';
+  }).join('');
+  drop.innerHTML=html;
+  updateSfLabel(key);
+}
+
+function initStationFilters(){
+  var selRegion =sfState.region  ||[];
+  var selSubr   =sfState.subregion||[];
+  var selCity   =sfState.city    ||[];
+
+  // 大区：始终全量，按指定顺序
+  var REGION_ORDER=['华北一区','华北二区','华北三区','华东大区','中南大区'];
+  var allRegions=[...new Set(ROWS.filter(function(r){return r.level==='subregion';}).map(function(r){return r.region;}))].filter(Boolean);
+  allRegions.sort(function(a,b){var i=REGION_ORDER.indexOf(a),j=REGION_ORDER.indexOf(b);if(i===-1)i=99;if(j===-1)j=99;return i-j;});
+
+  // 区域：按已选大区过滤
+  var allSubrRows=ROWS.filter(function(r){return r.level==='subregion';});
+  var filtSubrs=(selRegion.length?allSubrRows.filter(function(r){return selRegion.indexOf(r.region)>=0;}):allSubrRows)
+    .map(function(r){return r.name;}).filter(Boolean);
+  filtSubrs=[...new Set(filtSubrs)].sort(function(a,b){return a.localeCompare(b,'zh');});
+
+  // 城市：按已选大区+区域过滤
+  var cityRows=ROWS.filter(function(r){return r.level==='merchant'||r.level==='city';});
+  var filtCityRows=cityRows.filter(function(r){
+    if(selRegion.length&&selRegion.indexOf(r.region)<0)return false;
+    if(selSubr.length  &&selSubr.indexOf(r.subregion)<0)return false;
+    return true;
+  });
+  var filtCities=[...new Set(filtCityRows.map(function(r){return r.city||r.merchant||r.name;}))].filter(Boolean).sort(function(a,b){return a.localeCompare(b,'zh');});
+
+  // 站点：按已选大区+区域+城市过滤
+  var siteRows=ROWS.filter(function(r){return r.level==='site';});
+  var filtSiteRows=siteRows.filter(function(r){
+    if(selRegion.length&&selRegion.indexOf(r.region)<0)return false;
+    if(selSubr.length  &&selSubr.indexOf(r.subregion)<0)return false;
+    if(selCity.length  &&selCity.indexOf(r.city||r.merchant)<0)return false;
+    return true;
+  });
+  var filtSites=[...new Set(filtSiteRows.map(function(r){return r.name;}))].filter(Boolean).sort(function(a,b){return a.localeCompare(b,'zh');});
+
+  // 日期：始终全量
+  var allDates=DATES.filter(function(d){return d&&d.length===5;});
+
+  fillSf('region',   allRegions);
+  fillSf('subregion',filtSubrs);
+  fillSf('city',     filtCities);
+  fillSf('site',     filtSites);
+  fillSf('date',     allDates);
+}
+
+function applyFilter(){
+  stationFilter={
+    region:    getSfVals('region'),
+    subregion: getSfVals('subregion'),
+    merchant:  getSfVals('city'),
+    site:      getSfVals('site'),
+    date:      getSfVals('date')
+  };
+  renderStation();
+}
+function clearFilter(){
+  sfState={region:[],subregion:[],city:[],site:[],date:[]};
+  ['region','subregion','city','site','date'].forEach(function(k){
+    updateSfLabel(k);
+    var drop=document.getElementById('sf-'+k+'-drop');
+    if(drop){drop.querySelectorAll('input[type=checkbox]').forEach(function(cb){cb.checked=false;cb.parentElement.classList.remove('checked');});}
+  });
+  initStationFilters();
+  stationFilter={};
+  // 同步清除骑手维度筛选
+  msState={region:[],subregion:[],city:[],site:[],date:[]};
+  riderFilter={};
+  ['region','subregion','city','site','date'].forEach(function(k){
+    updateMsLabel(k);
+    var drop=document.getElementById('ms-'+k+'-drop');
+    if(drop){drop.querySelectorAll('input[type=checkbox]').forEach(function(cb){cb.checked=false;cb.parentElement.classList.remove('checked');});}
+  });
+  renderStation();
+}
+function getFilteredRows(){
+  var fs=stationFilter;var sub=curSubTab;
+  return ROWS.filter(function(r){
+    var lv=r.level;
+    if(sub==='subregion'&&lv!=='total'&&lv!=='subregion')return false;
+    if(sub==='merchant'&&lv!=='total'&&lv!=='merchant')return false;
+    var ls=(typeof _lvShow!=='undefined')?_lvShow:{subregion:true,merchant:true,site:true};
+    if(lv==='subregion'&&!ls.subregion)return false;
+    if(lv==='merchant'&&!ls.merchant)return false;
+    if(lv==='site'&&!ls.site)return false;
+    // 大区过滤（数组多选）
+    if(fs.region&&fs.region.length&&r.region&&fs.region.indexOf(r.region)<0)return false;
+    // 区域过滤
+    if(fs.subregion&&fs.subregion.length){
+      if(lv==='subregion'&&fs.subregion.indexOf(r.name)<0)return false;
+      if(lv!=='subregion'&&r.subregion&&fs.subregion.indexOf(r.subregion)<0)return false;
+    }
+    // 城市过滤
+    if(fs.merchant&&fs.merchant.length){
+      var cityVal=r.city||r.merchant||r.name||'';
+      if(lv==='merchant'&&fs.merchant.indexOf(cityVal)<0)return false;
+      if(lv==='site'&&fs.merchant.indexOf(r.city||r.merchant||'')<0)return false;
+      // subregion行：只保留所选城市所属的区域
+      if(lv==='subregion'){
+        var matched=false;
+        for(var _i=0;_i<ROWS.length;_i++){
+          var _r=ROWS[_i];
+          if(_r.level==='merchant'&&fs.merchant.indexOf(_r.city||_r.merchant||_r.name)>=0&&_r.subregion===r.subregion){matched=true;break;}
+        }
+        if(!matched)return false;
+      }
+    }
+    // 站点过滤
+    if(fs.site&&fs.site.length){
+      if(lv==='site'&&fs.site.indexOf(r.name)<0)return false;
+      if(lv!=='site'&&lv!=='total')return false;
+    }
+    // 日期过滤（日期在 renderStation 里处理，这里不过滤行）
+    return true;
+  });
+}
+
+function toggleLvBtn(lv){
+  _lvShow[lv] = !_lvShow[lv];
+  var btn = document.getElementById('lv-btn-'+lv);
+  if(btn) btn.classList.toggle('active', _lvShow[lv]);
+  renderStation();
+}
+function resetLvBtns(){
+  _lvShow = {subregion:true, merchant:true, site:true};
+  ['subregion','merchant','site'].forEach(function(lv){
+    var btn = document.getElementById('lv-btn-'+lv);
+    if(btn) btn.classList.add('active');
+  });
+  renderStation();
+}
+
+function renderStation(){
+  var rows=getFilteredRows();
+  var selDate=(stationFilter||{}).date||[];
+  var allDates=DATES.filter(function(d){return d&&d.length===5;});
+  // 日期倒序：最新日期在前
+  allDates=allDates.slice().sort(function(a,b){return b>a?1:b<a?-1:0;});
+  var dispDates=(selDate&&selDate.length)?selDate.slice().sort(function(a,b){return b>a?1:b<a?-1:0;}):allDates;
+
+  renderSummaryCards(rows);
+
+  // ★ 日维度向上汇总：总商/区域/城市行的 daily 从子站点聚合
+  // 先收集所有站点行的 daily（按日期累加 vc 和 to 原始量）
+  // 注意：站点行 daily 存的是"订单视觉覆盖率"（百分比），无法直接加总
+  // 需要用 vis_cover / total_order 反推每日数值，或直接用月累计比率填充上级行
+  // 简化方案：上级行日维度 = 该上级下所有站点的当日 vis_cover 之和 / total_order 之和
+  // 由于 daily 只存了率，需要用站点的 cloth_num/order_num 比例估算
+  // 最准确方案：直接用站点行 daily 的加权平均（权重=站点 total_order）
+  (function(){
+    var allDates=DATES.filter(function(d){return d&&d.length===5;});
+    // 先给每个站点行建立 daily 数值（已有，直接用）
+    // 上级行（total/subregion/merchant）的 daily 已从套表直接读取，无需前端估算覆盖
+  })();
+
+  // 固定列宽度（px），用于计算 left 偏移
+  // 列顺序：大区(80) 区域(80) 名称(240) 可检核(80) 有完成单(80) 工装检核率(90) 视觉覆盖量(80) 总完单量(80) 订单视觉率(90)
+  var stickyWidths=[80,80,240,80,80,90,80,80,90];
+  var stickyLefts=[];
+  var acc=0;
+  for(var si=0;si<stickyWidths.length;si++){stickyLefts.push(acc);acc+=stickyWidths[si];}
+  var OP_COL_W=36; // 操作列宽度
+  function sth(i,extra){
+    var isLast=(i===stickyWidths.length-1);
+    return 'style="min-width:'+stickyWidths[i]+'px;left:'+(stickyLefts[i]+OP_COL_W)+'px'+(extra?';'+extra:'')+'" class="sticky-col'+(isLast?' sticky-last':'')+'"';
+  }
+  function std(i,extra){
+    var isLast=(i===stickyWidths.length-1);
+    return 'style="left:'+(stickyLefts[i]+OP_COL_W)+'px'+(extra?';'+extra:'')+'" class="sticky-col'+(isLast?' sticky-last':'')+'"';
+  }
+
+  var dCols=dispDates.map(function(d){
+    return '<th>'+d+'</th>';
+  }).join('');
+  document.getElementById('station-thead').innerHTML='<tr>'+
+    '<th class="op-col sticky-col" style="left:0px;z-index:3;min-width:36px;width:36px;background:#0B4F8A;color:#fff" title="行操作">操作列</th>'+
+    '<th '+sth(0,null,36)+'>大区</th>'+
+    '<th '+sth(1,null,36)+'>区域</th>'+
+    '<th '+sth(2,'text-align:left',36)+'>名称</th>'+
+    '<th '+sth(3)+'>服装可检核<br>骑手数</th>'+
+    '<th '+sth(4)+'>有完成单<br>骑手数</th>'+
+    '<th '+sth(5)+'>工装检核率<br><small style="color:#B3D0E8">目标≥100%</small></th>'+
+    '<th '+sth(6)+'>骑手订单<br>视觉覆盖量</th>'+
+    '<th '+sth(7)+'>骑手总<br>完单量</th>'+
+    '<th '+sth(8)+'>订单视觉率<br><small style="color:#80deea">目标≥98%</small></th>'+
+    dCols+'</tr>';
+
+  window._curRows=rows;  // 供操作列菜单使用
+  var html='';var siteCnt=0;
+  rows.forEach(function(r,ri_local){
+    var lv=r.level;if(lv==='site')siteCnt++;
+    var indent=lv==='merchant'?'&nbsp;&nbsp;└ ':lv==='site'?'&nbsp;&nbsp;&nbsp;&nbsp;· ':'';
+    var dCells=dispDates.map(function(d){
+      var v=(r.daily_vis&&r.daily_vis[d]!==undefined)?r.daily_vis[d]:(r.daily?r.daily[d]:null);
+      return '<td class="'+rc(v,TARGET_VIS)+'">'+fr(v)+'</td>';
+    }).join('');
+    // stdc：sticky-col td，left 加 OP_COL_W 偏移
+    function stdc(i,colorCls,extraStyle){
+      var isLast=(i===stickyWidths.length-1);
+      var cls='sticky-col'+(isLast?' sticky-last':'')+(colorCls?' '+colorCls:'');
+      var sty='left:'+(stickyLefts[i]+OP_COL_W)+'px'+(extraStyle?';'+extraStyle:'');
+      return 'class="'+cls+'" style="'+sty+'"';
+    }
+    // 操作列按钮（带行索引 data-ri，用于菜单定位）
+    var opBtn='<td class="op-col sticky-col" style="left:0px"><button class="op-btn" title="操作" onclick="showOpMenu(event,'+ri_local+',this)">⋮</button></td>';
+    html+='<tr class="lv-'+lv+'" data-ri="'+ri_local+'">'+
+      opBtn+
+      '<td '+stdc(0)+'>'+(r.region||'')+'</td>'+
+      '<td '+stdc(1)+'>'+(r.subregion||'')+'</td>'+
+      '<td '+stdc(2,'','text-align:left;max-width:240px;overflow:hidden;text-overflow:ellipsis')+'>'+indent+(r.name||'')+'</td>'+
+      '<td '+stdc(3)+'>'+fn(r.cloth_num)+'</td>'+
+      '<td '+stdc(4)+'>'+fn(r.order_num)+'</td>'+
+      '<td '+stdc(5,rc(r.cloth_rate,TARGET_CLOTH))+'>'+fr(r.cloth_rate)+'</td>'+
+      '<td '+stdc(6)+'>'+fn(r.vis_cover)+'</td>'+
+      '<td '+stdc(7)+'>'+fn(r.total_order)+'</td>'+
+      '<td '+stdc(8,rc(r.vis_rate,TARGET_VIS))+'>'+fr(r.vis_rate)+'</td>'+
+      dCells+'</tr>';
+  });
+  document.getElementById('station-tbody').innerHTML=html||'<tr><td colspan="20" style="text-align:center;padding:24px;color:#546e7a">暂无数据</td></tr>';
+  var cnt=document.getElementById('filter-count');
+  if(cnt)cnt.textContent='共 '+rows.length+' 行（站点 '+siteCnt+' 个）';
+}
+function renderSummaryCards(rows){
+  var el=document.getElementById('summary-cards');
+  var totalRow=rows.find(function(r){return r.level==='total';});
+  var siteRows=rows.filter(function(r){return r.level==='site';});
+  var subRows=rows.filter(function(r){return r.level==='subregion';});
+  var totalCR=totalRow?totalRow.cloth_rate:null;
+  var totalVR=totalRow?totalRow.vis_rate:null;
+  // 大区数：subregion行中 region 去重
+  var regionCnt=[...new Set(subRows.map(function(r){return r.region;}))].filter(Boolean).length;
+  // 区域数：subregion行数
+  var subregionCnt=subRows.length;
+  // 城市数：merchant行数（已替换为城市名）
+  var merchantRows=rows.filter(function(r){return r.level==='merchant';});
+  var cityCnt=merchantRows.length;
+  // 达标/未达标：订单视觉覆盖率 >= 98%
+  var visReach=siteRows.filter(function(r){return r.vis_rate!==null&&r.vis_rate>=TARGET_VIS;}).length;
+  var visFail=siteRows.length-visReach;
+  function cc(v,t){if(v===null)return '';return v>=(t||TARGET_CLOTH)?'green':v>=(t||TARGET_CLOTH)-5?'yellow':'red';}
+  el.innerHTML=
+    '<div class="card"><div class="c-label">大区数 / 区域数 / 城市数</div><div class="c-value">'+regionCnt+' <span style="font-size:16px;color:#4F6E87">/</span> '+subregionCnt+' <span style="font-size:16px;color:#4F6E87">/</span> '+cityCnt+'</div><div class="c-sub">大区 '+regionCnt+' 个 &nbsp;·&nbsp; 区域 '+subregionCnt+' 个 &nbsp;·&nbsp; 城市 '+cityCnt+' 个</div></div>'+
+    '<div class="card"><div class="c-label">监控站点数</div><div class="c-value">'+siteRows.length+'</div><div class="c-sub">服装检核站点</div></div>'+
+    '<div class="card '+cc(totalCR,TARGET_CLOTH)+'"><div class="c-label">工装检核率（月累计）</div><div class="c-value">'+(totalCR!==null?totalCR.toFixed(2)+'%':'-')+'</div><div class="c-sub">目标 \u2265 100%</div></div>'+
+    '<div class="card '+cc(totalVR,TARGET_VIS)+'"><div class="c-label">订单视觉率（月累计）</div><div class="c-value">'+(totalVR!==null?totalVR.toFixed(2)+'%':'-')+'</div><div class="c-sub">目标 \u2265 98%</div></div>'+
+    '<div class="card green"><div class="c-label">达标站点数</div><div class="c-value">'+visReach+'</div><div class="c-sub">订单视觉覆盖率 \u2265 98%</div></div>'+
+    '<div class="card red"><div class="c-label">未达标站点数</div><div class="c-value">'+visFail+'</div><div class="c-sub">订单视觉覆盖率 &lt; 98%</div></div>';
+  // ── 第二排：5个大区卡片 ──
+  var REGION_ORDER=['华北一区','华北二区','华北三区','华东大区','中南大区'];
+  var regionHtml='<div class="region-cards-row">';
+  REGION_ORDER.forEach(function(rname){
+    // 找该大区的 subregion 行（可能多个），聚合 cloth_num/order_num/vis_cover/total_order
+    var rRows=ROWS.filter(function(r){return r.level==='subregion'&&r.region===rname;});
+    var cn=0,on=0,vc=0,to=0;
+    rRows.forEach(function(r){
+      cn+=(r.cloth_num||0);on+=(r.order_num||0);
+      vc+=(r.vis_cover||0);to+=(r.total_order||0);
+    });
+    var cr=on>0?Math.round(cn/on*10000)/100:null;
+    var vr=to>0?Math.round(vc/to*10000)/100:null;
+    var crColor=cr===null?'#0B4F8A':cr>=TARGET_CLOTH?'#2e7d32':cr>=TARGET_CLOTH-5?'#e65100':'#c62828';
+    var vrColor=vr===null?'#0B4F8A':vr>=TARGET_VIS?'#2e7d32':vr>=TARGET_VIS-5?'#e65100':'#c62828';
+    regionHtml+=
+      '<div class="card region-card">'+
+      '<div class="c-label" style="font-weight:800;color:#1a237e;margin-bottom:6px;font-size:14px;letter-spacing:1px;">'+rname+'</div>'+
+      '<div style="display:flex;gap:16px;justify-content:center;align-items:flex-end;">'+
+        '<div>'+
+          '<div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">工装检核率</div>'+
+          '<div class="c-value" style="font-size:20px;color:'+crColor+';">'+
+            (cr!==null?cr.toFixed(2)+'%':'-')+
+          '</div>'+
+        '</div>'+
+        '<div style="width:1px;height:36px;background:#10324F;margin-bottom:4px;"></div>'+
+        '<div>'+
+          '<div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">订单视觉覆盖率</div>'+
+          '<div class="c-value" style="font-size:20px;color:'+vrColor+';">'+
+            (vr!==null?vr.toFixed(2)+'%':'-')+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+      '</div>';
+  });
+  regionHtml+='</div>';
+  el.innerHTML+=regionHtml;
+}
+
+function renderPagination(totalPages, totalRows){
+  var pg=document.getElementById('rider-pagination');
+  if(totalRows===undefined)totalRows=filteredRiders.length;
+  if(totalPages<=1){pg.innerHTML='';return;}
+  var h='<span class="pg-info">第 '+riderPage+' / '+totalPages+' 页，共 '+totalRows+' 条</span>&nbsp;';
+  h+='<button onclick="goPage(1)" '+(riderPage===1?'disabled':'')+'>首页</button>';
+  h+='<button onclick="goPage('+(riderPage-1)+')" '+(riderPage===1?'disabled':'')+'>上一页</button>';
+  var s=Math.max(1,riderPage-2),e=Math.min(totalPages,riderPage+2);
+  for(var i=s;i<=e;i++)h+='<button class="'+(i===riderPage?'cur':'')+'" onclick="goPage('+i+')">'+i+'</button>';
+  h+='<button onclick="goPage('+(riderPage+1)+')" '+(riderPage===totalPages?'disabled':'')+'>下一页</button>';
+  h+='<button onclick="goPage('+totalPages+')" '+(riderPage===totalPages?'disabled':'')+'>末页</button>';
+  pg.innerHTML=h;
+}
+function goPage(p){riderPage=p;renderRider();}
+
+function exportTable(){
+  var table=document.getElementById('station-table');
+  var html='<html><head><meta charset="UTF-8"></head><body>'+table.outerHTML+'<\/body><\/html>';
+  var blob=new Blob([html],{type:'application/vnd.ms-excel;charset=utf-8'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='护航服装看板_'+new Date().toLocaleDateString('zh-CN').replace(/\//g,'-')+'.xls';
+  a.click();
+}
+
+// ══════════════════════════════════════════════════════════
+// ★ localStorage 增量缓存
+// 缓存结构：
+//   CACHE_KEY_RIDERS → JSON数组，每条骑手记录含 d(日期) 字段
+//   CACHE_KEY_META   → {dates:[], updatedAt:'', fileNames:[]}
+// 合并策略：按日期去重，新数据覆盖同日旧数据
+// ══════════════════════════════════════════════════════════
+var CACHE_KEY_RIDERS = 'escort_dashboard_riders_v1';
+var CACHE_KEY_META   = 'escort_dashboard_meta_v1';
+
+function cacheLoad(){
+  try{
+    var raw=localStorage.getItem(CACHE_KEY_RIDERS);
+    var meta=JSON.parse(localStorage.getItem(CACHE_KEY_META)||'{}');
+    return{riders:raw?JSON.parse(raw):[],meta:meta};
+  }catch(e){return{riders:[],meta:{}};}
+}
+
+function cacheSave(riders, meta){
+  try{
+    localStorage.setItem(CACHE_KEY_RIDERS, JSON.stringify(riders));
+    localStorage.setItem(CACHE_KEY_META, JSON.stringify(meta));
+    return true;
+  }catch(e){
+    // localStorage 可能超出5MB限制
+    if(e.name==='QuotaExceededError'||e.code===22){
+      return 'quota';
+    }
+    return false;
+  }
+}
+
+function cacheClear(){
+  localStorage.removeItem(CACHE_KEY_RIDERS);
+  localStorage.removeItem(CACHE_KEY_META);
+}
+
+// 按日期合并骑手数据：新数据的日期覆盖旧数据同日记录，其余日期保留
+function mergeRidersByDate(oldRiders, newRiders){
+  // 收集新数据覆盖的日期集合
+  var newDates={};
+  newRiders.forEach(function(r){newDates[r.d]=true;});
+  // 保留旧数据中不在新日期集合里的记录
+  var kept=oldRiders.filter(function(r){return !newDates[r.d];});
+  return kept.concat(newRiders);
+}
+
+// 从骑手数据重新聚合站点维度（增量合并后重算）
+// ★ rebuildRowsFromRiders：按固化组织树匹配，保持组织顺序
+// 算法（固定）：工装检核率=可检核/有完单；订单视觉率=视觉覆盖量/总完单量；日维度同理
+
+// ★ 从骑手数据重建组织树（自动检测站点增减）
+// ★ 大区区域映射表（子区域→大区）
+// 华北一区: 黑吉区域、辽宁区域、津冀区域
+// 华北二区: 河南区域
+// 华北三区: 中西区域
+// 华东大区: 北京区域、上海区域、苏北区域
+// 中南大区: 山东区域、安徽区域
+var SUBREGION_REGION_MAP = {
+  '黑吉区域': '华北一区',
+  '辽宁区域': '华北一区',
+  '津冀区域': '华北一区',
+  '河南区域': '华北二区',
+  '中西区域': '华北三区',
+  '北京区域': '华东大区',
+  '上海区域': '华东大区',
+  '苏北区域': '华东大区',
+  '山东区域': '中南大区',
+  '安徽区域': '中南大区'
+};
+
+function rebuildOrgTree(riders) {
+  // 从骑手数据重建组织树，通过子区域映射表确定正确的大区名称
+  var orgMap = {}; // {region: {subregion: {city: [site,...]}}}
+  var regionOrder = [];
+  var subrOrder = {}; // {region: [subregion,...]}
+  var cityOrder = {};  // {region__subr: [city,...]}
+
+  riders.forEach(function(r) {
+    var subr = r.subr || '';
+    var city = r.city || '';
+    var site = r.site || '';
+    if (!site) return;
+    // 通过映射表确定大区（优先用映射，回退到 rider.region）
+    var region = SUBREGION_REGION_MAP[subr] || r.region || '';
+    if (!region) return;
+
+    if (!orgMap[region]) {
+      orgMap[region] = {};
+      regionOrder.push(region);
+    }
+    if (!orgMap[region][subr]) {
+      orgMap[region][subr] = {};
+      if (!subrOrder[region]) subrOrder[region] = [];
+      subrOrder[region].push(subr);
+    }
+    var cityKey = region + '__' + subr;
+    if (!orgMap[region][subr][city]) {
+      orgMap[region][subr][city] = [];
+      if (!cityOrder[cityKey]) cityOrder[cityKey] = [];
+      cityOrder[cityKey].push(city);
+    }
+    if (orgMap[region][subr][city].indexOf(site) < 0) {
+      orgMap[region][subr][city].push(site);
+    }
+  });
+
+  // 构建组织树数组
+  var tree = [];
+  tree.push({level: 'total', region: '', subregion: '', city: '', name: '兴必达（江苏）网络科技有限公司'});
+
+  regionOrder.sort().forEach(function(region) {
+    var subrs = orgMap[region];
+    (subrOrder[region] || Object.keys(subrs)).forEach(function(subr) {
+      tree.push({level: 'subregion', region: region, subregion: subr, city: '', name: subr});
+      var cities = subrs[subr];
+      (cityOrder[region + '__' + subr] || Object.keys(cities)).forEach(function(city) {
+        tree.push({level: 'merchant', region: region, subregion: subr, city: city, name: city});
+        var sites = cities[city];
+        sites.sort().forEach(function(site) {
+          tree.push({level: 'site', region: region, subregion: subr, city: city, name: site});
+        });
+      });
+    });
+  });
+
+  return tree;
+}
+
+function rebuildRowsFromRiders(allRiders){
+  var dates=[...new Set(allRiders.map(function(r){return r.d;}))].filter(Boolean).sort();
+
+  // 按站点+日期聚合原始数值
+  var siteDaily={};  // {site: {date: {cn,on,vc,to}}}
+  allRiders.forEach(function(r){
+    var cn=r.cn||0,on=r.on||0,vc=r.vc||0,to=r.to||0;
+    var sk=r.site||'';
+    if(!siteDaily[sk])siteDaily[sk]={};
+    if(!siteDaily[sk][r.d])siteDaily[sk][r.d]={cn:0,on:0,vc:0,to:0};
+    siteDaily[sk][r.d].cn+=cn;siteDaily[sk][r.d].on+=on;
+    siteDaily[sk][r.d].vc+=vc;siteDaily[sk][r.d].to+=to;
+  });
+
+  function calcCR(cn,on){return on>0?Math.round(cn/on*10000)/100:null;}
+  function calcVR(vc,to){return to>0?Math.round(vc/to*10000)/100:null;}
+
+  // 聚合一组站点（先加总量再算率）
+  function aggSites(siteNames){
+    var tcn=0,ton=0,tvc=0,tto=0;
+    var dvc={},dto={};
+    dates.forEach(function(d){dvc[d]=0;dto[d]=0;});
+    siteNames.forEach(function(sn){
+      var sd=siteDaily[sn]||{};
+      Object.keys(sd).forEach(function(d){
+        var dd=sd[d];
+        tcn+=dd.cn;ton+=dd.on;tvc+=dd.vc;tto+=dd.to;
+        if(d in dvc){dvc[d]+=dd.vc;dto[d]+=dd.to;}
+      });
+    });
+    var daily={};
+    dates.forEach(function(d){daily[d]=dto[d]>0?calcVR(dvc[d],dto[d]):null;});
+    return{cloth_num:tcn,order_num:ton,cloth_rate:calcCR(tcn,ton),
+      vis_cover:tvc,total_order:tto,vis_rate:calcVR(tvc,tto),daily:daily};
+  }
+
+  // 按固化组织树构建层级索引
+  var citySites={};   // region__subr__city -> [site,...]
+  var subSites={};    // region__subr -> [site,...]
+  var allSiteNames=[];
+  (ORG_TREE||[]).forEach(function(node){
+    if(node.level!=='site')return;
+    var r2=node.region,sr=node.subregion,c=node.city,n=node.name;
+    var ck=r2+'__'+sr+'__'+c;
+    var sk2=r2+'__'+sr;
+    if(!citySites[ck])citySites[ck]=[];
+    if(!subSites[sk2])subSites[sk2]=[];
+    citySites[ck].push(n);
+    subSites[sk2].push(n);
+    allSiteNames.push(n);
+  });
+
+  var rows=[];
+  // 总商行
+  var ts=aggSites(allSiteNames);
+  rows.push({level:'total',region:'',subregion:'',merchant:'',city:'',
+    name:'兴必达（江苏）网络科技有限公司',
+    cloth_num:ts.cloth_num,order_num:ts.order_num,cloth_rate:ts.cloth_rate,
+    vis_cover:ts.vis_cover,total_order:ts.total_order,vis_rate:ts.vis_rate,daily:ts.daily});
+
+  // 按固化组织树顺序遍历
+  (ORG_TREE||[]).forEach(function(node){
+    var lv=node.level;
+    if(lv==='total')return;
+    var r2=node.region,sr=node.subregion,c=node.city,n=node.name;
+    if(lv==='subregion'){
+      var ss2=aggSites(subSites[r2+'__'+sr]||[]);
+      rows.push({level:'subregion',region:r2,subregion:sr,merchant:'',city:'',name:n,
+        cloth_num:ss2.cloth_num,order_num:ss2.order_num,cloth_rate:ss2.cloth_rate,
+        vis_cover:ss2.vis_cover,total_order:ss2.total_order,vis_rate:ss2.vis_rate,daily:ss2.daily});
+    }else if(lv==='merchant'){
+      var cs=aggSites(citySites[r2+'__'+sr+'__'+c]||[]);
+      rows.push({level:'merchant',region:r2,subregion:sr,merchant:c,city:c,name:c,
+        cloth_num:cs.cloth_num,order_num:cs.order_num,cloth_rate:cs.cloth_rate,
+        vis_cover:cs.vis_cover,total_order:cs.total_order,vis_rate:cs.vis_rate,daily:cs.daily});
+    }else if(lv==='site'){
+      var si=aggSites([n]);
+      rows.push({level:'site',region:r2,subregion:sr,merchant:'',city:c,name:n,
+        cloth_num:si.cloth_num,order_num:si.order_num,cloth_rate:si.cloth_rate,
+        vis_cover:si.vis_cover,total_order:si.total_order,vis_rate:si.vis_rate,daily:si.daily});
+    }
+  });
+
+  return{rows:rows,dates:dates,siteCnt:allSiteNames.length};
+}
+
+function updateCacheStatus(){
+  var cache=cacheLoad();
+  var meta=cache.meta||{};
+  var riders=cache.riders||[];
+  var el=document.getElementById('cache-status');
+  if(!el)return;
+  if(!riders.length){
+    el.textContent='缓存：空（使用初始数据）';
+    el.style.color='#90a4ae';
+  }else{
+    var dates=[...new Set(riders.map(function(r){return r.d;}))].filter(Boolean).sort();
+    var sizeKB=Math.round(JSON.stringify(riders).length/1024);
+    el.textContent='缓存：'+dates[0]+'~'+dates[dates.length-1]+'（'+dates.length+'天，'+riders.length+'条，约'+sizeKB+'KB）';
+    el.style.color='#2e7d32';
+  }
+}
+
+function doClearCache(){
+  if(!confirm('确定清除本地缓存？清除后将恢复为看板初始数据，下次上传需重新上传完整数据。'))return;
+  cacheClear();
+  // 恢复初始数据
+  ROWS=INIT_ROWS;DATES=INIT_DATES;RIDERS=INIT_RIDERS;
+  stationFilter={};riderFilter={};riderPage=1;
+  initFilters();renderStation();
+  if(curTab==='rider')renderRider();
+  updateCacheStatus();
+  setStatus('已清除缓存，已恢复初始数据','#e65100');
+}
+
+// ══════════════════════════════════════════════════════════
+// ★ 前端自动解析 Excel（SheetJS）
+// ══════════════════════════════════════════════════════════
+function setStatus(msg, color){
+  var el=document.getElementById('upload-status');
+  var el2=document.getElementById('upload-status-rider');
+  if(el){el.textContent=msg;el.style.color=color||'#0B4F8A';}
+  if(el2){el2.textContent=msg;el2.style.color=color||'#0B4F8A';}
+}
+function setProgress(pct, text){
+  var wrap=document.getElementById('upload-progress');
+  var bar=document.getElementById('progress-bar');
+  var txt=document.getElementById('progress-text');
+  if(!wrap)return;
+  if(pct<0){wrap.style.display='none';return;}
+  wrap.style.display='flex';
+  if(bar)bar.style.width=pct+'%';
+  if(txt)txt.textContent=text||'';
+}
+
+function handleUpload(input){
+  var file=input.files[0];
+  if(!file)return;
+  input.value='';
+
+  // 检查 SheetJS 是否加载
+  if(typeof XLSX==='undefined'){
+    setStatus('⚠️ 解析库未加载，请检查网络连接后刷新页面重试','#c62828');
+    return;
+  }
+
+  setStatus('⏳ 正在读取文件：'+file.name,'#0B4F8A');
+  setProgress(10,'读取文件...');
+
+  var reader=new FileReader();
+  reader.onload=function(e){
+    try{
+      setProgress(30,'解析Excel...');
+      var data=new Uint8Array(e.target.result);
+      var wb=XLSX.read(data,{type:'array',cellDates:false,raw:true});
+
+      var fileType=detectFileType(wb);
+      var newRiders;
+
+      if(fileType==='raw'){
+        setProgress(50,'识别为原始数据文件，解析骑手数据...');
+        var rawResult=parseRawFile(wb);
+        newRiders=rawResult.riders;
+      } else if(fileType==='template'){
+        setProgress(50,'识别为套表，解析骑手数据...');
+        var tmplResult=parseSheet1(wb);
+        newRiders=tmplResult.riders;
+      } else {
+        throw new Error('无法识别文件格式，请上传原始数据文件或套表');
+      }
+
+      setProgress(70,'合并历史缓存...');
+
+      // ★ 增量合并：从缓存读取历史骑手数据，按日期合并
+      var cached=cacheLoad();
+      var oldRiders=cached.riders.length>0?cached.riders:INIT_RIDERS;
+      var mergedRiders=mergeRidersByDate(oldRiders,newRiders);
+
+      // ★ 自动检测站点增减，更新组织树
+      var oldSiteCnt=ORG_TREE.filter(function(n){return n.level==="site";}).length;
+      ORG_TREE=rebuildOrgTree(mergedRiders);
+      var newSiteCnt=ORG_TREE.filter(function(n){return n.level==="site";}).length;
+      if(newSiteCnt!==oldSiteCnt)console.log("站点数量变化："+oldSiteCnt+"→"+newSiteCnt);
+
+      setProgress(80,'重新聚合站点维度...');
+      var rebuilt=rebuildRowsFromRiders(mergedRiders);
+
+      // ★ 保存到缓存
+      setProgress(88,'保存缓存...');
+      var newDates=[...new Set(newRiders.map(function(r){return r.d;}))].filter(Boolean).sort();
+      var meta={
+        updatedAt:new Date().toLocaleString('zh-CN'),
+        fileNames:(cached.meta.fileNames||[]).concat([file.name]).slice(-10),
+        lastUploadDates:newDates
+      };
+      var saveResult=cacheSave(mergedRiders,meta);
+      if(saveResult==='quota'){
+        setStatus('⚠️ 缓存空间不足（>5MB），本次数据已显示但未保存到缓存。建议定期清除缓存后重新上传完整数据。','#e65100');
+      }
+
+      // 更新全局数据
+      ROWS=rebuilt.rows;
+      DATES=rebuilt.dates;
+      RIDERS=mergedRiders;
+
+      // 重置筛选
+      stationFilter={};riderFilter={};riderPage=1;
+
+      setProgress(95,'刷新看板...');
+      initFilters();
+      renderStation();
+      if(curTab==='rider')renderRider();
+      updateCacheStatus();
+
+      setProgress(-1);
+      var typeLabel=fileType==='raw'?'原始数据':'套表';
+      var allDates=[...new Set(mergedRiders.map(function(r){return r.d;}))].filter(Boolean).sort();
+      if(saveResult!=='quota'){
+        var siteMsg='';if(newSiteCnt!==oldSiteCnt){var diff=newSiteCnt-oldSiteCnt;siteMsg='，站点'+(diff>0?'+'+diff:diff)+'（'+oldSiteCnt+'→'+newSiteCnt+'）';}setStatus('✅ 增量合并成功（'+typeLabel+'）：新增'+newDates.length+'天数据，缓存共'+allDates.length+'天，骑手'+mergedRiders.length+'条，站点'+newSiteCnt+'个'+siteMsg,'#2e7d32');
+      }
+    }catch(err){
+      setProgress(-1);
+      setStatus('❌ 解析失败：'+err.message,'#c62828');
+      console.error(err);
+    }
+  };
+  reader.onerror=function(){
+    setProgress(-1);
+    setStatus('❌ 文件读取失败','#c62828');
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+// ══════════════════════════════════════════════════════════
+// ★ 文件类型识别：原始数据文件 vs 套表
+// 原始数据文件特征：Sheet名为"0"或只有1个Sheet，且第1行第1列是"天"
+// 套表特征：有"护航-达成商站点（未剔除恶劣）"Sheet
+// ══════════════════════════════════════════════════════════
+function detectFileType(wb){
+  if(wb.Sheets['护航-达成商站点（未剔除恶劣）']) return 'template';
+  // 检查第一个Sheet第1行第1列是否是"天"
+  var ws=wb.Sheets[wb.SheetNames[0]];
+  var raw=XLSX.utils.sheet_to_json(ws,{header:1,defval:null,raw:true,range:0});
+  var firstRow=raw[0]||[];
+  if(firstRow[0]&&String(firstRow[0]).trim()==='天') return 'raw';
+  return 'unknown';
+}
+
+// ── 解析套表 Sheet2（骑手维度）── 返回骑手数组
+function parseSheet2(wb){
+  var sheetName='护航数据源（未剔除恶劣）';
+  if(!wb.Sheets[sheetName]){
+    sheetName=wb.SheetNames.length>1?wb.SheetNames[1]:wb.SheetNames[0];
+  }
+  var ws=wb.Sheets[sheetName];
+  var raw=XLSX.utils.sheet_to_json(ws,{header:1,defval:null,raw:true});
+
+  // 动态定位列（与原始数据文件相同结构，用列头名匹配）
+  var hdr=raw[0]||[];
+  function fc(names){
+    for(var i=0;i<hdr.length;i++){
+      var h=hdr[i]?String(hdr[i]).trim():'';
+      for(var j=0;j<names.length;j++) if(h===names[j]) return i;
+    }
+    // 套表Sheet2固定列索引兜底
+    var fallback={'天':0,'虚拟大区名称':12,'虚拟区域名称':14,'配送城市名称':24,
+      '配送站点名称':20,'骑手名称':22,'服装可检核骑手数':29,'有完成单骑手数':30,
+      '美团工装图片数':32,'服装有效图片数':33,'美团工装率':34,
+      '订单视觉覆盖量-可检核骑手':35,'订单视觉覆盖率-可检核骑手':36,
+      '配送完成运单量-可检核骑手':37};
+    return fallback[names[0]]!==undefined?fallback[names[0]]:-1;
+  }
+  var C_DATE=fc(['天']),C_REGION=fc(['虚拟大区名称']),C_SUBR=fc(['虚拟区域名称']);
+  var C_CITY=fc(['配送城市名称']),C_SITE=fc(['配送站点名称']),C_RIDER=fc(['骑手名称']);
+  var C_CN=fc(['服装可检核骑手数']),C_ON=fc(['有完成单骑手数']);
+  var C_VN=fc(['美团工装图片数']),C_VV=fc(['服装有效图片数']),C_VR=fc(['美团工装率']);
+  var C_VC=fc(['订单视觉覆盖量-可检核骑手','订单视觉覆盖量']);
+  var C_VCR=fc(['订单视觉覆盖率-可检核骑手','订单视觉覆盖率']);
+  var C_TO=fc(['配送完成运单量-可检核骑手','配送完成运单量']);
+
+  var riders=[];
+  for(var ri=1;ri<raw.length;ri++){
+    var row=raw[ri];
+    if(!row||!row[C_DATE])continue;
+    var dateStr=fmtDate(row[C_DATE]);
+    if(!dateStr||dateStr.length!==5)continue;
+    riders.push({
+      d:dateStr,
+      region:row[C_REGION]?String(row[C_REGION]).trim():'',
+      subr:row[C_SUBR]?String(row[C_SUBR]).trim():'',
+      city:row[C_CITY]?String(row[C_CITY]).trim():'',
+      site:row[C_SITE]?String(row[C_SITE]).trim():'',
+      rider:row[C_RIDER]?String(row[C_RIDER]).trim():'',
+      cn:sf(row[C_CN]),on:sf(row[C_ON]),
+      vn:sf(row[C_VN]),vv:sf(row[C_VV]),vr:pct(sf(row[C_VR])),
+      vc:sf(row[C_VC]),vcr:pct(sf(row[C_VCR])),to:sf(row[C_TO])
+    });
+  }
+  return riders;
+}
+
+// ── 解析套表 Sheet1（站点维度）+ 从Sheet2骑手数据聚合日维度 ──
+function parseSheet1(wb){
+  var sheetName='护航-达成商站点（未剔除恶劣）';
+  if(!wb.Sheets[sheetName]) sheetName=wb.SheetNames[0];
+  var ws=wb.Sheets[sheetName];
+  var raw=XLSX.utils.sheet_to_json(ws,{header:1,defval:null,raw:true});
+
+  // 找日期列（第3行，index=2）—— 用于确定日期范围
+  var headerRow=raw[2]||[];
+  var dateCols={};
+  for(var ci=0;ci<headerRow.length;ci++){
+    var v=headerRow[ci];
+    if(v&&typeof v==='number'&&v>20260000&&v<20270000){
+      dateCols[ci]=fmtDate(v);
+    }
+  }
+  var dates=Object.values(dateCols).sort();
+
+  var rows=[];
+  var curRegion='',curSubregion='',curMerchant='';
+
+  for(var ri=3;ri<raw.length;ri++){
+    var row=raw[ri];
+    if(!row||row.every(function(c){return c===null||c===undefined||c===''}))continue;
+    var rawC0=row[0];var rawC1=row[1];
+    var col2=row[2]?String(row[2]).trim():'';
+    if(!col2)continue;
+
+    // ★ 正确计算：直接读取累计数值，比率用分子/分母计算
+    var clothNum=sf(row[3]);   // 服装可检核骑手数
+    var orderNum=sf(row[4]);   // 有完成单骑手数
+    // 工装检核率 = 服装可检核骑手数 / 有完成单骑手数
+    var clothRate=(clothNum!==null&&orderNum&&orderNum>0)?Math.round(clothNum/orderNum*10000)/100:null;
+    var visCover=sf(row[6]);   // 骑手订单视觉覆盖量
+    var totalOrder=sf(row[7]); // 骑手总完单量
+    // 订单视觉覆盖率 = 骑手订单视觉覆盖量 / 骑手总完单量
+    var visRate=(visCover!==null&&totalOrder&&totalOrder>0)?Math.round(visCover/totalOrder*10000)/100:null;
+
+    // ★ 日维度：从套表日维度列读取（存的是小数比率，需×100转成百分比）
+    var daily={};
+    for(var ci2 in dateCols){
+      var dv=sf(row[parseInt(ci2)]);
+      if(dv!==null){
+        // 套表日维度列存的是小数（如0.8394），×100转成百分比（83.94%）
+        daily[dateCols[ci2]]=(dv>0&&dv<=1.0)?Math.round(dv*10000)/100:Math.round(dv*100)/100;
+      }else{
+        daily[dateCols[ci2]]=null;
+      }
+    }
+
+    var level;
+    if(rawC0&&rawC1){
+      curRegion=String(rawC0).trim();curSubregion=String(rawC1).trim();curMerchant='';level='subregion';
+    }else if(!rawC0&&!rawC1){
+      if(col2.indexOf('公司')>=0&&col2.indexOf('【')<0){level='total';curMerchant='';}
+      else if(/【.{2,6}】/.test(col2)&&col2.indexOf('公司')>=0){level='merchant';curMerchant=col2;}
+      else{level='site';}
+    }else{
+      if(rawC0)curRegion=String(rawC0).trim();
+      if(rawC1)curSubregion=String(rawC1).trim();
+      level='subregion';
+    }
+
+    rows.push({
+      level:level,region:curRegion,subregion:curSubregion,
+      merchant:level==='site'?curMerchant:(level==='merchant'?col2:''),
+      name:col2,cloth_num:clothNum,order_num:orderNum,cloth_rate:clothRate,
+      vis_cover:visCover,total_order:totalOrder,vis_rate:visRate,daily:daily
+    });
+  }
+
+  // ★ 从 Sheet2 骑手数据聚合每日订单视觉覆盖率，填充到站点行的 daily 字段
+  // 同时：把 merchant 行的 name 替换为该加盟商下骑手的城市名
+  var riders2=parseSheet2(wb);
+  // 建立 加盟商名→城市名 映射（取骑手数据中出现最多的城市）
+  var merchantCityMap={};
+  riders2.forEach(function(r){
+    if(!r.site||!r.city)return;
+    // 找到对应站点行的 merchant
+    var siteRow=rows.find(function(row){return row.level==='site'&&row.name===r.site;});
+    if(!siteRow)return;
+    var merch=siteRow.merchant;
+    if(!merch)return;
+    if(!merchantCityMap[merch])merchantCityMap[merch]={};
+    merchantCityMap[merch][r.city]=(merchantCityMap[merch][r.city]||0)+1;
+  });
+  // 把 merchant 行的 name 和 city 字段替换为城市名
+  rows.forEach(function(r){
+    if(r.level!=='merchant')return;
+    var cityFreq=merchantCityMap[r.name];
+    if(!cityFreq)return;
+    var cityName=Object.keys(cityFreq).sort(function(a,b){return cityFreq[b]-cityFreq[a];})[0];
+    r.city=cityName;
+    r.name=cityName;  // 显示名改为城市名
+  });
+  // 同步更新站点行的 city 字段
+  rows.forEach(function(r){
+    if(r.level!=='site')return;
+    var siteRiders=riders2.filter(function(rd){return rd.site===r.name;});
+    if(!siteRiders.length)return;
+    var cityFreq2={};
+    siteRiders.forEach(function(rd){cityFreq2[rd.city]=(cityFreq2[rd.city]||0)+1;});
+    r.city=Object.keys(cityFreq2).sort(function(a,b){return cityFreq2[b]-cityFreq2[a];})[0]||'';
+  });
+  // 按站点名称建立日维度聚合
+  var siteDailyMap={}; // {siteName: {date: {vc:0, to:0}}}
+  riders2.forEach(function(r){
+    if(!siteDailyMap[r.site]) siteDailyMap[r.site]={};
+    if(!siteDailyMap[r.site][r.d]) siteDailyMap[r.site][r.d]={vc:0,to:0};
+    siteDailyMap[r.site][r.d].vc+=(r.vc||0);
+    siteDailyMap[r.site][r.d].to+=(r.to||0);
+  });
+  // 填充到 rows 的 daily 字段（只填站点行）
+  rows.forEach(function(r){
+    if(r.level!=='site') return;
+    var sd=siteDailyMap[r.name];
+    if(!sd) return;
+    dates.forEach(function(d){
+      var dd=sd[d];
+      r.daily[d]=dd&&dd.to>0?Math.round(dd.vc/dd.to*10000)/100:null;
+    });
+  });
+
+  var siteCnt=rows.filter(function(r){return r.level==='site';}).length;
+  return{rows:rows,dates:dates,siteCnt:siteCnt,riders:riders2};
+}
+
+// ══════════════════════════════════════════════════════════
+// ★ 解析原始数据文件（单Sheet，列头第1列="天"）
+//   原始数据列索引：
+//   [0]天 [12]虚拟大区名称 [14]虚拟区域名称 [18]加盟商名称
+//   [20]配送站点名称 [22]骑手名称 [24]配送城市名称
+//   [29]服装可检核骑手数 [30]有完成单骑手数 [31]工装检核率
+//   [32]美团工装图片数 [33]服装有效图片数 [34]美团工装率
+//   [35]订单视觉覆盖量 [36]订单视觉覆盖率 [37]配送完成运单量
+// ══════════════════════════════════════════════════════════
+function parseRawFile(wb){
+  var ws=wb.Sheets[wb.SheetNames[0]];
+  var raw=XLSX.utils.sheet_to_json(ws,{header:1,defval:null,raw:true});
+
+  // 用列头行动态定位列索引，更健壮
+  var headerRow=raw[0]||[];
+  function findCol(names){
+    for(var i=0;i<headerRow.length;i++){
+      var h=headerRow[i]?String(headerRow[i]).trim():'';
+      for(var j=0;j<names.length;j++){
+        if(h===names[j])return i;
+      }
+    }
+    return -1;
+  }
+  var C_DATE  = findCol(['天']);
+  var C_REGION= findCol(['虚拟大区名称']);
+  var C_SUBR  = findCol(['虚拟区域名称']);
+  var C_MERCH = findCol(['加盟商名称']);
+  var C_SITE  = findCol(['配送站点名称']);
+  var C_RIDER = findCol(['骑手名称']);
+  var C_CITY  = findCol(['配送城市名称']);
+  var C_CN    = findCol(['服装可检核骑手数']);
+  var C_ON    = findCol(['有完成单骑手数']);
+  var C_CR    = findCol(['工装检核率']);
+  var C_VN    = findCol(['美团工装图片数']);
+  var C_VV    = findCol(['服装有效图片数']);
+  var C_VR    = findCol(['美团工装率']);
+  var C_VC    = findCol(['订单视觉覆盖量-可检核骑手','订单视觉覆盖量']);
+  var C_VCR   = findCol(['订单视觉覆盖率-可检核骑手','订单视觉覆盖率']);
+  var C_TO    = findCol(['配送完成运单量-可检核骑手','配送完成运单量']);
+
+  // 读取所有骑手记录
+  var riders=[];
+  var allDates=[];
+  for(var ri=1;ri<raw.length;ri++){
+    var row=raw[ri];
+    if(!row||!row[C_DATE])continue;
+    var dateStr=fmtDate(row[C_DATE]);
+    if(!dateStr||dateStr.length!==5)continue;
+    allDates.push(dateStr);
+    riders.push({
+      d:dateStr,
+      region:C_REGION>=0&&row[C_REGION]?String(row[C_REGION]).trim():'',
+      subr:C_SUBR>=0&&row[C_SUBR]?String(row[C_SUBR]).trim():'',
+      merch:C_MERCH>=0&&row[C_MERCH]?String(row[C_MERCH]).trim():'',
+      city:C_CITY>=0&&row[C_CITY]?String(row[C_CITY]).trim():'',
+      site:C_SITE>=0&&row[C_SITE]?String(row[C_SITE]).trim():'',
+      rider:C_RIDER>=0&&row[C_RIDER]?String(row[C_RIDER]).trim():'',
+      cn:sf(C_CN>=0?row[C_CN]:null),
+      on:sf(C_ON>=0?row[C_ON]:null),
+      cr:pct(sf(C_CR>=0?row[C_CR]:null)),
+      vn:sf(C_VN>=0?row[C_VN]:null),
+      vv:sf(C_VV>=0?row[C_VV]:null),
+      vr:pct(sf(C_VR>=0?row[C_VR]:null)),
+      vc:sf(C_VC>=0?row[C_VC]:null),
+      vcr:pct(sf(C_VCR>=0?row[C_VCR]:null)),
+      to:sf(C_TO>=0?row[C_TO]:null)
+    });
+  }
+
+  var dates=[...new Set(allDates)].sort();
+
+  // ── 从骑手数据聚合站点维度 ──
+  // 按 站点+日期 分组，累加数值，计算率
+  var siteMap={};  // key: site名
+  var cityMap2={};  // key: region__subr__city（城市层级，替代加盟商）
+  var regionMap={}; // key: region名
+  var subregionMap={}; // key: subregion名
+  var totalAgg={cn:0,on:0,vc:0,to:0};
+
+  // ★ 正确聚合逻辑：直接累加原始数值，最后再算比率
+  // cloth_num = 服装可检核骑手数之和
+  // order_num = 有完成单骑手数之和
+  // cloth_rate = cloth_num / order_num
+  // vis_cover = 订单视觉覆盖量-可检核骑手之和
+  // total_order = 配送完成运单量-可检核骑手之和
+  // vis_rate = vis_cover / total_order
+  // 日维度 = 每日 vis_cover / total_order（订单视觉覆盖率）
+
+  riders.forEach(function(r){
+    var cn=r.cn||0, on=r.on||0, vc=r.vc||0, to=r.to||0;
+
+    // 站点聚合（按配送站点名称匹配）
+    var sk=r.site;
+    if(!siteMap[sk]) siteMap[sk]={
+      name:r.site,region:r.region,subr:r.subr,merch:r.merch,city:r.city,
+      cn:0,on:0,vc:0,to:0,daily:{}
+    };
+    var s=siteMap[sk];
+    s.cn+=cn; s.on+=on; s.vc+=vc; s.to+=to;
+    // 日维度：按日累加 vc 和 to，最后算比率
+    if(!s.daily[r.d]) s.daily[r.d]={vc:0,to:0};
+    s.daily[r.d].vc+=vc; s.daily[r.d].to+=to;
+
+    // 区域聚合（按虚拟区域名称匹配）
+    var srk=r.region+'__'+r.subr;
+    if(!subregionMap[srk]) subregionMap[srk]={name:r.subr,region:r.region,cn:0,on:0,vc:0,to:0};
+    var sr=subregionMap[srk];
+    sr.cn+=cn; sr.on+=on; sr.vc+=vc; sr.to+=to;
+
+    // 城市聚合（按配送城市名称，替代加盟商）
+    var ck2=r.region+'__'+r.subr+'__'+(r.city||'');
+    if(!cityMap2[ck2]) cityMap2[ck2]={name:r.city||'',region:r.region,subr:r.subr,cn:0,on:0,vc:0,to:0};
+    var cm2=cityMap2[ck2];
+    cm2.cn+=cn; cm2.on+=on; cm2.vc+=vc; cm2.to+=to;
+
+    // 大区聚合
+    var rk=r.region;
+    if(!regionMap[rk]) regionMap[rk]={name:r.region,cn:0,on:0,vc:0,to:0};
+    var reg=regionMap[rk];
+    reg.cn+=cn; reg.on+=on; reg.vc+=vc; reg.to+=to;
+
+    // 总商聚合
+    totalAgg.cn+=cn; totalAgg.on+=on; totalAgg.vc+=vc; totalAgg.to+=to;
+  });
+
+  // 比率计算：直接用累加后的分子/分母
+  function calcCR(cn,on){return on>0?Math.round(cn/on*10000)/100:null;}  // 工装检核率=可检核/有完成单
+  function calcVR(vc,to){return to>0?Math.round(vc/to*10000)/100:null;}  // 订单视觉率=覆盖量/完单量
+
+  // 构建 ROWS 数组（总商→大区→区域→站点）
+  var rows=[];
+
+  // 总商行
+  rows.push({
+    level:'total',region:'',subregion:'',merchant:'',
+    name:'兴达（总商）',
+    cloth_num:totalAgg.cn, order_num:totalAgg.on,
+    cloth_rate:calcCR(totalAgg.cn,totalAgg.on),
+    vis_cover:totalAgg.vc, total_order:totalAgg.to,
+    vis_rate:calcVR(totalAgg.vc,totalAgg.to),
+    daily:{}
+  });
+
+  // 按大区→区域→站点排序
+  var regionNames=Object.keys(regionMap).sort(function(a,b){return a.localeCompare(b,'zh');});
+  regionNames.forEach(function(rk){
+    var reg=regionMap[rk];
+    var srKeys=Object.keys(subregionMap).filter(function(k){return k.startsWith(rk+'__');});
+    srKeys.sort(function(a,b){return subregionMap[a].name.localeCompare(subregionMap[b].name,'zh');});
+
+    srKeys.forEach(function(srk){
+      var sr=subregionMap[srk];
+      // 区域行
+      rows.push({
+        level:'subregion',region:reg.name,subregion:sr.name,merchant:'',
+        name:sr.name,
+        cloth_num:sr.cn, order_num:sr.on,
+        cloth_rate:calcCR(sr.cn,sr.on),
+        vis_cover:sr.vc, total_order:sr.to,
+        vis_rate:calcVR(sr.vc,sr.to),
+        daily:{}
+      });
+
+      // 城市行（merchant层级，按配送城市名称）
+      var cityKeys2=Object.keys(cityMap2).filter(function(k){return k.startsWith(reg.name+'__'+sr.name+'__');});
+      cityKeys2.sort(function(a,b){return cityMap2[a].name.localeCompare(cityMap2[b].name,'zh');});
+      cityKeys2.forEach(function(ck2){
+        var cm2=cityMap2[ck2];
+        if(!cm2.name)return;
+        rows.push({
+          level:'merchant',region:cm2.region,subregion:cm2.subr,merchant:cm2.name,city:cm2.name,
+          name:cm2.name,
+          cloth_num:cm2.cn, order_num:cm2.on,
+          cloth_rate:calcCR(cm2.cn,cm2.on),
+          vis_cover:cm2.vc, total_order:cm2.to,
+          vis_rate:calcVR(cm2.vc,cm2.to),
+          daily:{}
+        });
+      });
+      // 该区域下的站点
+      var sites=Object.values(siteMap).filter(function(s){return s.region===reg.name&&s.subr===sr.name;});
+      sites.sort(function(a,b){return a.name.localeCompare(b.name,'zh');});
+      sites.forEach(function(s){
+        // 日维度：每日订单视觉覆盖率 = 当日vc / 当日to
+        var daily={};
+        dates.forEach(function(d){
+          var dd=s.daily[d];
+          daily[d]=dd?calcVR(dd.vc,dd.to):null;
+        });
+        rows.push({
+          level:'site',region:s.region,subregion:s.subr,merchant:s.merch,city:s.city||'',
+          name:s.name,
+          cloth_num:s.cn, order_num:s.on,
+          cloth_rate:calcCR(s.cn,s.on),
+          vis_cover:s.vc, total_order:s.to,
+          vis_rate:calcVR(s.vc,s.to),
+          daily:daily
+        });
+      });
+    });
+  });
+
+  var siteCnt=Object.keys(siteMap).length;
+  return{rows:rows,dates:dates,siteCnt:siteCnt,riders:riders};
+}
+
+
+// ══════════════════════════════════════════════════════════
+// 操作列：插入/删除/修改行（像工作表一样）
+// ══════════════════════════════════════════════════════════
+var _opMenu=null;
+function closeOpMenu(){if(_opMenu){_opMenu.remove();_opMenu=null;}}
+document.addEventListener('click',function(e){if(_opMenu&&!_opMenu.contains(e.target))closeOpMenu();});
+
+function showOpMenu(e,ri,btn){
+  e.stopPropagation();
+  closeOpMenu();
+  var rows2=window._curRows||ROWS;
+  var r=rows2[ri];
+  if(!r)return;
+  var lv=r.level;
+  var menu=document.createElement('div');
+  menu.className='op-menu';
+  var items=[
+    {label:'\u270f\ufe0f \u4fee\u6539\u540d\u79f0/\u57ce\u5e02/\u533a\u57df',fn:function(){editRow(ri);}},
+    {label:'\u2795 \u5728\u4e0a\u65b9\u63d2\u5165\u884c',fn:function(){insertRow(ri,'above');}},
+    {label:'\u2795 \u5728\u4e0b\u65b9\u63d2\u5165\u884c',fn:function(){insertRow(ri,'below');}},
+  ];
+  if(lv!=='total'){
+    items.push({label:'\ud83d\uddd1 \u5220\u9664\u6b64\u884c',fn:function(){deleteRow(ri);},cls:'danger'});
+  }
+  items.forEach(function(it){
+    var d=document.createElement('div');
+    d.className='op-menu-item'+(it.cls?' '+it.cls:'');
+    d.textContent=it.label;
+    d.onclick=function(){closeOpMenu();it.fn();};
+    menu.appendChild(d);
+  });
+  document.body.appendChild(menu);
+  _opMenu=menu;
+  var rect=btn.getBoundingClientRect();
+  var top=rect.bottom+4;
+  var left=rect.left;
+  if(left+200>window.innerWidth)left=window.innerWidth-204;
+  if(top+items.length*36>window.innerHeight)top=rect.top-items.length*36-4;
+  menu.style.top=top+'px';
+  menu.style.left=left+'px';
+}
+
+function deleteRow(ri){
+  var rows2=window._curRows||ROWS;
+  var r=rows2[ri];
+  if(!r||r.level==='total'){alert('\u603b\u5546\u884c\u4e0d\u53ef\u5220\u9664');return;}
+  if(!confirm('\u786e\u8ba4\u5220\u9664\u300c'+r.name+'\u300d\u884c\uff1f\n\uff08\u4ec5\u5220\u9664\u770b\u677f\u663e\u793a\u884c\uff0c\u4e0d\u5f71\u54cd\u539f\u59cb\u6570\u636e\uff09'))return;
+  var globalIdx=ROWS.indexOf(r);
+  if(globalIdx>=0)ROWS.splice(globalIdx,1);
+  if(typeof renderStation==='function')renderStation();
+}
+
+function insertRow(ri,pos){
+  var rows2=window._curRows||ROWS;
+  var ref=rows2[ri];
+  if(!ref)return;
+  showEditModal(null,function(newRow){
+    var globalRef=ROWS.indexOf(ref);
+    var insertIdx=pos==='above'?globalRef:globalRef+1;
+    if(insertIdx<0)insertIdx=ROWS.length;
+    ROWS.splice(insertIdx,0,newRow);
+    if(typeof renderStation==='function')renderStation();
+  },ref);
+}
+
+function editRow(ri){
+  var rows2=window._curRows||ROWS;
+  var r=rows2[ri];
+  if(!r)return;
+  showEditModal(r,function(updated){
+    var globalIdx=ROWS.indexOf(r);
+    if(globalIdx>=0)Object.assign(ROWS[globalIdx],updated);
+    if(typeof renderStation==='function')renderStation();
+  },r);
+}
+
+function showEditModal(row,onSave,refRow){
+  var isNew=!row;
+  var lv=row?row.level:(refRow?refRow.level:'site');
+  var bg=document.createElement('div');
+  bg.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:9999;display:flex;align-items:center;justify-content:center;';
+  var modal=document.createElement('div');
+  modal.style.cssText='background:#1a2a3a;border:1px solid #0B4F8A;border-radius:10px;padding:24px;min-width:360px;max-width:480px;color:#EAF2F9;font-size:14px;';
+  var regions=[...new Set(ROWS.filter(function(r){return r.level==='subregion';}).map(function(r){return r.region;}))].filter(Boolean).sort();
+  var subregions=[...new Set(ROWS.filter(function(r){return r.level==='subregion';}).map(function(r){return r.subregion||r.name;}))].filter(Boolean).sort();
+  var cities=[...new Set(ROWS.filter(function(r){return r.level==='merchant';}).map(function(r){return r.city||r.name;}))].filter(Boolean).sort();
+  function selHtml(id,opts,val){
+    var h='<select id="em-'+id+'" style="width:100%;padding:6px;background:#0d1b2a;color:#EAF2F9;border:1px solid #0B4F8A;border-radius:4px;margin-bottom:10px;box-sizing:border-box;">';
+    opts.forEach(function(o){h+='<option value="'+o+'"'+(o===val?' selected':'')+'>'+o+'</option>';});
+    h+='</select>';return h;
+  }
+  modal.innerHTML=
+    '<h3 style="margin:0 0 16px;color:#8FB8DA;">'+(isNew?'\u63d2\u5165\u65b0\u884c':'\u4fee\u6539\u884c\u4fe1\u606f')+'</h3>'+
+    '<label style="font-size:12px;color:#8FB8DA;">\u5c42\u7ea7</label>'+
+    '<select id="em-level" style="width:100%;padding:6px;background:#0d1b2a;color:#EAF2F9;border:1px solid #0B4F8A;border-radius:4px;margin-bottom:10px;box-sizing:border-box;">'+
+      ['subregion','merchant','site'].map(function(l){return '<option value="'+l+'"'+(l===lv?' selected':'')+'>'+({subregion:'\u533a\u57df\u884c',merchant:'\u57ce\u5e02\u884c',site:'\u7ad9\u70b9\u884c'}[l])+'</option>';}).join('')+
+    '</select>'+
+    '<label style="font-size:12px;color:#8FB8DA;">\u5927\u533a</label>'+selHtml('region',regions,(row||refRow||{}).region||'')+
+    '<label style="font-size:12px;color:#8FB8DA;">\u533a\u57df</label>'+selHtml('subregion',subregions,(row||refRow||{}).subregion||'')+
+    '<label style="font-size:12px;color:#8FB8DA;">\u57ce\u5e02</label>'+selHtml('city',cities,(row||refRow||{}).city||'')+
+    '<label style="font-size:12px;color:#8FB8DA;">\u540d\u79f0\uff08\u7ad9\u70b9/\u57ce\u5e02/\u533a\u57df\u540d\uff09</label>'+
+    '<input id="em-name" type="text" value="'+(row?row.name:'')+'" style="width:100%;padding:6px;background:#0d1b2a;color:#EAF2F9;border:1px solid #0B4F8A;border-radius:4px;margin-bottom:16px;box-sizing:border-box;">'+
+    '<div style="display:flex;gap:10px;justify-content:flex-end;">'+
+      '<button onclick="this.closest(\'[style*=position\\\\:fixed]\').remove()" style="padding:6px 16px;background:#263238;color:#8FB8DA;border:1px solid #0B4F8A;border-radius:4px;cursor:pointer;">\u53d6\u6d88</button>'+
+      '<button onclick="_emSave()" style="padding:6px 16px;background:#0B4F8A;color:#fff;border:none;border-radius:4px;cursor:pointer;">\u4fdd\u5b58</button>'+
+    '</div>';
+  bg.appendChild(modal);
+  document.body.appendChild(bg);
+  window._emOnSave=onSave;
+  window._emBg=bg;
+}
+window._emSave=function(){
+  var bg=window._emBg;
+  if(!bg)return;
+  var lv=document.getElementById('em-level').value;
+  var region=document.getElementById('em-region').value;
+  var subregion=document.getElementById('em-subregion').value;
+  var city=document.getElementById('em-city').value;
+  var name=document.getElementById('em-name').value.trim();
+  if(!name){alert('\u540d\u79f0\u4e0d\u80fd\u4e3a\u7a7a');return;}
+  var newRow={
+    level:lv,region:region,subregion:subregion,
+    merchant:lv==='merchant'?name:'',city:lv==='site'?city:(lv==='merchant'?name:''),
+    name:name,
+    cloth_num:null,order_num:null,cloth_rate:null,
+    vis_cover:null,total_order:null,vis_rate:null,daily:{}
+  };
+  bg.remove();
+  window._emBg=null;
+  if(window._emOnSave)window._emOnSave(newRow);
+};
+
+// ══════════════════════════════════════════════════════════
+// 初始化：优先从 localStorage 缓存恢复数据
+// ══════════════════════════════════════════════════════════
+
+function screenshotPanel(tab){
+  if(typeof html2canvas==='undefined'){alert('截图库未加载，请检查网络连接后刷新页面');return;}
+  var panelEl=document.getElementById('panel-'+tab);
+  if(!panelEl){alert('未找到面板');return;}
+  var savedStyles=[];
+  panelEl.querySelectorAll('.table-wrap').forEach(function(el){
+    savedStyles.push({el:el,maxHeight:el.style.maxHeight,overflow:el.style.overflow});
+    el.style.maxHeight='none';el.style.overflow='visible';
+  });
+  if(tab==='rider'){
+    var pg=panelEl.querySelector('.pagination');
+    if(pg){savedStyles.push({el:pg,maxHeight:pg.style.maxHeight,overflow:pg.style.overflow});pg.style.maxHeight='none';pg.style.overflow='visible';}
+  }
+  html2canvas(panelEl,{height:panelEl.scrollHeight,windowHeight:panelEl.scrollHeight,scale:2}).then(function(canvas){
+    restoreStyles(savedStyles);
+    var now=new Date();
+    var ts=now.getFullYear()+('0'+(now.getMonth()+1)).slice(-2)+('0'+now.getDate()).slice(-2)+'_'+('0'+now.getHours()).slice(-2)+('0'+now.getMinutes()).slice(-2)+('0'+now.getSeconds()).slice(-2);
+    var name=(tab==='station'?'站点维度看板':'骑手维度明细')+'_'+ts+'.png';
+    var a=document.createElement('a');a.download=name;a.href=canvas.toDataURL('image/png');a.click();
+  }).catch(function(e){
+    restoreStyles(savedStyles);
+    console.error('截图失败',e);
+    alert('截图失败: '+e.message);
+  });
+  function restoreStyles(list){
+    list.forEach(function(item){item.el.style.maxHeight=item.maxHeight;item.el.style.overflow=item.overflow;});
+  }
+}
+window.onload=function(){
+  // ★ 从外部 data.js 加载并转换数据格式（数组 → 对象）
+  var extData = window.ESCORT_DATA;
+  RIDERS = extData.riders.map(function(r){
+    return {d:r[0],region:r[1],subr:r[2],city:r[3],site:r[4],rid:r[5],rider:r[6],cn:r[7],on:r[8],vn:r[9],vv:r[10],vr:r[11],vc:r[12],to:r[13],vcr:r[14]};
+  });
+  DATES = extData.dates.slice();
+
+  // 重建组织树和数据表
+  ORG_TREE = rebuildOrgTree(RIDERS);
+  var rebuilt = rebuildRowsFromRiders(RIDERS);
+  ROWS = rebuilt.rows;
+  if (rebuilt.dates) { DATES = rebuilt.dates; }
+
+  // 保存初始数据（用于回退）
+  var INIT_ROWS = ROWS.slice();
+  var INIT_DATES = DATES.slice();
+  var INIT_RIDERS = RIDERS.slice();
+  window.INIT_ROWS = INIT_ROWS;
+  window.INIT_DATES = INIT_DATES;
+  window.INIT_RIDERS = INIT_RIDERS;
+
+  // ★ 清除旧版 localStorage 缓存，确保无干扰
+  try { localStorage.removeItem('escort_dashboard_riders_v1'); localStorage.removeItem('escort_dashboard_meta_v1'); } catch(e) {}
+
+  var statusEl = document.getElementById('upload-status');
+  var statusEl2 = document.getElementById('upload-status-rider');
+  var msg = '已从外部数据文件加载（' + RIDERS.length + ' 条骑手记录）';
+  if (statusEl) { statusEl.textContent = msg; statusEl.style.color = '#0B4F8A'; }
+  if (statusEl2) { statusEl2.textContent = msg; statusEl2.style.color = '#0B4F8A'; }
+
+  updateCacheStatus();
+  initFilters();
+  renderStation();
+};
+</script>
+
+</body>
+</html>

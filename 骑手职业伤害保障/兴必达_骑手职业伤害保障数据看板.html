@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>兴必达 · 骑手职业伤害保障数据看板</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Microsoft YaHei","PingFang SC",sans-serif;background:#f5f6fa;color:#333;min-height:100vh}.header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;padding:24px 40px;display:flex;align-items:center;justify-content:space-between}.header h1{font-size:22px;font-weight:600;letter-spacing:1px}.header .badge{background:#ffc107;color:#1a1a2e;padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600}.container{max-width:1400px;margin:0 auto;padding:24px}
+.kpi-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:16px;margin-bottom:24px}.kpi-card{background:#fff;border-radius:12px;padding:20px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);transition:transform 0.2s}.kpi-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,0.1)}.kpi-card .label{font-size:13px;color:#666;margin-bottom:8px}.kpi-card .value{font-size:28px;font-weight:700}
+.kpi-card .value.cases{color:#ffc107}.kpi-card .value.confirmed{color:#52c41a}.kpi-card .value.pending{color:#faad14}.kpi-card .value.waiting{color:#0B4F8A}.kpi-card .value.cancelled{color:#ff4d4f}.kpi-card .value.other{color:#999}.kpi-card .value.payout{color:#722ed1}.kpi-card .sub{font-size:11px;color:#999;margin-top:4px}
+.charts-row{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-bottom:24px}.chart-box{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,0.06)}.chart-box h3{font-size:15px;font-weight:600;margin-bottom:12px;color:#333}
+.table-box{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,0.06);overflow-x:auto}.table-box h3{font-size:15px;font-weight:600;margin-bottom:16px;color:#333;display:flex;align-items:center;justify-content:space-between}.table-box h3 span.zero-tip{font-size:12px;color:#999;font-weight:400}table{width:100%;border-collapse:collapse;font-size:13px}th{background:#fafafa;padding:10px 12px;text-align:center;font-weight:600;color:#555;border-bottom:2px solid #eee;white-space:nowrap}td{padding:10px 12px;text-align:center;border-bottom:1px solid #f0f0f0}tr:hover{background:#fffbe6}
+.area-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:500}.area-hb1{background:#eaf2fa;color:#0B4F8A}.area-hb2{background:#fff7e6;color:#fa8c16}.area-hb3{background:#f6ffed;color:#52c41a}.area-hd{background:#fff0f6;color:#eb2f96}.area-zn{background:#f9f0ff;color:#722ed1}.num-zero{color:#ccc}.num-high{color:#ff4d4f;font-weight:600}.money{font-family:"SF Mono",Consolas,monospace;font-weight:500}.summary-row{background:#fafafa;font-weight:700}.summary-row td{border-top:2px solid #ffc107}
+@media(max-width:1200px){.kpi-grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:768px){.kpi-grid{grid-template-columns:repeat(2,1fr);}.charts-row{grid-template-columns:1fr}}</style></head><body>
+<div class="header"><h1>兴必达 · 骑手职业伤害保障数据看板</h1><div class="badge">加盟商：兴必达 | 数据截至 2026-07-23</div></div><div class="container">
+<div class="kpi-grid">
+<div class="kpi-card"><div class="label">覆盖城市</div><div class="value cases">19</div><div class="sub">28 个有加盟商 / 9 城零案件</div></div>
+<div class="kpi-card"><div class="label">案件总数</div><div class="value cases">807</div><div class="sub">件</div></div>
+<div class="kpi-card"><div class="label">已确认</div><div class="value confirmed">195</div><div class="sub">占比 24.2%</div></div>
+<div class="kpi-card"><div class="label">待确认</div><div class="value pending">45</div><div class="sub">待职业伤害确认</div></div>
+<div class="kpi-card"><div class="label">等待受理</div><div class="value waiting">92</div><div class="sub">件</div></div>
+<div class="kpi-card"><div class="label">已撤销</div><div class="value cancelled">151</div><div class="sub">件</div></div>
+<div class="kpi-card"><div class="label">累计赔付</div><div class="value payout">360<small style="font-size:14px"> 万</small></div><div class="sub">元</div></div>
+</div>
+<div class="charts-row">
+<div class="chart-box"><h3>各城市案件量 TOP10</h3><div id="barChart" style="height:380px;"></div></div>
+<div class="chart-box"><h3>案件状态分布</h3><div id="pieChart" style="height:380px;"></div></div>
+</div>
+<div class="table-box"><h3>城市明细表 <span class="zero-tip">另有 9 城（通辽、运城、商丘、太原、阜新、铜陵、马鞍山、郑州、信阳）案件数为 0，未列入下表</span></h3>
+<table><thead><tr><th>大区</th><th>区域</th><th>城市</th><th>案件总数</th><th>已确认</th><th>待确认</th><th>等待受理</th><th>已撤销</th><th>其他</th><th>赔付金额(元)</th></tr></thead><tbody>
+<tr><td><span class="area-tag area-hb1">华北一区</span></td><td>黑吉区域</td><td><strong>长春</strong></td><td class="">5</td><td>0</td><td>1</td><td>0</td><td>0</td><td>4</td><td class="money">0</td></tr>
+<tr><td><span class="area-tag area-hb1">华北一区</span></td><td>辽宁区域</td><td><strong>锦州</strong></td><td class="">2</td><td>0</td><td>0</td><td>0</td><td>2</td><td>0</td><td class="money">0</td></tr>
+<tr><td><span class="area-tag area-hb1">华北一区</span></td><td>津冀区域</td><td><strong>秦皇岛</strong></td><td class="num-high">153</td><td>36</td><td>19</td><td>21</td><td>5</td><td>72</td><td class="money">1,138,171.40</td></tr>
+<tr><td><span class="area-tag area-hb1">华北一区</span></td><td>津冀区域</td><td><strong>唐山</strong></td><td class="num-high">50</td><td>17</td><td>2</td><td>6</td><td>19</td><td>6</td><td class="money">24,828.82</td></tr>
+<tr><td><span class="area-tag area-hb1">华北一区</span></td><td>津冀区域</td><td><strong>天津</strong></td><td class="">39</td><td>3</td><td>2</td><td>1</td><td>6</td><td>27</td><td class="money">118,068.57</td></tr>
+<tr><td><span class="area-tag area-hb1">华北一区</span></td><td>津冀区域</td><td><strong>张家口</strong></td><td class="">31</td><td>5</td><td>3</td><td>3</td><td>2</td><td>18</td><td class="money">19,617.26</td></tr>
+<tr><td><span class="area-tag area-hb2">华北二区</span></td><td>河南区域</td><td><strong>洛阳</strong></td><td class="">4</td><td>0</td><td>0</td><td>3</td><td>0</td><td>1</td><td class="money">0</td></tr>
+<tr><td><span class="area-tag area-hb3">华北三区</span></td><td>中西区域</td><td><strong>西安</strong></td><td class="">15</td><td>0</td><td>1</td><td>1</td><td>0</td><td>13</td><td class="money">0</td></tr>
+<tr><td><span class="area-tag area-hd">华东大区</span></td><td>北京区域</td><td><strong>北京</strong></td><td class="">22</td><td>12</td><td>0</td><td>0</td><td>4</td><td>6</td><td class="money">589,574.84</td></tr>
+<tr><td><span class="area-tag area-hd">华东大区</span></td><td>上海区域</td><td><strong>上海</strong></td><td class="num-high">145</td><td>63</td><td>10</td><td>6</td><td>7</td><td>59</td><td class="money">1,034,344.40</td></tr>
+<tr><td><span class="area-tag area-hd">华东大区</span></td><td>苏北区域</td><td><strong>南京</strong></td><td class="">44</td><td>14</td><td>0</td><td>1</td><td>0</td><td>29</td><td class="money">283,691.15</td></tr>
+<tr><td><span class="area-tag area-zn">中南大区</span></td><td>山东区域</td><td><strong>青岛</strong></td><td class="num-high">90</td><td>11</td><td>1</td><td>14</td><td>62</td><td>2</td><td class="money">132,686.44</td></tr>
+<tr><td><span class="area-tag area-zn">中南大区</span></td><td>山东区域</td><td><strong>临沂</strong></td><td class="">34</td><td>7</td><td>0</td><td>10</td><td>15</td><td>2</td><td class="money">67,185.52</td></tr>
+<tr><td><span class="area-tag area-zn">中南大区</span></td><td>山东区域</td><td><strong>枣庄</strong></td><td class="">28</td><td>5</td><td>2</td><td>2</td><td>17</td><td>2</td><td class="money">44,107.80</td></tr>
+<tr><td><span class="area-tag area-zn">中南大区</span></td><td>安徽区域</td><td><strong>蚌埠</strong></td><td class="num-high">59</td><td>3</td><td>4</td><td>11</td><td>2</td><td>39</td><td class="money">45,280.80</td></tr>
+<tr><td><span class="area-tag area-zn">中南大区</span></td><td>安徽区域</td><td><strong>阜阳</strong></td><td class="">35</td><td>11</td><td>0</td><td>4</td><td>2</td><td>18</td><td class="money">48,495.90</td></tr>
+<tr><td><span class="area-tag area-zn">中南大区</span></td><td>安徽区域</td><td><strong>合肥</strong></td><td class="">33</td><td>6</td><td>0</td><td>8</td><td>5</td><td>14</td><td class="money">21,727.64</td></tr>
+<tr><td><span class="area-tag area-zn">中南大区</span></td><td>安徽区域</td><td><strong>黄山</strong></td><td class="">11</td><td>1</td><td>0</td><td>0</td><td>3</td><td>7</td><td class="money">27,274.48</td></tr>
+<tr><td><span class="area-tag area-zn">中南大区</span></td><td>安徽区域</td><td><strong>滁州</strong></td><td class="">7</td><td>1</td><td>0</td><td>1</td><td>0</td><td>5</td><td class="money">0</td></tr>
+</tbody><tfoot><tr class="summary-row"><td colspan="3">合计（19 城）</td><td>807</td><td>195</td><td>45</td><td>92</td><td>151</td><td>324</td><td class="money">3,595,055.02</td></tr></tfoot></table></div>
+</div>
+<script>
+var topCities = [{"name": "秦皇岛", "total": 153, "confirmed": 36, "region": "津冀区域"}, {"name": "上海", "total": 145, "confirmed": 63, "region": "上海区域"}, {"name": "青岛", "total": 90, "confirmed": 11, "region": "山东区域"}, {"name": "蚌埠", "total": 59, "confirmed": 3, "region": "安徽区域"}, {"name": "唐山", "total": 50, "confirmed": 17, "region": "津冀区域"}, {"name": "南京", "total": 44, "confirmed": 14, "region": "苏北区域"}, {"name": "天津", "total": 39, "confirmed": 3, "region": "津冀区域"}, {"name": "阜阳", "total": 35, "confirmed": 11, "region": "安徽区域"}, {"name": "临沂", "total": 34, "confirmed": 7, "region": "山东区域"}, {"name": "合肥", "total": 33, "confirmed": 6, "region": "安徽区域"}];
+var barNames = topCities.map(function(d){return d.name;});
+var barTotals = topCities.map(function(d){return d.total;});
+var barConfirmed = topCities.map(function(d){return d.confirmed;});
+var barChart = echarts.init(document.getElementById('barChart'));
+barChart.setOption({tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},grid:{left:100,right:40,top:10,bottom:20},xAxis:{type:'value',axisLine:{show:false},axisTick:{show:false},splitLine:{lineStyle:{color:'#f0f0f0'}}},yAxis:{type:'category',data:barNames.reverse(),axisLine:{show:false},axisTick:{show:false}},series:[{name:'案件总数',type:'bar',data:barTotals.reverse(),itemStyle:{color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:'#ffc107'},{offset:1,color:'#ff9800'}]),borderRadius:[0,6,6,0]},barWidth:16,label:{show:true,position:'right',color:'#333',fontSize:12}},{name:'已确认',type:'bar',data:barConfirmed.reverse(),itemStyle:{color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:'#52c41a'},{offset:1,color:'#73d13d'}]),borderRadius:[0,6,6,0]},barWidth:16,label:{show:true,position:'right',color:'#333',fontSize:12}}]});
+var pieChart = echarts.init(document.getElementById('pieChart'));
+pieChart.setOption({tooltip:{trigger:'item',formatter:'{b}: {c} 件 ({d}%)'},legend:{bottom:0,itemWidth:10,itemHeight:10,textStyle:{fontSize:12}},series:[{type:'pie',radius:['50%','75%'],center:['50%','45%'],itemStyle:{borderRadius:6,borderColor:'#fff',borderWidth:3},label:{formatter:'{b}\n{d}%',fontSize:11},data:[{value:195,name:'已确认',itemStyle:{color:'#52c41a'}},{value:45,name:'待确认',itemStyle:{color:'#faad14'}},{value:92,name:'等待受理',itemStyle:{color:'#0B4F8A'}},{value:151,name:'已撤销',itemStyle:{color:'#ff4d4f'}},{value:324,name:'其他',itemStyle:{color:'#bfbfbf'}}]}]});
+window.addEventListener('resize',function(){barChart.resize();pieChart.resize();});
+</script></body></html>
