@@ -21,7 +21,6 @@ html,body{min-height:100%;font-family:'Segoe UI','Microsoft YaHei','PingFang SC'
 .legend-item{display:flex;align-items:center;gap:5px}
 .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
 .dot.today{background:#26a65b}
-.dot.old{background:#f39c12}
 
 /* ===== 内容区 ===== */
 .container{max-width:1200px;margin:0 auto;padding:20px 26px 40px}
@@ -61,7 +60,6 @@ td.mtime{white-space:nowrap;color:#5c7a94}
   <span class="value" id="updatedAt">--</span>
   <div class="legend">
     <span class="legend-item"><span class="dot today"></span>今日已更新</span>
-    <span class="legend-item"><span class="dot old"></span>今日未更新</span>
   </div>
 </div>
 
@@ -84,17 +82,12 @@ function render(data){
     html += '  <div class="group-head"><span class="g-title">' + g.title + '</span><span class="g-count">' + files.length + ' 个文件</span></div>';
     html += '  <div class="group-body">';
     if (!files.length){
-      html += '    <div class="empty-tip">该分组暂无数据文件</div>';
+      html += '    <div class="empty-tip">该分组今日暂无数据更新</div>';
     } else {
-      html += '    <table><thead><tr><th style="width:55%">文件名</th><th>今日更新</th><th>最后更新时间</th></tr></thead><tbody>';
+      html += '    <table><thead><tr><th style="width:60%">文件名</th><th>最后更新时间</th></tr></thead><tbody>';
       files.forEach(function(f){
-        var today = f.today;
-        var st = today
-          ? '<span class="status"><span class="dot today"></span><span class="txt-today">是</span></span>'
-          : '<span class="status"><span class="dot old"></span><span class="txt-old">否</span></span>';
         html += '      <tr>';
         html += '        <td class="fname">' + f.name + '</td>';
-        html += '        <td>' + st + '</td>';
         html += '        <td class="mtime">' + (f.mtime || '--') + '</td>';
         html += '      </tr>';
       });
