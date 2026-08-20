@@ -36,6 +36,7 @@ th{color:#5c7a94;font-weight:600;font-size:12px;white-space:nowrap;background:#f
 tr:last-child td{border-bottom:none}
 td.fname{word-break:break-all;line-height:1.5;color:#1a2e45}
 td.mtime{white-space:nowrap;color:#5c7a94}
+.board-tag{display:inline-block;background:#e3f0fc;color:#0B4F8A;border:1px solid #bcd9f2;border-radius:4px;padding:2px 8px;font-size:12px;white-space:nowrap}
 .status{display:inline-flex;align-items:center;gap:5px;font-weight:600;white-space:nowrap}
 .status .txt-today{color:#26a65b}
 .status .txt-old{color:#f39c12}
@@ -84,10 +85,11 @@ function render(data){
     if (!files.length){
       html += '    <div class="empty-tip">该分组今日暂无数据更新</div>';
     } else {
-      html += '    <table><thead><tr><th style="width:60%">文件名</th><th>最后更新时间</th></tr></thead><tbody>';
+      html += '    <table><thead><tr><th style="width:50%">文件名</th><th>数据归属</th><th>最后更新时间</th></tr></thead><tbody>';
       files.forEach(function(f){
         html += '      <tr>';
         html += '        <td class="fname">' + f.name + '</td>';
+        html += '        <td><span class="board-tag">' + (f.board || '—') + '</span></td>';
         html += '        <td class="mtime">' + (f.mtime || '--') + '</td>';
         html += '      </tr>';
       });
