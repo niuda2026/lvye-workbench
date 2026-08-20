@@ -105,6 +105,17 @@
           "file": "110工单/110工单看板.html"
         }
       ]
+    },
+    {
+      "title": "数据中心",
+      "short": "数据",
+      "items": [
+        {
+          "key": "data_center",
+          "label": "源数据更新状态",
+          "file": "data_center.html"
+        }
+      ]
     }
   ]
 }

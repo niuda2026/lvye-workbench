@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>数据中心 - 源数据更新状态</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;font-family:'Segoe UI','Microsoft YaHei','PingFang SC',Arial,sans-serif;font-size:13px;color:#1a2e45;background:#F0F6FC}
+
+/* ===== 顶部横幅 ===== */
+.page-header{background:linear-gradient(135deg,#0A3D6B,#0B4F8A 55%,#1E88E5);color:#fff;padding:18px 26px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.page-header .brand{font-size:15px;font-weight:700;letter-spacing:2px;color:#fff;background:rgba(255,255,255,.14);padding:4px 10px;border-radius:6px}
+.page-header .title{font-size:20px;font-weight:700;letter-spacing:1px}
+.page-header .sub{font-size:12px;color:#C9DBEC;letter-spacing:1px}
+
+.updated-bar{background:#fff;border-bottom:1px solid #dbe7f2;padding:10px 26px;font-size:13px;color:#2c4a66;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.updated-bar .label{color:#8198ad}
+.updated-bar .value{font-weight:600;color:#0B4F8A}
+.updated-bar .legend{margin-left:auto;display:flex;align-items:center;gap:16px;font-size:12px;color:#5c7a94}
+.legend-item{display:flex;align-items:center;gap:5px}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.dot.today{background:#26a65b}
+.dot.old{background:#f39c12}
+
+/* ===== 内容区 ===== */
+.container{max-width:1200px;margin:0 auto;padding:20px 26px 40px}
+.group-card{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(11,79,138,.08);margin-bottom:22px;overflow:hidden;border:1px solid #dbe7f2}
+.group-head{background:linear-gradient(90deg,#0B4F8A,#1E88E5);color:#fff;padding:12px 18px;display:flex;align-items:center;gap:10px}
+.group-head .g-title{font-size:15px;font-weight:700;letter-spacing:1px}
+.group-head .g-count{background:rgba(255,255,255,.2);border-radius:12px;padding:2px 10px;font-size:12px}
+.group-body{padding:6px 18px 14px}
+
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #eef3f8;font-size:13px;vertical-align:top}
+th{color:#5c7a94;font-weight:600;font-size:12px;white-space:nowrap;background:#f7fafd}
+tr:last-child td{border-bottom:none}
+td.fname{word-break:break-all;line-height:1.5;color:#1a2e45}
+td.mtime{white-space:nowrap;color:#5c7a94}
+.status{display:inline-flex;align-items:center;gap:5px;font-weight:600;white-space:nowrap}
+.status .txt-today{color:#26a65b}
+.status .txt-old{color:#f39c12}
+.empty-tip{padding:30px 18px;text-align:center;color:#90a4ae;font-size:14px}
+
+/* 加载失败提示 */
+.error-tip{max-width:1200px;margin:40px auto;padding:40px 20px;background:#fff;border-radius:10px;border:1px solid #f0c8c8;text-align:center;color:#c0392b}
+.error-tip .big{font-size:34px;margin-bottom:10px}
+@media (max-width:640px){th,td{padding:8px 6px}td.mtime{white-space:normal}}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="brand">兴达</div>
+  <div class="title">数据中心</div>
+  <div class="sub">源数据文件更新状态</div>
+</div>
+
+<div class="updated-bar">
+  <span class="label">数据生成时间：</span>
+  <span class="value" id="updatedAt">--</span>
+  <div class="legend">
+    <span class="legend-item"><span class="dot today"></span>今日已更新</span>
+    <span class="legend-item"><span class="dot old"></span>今日未更新</span>
+  </div>
+</div>
+
+<div class="container" id="container"></div>
+
+<script>
+function render(data){
+  var container = document.getElementById('container');
+  if (!data || !data.groups || !data.groups.length){
+    container.innerHTML = '<div class="group-card"><div class="empty-tip">暂无数据，请稍后刷新重试</div></div>';
+    return;
+  }
+  document.getElementById('updatedAt').textContent = data.updated_at || '--';
+
+  var html = '';
+  data.groups.forEach(function(g){
+    var files = g.files || [];
+    html += '<div class="group-card">';
+    html += '  <div class="group-head"><span class="g-title">' + g.title + '</span><span class="g-count">' + files.length + ' 个文件</span></div>';
+    html += '  <div class="group-body">';
+    if (!files.length){
+      html += '    <div class="empty-tip">该分组暂无数据文件</div>';
+    } else {
+      html += '    <table><thead><tr><th style="width:55%">文件名</th><th>今日更新</th><th>最后更新时间</th></tr></thead><tbody>';
+      files.forEach(function(f){
+        var today = f.today;
+        var st = today
+          ? '<span class="status"><span class="dot today"></span><span class="txt-today">是</span></span>'
+          : '<span class="status"><span class="dot old"></span><span class="txt-old">否</span></span>';
+        html += '      <tr>';
+        html += '        <td class="fname">' + f.name + '</td>';
+        html += '        <td>' + st + '</td>';
+        html += '        <td class="mtime">' + (f.mtime || '--') + '</td>';
+        html += '      </tr>';
+      });
+      html += '    </tbody></table>';
+    }
+    html += '  </div></div>';
+  });
+  container.innerHTML = html;
+}
+
+function load(){
+  fetch('data_center.json', { cache: 'no-store' })
+    .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(render)
+    .catch(function(){
+      document.getElementById('container').innerHTML =
+        '<div class="error-tip"><div class="big">⚠</div>无法加载 data_center.json，请确认该文件与当前页面位于同一目录后刷新重试。</div>';
+    });
+}
+load();
+</script>
+</body>
+</html>
