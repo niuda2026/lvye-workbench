@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-08-21 07:17:29",
+  "updated_at": "2026-08-21 07:24:01",
   "boards": [
     {
       "group": "交通安全",
@@ -104,7 +104,7 @@ window.DATA_CENTER = {
       "pages": [
         "护航服装看板"
       ],
-      "data_mtime": "2026-08-21 07:16:16",
+      "data_mtime": "2026-08-21 07:18:20",
       "all_synced": true,
       "synced_count": 2,
       "missing_count": 0,
@@ -130,10 +130,10 @@ window.DATA_CENTER = {
       "pages": [
         "兴达履约项目看板"
       ],
-      "data_mtime": "2026-08-21 06:46:29",
+      "data_mtime": "2026-08-21 07:23:33",
       "all_synced": false,
-      "synced_count": 3,
-      "missing_count": 3,
+      "synced_count": 4,
+      "missing_count": 2,
       "unsynced_count": 0,
       "sources": [
         {
@@ -144,9 +144,9 @@ window.DATA_CENTER = {
         },
         {
           "type": "巡检工单列表",
-          "latest": "—",
-          "mtime": "--",
-          "synced": null
+          "latest": "巡检工单列表_1787093276934.xls",
+          "mtime": "2026-08-19 06:48:17",
+          "synced": true
         },
         {
           "type": "巡检平台站点检核",

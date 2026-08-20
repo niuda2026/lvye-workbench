@@ -2,116 +2,161 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>数据中心 - 源数据更新状态</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据中心 - 源数据同步监控</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{min-height:100%;font-family:'Segoe UI','Microsoft YaHei','PingFang SC',Arial,sans-serif;font-size:13px;color:#1a2e45;background:#F0F6FC}
-
-/* ===== 顶部横幅 ===== */
-.page-header{background:linear-gradient(135deg,#0A3D6B,#0B4F8A 55%,#1E88E5);color:#fff;padding:18px 26px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.page-header .brand{font-size:15px;font-weight:700;letter-spacing:2px;color:#fff;background:rgba(255,255,255,.14);padding:4px 10px;border-radius:6px}
-.page-header .title{font-size:20px;font-weight:700;letter-spacing:1px}
-.page-header .sub{font-size:12px;color:#C9DBEC;letter-spacing:1px}
-
-.updated-bar{background:#fff;border-bottom:1px solid #dbe7f2;padding:10px 26px;font-size:13px;color:#2c4a66;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.updated-bar .label{color:#8198ad}
-.updated-bar .value{font-weight:600;color:#0B4F8A}
-.updated-bar .legend{margin-left:auto;display:flex;align-items:center;gap:16px;font-size:12px;color:#5c7a94}
-.legend-item{display:flex;align-items:center;gap:5px}
-.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
-.dot.today{background:#26a65b}
-
-/* ===== 内容区 ===== */
-.container{max-width:1200px;margin:0 auto;padding:20px 26px 40px}
-.group-card{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(11,79,138,.08);margin-bottom:22px;overflow:hidden;border:1px solid #dbe7f2}
-.group-head{background:linear-gradient(90deg,#0B4F8A,#1E88E5);color:#fff;padding:12px 18px;display:flex;align-items:center;gap:10px}
-.group-head .g-title{font-size:15px;font-weight:700;letter-spacing:1px}
-.group-head .g-count{background:rgba(255,255,255,.2);border-radius:12px;padding:2px 10px;font-size:12px}
-.group-body{padding:6px 18px 14px}
-
-table{width:100%;border-collapse:collapse}
-th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #eef3f8;font-size:13px;vertical-align:top}
-th{color:#5c7a94;font-weight:600;font-size:12px;white-space:nowrap;background:#f7fafd}
-tr:last-child td{border-bottom:none}
-td.fname{word-break:break-all;line-height:1.5;color:#1a2e45}
-td.mtime{white-space:nowrap;color:#5c7a94}
-.board-tag{display:inline-block;background:#e3f0fc;color:#0B4F8A;border:1px solid #bcd9f2;border-radius:4px;padding:2px 8px;font-size:12px;white-space:nowrap}
-.status{display:inline-flex;align-items:center;gap:5px;font-weight:600;white-space:nowrap}
-.status .txt-today{color:#26a65b}
-.status .txt-old{color:#f39c12}
-.empty-tip{padding:30px 18px;text-align:center;color:#90a4ae;font-size:14px}
-
-/* 加载失败提示 */
-.error-tip{max-width:1200px;margin:40px auto;padding:40px 20px;background:#fff;border-radius:10px;border:1px solid #f0c8c8;text-align:center;color:#c0392b}
-.error-tip .big{font-size:34px;margin-bottom:10px}
-@media (max-width:640px){th,td{padding:8px 6px}td.mtime{white-space:normal}}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    padding: 24px;
+  }
+  .header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .header h1 { font-size: 22px; color: #1a1a2e; }
+  .header .updated { font-size: 13px; color: #888; }
+  .legend {
+    display: flex;
+    gap: 18px;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+    padding: 10px 14px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+  .dot.ok { background: #22c55e; }
+  .dot.warn { background: #f59e0b; }
+  .dot.miss { background: #ef4444; }
+  .board {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    margin-bottom: 18px;
+    overflow: hidden;
+  }
+  .board-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .board-title { font-size: 16px; font-weight: 600; }
+  .board-pages { font-size: 12px; color: #888; margin-top: 4px; }
+  .badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .badge.ok { background: #dcfce7; color: #16a34a; }
+  .badge.warn { background: #fef3c7; color: #d97706; }
+  .badge.miss { background: #fee2e2; color: #dc2626; }
+  .board-meta { padding: 10px 18px 0; font-size: 12px; color: #999; }
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  th, td {
+    padding: 10px 18px;
+    text-align: left;
+    font-size: 13px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  th { background: #fafbfc; color: #666; font-weight: 600; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+  .fname { color: #2563eb; word-break: break-all; }
+  .st {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .st.ok { background: #dcfce7; color: #16a34a; }
+  .st.warn { background: #fef3c7; color: #d97706; }
+  .st.miss { background: #fee2e2; color: #dc2626; }
+  .empty { padding: 16px 18px; color: #999; font-size: 13px; }
 </style>
 </head>
 <body>
-
-<div class="page-header">
-  <div class="brand">兴达</div>
-  <div class="title">数据中心</div>
-  <div class="sub">源数据文件更新状态</div>
-</div>
-
-<div class="updated-bar">
-  <span class="label">数据生成时间：</span>
-  <span class="value" id="updatedAt">--</span>
-  <div class="legend">
-    <span class="legend-item"><span class="dot today"></span>今日已更新</span>
+  <div class="header">
+    <h1>数据中心</h1>
+    <span class="updated" id="updatedAt"></span>
   </div>
-</div>
+  <div class="legend">
+    <span><span class="dot ok"></span>已同步</span>
+    <span><span class="dot warn"></span>源数据已更新，看板未同步</span>
+    <span><span class="dot miss"></span>未找到源数据</span>
+  </div>
+  <div id="boards"></div>
 
-<div class="container" id="container"></div>
-
-<script src="data_center.js" onerror="window.__dcJsFailed=true"></script>
+<script src="data_center.js"></script>
 <script>
-function render(data){
-  var container = document.getElementById('container');
-  if (!data || !data.groups || !data.groups.length){
-    container.innerHTML = '<div class="group-card"><div class="empty-tip">暂无数据，请稍后刷新重试</div></div>';
-    return;
-  }
-  document.getElementById('updatedAt').textContent = data.updated_at || '--';
-
-  var html = '';
-  data.groups.forEach(function(g){
-    var files = g.files || [];
-    html += '<div class="group-card">';
-    html += '  <div class="group-head"><span class="g-title">' + g.title + '</span><span class="g-count">' + files.length + ' 个文件</span></div>';
-    html += '  <div class="group-body">';
-    if (!files.length){
-      html += '    <div class="empty-tip">该分组今日暂无数据更新</div>';
-    } else {
-      html += '    <table><thead><tr><th style="width:50%">文件名</th><th>数据归属</th><th>最后更新时间</th></tr></thead><tbody>';
-      files.forEach(function(f){
-        html += '      <tr>';
-        html += '        <td class="fname">' + f.name + '</td>';
-        html += '        <td><span class="board-tag">' + (f.board || '—') + '</span></td>';
-        html += '        <td class="mtime">' + (f.mtime || '--') + '</td>';
-        html += '      </tr>';
-      });
-      html += '    </tbody></table>';
+  function render(data) {
+    document.getElementById('updatedAt').textContent = '数据生成时间：' + (data.updated_at || '--');
+    var wrap = document.getElementById('boards');
+    wrap.innerHTML = '';
+    if (!data.boards || !data.boards.length) {
+      wrap.innerHTML = '<div class="empty">暂无看板数据</div>';
+      return;
     }
-    html += '  </div></div>';
-  });
-  container.innerHTML = html;
-}
+    data.boards.forEach(function(b) {
+      var card = document.createElement('div');
+      card.className = 'board';
 
-function load(){
-  // 优先使用 data_center.js（script 标签加载，file:// 本地打开也可用）；失败再降级 fetch json
-  if (window.DATA_CENTER) { render(window.DATA_CENTER); return; }
-  fetch('data_center.json', { cache: 'no-store' })
-    .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-    .then(render)
-    .catch(function(){
-      document.getElementById('container').innerHTML =
-        '<div class="error-tip"><div class="big">⚠</div>无法加载 data_center.json，请确认该文件与当前页面位于同一目录后刷新重试。</div>';
+      var stClass = b.all_synced ? 'ok' : (b.missing_count > 0 ? 'miss' : 'warn');
+      var stText = b.all_synced ? '全部已同步' : (b.missing_count > 0 ? '存在缺失源数据' : '存在未同步数据');
+      var head = document.createElement('div');
+      head.className = 'board-head';
+      head.innerHTML = '<div><div class="board-title">' + b.title + '</div>' +
+        '<div class="board-pages">子页面：' + (b.pages || []).join('、') + '</div></div>' +
+        '<div class="badge ' + stClass + '">' + stText + '</div>';
+      card.appendChild(head);
+
+      var meta = document.createElement('div');
+      meta.className = 'board-meta';
+      meta.textContent = '看板数据文件最后同步时间：' + (b.data_mtime || '--') +
+        '　|　源数据 ' + b.synced_count + '/' + (b.sources ? b.sources.length : 0) + ' 已同步' +
+        (b.unsynced_count ? '　|　未同步 ' + b.unsynced_count : '') +
+        (b.missing_count ? '　|　缺失 ' + b.missing_count : '');
+      card.appendChild(meta);
+
+      var table = document.createElement('table');
+      var trh = document.createElement('tr');
+      trh.innerHTML = '<th>源数据类型</th><th>最新源数据文件</th><th>源数据更新时间</th><th>同步状态</th>';
+      table.appendChild(trh);
+      (b.sources || []).forEach(function(s) {
+        var tr = document.createElement('tr');
+        var st = s.synced === true ? '<span class="st ok">已同步</span>'
+          : (s.synced === false ? '<span class="st warn">未同步</span>'
+             : '<span class="st miss">未找到源数据</span>');
+        tr.innerHTML = '<td>' + s.type + '</td>' +
+          '<td class="fname">' + s.latest + '</td>' +
+          '<td>' + s.mtime + '</td>' +
+          '<td>' + st + '</td>';
+        table.appendChild(tr);
+      });
+      card.appendChild(table);
+      wrap.appendChild(card);
     });
-}
-load();
+  }
+
+  if (window.DATA_CENTER) {
+    render(window.DATA_CENTER);
+  } else {
+    fetch('data_center.json').then(function(r){ return r.json(); }).then(render).catch(function(){
+      document.getElementById('boards').innerHTML = '<div class="empty">数据加载失败，请确认 data_center.js / data_center.json 存在</div>';
+    });
+  }
 </script>
 </body>
 </html>
