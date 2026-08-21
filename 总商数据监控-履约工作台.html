@@ -350,13 +350,13 @@ function buildNav() {
 
     html += '<div class="nav-group">';
     html += '<div class="nav-group-header" onclick="toggleGroup(' + gi + ', this)">';
-    html += '<span class="nav-group-arrow" id="arrow-' + gi + '">▼</span>';
+    html += '<span class="nav-group-arrow collapsed" id="arrow-' + gi + '">▼</span>';
     html += '<span class="nav-group-title"><span class="full">' + escHtml(group.title) + '</span><span class="short">' + escHtml(group.short || group.title) + '</span></span>';
     html += '</div>';
 
     var itemCount = items.length;
     var lineHeight = 32; // approximate px per item
-    html += '<div class="nav-items" id="items-' + gi + '" style="max-height:' + (itemCount * lineHeight) + 'px">';
+    html += '<div class="nav-items collapsed" id="items-' + gi + '" style="max-height:0px">';
 
     items.forEach(function(item, ii) {
       var hasFile = !!item.file;
