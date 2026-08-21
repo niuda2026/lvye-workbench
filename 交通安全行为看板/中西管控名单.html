@@ -1463,23 +1463,27 @@ function processControlDataCSV(text){
   var lines = text.split(/[\r\n]+/).filter(function(l){return l.trim();});
   if(lines.length<2){alert('CSV文件为空');return;}
   var headers = lines[0].split(',');
-  var siteCol=-1,riderCol=-1,typeCol=-1;
+  var cityCol=-1,siteCol=-1,riderCol=-1,typeCol=-1;
   for(var i=0;i<headers.length;i++){
     var h=headers[i].replace(/"/g,'').trim();
+    if(h.indexOf('城市')>=0)cityCol=i;
     if(h.indexOf('站点')>=0)siteCol=i;
     if(h.indexOf('骑手')>=0&&h.indexOf('姓名')<0)riderCol=i;
     if(h.indexOf('违规')>=0||h.indexOf('类型')>=0)typeCol=i;
   }
-  var excelMap = {};
+  var excelRows=[];
   for(var i=1;i<lines.length;i++){
     var row=lines[i].split(',');
-    var site=(row[siteCol]||'').replace(/"/g,'').trim();
-    if(!site||site.indexOf('兴必达')<0)continue;
     var rid=(row[riderCol]||'').replace(/"/g,'').trim().replace(/\.0$/,'');
     if(!rid)continue;
-    excelMap[rid]=(row[typeCol]||'').replace(/"/g,'').trim();
+    excelRows.push({
+      rid:rid,
+      city:(row[cityCol]||'').replace(/"/g,'').trim(),
+      site:(row[siteCol]||'').replace(/"/g,'').trim(),
+      type:(row[typeCol]||'').replace(/"/g,'').trim()
+    });
   }
-  if(Object.keys(excelMap).length===0){alert('未找到兴必达站点记录');return;}
+  if(excelRows.length===0){alert('未在文件中找到有效的管控名单记录');return;}
 
   var riderMap = {};
   for(var i=0;i<RIDERS.length;i++){
@@ -1488,28 +1492,27 @@ function processControlDataCSV(text){
   }
 
   var data=[];
-  var matched=0, notFound=0;
-  Object.keys(excelMap).forEach(function(rid){
-    var rr=riderMap[rid];
-    if(!rr){notFound++;return;}
+  var notFound=0;
+  for(var i=0;i<excelRows.length;i++){
+    var er=excelRows[i];
+    var rr=riderMap[er.rid];
+    if(!rr){notFound++;}
     data.push({
-      city:rr.city||'-',
-      site:rr.site||'-',
-      rider_id:rid,
-      rider_name:rr.rider||'-',
-      type:excelMap[rid]||'-',
-      helmet_day:rr.helmet_day?rr.helmet_day.rate:null,
-      speed_day:rr.speed_day?rr.speed_day.rate:null,
-      redlight_day:rr.redlight_day?rr.redlight_day.rate:null,
-      reverse_day:rr.reverse_day?rr.reverse_day.rate:null
+      city:er.city||'-',
+      site:er.site||'-',
+      rider_id:er.rid,
+      rider_name:rr?(rr.rider||'-'):'-',
+      type:er.type||'-',
+      helmet_day:rr&&rr.helmet_day?rr.helmet_day.rate:null,
+      speed_day:rr&&rr.speed_day?rr.speed_day.rate:null,
+      redlight_day:rr&&rr.redlight_day?rr.redlight_day.rate:null,
+      reverse_day:rr&&rr.reverse_day?rr.reverse_day.rate:null
     });
-    matched++;
-  });
+  }
 
-  if(data.length===0){alert('Excel中共筛选到 '+Object.keys(excelMap).length+' 条兴必达记录，但在RIDERS中均未匹配到骑手ID');return;}
   CONTROL_DATA=data;
-  var msg='成功导入 '+matched+' 条管控名单记录';
-  if(notFound>0)msg+='（'+notFound+' 条骑手ID在RIDERS中未找到）';
+  var msg='成功导入 '+data.length+' 条管控名单记录';
+  if(notFound>0)msg+='（其中 '+notFound+' 条骑手未在RIDERS数据中匹配到日率）';
   alert(msg);
   initControlFilters();
   controlPage=1;
