@@ -1535,15 +1535,16 @@ function initControlFilters(){
     if(r.site&&sites.indexOf(r.site)<0)sites.push(r.site);
   });
   cities.sort();sites.sort();
-  fillMsOptions('ms-control-city',cities);
-  fillMsOptions('ms-control-site',sites);
+  fillMsOptions('ms-control-city',cities,controlFilter.city);
+  fillMsOptions('ms-control-site',sites,controlFilter.site);
 }
 
-function fillMsOptions(msId,opts){
+function fillMsOptions(msId,opts,checkedVals){
   var drop=document.getElementById(msId+'-drop');
   if(!drop)return;
   drop.innerHTML=opts.map(function(o){
-    return '<label class="ms-item" onclick="toggleMsItem(\''+msId+'\',\''+o+'\')"><input type="checkbox" value="'+o+'"><span>'+o+'</span></label>';
+    var chk=(checkedVals&&checkedVals.indexOf(o)>=0)?' checked':'';
+    return '<label class="ms-item'+chk+'" onclick="toggleMsItem(\''+msId+'\',\''+o+'\')"><input type="checkbox" value="'+o+'"'+chk+'><span>'+o+'</span></label>';
   }).join('');
 }
 
@@ -1555,6 +1556,7 @@ function toggleMsItem(msId,val){
   item.checked=!item.checked;
   item.parentElement.classList.toggle('checked',item.checked);
   updateMsLabel(msId);
+  applyControlFilter();
 }
 
 function updateMsLabel(msId){
