@@ -1,176 +1,393 @@
 {
-  "updated_at": "2026-08-21 09:27:39",
-  "boards": [
+  "updated_at": "2026-08-21 16:38:37",
+  "groups": [
     {
-      "group": "交通安全",
-      "title": "交通安全行为看板集群",
-      "pages": [
-        "兴达丨交通安全行为看板",
-        "安全权益看板",
-        "站长安全评级看板",
-        "骑手交通行为明细看板",
-        "骑手服装标准化看板",
-        "高速监控看板"
-      ],
-      "data_mtime": "2026-08-21 09:27:19",
-      "all_synced": true,
-      "synced_count": 13,
-      "missing_count": 0,
-      "unsynced_count": 0,
-      "sources": [
+      "title": "交通安全",
+      "monitor": {
+        "data_files": [
+          "交通安全行为看板\\data.js"
+        ],
+        "data_mtime": "2026-08-21 09:27:19",
+        "all_synced": true,
+        "synced_count": 13,
+        "missing_count": 0,
+        "unsynced_count": 0,
+        "sources": [
+          {
+            "type": "站点-戴盔",
+            "latest": "戴盔_2026-08-20-2026-08-20(统计日期)_1787270542778.xlsx",
+            "mtime": "2026-08-21 08:02:28",
+            "synced": true
+          },
+          {
+            "type": "站点-速度",
+            "latest": "速度_2026-08-20-2026-08-20(统计日期)_1787270576048.xlsx",
+            "mtime": "2026-08-21 08:03:03",
+            "synced": true
+          },
+          {
+            "type": "站点-闯红灯",
+            "latest": "_闯红灯_2026-08-20-2026-08-20(统计日期)_1787270864031.xlsx",
+            "mtime": "2026-08-21 08:07:49",
+            "synced": true
+          },
+          {
+            "type": "站点-逆行",
+            "latest": "_逆行_2026-08-20-2026-08-20(统计日期)_1787270831356.xlsx",
+            "mtime": "2026-08-21 08:07:17",
+            "synced": true
+          },
+          {
+            "type": "骑手维度-戴盔",
+            "latest": "戴盔-骑手维度_2026-08-20-2026-08-20(统计日期)_1787270554068.xlsx",
+            "mtime": "2026-08-21 08:02:40",
+            "synced": true
+          },
+          {
+            "type": "骑手维度-速度",
+            "latest": "速度-骑手维度_2026-08-20-2026-08-20(统计日期)_1787270589587.xlsx",
+            "mtime": "2026-08-21 08:03:16",
+            "synced": true
+          },
+          {
+            "type": "骑手维度-闯红灯",
+            "latest": "_闯红灯-骑手维度_2026-08-20-2026-08-20(统计日期)_1787270875414.xlsx",
+            "mtime": "2026-08-21 08:08:12",
+            "synced": true
+          },
+          {
+            "type": "骑手维度-逆行",
+            "latest": "_逆行-骑手维度_2026-08-20-2026-08-20(统计日期)_1787270842597.xlsx",
+            "mtime": "2026-08-21 08:07:29",
+            "synced": true
+          },
+          {
+            "type": "安全指标监控(骑手)",
+            "latest": "安全指标监控_骑手维度_20260820-20260820(日期)_1787265635168.xlsx",
+            "mtime": "2026-08-21 06:40:52",
+            "synced": true
+          },
+          {
+            "type": "站维度",
+            "latest": "站维度_20260820-20260820(日期)_1787275093528.xlsx",
+            "mtime": "2026-08-21 09:18:18",
+            "synced": true
+          },
+          {
+            "type": "抽检不合格明细",
+            "latest": "_抽检不合格的骑手明细_2026-08-17-2026-08-19(天)_1787178932000.xlsx",
+            "mtime": "2026-08-20 06:35:41",
+            "synced": true
+          },
+          {
+            "type": "加盟商指标达成",
+            "latest": "_加盟商指标达成情况_2026-08-17-2026-08-19(天)_1787178892970.xlsx",
+            "mtime": "2026-08-20 06:35:14",
+            "synced": true
+          },
+          {
+            "type": "未剔除恶劣天气(单量)",
+            "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260820-20260820(天)_1787264990137.xlsx",
+            "mtime": "2026-08-21 06:30:04",
+            "synced": true
+          }
+        ]
+      },
+      "boards": [
         {
-          "type": "站点-戴盔",
-          "latest": "戴盔_2026-08-20-2026-08-20(统计日期)_1787270542778.xlsx",
-          "mtime": "2026-08-21 08:02:28",
-          "synced": true
+          "key": "safe_equity",
+          "label": "安全权益看板",
+          "file": "D:/兴达数据库/交通安全行为看板/安全权益看板.html",
+          "tabs": [
+            "🛡️ 安全权益看板",
+            "🏅 站长安全评级看板",
+            "👤 骑手交通行为明细",
+            "📋 中西管控名单",
+            "⚡ 高速监控看板-站",
+            "🏍️ 高速监控看板-骑手"
+          ],
+          "tab_keys": [
+            "equity",
+            "rating",
+            "rider",
+            "control",
+            "speed-site",
+            "speed-rider"
+          ],
+          "monitored": true,
+          "available": true
         },
         {
-          "type": "站点-速度",
-          "latest": "速度_2026-08-20-2026-08-20(统计日期)_1787270576048.xlsx",
-          "mtime": "2026-08-21 08:03:03",
-          "synced": true
+          "key": "safe_station",
+          "label": "站长安全评级",
+          "file": "D:/兴达数据库/交通安全行为看板/站长安全评级看板.html",
+          "tabs": [
+            "🏅 闯红灯率/逆行率",
+            "🦺 工装检核率/美团工服率（剔除恶劣天气）"
+          ],
+          "tab_keys": [
+            "",
+            ""
+          ],
+          "monitored": true,
+          "available": true
         },
         {
-          "type": "站点-闯红灯",
-          "latest": "_闯红灯_2026-08-20-2026-08-20(统计日期)_1787270864031.xlsx",
-          "mtime": "2026-08-21 08:07:49",
-          "synced": true
+          "key": "safe_rider",
+          "label": "骑手交通行为明细",
+          "file": "D:/兴达数据库/交通安全行为看板/骑手交通行为明细看板.html",
+          "tabs": [
+            "🛡️ 安全权益看板",
+            "🏅 站长安全评级看板",
+            "👤 骑手交通行为明细",
+            "📋 中西管控名单",
+            "⚡ 高速监控看板-站",
+            "🏍️ 高速监控看板-骑手"
+          ],
+          "tab_keys": [
+            "equity",
+            "rating",
+            "rider",
+            "control",
+            "speed-site",
+            "speed-rider"
+          ],
+          "monitored": true,
+          "available": true
         },
         {
-          "type": "站点-逆行",
-          "latest": "_逆行_2026-08-20-2026-08-20(统计日期)_1787270831356.xlsx",
-          "mtime": "2026-08-21 08:07:17",
-          "synced": true
-        },
-        {
-          "type": "骑手维度-戴盔",
-          "latest": "戴盔-骑手维度_2026-08-20-2026-08-20(统计日期)_1787270554068.xlsx",
-          "mtime": "2026-08-21 08:02:40",
-          "synced": true
-        },
-        {
-          "type": "骑手维度-速度",
-          "latest": "速度-骑手维度_2026-08-20-2026-08-20(统计日期)_1787270589587.xlsx",
-          "mtime": "2026-08-21 08:03:16",
-          "synced": true
-        },
-        {
-          "type": "骑手维度-闯红灯",
-          "latest": "_闯红灯-骑手维度_2026-08-20-2026-08-20(统计日期)_1787270875414.xlsx",
-          "mtime": "2026-08-21 08:08:12",
-          "synced": true
-        },
-        {
-          "type": "骑手维度-逆行",
-          "latest": "_逆行-骑手维度_2026-08-20-2026-08-20(统计日期)_1787270842597.xlsx",
-          "mtime": "2026-08-21 08:07:29",
-          "synced": true
-        },
-        {
-          "type": "安全指标监控(骑手)",
-          "latest": "安全指标监控_骑手维度_20260820-20260820(日期)_1787265635168.xlsx",
-          "mtime": "2026-08-21 06:40:52",
-          "synced": true
-        },
-        {
-          "type": "站维度",
-          "latest": "站维度_20260820-20260820(日期)_1787275093528.xlsx",
-          "mtime": "2026-08-21 09:18:18",
-          "synced": true
-        },
-        {
-          "type": "抽检不合格明细",
-          "latest": "_抽检不合格的骑手明细_2026-08-17-2026-08-19(天)_1787178932000.xlsx",
-          "mtime": "2026-08-20 06:35:41",
-          "synced": true
-        },
-        {
-          "type": "加盟商指标达成",
-          "latest": "_加盟商指标达成情况_2026-08-17-2026-08-19(天)_1787178892970.xlsx",
-          "mtime": "2026-08-20 06:35:14",
-          "synced": true
-        },
-        {
-          "type": "未剔除恶劣天气(单量)",
-          "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260820-20260820(天)_1787264990137.xlsx",
-          "mtime": "2026-08-21 06:30:04",
-          "synced": true
+          "key": "safe_highway",
+          "label": "高速监控看板",
+          "file": "D:/兴达数据库/交通安全行为看板/高速监控看板.html",
+          "tabs": [
+            "⚡ 高速监控看板-站",
+            "🏍️ 高速监控看板-骑手"
+          ],
+          "tab_keys": [
+            "speed-site",
+            "speed-rider"
+          ],
+          "monitored": true,
+          "available": true
         }
       ]
     },
     {
-      "group": "服装标准化",
-      "title": "护航服装看板",
-      "pages": [
-        "护航服装看板"
-      ],
-      "data_mtime": "2026-08-21 08:02:00",
-      "all_synced": true,
-      "synced_count": 2,
-      "missing_count": 0,
-      "unsynced_count": 0,
-      "sources": [
+      "title": "履约项目",
+      "monitor": {
+        "data_files": [
+          "履约项目\\data.js"
+        ],
+        "data_mtime": "2026-08-21 08:08:21",
+        "all_synced": false,
+        "synced_count": 4,
+        "missing_count": 2,
+        "unsynced_count": 0,
+        "sources": [
+          {
+            "type": "报备和日常早会驳回清单",
+            "latest": "—",
+            "mtime": "--",
+            "synced": null
+          },
+          {
+            "type": "巡检工单列表",
+            "latest": "巡检工单列表_1787093276934.xls",
+            "mtime": "2026-08-19 06:48:17",
+            "synced": true
+          },
+          {
+            "type": "巡检平台站点检核",
+            "latest": "—",
+            "mtime": "--",
+            "synced": null
+          },
+          {
+            "type": "考培-学习明细记录",
+            "latest": "_考培-学习明细记录_1787265437479.xlsx",
+            "mtime": "2026-08-21 06:37:28",
+            "synced": true
+          },
+          {
+            "type": "骑手排班明细数据",
+            "latest": "骑手排班明细数据_49896033_20260821_063334.xlsx",
+            "mtime": "2026-08-21 06:34:01",
+            "synced": true
+          },
+          {
+            "type": "表单列表",
+            "latest": "表单列表_49896033_20260821_063805.xlsx",
+            "mtime": "2026-08-21 06:39:48",
+            "synced": true
+          }
+        ]
+      },
+      "boards": [
         {
-          "type": "已剔除恶劣天气",
-          "latest": "已剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260820-20260820(天)_1787265051545.xlsx",
-          "mtime": "2026-08-21 06:30:58",
-          "synced": true
-        },
-        {
-          "type": "未剔除恶劣天气",
-          "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260820-20260820(天)_1787264990137.xlsx",
-          "mtime": "2026-08-21 06:30:04",
-          "synced": true
+          "key": "project",
+          "label": "履约项目看板",
+          "file": "D:/兴达数据库/履约项目/兴达履约项目看板.html",
+          "tabs": [
+            "站点早会",
+            "履约安全检查",
+            "骑手装备标准化率",
+            "餐箱消毒看板",
+            "带刀巡检看板",
+            "充换电血压看板",
+            "线上线下考培",
+            "骑手维度执行"
+          ],
+          "tab_keys": [
+            "morning",
+            "safety",
+            "equip",
+            "box",
+            "knife",
+            "chargebp",
+            "training",
+            "rider"
+          ],
+          "monitored": true,
+          "available": true
         }
       ]
     },
     {
-      "group": "履约项目",
-      "title": "履约项目看板",
-      "pages": [
-        "兴达履约项目看板"
-      ],
-      "data_mtime": "2026-08-21 08:08:21",
-      "all_synced": false,
-      "synced_count": 4,
-      "missing_count": 2,
-      "unsynced_count": 0,
-      "sources": [
+      "title": "服装标准化",
+      "monitor": {
+        "data_files": [
+          "护航服装\\data.js",
+          "护航服装\\data_excluded.js"
+        ],
+        "data_mtime": "2026-08-21 08:02:00",
+        "all_synced": true,
+        "synced_count": 2,
+        "missing_count": 0,
+        "unsynced_count": 0,
+        "sources": [
+          {
+            "type": "已剔除恶劣天气",
+            "latest": "已剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260820-20260820(天)_1787265051545.xlsx",
+            "mtime": "2026-08-21 06:30:58",
+            "synced": true
+          },
+          {
+            "type": "未剔除恶劣天气",
+            "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260820-20260820(天)_1787264990137.xlsx",
+            "mtime": "2026-08-21 06:30:04",
+            "synced": true
+          }
+        ]
+      },
+      "boards": [
         {
-          "type": "报备和日常早会驳回清单",
-          "latest": "—",
-          "mtime": "--",
-          "synced": null
+          "key": "clothing_main",
+          "label": "护航服装看板",
+          "file": "D:/兴达数据库/护航服装/护航服装看板.html",
+          "tabs": [
+            "📊 站点维度看板",
+            "👤 骑手维度明细"
+          ],
+          "tab_keys": [
+            "station",
+            "rider"
+          ],
+          "monitored": true,
+          "available": true
         },
         {
-          "type": "巡检工单列表",
-          "latest": "巡检工单列表_1787093276934.xls",
-          "mtime": "2026-08-19 06:48:17",
-          "synced": true
+          "key": "clothing_rate",
+          "label": "服装标准化率",
+          "file": "D:/兴达数据库/交通安全行为看板/骑手服装标准化看板.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": true,
+          "available": true
+        }
+      ]
+    },
+    {
+      "title": "骑手管理",
+      "monitor": null,
+      "boards": [
+        {
+          "key": "rider_detail",
+          "label": "在职骑手详情",
+          "file": "D:/兴达数据库/在职骑手详情/在职骑手详情.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true
         },
         {
-          "type": "巡检平台站点检核",
-          "latest": "—",
-          "mtime": "--",
-          "synced": null
+          "key": "rider_control",
+          "label": "中西管控名单",
+          "file": "D:/兴达数据库/交通安全行为看板/中西管控名单.html",
+          "tabs": [
+            "📋 中西管控名单"
+          ],
+          "tab_keys": [
+            "control"
+          ],
+          "monitored": false,
+          "available": true
+        }
+      ]
+    },
+    {
+      "title": "保险",
+      "monitor": null,
+      "boards": [
+        {
+          "key": "ins_meituan",
+          "label": "美团保险",
+          "file": "D:/兴达数据库/骑手职业伤害保障/兴必达_骑手职业伤害保障数据看板.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true
         },
         {
-          "type": "考培-学习明细记录",
-          "latest": "_考培-学习明细记录_1787265437479.xlsx",
-          "mtime": "2026-08-21 06:37:28",
-          "synced": true
+          "key": "ins_subsidy",
+          "label": "保险赔付补贴监控",
+          "file": "D:/兴达数据库/骑手保障补贴/专送合作商骑手保障补贴考核看板.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true
         },
         {
-          "type": "骑手排班明细数据",
-          "latest": "骑手排班明细数据_49896033_20260821_063334.xlsx",
-          "mtime": "2026-08-21 06:34:01",
-          "synced": true
+          "key": "ins_rate",
+          "label": "保险赔付率解读",
+          "file": null,
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": false
         },
         {
-          "type": "表单列表",
-          "latest": "表单列表_49896033_20260821_063805.xlsx",
-          "mtime": "2026-08-21 06:39:48",
-          "synced": true
+          "key": "ins_xingda",
+          "label": "兴达美团保险看板",
+          "file": null,
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": false
+        }
+      ]
+    },
+    {
+      "title": "公司风险管理系统",
+      "monitor": null,
+      "boards": [
+        {
+          "key": "gongdan",
+          "label": "110工单",
+          "file": "D:/兴达数据库/110工单/110工单看板.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true
         }
       ]
     }

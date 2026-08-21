@@ -8,51 +8,65 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
-    background: #f5f7fa;
+    background: linear-gradient(135deg, #eef3fb 0%, #f7f9fd 100%);
     color: #333;
-    padding: 24px;
+    min-height: 100vh;
   }
-  .header {
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-    margin-bottom: 8px;
+  .topbar {
+    background: linear-gradient(135deg, #0a2a4a 0%, #0B4F8A 60%, #1E88E5 100%);
+    padding: 26px 32px 20px;
+    color: #fff;
   }
-  .header h1 { font-size: 22px; color: #1a1a2e; }
-  .header .updated { font-size: 13px; color: #888; }
+  .topbar h1 { font-size: 24px; font-weight: 700; letter-spacing: .5px; }
+  .topbar .sub { margin-top: 6px; font-size: 13px; opacity: .85; }
   .legend {
-    display: flex;
+    display: inline-flex;
     gap: 18px;
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 20px;
-    padding: 10px 14px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    margin-top: 14px;
+    padding: 8px 16px;
+    background: rgba(255,255,255,.12);
+    border-radius: 22px;
+    font-size: 12px;
+    color: #eaf3ff;
+    flex-wrap: wrap;
   }
   .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
-  .dot.ok { background: #22c55e; }
-  .dot.warn { background: #f59e0b; }
-  .dot.miss { background: #ef4444; }
-  .board {
+  .dot.ok { background: #4ade80; box-shadow: 0 0 6px rgba(74,222,128,.8); }
+  .dot.warn { background: #fbbf24; box-shadow: 0 0 6px rgba(251,191,36,.8); }
+  .dot.miss { background: #f87171; box-shadow: 0 0 6px rgba(248,113,113,.8); }
+  .dot.none { background: #94a3b8; }
+
+  .container { max-width: 1240px; margin: 0 auto; padding: 24px 28px 48px; }
+
+  .group {
     background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.06);
-    margin-bottom: 18px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(11,79,138,.08);
+    margin-bottom: 22px;
     overflow: hidden;
+    border: 1px solid #e6eef8;
   }
-  .board-head {
+  .group-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 18px;
-    border-bottom: 1px solid #eee;
+    padding: 14px 20px;
+    background: linear-gradient(90deg, #f3f8fe 0%, #ffffff 100%);
+    border-bottom: 1px solid #e6eef8;
     flex-wrap: wrap;
     gap: 8px;
   }
-  .board-title { font-size: 16px; font-weight: 600; }
-  .board-pages { font-size: 12px; color: #888; margin-top: 4px; }
+  .group-title { font-size: 17px; font-weight: 700; color: #0B4F8A; }
+  .group-title::before {
+    content: '';
+    display: inline-block;
+    width: 4px; height: 16px;
+    background: linear-gradient(180deg, #1E88E5, #0B4F8A);
+    border-radius: 2px;
+    margin-right: 10px;
+    vertical-align: -2px;
+  }
+  .group-meta { font-size: 12px; color: #8899aa; }
   .badge {
     padding: 4px 12px;
     border-radius: 20px;
@@ -63,16 +77,69 @@
   .badge.ok { background: #dcfce7; color: #16a34a; }
   .badge.warn { background: #fef3c7; color: #d97706; }
   .badge.miss { background: #fee2e2; color: #dc2626; }
-  .board-meta { padding: 10px 18px 0; font-size: 12px; color: #999; }
-  table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-  th, td {
-    padding: 10px 18px;
-    text-align: left;
-    font-size: 13px;
-    border-bottom: 1px solid #f0f0f0;
+  .badge.none { background: #f1f5f9; color: #64748b; }
+
+  .group-body { padding: 4px 0; }
+
+  .board-row {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px 20px;
+    border-bottom: 1px solid #f2f6fb;
+    gap: 14px;
+    flex-wrap: wrap;
   }
-  th { background: #fafbfc; color: #666; font-weight: 600; white-space: nowrap; }
-  tr:last-child td { border-bottom: none; }
+  .board-row:last-child { border-bottom: none; }
+  .board-name {
+    min-width: 150px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a3353;
+    padding-top: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .board-name .mark { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 10px; }
+  .mark.on { background: #e0f2fe; color: #0369a1; }
+  .mark.off { background: #f1f5f9; color: #64748b; }
+  .tabs {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-width: 260px;
+  }
+  .tab-chip {
+    padding: 3px 10px;
+    border-radius: 14px;
+    font-size: 12px;
+    background: #f0f5fc;
+    color: #3b5b7d;
+    border: 1px solid #dbe7f5;
+  }
+  .tab-chip.single { background: #f8fafc; color: #94a3b8; border-style: dashed; }
+
+  .monitor-wrap { border-top: 1px dashed #dbe7f5; background: #fbfdff; }
+  .monitor-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    font-size: 12px;
+    color: #7a8aa0;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .monitor-head b { color: #0B4F8A; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td {
+    padding: 9px 20px;
+    text-align: left;
+    font-size: 12.5px;
+    border-top: 1px solid #f0f4fa;
+  }
+  th { background: #f6fafd; color: #5a7086; font-weight: 600; white-space: nowrap; }
   .fname { color: #2563eb; word-break: break-all; }
   .st {
     display: inline-block;
@@ -84,68 +151,97 @@
   .st.ok { background: #dcfce7; color: #16a34a; }
   .st.warn { background: #fef3c7; color: #d97706; }
   .st.miss { background: #fee2e2; color: #dc2626; }
-  .empty { padding: 16px 18px; color: #999; font-size: 13px; }
+  .none-tip { padding: 14px 20px; font-size: 12.5px; color: #94a3b8; }
+  .none-tip::before { content: 'ⓘ '; }
+  .empty { padding: 40px; text-align: center; color: #94a3b8; font-size: 14px; }
+  .footer { text-align: center; color: #a0b0c0; font-size: 12px; padding: 10px 0 20px; }
 </style>
 </head>
 <body>
-  <div class="header">
+  <div class="topbar">
     <h1>数据中心</h1>
-    <span class="updated" id="updatedAt"></span>
+    <div class="sub" id="updatedAt">数据生成时间：--</div>
+    <div class="legend">
+      <span><span class="dot ok"></span>已同步</span>
+      <span><span class="dot warn"></span>源数据已更新，看板未同步</span>
+      <span><span class="dot miss"></span>未找到源数据</span>
+      <span><span class="dot none"></span>暂无监控</span>
+    </div>
   </div>
-  <div class="legend">
-    <span><span class="dot ok"></span>已同步</span>
-    <span><span class="dot warn"></span>源数据已更新，看板未同步</span>
-    <span><span class="dot miss"></span>未找到源数据</span>
-  </div>
-  <div id="boards"></div>
+  <div class="container" id="groups"></div>
+  <div class="footer">兴达履约安全工作台 · 数据中心</div>
 
 <script src="data_center.js"></script>
 <script>
+  function stHtml(synced) {
+    if (synced === true) return '<span class="st ok">已同步</span>';
+    if (synced === false) return '<span class="st warn">未同步</span>';
+    return '<span class="st miss">未找到源数据</span>';
+  }
+
+  function groupBadge(mon) {
+    if (!mon) return '<span class="badge none">暂无监控</span>';
+    var cls = mon.all_synced ? 'ok' : (mon.missing_count > 0 ? 'miss' : 'warn');
+    var txt = mon.all_synced ? '全部已同步' : (mon.missing_count > 0 ? '存在缺失源数据' : '存在未同步数据');
+    return '<span class="badge ' + cls + '">' + txt + '</span>';
+  }
+
+  function renderMonitor(mon) {
+    if (!mon) {
+      return '<div class="none-tip">本分组未配置源数据监控，暂无同步状态展示。</div>';
+    }
+    var metaTxt = '看板数据文件最后同步：' + (mon.data_mtime || '--') +
+      '　|　源数据 ' + mon.synced_count + '/' + (mon.sources ? mon.sources.length : 0) + ' 已同步' +
+      (mon.unsynced_count ? '　|　未同步 ' + mon.unsynced_count : '') +
+      (mon.missing_count ? '　|　缺失 ' + mon.missing_count : '');
+    var rows = '';
+    (mon.sources || []).forEach(function(s) {
+      rows += '<tr><td>' + s.type + '</td><td class="fname">' + s.latest + '</td><td>' + s.mtime + '</td><td>' + stHtml(s.synced) + '</td></tr>';
+    });
+    return '<div class="monitor-wrap"><div class="monitor-head"><b>源数据同步明细</b><span>' + metaTxt + '</span></div>' +
+      '<table><tr><th>源数据类型</th><th>最新源数据文件</th><th>源数据更新时间</th><th>同步状态</th></tr>' + rows + '</table></div>';
+  }
+
   function render(data) {
     document.getElementById('updatedAt').textContent = '数据生成时间：' + (data.updated_at || '--');
-    var wrap = document.getElementById('boards');
+    var wrap = document.getElementById('groups');
     wrap.innerHTML = '';
-    if (!data.boards || !data.boards.length) {
-      wrap.innerHTML = '<div class="empty">暂无看板数据</div>';
+    if (!data.groups || !data.groups.length) {
+      wrap.innerHTML = '<div class="empty">暂无数据</div>';
       return;
     }
-    data.boards.forEach(function(b) {
+    data.groups.forEach(function(g) {
       var card = document.createElement('div');
-      card.className = 'board';
+      card.className = 'group';
 
-      var stClass = b.all_synced ? 'ok' : (b.missing_count > 0 ? 'miss' : 'warn');
-      var stText = b.all_synced ? '全部已同步' : (b.missing_count > 0 ? '存在缺失源数据' : '存在未同步数据');
+      var boardRows = '';
+      (g.boards || []).forEach(function(b) {
+        var mark = b.monitored ? '<span class="mark on">已监控</span>' : '<span class="mark off">暂无监控</span>';
+        var tabs = '';
+        if (b.tabs && b.tabs.length) {
+          b.tabs.forEach(function(t) { tabs += '<span class="tab-chip">' + t + '</span>'; });
+        } else {
+          tabs = '<span class="tab-chip single">单页面</span>';
+        }
+        boardRows += '<div class="board-row"><div class="board-name">' + b.label + mark + '</div><div class="tabs">' + tabs + '</div></div>';
+      });
+
       var head = document.createElement('div');
-      head.className = 'board-head';
-      head.innerHTML = '<div><div class="board-title">' + b.title + '</div>' +
-        '<div class="board-pages">子页面：' + (b.pages || []).join('、') + '</div></div>' +
-        '<div class="badge ' + stClass + '">' + stText + '</div>';
+      head.className = 'group-head';
+      head.innerHTML = '<div class="group-title">' + g.title + '</div>' +
+        '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">' +
+        '<span class="group-meta">' + (g.boards ? g.boards.length : 0) + ' 个看板</span>' +
+        groupBadge(g.monitor) + '</div>';
       card.appendChild(head);
 
-      var meta = document.createElement('div');
-      meta.className = 'board-meta';
-      meta.textContent = '看板数据文件最后同步时间：' + (b.data_mtime || '--') +
-        '　|　源数据 ' + b.synced_count + '/' + (b.sources ? b.sources.length : 0) + ' 已同步' +
-        (b.unsynced_count ? '　|　未同步 ' + b.unsynced_count : '') +
-        (b.missing_count ? '　|　缺失 ' + b.missing_count : '');
-      card.appendChild(meta);
+      var body = document.createElement('div');
+      body.className = 'group-body';
+      body.innerHTML = boardRows;
+      card.appendChild(body);
 
-      var table = document.createElement('table');
-      var trh = document.createElement('tr');
-      trh.innerHTML = '<th>源数据类型</th><th>最新源数据文件</th><th>源数据更新时间</th><th>同步状态</th>';
-      table.appendChild(trh);
-      (b.sources || []).forEach(function(s) {
-        var tr = document.createElement('tr');
-        var st = s.synced === true ? '<span class="st ok">已同步</span>'
-          : (s.synced === false ? '<span class="st warn">未同步</span>'
-             : '<span class="st miss">未找到源数据</span>');
-        tr.innerHTML = '<td>' + s.type + '</td>' +
-          '<td class="fname">' + s.latest + '</td>' +
-          '<td>' + s.mtime + '</td>' +
-          '<td>' + st + '</td>';
-        table.appendChild(tr);
-      });
-      card.appendChild(table);
+      var monWrap = document.createElement('div');
+      monWrap.innerHTML = renderMonitor(g.monitor);
+      card.appendChild(monWrap.firstChild);
       wrap.appendChild(card);
     });
   }
@@ -154,7 +250,7 @@
     render(window.DATA_CENTER);
   } else {
     fetch('data_center.json').then(function(r){ return r.json(); }).then(render).catch(function(){
-      document.getElementById('boards').innerHTML = '<div class="empty">数据加载失败，请确认 data_center.js / data_center.json 存在</div>';
+      document.getElementById('groups').innerHTML = '<div class="empty">数据加载失败，请确认 data_center.js / data_center.json 存在</div>';
     });
   }
 </script>
