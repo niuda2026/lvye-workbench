@@ -5,42 +5,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>美团保险看板</title>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:"Microsoft YaHei",sans-serif; }
-body { background:#f0f2f7; color:#1f2329; }
+* { margin:0; padding:0; box-sizing:border-box; font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif; }
+body { background:#f5f7fa; color:#303133; }
 .header { background:linear-gradient(135deg,#0b1f4d 0%,#123c7e 60%,#1e5cb3 100%); color:#fff; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; }
 .header h1 { font-size:20px; }
 .header .sub { font-size:12px; opacity:.75; margin-top:4px; }
-.stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; padding:16px 24px; }
+.stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; padding:16px 24px 4px; }
 .stat-card { background:#fff; border-radius:10px; padding:14px 16px; box-shadow:0 1px 4px rgba(0,0,0,.06); }
-.stat-card .label { font-size:12px; color:#8a9099; }
+.stat-card .label { font-size:12px; color:#909399; }
 .stat-card .value { font-size:24px; font-weight:700; margin-top:6px; }
-.stat-card .extra { font-size:12px; color:#8a9099; margin-top:4px; }
-.c-blue { color:#1e5cb3; } .c-orange { color:#e6a23c; } .c-green { color:#22a06b; } .c-gray { color:#7a828e; } .c-red { color:#d54941; }
-.filters { display:flex; flex-wrap:wrap; gap:10px; padding:0 24px 12px; }
-.filters select,.filters input { padding:7px 10px; border:1px solid #d5dae0; border-radius:6px; font-size:13px; background:#fff; }
-.filters .btn { padding:7px 16px; border:none; border-radius:6px; background:#1e5cb3; color:#fff; cursor:pointer; font-size:13px; }
-.charts { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:0 24px 12px; }
+.stat-card .extra { font-size:12px; color:#909399; margin-top:4px; }
+.c-blue { color:#1e5cb3; } .c-orange { color:#e6a23c; } .c-green { color:#67c23a; } .c-gray { color:#909399; } .c-red { color:#f56c6c; }
+.charts { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:12px 24px; }
 .chart-box { background:#fff; border-radius:10px; padding:14px 16px; box-shadow:0 1px 4px rgba(0,0,0,.06); }
-.chart-box h3 { font-size:14px; margin-bottom:10px; color:#333; }
-.table-wrap { padding:0 24px 24px; }
-.table-card { background:#fff; border-radius:10px; box-shadow:0 1px 4px rgba(0,0,0,.06); overflow:auto; }
-table { width:100%; border-collapse:collapse; font-size:13px; white-space:nowrap; }
-th { background:#f5f7fa; color:#5a6068; font-weight:600; text-align:left; padding:10px 12px; position:sticky; top:0; z-index:1; }
-td { padding:9px 12px; border-bottom:1px solid #eef0f3; }
-tr:hover td { background:#f8faff; }
-.tag { display:inline-block; padding:2px 8px; border-radius:10px; font-size:12px; }
-.tag-pending { background:#fdf3e3; color:#b26b00; }
-.tag-success { background:#e4f6ec; color:#1a7a4f; }
-.tag-cancel { background:#f2f3f5; color:#7a828e; }
-.tag-other { background:#eef1f8; color:#3d5a99; }
-.detail-btn { color:#1e5cb3; cursor:pointer; text-decoration:underline; }
-.row-count { padding:8px 24px; font-size:13px; color:#5a6068; }
-.pager { display:flex; align-items:center; gap:6px; padding:12px 16px; justify-content:flex-end; font-size:13px; flex-wrap:wrap; }
-.pager .pg-info { color:#5a6068; margin-right:8px; }
-.pager button { padding:4px 12px; border:1px solid #d5dae0; background:#fff; border-radius:6px; cursor:pointer; font-size:13px; color:#1f2329; }
-.pager button:hover:not(:disabled) { background:#f0f2f7; }
-.pager button.active { background:#1e5cb3; color:#fff; border-color:#1e5cb3; }
-.pager button:disabled { opacity:.45; cursor:not-allowed; }
+.chart-box h3 { font-size:14px; margin-bottom:10px; color:#303133; }
+
+/* ===== 筛选栏 ===== */
+.filters { display:flex; flex-wrap:wrap; gap:10px; padding:16px 24px 4px; align-items:center; }
+.filters select, .filters input { padding:8px 12px; border:1px solid #dcdfe6; border-radius:4px; font-size:13px; background:#fff; color:#303133; outline:none; }
+.filters select:focus, .filters input:focus { border-color:#409eff; }
+.filters .search-input { flex:1; min-width:220px; }
+.filters .btn { padding:8px 20px; border:none; border-radius:4px; font-size:13px; cursor:pointer; }
+.filters .btn-primary { background:#67c23a; color:#fff; }
+.filters .btn-primary:hover { background:#85ce61; }
+.filters .btn-plain { background:#fff; color:#606266; border:1px solid #dcdfe6; }
+.filters .btn-plain:hover { color:#409eff; border-color:#c6e2ff; background:#ecf5ff; }
+
+/* ===== 表格 ===== */
+.table-wrap { padding:12px 24px 24px; }
+.table-card { background:#fff; border-radius:6px; box-shadow:0 1px 6px rgba(0,0,0,.06); }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th { background:#f7f8fa; color:#606266; font-weight:500; text-align:center; padding:12px 10px; border-bottom:1px solid #ebeef5; position:sticky; top:0; z-index:1; }
+td { padding:12px 10px; border-bottom:1px solid #ebeef5; color:#303133; text-align:left; vertical-align:middle; }
+tr:hover td { background:#f5f7fa; }
+td.c { text-align:center; }
+td.r { text-align:right; }
+.cell-main { color:#303133; line-height:1.4; }
+.cell-sub { color:#909399; font-size:12px; line-height:1.5; }
+.link { color:#409eff; cursor:pointer; text-decoration:none; }
+.link:hover { text-decoration:underline; }
+.tag-pill { display:inline-block; padding:2px 10px; border-radius:12px; font-size:12px; background:#ecf5ff; color:#409eff; }
+.tag-green { color:#67c23a; }
+.tag-red { color:#f56c6c; }
+.empty { color:#909399; }
+
+/* ===== 分页 ===== */
+.pager { display:flex; align-items:center; justify-content:flex-end; gap:6px; padding:14px 16px; font-size:13px; flex-wrap:wrap; }
+.pager .pg-info { color:#606266; margin-right:6px; }
+.pager .pg-total { color:#909399; margin-right:10px; }
+.pager button { padding:6px 12px; border:1px solid #dcdfe6; background:#fff; border-radius:4px; cursor:pointer; font-size:13px; color:#606266; }
+.pager button:hover:not(:disabled) { color:#409eff; border-color:#c6e2ff; background:#ecf5ff; }
+.pager button.active { background:#409eff; color:#fff; border-color:#409eff; }
+.pager button:disabled { opacity:.5; cursor:not-allowed; }
+
 .drawer-mask { display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:100; }
 .drawer { display:none; position:fixed; top:0; right:0; bottom:0; width:520px; background:#fff; z-index:101; box-shadow:-4px 0 16px rgba(0,0,0,.2); overflow:auto; }
 .drawer.open,.drawer-mask.open { display:block; }
@@ -49,15 +66,14 @@ tr:hover td { background:#f8faff; }
 .drawer .d-close { cursor:pointer; font-size:22px; opacity:.8; }
 .d-body { padding:16px 20px; }
 .d-section { margin-bottom:16px; }
-.d-section h4 { font-size:13px; color:#8a9099; margin-bottom:8px; border-bottom:1px solid #eef0f3; padding-bottom:6px; }
+.d-section h4 { font-size:13px; color:#909399; margin-bottom:8px; border-bottom:1px solid #ebeef5; padding-bottom:6px; }
 .d-section .kv { display:flex; margin-bottom:6px; font-size:13px; }
-.d-section .kv .k { width:110px; color:#8a9099; flex-shrink:0; }
-.d-section .kv .v { color:#1f2329; word-break:break-all; }
+.d-section .kv .k { width:110px; color:#909399; flex-shrink:0; }
+.d-section .kv .v { color:#303133; word-break:break-all; }
 .timeline { border-left:2px solid #e0e5eb; padding-left:14px; }
 .timeline .tl-item { position:relative; margin-bottom:12px; font-size:13px; }
-.timeline .tl-item::before { content:""; position:absolute; left:-19px; top:4px; width:8px; height:8px; border-radius:50%; background:#1e5cb3; }
-.timeline .tl-date { color:#8a9099; font-size:12px; }
-.summary-note { padding:0 24px 8px; font-size:12px; color:#8a9099; }
+.timeline .tl-item::before { content:""; position:absolute; left:-19px; top:4px; width:8px; height:8px; border-radius:50%; background:#409eff; }
+.timeline .tl-date { color:#909399; font-size:12px; }
 @media (max-width:900px){ .charts{grid-template-columns:1fr;} .drawer{width:100%;} }
 </style>
 </head>
@@ -72,16 +88,15 @@ tr:hover td { background:#f8faff; }
 <div class="stats" id="statsRow"></div>
 
 <div class="filters">
-  <select id="fCity"><option value="">全部城市</option></select>
+  <input class="search-input" id="fKeyword" placeholder="搜索骑手姓名 / 电话 / 保单号 / 事故描述">
   <select id="fStatus"><option value="">全部状态</option></select>
-  <select id="fChannel"><option value="">全部报案来源</option></select>
-  <select id="fAudit"><option value="">全部合作商审核</option></select>
-  <input id="fKeyword" placeholder="搜索骑手/保单号/案件号">
-  <input id="fDateStart" type="date" placeholder="投保开始">
-  <span style="line-height:32px;color:#8a9099;">至</span>
-  <input id="fDateEnd" type="date" placeholder="投保结束">
-  <button class="btn" onclick="applyFilter()">筛选</button>
-  <button class="btn" style="background:#5a6068;" onclick="resetFilter()">重置</button>
+  <select id="fChannel"><option value="">全部来源</option></select>
+  <select id="fTimeout"><option value="">是否超时：全部</option><option value="0">准时上报</option><option value="1">超时上报</option></select>
+  <select id="fYear"><option value="">报案年份</option></select>
+  <select id="fMonth"><option value="">报案月份</option></select>
+  <button class="btn btn-plain" onclick="resetFilter()">重置</button>
+  <button class="btn btn-plain" onclick="copyList()">复制明细</button>
+  <button class="btn btn-primary" onclick="applyFilter()">查询</button>
 </div>
 
 <div class="charts">
@@ -89,14 +104,21 @@ tr:hover td { background:#f8faff; }
   <div class="chart-box"><h3>城市案件 Top 10</h3><div id="chartCity"></div></div>
 </div>
 
-<div class="row-count" id="rowCount"></div>
 <div class="table-wrap">
   <div class="table-card">
     <table id="mainTable">
       <thead>
         <tr>
-          <th>城市</th><th>骑手</th><th>投保日期</th><th>报案时间</th><th>报案来源</th>
-          <th>理赔状态</th><th>合作商审核</th><th>出险时间</th><th>出险地点</th><th>理赔金额(元)</th><th>保险公司</th><th>操作</th>
+          <th style="width:52px;">#</th>
+          <th>骑手姓名</th>
+          <th>联系电话</th>
+          <th>保单号 / 保险公司</th>
+          <th>出险时间 / 报案时间</th>
+          <th>是否超时</th>
+          <th>出险地点 / 原因描述</th>
+          <th>理赔状态 / 报案来源</th>
+          <th style="width:110px;" class="r">打款金额(元)</th>
+          <th style="width:70px;">操作</th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
@@ -120,11 +142,25 @@ D.cities.forEach(c => c.cases.forEach(x => { x.city = c.city; allCases.push(x); 
 const fmtMoney = c => c ? (c/100).toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2}) : '-';
 const fmtDate = s => s ? String(s).slice(0,10) : '-';
 
+// 超时阈值：出险后超过24小时报案记为超时
+const TIMEOUT_MS = 24 * 3600 * 1000;
+function timeoutInfo(c){
+  const a = new Date(c.accidentTime || '').getTime();
+  const r = new Date(c.reportTime || '').getTime();
+  if (!a || !r || r <= a) return { timeout: false, diffMs: 0, text: '—' };
+  const diff = r - a;
+  const h = Math.floor(diff / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  const pad = n => String(n).padStart(2,'0');
+  const text = h + '小时 ' + pad(m) + '分 ' + pad(s) + '秒';
+  return { timeout: diff > TIMEOUT_MS, diffMs: diff, text: text };
+}
+
 function tagOf(status){
-  if (status === '赔付成功') return 'tag-success';
-  if (status === '待初审' || status === '待复审' || status === '待上传材料' || status === '待补传材料' || status === '待报案审核') return 'tag-pending';
-  if (status === '注销' || status === '用户撤销' || status === '拒付') return 'tag-cancel';
-  return 'tag-other';
+  if (status === '赔付成功') return 'tag-pill';
+  if (status === '待初审' || status === '待复审' || status === '待上传材料' || status === '待补传材料' || status === '待报案审核') return 'tag-pill';
+  return 'tag-pill';
 }
 
 function renderHeader(){
@@ -154,30 +190,25 @@ function drawBarChart(elId, items, color){
   const max = Math.max(...items.map(i=>i.value), 1);
   el.innerHTML = items.map(i => `
     <div style="display:flex;align-items:center;margin-bottom:6px;font-size:12px;">
-      <span style="width:110px;color:#5a6068;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${i.label}</span>
+      <span style="width:110px;color:#606266;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${i.label}</span>
       <div style="flex:1;background:#f0f2f7;border-radius:4px;height:16px;margin:0 8px;">
         <div style="width:${i.value/max*100}%;background:${color};height:16px;border-radius:4px;"></div>
       </div>
-      <span style="width:60px;text-align:right;color:#1f2329;">${i.value}</span>
+      <span style="width:60px;text-align:right;color:#303133;">${i.value}</span>
     </div>`).join('');
 }
 
 function renderCharts(list){
   const statusCount = {};
   list.forEach(c => statusCount[c.claimStatusDesc] = (statusCount[c.claimStatusDesc]||0)+1);
-  drawBarChart('chartStatus', Object.entries(statusCount).map(([k,v])=>({label:k,value:v})).sort((a,b)=>b.value-a.value), '#1e5cb3');
+  drawBarChart('chartStatus', Object.entries(statusCount).map(([k,v])=>({label:k,value:v})).sort((a,b)=>b.value-a.value), '#409eff');
   const cityCount = {};
   list.forEach(c => cityCount[c.city] = (cityCount[c.city]||0)+1);
-  drawBarChart('chartCity', Object.entries(cityCount).map(([k,v])=>({label:k,value:v})).sort((a,b)=>b.value-a.value).slice(0,10), '#22a06b');
+  drawBarChart('chartCity', Object.entries(cityCount).map(([k,v])=>({label:k,value:v})).sort((a,b)=>b.value-a.value).slice(0,10), '#67c23a');
 }
 
 function initFilters(){
   const fCity = document.getElementById('fCity');
-  D.cities.forEach(c => {
-    const o = document.createElement('option');
-    o.value = c.city; o.textContent = c.city;
-    fCity.appendChild(o);
-  });
   const fStatus = document.getElementById('fStatus');
   [...new Set(allCases.map(c=>c.claimStatusDesc))].sort().forEach(s => {
     const o = document.createElement('option');
@@ -190,30 +221,34 @@ function initFilters(){
     o.value = s; o.textContent = s;
     fChannel.appendChild(o);
   });
-  const fAudit = document.getElementById('fAudit');
-  [...new Set(allCases.map(c=>c.franchiseeAuditStatusDesc).filter(Boolean))].forEach(s => {
+  const fYear = document.getElementById('fYear');
+  [...new Set(allCases.map(c => (c.reportTime||'').slice(0,4)).filter(Boolean))].sort().reverse().forEach(s => {
     const o = document.createElement('option');
-    o.value = s; o.textContent = s;
-    fAudit.appendChild(o);
+    o.value = s; o.textContent = s + ' 年';
+    fYear.appendChild(o);
   });
+  const fMonth = document.getElementById('fMonth');
+  for (let i = 1; i <= 12; i++){
+    const o = document.createElement('option');
+    o.value = String(i).padStart(2,'0'); o.textContent = i + ' 月';
+    fMonth.appendChild(o);
+  }
 }
 
 function applyFilter(){
-  const city = document.getElementById('fCity').value;
   const status = document.getElementById('fStatus').value;
   const channel = document.getElementById('fChannel').value;
-  const audit = document.getElementById('fAudit').value;
+  const timeout = document.getElementById('fTimeout').value;
   const kw = document.getElementById('fKeyword').value.trim();
-  const ds = document.getElementById('fDateStart').value;
-  const de = document.getElementById('fDateEnd').value;
+  const year = document.getElementById('fYear').value;
+  const month = document.getElementById('fMonth').value;
   let list = allCases.filter(c => {
-    if (city && c.city !== city) return false;
     if (status && c.claimStatusDesc !== status) return false;
     if (channel && c.reportChannel !== channel) return false;
-    if (audit && c.franchiseeAuditStatusDesc !== audit) return false;
-    if (kw && !(c.riderName||'').includes(kw) && !(c.policyNo||'').includes(kw) && !(c.caseNo||'').includes(kw)) return false;
-    if (ds && (c.insureDate||'') < ds) return false;
-    if (de && (c.insureDate||'') > de) return false;
+    if (timeout !== '' && String(timeoutInfo(c).timeout ? 1 : 0) !== timeout) return false;
+    if (kw && !(c.riderName||'').includes(kw) && !(c.policyNo||'').includes(kw) && !(c.caseNo||'').includes(kw) && !(c.accidentDesc||'').includes(kw)) return false;
+    if (year && (c.reportTime||'').slice(0,4) !== year) return false;
+    if (month && (c.reportTime||'').slice(5,7) !== month) return false;
     return true;
   });
   renderStats(list);
@@ -222,11 +257,17 @@ function applyFilter(){
 }
 
 function resetFilter(){
-  ['fCity','fStatus','fChannel','fAudit'].forEach(id => document.getElementById(id).value = '');
+  ['fStatus','fChannel','fTimeout','fYear','fMonth'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('fKeyword').value = '';
-  document.getElementById('fDateStart').value = '';
-  document.getElementById('fDateEnd').value = '';
   applyFilter();
+}
+
+function copyList(){
+  const list = window.__filtered || [];
+  if (!list.length){ alert('当前无数据可复制'); return; }
+  const lines = list.map((c,i) => [i+1, c.riderName||'-', c.policyNo||'-', c.accidentTime||'-', c.reportTime||'-', timeoutInfo(c).text, c.accidentPlace||'-', c.claimStatusDesc||'-', c.reportChannel||'-', fmtMoney(c.payAmountCent)].join('\t'));
+  const text = '序号\t骑手姓名\t保单号\t出险时间\t报案时间\t是否超时\t出险地点\t理赔状态\t报案来源\t打款金额\n' + lines.join('\n');
+  navigator.clipboard.writeText(text).then(() => alert('已复制 ' + list.length + ' 条明细到剪贴板')).catch(() => alert('复制失败，请手动复制'));
 }
 
 const PAGE_SIZE = 50;
@@ -235,7 +276,6 @@ let curPage = 1;
 function renderTable(list){
   window.__filtered = list;
   curPage = 1;
-  document.getElementById('rowCount').textContent = '共 ' + list.length + ' 条记录';
   drawPage();
 }
 
@@ -248,26 +288,40 @@ function drawPage(){
   const pageList = list.slice(start, start + PAGE_SIZE);
 
   const tb = document.getElementById('tableBody');
-  tb.innerHTML = pageList.map((c,i) => `<tr>
-    <td>${c.city}</td>
-    <td>${c.riderName || '-'}</td>
-    <td>${fmtDate(c.insureDate)}</td>
-    <td>${c.reportTime || '-'}</td>
-    <td>${c.reportChannel || '-'}</td>
-    <td><span class="tag ${tagOf(c.claimStatusDesc)}">${c.claimStatusDesc || '-'}</span></td>
-    <td>${c.franchiseeAuditStatusDesc || '-'}</td>
-    <td>${fmtDate((c.accidentTime||''))} ${(c.accidentTime||'').slice(11,16)}</td>
-    <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;">${c.accidentPlace || '-'}</td>
-    <td style="text-align:right;">${fmtMoney(c.payAmountCent)}</td>
-    <td>${(c.companyName||'').replace('股份有限公司','')}</td>
-    <td><span class="detail-btn" onclick="openDrawer(${start + i})">查看</span></td>
-  </tr>`).join('');
+  tb.innerHTML = pageList.map((c,i) => {
+    const ti = timeoutInfo(c);
+    return `<tr>
+    <td class="c">${start + i + 1}</td>
+    <td><span class="cell-main">${c.riderName || '-'}</span></td>
+    <td><span class="cell-sub">-</span></td>
+    <td>
+      <div class="cell-main link" onclick="openDrawer(${start + i})">${c.policyNo || '-'}</div>
+      <div class="cell-sub">${(c.companyName||'').replace('股份有限公司','')}</div>
+    </td>
+    <td>
+      <div class="cell-main">${fmtDate(c.accidentTime)} ${(c.accidentTime||'').slice(11,16)}</div>
+      <div class="cell-sub">报案 ${c.reportTime || '-'}</div>
+      <span class="${ti.timeout ? 'tag-red' : 'tag-green'}">${ti.timeout ? '超时上报' : '准时上报'}</span>
+    </td>
+    <td><span class="${ti.timeout ? 'tag-red' : 'tag-green'}">${ti.text}</span></td>
+    <td>
+      <div class="cell-main" style="max-width:260px;">${c.accidentPlace || '-'}</div>
+      <div class="cell-sub" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${(c.accidentDesc||'').replace(/"/g,'&quot;')}">${c.accidentDesc || '-'}</div>
+    </td>
+    <td>
+      <span class="tag-pill">${c.claimStatusDesc || '-'}</span>
+      <div class="cell-sub">${c.reportChannel || '-'}</div>
+    </td>
+    <td class="r">${fmtMoney(c.payAmountCent)}</td>
+    <td class="c"><span class="link" onclick="openDrawer(${start + i})">详情</span></td>
+  </tr>`;
+  }).join('');
 
   const pager = document.getElementById('pager');
-  let html = '<span class="pg-info">第 ' + curPage + ' / ' + totalPages + ' 页</span>';
+  let html = '<span class="pg-total">共 ' + total + ' 条</span>';
+  html += '<span class="pg-info">第 ' + curPage + ' / ' + totalPages + ' 页</span>';
   html += '<button onclick="gotoPage(1)" ' + (curPage<=1?'disabled':'') + '>«</button>';
   html += '<button onclick="gotoPage(' + (curPage-1) + ')" ' + (curPage<=1?'disabled':'') + '>上一页</button>';
-  // 页码窗口：当前页前后各2页
   const win = [];
   for (let p = Math.max(1, curPage-2); p <= Math.min(totalPages, curPage+2); p++) win.push(p);
   win.forEach(p => {
@@ -295,7 +349,7 @@ function openDrawer(i){
     <div class="tl-item">
       <div>${s.status || ''} ${s.remark || ''}</div>
       <div class="tl-date">${s.date || ''}</div>
-    </div>`).join('') || '<div style="color:#8a9099;">暂无状态记录</div>';
+    </div>`).join('') || '<div style="color:#909399;">暂无状态记录</div>';
   document.getElementById('dBody').innerHTML = `
     <div class="d-section">
       <h4>基本信息</h4>
