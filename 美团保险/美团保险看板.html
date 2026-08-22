@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美团保险看板</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:"Microsoft YaHei",sans-serif; }
+body { background:#f0f2f7; color:#1f2329; }
+.header { background:linear-gradient(135deg,#0b1f4d 0%,#123c7e 60%,#1e5cb3 100%); color:#fff; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; }
+.header h1 { font-size:20px; }
+.header .sub { font-size:12px; opacity:.75; margin-top:4px; }
+.stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; padding:16px 24px; }
+.stat-card { background:#fff; border-radius:10px; padding:14px 16px; box-shadow:0 1px 4px rgba(0,0,0,.06); }
+.stat-card .label { font-size:12px; color:#8a9099; }
+.stat-card .value { font-size:24px; font-weight:700; margin-top:6px; }
+.stat-card .extra { font-size:12px; color:#8a9099; margin-top:4px; }
+.c-blue { color:#1e5cb3; } .c-orange { color:#e6a23c; } .c-green { color:#22a06b; } .c-gray { color:#7a828e; } .c-red { color:#d54941; }
+.filters { display:flex; flex-wrap:wrap; gap:10px; padding:0 24px 12px; }
+.filters select,.filters input { padding:7px 10px; border:1px solid #d5dae0; border-radius:6px; font-size:13px; background:#fff; }
+.filters .btn { padding:7px 16px; border:none; border-radius:6px; background:#1e5cb3; color:#fff; cursor:pointer; font-size:13px; }
+.charts { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:0 24px 12px; }
+.chart-box { background:#fff; border-radius:10px; padding:14px 16px; box-shadow:0 1px 4px rgba(0,0,0,.06); }
+.chart-box h3 { font-size:14px; margin-bottom:10px; color:#333; }
+.table-wrap { padding:0 24px 24px; }
+.table-card { background:#fff; border-radius:10px; box-shadow:0 1px 4px rgba(0,0,0,.06); overflow:auto; }
+table { width:100%; border-collapse:collapse; font-size:13px; white-space:nowrap; }
+th { background:#f5f7fa; color:#5a6068; font-weight:600; text-align:left; padding:10px 12px; position:sticky; top:0; z-index:1; }
+td { padding:9px 12px; border-bottom:1px solid #eef0f3; }
+tr:hover td { background:#f8faff; }
+.tag { display:inline-block; padding:2px 8px; border-radius:10px; font-size:12px; }
+.tag-pending { background:#fdf3e3; color:#b26b00; }
+.tag-success { background:#e4f6ec; color:#1a7a4f; }
+.tag-cancel { background:#f2f3f5; color:#7a828e; }
+.tag-other { background:#eef1f8; color:#3d5a99; }
+.detail-btn { color:#1e5cb3; cursor:pointer; text-decoration:underline; }
+.row-count { padding:8px 24px; font-size:13px; color:#5a6068; }
+.drawer-mask { display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:100; }
+.drawer { display:none; position:fixed; top:0; right:0; bottom:0; width:520px; background:#fff; z-index:101; box-shadow:-4px 0 16px rgba(0,0,0,.2); overflow:auto; }
+.drawer.open,.drawer-mask.open { display:block; }
+.drawer .d-head { background:linear-gradient(135deg,#0b1f4d,#1e5cb3); color:#fff; padding:16px 20px; display:flex; justify-content:space-between; align-items:center; }
+.drawer .d-head h2 { font-size:16px; }
+.drawer .d-close { cursor:pointer; font-size:22px; opacity:.8; }
+.d-body { padding:16px 20px; }
+.d-section { margin-bottom:16px; }
+.d-section h4 { font-size:13px; color:#8a9099; margin-bottom:8px; border-bottom:1px solid #eef0f3; padding-bottom:6px; }
+.d-section .kv { display:flex; margin-bottom:6px; font-size:13px; }
+.d-section .kv .k { width:110px; color:#8a9099; flex-shrink:0; }
+.d-section .kv .v { color:#1f2329; word-break:break-all; }
+.timeline { border-left:2px solid #e0e5eb; padding-left:14px; }
+.timeline .tl-item { position:relative; margin-bottom:12px; font-size:13px; }
+.timeline .tl-item::before { content:""; position:absolute; left:-19px; top:4px; width:8px; height:8px; border-radius:50%; background:#1e5cb3; }
+.timeline .tl-date { color:#8a9099; font-size:12px; }
+.summary-note { padding:0 24px 8px; font-size:12px; color:#8a9099; }
+@media (max-width:900px){ .charts{grid-template-columns:1fr;} .drawer{width:100%;} }
+</style>
+</head>
+<body>
+<div class="header">
+  <div>
+    <h1>美团保险看板 · 兴必达</h1>
+    <div class="sub" id="headerSub"></div>
+  </div>
+</div>
+
+<div class="stats" id="statsRow"></div>
+
+<div class="filters">
+  <select id="fCity"><option value="">全部城市</option></select>
+  <select id="fStatus"><option value="">全部状态</option></select>
+  <select id="fChannel"><option value="">全部报案来源</option></select>
+  <select id="fAudit"><option value="">全部合作商审核</option></select>
+  <input id="fKeyword" placeholder="搜索骑手/保单号/案件号">
+  <input id="fDateStart" type="date" placeholder="投保开始">
+  <span style="line-height:32px;color:#8a9099;">至</span>
+  <input id="fDateEnd" type="date" placeholder="投保结束">
+  <button class="btn" onclick="applyFilter()">筛选</button>
+  <button class="btn" style="background:#5a6068;" onclick="resetFilter()">重置</button>
+</div>
+
+<div class="charts">
+  <div class="chart-box"><h3>状态分布</h3><div id="chartStatus"></div></div>
+  <div class="chart-box"><h3>城市案件 Top 10</h3><div id="chartCity"></div></div>
+</div>
+
+<div class="row-count" id="rowCount"></div>
+<div class="table-wrap">
+  <div class="table-card">
+    <table id="mainTable">
+      <thead>
+        <tr>
+          <th>城市</th><th>骑手</th><th>投保日期</th><th>报案时间</th><th>报案来源</th>
+          <th>理赔状态</th><th>合作商审核</th><th>出险时间</th><th>出险地点</th><th>理赔金额(元)</th><th>保险公司</th><th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="drawer-mask" id="mask" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="d-head"><h2 id="dTitle"></h2><span class="d-close" onclick="closeDrawer()">×</span></div>
+  <div class="d-body" id="dBody"></div>
+</div>
+
+<script src="insurance_data.js"></script>
+<script>
+const D = window.INSURANCE_DATA || {cities:[]};
+let allCases = [];
+D.cities.forEach(c => c.cases.forEach(x => { x.city = c.city; allCases.push(x); }));
+
+const fmtMoney = c => c ? (c/100).toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2}) : '-';
+const fmtDate = s => s ? String(s).slice(0,10) : '-';
+
+function tagOf(status){
+  if (status === '赔付成功') return 'tag-success';
+  if (status === '待初审' || status === '待复审' || status === '待上传材料' || status === '待补传材料' || status === '待报案审核') return 'tag-pending';
+  if (status === '注销' || status === '用户撤销' || status === '拒付') return 'tag-cancel';
+  return 'tag-other';
+}
+
+function renderHeader(){
+  const now = D.fetched_at || '';
+  document.getElementById('headerSub').textContent = '数据更新时间: ' + now + ' | 覆盖 ' + D.cities.length + ' 个合作城市 | 共 ' + allCases.length + ' 条案件';
+}
+
+function renderStats(list){
+  const total = list.length;
+  const pend = list.filter(c => c.claimStatusDesc === '待初审').length;
+  const succ = list.filter(c => c.claimStatusDesc === '赔付成功').length;
+  const cancel = list.filter(c => c.claimStatusDesc === '注销').length;
+  const paid = list.reduce((s,c)=>s+(c.payAmountCent||0),0);
+  const today = new Date().toISOString().slice(0,10);
+  const todayNew = list.filter(c => (c.reportTime||'').slice(0,10) === today).length;
+  document.getElementById('statsRow').innerHTML = `
+    <div class="stat-card"><div class="label">案件总数</div><div class="value c-blue">${total}</div><div class="extra">合作城市 ${D.cities.length} 个</div></div>
+    <div class="stat-card"><div class="label">待初审</div><div class="value c-orange">${pend}</div><div class="extra">占比 ${total? (pend/total*100).toFixed(1):0}%</div></div>
+    <div class="stat-card"><div class="label">赔付成功</div><div class="value c-green">${succ}</div><div class="extra">占比 ${total? (succ/total*100).toFixed(1):0}%</div></div>
+    <div class="stat-card"><div class="label">已注销</div><div class="value c-gray">${cancel}</div><div class="extra">占比 ${total? (cancel/total*100).toFixed(1):0}%</div></div>
+    <div class="stat-card"><div class="label">已支付总额</div><div class="value c-green">¥${fmtMoney(paid)}</div><div class="extra">${list.filter(c=>c.payAmountCent>0).length} 条有支付记录</div></div>
+    <div class="stat-card"><div class="label">今日新增报案</div><div class="value ${todayNew? 'c-orange':'c-gray'}">${todayNew}</div><div class="extra">${today}</div></div>`;
+}
+
+function drawBarChart(elId, items, color){
+  const el = document.getElementById(elId);
+  const max = Math.max(...items.map(i=>i.value), 1);
+  el.innerHTML = items.map(i => `
+    <div style="display:flex;align-items:center;margin-bottom:6px;font-size:12px;">
+      <span style="width:110px;color:#5a6068;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${i.label}</span>
+      <div style="flex:1;background:#f0f2f7;border-radius:4px;height:16px;margin:0 8px;">
+        <div style="width:${i.value/max*100}%;background:${color};height:16px;border-radius:4px;"></div>
+      </div>
+      <span style="width:60px;text-align:right;color:#1f2329;">${i.value}</span>
+    </div>`).join('');
+}
+
+function renderCharts(list){
+  const statusCount = {};
+  list.forEach(c => statusCount[c.claimStatusDesc] = (statusCount[c.claimStatusDesc]||0)+1);
+  drawBarChart('chartStatus', Object.entries(statusCount).map(([k,v])=>({label:k,value:v})).sort((a,b)=>b.value-a.value), '#1e5cb3');
+  const cityCount = {};
+  list.forEach(c => cityCount[c.city] = (cityCount[c.city]||0)+1);
+  drawBarChart('chartCity', Object.entries(cityCount).map(([k,v])=>({label:k,value:v})).sort((a,b)=>b.value-a.value).slice(0,10), '#22a06b');
+}
+
+function initFilters(){
+  const fCity = document.getElementById('fCity');
+  D.cities.forEach(c => {
+    const o = document.createElement('option');
+    o.value = c.city; o.textContent = c.city;
+    fCity.appendChild(o);
+  });
+  const fStatus = document.getElementById('fStatus');
+  [...new Set(allCases.map(c=>c.claimStatusDesc))].sort().forEach(s => {
+    const o = document.createElement('option');
+    o.value = s; o.textContent = s;
+    fStatus.appendChild(o);
+  });
+  const fChannel = document.getElementById('fChannel');
+  [...new Set(allCases.map(c=>c.reportChannel))].forEach(s => {
+    const o = document.createElement('option');
+    o.value = s; o.textContent = s;
+    fChannel.appendChild(o);
+  });
+  const fAudit = document.getElementById('fAudit');
+  [...new Set(allCases.map(c=>c.franchiseeAuditStatusDesc).filter(Boolean))].forEach(s => {
+    const o = document.createElement('option');
+    o.value = s; o.textContent = s;
+    fAudit.appendChild(o);
+  });
+}
+
+function applyFilter(){
+  const city = document.getElementById('fCity').value;
+  const status = document.getElementById('fStatus').value;
+  const channel = document.getElementById('fChannel').value;
+  const audit = document.getElementById('fAudit').value;
+  const kw = document.getElementById('fKeyword').value.trim();
+  const ds = document.getElementById('fDateStart').value;
+  const de = document.getElementById('fDateEnd').value;
+  let list = allCases.filter(c => {
+    if (city && c.city !== city) return false;
+    if (status && c.claimStatusDesc !== status) return false;
+    if (channel && c.reportChannel !== channel) return false;
+    if (audit && c.franchiseeAuditStatusDesc !== audit) return false;
+    if (kw && !(c.riderName||'').includes(kw) && !(c.policyNo||'').includes(kw) && !(c.caseNo||'').includes(kw)) return false;
+    if (ds && (c.insureDate||'') < ds) return false;
+    if (de && (c.insureDate||'') > de) return false;
+    return true;
+  });
+  renderStats(list);
+  renderCharts(list);
+  renderTable(list);
+}
+
+function resetFilter(){
+  ['fCity','fStatus','fChannel','fAudit'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('fKeyword').value = '';
+  document.getElementById('fDateStart').value = '';
+  document.getElementById('fDateEnd').value = '';
+  applyFilter();
+}
+
+function renderTable(list){
+  document.getElementById('rowCount').textContent = '共 ' + list.length + ' 条记录';
+  const tb = document.getElementById('tableBody');
+  tb.innerHTML = list.map((c,i) => `<tr>
+    <td>${c.city}</td>
+    <td>${c.riderName || '-'}</td>
+    <td>${fmtDate(c.insureDate)}</td>
+    <td>${c.reportTime || '-'}</td>
+    <td>${c.reportChannel || '-'}</td>
+    <td><span class="tag ${tagOf(c.claimStatusDesc)}">${c.claimStatusDesc || '-'}</span></td>
+    <td>${c.franchiseeAuditStatusDesc || '-'}</td>
+    <td>${fmtDate((c.accidentTime||''))} ${(c.accidentTime||'').slice(11,16)}</td>
+    <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;">${c.accidentPlace || '-'}</td>
+    <td style="text-align:right;">${fmtMoney(c.payAmountCent)}</td>
+    <td>${(c.companyName||'').replace('股份有限公司','')}</td>
+    <td><span class="detail-btn" onclick="openDrawer(${i})">查看</span></td>
+  </tr>`).join('');
+  window.__filtered = list;
+}
+
+function openDrawer(i){
+  const c = window.__filtered[i];
+  document.getElementById('dTitle').textContent = c.riderName + ' · ' + c.city + ' 理赔案件';
+  const flow = (c.statusFlow||[]).map(s => `
+    <div class="tl-item">
+      <div>${s.status || ''} ${s.remark || ''}</div>
+      <div class="tl-date">${s.date || ''}</div>
+    </div>`).join('') || '<div style="color:#8a9099;">暂无状态记录</div>';
+  document.getElementById('dBody').innerHTML = `
+    <div class="d-section">
+      <h4>基本信息</h4>
+      <div class="kv"><span class="k">案件号</span><span class="v">${c.caseNo || '-'}</span></div>
+      <div class="kv"><span class="k">保单号</span><span class="v">${c.policyNo || '-'}</span></div>
+      <div class="kv"><span class="k">城市</span><span class="v">${c.city || '-'}</span></div>
+      <div class="kv"><span class="k">骑手</span><span class="v">${c.riderName || '-'}</span></div>
+      <div class="kv"><span class="k">保险公司</span><span class="v">${c.companyName || '-'}</span></div>
+      <div class="kv"><span class="k">投保日期</span><span class="v">${c.insureDate || '-'}</span></div>
+      <div class="kv"><span class="k">报案时间</span><span class="v">${c.reportTime || '-'}</span></div>
+      <div class="kv"><span class="k">报案来源</span><span class="v">${c.reportChannel || '-'}</span></div>
+      <div class="kv"><span class="k">理赔状态</span><span class="v">${c.claimStatusDesc || '-'}</span></div>
+      <div class="kv"><span class="k">合作商审核</span><span class="v">${c.franchiseeAuditStatusDesc || '-'}</span></div>
+      <div class="kv"><span class="k">理赔金额</span><span class="v" style="color:#d54941;font-weight:700;">¥${fmtMoney(c.payAmountCent)}</span></div>
+    </div>
+    <div class="d-section">
+      <h4>出险信息</h4>
+      <div class="kv"><span class="k">出险时间</span><span class="v">${c.accidentTime || '-'}</span></div>
+      <div class="kv"><span class="k">出险地点</span><span class="v">${c.accidentPlace || '-'}</span></div>
+      <div class="kv"><span class="k">事故描述</span><span class="v">${c.accidentDesc || '-'}</span></div>
+    </div>
+    <div class="d-section">
+      <h4>案件时间线</h4>
+      <div class="timeline">${flow}</div>
+    </div>`;
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('mask').classList.add('open');
+}
+
+function closeDrawer(){
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('mask').classList.remove('open');
+}
+
+renderHeader();
+initFilters();
+applyFilter();
+</script>
+</body>
+</html>
