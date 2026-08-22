@@ -35,6 +35,12 @@ tr:hover td { background:#f8faff; }
 .tag-other { background:#eef1f8; color:#3d5a99; }
 .detail-btn { color:#1e5cb3; cursor:pointer; text-decoration:underline; }
 .row-count { padding:8px 24px; font-size:13px; color:#5a6068; }
+.pager { display:flex; align-items:center; gap:6px; padding:12px 16px; justify-content:flex-end; font-size:13px; flex-wrap:wrap; }
+.pager .pg-info { color:#5a6068; margin-right:8px; }
+.pager button { padding:4px 12px; border:1px solid #d5dae0; background:#fff; border-radius:6px; cursor:pointer; font-size:13px; color:#1f2329; }
+.pager button:hover:not(:disabled) { background:#f0f2f7; }
+.pager button.active { background:#1e5cb3; color:#fff; border-color:#1e5cb3; }
+.pager button:disabled { opacity:.45; cursor:not-allowed; }
 .drawer-mask { display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:100; }
 .drawer { display:none; position:fixed; top:0; right:0; bottom:0; width:520px; background:#fff; z-index:101; box-shadow:-4px 0 16px rgba(0,0,0,.2); overflow:auto; }
 .drawer.open,.drawer-mask.open { display:block; }
@@ -95,6 +101,7 @@ tr:hover td { background:#f8faff; }
       </thead>
       <tbody id="tableBody"></tbody>
     </table>
+    <div class="pager" id="pager"></div>
   </div>
 </div>
 
@@ -222,10 +229,26 @@ function resetFilter(){
   applyFilter();
 }
 
+const PAGE_SIZE = 50;
+let curPage = 1;
+
 function renderTable(list){
+  window.__filtered = list;
+  curPage = 1;
   document.getElementById('rowCount').textContent = '共 ' + list.length + ' 条记录';
+  drawPage();
+}
+
+function drawPage(){
+  const list = window.__filtered || [];
+  const total = list.length;
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  if (curPage > totalPages) curPage = totalPages;
+  const start = (curPage - 1) * PAGE_SIZE;
+  const pageList = list.slice(start, start + PAGE_SIZE);
+
   const tb = document.getElementById('tableBody');
-  tb.innerHTML = list.map((c,i) => `<tr>
+  tb.innerHTML = pageList.map((c,i) => `<tr>
     <td>${c.city}</td>
     <td>${c.riderName || '-'}</td>
     <td>${fmtDate(c.insureDate)}</td>
@@ -237,9 +260,32 @@ function renderTable(list){
     <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;">${c.accidentPlace || '-'}</td>
     <td style="text-align:right;">${fmtMoney(c.payAmountCent)}</td>
     <td>${(c.companyName||'').replace('股份有限公司','')}</td>
-    <td><span class="detail-btn" onclick="openDrawer(${i})">查看</span></td>
+    <td><span class="detail-btn" onclick="openDrawer(${start + i})">查看</span></td>
   </tr>`).join('');
-  window.__filtered = list;
+
+  const pager = document.getElementById('pager');
+  let html = '<span class="pg-info">第 ' + curPage + ' / ' + totalPages + ' 页</span>';
+  html += '<button onclick="gotoPage(1)" ' + (curPage<=1?'disabled':'') + '>«</button>';
+  html += '<button onclick="gotoPage(' + (curPage-1) + ')" ' + (curPage<=1?'disabled':'') + '>上一页</button>';
+  // 页码窗口：当前页前后各2页
+  const win = [];
+  for (let p = Math.max(1, curPage-2); p <= Math.min(totalPages, curPage+2); p++) win.push(p);
+  win.forEach(p => {
+    html += '<button class="' + (p===curPage?'active':'') + '" onclick="gotoPage(' + p + ')">' + p + '</button>';
+  });
+  html += '<button onclick="gotoPage(' + (curPage+1) + ')" ' + (curPage>=totalPages?'disabled':'') + '>下一页</button>';
+  html += '<button onclick="gotoPage(' + totalPages + ')" ' + (curPage>=totalPages?'disabled':'') + '>»</button>';
+  pager.innerHTML = html;
+}
+
+function gotoPage(p){
+  const list = window.__filtered || [];
+  const totalPages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+  if (p < 1 || p > totalPages) return;
+  curPage = p;
+  drawPage();
+  const wrap = document.querySelector('.table-wrap');
+  if (wrap) wrap.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 function openDrawer(i){
