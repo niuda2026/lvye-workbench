@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>月度累计看板</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F0F6FC;color:#1a2e45;font-family:'Segoe UI','Microsoft YaHei','PingFang SC',Arial,sans-serif;font-size:13px;min-height:100vh}
+.header{background:linear-gradient(135deg,#0B4F8A 0%,#1E88E5 50%,#1e88e5 100%);padding:14px 24px;border-bottom:3px solid #0A3D6B;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;box-shadow:0 2px 8px rgba(11,79,138,.4)}
+.header-title{font-size:20px;font-weight:700;color:#ffffff;letter-spacing:1px;text-shadow:0 1px 3px rgba(0,0,0,.3)}
+.header-sub{font-size:12px;color:#B3D0E8;margin-top:3px}
+.header-right{text-align:right;font-size:12px;color:#B3D0E8;line-height:1.8}
+.tab-bar{display:flex;background:#0B4F8A;border-bottom:2px solid #0A3D6B;padding:0 16px;gap:4px;flex-wrap:wrap}
+.tab-item{padding:10px 22px;cursor:pointer;color:#8FB8DA;border-bottom:3px solid transparent;font-size:13px;font-weight:500;transition:all .2s;white-space:nowrap}
+.tab-item:hover{color:#fff;background:rgba(255,255,255,.1)}
+.tab-item.active{color:#fff;border-bottom:3px solid #fff;background:rgba(255,255,255,.15)}
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding:10px 16px;background:#ffffff;border-bottom:1px solid #d6e4f0;box-shadow:0 1px 3px rgba(11,79,138,.06)}
+.filter-bar label{color:#0B4F8A;font-size:12px;white-space:nowrap;font-weight:500}
+.filter-bar select{background:#fff;color:#1a2e45;border:1px solid #8FB8DA;padding:5px 8px;border-radius:4px;font-size:13px;outline:none;font-weight:600;cursor:pointer}
+.filter-bar .hint{color:#78909c;font-size:12px}
+.btn{padding:5px 14px;border-radius:4px;border:none;cursor:pointer;font-size:12px;font-weight:500;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+.btn-secondary{background:#EAF2F9;color:#0B4F8A;border:1px solid #8FB8DA}
+.btn-secondary:hover{background:#B3D0E8}
+.summary-row{display:flex;gap:10px;padding:12px 16px;flex-wrap:wrap;background:#f0f7ff}
+.card{background:#ffffff;border:1px solid #d6e4f0;border-radius:6px;padding:10px 14px;min-width:150px;flex:1;max-width:230px;box-shadow:0 1px 4px rgba(11,79,138,.08)}
+.card .c-label{font-size:11px;color:#4F6E87;margin-bottom:3px;letter-spacing:.3px}
+.card .c-value{font-size:20px;font-weight:700;color:#0B4F8A;font-variant-numeric:tabular-nums;letter-spacing:.2px}
+.card .c-sub{font-size:11px;color:#90a4ae;margin-top:3px}
+.card.green .c-value{color:#2e7d32}
+.card.yellow .c-value{color:#e65100}
+.card.red .c-value{color:#c62828}
+.panel{display:none}
+.panel.active{display:block}
+.table-wrap{overflow:auto;max-height:calc(100vh - 210px)}
+table.dt{width:100%;border-collapse:collapse;font-size:12px}
+table.dt th{background:#0B4F8A;color:#fff;padding:8px 10px;text-align:center;border:1px solid #1E88E5;white-space:normal;position:sticky;top:0;z-index:2;line-height:1.4;font-size:12px;letter-spacing:.5px;font-weight:600}
+table.dt th.sub{background:#1565C0;font-weight:400;font-size:11px;letter-spacing:.2px}
+table.dt td{padding:7px 10px;border:1px solid #e3edf7;text-align:center;white-space:nowrap;background:#fff;font-variant-numeric:tabular-nums}
+table.dt td.l{text-align:left}
+table.dt th.sticky-col,table.dt td.sticky-col{position:sticky;z-index:1;background:#fff}
+table.dt th.sticky-col{background:#0B4F8A;z-index:3}
+tr.lv-total td.sticky-col{background:#dbeafe!important}
+tr.lv-subregion td.sticky-col{background:#F0F6FC!important}
+tr.lv-merchant td.sticky-col{background:#f8fafe!important}
+tr.lv-site:hover td.sticky-col{background:#f0f7ff!important}
+td.sticky-col.cell-good{background:#e8f5e9!important}
+td.sticky-col.cell-bad{background:#ffebee!important}
+table.dt th.sticky-last,table.dt td.sticky-last{border-right:2px solid #0B4F8A!important;box-shadow:2px 0 4px rgba(11,79,138,.15)}
+tr.lv-total td{background:#dbeafe!important;font-weight:700;color:#0A3D6B;font-size:13px;border-bottom:2px solid #8FB8DA}
+tr.lv-subregion td{background:#F0F6FC!important;font-weight:700;color:#0B4F8A}
+tr.lv-merchant td{background:#f8fafe!important;font-weight:500;color:#1E88E5;font-style:italic}
+tr.lv-site td{background:#fff}
+tr.lv-site:nth-child(even) td{background:#f8fafc}
+tr.lv-site:hover td{background:#f0f7ff}
+.rg{background:#e8f5e9!important;color:#2e7d32!important;font-weight:600}
+.ry{background:#fff3e0!important;color:#e65100!important;font-weight:600}
+.rr{background:#ffebee!important;color:#c62828!important;font-weight:600}
+.rn{color:#90a4ae}
+.delta-up{color:#2e7d32;font-weight:600}
+.delta-down{color:#c62828;font-weight:600}
+.delta-zero{color:#90a4ae;font-weight:600}
+.note{font-size:11px;color:#78909c;padding:6px 16px;background:#fff;border-bottom:1px solid #d6e4f0;line-height:1.6}
+</style>
+<script src="monthly_summary.js"></script>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="header-title">📊 月度累计看板</div>
+    <div class="header-sub">站点维度月度累计 · 高速骑手 / 护航服装 / 安全权益 / 站长安全评级（跨月对比）</div>
+  </div>
+  <div class="header-right">
+    <div id="dataRange">数据文件: monthly_summary.js</div>
+    <div>戴盔系带率 ≥ 97% &nbsp;|&nbsp; 有灯路口超速率 ≤ 4% &nbsp;|&nbsp; 闯红灯率 ≤ 23% &nbsp;|&nbsp; 考核里程逆行率 ≤ 3% &nbsp;|&nbsp; 工装检核率 ≥ 80% &nbsp;|&nbsp; 美团工服率 ≥ 92%</div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <label>统计月份</label>
+  <select id="monthSel" onchange="renderAll()"></select>
+  <span class="hint" id="monthHint"></span>
+  <div style="flex:1"></div>
+  <button class="btn btn-secondary" onclick="exportTable()">⬇ 导出Excel</button>
+</div>
+
+<div class="summary-row" id="summaryRow"></div>
+
+<div class="tab-bar">
+  <div class="tab-item active" data-tab="safety" onclick="switchTab('safety')">🛡️ 安全权益</div>
+  <div class="tab-item" data-tab="rating" onclick="switchTab('rating')">🏅 站长安全评级</div>
+  <div class="tab-item" data-tab="highway" onclick="switchTab('highway')">⚡ 高速骑手</div>
+  <div class="tab-item" data-tab="clothing" onclick="switchTab('clothing')">👕 护航服装</div>
+</div>
+<div class="note" id="noteLine"></div>
+
+<div class="panel active" id="panel-safety">
+  <div class="table-wrap"><table class="dt" id="tbl-safety"><thead></thead><tbody></tbody></table></div>
+</div>
+<div class="panel" id="panel-rating">
+  <div class="table-wrap"><table class="dt" id="tbl-rating"><thead></thead><tbody></tbody></table></div>
+</div>
+<div class="panel" id="panel-highway">
+  <div class="table-wrap"><table class="dt" id="tbl-highway"><thead></thead><tbody></tbody></table></div>
+</div>
+<div class="panel" id="panel-clothing">
+  <div class="table-wrap"><table class="dt" id="tbl-clothing"><thead></thead><tbody></tbody></table></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script>
+// ══════════════════════════════════════════════════════════
+// 月度累计看板渲染
+// 数据: window.MONTHLY_SUMMARY = {months:[...], updated, sites:[...]}
+// sites 每行: {level, region, subregion, city, name, "2026-08": {
+//   helmet:{num,den,rate}, speed:{num,den,rate}, redlight:{num,den,rate},
+//   reverse:{num,den,rate}, clothing:{cloth:{num,den,rate},vis:{num,den,rate}},
+//   high_speed:{days,pct}}}
+// 跨月对比: 选中月份 cur；若存在上一归档月 prev 则附「上月值 + 环比」列
+// ══════════════════════════════════════════════════════════
+var MONTHLY = window.MONTHLY_SUMMARY || {months: [], sites: []};
+
+// 四板块配置（与安全权益看板 METRIC_CFG 口径一致）
+var PANELS = {
+  safety: {
+    title: '安全权益',
+    metrics: [
+      {key:'helmet', label:'戴盔系带率', target:97, goodHigh:true, redAt:95},
+      {key:'speed', label:'有灯路口超速率', target:4, goodHigh:false, redAt:7.5}
+    ]
+  },
+  rating: {
+    title: '站长安全评级',
+    metrics: [
+      {key:'redlight', label:'闯红灯率', target:23, goodHigh:false},
+      {key:'reverse', label:'考核里程逆行率', target:3, goodHigh:false}
+    ]
+  },
+  highway: {
+    title: '高速骑手',
+    metrics: [
+      {key:'high_speed', label:'高速超速占比', target:null, goodHigh:false}
+    ]
+  },
+  clothing: {
+    title: '护航服装',
+    // 双指标（数据源 data_excluded.js 的 ESCORT_DATA，已剔除恶劣天气口径）：
+    //   cloth 工装检核率 = Σcn/Σon（目标 ≥ 80%）；vis 美团工服率 = Σvc/Σto（目标 ≥ 92%）
+    metrics: [
+      {key:'clothing', sub:'cloth', label:'工装检核率', target:80, goodHigh:true},
+      {key:'clothing', sub:'vis', label:'美团工服率', target:92, goodHigh:true}
+    ]
+  }
+};
+var LEVEL_TITLE = {total:'公司', subregion:'区域', merchant:'城市', site:'站点'};
+var REGION_ORDER = ['华北一区','华北二区','华北三区','华东大区','中南大区'];
+var curTab = 'safety';
+var curMonth = null;
+var prevMonth = null;
+
+function esc(s){
+  return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function rateVal(site, month, m){
+  // m 为 metric 对象 {key, sub?}；clothing 双指标用 sub 定位 cloth/vis。返回 {v:百分比或null, has:bool}
+  var mv = site[month];
+  if(!mv) return {v:null, has:false};
+  var o = mv[m.key];
+  if(!o) return {v:null, has:false};
+  var oo = m.sub ? o[m.sub] : o;
+  if(!oo) return {v:null, has:false};
+  if(m.key==='high_speed') return {v:oo.pct, has:oo.pct!=null};
+  return {v:oo.rate, has:oo.rate!=null};
+}
+function anyClothingHas(s, month){
+  // clothing 面板行筛选：当月 cloth/vis 任一有值即渲染
+  if(month==null) return false;
+  var mets = PANELS.clothing.metrics;
+  for(var i=0;i<mets.length;i++){ if(rateVal(s, month, mets[i]).has) return true; }
+  return false;
+}
+function fmtPct(v){
+  if(v==null || isNaN(v)) return '<span class="rn">-</span>';
+  return v.toFixed(2)+'%';
+}
+function rcClass(v, m){
+  if(v==null || isNaN(v) || m.target==null) return '';
+  if(m.goodHigh) return v>=m.target?'rg':(v>=(m.redAt!==undefined?m.redAt:m.target-5)?'ry':'rr');
+  return v<=m.target?'rg':(v<=(m.redAt!==undefined?m.redAt:m.target+5)?'ry':'rr');
+}
+function deltaHtml(cur, prev, m){
+  if(cur==null || prev==null || isNaN(cur) || isNaN(prev)) return '<span class="rn">-</span>';
+  var d = cur - prev;
+  if(Math.abs(d)<0.005) return '<span class="delta-zero">0.00</span>';
+  var good = m.goodHigh ? d>0 : d<0;
+  var cls = good ? 'delta-up' : 'delta-down';
+  return '<span class="'+cls+'">'+(d>0?'+':'')+d.toFixed(2)+'</span>';
+}
+
+// ── 月份选择器 ──
+function initMonthSel(){
+  var sel = document.getElementById('monthSel');
+  var months = MONTHLY.months || [];
+  var html = '';
+  months.forEach(function(m){ html += '<option value="'+m+'">'+m+'</option>'; });
+  sel.innerHTML = html;
+  if(months.length) curMonth = months[months.length-1];
+}
+function syncHint(){
+  var months = MONTHLY.months || [];
+  var hint = document.getElementById('monthHint');
+  if(curMonth && prevMonth){
+    hint.textContent = '当前列: '+curMonth+'，对比列: '+prevMonth+'（环比 = 当前月 - 对比月）';
+  } else if(curMonth){
+    hint.textContent = '当前仅归档 '+curMonth+' 一个月份，展示单月值（后续归档新月份后自动出现对比列）';
+  } else {
+    hint.textContent = '暂无归档数据';
+  }
+}
+
+// ── 汇总卡片 ──
+function totalCards(){
+  var row = document.getElementById('summaryRow');
+  var totalSite = null;
+  MONTHLY.sites.forEach(function(s){ if(s.level==='total') totalSite = s; });
+  var cards = [];
+  if(totalSite){
+    var defs = [
+      {label:'戴盔系带率（累计）', key:'helmet', sub:'目标 ≥ 97%', target:97, goodHigh:true, redAt:95},
+      {label:'有灯路口超速率（累计）', key:'speed', sub:'目标 ≤ 4%', target:4, goodHigh:false, redAt:7.5},
+      {label:'闯红灯率（累计）', key:'redlight', sub:'目标 ≤ 23%', target:23, goodHigh:false},
+      {label:'考核里程逆行率（累计）', key:'reverse', sub:'目标 ≤ 3%', target:3, goodHigh:false},
+      {label:'工装检核率（累计）', key:'clothing', subKey:'cloth', sub:'目标 ≥ 80%', target:80, goodHigh:true},
+      {label:'美团工服率（累计）', key:'clothing', subKey:'vis', sub:'目标 ≥ 92%', target:92, goodHigh:true},
+      {label:'高速超速占比（月均日占比）', key:'high_speed', sub:'站点维度', target:null, goodHigh:false}
+    ];
+    var mv = totalSite[curMonth] || {};
+    defs.forEach(function(d){
+      var o = mv[d.key] || {};
+      var oo = d.subKey ? (o[d.subKey]||{}) : o;
+      var v = d.key==='high_speed' ? oo.pct : oo.rate;
+      var css = '';
+      if(v!=null && d.target!=null){
+        if(d.goodHigh) css = v>=d.target?' green':(v>=(d.redAt!==undefined?d.redAt:d.target-5)?' yellow':' red');
+        else css = v<=d.target?' green':(v<=(d.redAt!==undefined?d.redAt:d.target+5)?' yellow':' red');
+      }
+      cards.push('<div class="card'+css+'"><div class="c-label">'+d.label+'</div><div class="c-value">'+(v==null?'<span style="color:#90a4ae">-</span>':v.toFixed(2)+'%')+'</div><div class="c-sub">'+curMonth+(d.sub?' · '+d.sub:'')+'</div></div>');
+    });
+  }
+  var siteN = 0, subN=0, cityN=0;
+  MONTHLY.sites.forEach(function(s){
+    if(s.level==='site')siteN++; else if(s.level==='subregion')subN++; else if(s.level==='merchant')cityN++;
+  });
+  cards.push('<div class="card"><div class="c-label">层级规模</div><div class="c-value" style="font-size:17px">'+subN+' / '+cityN+' / '+siteN+'</div><div class="c-sub">区域 / 城市 / 站点（含 '+curMonth+' 数据）</div></div>');
+  row.innerHTML = cards.join('');
+}
+
+// ── Tab 切换 ──
+function switchTab(tab){
+  curTab = tab;
+  document.querySelectorAll('.tab-item').forEach(function(el){ el.classList.toggle('active', el.getAttribute('data-tab')===tab); });
+  document.querySelectorAll('.panel').forEach(function(el){ el.classList.toggle('active', el.id==='panel-'+tab); });
+}
+
+// ── 渲染单面板表格 ──
+function renderTable(tab, metrics){
+  var table = document.getElementById('tbl-'+tab);
+  var thead = table.querySelector('thead');
+  var tbody = table.querySelector('tbody');
+  var months = MONTHLY.months || [];
+  if(!curMonth || months.indexOf(curMonth)<0) curMonth = months.length?months[months.length-1]:null;
+  var idx = curMonth ? months.indexOf(curMonth) : -1;
+  prevMonth = idx>0 ? months[idx-1] : null;
+
+  // thead
+  var head = '<tr>';
+  var stickyOffsets = [0,80,150,230];
+  head += '<th style="min-width:70px;left:'+stickyOffsets[0]+'px" class="sticky-col">大区</th>';
+  head += '<th style="min-width:80px;left:'+stickyOffsets[1]+'px" class="sticky-col">区域</th>';
+  head += '<th style="min-width:70px;left:'+stickyOffsets[2]+'px" class="sticky-col">城市</th>';
+  head += '<th style="min-width:220px;left:'+stickyOffsets[3]+'px;text-align:left" class="sticky-col sticky-last">名称</th>';
+  metrics.forEach(function(m){
+    head += '<th>'+esc(m.label)+'<br><small style="color:#B3D0E8">'+curMonth+(m.target!=null?' · 目标'+(m.goodHigh?'≥':'≤')+m.target:'')+'</small></th>';
+    if(prevMonth) head += '<th>'+esc(m.label)+'（上月）<br><small style="color:#B3D0E8">'+prevMonth+'</small></th>';
+    if(prevMonth) head += '<th>环比<br><small style="color:#B3D0E8">百分点</small></th>';
+  });
+  head += '</tr>';
+  thead.innerHTML = head;
+
+  // tbody
+  var trs = [];
+  MONTHLY.sites.forEach(function(s){
+    if(tab==='clothing'){
+      // 服装板块仅渲染当月/上月 cloth 或 vis 任一有数据的层级/站点
+      var has = anyClothingHas(s, curMonth) || anyClothingHas(s, prevMonth);
+      if(!has) return;
+    }
+    var lv = s.level || 'site';
+    var nameCell;
+    if(lv==='total') nameCell = esc(s.name);
+    else if(lv==='subregion') nameCell = esc(s.name);
+    else if(lv==='merchant') nameCell = esc(s.name);
+    else nameCell = esc(s.name);
+    var regionTxt = lv==='total' ? '' : esc(s.region||'');
+    var subrTxt = lv==='site'||lv==='merchant' ? esc(s.subregion||'') : (lv==='subregion'?'':esc(s.subregion||''));
+    var cityTxt = lv==='site' ? esc(s.city||'') : '';
+    var tr = '<tr class="lv-'+lv+'">';
+    tr += '<td class="sticky-col" style="left:0px">'+regionTxt+'</td>';
+    tr += '<td class="sticky-col" style="left:80px">'+subrTxt+'</td>';
+    tr += '<td class="sticky-col" style="left:150px">'+cityTxt+'</td>';
+    tr += '<td class="sticky-col sticky-last l" style="left:230px">'+nameCell+'</td>';
+    metrics.forEach(function(m){
+      var c = rateVal(s, curMonth, m);
+      var cls = rcClass(c.v, m);
+      tr += '<td class="'+(cls?cls:'')+'">'+fmtPct(c.v)+'</td>';
+      if(prevMonth){
+        var p = rateVal(s, prevMonth, m);
+        tr += '<td>'+fmtPct(p.v)+'</td>';
+        tr += '<td>'+deltaHtml(c.v, p.v, m)+'</td>';
+      }
+    });
+    tr += '</tr>';
+    trs.push(tr);
+  });
+  tbody.innerHTML = trs.join('');
+  document.getElementById('noteLine').textContent =
+    '口径说明：helmet/speed/redlight/reverse 累计率 = Σ分子/Σ分母；clothing 工装检核率 = Σcn/Σon、美团工服率 = Σvc/Σto（护航服装 data_excluded.js 已剔除恶劣天气口径，目标：工装检核率 ≥ 80%、美团工服率 ≥ 92%）；high_speed（高速监控 SPEED_SITE_ROWS）源数据无分子分母，按当月每日占比均值 ×100（日占比均值口径）。' +
+    (prevMonth ? ' 当前对比：'+curMonth+' 与 '+prevMonth+'。' : ' 当前仅 '+curMonth+' 单月，展示单月值。');
+}
+
+function renderAll(){
+  if(!curMonth){
+    var months = MONTHLY.months||[];
+    if(months.length) curMonth = months[months.length-1];
+  }
+  syncHint();
+  totalCards();
+  renderTable('safety', PANELS.safety.metrics);
+  renderTable('rating', PANELS.rating.metrics);
+  renderTable('highway', PANELS.highway.metrics);
+  renderTable('clothing', PANELS.clothing.metrics);
+}
+
+// ── 导出 Excel ──
+function exportTable(){
+  var metrics = PANELS[curTab].metrics;
+  var months = MONTHLY.months||[];
+  var idx = curMonth?months.indexOf(curMonth):-1;
+  var pv = idx>0?months[idx-1]:null;
+  var rows = [['大区','区域','城市','名称','层级']];
+  metrics.forEach(function(m){
+    rows[0].push(m.label+'('+curMonth+')');
+    if(pv){ rows[0].push(m.label+'('+pv+')'); rows[0].push('环比'); }
+  });
+  var filterClothing = (curTab==='clothing');
+  MONTHLY.sites.forEach(function(s){
+    if(filterClothing){
+      var has = anyClothingHas(s,curMonth) || anyClothingHas(s,pv);
+      if(!has) return;
+    }
+    var row = [s.region||'', s.subregion||'', s.city||'', s.name||'', LEVEL_TITLE[s.level]||s.level];
+    metrics.forEach(function(m){
+      var c = rateVal(s,curMonth,m);
+      row.push(c.v==null?'':c.v);
+      if(pv){
+        var p = rateVal(s,pv,m);
+        row.push(p.v==null?'':p.v);
+        row.push((c.v!=null&&p.v!=null)?Math.round((c.v-p.v)*100)/100:'');
+      }
+    });
+    rows.push(row);
+  });
+  if(typeof XLSX!=='undefined'){
+    var ws = XLSX.utils.aoa_to_sheet(rows);
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, curTab);
+    XLSX.writeFile(wb, '月度累计看板_'+curTab+'_'+curMonth+'.xlsx');
+  } else {
+    alert('Excel 导出库未加载，请联网后重试');
+  }
+}
+
+// init
+(function(){
+  if(!MONTHLY.months || !MONTHLY.months.length){
+    document.getElementById('monthSel').innerHTML = '<option>暂无数据</option>';
+    document.getElementById('summaryRow').innerHTML = '<div class="card"><div class="c-label">提示</div><div class="c-value" style="font-size:15px">monthly_summary.js 暂无归档月份</div><div class="c-sub">请先运行 monthly_archive.py 归档</div></div>';
+    return;
+  }
+  initMonthSel();
+  renderAll();
+})();
+</script>
+</body>
+</html>

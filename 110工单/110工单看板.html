@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>110工单实时看板</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f4f6fa;
+  --surface: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border: #e2e8f0;
+  --blue-500: #0B4F8A;
+  --blue-50: #eff6ff;
+  --blue-600: #0B4F8A;
+  --amber-500: #f59e0b;
+  --amber-50: #fffbeb;
+  --red-500: #ef4444;
+  --red-50: #fef2f2;
+  --orange-500: #f97316;
+  --purple-500: #8b5cf6;
+  --green-500: #10b981;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,.07), 0 2px 4px -2px rgba(0,0,0,.05);
+  --shadow-lg: 0 10px 25px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.05);
+  --radius: 10px;
+  --radius-sm: 6px;
+  --transition: 150ms ease;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.dashboard {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 28px 40px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.header-left h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.header-left p {
+  font-size: .8125rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.last-updated {
+  font-size: .75rem;
+  color: var(--text-muted);
+}
+
+.btn-refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text-primary);
+  font-size: .8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-refresh:hover {
+  background: var(--blue-50);
+  border-color: var(--blue-500);
+  color: var(--blue-600);
+}
+
+.btn-refresh:active { transform: scale(.97); }
+
+.btn-refresh .icon { font-size: 1rem; }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.btn-refresh.loading .icon {
+  animation: spin .8s linear infinite;
+}
+
+/* Stat Cards */
+.stat-cards {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 12px; bottom: 12px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+}
+
+.stat-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.stat-card .label {
+  font-size: .75rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: 6px;
+}
+
+.stat-card .value {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.stat-card.total::before { background: var(--text-muted); }
+.stat-card.total .value { color: #64748b; }
+
+.stat-card.pending::before { background: var(--red-500); }
+.stat-card.pending { background: var(--red-50); }
+.stat-card.pending .value { color: var(--red-500); }
+
+.stat-card.processing::before { background: var(--blue-500); }
+.stat-card.processing { background: var(--blue-50); }
+.stat-card.processing .value { color: var(--blue-500); }
+
+.stat-card.review::before { background: var(--amber-500); }
+.stat-card.review { background: var(--amber-50); }
+.stat-card.review .value { color: #d97706; }
+
+.stat-card.overdue::before { background: var(--orange-500); }
+.stat-card.overdue { background: #fff7ed; }
+.stat-card.overdue .value { color: var(--orange-500); }
+
+.stat-card.clue::before { background: var(--purple-500); }
+.stat-card.clue { background: #f5f3ff; }
+.stat-card.clue .value { color: var(--purple-500); }
+
+/* Primary Tabs */
+.primary-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 24px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 4px;
+  box-shadow: var(--shadow-sm);
+  width: fit-content;
+}
+
+.primary-tab {
+  padding: 10px 24px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: .875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.primary-tab.active {
+  background: var(--blue-500);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.primary-tab:hover:not(.active) {
+  color: var(--text-primary);
+}
+
+/* Charts */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.chart-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.chart-card h3 {
+  font-size: .875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.chart-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.chart-wrap.doughnut {
+  max-width: 240px;
+  margin: 0 auto;
+}
+
+/* Secondary Tabs */
+.secondary-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--border);
+}
+
+.secondary-tab {
+  padding: 10px 20px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: .8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  transition: color var(--transition);
+}
+
+.secondary-tab:hover { color: var(--text-primary); }
+
+.secondary-tab.active {
+  color: var(--blue-500);
+  font-weight: 600;
+}
+
+.secondary-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 2px;
+  background: var(--blue-500);
+  border-radius: 1px;
+}
+
+.secondary-tab .badge {
+  display: inline-block;
+  background: var(--blue-50);
+  color: var(--blue-500);
+  font-size: .6875rem;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 10px;
+  margin-left: 6px;
+  min-width: 22px;
+  text-align: center;
+}
+
+.secondary-tab.active .badge {
+  background: var(--blue-500);
+  color: #fff;
+}
+
+/* Table */
+.table-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.table-card .table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.table-card .table-header .info {
+  font-size: .8125rem;
+  color: var(--text-secondary);
+}
+
+.table-card .table-header .info strong {
+  color: var(--text-primary);
+}
+
+.page-size-select {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: .75rem;
+  color: var(--text-primary);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .8125rem;
+}
+
+th {
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: #f8fafc;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  user-select: none;
+}
+
+th.sortable { cursor: pointer; }
+
+th.sortable:hover { color: var(--blue-500); }
+
+th .sort-arrow { font-size: .625rem; margin-left: 2px; }
+
+td {
+  padding: 11px 14px;
+  border-bottom: 1px solid #f1f5f9;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+tr:hover td { background: #f8fafc; }
+
+td.id a {
+  color: var(--blue-500);
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+td.id a:hover { text-decoration: underline; }
+
+td.status .tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: .6875rem;
+  font-weight: 600;
+}
+
+td.status .tag.pending {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+td.status .tag.processing {
+  background: #eff6ff;
+  color: #0B4F8A;
+}
+
+td.status .tag.closed {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+td.summary {
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+td.overdue-tag {
+  color: var(--red-500);
+  font-size: .6875rem;
+  font-weight: 600;
+}
+
+.btn-detail {
+  padding: 5px 14px;
+  border: 1px solid var(--blue-500);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--blue-500);
+  font-size: .75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-detail:hover {
+  background: var(--blue-500);
+  color: #fff;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 14px 24px;
+  border-top: 1px solid var(--border);
+}
+
+.pagination button {
+  min-width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text-primary);
+  font-size: .75rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.pagination button:hover:not(:disabled) {
+  border-color: var(--blue-500);
+  color: var(--blue-500);
+}
+
+.pagination button.active {
+  background: var(--blue-500);
+  border-color: var(--blue-500);
+  color: #fff;
+  font-weight: 600;
+}
+
+.pagination button:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, .45);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+.modal {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  width: 920px;
+  max-width: 94vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalIn .2s ease-out;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(.96) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.modal-header .title-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-header .event-id {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.modal-header .level-tag {
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: .6875rem;
+  font-weight: 600;
+  background: var(--blue-50);
+  color: var(--blue-500);
+}
+
+.modal-header .status-tag {
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: .6875rem;
+  font-weight: 600;
+}
+
+.modal-header .status-tag.pending {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.modal-header .overdue-alert {
+  font-size: .75rem;
+  color: var(--red-500);
+  font-weight: 500;
+}
+
+.modal-close {
+  width: 32px; height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+}
+
+.modal-close:hover {
+  background: #f1f5f9;
+  color: var(--text-primary);
+}
+
+.modal-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+
+.modal-tab {
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: .8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  transition: color var(--transition);
+}
+
+.modal-tab:hover { color: var(--text-primary); }
+
+.modal-tab.active {
+  color: var(--blue-500);
+  font-weight: 600;
+}
+
+.modal-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 8px; right: 8px;
+  height: 2px;
+  background: var(--blue-500);
+  border-radius: 1px;
+}
+
+.modal-body {
+  overflow-y: auto;
+  padding: 24px;
+  flex: 1;
+}
+
+.modal-body .tab-content { display: none; }
+.modal-body .tab-content.active { display: block; }
+
+/* Detail sections */
+.detail-section {
+  margin-bottom: 20px;
+}
+
+.detail-section:last-child { margin-bottom: 0; }
+
+.detail-section h4 {
+  font-size: .8125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 20px;
+}
+
+.detail-grid.triple {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.detail-item {
+  display: flex;
+  gap: 8px;
+  font-size: .8125rem;
+  padding: 4px 0;
+}
+
+.detail-item .key {
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 100px;
+}
+
+.detail-item .key::after { content: '：'; }
+
+.detail-item .val {
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+.detail-item.full {
+  grid-column: 1 / -1;
+}
+
+.detail-item.full .val {
+  line-height: 1.7;
+}
+
+.log-table {
+  width: 100%;
+  font-size: .8125rem;
+  border-collapse: collapse;
+}
+
+.log-table th {
+  padding: 8px 12px;
+  text-align: left;
+  background: #f8fafc;
+  font-size: .75rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.log-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: .75rem;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+}
+
+.empty-state .icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  font-size: .8125rem;
+}
+
+/* Clue placeholder */
+.clue-placeholder {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.clue-placeholder .icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.clue-placeholder h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.clue-placeholder p {
+  font-size: .8125rem;
+  color: var(--text-muted);
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e293b;
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: .8125rem;
+  font-weight: 500;
+  z-index: 2000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.toast.show { opacity: 1; }
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .stat-cards { grid-template-columns: repeat(3, 1fr); }
+  .charts-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 680px) {
+  .stat-cards { grid-template-columns: repeat(2, 1fr); }
+  .dashboard { padding: 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="dashboard">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>公司风险管理系统 · 工单看板</h1>
+      <p>事件处理 &amp; 线索核实 — fxgl365.com</p>
+    </div>
+    <div class="header-right">
+      <span class="last-updated" id="lastUpdated">更新于 --</span>
+      <button class="btn-refresh" id="btnRefresh" onclick="refreshData()">
+        <span class="icon">&#x21bb;</span> 刷新
+      </button>
+    </div>
+  </div>
+
+  <!-- Stat Cards -->
+  <div class="stat-cards" id="statCards"></div>
+
+  <!-- Primary Tabs -->
+  <div class="primary-tabs">
+    <button class="primary-tab active" onclick="switchPrimary('event')">&#x1f3ab; 事件处理工单</button>
+    <button class="primary-tab" onclick="switchPrimary('clue')">&#x1f50d; 线索核实工单</button>
+  </div>
+
+  <!-- Charts -->
+  <div class="charts-grid" id="chartsGrid">
+    <div class="chart-card">
+      <h3>事件类型分布</h3>
+      <div class="chart-wrap doughnut"><canvas id="chartType"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>事发城市 TOP10</h3>
+      <div class="chart-wrap"><canvas id="chartCity"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>事件等级分布</h3>
+      <div class="chart-wrap doughnut"><canvas id="chartLevel"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>近 30 天工单趋势</h3>
+      <div class="chart-wrap"><canvas id="chartTrend"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Secondary Tabs + Table -->
+  <div id="eventContent">
+    <div class="secondary-tabs" id="secondaryTabs"></div>
+    <div class="table-card">
+      <div class="table-header">
+        <span class="info" id="tableInfo"></span>
+        <select class="page-size-select" id="pageSizeSelect" onchange="changePageSize()">
+          <option value="10">10 条/页</option>
+          <option value="20">20 条/页</option>
+          <option value="50">50 条/页</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>事件编号</th>
+              <th>所属业务</th>
+              <th>事件类型</th>
+              <th>事发时间</th>
+              <th>事发城市</th>
+              <th>事件等级</th>
+              <th>事件经过</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </div>
+
+  <!-- Clue placeholder -->
+  <div id="clueContent" style="display:none;">
+    <div class="table-card">
+      <div class="clue-placeholder">
+        <div class="icon">&#x1f50d;</div>
+        <h3>线索核实模块</h3>
+        <p>该模块数据将在后续版本中接入，敬请期待</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div class="title-area">
+        <span class="event-id" id="modalEventId"></span>
+        <span class="level-tag" id="modalLevel"></span>
+        <span class="status-tag pending" id="modalStatus"></span>
+        <span class="overdue-alert" id="modalOverdue"></span>
+      </div>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+    </div>
+    <div class="modal-tabs">
+      <button class="modal-tab active" onclick="switchModalTab(0)">事件信息</button>
+      <button class="modal-tab" onclick="switchModalTab(1)">辅助数据</button>
+      <button class="modal-tab" onclick="switchModalTab(2)">进展</button>
+      <button class="modal-tab" onclick="switchModalTab(3)">操作日志</button>
+      <button class="modal-tab" onclick="switchModalTab(4)">大象</button>
+      <button class="modal-tab" onclick="switchModalTab(5)">保险</button>
+      <button class="modal-tab" onclick="switchModalTab(6)">关联事件</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ==================== DATA LAYER ====================
+let rawData = null;
+let currentPrimary = 'event';
+let currentView = 'pending';
+let currentPage = 1;
+let pageSize = 10;
+let chartInstances = {};
+
+const VIEW_KEYS = ['pending', 'history', 'notify', 'shared', 'qaFail'];
+const VIEW_NAMES = { pending: '待我处理', history: '处理历史', notify: '通知我的', shared: '我共同处理', qaFail: '质检不通过' };
+const STATUS_TAGS = { '待处理': 'pending', '处理中': 'processing', '关单待审核': 'closed' };
+
+const EMBEDDED_DATA = {"lastUpdated":"2026-07-24 11:41:27","sourceUrl":"https://fxgl365.com/110/w/desktop/process/list","module":"事件处理","views":{"pending":10,"history":232,"notify":1,"shared":2519,"qaFail":0},"stats":{"total":2762,"pending":10,"processing":0,"pendingReview":0,"overdue":3},"orders":[{"id":"2026071754944","business":"履约业务-专送","source":"客诉升级","type":"交通事故","occurTime":"2026-07-15 12:42","city":"河北省唐山市路北区","level":"蓝色","summary":"背景：骑手孙树清在配送途中与非机动车发生碰撞…","status":"待处理","reportTime":"2026-07-17 17:18:22","updateTime":"2026-07-17 17:18:23","reporter":"于廉达","handler":"李文龙，黄可鑫，许洁茹","overdue":true,"overdueDays":9,"detail":{"basic":{"eventNum":"2026071754944","business":"履约业务-专送","eventType":"交通事故","occurTime":"2026-07-15 12:42","city":"河北省/唐山市/路北区","location":"中国河北省唐山市路北区文化路街道北新东道35号","summary":"骑手孙树清在配送途中与非机动车发生碰撞，造成财产损失。用户反馈骑手态度问题，要求赔偿。","specialCrowd":"否","attachments":"事故现场照片.jpg"},"rider":{"name":"孙树清","phone":"180****7864","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"2449228513","skaShop":"不涉及","faq2":"外卖非订单问题","notifyType":"指导会商","csOrderStatus":"风险事件处理中"},"eventDetail":{"nature":"财损","cause":"-","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"1"},"other":{"insuranceReported":"已报保险","insuranceNo":"10426079100613144511","compensationDone":"未完成","suspectedDisability":"否","compensationAmount":"-","mediaCoverage":"否","policeInvolvedBiz":"是","regulatorInvolved":"否","litigation":"否","compliant":"是","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"}},"auxData":{"workStatus":{"name":"孙树清","id":"73651989","inShift":"是","inWorkHours":"是","inOrder":"否","orderCount":"0"},"orderStats":{"totalOrders":"1407","dailyAvg":"32.0","onlineHours":"9.65h","weeklyAvg":"34.0","weeklyActiveHours":"7.97h","monthlyActiveDays":"29天"},"safetyBehavior":{"dailySpeed":"8.52km/h","weeklySpeed":"9.55","cityAvg":"11.87","distractionRate":"5.71%","helmetRate":"100%","strapRate":"100%"}},"progress":[{"time":"2026-07-17 17:18","person":"于廉达/yulianda","content":"事件上报，等待分配处理人"}],"logs":[{"time":"2026-07-17 17:18:23","operator":"于廉达/yulianda","action":"创建风险事件","detail":"创建工单 2026071754944"},{"time":"2026-07-17 17:18:23","operator":"系统","action":"关联工单","detail":"关联客服工单 2449228513"},{"time":"2026-07-17 17:18:23","operator":"系统","action":"触发通知","detail":"通知处理人：李文龙，黄可鑫，许洁茹"}],"elephant":{"groupName":"蓝#财损#0715唐山市专送骑手孙树清撞车问题（19人）","groupId":"70836088170","groupType":"外部群"},"insurance":{"current":[{"reportNo":"10426079100613144511","claimNo":"-","policyNo":"-","caseNo":"-","insured":"孙树清","location":"唐山市路北区","time":"2026-07-15","amount":"500","settlement":"-","status":"待初审"}],"history":[]},"related":{"linked":[],"suspectedDuplicate":[{"id":"2026072065092","business":"履约业务-专送","source":"客诉升级","type":"交通事故","level":"蓝色","status":"待处理","reportTime":"2026-07-20","reporter":"-","handler":"-"}]}},{"id":"2026072063911","business":"履约业务-专送","source":"客诉升级","type":"交通事故","occurTime":"2026-07-19 21:30","city":"天津市和平区","level":"蓝色","summary":"骑手在天津市和平区配送途中发生交通事故…","status":"待处理","reportTime":"2026-07-20 09:15:00","updateTime":"2026-07-20 09:15:01","reporter":"贾钦雯","handler":"石瑞，许洁茹","overdue":true,"overdueDays":4,"detail":{"basic":{"eventNum":"2026072063911","business":"履约业务-专送","eventType":"交通事故","occurTime":"2026-07-19 21:30","city":"天津市/和平区","location":"天津市和平区南京路","summary":"骑手在天津市和平区配送途中发生交通事故，涉及第三方车辆。","specialCrowd":"否","attachments":"-"},"rider":{"name":"-","phone":"-","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"-","skaShop":"-","faq2":"-","notifyType":"-","csOrderStatus":"-"},"eventDetail":{"nature":"财损","cause":"-","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"-"},"other":{"insuranceReported":"-","insuranceNo":"-","compensationDone":"-","suspectedDisability":"-","compensationAmount":"-","mediaCoverage":"-","policeInvolvedBiz":"-","regulatorInvolved":"-","litigation":"-","compliant":"-","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"}},"auxData":null,"progress":[],"logs":[],"elephant":null,"insurance":{"current":[],"history":[]},"related":{"linked":[],"suspectedDuplicate":[]}},{"id":"2026072167262","business":"履约业务-专送","source":"客诉升级","type":"交通事故","occurTime":"2026-07-18 13:41","city":"吉林省长春市朝阳区","level":"蓝色","summary":"骑手孙树清与三者事故，双方未就医。来电人诉求：需要保险进行理赔。","status":"待处理","reportTime":"2026-07-20 16:08:40","updateTime":"2026-07-20 16:08:41","reporter":"甘嘉宁","handler":"黄可鑫，李文龙，许洁茹","overdue":true,"overdueDays":3,"detail":{"basic":{"eventNum":"2026072167262","business":"履约业务-专送","eventType":"交通事故","occurTime":"2026-07-18 13:41","city":"河北省/唐山市/路北区","location":"唐山市路北区文化路街道北新东到35号","summary":"骑手孙树清与三者事故，骑手受伤不严重，来电人诉求：需要保险进行理赔。","specialCrowd":"否","attachments":"-"},"rider":{"name":"孙树清","phone":"180****7864","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"2453089189","skaShop":"不涉及","faq2":"外卖非订单问题","notifyType":"指导会商","csOrderStatus":"风险事件处理中"},"eventDetail":{"nature":"财损","cause":"-","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"未告知"},"other":{"insuranceReported":"已报保险","insuranceNo":"10426079100613144511","compensationDone":"-","suspectedDisability":"-","compensationAmount":"-","mediaCoverage":"-","policeInvolvedBiz":"是","regulatorInvolved":"-","litigation":"-","compliant":"否","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"}},"auxData":null,"progress":[],"logs":[],"elephant":null,"insurance":{"current":[],"history":[]},"related":{"linked":[],"suspectedDuplicate":[]}},{"id":"2026072065092","business":"履约业务-专送","source":"客诉升级","type":"交通事故","occurTime":"2026-07-15 12:42","city":"河北省唐山市路北区","level":"蓝色","summary":"骑手孙树清与三者事故，双方未就医。来电人诉求：需要保险进行理赔。","status":"待处理","reportTime":"2026-07-20 16:08:40","updateTime":"2026-07-20 16:08:41","reporter":"甘嘉宁","handler":"黄可鑫，李文龙，许洁茹","overdue":true,"overdueDays":4,"detail":{"basic":{"eventNum":"2026072065092","business":"履约业务-专送","eventType":"交通事故","occurTime":"2026-07-15 12:42","city":"河北省/唐山市/路北区","location":"唐山市路北区文化路街道北新东到35号","summary":"骑手孙树清与三者事故，骑手受伤不严重，来电人诉求：需要保险进行理赔。","specialCrowd":"否","attachments":"-"},"rider":{"name":"孙树清","phone":"180****7864","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"2453089189","skaShop":"不涉及","faq2":"外卖非订单问题","notifyType":"指导会商","csOrderStatus":"风险事件处理中"},"eventDetail":{"nature":"财损","cause":"-","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"未告知"},"other":{"insuranceReported":"已报保险","insuranceNo":"10426079100613144511","compensationDone":"未完成","suspectedDisability":"否","compensationAmount":"-","mediaCoverage":"否","policeInvolvedBiz":"是","regulatorInvolved":"否","litigation":"否","compliant":"否","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"}},"auxData":null,"progress":[{"time":"2026-07-20 16:08","person":"甘嘉宁","content":"事件上报，等待分配处理人"}],"logs":[{"time":"2026-07-20 16:08:40","operator":"甘嘉宁","action":"创建风险事件","detail":"创建工单 2026072065092"},{"time":"2026-07-20 16:08:40","operator":"系统","action":"关联工单","detail":"关联客服工单 2453089189"}],"elephant":null,"insurance":{"current":[{"reportNo":"10426079100613144511","claimNo":"-","policyNo":"-","caseNo":"-","insured":"孙树清","location":"唐山市路北区","time":"2026-07-15","amount":"-","settlement":"-","status":"已报保险"}],"history":[]},"related":{"linked":[],"suspectedDuplicate":[{"id":"2026071754944","business":"履约业务-专送","type":"交通事故","level":"蓝色","status":"待处理"}]}},{"id":"2026072375317","business":"履约业务-专送","source":"客诉升级","type":"交通事故","occurTime":"2026-06-28 11:59","city":"河北省张家口市桥西区","level":"蓝色","summary":"骑手主责，双方受伤，车损2400元。保险已出理赔，差站点授权。骑手：蒯英杰，兴必达【张家口】百盛站。","status":"待处理","reportTime":"2026-07-23 11:16:06","updateTime":"2026-07-23 11:16:07","reporter":"陆志姣","handler":"黄可鑫，孟健，李文龙，许洁茹","overdue":false,"overdueDays":0,"detail":{"basic":{"eventNum":"2026072375317","business":"履约业务-专送","eventType":"交通事故","occurTime":"2026-06-28 11:59","city":"河北省/张家口市/桥西区","location":"清水河中路","summary":"骑手主责，双方受伤，车损2400元。保险已出理赔，差站点授权。骑手：蒯英杰 192****3480。","specialCrowd":"否","attachments":"-"},"rider":{"name":"蒯英杰","phone":"192****3480","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"2455757310","skaShop":"不涉及","faq2":"外卖非订单问题","notifyType":"协助","csOrderStatus":"风险事件处理中"},"eventDetail":{"nature":"财损","cause":"-","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"无"},"other":{"insuranceReported":"已报保险","insuranceNo":"ACHDLQR37126W00F9OR1","compensationDone":"-","suspectedDisability":"-","compensationAmount":"-","mediaCoverage":"-","policeInvolvedBiz":"是","regulatorInvolved":"-","litigation":"-","compliant":"是","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"}},"auxData":null,"progress":[],"logs":[],"elephant":null,"insurance":{"current":[],"history":[]},"related":{"linked":[],"suspectedDuplicate":[]}},{"id":"2026072170210","business":"履约业务-专送","source":"客诉升级","type":"交通事故","occurTime":"2026-07-08 21:31","city":"四川省成都市锦江区","level":"蓝色","summary":"骑手剐蹭用户在小区停放的车辆，要求处理损失。骑手：狄开文，兴必达【枣庄】美铭广场站。","status":"待处理","reportTime":"2026-07-21 20:37:54","updateTime":"2026-07-21 20:37:54","reporter":"史艾禾","handler":"许洁茹，卢生有","overdue":false,"overdueDays":0,"detail":{"basic":{"eventNum":"2026072170210","business":"履约业务-专送","eventType":"交通事故","occurTime":"2026-07-08 21:31","city":"四川省/成都/锦江区","location":"春风海棠小区1栋","summary":"骑手剐蹭用户在小区停放的车辆，要求处理损失。骑手：狄开文，兴必达【枣庄】美铭广场站。","specialCrowd":"否","attachments":"-"},"rider":{"name":"狄开文","phone":"187****5232","orderNo":"2602203021551284392","shopName":"蜜雪冰城（王府井店）","deliveryType":"美团快送","csOrderNo":"2455601924","skaShop":"不涉及","faq2":"外卖订单问题","notifyType":"指导会商","csOrderStatus":"风险事件处理中"},"eventDetail":{"nature":"-","cause":"-","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"-"},"other":{"insuranceReported":"-","insuranceNo":"-","compensationDone":"-","suspectedDisability":"-","compensationAmount":"-","mediaCoverage":"-","policeInvolvedBiz":"-","regulatorInvolved":"-","litigation":"-","compliant":"-","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"}},"auxData":null,"progress":[{"time":"2026-07-21 20:37","person":"史艾禾","content":"事件上报，等待分配处理人"}],"logs":[{"time":"2026-07-21 20:37:54","operator":"史艾禾/shiyihe","action":"创建风险事件","detail":"创建工单 2026072170210"}],"elephant":{"groupName":"蓝色_0708_交通事故_履约业务-专送(客诉升级)_成都市","groupId":"70847653034","groupType":"外部群"},"insurance":{"current":[],"history":[]},"related":{"linked":[],"suspectedDuplicate":[]}},{"id":"2026072271532","business":"履约业务-专送","source":"客诉升级","type":"其他安全事件","occurTime":"2026-07-21 11:18","city":"山东省青岛市即墨区","level":"蓝色","summary":"用户表示骑手在配送订单时在楼道大小便，物业已清理，要求平台处理。","status":"待处理","reportTime":"2026-07-22 11:23:35","updateTime":"2026-07-22 11:23:36","reporter":"侯肖萌","handler":"许洁茹，卢生有","overdue":false,"overdueDays":0,"detail":{"basic":{"eventNum":"2026072271532","business":"履约业务-专送","eventType":"其他安全事件","occurTime":"2026-07-21 11:18","city":"山东省/青岛/即墨区","location":"山东省青岛市即墨区星河城三期-3号楼","summary":"用户表示骑手在配送订单时在楼道大小便，物业已清理，要求平台处理。","specialCrowd":"否","attachments":"-"},"rider":{"name":"-","phone":"-","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"-","skaShop":"-","faq2":"-","notifyType":"-","csOrderStatus":"-"},"eventDetail":{"nature":"-","cause":"-","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"-"},"other":{"insuranceReported":"-","insuranceNo":"-","compensationDone":"-","suspectedDisability":"-","compensationAmount":"-","mediaCoverage":"-","policeInvolvedBiz":"-","regulatorInvolved":"-","litigation":"-","compliant":"-","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"}},"auxData":null,"progress":[{"time":"2026-07-22 11:23","person":"侯肖萌","content":"事件上报，等待分配处理人"}],"logs":[{"time":"2026-07-22 11:23:35","operator":"侯肖萌","action":"创建风险事件","detail":"创建工单 2026072271532"}],"elephant":null,"insurance":{"current":[],"history":[]},"related":{"linked":[],"suspectedDuplicate":[]}},{"id":"2026072273591","business":"履约业务-专送","source":"客诉升级","type":"交通事故","occurTime":"2026-07-21 13:00","city":"山东省青岛市城阳区","level":"蓝色","summary":"骑手送餐途中驾驶电动车实线变道与逆行电动车碰撞，造成膝关节损伤等。三者左胳膊左腿擦伤，电动车受损及玉手镯断裂。","status":"待处理","reportTime":"2026-07-22 18:45:35","updateTime":"2026-07-22 18:45:35","reporter":"李杏然","handler":"许洁茹，卢生有","overdue":false,"overdueDays":0,"detail":{"basic":{"eventNum":"2026072273591","business":"履约业务-专送","eventType":"交通事故","occurTime":"2026-07-21 13:00","city":"山东省/青岛/城阳区","location":"山东省青岛市城阳区城阳街道荟城路536号","summary":"骑手送餐途中驾驶电动车实线变道与逆行电动车碰撞，造成膝关节损伤等。三者左胳膊左腿擦伤，电动车受损及玉手镯断裂。","specialCrowd":"否","attachments":"-"},"rider":{"name":"-","phone":"-","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"2454513135","skaShop":"-","faq2":"-","notifyType":"-","csOrderStatus":"-"},"eventDetail":{"nature":"人伤+财损","cause":"-","locationType":"-","roadType":"-","propertyLoss":"电动车受损、玉手镯断裂","policeInvolved":"-","accidentType":"-","vehicleType":"电动车","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"-"},"other":{"insuranceReported":"-","insuranceNo":"-","compensationDone":"-","suspectedDisability":"-","compensationAmount":"-","mediaCoverage":"-","policeInvolvedBiz":"-","regulatorInvolved":"-","litigation":"-","compliant":"-","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"}},"auxData":null,"progress":[{"time":"2026-07-22 18:45","person":"李杏然","content":"事件上报，等待分配处理人"}],"logs":[{"time":"2026-07-22 18:45:35","operator":"李杏然","action":"创建风险事件","detail":"创建工单 2026072273591"}],"elephant":null,"insurance":{"current":[],"history":[]},"related":{"linked":[],"suspectedDuplicate":[]}},{"id":"2026072377879","business":"履约业务-专送","source":"客诉升级","type":"动物伤人","occurTime":"2026-07-23 09:30","city":"河北省秦皇岛市北戴河区","level":"蓝色","summary":"骑手配送时被有主人的狗咬伤，正在打狂犬疫苗，咨询保险是否理赔。骑手：武林冲，兴必达【秦皇岛】北戴河站。","status":"待处理","reportTime":"2026-07-23 21:30:07","updateTime":"2026-07-24 10:34:58","reporter":"叶红","handler":"许洁茹，卢生有","overdue":false,"overdueDays":0,"detail":{"basic":{"eventNum":"2026072377879","business":"履约业务-专送","eventType":"动物伤人","occurTime":"2026-07-23 09:30","city":"河北省/秦皇岛/北戴河区","location":"秦皇岛市北戴河区海滨镇","summary":"骑手配送时被有主人的狗咬伤，正在打狂犬疫苗，咨询保险是否理赔。骑手：武林冲，兴必达【秦皇岛】北戴河站。","specialCrowd":"否","attachments":"-"},"rider":{"name":"武林冲","phone":"150****9466","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"2457445015","skaShop":"-","faq2":"-","notifyType":"-","csOrderStatus":"-"},"eventDetail":{"nature":"人伤","cause":"狗咬伤","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"-"},"other":{"insuranceReported":"-","insuranceNo":"-","compensationDone":"-","suspectedDisability":"-","compensationAmount":"-","mediaCoverage":"-","policeInvolvedBiz":"-","regulatorInvolved":"-","litigation":"-","compliant":"-","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"}},"auxData":null,"progress":[{"time":"2026-07-23 21:30","person":"叶红","content":"事件上报，等待分配处理人"}],"logs":[{"time":"2026-07-23 21:30:07","operator":"叶红/yehong06","action":"创建风险事件","detail":"创建工单 2026072377879"},{"time":"2026-07-24 10:34:58","operator":"系统","action":"更新","detail":"事件信息更新"}],"elephant":null,"insurance":{"current":[],"history":[]},"related":{"linked":[],"suspectedDuplicate":[]}},{"id":"2026072478736","business":"履约业务-专送","source":"客诉升级","type":"交通事故","occurTime":"2026-07-24 16:57","city":"-","level":"蓝色","summary":"最新上报工单（当天），详情待补充。","status":"待处理","reportTime":"2026-07-24 16:57:00","updateTime":"2026-07-24 16:57:00","reporter":"-","handler":"许洁茹","overdue":false,"overdueDays":0,"detail":{"basic":{"eventNum":"2026072478736","business":"履约业务-专送","eventType":"交通事故","occurTime":"2026-07-24 16:57","city":"-","location":"-","summary":"最新上报工单（当天），详情待补充。","specialCrowd":"-","attachments":"-"},"rider":{"name":"-","phone":"-","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"-","skaShop":"-","faq2":"-","notifyType":"-","csOrderStatus":"-"},"eventDetail":{"nature":"-","cause":"-","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"-"},"other":{"insuranceReported":"-","insuranceNo":"-","compensationDone":"-","suspectedDisability":"-","compensationAmount":"-","mediaCoverage":"-","policeInvolvedBiz":"-","regulatorInvolved":"-","litigation":"-","compliant":"-","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"}},"auxData":null,"progress":[],"logs":[],"elephant":null,"insurance":{"current":[],"history":[]},"related":{"linked":[],"suspectedDuplicate":[]}}]};
+
+function loadData() {
+  rawData = EMBEDDED_DATA;
+  return true;
+}
+
+function getViewOrders(viewKey) {
+  if (!rawData || !rawData.orders) return [];
+  // 实际场景中各视图对应不同数据，演示用全量 orders
+  if (viewKey === 'pending') return rawData.orders.slice(0, 5);
+  if (viewKey === 'history') return rawData.orders.slice(0, 3);
+  return rawData.orders;
+}
+
+// ==================== RENDER ====================
+function renderAll() {
+  renderStatCards();
+  renderCharts();
+  renderSecondaryTabs();
+  renderTable();
+  document.getElementById('lastUpdated').textContent = '更新于 ' + (rawData?.lastUpdated || '--');
+}
+
+function renderStatCards() {
+  const s = rawData?.stats || {};
+  const v = rawData?.views || {};
+  const cards = [
+    { cls: 'total', label: '总工单', value: v.pending + v.history + v.notify + v.shared + v.qaFail },
+    { cls: 'pending', label: '待处理', value: s.pending ?? v.pending },
+    { cls: 'processing', label: '处理中', value: s.processing ?? 0 },
+    { cls: 'review', label: '关单待审核', value: s.pendingReview ?? 0 },
+    { cls: 'overdue', label: '超时工单', value: s.overdue ?? 0 },
+    { cls: 'clue', label: '线索待处理', value: '--' }
+  ];
+  document.getElementById('statCards').innerHTML = cards.map(c =>
+    `<div class="stat-card ${c.cls}"><div class="label">${c.label}</div><div class="value">${c.value}</div></div>`
+  ).join('');
+}
+
+function renderSecondaryTabs() {
+  const v = rawData?.views || {};
+  document.getElementById('secondaryTabs').innerHTML = VIEW_KEYS.map(k =>
+    `<button class="secondary-tab${k === currentView ? ' active' : ''}" onclick="switchView('${k}')">${VIEW_NAMES[k]}<span class="badge">${v[k] ?? 0}</span></button>`
+  ).join('');
+}
+
+function renderCharts() {
+  const orders = rawData?.orders || [];
+
+  // Type distribution
+  const typeMap = {};
+  orders.forEach(o => { typeMap[o.type] = (typeMap[o.type] || 0) + 1; });
+  const typeLabels = Object.keys(typeMap);
+  const typeData = Object.values(typeMap);
+
+  // City distribution
+  const cityMap = {};
+  orders.forEach(o => {
+    const city = o.city?.replace(/省|市|区/g, '').trim().slice(-4) || o.city;
+    cityMap[city] = (cityMap[city] || 0) + 1;
+  });
+  const citySorted = Object.entries(cityMap).sort((a, b) => b[1] - a[1]).slice(0, 10);
+
+  // Level distribution
+  const levelMap = {};
+  orders.forEach(o => { levelMap[o.level] = (levelMap[o.level] || 0) + 1; });
+
+  // Trend (simulated from occurTime)
+  const trendMap = {};
+  orders.forEach(o => {
+    const d = o.occurTime?.split(' ')[0];
+    if (d) trendMap[d] = (trendMap[d] || 0) + 1;
+  });
+  const trendSorted = Object.entries(trendMap).sort((a, b) => a[0].localeCompare(b[0]));
+
+  destroyCharts();
+
+  chartInstances.type = new Chart(document.getElementById('chartType'), {
+    type: 'doughnut',
+    data: {
+      labels: typeLabels,
+      datasets: [{ data: typeData, backgroundColor: ['#0B4F8A', '#f59e0b', '#ef4444', '#10b981', '#8b5cf6'], borderWidth: 2, borderColor: '#fff' }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, font: { size: 11 } } } }
+    }
+  });
+
+  chartInstances.city = new Chart(document.getElementById('chartCity'), {
+    type: 'bar',
+    data: {
+      labels: citySorted.map(e => e[0]),
+      datasets: [{ data: citySorted.map(e => e[1]), backgroundColor: '#0B4F8A', borderRadius: 4, barThickness: 18 }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { x: { grid: { display: false }, ticks: { font: { size: 10 } } }, y: { grid: { display: false }, ticks: { font: { size: 10 } } } }
+    }
+  });
+
+  chartInstances.level = new Chart(document.getElementById('chartLevel'), {
+    type: 'doughnut',
+    data: {
+      labels: Object.keys(levelMap),
+      datasets: [{ data: Object.values(levelMap), backgroundColor: ['#0B4F8A', '#60a5fa', '#93c5fd'], borderWidth: 2, borderColor: '#fff' }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, font: { size: 11 } } } }
+    }
+  });
+
+  chartInstances.trend = new Chart(document.getElementById('chartTrend'), {
+    type: 'line',
+    data: {
+      labels: trendSorted.map(e => e[0]),
+      datasets: [{
+        data: trendSorted.map(e => e[1]),
+        borderColor: '#0B4F8A',
+        backgroundColor: 'rgba(11,79,138,.08)',
+        fill: true,
+        tension: .4,
+        pointRadius: 4,
+        pointBackgroundColor: '#0B4F8A'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 10 }, maxRotation: 45 } },
+        y: { beginAtZero: true, grid: { color: '#f1f5f9' }, ticks: { font: { size: 10 }, stepSize: 1 } }
+      }
+    }
+  });
+}
+
+function destroyCharts() {
+  Object.values(chartInstances).forEach(c => c.destroy());
+  chartInstances = {};
+}
+
+function renderTable() {
+  const all = getViewOrders(currentView);
+  const total = all.length;
+  const totalPages = Math.ceil(total / pageSize) || 1;
+  if (currentPage > totalPages) currentPage = totalPages;
+  const start = (currentPage - 1) * pageSize;
+  const page = all.slice(start, start + pageSize);
+
+  document.getElementById('tableInfo').innerHTML = `共 <strong>${total}</strong> 条 · ${VIEW_NAMES[currentView]}`;
+
+  document.getElementById('tableBody').innerHTML = page.map(o => `
+    <tr>
+      <td class="id"><a onclick="openDetail('${o.id}')">${o.id}</a></td>
+      <td>${o.business}</td>
+      <td>${o.type}</td>
+      <td>${o.occurTime}</td>
+      <td>${o.city}</td>
+      <td>${o.level}</td>
+      <td class="summary" title="${escapeHtml(o.summary)}">${o.summary}</td>
+      <td class="status"><span class="tag ${STATUS_TAGS[o.status] || 'pending'}">${o.status}</span>${o.overdue ? '<br><span class="overdue-tag">超时'+o.overdueDays+'天</span>' : ''}</td>
+      <td><button class="btn-detail" onclick="openDetail('${o.id}')">详情</button></td>
+    </tr>
+  `).join('');
+
+  // Pagination
+  let pagHTML = '';
+  pagHTML += `<button ${currentPage === 1 ? 'disabled' : ''} onclick="goPage(${currentPage - 1})">‹</button>`;
+  for (let i = 1; i <= totalPages; i++) {
+    if (totalPages <= 7 || i === 1 || i === totalPages || Math.abs(i - currentPage) <= 1) {
+      pagHTML += `<button class="${i === currentPage ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`;
+    } else if (i === 2 && currentPage > 4) {
+      pagHTML += `<button disabled>…</button>`;
+    } else if (i === totalPages - 1 && currentPage < totalPages - 3) {
+      pagHTML += `<button disabled>…</button>`;
+    }
+  }
+  pagHTML += `<button ${currentPage === totalPages ? 'disabled' : ''} onclick="goPage(${currentPage + 1})">›</button>`;
+  document.getElementById('pagination').innerHTML = pagHTML;
+}
+
+// ==================== ACTIONS ====================
+function switchPrimary(type) {
+  currentPrimary = type;
+  document.querySelectorAll('.primary-tab').forEach((t, i) => t.classList.toggle('active', (i === 0 && type === 'event') || (i === 1 && type === 'clue')));
+  document.getElementById('eventContent').style.display = type === 'event' ? '' : 'none';
+  document.getElementById('clueContent').style.display = type === 'clue' ? '' : 'none';
+  document.getElementById('chartsGrid').style.display = type === 'event' ? '' : 'none';
+  if (type === 'event') renderTable();
+}
+
+function switchView(key) {
+  currentView = key;
+  currentPage = 1;
+  renderSecondaryTabs();
+  renderTable();
+}
+
+function goPage(p) {
+  currentPage = p;
+  renderTable();
+}
+
+function changePageSize() {
+  pageSize = parseInt(document.getElementById('pageSizeSelect').value);
+  currentPage = 1;
+  renderTable();
+}
+
+async function refreshData() {
+  const btn = document.getElementById('btnRefresh');
+  btn.classList.add('loading');
+  btn.querySelector('.icon').textContent = '⟳';
+  const ok = await loadData();
+  btn.classList.remove('loading');
+  btn.querySelector('.icon').textContent = '↻';
+  if (ok) {
+    renderAll();
+    showToast('数据已刷新');
+  } else {
+    showToast('数据源暂不可用，显示缓存数据');
+  }
+}
+
+// ==================== MODAL ====================
+function openDetail(id) {
+  const order = rawData?.orders?.find(o => o.id === id);
+  if (!order) return;
+
+  document.getElementById('modalEventId').textContent = order.id;
+  document.getElementById('modalLevel').textContent = order.level;
+  const statusEl = document.getElementById('modalStatus');
+  statusEl.textContent = order.status;
+  statusEl.className = 'status-tag ' + (STATUS_TAGS[order.status] || 'pending');
+  document.getElementById('modalOverdue').textContent = order.overdue ? '已超时' + order.overdueDays + '天' : '';
+
+  // Store current order
+  window._modalOrder = order;
+  window._modalTab = 0;
+
+  // Reset modal tabs
+  document.querySelectorAll('.modal-tab').forEach((t, i) => t.classList.toggle('active', i === 0));
+  renderModalContent(0);
+
+  document.getElementById('modalOverlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('modalOverlay')) return;
+  document.getElementById('modalOverlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function switchModalTab(idx) {
+  window._modalTab = idx;
+  document.querySelectorAll('.modal-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+  renderModalContent(idx);
+}
+
+function renderModalContent(idx) {
+  const o = window._modalOrder;
+  if (!o || !o.detail) {
+    document.getElementById('modalBody').innerHTML = '<div class="empty-state"><div class="icon">📋</div><p>暂无详情数据</p></div>';
+    return;
+  }
+
+  const d = o.detail;
+  let html = '';
+
+  if (idx === 0) {
+    // 事件信息
+    html += buildSection('基础信息', [
+      ['事件编号', d.basic.eventNum], ['所属业务', d.basic.business], ['事件类型', d.basic.eventType],
+      ['事发时间', d.basic.occurTime], ['事发城市', d.basic.city], ['事发地点', d.basic.location],
+      ['是否涉及特殊人群', d.basic.specialCrowd], ['附件', d.basic.attachments]
+    ]);
+    html += '<div class="detail-item full" style="margin-top:4px"><span class="key">事件经过</span><span class="val">' + escapeHtml(d.basic.summary || '-') + '</span></div>';
+
+    html += buildSection('骑手相关信息', [
+      ['骑手姓名/手机', (d.rider.name || '-') + ' ' + (d.rider.phone || '')],
+      ['订单号', d.rider.orderNo], ['商家名称', d.rider.shopName], ['配送方式', d.rider.deliveryType],
+      ['客服工单号', d.rider.csOrderNo], ['SKA商家', d.rider.skaShop], ['二级FAQ', d.rider.faq2],
+      ['通知类型', d.rider.notifyType], ['客服工单状态', d.rider.csOrderStatus]
+    ]);
+
+    html += buildSection('事件详情信息', [
+      ['事件性质', d.eventDetail.nature], ['事发原因', d.eventDetail.cause],
+      ['事发地类型', d.eventDetail.locationType], ['道路类型', d.eventDetail.roadType],
+      ['财产损失情况', d.eventDetail.propertyLoss], ['是否有警方介入', d.eventDetail.policeInvolved],
+      ['交通事故类型', d.eventDetail.accidentType], ['我方交通工具', d.eventDetail.vehicleType],
+      ['判定结果', d.eventDetail.judgment], ['骑手是否有责', d.eventDetail.riderLiable],
+      ['事故定性', d.eventDetail.accidentNature], ['是否调证', d.eventDetail.investigation],
+      ['调证方式', d.eventDetail.investigationType], ['警方信息', d.eventDetail.policeInfo]
+    ]);
+
+    html += buildSection('其他信息', [
+      ['是否已报保险', d.other.insuranceReported], ['关联保险单号', d.other.insuranceNo],
+      ['是否完成赔付', d.other.compensationDone], ['是否疑似伤残', d.other.suspectedDisability],
+      ['保险赔付金额', d.other.compensationAmount], ['是否有媒体报道', d.other.mediaCoverage],
+      ['警方介入(业务)', d.other.policeInvolvedBiz], ['监管部门介入', d.other.regulatorInvolved],
+      ['是否诉讼', d.other.litigation], ['是否合规', d.other.compliant],
+      ['CAP升级', d.other.csShouldEscalate], ['客服责任危机', d.other.csCrisisLiability],
+      ['风险等级', d.other.riskLevel], ['在订单中', d.other.inOrder], ['维稳风险', d.other.stabilityRisk]
+    ]);
+
+  } else if (idx === 1) {
+    // 辅助数据
+    const aux = o.auxData;
+    if (!aux) {
+      html = '<div class="empty-state"><div class="icon">📊</div><p>暂无辅助数据</p></div>';
+    } else {
+      if (aux.workStatus) {
+        html += buildSection('骑手工作状态', [
+          ['骑手姓名', aux.workStatus.name], ['骑手ID', aux.workStatus.id],
+          ['排班内', aux.workStatus.inShift], ['工作时间内', aux.workStatus.inWorkHours],
+          ['订单内', aux.workStatus.inOrder], ['背单量', aux.workStatus.orderCount]
+        ]);
+      }
+      if (aux.orderStats) {
+        html += buildSection('骑手订单完成情况', [
+          ['累计完成单量', aux.orderStats.totalOrders], ['日均单量', aux.orderStats.dailyAvg],
+          ['当日在线时长', aux.orderStats.onlineHours], ['近7日日均', aux.orderStats.weeklyAvg],
+          ['近7日有单时长', aux.orderStats.weeklyActiveHours], ['近30日完单天数', aux.orderStats.monthlyActiveDays]
+        ]);
+      }
+      if (aux.safetyBehavior) {
+        html += buildSection('骑手安全行为', [
+          ['日均速度', aux.safetyBehavior.dailySpeed], ['近7日速度', aux.safetyBehavior.weeklySpeed],
+          ['城市均值', aux.safetyBehavior.cityAvg], ['分心率', aux.safetyBehavior.distractionRate],
+          ['戴盔率', aux.safetyBehavior.helmetRate], ['头盔系带率', aux.safetyBehavior.strapRate]
+        ]);
+      }
+    }
+  } else if (idx === 2) {
+    // 进展
+    const prog = o.progress || [];
+    if (!prog.length) {
+      html = '<div class="empty-state"><div class="icon">📝</div><p>暂无进展记录</p></div>';
+    } else {
+      html = prog.map(p => `
+        <div class="detail-item full" style="margin-bottom:10px;padding:10px;background:#f8fafc;border-radius:6px;">
+          <div style="display:flex;gap:12px;font-size:.75rem;color:var(--text-muted);margin-bottom:4px;">
+            <span>${p.time}</span><span>${p.person}</span>
+          </div>
+          <div class="val" style="font-size:.8125rem;">${escapeHtml(p.content)}</div>
+        </div>
+      `).join('');
+    }
+  } else if (idx === 3) {
+    // 操作日志
+    const logs = o.logs || [];
+    if (!logs.length) {
+      html = '<div class="empty-state"><div class="icon">📋</div><p>暂无操作日志</p></div>';
+    } else {
+      html = `<table class="log-table"><thead><tr><th>时间</th><th>操作人</th><th>操作类型</th><th>变更详情</th></tr></thead><tbody>`
+        + logs.map(l => `<tr><td>${l.time}</td><td>${l.operator}</td><td>${l.action}</td><td>${l.detail}</td></tr>`).join('')
+        + `</tbody></table>`;
+    }
+  } else if (idx === 4) {
+    // 大象
+    const el = o.elephant;
+    if (!el) {
+      html = '<div class="empty-state"><div class="icon">💬</div><p>暂无大象群记录</p></div>';
+    } else {
+      html = buildSection('大象群信息', [
+        ['群名称', el.groupName], ['群ID', el.groupId], ['群类型', el.groupType]
+      ]);
+    }
+  } else if (idx === 5) {
+    // 保险
+    const ins = o.insurance;
+    if (!ins || (!ins.current.length && !ins.history.length)) {
+      html = '<div class="empty-state"><div class="icon">🛡️</div><p>暂无保险信息</p></div>';
+    } else {
+      if (ins.current.length) {
+        html += '<h4 style="margin-bottom:8px;font-size:.8125rem;font-weight:600;">本工单关联保单</h4>';
+        html += '<table class="log-table" style="margin-bottom:16px;"><thead><tr><th>报案号</th><th>被保人</th><th>事故地点</th><th>事故时间</th><th>立案金额</th><th>案件状态</th></tr></thead><tbody>';
+        ins.current.forEach(r => {
+          html += `<tr><td>${r.reportNo}</td><td>${r.insured}</td><td>${r.location}</td><td>${r.time}</td><td>${r.amount}</td><td>${r.status}</td></tr>`;
+        });
+        html += '</tbody></table>';
+      }
+      if (ins.history.length) {
+        html += '<h4 style="margin-bottom:8px;font-size:.8125rem;font-weight:600;">历史报案关联</h4>';
+        html += '<table class="log-table"><thead><tr><th>报案号</th><th>被保人</th><th>事故时间</th><th>案件状态</th></tr></thead><tbody>';
+        ins.history.forEach(r => {
+          html += `<tr><td>${r.reportNo || '-'}</td><td>${r.insured || '-'}</td><td>${r.time || '-'}</td><td>${r.status || '-'}</td></tr>`;
+        });
+        html += '</tbody></table>';
+      }
+    }
+  } else if (idx === 6) {
+    // 关联事件
+    const rel = o.related;
+    if (!rel) {
+      html = '<div class="empty-state"><div class="icon">🔗</div><p>暂无关联事件</p></div>';
+    } else {
+      html += '<h4 style="margin-bottom:8px;font-size:.8125rem;font-weight:600;">已关联事件</h4>';
+      if (!rel.linked || !rel.linked.length) {
+        html += '<p style="font-size:.75rem;color:var(--text-muted);margin-bottom:16px;">暂无数据</p>';
+      }
+      html += '<h4 style="margin-bottom:8px;font-size:.8125rem;font-weight:600;">疑似重复事件</h4>';
+      if (rel.suspectedDuplicate && rel.suspectedDuplicate.length) {
+        html += '<table class="log-table"><thead><tr><th>事件编号</th><th>所属业务</th><th>事件类型</th><th>等级</th><th>状态</th><th>上报时间</th></tr></thead><tbody>';
+        rel.suspectedDuplicate.forEach(r => {
+          html += `<tr><td><a style="color:var(--blue-500);cursor:pointer;">${r.id}</a></td><td>${r.business}</td><td>${r.type}</td><td>${r.level}</td><td>${r.status}</td><td>${r.reportTime}</td></tr>`;
+        });
+        html += '</tbody></table>';
+      } else {
+        html += '<p style="font-size:.75rem;color:var(--text-muted);">暂无数据</p>';
+      }
+    }
+  }
+
+  document.getElementById('modalBody').innerHTML = html;
+}
+
+function buildSection(title, fields) {
+  let html = `<div class="detail-section"><h4>${title}</h4><div class="detail-grid">`;
+  fields.forEach(([k, v]) => {
+    html += `<div class="detail-item"><span class="key">${k}</span><span class="val">${escapeHtml(String(v ?? '-'))}</span></div>`;
+  });
+  html += '</div></div>';
+  return html;
+}
+
+// ==================== UTILS ====================
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._tid);
+  t._tid = setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// Keyboard shortcut
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+// ==================== INIT ====================
+(async function init() {
+  await loadData();
+  renderAll();
+})();
+</script>
+
+</body>
+</html>

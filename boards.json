@@ -1,0 +1,148 @@
+{
+  "groups": [
+    {
+      "title": "交通安全",
+      "short": "交通",
+      "items": [
+        {
+          "key": "safe_equity",
+          "label": "安全权益看板",
+          "file": "交通安全行为看板/安全权益看板.html"
+        },
+        {
+          "key": "safe_station",
+          "label": "站长安全评级",
+          "file": "交通安全行为看板/站长安全评级看板.html"
+        },
+        {
+          "key": "safe_rider",
+          "label": "骑手交通行为明细",
+          "file": "交通安全行为看板/骑手交通行为明细看板.html"
+        },
+        {
+          "key": "safe_highway",
+          "label": "高速监控看板",
+          "file": "交通安全行为看板/高速监控看板.html"
+        }
+      ]
+    },
+    {
+      "title": "履约项目",
+      "short": "履约",
+      "items": [
+        {
+          "key": "project",
+          "label": "履约项目看板",
+          "file": "履约项目/兴达履约项目看板.html"
+        }
+      ]
+    },
+    {
+      "title": "服装标准化",
+      "short": "服装",
+      "items": [
+        {
+          "key": "clothing_main",
+          "label": "护航服装看板",
+          "file": "护航服装/护航服装看板.html"
+        },
+        {
+          "key": "clothing_rate",
+          "label": "服装标准化率",
+          "file": "交通安全行为看板/骑手服装标准化看板.html"
+        }
+      ]
+    },
+    {
+      "title": "骑手管理",
+      "short": "骑手",
+      "items": [
+        {
+          "key": "rider_detail",
+          "label": "在职骑手详情",
+          "file": "在职骑手详情/在职骑手详情.html"
+        },
+        {
+          "key": "rider_control",
+          "label": "中西管控名单",
+          "file": "交通安全行为看板/中西管控名单.html"
+        }
+      ]
+    },
+    {
+      "title": "保险",
+      "short": "保险",
+      "items": [
+        {
+          "key": "ins_meituan",
+          "label": "美团保险",
+          "file": "美团保险/美团保险看板.html"
+        },
+        {
+          "key": "ins_old",
+          "label": "美团保险(旧)",
+          "file": "骑手职业伤害保障/兴必达_骑手职业伤害保障数据看板.html"
+        },
+        {
+          "key": "ins_subsidy",
+          "label": "保险赔付补贴监控",
+          "file": "骑手保障补贴/保险赔付补贴监控.html"
+        },
+        {
+          "key": "ins_rate",
+          "label": "保险赔付率解读",
+          "file": "美团保险/保险赔付率解读.html"
+        },
+        {
+          "key": "ins_xingda",
+          "label": "兴达美团保险看板",
+          "file": null
+        }
+      ]
+    },
+    {
+      "title": "公司风险管理系统",
+      "short": "风险",
+      "items": [
+        {
+          "key": "gongdan",
+          "label": "110工单",
+          "file": "110工单/110工单看板.html"
+        }
+      ]
+    },
+    {
+      "title": "站点地图",
+      "short": "地图",
+      "items": [
+        {
+          "key": "station_map",
+          "label": "全国站点地图",
+          "file": "全国站点地图/全国站点地图.html"
+        }
+      ]
+    },
+    {
+      "title": "数据中心",
+      "short": "数据",
+      "items": [
+        {
+          "key": "data_center",
+          "label": "源数据更新状态",
+          "file": "data_center.html"
+        }
+      ]
+    },
+    {
+      "title": "月度累计",
+      "short": "月累计",
+      "items": [
+        {
+          "key": "monthly_summary",
+          "label": "月度累计看板",
+          "file": "交通安全行为看板/月度累计看板.html"
+        }
+      ]
+    }
+  ]
+}

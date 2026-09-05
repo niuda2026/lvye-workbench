@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美团保险看板</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif; }
+body { background:#f5f7fa; color:#303133; }
+.header { background:linear-gradient(135deg,#0b1f4d 0%,#123c7e 60%,#1e5cb3 100%); color:#fff; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; }
+.header h1 { font-size:20px; }
+.header .sub { font-size:12px; opacity:.75; margin-top:4px; }
+
+/* ===== 统计卡片（6 指标 × 5 大区，恒一行） ===== */
+.stats { display:grid; grid-template-columns:repeat(6,1fr); gap:10px; padding:16px 24px 4px; }
+@media (max-width:900px){ .stats{ grid-template-columns:repeat(3,1fr);} }
+@media (max-width:560px){ .stats{ grid-template-columns:repeat(2,1fr);} }
+.stat-card { background:#fff; border-radius:10px; padding:10px 12px; box-shadow:0 1px 4px rgba(0,0,0,.06); min-width:0; }
+.stat-card .label { font-size:12px; color:#909399; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.stat-card .value { font-size:22px; font-weight:700; margin-top:2px; white-space:nowrap; }
+.stat-card .extra { font-size:11px; color:#909399; margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.region-grid { margin-top:8px; border-top:1px dashed #e4e7ed; padding-top:6px; }
+.rg-row { display:flex; justify-content:space-between; align-items:center; gap:6px; font-size:11px; color:#909399; padding:2px 0; }
+.rg-row span { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.rg-row b { color:#303133; font-weight:600; white-space:nowrap; }
+.c-blue { color:#1e5cb3; } .c-orange { color:#e6a23c; } .c-green { color:#67c23a; } .c-gray { color:#909399; } .c-red { color:#f56c6c; }
+
+.charts { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:12px 24px; }
+.chart-box { background:#fff; border-radius:10px; padding:14px 16px; box-shadow:0 1px 4px rgba(0,0,0,.06); }
+.chart-box h3 { font-size:14px; margin-bottom:10px; color:#303133; }
+
+/* ===== 筛选栏 ===== */
+.filters { display:flex; flex-wrap:wrap; gap:10px; padding:12px 24px 4px; align-items:center; }
+.filters select, .filters input { padding:8px 12px; border:1px solid #dcdfe6; border-radius:4px; font-size:13px; background:#fff; color:#303133; outline:none; height:36px; }
+.filters select:focus, .filters input:focus { border-color:#409eff; }
+.filters .search-input { flex:1; min-width:220px; }
+.filters .btn { padding:8px 20px; border:none; border-radius:4px; font-size:13px; cursor:pointer; height:36px; }
+.filters .btn-primary { background:#67c23a; color:#fff; }
+.filters .btn-primary:hover { background:#85ce61; }
+.filters .btn-plain { background:#fff; color:#606266; border:1px solid #dcdfe6; }
+.filters .btn-plain:hover { color:#409eff; border-color:#c6e2ff; background:#ecf5ff; }
+
+/* ===== 表格 ===== */
+.table-wrap { padding:12px 24px 24px; }
+.table-card { background:#fff; border-radius:6px; box-shadow:0 1px 6px rgba(0,0,0,.06); }
+.table-scroll { overflow:auto; max-height:calc(100vh - 260px); }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th { background:#f7f8fa; color:#606266; font-weight:500; text-align:center; padding:12px 10px; border-bottom:1px solid #ebeef5; position:sticky; top:0; z-index:2; white-space:nowrap; }
+td { padding:10px 10px; border-bottom:1px solid #ebeef5; color:#303133; text-align:left; vertical-align:middle; }
+tr:hover td { background:#f5f7fa; }
+td.c { text-align:center; }
+td.r { text-align:right; }
+th.sticky-col, td.sticky-col { position:sticky; z-index:1; background:#fff; }
+th.sticky-col { z-index:3; background:#f7f8fa; }
+tr:hover td.sticky-col { background:#f0f2f7; }
+.cell-main { color:#303133; line-height:1.4; }
+.cell-sub { color:#909399; font-size:12px; line-height:1.5; }
+.ellipsis { display:block; max-width:220px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.link { color:#409eff; cursor:pointer; text-decoration:none; }
+.link:hover { text-decoration:underline; }
+.tag-pill { display:inline-block; padding:2px 10px; border-radius:12px; font-size:12px; background:#ecf5ff; color:#409eff; white-space:nowrap; }
+.tag-green { background:#f0f9eb; color:#67c23a; }
+.tag-red { background:#fef0f0; color:#f56c6c; }
+.region-tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:12px; background:#f4f4f5; color:#909399; white-space:nowrap; }
+.city-tag { color:#606266; }
+.empty { color:#909399; }
+
+/* ===== 悬浮弹窗 ===== */
+#tt { position:fixed; z-index:9999; display:none; max-width:360px; background:rgba(28,36,56,.95); color:#fff; font-size:12px; line-height:1.6; padding:8px 10px; border-radius:6px; box-shadow:0 2px 12px rgba(0,0,0,.2); pointer-events:none; white-space:normal; word-break:break-all; }
+
+/* ===== 分页 ===== */
+.pager { display:flex; align-items:center; justify-content:flex-end; gap:6px; padding:14px 16px; font-size:13px; flex-wrap:wrap; }
+.pager .pg-info { color:#606266; margin-right:6px; }
+.pager .pg-total { color:#909399; margin-right:10px; }
+.pager button { padding:6px 12px; border:1px solid #dcdfe6; background:#fff; border-radius:4px; cursor:pointer; font-size:13px; color:#606266; }
+.pager button:hover:not(:disabled) { color:#409eff; border-color:#c6e2ff; background:#ecf5ff; }
+.pager button.active { background:#409eff; color:#fff; border-color:#409eff; }
+.pager button:disabled { opacity:.5; cursor:not-allowed; }
+
+.drawer-mask { display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:100; }
+.drawer { display:none; position:fixed; top:0; right:0; bottom:0; width:520px; background:#fff; z-index:101; box-shadow:-4px 0 16px rgba(0,0,0,.2); overflow:auto; }
+.drawer.open,.drawer-mask.open { display:block; }
+.drawer .d-head { background:linear-gradient(135deg,#0b1f4d,#1e5cb3); color:#fff; padding:16px 20px; display:flex; justify-content:space-between; align-items:center; }
+.drawer .d-head h2 { font-size:16px; }
+.drawer .d-close { cursor:pointer; font-size:22px; opacity:.8; }
+.d-body { padding:16px 20px; }
+.d-section { margin-bottom:16px; }
+.d-section h4 { font-size:13px; color:#909399; margin-bottom:8px; border-bottom:1px solid #ebeef5; padding-bottom:6px; }
+.d-section .kv { display:flex; margin-bottom:6px; font-size:13px; }
+.d-section .kv .k { width:110px; color:#909399; flex-shrink:0; }
+.d-section .kv .v { color:#303133; word-break:break-all; }
+.timeline { border-left:2px solid #e0e5eb; padding-left:14px; }
+.timeline .tl-item { position:relative; margin-bottom:12px; font-size:13px; }
+.timeline .tl-item::before { content:""; position:absolute; left:-19px; top:4px; width:8px; height:8px; border-radius:50%; background:#409eff; }
+.timeline .tl-date { color:#909399; font-size:12px; }
+@media (max-width:900px){ .charts{grid-template-columns:1fr;} .drawer{width:100%;} }
+</style>
+</head>
+<body>
+<div class="header">
+  <div>
+    <h1>美团保险看板 · 兴必达</h1>
+    <div class="sub" id="headerSub"></div>
+  </div>
+</div>
+
+<div class="stats" id="statsRow"></div>
+
+<div class="charts">
+  <div class="chart-box"><h3>状态分布</h3><div id="chartStatus"></div></div>
+  <div class="chart-box"><h3>城市案件 Top 10</h3><div id="chartCity"></div></div>
+</div>
+
+<div class="filters">
+  <input class="search-input" id="fKeyword" placeholder="搜索骑手姓名 / 电话 / 保单号 / 地点 / 描述">
+  <select id="fRegion" onchange="syncCityOptions()"><option value="">全部大区</option></select>
+  <select id="fCity"><option value="">全部城市</option></select>
+  <select id="fStatus"><option value="">全部状态</option></select>
+  <select id="fChannel"><option value="">全部来源</option></select>
+  <select id="fTimeout"><option value="">是否超时：全部</option><option value="0">准时上报</option><option value="1">超时上报</option></select>
+  <select id="fYear"><option value="">报案年份</option></select>
+  <select id="fMonth"><option value="">报案月份</option></select>
+  <button class="btn btn-plain" onclick="resetFilter()">重置</button>
+  <button class="btn btn-plain" onclick="copyList()">复制明细</button>
+  <button class="btn btn-primary" onclick="applyFilter()">查询</button>
+</div>
+
+<div class="table-wrap">
+  <div class="table-card">
+    <div class="table-scroll">
+      <table id="mainTable">
+        <thead>
+          <tr>
+            <th style="width:52px;">序号</th>
+            <th style="width:86px;">大区</th>
+            <th style="width:70px;">城市</th>
+            <th>骑手姓名</th>
+            <th>联系电话</th>
+            <th style="min-width:240px; white-space:nowrap;" class="sticky-col">保单号 / 保险公司</th>
+            <th style="min-width:200px; white-space:nowrap;">出险时间 / 报案时间</th>
+            <th style="min-width:180px;">是否超时</th>
+            <th>出险地点 / 原因描述</th>
+            <th>理赔状态 / 报案来源</th>
+            <th style="width:110px;" class="r">赔付金额（元）</th>
+            <th style="width:64px;">操作</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+    <div class="pager" id="pager"></div>
+  </div>
+</div>
+
+<div id="tt"></div>
+
+<div class="drawer-mask" id="mask" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="d-head"><h2 id="dTitle"></h2><span class="d-close" onclick="closeDrawer()">×</span></div>
+  <div class="d-body" id="dBody"></div>
+</div>
+
+<script src="insurance_data.js"></script>
+<script>
+const D = window.INSURANCE_DATA || {cities:[]};
+
+/* ===== 5 大区 / 区域 城市映射（与履约工作台其他看板保持一致） ===== */
+const CITY_REGION_MAP = {
+  "唐山":["华北一区","津冀区域"],"天津":["华北一区","津冀区域"],"张家口":["华北一区","津冀区域"],"秦皇岛":["华北一区","津冀区域"],
+  "通辽":["华北一区","黑吉区域"],"长春":["华北一区","黑吉区域"],
+  "锦州":["华北一区","辽宁区域"],"阜新":["华北一区","辽宁区域"],
+  "信阳":["华北二区","河南区域"],"商丘":["华北二区","河南区域"],"洛阳":["华北二区","河南区域"],"郑州":["华北二区","河南区域"],
+  "太原":["华北三区","中西区域"],"西安":["华北三区","中西区域"],"运城":["华北三区","中西区域"],
+  "上海":["华东大区","上海区域"],"北京":["华东大区","北京区域"],"南京":["华东大区","苏北区域"],
+  "临沂":["中南大区","山东区域"],"枣庄":["中南大区","山东区域"],"青岛":["中南大区","山东区域"],
+  "合肥":["中南大区","安徽区域"],"滁州":["中南大区","安徽区域"],"蚌埠":["中南大区","安徽区域"],"铜陵":["中南大区","安徽区域"],"阜阳":["中南大区","安徽区域"],"马鞍山":["中南大区","安徽区域"],"黄山":["中南大区","安徽区域"]
+};
+const REGION_ORDER = ['华北一区','华北二区','华北三区','华东大区','中南大区'];
+const CITIES = Object.keys(CITY_REGION_MAP);
+function regionOf(city){ return (CITY_REGION_MAP[city] && CITY_REGION_MAP[city][0]) || '—'; }
+function subregionOf(city){ return (CITY_REGION_MAP[city] && CITY_REGION_MAP[city][1]) || '—'; }
+
+let allCases = [];
+D.cities.forEach(c => c.cases.forEach(x => { x.city = c.city; x.region = regionOf(c.city); x.subregion = subregionOf(c.city); allCases.push(x); }));
+
+const fmtMoney = c => c ? (c/100).toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2}) : '-';
+const fmtDate = s => s ? String(s).slice(0,10) : '-';
+const fmtTime = s => s ? String(s).slice(11,16) : '';
+
+// 超时阈值：出险后超过24小时报案记为超时
+const TIMEOUT_MS = 24 * 3600 * 1000;
+function timeoutInfo(c){
+  const a = new Date(c.accidentTime || '').getTime();
+  const r = new Date(c.reportTime || '').getTime();
+  if (!a || !r || r <= a) return { timeout: false, diffMs: 0, text: '—' };
+  const diff = r - a;
+  const h = Math.floor(diff / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  const pad = n => String(n).padStart(2,'0');
+  const text = h + ' 小时 ' + pad(m) + ' 分 ' + pad(s) + ' 秒';
+  return { timeout: diff > TIMEOUT_MS, diffMs: diff, text: text };
+}
+
+/* ===== 悬浮弹窗 ===== */
+const tt = document.getElementById('tt');
+function bindTip(hostId){
+  const host = document.getElementById(hostId);
+  if (!host) return;
+  host.addEventListener('mouseover', e => {
+    const t = e.target.closest('[data-tip]');
+    if (!t) { tt.style.display='none'; return; }
+    tt.textContent = t.getAttribute('data-tip');
+    tt.style.display = 'block';
+    const move = ev => {
+      const pad = 14;
+      const x = ev.clientX + pad;
+      const y = ev.clientY + pad;
+      const rect = tt.getBoundingClientRect();
+      tt.style.left = (x + rect.width > window.innerWidth ? ev.clientX - rect.width - pad : x) + 'px';
+      tt.style.top  = (y + rect.height > window.innerHeight ? ev.clientY - rect.height - pad : y) + 'px';
+    };
+    move(e);
+    host.onmousemove = move;
+  });
+  host.addEventListener('mouseleave', () => { tt.style.display='none'; host.onmousemove = null; });
+}
+
+function renderHeader(){
+  const now = D.fetched_at || '';
+  document.getElementById('headerSub').textContent = '数据更新时间: ' + now + ' | 覆盖 ' + D.cities.length + ' 个合作城市 | 共 ' + allCases.length + ' 条案件';
+}
+
+function localToday(){
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+function renderStats(list){
+  const total = list.length;
+  const pend = list.filter(c => c.claimStatusDesc === '待初审').length;
+  const succ = list.filter(c => c.claimStatusDesc === '赔付成功').length;
+  const cancel = list.filter(c => c.claimStatusDesc === '注销').length;
+  const paid = list.reduce((s,c)=>s+(c.payAmountCent||0),0);
+  const paidCnt = list.filter(c=>c.payAmountCent>0).length;
+  const today = localToday();
+  const todayNew = list.filter(c => (c.reportTime||'').slice(0,10) === today).length;
+
+  // 5 大区各维度细分
+  function byRegion(fn){
+    const m = {};
+    REGION_ORDER.forEach(r => m[r] = fn(list.filter(c => c.region === r)));
+    return m;
+  }
+  const rTotal   = byRegion(l => l.length);
+  const rPend    = byRegion(l => l.filter(c => c.claimStatusDesc === '待初审').length);
+  const rSucc    = byRegion(l => l.filter(c => c.claimStatusDesc === '赔付成功').length);
+  const rCancel  = byRegion(l => l.filter(c => c.claimStatusDesc === '注销').length);
+  const rPaid    = byRegion(l => l.reduce((s,c)=>s+(c.payAmountCent||0),0));
+  const rToday   = byRegion(l => l.filter(c => (c.reportTime||'').slice(0,10) === today).length);
+
+function grid(vals, fmt){
+  return '<div class="region-grid">' + REGION_ORDER.map(r => {
+    const v = fmt ? fmt(vals[r]) : vals[r];
+    return '<div class="rg-row"><span>' + r + '</span><b>' + v + '</b></div>';
+  }).join('') + '</div>';
+}
+
+  document.getElementById('statsRow').innerHTML = `
+    <div class="stat-card"><div class="label">案件总数</div><div class="value c-blue">${total}</div><div class="extra">合作城市 ${D.cities.length} 个</div>${grid(rTotal)}</div>
+    <div class="stat-card"><div class="label">待初审</div><div class="value c-orange">${pend}</div><div class="extra">占比 ${total? (pend/total*100).toFixed(1):0}%</div>${grid(rPend)}</div>
+    <div class="stat-card"><div class="label">赔付成功</div><div class="value c-green">${succ}</div><div class="extra">占比 ${total? (succ/total*100).toFixed(1):0}%</div>${grid(rSucc)}</div>
+    <div class="stat-card"><div class="label">已注销</div><div class="value c-gray">${cancel}</div><div class="extra">占比 ${total? (cancel/total*100).toFixed(1):0}%</div>${grid(rCancel)}</div>
+    <div class="stat-card"><div class="label">已支付总额</div><div class="value c-green">¥${fmtMoney(paid)}</div><div class="extra">${paidCnt} 条有支付记录</div>${grid(rPaid, v => '¥' + (v/100).toLocaleString('zh-CN',{maximumFractionDigits:0}))}</div>
+    <div class="stat-card"><div class="label">今日新增报案</div><div class="value ${todayNew? 'c-orange':'c-gray'}">${todayNew}</div><div class="extra">${today}</div>${grid(rToday)}</div>`;
+}
+
+function drawBarChart(elId, items, color){
+  const el = document.getElementById(elId);
+  const max = Math.max(...items.map(i=>i.value), 1);
+  el.innerHTML = items.map(i => `
+    <div style="display:flex;align-items:center;margin-bottom:6px;font-size:12px;">
+      <span style="width:110px;color:#606266;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${i.label}</span>
+      <div style="flex:1;background:#f0f2f7;border-radius:4px;height:16px;margin:0 8px;">
+        <div style="width:${i.value/max*100}%;background:${color};height:16px;border-radius:4px;"></div>
+      </div>
+      <span style="width:60px;text-align:right;color:#303133;">${i.value}</span>
+    </div>`).join('');
+}
+
+function renderCharts(list){
+  const statusCount = {};
+  list.forEach(c => statusCount[c.claimStatusDesc] = (statusCount[c.claimStatusDesc]||0)+1);
+  drawBarChart('chartStatus', Object.entries(statusCount).map(([k,v])=>({label:k,value:v})).sort((a,b)=>b.value-a.value), '#409eff');
+  const cityCount = {};
+  list.forEach(c => cityCount[c.city] = (cityCount[c.city]||0)+1);
+  drawBarChart('chartCity', Object.entries(cityCount).map(([k,v])=>({label:k,value:v})).sort((a,b)=>b.value-a.value).slice(0,10), '#67c23a');
+}
+
+function initFilters(){
+  const fRegion = document.getElementById('fRegion');
+  REGION_ORDER.forEach(r => {
+    const o = document.createElement('option');
+    o.value = r; o.textContent = r;
+    fRegion.appendChild(o);
+  });
+  syncCityOptions();
+
+  const fStatus = document.getElementById('fStatus');
+  [...new Set(allCases.map(c=>c.claimStatusDesc))].sort().forEach(s => {
+    const o = document.createElement('option');
+    o.value = s; o.textContent = s;
+    fStatus.appendChild(o);
+  });
+  const fChannel = document.getElementById('fChannel');
+  [...new Set(allCases.map(c=>c.reportChannel))].forEach(s => {
+    const o = document.createElement('option');
+    o.value = s; o.textContent = s;
+    fChannel.appendChild(o);
+  });
+  const fYear = document.getElementById('fYear');
+  [...new Set(allCases.map(c => (c.reportTime||'').slice(0,4)).filter(Boolean))].sort().reverse().forEach(s => {
+    const o = document.createElement('option');
+    o.value = s; o.textContent = s + ' 年';
+    fYear.appendChild(o);
+  });
+  const fMonth = document.getElementById('fMonth');
+  for (let i = 1; i <= 12; i++){
+    const o = document.createElement('option');
+    o.value = String(i).padStart(2,'0'); o.textContent = i + ' 月';
+    fMonth.appendChild(o);
+  }
+}
+
+function syncCityOptions(){
+  const region = document.getElementById('fRegion').value;
+  const fCity = document.getElementById('fCity');
+  const cur = fCity.value;
+  fCity.innerHTML = '<option value="">全部城市</option>';
+  CITIES.filter(ct => !region || regionOf(ct) === region).forEach(ct => {
+    const o = document.createElement('option');
+    o.value = ct; o.textContent = ct;
+    fCity.appendChild(o);
+  });
+  if (cur && [...fCity.options].some(o => o.value === cur)) fCity.value = cur;
+  else fCity.value = '';
+}
+
+function applyFilter(){
+  const region = document.getElementById('fRegion').value;
+  const city = document.getElementById('fCity').value;
+  const status = document.getElementById('fStatus').value;
+  const channel = document.getElementById('fChannel').value;
+  const timeout = document.getElementById('fTimeout').value;
+  const kw = document.getElementById('fKeyword').value.trim();
+  const year = document.getElementById('fYear').value;
+  const month = document.getElementById('fMonth').value;
+  let list = allCases.filter(c => {
+    if (region && c.region !== region) return false;
+    if (city && c.city !== city) return false;
+    if (status && c.claimStatusDesc !== status) return false;
+    if (channel && c.reportChannel !== channel) return false;
+    if (timeout !== '' && String(timeoutInfo(c).timeout ? 1 : 0) !== timeout) return false;
+    if (kw && !(c.riderName||'').includes(kw) && !(c.policyNo||'').includes(kw) && !(c.caseNo||'').includes(kw) && !(c.accidentDesc||'').includes(kw) && !(c.accidentPlace||'').includes(kw)) return false;
+    if (year && (c.reportTime||'').slice(0,4) !== year) return false;
+    if (month && (c.reportTime||'').slice(5,7) !== month) return false;
+    return true;
+  });
+  renderStats(list);
+  renderCharts(list);
+  renderTable(list);
+}
+
+function resetFilter(){
+  ['fRegion','fCity','fStatus','fChannel','fTimeout','fYear','fMonth'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('fKeyword').value = '';
+  syncCityOptions();
+  applyFilter();
+}
+
+function copyList(){
+  const list = window.__filtered || [];
+  if (!list.length){ alert('当前无数据可复制'); return; }
+  const lines = list.map((c,i) => [i+1, c.region||'-', c.city||'-', c.riderName||'-', c.riderPhone||'-', c.policyNo||'-', c.accidentTime||'-', c.reportTime||'-', timeoutInfo(c).timeout ? '超时上报' : '准时上报', timeoutInfo(c).text, c.accidentPlace||'-', c.claimStatusDesc||'-', c.reportChannel||'-', fmtMoney(c.payAmountCent)].join('\t'));
+  const text = '序号\t大区\t城市\t骑手姓名\t联系电话\t保单号\t出险时间\t报案时间\t是否超时\t上报耗时\t出险地点\t理赔状态\t报案来源\t打款金额\n' + lines.join('\n');
+  navigator.clipboard.writeText(text).then(() => alert('已复制 ' + list.length + ' 条明细到剪贴板')).catch(() => alert('复制失败，请手动复制'));
+}
+
+const PAGE_SIZE = 50;
+let curPage = 1;
+
+function renderTable(list){
+  window.__filtered = list;
+  curPage = 1;
+  drawPage();
+}
+
+function drawPage(){
+  const list = window.__filtered || [];
+  const total = list.length;
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  if (curPage > totalPages) curPage = totalPages;
+  const start = (curPage - 1) * PAGE_SIZE;
+  const pageList = list.slice(start, start + PAGE_SIZE);
+
+  const tb = document.getElementById('tableBody');
+  tb.innerHTML = pageList.map((c,i) => {
+    const ti = timeoutInfo(c);
+    const idx = start + i;
+    const place = (c.accidentPlace || '-');
+    const desc = (c.accidentDesc || '-');
+    return `<tr>
+    <td class="c">${idx + 1}</td>
+    <td><span class="region-tag">${c.region || '—'}</span></td>
+    <td><span class="cell-main city-tag">${c.city || '-'}</span></td>
+    <td><span class="cell-main">${c.riderName || '-'}</span></td>
+    <td><span class="cell-sub">${c.riderPhone || '-'}</span></td>
+    <td class="sticky-col" style="left:0; white-space:nowrap;">
+      <div class="cell-main link" onclick="openDrawer(${idx})">${c.policyNo || '-'}</div>
+      <div class="cell-sub">${(c.companyName||'').replace('股份有限公司','')}</div>
+    </td>
+    <td style="white-space:nowrap;">
+      <div class="cell-main"><span style="color:#909399;">出险：</span>${c.accidentTime ? fmtDate(c.accidentTime) + ' ' + fmtTime(c.accidentTime) : '-'}</div>
+      <div class="cell-sub"><span style="color:#909399;">报案：</span>${c.reportTime ? fmtDate(c.reportTime) + ' ' + fmtTime(c.reportTime) : '-'}</div>
+    </td>
+    <td style="white-space:nowrap;">
+      <span class="tag-pill ${ti.timeout ? 'tag-red' : 'tag-green'}">${ti.timeout ? '超时上报' : '准时上报'}</span>
+      <div class="cell-sub">耗时 ${ti.text}</div>
+    </td>
+    <td>
+      <div class="cell-main ellipsis" data-tip="地点：${(place).replace(/"/g,'&quot;')}"><span class="cell-sub" style="color:#909399;">地点：</span>${place}</div>
+      <div class="cell-sub ellipsis" data-tip="原因：${(desc).replace(/"/g,'&quot;')}"><span style="color:#909399;">原因：</span>${desc}</div>
+    </td>
+    <td>
+      <span class="tag-pill">${c.claimStatusDesc || '-'}</span>
+      <div class="cell-sub">${c.reportChannel || '-'}</div>
+    </td>
+    <td class="r">${fmtMoney(c.payAmountCent)}</td>
+    <td class="c"><span class="link" onclick="openDrawer(${idx})">详情</span></td>
+  </tr>`;
+  }).join('');
+  bindTip('tableBody');
+
+  const pager = document.getElementById('pager');
+  let html = '<span class="pg-total">共 ' + total + ' 条</span>';
+  html += '<span class="pg-info">第 ' + curPage + ' / ' + totalPages + ' 页</span>';
+  html += '<button onclick="gotoPage(1)" ' + (curPage<=1?'disabled':'') + '>«</button>';
+  html += '<button onclick="gotoPage(' + (curPage-1) + ')" ' + (curPage<=1?'disabled':'') + '>上一页</button>';
+  const win = [];
+  for (let p = Math.max(1, curPage-2); p <= Math.min(totalPages, curPage+2); p++) win.push(p);
+  win.forEach(p => {
+    html += '<button class="' + (p===curPage?'active':'') + '" onclick="gotoPage(' + p + ')">' + p + '</button>';
+  });
+  html += '<button onclick="gotoPage(' + (curPage+1) + ')" ' + (curPage>=totalPages?'disabled':'') + '>下一页</button>';
+  html += '<button onclick="gotoPage(' + totalPages + ')" ' + (curPage>=totalPages?'disabled':'') + '>»</button>';
+  pager.innerHTML = html;
+}
+
+function gotoPage(p){
+  const list = window.__filtered || [];
+  const totalPages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+  if (p < 1 || p > totalPages) return;
+  curPage = p;
+  drawPage();
+  const wrap = document.querySelector('.table-wrap');
+  if (wrap) wrap.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function openDrawer(i){
+  const c = window.__filtered[i];
+  document.getElementById('dTitle').textContent = c.riderName + ' · ' + c.city + ' 理赔案件';
+  const flow = (c.statusFlow||[]).map(s => `
+    <div class="tl-item">
+      <div>${s.status || ''} ${s.remark || ''}</div>
+      <div class="tl-date">${s.date || ''}</div>
+    </div>`).join('') || '<div style="color:#909399;">暂无状态记录</div>';
+  document.getElementById('dBody').innerHTML = `
+    <div class="d-section">
+      <h4>基本信息</h4>
+      <div class="kv"><span class="k">案件号</span><span class="v">${c.caseNo || '-'}</span></div>
+      <div class="kv"><span class="k">保单号</span><span class="v">${c.policyNo || '-'}</span></div>
+      <div class="kv"><span class="k">大区</span><span class="v">${c.region || '-'}</span></div>
+      <div class="kv"><span class="k">区域</span><span class="v">${c.subregion || '-'}</span></div>
+      <div class="kv"><span class="k">城市</span><span class="v">${c.city || '-'}</span></div>
+      <div class="kv"><span class="k">骑手</span><span class="v">${c.riderName || '-'}</span></div>
+      <div class="kv"><span class="k">联系电话</span><span class="v">${c.riderPhone || '-'}</span></div>
+      <div class="kv"><span class="k">保险公司</span><span class="v">${c.companyName || '-'}</span></div>
+      <div class="kv"><span class="k">投保日期</span><span class="v">${c.insureDate || '-'}</span></div>
+      <div class="kv"><span class="k">报案时间</span><span class="v">${c.reportTime || '-'}</span></div>
+      <div class="kv"><span class="k">报案来源</span><span class="v">${c.reportChannel || '-'}</span></div>
+      <div class="kv"><span class="k">理赔状态</span><span class="v">${c.claimStatusDesc || '-'}</span></div>
+      <div class="kv"><span class="k">合作商审核</span><span class="v">${c.franchiseeAuditStatusDesc || '-'}</span></div>
+      <div class="kv"><span class="k">理赔金额</span><span class="v" style="color:#d54941;font-weight:700;">¥${fmtMoney(c.payAmountCent)}</span></div>
+    </div>
+    <div class="d-section">
+      <h4>出险信息</h4>
+      <div class="kv"><span class="k">出险时间</span><span class="v">${c.accidentTime || '-'}</span></div>
+      <div class="kv"><span class="k">出险地点</span><span class="v">${c.accidentPlace || '-'}</span></div>
+      <div class="kv"><span class="k">事故描述</span><span class="v">${c.accidentDesc || '-'}</span></div>
+      <div class="kv"><span class="k">上报耗时</span><span class="v">${timeoutInfo(c).timeout ? '超时上报' : '准时上报'}（${timeoutInfo(c).text}）</span></div>
+    </div>
+    <div class="d-section">
+      <h4>案件时间线</h4>
+      <div class="timeline">${flow}</div>
+    </div>`;
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('mask').classList.add('open');
+}
+
+function closeDrawer(){
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('mask').classList.remove('open');
+}
+
+renderHeader();
+initFilters();
+applyFilter();
+</script>
+</body>
+</html>

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>全国站点地图</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Segoe UI','Microsoft YaHei','PingFang SC',Arial,sans-serif;font-size:13px;color:#1a2e45;background:#F0F6FC;overflow:hidden}
+a{color:#1E88E5;text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ===== 顶部 Header ===== */
+.header{height:52px;background:linear-gradient(135deg,#0B4F8A,#1E88E5);display:flex;align-items:center;padding:0 16px;gap:14px;box-shadow:0 2px 6px rgba(0,0,0,.15);position:relative;z-index:1000;flex-shrink:0}
+.header .back{color:#C9DBEC;font-size:12px;white-space:nowrap;padding:5px 10px;border:1px solid rgba(255,255,255,.35);border-radius:14px;transition:all .15s}
+.header .back:hover{background:rgba(255,255,255,.15);color:#fff;text-decoration:none}
+.header .title{color:#fff;font-size:17px;font-weight:700;letter-spacing:1px;white-space:nowrap}
+.header .search-box{margin-left:auto;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:18px;padding:4px 12px;position:relative}
+.header .search-box input{background:transparent;border:none;outline:none;color:#fff;font-size:13px;width:220px}
+.header .search-box input::placeholder{color:rgba(255,255,255,.65)}
+.header .search-box .icon{color:rgba(255,255,255,.8);font-size:14px}
+/* 搜索联想下拉 */
+#suggestBox{display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;min-width:280px;max-height:320px;overflow-y:auto;background:#fff;border:1px solid #dce4ec;border-radius:10px;box-shadow:0 8px 24px rgba(11,79,138,.18);z-index:1200;padding:4px}
+#suggestBox .sug-item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:6px;cursor:pointer;transition:background .1s;font-size:12px;color:#33475b}
+#suggestBox .sug-item:hover,#suggestBox .sug-item.active{background:#eef5fc}
+#suggestBox .sug-item .sug-tag{flex-shrink:0;font-size:10px;padding:1px 6px;border-radius:8px;color:#fff;background:#90a4ae}
+#suggestBox .sug-item .sug-tag.t-station{background:#FF9500}
+#suggestBox .sug-item .sug-tag.t-dorm{background:#1E88E5}
+#suggestBox .sug-item .sug-tag.t-city{background:#0B4F8A}
+#suggestBox .sug-item .sug-tag.t-prov{background:#43A047}
+#suggestBox .sug-item .sug-tag.t-daqu{background:#E53935}
+#suggestBox .sug-item .sug-tag.t-xian{background:#8e24aa}
+#suggestBox .sug-item .sug-name{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#suggestBox .sug-item .sug-sub{font-size:10px;color:#90a4ae;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:110px}
+#suggestBox .sug-empty{padding:12px;text-align:center;color:#90a4ae;font-size:12px}
+.header .layer-switch{display:flex;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:16px;padding:3px;gap:2px}
+.header .layer-switch button{border:none;background:transparent;color:#C9DBEC;font-size:12px;padding:4px 12px;border-radius:12px;cursor:pointer;transition:all .15s}
+.header .layer-switch button.active{background:#fff;color:#0B4F8A;font-weight:600}
+
+/* ===== 主体布局 ===== */
+.body-wrap{display:flex;height:calc(100% - 52px)}
+#map{flex:1;background:#e5ecf2}
+
+/* ===== 右侧悬浮返回上级按钮 ===== */
+#floatBack{display:none;position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:2000;align-items:center;gap:6px;padding:10px 16px;background:linear-gradient(135deg,#0B4F8A,#1E88E5);color:#fff;font-size:13px;font-weight:600;border:none;border-radius:24px;box-shadow:0 4px 14px rgba(11,79,138,.4);cursor:pointer;transition:all .15s}
+#floatBack:hover{background:linear-gradient(135deg,#0a4478,#1976d2);box-shadow:0 6px 18px rgba(11,79,138,.5)}
+#floatBack:active{transform:translateY(-50%) scale(.95)}
+#floatBack .fb-ico{font-size:15px;line-height:1}
+
+/* ===== 左侧面板 ===== */
+.panel{width:290px;min-width:290px;background:#fff;border-right:1px solid #dce4ec;display:flex;flex-direction:column;overflow:hidden}
+.panel-section{padding:12px 14px;border-bottom:1px solid #edf1f5}
+.panel-section h3{font-size:13px;font-weight:700;color:#0B4F8A;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.panel-section h3 .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#0B4F8A,#1E88E5)}
+.panel-section h3 .count{margin-left:auto;color:#90a4ae;font-size:11px;font-weight:400}
+
+/* 分类勾选 */
+.cat-item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;cursor:pointer;transition:background .12s}
+.cat-item:hover{background:#f2f7fc}
+.cat-item input{accent-color:#0B4F8A;cursor:pointer}
+.cat-item .legend{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.cat-item .name{font-size:12px;color:#33475b}
+.cat-item .num{margin-left:auto;font-size:11px;color:#90a4ae;font-weight:600}
+
+/* 统计 */
+/* 面包屑 + 钻取行 */
+.crumb{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;min-height:22px;align-items:center}
+.crumb a{font-size:11px;color:#1E88E5;padding:2px 8px;border-radius:10px;background:#eef5fc;cursor:pointer;white-space:nowrap}
+.crumb a:hover{background:#dbe9f7;text-decoration:none}
+.crumb a.active{background:#0B4F8A;color:#fff;font-weight:600}
+.crumb .sep{color:#90a4ae;font-size:11px}
+.drill-row{display:flex;align-items:center;padding:5px 8px;border-bottom:1px solid #f0f4f8;color:#33475b;cursor:pointer;transition:background .12s;font-size:12px}
+.drill-row:hover{background:#f2f7fc}
+.drill-row .name{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.drill-row .cnt{margin-left:8px;font-size:11px;color:#90a4ae}
+.drill-row .cnt b{color:#0B4F8A;font-weight:700}
+.drill-row .arrow{color:#b0c4d8;margin-left:6px;font-size:10px}
+.drill-back{display:inline-block;font-size:11px;color:#5a7186;padding:2px 8px;border-radius:10px;background:#f2f7fc;cursor:pointer;margin-bottom:6px}
+.drill-back:hover{background:#e3edf6}
+.stats-tabs{display:flex;gap:4px;margin-bottom:8px}
+.stats-tabs button{flex:1;border:1px solid #dce4ec;background:#f7fafd;color:#5a7186;font-size:12px;padding:5px 0;border-radius:6px;cursor:pointer;transition:all .12s}
+.stats-tabs button.active{background:#0B4F8A;border-color:#0B4F8A;color:#fff;font-weight:600}
+.stats-table-wrap{max-height:200px;overflow-y:auto;border:1px solid #edf1f5;border-radius:6px}
+.stats-table{width:100%;border-collapse:collapse;font-size:12px}
+.stats-table th{background:#f2f7fc;color:#0B4F8A;position:sticky;top:0;padding:6px 8px;text-align:left;border-bottom:1px solid #dce4ec}
+.stats-table td{padding:5px 8px;border-bottom:1px solid #f0f4f8;color:#33475b}
+.stats-table tr:last-child td{border-bottom:none}
+.stats-table td.num{text-align:right;font-weight:600;color:#0B4F8A}
+.export-btn{width:100%;margin-top:8px;padding:7px 0;border:none;background:linear-gradient(135deg,#0B4F8A,#1E88E5);color:#fff;font-size:12px;font-weight:600;border-radius:6px;cursor:pointer;transition:opacity .15s}
+.export-btn:hover{opacity:.9}
+.export-btn:active{opacity:.75}
+
+/* 底部说明 */
+.panel-foot{padding:10px 14px;color:#90a4ae;font-size:11px;line-height:1.7;border-top:1px solid #edf1f5;margin-top:auto}
+
+/* ===== Leaflet 弹窗样式 ===== */
+.popup-title{font-size:14px;font-weight:700;color:#0B4F8A;margin-bottom:6px}
+.popup-row{font-size:12px;color:#33475b;padding:2px 0;display:flex}
+.popup-row .k{color:#90a4ae;width:52px;flex-shrink:0}
+.popup-row .v{word-break:break-all}
+.popup-tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;color:#fff;margin-left:6px;vertical-align:1px}
+
+/* 聚合图标 */
+.mc-cluster{width:40px;height:40px;border-radius:50%;background:rgba(11,79,138,.8);border:2px solid rgba(255,255,255,.85);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/leaflet/1.9.4/leaflet.min.css" id="leafletCss">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css" id="clusterCss1">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css" id="clusterCss2">
+</head>
+<body>
+
+<div class="header">
+  <a class="back" href="../总商数据监控-履约工作台.html" target="_top">← 返回工作台</a>
+  <div class="title">全国站点地图</div>
+  <div class="search-box">
+    <span class="icon">⌕</span>
+    <input type="text" id="searchInput" placeholder="搜索站点 / 宿舍 / 城市名称…" autocomplete="off">
+    <div id="suggestBox"></div>
+  </div>
+  <div class="layer-switch" id="layerSwitch">
+    <button data-layer="standard" class="active">标准</button>
+    <button data-layer="satellite">卫星</button>
+  </div>
+</div>
+
+<div class="body-wrap">
+  <div class="panel">
+    <div class="panel-section">
+      <h3><span class="dot"></span>点位分类 <span class="count" id="totalCount">0 个点位</span></h3>
+      <div id="catList"></div>
+    </div>
+    <div class="panel-section">
+      <h3><span class="dot"></span>层级统计 <span class="count" id="drillCount"></span></h3>
+      <div class="crumb" id="crumbBar"></div>
+      <div class="stats-table-wrap">
+        <div id="statsList"></div>
+      </div>
+      <button class="export-btn" id="exportBtn">导出 CSV</button>
+    </div>
+    <div class="panel-foot">
+      数据来源：data.js（window.SITE_DATA）<br>
+      底图：高德地图瓦片 · 支持标准/卫星切换
+    </div>
+  </div>
+  <div id="map"></div>
+  <button id="floatBack" title="返回上一层级"><span class="fb-ico">↑</span>返回上级</button>
+</div>
+
+<script src="data.js"></script>
+<script>
+/* ============================================================
+ * 全国站点地图
+ * 依赖：Leaflet + Leaflet.markercluster（CDN，bootcdn 优先，jsdelivr 兜底）
+ * 数据：window.SITE_DATA（data.js）
+ * ============================================================ */
+
+var CATEGORIES = {
+  meituan:      { label: '美团站点', color: '#FF9500', tagColor: '#FF9500' },
+  dorm:         { label: '骑手宿舍', color: '#1E88E5', tagColor: '#1E88E5' },
+  chehang:      { label: '车行',     color: '#43A047', tagColor: '#43A047' },
+  headquarters: { label: '总部',     color: '#E53935', tagColor: '#E53935' }
+};
+
+/* 从地址文本提取行政区（区/县/旗），提取不到归"未识别" */
+function extractXian(addr, prov, city){
+  if (!addr) return '未识别';
+  var t = addr;
+  if (prov) t = t.replace(prov, '');
+  if (city) t = t.replace(city, '');
+  var m = t.match(/([\u4e00-\u9fa5]{2,8}?(?:区|县|旗))/);
+  return m ? m[0] : '未识别';
+}
+
+/* 城市 -> 大区（按用户提供的大区划分方案） */
+var CITY_DAQU = {
+  /* 华北一区 */
+  '唐山':'华北一区','天津':'华北一区','张家口':'华北一区','秦皇岛':'华北一区',
+  '锦州':'华北一区','阜新':'华北一区','通辽':'华北一区','长春':'华北一区',
+  /* 华北二区 */
+  '信阳':'华北二区','商丘':'华北二区','洛阳':'华北二区','郑州':'华北二区',
+  /* 华北三区 */
+  '太原':'华北三区','西安':'华北三区','运城':'华北三区',
+  /* 华东大区 */
+  '上海':'华东大区','北京':'华东大区','南京':'华东大区',
+  /* 中南大区 */
+  '合肥':'中南大区','滁州':'中南大区','蚌埠':'中南大区','铜陵':'中南大区',
+  '阜阳':'中南大区','马鞍山':'中南大区','黄山':'中南大区',
+  '临沂':'中南大区','枣庄':'中南大区','青岛':'中南大区'
+};
+
+var RAW_DATA = (window.SITE_DATA || []).map(function(d){
+  return {
+    name: d.name || '', city: d.city || '', province: d.province || '',
+    address: d.address || '', category: d.category || 'meituan',
+    level: d.level || '-', lng: Number(d.lng), lat: Number(d.lat),
+    stationId: d.stationId || '', franchisee: d.franchisee || '',
+    region: d.region || '', district: d.district || '',
+    roomSize: d.roomSize, rentProperty: d.rentProperty || '',
+    rentStart: d.rentStart || '', rentEnd: d.rentEnd || '',
+    doorTypeName: d.doorTypeName || '', mainOrg: d.mainOrg || '',
+    stationName: d.stationName || '', roomNum: d.roomNum,
+    daqu: CITY_DAQU[d.city] || (d.district || '').replace(/--加盟$/,''),
+    xian: d.xian || extractXian(d.address || '', d.province || '', d.city || '')
+  };
+});
+/* 宿舍继承所属站点大区（同一 stationId 的站点） */
+(function(){
+  var stMap = {};
+  RAW_DATA.forEach(function(d){ if (d.category === 'meituan' && d.stationId) stMap[d.stationId] = d.daqu; });
+  RAW_DATA.forEach(function(d){ if (d.category === 'dorm' && d.stationId && stMap[d.stationId]) d.daqu = stMap[d.stationId]; });
+})();
+
+/* ---------- CDN 动态加载（bootcdn 失败自动切换 jsdelivr） ---------- */
+function loadResource(url, fallbackUrl, onload){
+  var el;
+  if (/\.css(\?|$)/i.test(url)) {
+    el = document.createElement('link'); el.rel = 'stylesheet'; el.href = url;
+  } else {
+    el = document.createElement('script'); el.src = url;
+  }
+  el.onload = onload || function(){};
+  el.onerror = function(){
+    if (fallbackUrl){ loadResource(fallbackUrl, null, onload); }
+    else if (onerrorHandler) onerrorHandler();
+  };
+  document.head.appendChild(el);
+}
+var onerrorHandler = null;
+var jsLoaded = false;
+function loadLeaflet(){
+  var boot = {
+    l: 'https://cdn.bootcdn.net/ajax/libs/leaflet/1.9.4/leaflet.min.js',
+    c: 'https://cdn.bootcdn.net/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js'
+  };
+  var jsd = {
+    l: 'https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js',
+    c: 'https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js'
+  };
+  loadResource(boot.l, jsd.l, function(){
+    loadResource(boot.c, jsd.c, function(){
+      jsLoaded = true;
+      initMap();
+    });
+  });
+}
+
+/* ---------- 地图初始化 ---------- */
+var map, layers = {}, layerGroups = {}, currentLayer = 'standard', filteredData = [];
+
+var TILE_URLS = {
+  standard:  'https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}',
+  satellite: 'https://webst0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=7&x={x}&y={y}&z={z}'
+};
+var TILE_OPTIONS = { subdomains: ['1','2','3','4'], maxZoom: 18, attribution: '&copy; 高德地图' };
+
+function initMap(){
+  map = L.map('map', { center: [34.5, 108.5], zoom: 5, minZoom: 3 });
+  layers.standard = L.tileLayer(TILE_URLS.standard, TILE_OPTIONS);
+  layers.satellite = L.tileLayer(TILE_URLS.satellite, TILE_OPTIONS);
+  layers.standard.addTo(map);
+
+  var clusterOptions = {
+    maxClusterRadius: 50,
+    iconCreateFunction: function(cluster){
+      var count = cluster.getChildCount();
+      return L.divIcon({ html: '<div class="mc-cluster">' + count + '</div>', className: '', iconSize: [40, 40] });
+    }
+  };
+  Object.keys(CATEGORIES).forEach(function(cat){
+    layerGroups[cat] = L.markerClusterGroup(clusterOptions);
+    map.addLayer(layerGroups[cat]);
+  });
+
+  buildCatList();
+  buildSuggestIndex();
+  applyFilter('');
+  bindEvents();
+}
+
+/* ---------- 点位图标（DivIcon 彩色圆点） ---------- */
+function iconFor(cat){
+  var color = CATEGORIES[cat] ? CATEGORIES[cat].color : '#90a4ae';
+  var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="38" viewBox="0 0 30 38">' +
+    '<path d="M15 1C8.4 1 3 6.4 3 13c0 9 12 24 12 24s12-15 12-24C27 6.4 21.6 1 15 1z" fill="' + color + '" stroke="#fff" stroke-width="2"/>' +
+    '<circle cx="15" cy="13" r="5" fill="#fff" opacity=".9"/></svg>';
+  return L.divIcon({ html: svg, className: '', iconSize: [30, 38], iconAnchor: [15, 36], popupAnchor: [0, -32] });
+}
+
+/* ---------- 分类勾选列表 ---------- */
+function buildCatList(){
+  var html = '';
+  Object.keys(CATEGORIES).forEach(function(cat){
+    var n = RAW_DATA.filter(function(d){ return d.category === cat; }).length;
+    html += '<label class="cat-item">' +
+      '<input type="checkbox" data-cat="' + cat + '" checked>' +
+      '<span class="legend" style="background:' + CATEGORIES[cat].color + '"></span>' +
+      '<span class="name">' + CATEGORIES[cat].label + '</span>' +
+      '<span class="num" id="num-' + cat + '">' + n + '</span></label>';
+  });
+  document.getElementById('catList').innerHTML = html;
+  document.querySelectorAll('#catList input[type=checkbox]').forEach(function(cb){
+    cb.addEventListener('change', function(){
+      var cat = cb.dataset.cat;
+      if (cb.checked) map.addLayer(layerGroups[cat]);
+      else map.removeLayer(layerGroups[cat]);
+      updateStats();
+    });
+  });
+}
+
+/* ---------- 数据过滤 + 渲染（叠加层级钻取） ---------- */
+var markerIndex = {};   // name -> marker，供钻取定位弹窗
+function applyFilter(q){
+  q = (q || '').trim().toLowerCase();
+  filteredData = RAW_DATA.filter(function(d){
+    if (!drillMatch(d)) return false;
+    if (!q) return true;
+    return (d.name.toLowerCase().indexOf(q) >= 0) || (d.city.toLowerCase().indexOf(q) >= 0) || (d.province.toLowerCase().indexOf(q) >= 0) || (d.daqu.toLowerCase().indexOf(q) >= 0);
+  });
+
+  // 重建各分类聚合层（先清空再填充，避免旧 marker 残留）
+  Object.keys(CATEGORIES).forEach(function(cat){
+    layerGroups[cat].clearLayers();
+  });
+  markerIndex = {};
+  filteredData.forEach(function(d){
+    var m = L.marker([d.lat, d.lng], { icon: iconFor(d.category) });
+    m.bindPopup(popupHtml(d));
+    layerGroups[d.category].addLayer(m);
+    markerIndex[d.name] = m;
+  });
+
+  document.getElementById('totalCount').textContent = filteredData.length + ' 个点位';
+  Object.keys(CATEGORIES).forEach(function(cat){
+    var el = document.getElementById('num-' + cat);
+    if (el) el.textContent = filteredData.filter(function(d){ return d.category === cat; }).length;
+  });
+  renderDrill();
+  fitDrill();
+}
+
+function popupHtml(d){
+  var cat = CATEGORIES[d.category] || { label: d.category, color: '#90a4ae' };
+  var rows = [];
+  rows.push('<div class="popup-title">' + esc(d.name) +
+    '<span class="popup-tag" style="background:' + cat.color + '">' + esc(cat.label) + '</span></div>');
+  rows.push('<div class="popup-row"><span class="k">等级</span><span class="v">' + esc(d.level) + '</span></div>');
+  rows.push('<div class="popup-row"><span class="k">城市</span><span class="v">' + esc(d.province) + ' · ' + esc(d.city) + '</span></div>');
+  rows.push('<div class="popup-row"><span class="k">地址</span><span class="v">' + esc(d.address) + '</span></div>');
+  if (d.franchisee) rows.push('<div class="popup-row"><span class="k">城市商</span><span class="v">' + esc(d.franchisee) + '</span></div>');
+  if (d.region) rows.push('<div class="popup-row"><span class="k">大区</span><span class="v">' + esc(d.region) + ' / ' + esc(d.district) + '</span></div>');
+  if (d.roomSize) rows.push('<div class="popup-row"><span class="k">面积</span><span class="v">' + esc(d.roomSize) + ' m²</span></div>');
+  if (d.rentProperty) rows.push('<div class="popup-row"><span class="k">租赁</span><span class="v">' + esc(d.rentProperty) + '</span></div>');
+  if (d.rentStart) rows.push('<div class="popup-row"><span class="k">合同期</span><span class="v">' + esc(d.rentStart) + ' ~ ' + esc(d.rentEnd) + '</span></div>');
+  if (d.doorTypeName) rows.push('<div class="popup-row"><span class="k">门头</span><span class="v">' + esc(d.doorTypeName) + '</span></div>');
+  if (d.mainOrg) rows.push('<div class="popup-row"><span class="k">主站点</span><span class="v">' + esc(d.mainOrg) + '</span></div>');
+  if (d.stationName) rows.push('<div class="popup-row"><span class="k">所属站点</span><span class="v">' + esc(d.stationName) + '</span></div>');
+  if (d.roomNum) rows.push('<div class="popup-row"><span class="k">房间数</span><span class="v">' + esc(d.roomNum) + '</span></div>');
+  if (d.stationId) rows.push('<div class="popup-row"><span class="k">站点ID</span><span class="v">' + esc(d.stationId) + '</span></div>');
+  return rows.join('');
+}
+
+/* ---------- 层级钻取统计（大区→省份→城市→行政区→站点） ---------- */
+var drill = [];   // 钻取栈 [{lv,name}]，空 = 全图
+var NEXT_LV = { daqu: 'prov', prov: 'city', city: 'xian', xian: 'station' };
+var LV_LABEL = { daqu: '大区', prov: '省份', city: '城市', xian: '行政区', station: '站点' };
+
+function keyOf(d, lv){
+  if (lv === 'daqu') return d.daqu;
+  if (lv === 'prov') return d.province;
+  if (lv === 'city') return d.city;
+  if (lv === 'xian') return d.xian;
+  return d.name;
+}
+function drillMatch(d){
+  for (var i = 0; i < drill.length; i++){
+    if (keyOf(d, drill[i].lv) !== drill[i].name) return false;
+  }
+  return true;
+}
+function drillData(){
+  return RAW_DATA.filter(drillMatch);
+}
+function renderDrill(){
+  var scope = drillData();
+  var nextLv = drill.length ? NEXT_LV[drill[drill.length - 1].lv] : 'daqu';
+  var title = drill.length ? drill[drill.length - 1].name + ' · 按' + LV_LABEL[nextLv] : '全部 · 按' + LV_LABEL[nextLv];
+  document.getElementById('drillCount').textContent = title;
+
+  // 面包屑
+  var crumb = '<a data-depth="-1">全部</a>';
+  drill.forEach(function(s, i){
+    crumb += '<span class="sep">›</span><a data-depth="' + i + '">' + esc(s.name) + '</a>';
+  });
+  if (drill.length) crumb += '<span class="sep">›</span><a class="active" data-depth="' + (drill.length) + '">' + esc(LV_LABEL[nextLv]) + '</a>';
+  document.getElementById('crumbBar').innerHTML = crumb;
+  document.querySelectorAll('#crumbBar a').forEach(function(a){
+    a.addEventListener('click', function(){
+      var dep = parseInt(a.dataset.depth, 10);
+      drill = drill.slice(0, dep < 0 ? 0 : dep);
+      applyFilter(document.getElementById('searchInput').value);
+    });
+  });
+  // 右侧悬浮"返回上级"按钮：有钻取层级时显示，全图时隐藏
+  var fb = document.getElementById('floatBack');
+  if (fb) fb.style.display = drill.length ? 'flex' : 'none';
+
+  // 分组列表
+  var groups = {}, order = [];
+  scope.forEach(function(d){
+    var k = keyOf(d, nextLv);
+    if (!(k in groups)){ groups[k] = 0; order.push(k); }
+    groups[k]++;
+  });
+  // 大区层级按固定顺序展示，其余层级按数量降序
+  if (nextLv === 'daqu'){
+    var DAQU_ORDER = ['华北一区','华北二区','华北三区','华东大区','中南大区'];
+    order.sort(function(a, b){
+      var ia = DAQU_ORDER.indexOf(a), ib = DAQU_ORDER.indexOf(b);
+      ia = ia < 0 ? DAQU_ORDER.length : ia;
+      ib = ib < 0 ? DAQU_ORDER.length : ib;
+      return ia - ib;
+    });
+  } else {
+    order.sort(function(a, b){ return groups[b] - groups[a]; });
+  }
+
+  var html = '';
+  if (nextLv === 'station'){
+    order.forEach(function(k){
+      html += '<div class="drill-row" data-name="' + esc(k) + '">' +
+        '<span class="name">' + esc(k) + '</span>' +
+        '<span class="cnt"><b>' + groups[k] + '</b> 个点位</span>' +
+        '<span class="arrow">➤</span></div>';
+    });
+  } else {
+    order.forEach(function(k){
+      html += '<div class="drill-row" data-lv="' + nextLv + '" data-name="' + esc(k) + '">' +
+        '<span class="name">' + esc(k) + '</span>' +
+        '<span class="cnt">' + groups[k] + '</span>' +
+        '<span class="arrow">›</span></div>';
+    });
+  }
+  if (!order.length) html = '<div style="padding:10px;text-align:center;color:#90a4ae">无数据</div>';
+  document.getElementById('statsList').innerHTML = html;
+
+  document.querySelectorAll('#statsList .drill-row').forEach(function(row){
+    row.addEventListener('click', function(){
+      var lv = row.dataset.lv, name = row.dataset.name;
+      if (lv){
+        drill.push({ lv: lv, name: name });
+        applyFilter(document.getElementById('searchInput').value);
+      } else {
+        // 站点行：地图定位 + 打开弹窗（不依赖 marker 挂载状态）
+        var rec = RAW_DATA.filter(function(d){ return d.name === name; })[0];
+        if (rec){
+          map.setView([rec.lat, rec.lng], 16);
+          L.popup().setLatLng([rec.lat, rec.lng]).setContent(popupHtml(rec)).openOn(map);
+        }
+      }
+    });
+  });
+}
+function fitDrill(){
+  if (!drill.length){ map.setView([34.5, 108.5], 5); return; }
+  var pts = drillData();
+  if (!pts.length) return;
+  var b = L.latLngBounds(pts.map(function(d){ return [d.lat, d.lng]; }));
+  map.fitBounds(b.pad(0.35), { maxZoom: 15 });
+}
+function exportCSV(){
+  var scope = drillData();
+  var nextLv = drill.length ? NEXT_LV[drill[drill.length - 1].lv] : 'daqu';
+  var groups = {};
+  scope.forEach(function(d){ var k = keyOf(d, nextLv); groups[k] = (groups[k] || 0) + 1; });
+  var head = (drill.length ? drill[drill.length - 1].name + '_' : '') + LV_LABEL[nextLv];
+  var lines = [head + ',数量'];
+  Object.keys(groups).sort(function(a, b){ return groups[b] - groups[a]; }).forEach(function(k){
+    lines.push(k + ',' + groups[k]);
+  });
+  var blob = new Blob(['\ufeff' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = '站点层级统计_' + nextLv + '_' + Date.now() + '.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+
+/* ---------- 搜索联想（站点/宿舍/城市/省份/大区/行政区） ---------- */
+var SUGGEST_INDEX = null;
+var sugActive = -1; // 键盘上下选中的下标
+function buildSuggestIndex(){
+  var map = {};
+  RAW_DATA.forEach(function(d){
+    // 站点/宿舍
+    if (d.name && !map['n:' + d.name]){
+      map['n:' + d.name] = { type: d.category === 'dorm' ? 'dorm' : 'station', name: d.name, sub: d.city || d.daqu };
+    }
+    // 城市
+    if (d.city && !map['c:' + d.city]) map['c:' + d.city] = { type: 'city', name: d.city, sub: d.province };
+    // 省份
+    if (d.province && !map['p:' + d.province]) map['p:' + d.province] = { type: 'prov', name: d.province, sub: d.daqu };
+    // 大区
+    if (d.daqu && !map['d:' + d.daqu]) map['d:' + d.daqu] = { type: 'daqu', name: d.daqu, sub: '' };
+    // 行政区
+    if (d.xian && d.xian !== '未识别' && !map['x:' + d.xian]) map['x:' + d.xian] = { type: 'xian', name: d.xian, sub: d.city };
+  });
+  // 大区/行政区补充点位数量
+  Object.keys(map).forEach(function(k){
+    var it = map[k];
+    if (it.type === 'daqu') it.sub = RAW_DATA.filter(function(d){ return d.daqu === it.name; }).length + ' 个点位';
+    if (it.type === 'xian') it.sub = (it.sub ? it.sub + ' · ' : '') + RAW_DATA.filter(function(d){ return d.xian === it.name; }).length + ' 个点位';
+  });
+  SUGGEST_INDEX = Object.keys(map).map(function(k){ return map[k]; });
+}
+function suggestTagClass(t){
+  return { station: 't-station', dorm: 't-dorm', city: 't-city', prov: 't-prov', daqu: 't-daqu', xian: 't-xian' }[t] || '';
+}
+function suggestTagText(t){
+  return { station: '站点', dorm: '宿舍', city: '城市', prov: '省份', daqu: '大区', xian: '行政区' }[t] || '';
+}
+function renderSuggest(q){
+  var box = document.getElementById('suggestBox');
+  q = (q || '').trim().toLowerCase();
+  if (!q){ box.style.display = 'none'; return; }
+  var list = SUGGEST_INDEX.filter(function(it){
+    return it.name.toLowerCase().indexOf(q) >= 0 ||
+      (it.sub && it.sub.toLowerCase().indexOf(q) >= 0);
+  }).slice(0, 12);
+  sugActive = -1;
+  if (!list.length){
+    box.innerHTML = '<div class="sug-empty">未找到匹配项</div>';
+    box.style.display = 'block';
+    return;
+  }
+  var html = list.map(function(it, i){
+    return '<div class="sug-item" data-i="' + i + '">' +
+      '<span class="sug-tag ' + suggestTagClass(it.type) + '">' + suggestTagText(it.type) + '</span>' +
+      '<span class="sug-name">' + esc(it.name) + '</span>' +
+      (it.sub ? '<span class="sug-sub">' + esc(it.sub) + '</span>' : '') +
+      '</div>';
+  }).join('');
+  box.innerHTML = html;
+  box.style.display = 'block';
+  box._list = list;
+  box.querySelectorAll('.sug-item').forEach(function(el){
+    el.addEventListener('click', function(){ pickSuggest(parseInt(el.dataset.i, 10)); });
+  });
+}
+function pickSuggest(i){
+  var box = document.getElementById('suggestBox');
+  var list = box._list || [];
+  var it = list[i];
+  if (!it) return;
+  box.style.display = 'none';
+  var input = document.getElementById('searchInput');
+  if (it.type === 'station' || it.type === 'dorm'){
+    // 站点/宿舍：直接定位 + 弹窗
+    var rec = RAW_DATA.filter(function(d){ return d.name === it.name; })[0];
+    if (rec){
+      input.value = it.name;
+      applyFilter(it.name);
+      map.setView([rec.lat, rec.lng], 16);
+      L.popup().setLatLng([rec.lat, rec.lng]).setContent(popupHtml(rec)).openOn(map);
+    }
+  } else {
+    // 区域/城市/省份/大区：直接钻取到该层级
+    drill = [{ lv: it.type, name: it.name }];
+    input.value = '';
+    applyFilter('');
+  }
+}
+function moveSuggest(dir){
+  var box = document.getElementById('suggestBox');
+  if (!box || box.style.display === 'none') return;
+  var items = box.querySelectorAll('.sug-item');
+  if (!items.length) return;
+  if (sugActive >= 0) items[sugActive].classList.remove('active');
+  sugActive = (sugActive + dir + items.length) % items.length;
+  items[sugActive].classList.add('active');
+  items[sugActive].scrollIntoView({ block: 'nearest' });
+}
+
+/* ---------- 事件绑定 ---------- */
+function bindEvents(){
+  document.getElementById('searchInput').addEventListener('input', function(e){
+    applyFilter(e.target.value);
+    renderSuggest(e.target.value);
+  });
+  document.getElementById('searchInput').addEventListener('keydown', function(e){
+    if (e.key === 'ArrowDown'){ e.preventDefault(); moveSuggest(1); }
+    else if (e.key === 'ArrowUp'){ e.preventDefault(); moveSuggest(-1); }
+    else if (e.key === 'Enter'){
+      var box = document.getElementById('suggestBox');
+      if (box && box.style.display !== 'none'){
+        e.preventDefault();
+        pickSuggest(sugActive >= 0 ? sugActive : 0);
+      }
+    } else if (e.key === 'Escape'){
+      document.getElementById('suggestBox').style.display = 'none';
+    }
+  });
+  document.addEventListener('click', function(e){
+    var sb = document.getElementById('suggestBox');
+    if (sb && sb.style.display !== 'none' && !e.target.closest('.search-box')){
+      sb.style.display = 'none';
+    }
+  });
+  document.getElementById('exportBtn').addEventListener('click', exportCSV);
+  document.getElementById('floatBack').addEventListener('click', function(){
+    if (!drill.length) return;
+    drill.pop();
+    applyFilter(document.getElementById('searchInput').value);
+  });
+  document.querySelectorAll('#layerSwitch button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('#layerSwitch button').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var key = btn.dataset.layer;
+      if (key === currentLayer) return;
+      map.removeLayer(layers[currentLayer]);
+      layers[key].addTo(map);
+      currentLayer = key;
+    });
+  });
+  window.addEventListener('resize', function(){ if (map) map.invalidateSize(); });
+}
+
+function esc(s){
+  return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ---------- 启动 ---------- */
+onerrorHandler = function(){
+  document.body.innerHTML = '<div style="padding:40px;font-size:14px;color:#c62828">地图组件（Leaflet / markercluster）CDN 加载失败，请检查网络后刷新页面。</div>';
+};
+// CSS 兜底（bootcdn 失败切 jsdelivr）
+function ensureCss(){
+  ['leafletCss','clusterCss1','clusterCss2'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (!el || !el.sheet && !el.href) {
+      var mapId = { leafletCss: 'https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css', clusterCss1: 'https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.css', clusterCss2: 'https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css' }[id];
+      var link = document.createElement('link'); link.rel = 'stylesheet'; link.href = mapId; document.head.appendChild(link);
+    }
+  });
+}
+ensureCss();
+loadLeaflet();
+</script>
+</body>
+</html>
