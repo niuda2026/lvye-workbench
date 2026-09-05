@@ -7,7 +7,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#F0F6FC;color:#1a2e45;font-family:'Segoe UI','Microsoft YaHei','PingFang SC',Arial,sans-serif;font-size:13px;min-height:100vh}
-.header{background:linear-gradient(135deg,#0B4F8A 0%,#1E88E5 50%,#1e88e5 100%);padding:14px 24px;border-bottom:3px solid #0A3D6B;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;box-shadow:0 2px 8px rgba(11,79,138,.4)}
+.header{position:sticky;top:0;z-index:50;background:linear-gradient(135deg,#0B4F8A 0%,#1E88E5 50%,#1e88e5 100%);padding:14px 24px;border-bottom:3px solid #0A3D6B;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;box-shadow:0 2px 8px rgba(11,79,138,.4)}
 .header-title{font-size:20px;font-weight:700;color:#ffffff;letter-spacing:1px;text-shadow:0 1px 3px rgba(0,0,0,.3)}
 .header-sub{font-size:12px;color:#B3D0E8;margin-top:3px}
 .header-right{text-align:right;font-size:12px;color:#B3D0E8;line-height:1.8}
@@ -34,7 +34,7 @@ body{background:#F0F6FC;color:#1a2e45;font-family:'Segoe UI','Microsoft YaHei','
 .panel.active{display:block}
 .table-wrap{overflow:auto;max-height:calc(100vh - 210px)}
 table.dt{width:100%;border-collapse:collapse;font-size:12px}
-table.dt th{background:#0B4F8A;color:#fff;padding:8px 10px;text-align:center;border:1px solid #1E88E5;white-space:normal;position:sticky;top:0;z-index:2;line-height:1.4;font-size:12px;letter-spacing:.5px;font-weight:600}
+table.dt th{background:#0B4F8A;color:#fff;padding:8px 10px;text-align:center;border:1px solid #1E88E5;white-space:normal;position:sticky;top:var(--hdfix,0px);z-index:2;line-height:1.4;font-size:12px;letter-spacing:.5px;font-weight:600}
 table.dt th.sub{background:#1565C0;font-weight:400;font-size:11px;letter-spacing:.2px}
 table.dt td{padding:7px 10px;border:1px solid #e3edf7;text-align:center;white-space:nowrap;background:#fff;font-variant-numeric:tabular-nums}
 table.dt td.l{text-align:left}
@@ -73,7 +73,7 @@ tr.lv-site:hover td{background:#f0f7ff}
   </div>
   <div class="header-right">
     <div id="dataRange">数据文件: monthly_summary.js</div>
-    <div>戴盔系带率 ≥ 97% &nbsp;|&nbsp; 有灯路口超速率 ≤ 4% &nbsp;|&nbsp; 闯红灯率 ≤ 23% &nbsp;|&nbsp; 考核里程逆行率 ≤ 3% &nbsp;|&nbsp; 工装检核率 ≥ 80% &nbsp;|&nbsp; 美团工服率 ≥ 92%</div>
+    <div>戴盔系带率 ≥ 97% &nbsp;|&nbsp; 路口超速率 ≤ 4% &nbsp;|&nbsp; 闯红灯率 ≤ 23% &nbsp;|&nbsp; 里程逆行率 ≤ 3% &nbsp;|&nbsp; 工装检核率 ≥ 80% &nbsp;|&nbsp; 美团工服率 ≥ 92%</div>
   </div>
 </div>
 
@@ -127,14 +127,14 @@ var PANELS = {
     title: '安全权益',
     metrics: [
       {key:'helmet', label:'戴盔系带率', target:97, goodHigh:true, redAt:95},
-      {key:'speed', label:'有灯路口超速率', target:4, goodHigh:false, redAt:7.5}
+      {key:'speed', label:'路口超速率', target:4, goodHigh:false, redAt:7.5}
     ]
   },
   rating: {
     title: '站长安全评级',
     metrics: [
       {key:'redlight', label:'闯红灯率', target:23, goodHigh:false},
-      {key:'reverse', label:'考核里程逆行率', target:3, goodHigh:false}
+      {key:'reverse', label:'里程逆行率', target:3, goodHigh:false}
     ]
   },
   highway: {
@@ -228,9 +228,9 @@ function totalCards(){
   if(totalSite){
     var defs = [
       {label:'戴盔系带率（累计）', key:'helmet', sub:'目标 ≥ 97%', target:97, goodHigh:true, redAt:95},
-      {label:'有灯路口超速率（累计）', key:'speed', sub:'目标 ≤ 4%', target:4, goodHigh:false, redAt:7.5},
+      {label:'路口超速率（累计）', key:'speed', sub:'目标 ≤ 4%', target:4, goodHigh:false, redAt:7.5},
       {label:'闯红灯率（累计）', key:'redlight', sub:'目标 ≤ 23%', target:23, goodHigh:false},
-      {label:'考核里程逆行率（累计）', key:'reverse', sub:'目标 ≤ 3%', target:3, goodHigh:false},
+      {label:'里程逆行率（累计）', key:'reverse', sub:'目标 ≤ 3%', target:3, goodHigh:false},
       {label:'工装检核率（累计）', key:'clothing', subKey:'cloth', sub:'目标 ≥ 80%', target:80, goodHigh:true},
       {label:'美团工服率（累计）', key:'clothing', subKey:'vis', sub:'目标 ≥ 92%', target:92, goodHigh:true},
       {label:'高速超速占比（月均日占比）', key:'high_speed', sub:'站点维度', target:null, goodHigh:false}
@@ -390,6 +390,38 @@ function exportTable(){
   }
   initMonthSel();
   renderAll();
+})();
+</script>
+<script>
+(function(){
+  var raf=0;
+  function pgfix(){
+    raf=0;
+    var bar=null;
+    var els=document.querySelectorAll('.header,.tab-bar');
+    for(var i=0;i<els.length;i++){
+      var el=els[i];
+      if(el.offsetHeight>0&&getComputedStyle(el).position==='sticky'){bar=el;break;}
+    }
+    var d=0;
+    if(bar){
+      var b=bar.getBoundingClientRect().bottom;
+      var ws=document.querySelectorAll('.table-wrap');
+      for(var j=0;j<ws.length;j++){
+        var w=ws[j];
+        if(w.clientHeight>0){
+          var t=w.getBoundingClientRect().top;
+          if(b-t>d)d=b-t;
+        }
+      }
+    }
+    var rs=document.documentElement.style;
+    if(d>0.5)rs.setProperty('--hdfix',d.toFixed(1)+'px');else rs.removeProperty('--hdfix');
+  }
+  function onS(){if(!raf)raf=requestAnimationFrame(pgfix);}
+  window.addEventListener('scroll',onS,{passive:true});
+  window.addEventListener('resize',onS);
+  pgfix();
 })();
 </script>
 </body>

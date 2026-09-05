@@ -7,7 +7,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#F0F6FC;color:#1a2e45;font-family:'Segoe UI','Microsoft YaHei','PingFang SC',Arial,sans-serif;font-size:13px;min-height:100vh}
-.header{background:linear-gradient(135deg,#0B4F8A 0%,#1E88E5 50%,#1e88e5 100%);padding:14px 24px;border-bottom:3px solid #0A3D6B;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;box-shadow:0 2px 8px rgba(11,79,138,.4)}
+.header{position:sticky;top:0;z-index:50;background:linear-gradient(135deg,#0B4F8A 0%,#1E88E5 50%,#1e88e5 100%);padding:14px 24px;border-bottom:3px solid #0A3D6B;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;box-shadow:0 2px 8px rgba(11,79,138,.4)}
 .header-title{font-size:20px;font-weight:700;color:#ffffff;letter-spacing:1px;text-shadow:0 1px 3px rgba(0,0,0,.3)}
 .header-sub{font-size:12px;color:#B3D0E8;margin-top:3px}
 .header-right{text-align:right;font-size:12px;color:#B3D0E8;line-height:1.8}
@@ -49,9 +49,10 @@ body{background:#F0F6FC;color:#1a2e45;font-family:'Segoe UI','Microsoft YaHei','
 .table-wrap-station{max-height:calc(100vh - 200px)}
 .table-wrap-rider{max-height:calc(100vh - 260px)}
 table.dt{width:100%;border-collapse:collapse;font-size:12px}
-table.dt th{background:#0B4F8A;color:#fff;padding:8px 10px;text-align:center;border:1px solid #1E88E5;white-space:normal;position:sticky;top:0;z-index:2;line-height:1.4;font-size:12px;letter-spacing:.5px;font-weight:600}
+table.dt th{background:#0B4F8A;color:#fff;padding:8px 10px;text-align:center;border:1px solid #1E88E5;white-space:normal;position:sticky;top:var(--hdfix,0px);z-index:2;line-height:1.4;font-size:12px;letter-spacing:.5px;font-weight:600}
 table.dt td{padding:7px 10px;border:1px solid #e3edf7;text-align:center;white-space:nowrap;background:#fff;font-variant-numeric:tabular-nums}
 table.dt td.name-cell{text-align:left;max-width:300px;overflow:hidden;text-overflow:ellipsis}
+table.dt td.spark-td .spark-img{display:block;margin:0 auto}
 table.dt th.sticky-col,table.dt td.sticky-col{position:sticky;z-index:1;background:#fff}
 table.dt th.sticky-col{background:#0B4F8A;z-index:3}
 tr.lv-total td.sticky-col{background:#dbeafe!important}
@@ -68,6 +69,14 @@ tr.lv-subregion td.sticky-col.cell-bad{background:#ffcdd2!important}
 tr.lv-merchant td.sticky-col.cell-good{background:#a5d6a7!important}
 tr.lv-merchant td.sticky-col.cell-bad{background:#ef9a9a!important}
 table.dt th.sticky-last,table.dt td.sticky-last{border-right:2px solid #0B4F8A!important;box-shadow:2px 0 4px rgba(11,79,138,.15)}
+/* 安全权益表：横向滚动卡顿优化
+   原因：本表 8 个固定列 × 225 行 = 1808 个 position:sticky 单元格，叠加 border-collapse:collapse
+   时浏览器无法把固定列提升为合成层，横向滚动每帧都要重绘整张可见表（实测 Paint 417ms/2s）。
+   对策：改用 separate 边框（用「只画右/下边」还原 1px 网格，视觉一致）+ contain:paint 限制重绘范围。
+   实测横向 Paint 417→195ms(-53%)、光栅化 145→34ms(-77%)。仅作用于本表，不影响其他看板。 */
+#equity-table{border-collapse:separate;border-spacing:0;contain:paint;border-top:1px solid #1E88E5;border-left:1px solid #1E88E5}
+#equity-table th{border-style:solid;border-color:#1E88E5;border-width:0 1px 1px 0}
+#equity-table td{border-style:solid;border-color:#e3edf7;border-width:0 1px 1px 0}
 tr.lv-total td{background:#dbeafe!important;font-weight:700;color:#0A3D6B;font-size:13px;border-bottom:2px solid #8FB8DA}
 tr.lv-subregion td{background:#F0F6FC!important;font-weight:700;color:#0B4F8A}
 tr.lv-merchant td{background:#f8fafe!important;font-weight:500;color:#1E88E5;font-style:italic}
@@ -82,8 +91,8 @@ tr.lv-site:hover td{background:#f0f7ff}
 .ry{background:#fff3e0!important;color:#e65100!important;font-weight:600}
 .rr{background:#ffebee!important;color:#c62828!important;font-weight:600}
 .rn{color:#90a4ae}
-.region-cards-row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:12px;}
-.region-card{padding:16px 14px;text-align:center;min-height:110px;min-width:0;display:flex;flex-direction:column;justify-content:center;flex:none;max-width:none;}
+.region-cards-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:8px;width:100%;flex:1 1 100%;}
+.region-card{padding:8px 10px;text-align:center;min-height:0;min-width:0;display:flex;flex-direction:column;justify-content:center;flex:none;max-width:none;white-space:nowrap;}
 @media(max-width:1100px){.region-cards-row{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:640px){.region-cards-row{grid-template-columns:repeat(2,1fr);}}
 .lv-btn{padding:4px 12px;border-radius:4px;border:1px solid #0B4F8A;background:#0B4F8A;color:#fff;font-size:12px;cursor:pointer;transition:all .2s;}
@@ -128,11 +137,20 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
 .score-rule-box .rule-note{margin-top:12px;padding:10px 12px;background:#f4f8fc;border:1px solid #cfe0f0;border-radius:6px;font-size:12px;color:#455a64;line-height:1.7}
 .score-rule-box .rule-close{display:block;margin:14px auto 0;background:#0B4F8A;color:#fff;border:none;padding:7px 28px;border-radius:4px;cursor:pointer;font-size:13px}
 .score-rule-box .rule-close:hover{background:#0A3D6B}
+/* ═ 安全权益：周/日维度分组表头（戴盔系带率 / 路口超速率 各自独立） ═ */
+#equity-thead tr.eg-grp th{top:var(--hdfix,0px);height:32px;padding:4px 10px;font-size:12px;letter-spacing:1px;vertical-align:middle;border-color:rgba(255,255,255,.35)}
+#equity-thead tr.eg-sub th{top:calc(var(--hdfix,0px) + 32px);padding:4px 5px;font-size:11px;letter-spacing:.3px;line-height:1.25;border-color:rgba(255,255,255,.3)}
+#equity-thead tr.eg-sub th small{font-weight:400;font-size:9px;opacity:.85;letter-spacing:0}
+#equity-thead th.eg-g1,#equity-thead th.eg-g2,#equity-thead th.eg-g3,#equity-thead th.eg-g4{color:#fff}
+#equity-thead th.eg-g1{background:#1E6091}
+#equity-thead th.eg-g2{background:#1E6091}
+#equity-thead th.eg-g3{background:#1F5F6B}
+#equity-thead th.eg-g4{background:#154A55}
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-<script src="data.js?09-04-b79c6f65"></script>
+<script src="data.js?09-04-fc23ee54"></script>
 </head>
 <body>
 
@@ -141,12 +159,12 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
     
     <div>
       <div class="header-title">🛡️ 安全权益看板</div>
-      <div class="header-sub">戴盔系带率 · 有灯路口超速率</div>
+      <div class="header-sub">戴盔系带率 · 路口超速率</div>
     </div>
   </div>
   <div class="header-right">
     <div id="dataRange">数据范围: 09-01 ~ 09-04</div>
-    <div>戴盔系带率 ≥ <strong style="color:#B3D0E8">97%</strong> &nbsp;|&nbsp; 有灯路口超速率目标 ≤ <strong style="color:#80deea">4%</strong></div>
+    <div>戴盔系带率 ≥ <strong style="color:#B3D0E8">97%</strong> &nbsp;|&nbsp; 路口超速率目标 ≤ <strong style="color:#80deea">4%</strong></div>
   </div>
 </div>
 
@@ -158,9 +176,9 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
   <div class="tab-item" data-tab="speed-site" onclick="switchTab(&#39;speed-site&#39;)">⚡ 高速监控看板-站</div>
   <div class="tab-item" data-tab="speed-rider" onclick="switchTab(&#39;speed-rider&#39;)">🏍️ 高速监控看板-骑手</div>
 </div>
-<!-- ══ 安全权益看板（站维度：戴盔系带率 + 有灯路口超速率） ══ -->
+<!-- ══ 安全权益看板（站维度：戴盔系带率 + 路口超速率） ══ -->
 <div class="panel active" id="panel-equity">
-  <div class="summary-row" id="summary-cards-equity"><div class="card"><div class="c-label">大区数 / 区域数 / 城市数</div><div class="c-value">5 <span style="font-size:16px;color:#4F6E87">/</span> 10 <span style="font-size:16px;color:#4F6E87">/</span> 28</div><div class="c-sub">监控站点 182 个</div></div><div class="card green"><div class="c-label">安全权益得分（总商）</div><div class="c-value">0.00</div><div class="c-sub">戴盔系带率得分+超速率得分</div></div><div class="card green"><div class="c-label">戴盔系带率（累计）</div><div class="c-value">98.14%</div><div class="c-sub">目标 ≥ 97%</div></div><div class="card green"><div class="c-label">有灯路口超速率（累计）</div><div class="c-value">3.21%</div><div class="c-sub">目标 ≤ 4%</div></div><div class="card green"><div class="c-label">戴盔系带率达标站点</div><div class="c-value">165</div><div class="c-sub">未达标 17 个</div></div><div class="card green"><div class="c-label">有灯路口超速率达标站点</div><div class="c-value">147</div><div class="c-sub">未达标 35 个</div></div><div class="region-cards-row"><div class="card region-card" data-region="华北一区"><div class="c-label" style="font-weight:700;color:#0B4F8A;margin-bottom:6px;">华北一区</div><div style="display:flex;gap:16px;justify-content:center;align-items:flex-end;flex-wrap:wrap;"><div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">戴盔系带率</div><div class="c-value" style="font-size:20px;color:#2e7d32;">97.79%</div></div><div style="width:1px;height:36px;background:#10324F;margin-bottom:4px;"></div><div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">有灯路口超速率</div><div class="c-value" style="font-size:20px;color:#2e7d32;">3.06%</div></div><div style="width:1px;height:36px;background:#10324F;margin-bottom:4px;"></div><div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">安全权益得分</div><div class="c-value" style="font-size:20px;color:#2e7d32;">0.00</div></div></div></div><div class="card region-card" data-region="华北二区"><div class="c-label" style="font-weight:700;color:#0B4F8A;margin-bottom:6px;">华北二区</div><div style="display:flex;gap:16px;justify-content:center;align-items:flex-end;flex-wrap:wrap;"><div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">戴盔系带率</div><div class="c-value" style="font-size:20px;color:#2e7d32;">98.41%</div></div><div style="width:1px;height:36px;background:#10324F;margin-bottom:4px;"></div><div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">有灯路口超速率</div><div class="c-value" style="font-size:20px;color:#2e7d32;">2.56%</div></div><div style="width:1px;height:36px;background:#10324F;margin-bottom:4px;"></div><div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">安全权益得分</div><div class="c-value" style="font-size:20px;color:#2e7d32;">0.00</div></div></div></div><div class="card region-card" data-region="华北三区"><div class="c-label" style="font-weight:700;color:#0B4F8A;margin-bottom:6px;">华北三区</div><div style="display:flex;gap:16px;justify-content:center;align-items:flex-end;flex-wrap:wrap;"><div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">戴盔系带率</div><div class="c-value" style="font-size:20px;color:#2e7d32;">98.27%</div></div><div style="width:1px;height:36px;background:#10324F;margin-bottom:4px;"></div><div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">有灯路口超速率</div><div class="c-value" style="font-size:20px;color:#2e7d32;">3.13%</div></div><div style="width:1px;height:36px;background:#10324F;margin-bottom:4px;"></div><div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">安全权益得分</div><div class="c-value" style="font-size:20px;color:#2e7d32;">0.00</div></div></div></div><div class="card region-card" data-region="华东大区"><div class="c-label" style="font-weight:700;color:#0B4F8A;margin-bottom:6px;">华东大区</div><div style="display:flex;gap:16px;justify-content:center;align-items:flex-end;flex-wrap:wrap;"><div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">戴盔系带率</div><div class="c-value" style="font-size:20px;color:#2e7d32;">98.71%</div></div><div style="width:1px;height:36px;background:#10324F;margin-bottom:4px;"></div><div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">有灯路口超速率</div><div class="c-value" style="font-size:20px;color:#2e7d32;">3.66%</div></div><div style="width:1px;height:36px;background:#10324F;margin-bottom:4px;"></div><div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">安全权益得分</div><div class="c-value" style="font-size:20px;color:#2e7d32;">0.00</div></div></div></div><div class="card region-card" data-region="中南大区"><div class="c-label" style="font-weight:700;color:#0B4F8A;margin-bottom:6px;">中南大区</div><div style="display:flex;gap:16px;justify-content:center;align-items:flex-end;flex-wrap:wrap;"><div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">戴盔系带率</div><div class="c-value" style="font-size:20px;color:#2e7d32;">98.19%</div></div><div style="width:1px;height:36px;background:#10324F;margin-bottom:4px;"></div><div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">有灯路口超速率</div><div class="c-value" style="font-size:20px;color:#2e7d32;">3.39%</div></div><div style="width:1px;height:36px;background:#10324F;margin-bottom:4px;"></div><div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">安全权益得分</div><div class="c-value" style="font-size:20px;color:#2e7d32;">0.00</div></div></div></div></div></div>
+  <div class="summary-row" id="summary-cards-equity"><div class="card"><div class="c-label">大区数 / 区域数 / 城市数</div><div class="c-value">5 <span style="font-size:16px;color:#4F6E87">/</span> 10 <span style="font-size:16px;color:#4F6E87">/</span> 28</div><div class="c-sub">监控站点 182 个</div></div><div class="card green"><div class="c-label">安全权益得分（总商）</div><div class="c-value">0.00</div><div class="c-sub">戴盔系带率得分+超速率得分</div></div><div class="card green"><div class="c-label">戴盔系带率（累计）</div><div class="c-value">98.14%</div><div class="c-sub">目标 ≥ 97%</div></div><div class="card green"><div class="c-label">路口超速率（累计）</div><div class="c-value">3.21%</div><div class="c-sub">目标 ≤ 4%</div></div><div class="card green"><div class="c-label">戴盔系带率达标站点</div><div class="c-value">165</div><div class="c-sub">未达标 17 个</div></div><div class="card green"><div class="c-label">路口超速率达标站点</div><div class="c-value">147</div><div class="c-sub">未达标 35 个</div></div><div class="region-cards-row"><div class="card region-card" data-region="华北一区"><div class="c-label" style="font-weight:700;color:#0B4F8A;margin-bottom:2px;">华北一区</div><div style="display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;"><div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">戴盔系带率</div><div class="c-value" style="font-size:15px;color:#2e7d32;">97.79%</div></div><div style="width:1px;height:22px;background:#10324F;margin-bottom:0;"></div><div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">路口超速率</div><div class="c-value" style="font-size:15px;color:#2e7d32;">3.06%</div></div><div style="width:1px;height:22px;background:#10324F;margin-bottom:0;"></div><div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">安全权益得分</div><div class="c-value" style="font-size:15px;color:#2e7d32;">0.00</div></div></div></div><div class="card region-card" data-region="华北二区"><div class="c-label" style="font-weight:700;color:#0B4F8A;margin-bottom:2px;">华北二区</div><div style="display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;"><div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">戴盔系带率</div><div class="c-value" style="font-size:15px;color:#2e7d32;">98.41%</div></div><div style="width:1px;height:22px;background:#10324F;margin-bottom:0;"></div><div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">路口超速率</div><div class="c-value" style="font-size:15px;color:#2e7d32;">2.56%</div></div><div style="width:1px;height:22px;background:#10324F;margin-bottom:0;"></div><div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">安全权益得分</div><div class="c-value" style="font-size:15px;color:#2e7d32;">0.00</div></div></div></div><div class="card region-card" data-region="华北三区"><div class="c-label" style="font-weight:700;color:#0B4F8A;margin-bottom:2px;">华北三区</div><div style="display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;"><div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">戴盔系带率</div><div class="c-value" style="font-size:15px;color:#2e7d32;">98.27%</div></div><div style="width:1px;height:22px;background:#10324F;margin-bottom:0;"></div><div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">路口超速率</div><div class="c-value" style="font-size:15px;color:#2e7d32;">3.13%</div></div><div style="width:1px;height:22px;background:#10324F;margin-bottom:0;"></div><div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">安全权益得分</div><div class="c-value" style="font-size:15px;color:#2e7d32;">0.00</div></div></div></div><div class="card region-card" data-region="华东大区"><div class="c-label" style="font-weight:700;color:#0B4F8A;margin-bottom:2px;">华东大区</div><div style="display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;"><div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">戴盔系带率</div><div class="c-value" style="font-size:15px;color:#2e7d32;">98.71%</div></div><div style="width:1px;height:22px;background:#10324F;margin-bottom:0;"></div><div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">路口超速率</div><div class="c-value" style="font-size:15px;color:#2e7d32;">3.66%</div></div><div style="width:1px;height:22px;background:#10324F;margin-bottom:0;"></div><div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">安全权益得分</div><div class="c-value" style="font-size:15px;color:#2e7d32;">0.00</div></div></div></div><div class="card region-card" data-region="中南大区"><div class="c-label" style="font-weight:700;color:#0B4F8A;margin-bottom:2px;">中南大区</div><div style="display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;"><div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">戴盔系带率</div><div class="c-value" style="font-size:15px;color:#2e7d32;">98.19%</div></div><div style="width:1px;height:22px;background:#10324F;margin-bottom:0;"></div><div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">路口超速率</div><div class="c-value" style="font-size:15px;color:#2e7d32;">3.39%</div></div><div style="width:1px;height:22px;background:#10324F;margin-bottom:0;"></div><div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">安全权益得分</div><div class="c-value" style="font-size:15px;color:#2e7d32;">0.00</div></div></div></div></div></div>
   <div class="sub-tab-bar" style="display:flex;align-items:center;gap:8px;padding:6px 16px;background:#EAF2F9;border-bottom:2px solid #8FB8DA;">
     <span style="color:#546e7a;font-size:12px;white-space:nowrap;">显示层级：</span>
     <button class="lv-btn active" id="lv-btn-equity-subregion" onclick="toggleLvBtn(&#39;equity&#39;,&#39;subregion&#39;)">区域行</button>
@@ -187,13 +205,13 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
   </div>
   <div class="table-wrap table-wrap-station">
     <table class="dt" id="equity-table">
-      <thead id="equity-thead"><tr><th style="min-width:80px;left:0px" class="sticky-col">大区</th><th style="min-width:80px;left:80px" class="sticky-col">区域</th><th style="min-width:220px;left:160px;text-align:left" class="sticky-col">名称</th><th style="min-width:90px;left:380px" class="sticky-col">安全权益得分（合计）</th><th style="min-width:90px;left:470px" class="sticky-col">戴盔系带率<br><small style="color:#B3D0E8">目标≥97%</small></th><th style="min-width:110px;left:560px" class="sticky-col">戴盔系带率得分</th><th style="min-width:90px;left:670px" class="sticky-col">有灯路口超速率<br><small style="color:#80deea">目标≤4%</small></th><th style="min-width:110px;left:760px" class="sticky-col sticky-last">有灯路口超速率得分</th><th colspan="2">08-12<br><small style="font-weight:400">戴盔系带率 / 有灯路口超速率</small></th><th colspan="2">08-11<br><small style="font-weight:400">戴盔系带率 / 有灯路口超速率</small></th><th colspan="2">08-10<br><small style="font-weight:400">戴盔系带率 / 有灯路口超速率</small></th><th colspan="2">08-09<br><small style="font-weight:400">戴盔系带率 / 有灯路口超速率</small></th><th colspan="2">08-08<br><small style="font-weight:400">戴盔系带率 / 有灯路口超速率</small></th><th colspan="2">08-07<br><small style="font-weight:400">戴盔系带率 / 有灯路口超速率</small></th><th colspan="2">08-06<br><small style="font-weight:400">戴盔系带率 / 有灯路口超速率</small></th><th colspan="2">08-05<br><small style="font-weight:400">戴盔系带率 / 有灯路口超速率</small></th><th colspan="2">08-04<br><small style="font-weight:400">戴盔系带率 / 有灯路口超速率</small></th><th colspan="2">08-03<br><small style="font-weight:400">戴盔系带率 / 有灯路口超速率</small></th><th colspan="2">08-02<br><small style="font-weight:400">戴盔系带率 / 有灯路口超速率</small></th><th colspan="2">08-01<br><small style="font-weight:400">戴盔系带率 / 有灯路口超速率</small></th></tr></thead>
+      <thead id="equity-thead"><tr class="eg-grp"><th style="min-width:80px;left:0px" class="sticky-col" rowspan="2">大区</th><th style="min-width:80px;left:80px" class="sticky-col" rowspan="2">区域</th><th style="min-width:220px;left:160px;text-align:left" class="sticky-col" rowspan="2">名称</th><th style="min-width:90px;left:380px" class="sticky-col" rowspan="2">安全权益得分（合计）</th><th style="min-width:90px;left:470px" class="sticky-col" rowspan="2">戴盔系带率<br><small style="color:#B3D0E8">目标≥97%</small></th><th style="min-width:90px;left:560px" class="sticky-col" rowspan="2">戴盔系带率得分</th><th style="min-width:90px;left:650px" class="sticky-col" rowspan="2">路口超速率<br><small style="color:#80deea">目标≤4%</small></th><th style="min-width:90px;left:740px" class="sticky-col sticky-last" rowspan="2">路口超速率得分</th></tr><tr class="eg-sub"></tr></thead>
       <tbody id="equity-tbody"></tbody>
     </table>
   </div>
 </div>
 
-<!-- ══ 站长安全评级看板（站维度：闯红灯率 + 考核里程逆行率） ══ -->
+<!-- ══ 站长安全评级看板（站维度：闯红灯率 + 里程逆行率） ══ -->
 
 
 
@@ -222,7 +240,7 @@ function rc(v,tgt,goodHigh,redAt){
   }
 }
 // ══════════════════════════════════════════════════════════
-// 得分公式（仅安全权益看板：戴盔系带率得分 / 有灯路口超速率得分）
+// 得分公式（仅安全权益看板：戴盔系带率得分 / 路口超速率得分）
 // 输入 rate 为百分数形式（如 97.05 表示 97.05%），公式内部换算为小数比例
 // ══════════════════════════════════════════════════════════
 function scoreHelmet(ratePct){
@@ -343,12 +361,12 @@ var METRIC_CFG={
   equity:{
     rows: null, // filled at init from TAB1_ROWS
     m1:{key:'helmet', label:'戴盔系带率', target:97, goodHigh:true, redAt:95, numLabel:'戴盔系带合格人次', denLabel:'戴盔系带可识别人次'},
-    m2:{key:'speed',  label:'有灯路口超速率', target:4, goodHigh:false, redAt:7.5, numLabel:'超速通过路口次数', denLabel:'通过路口次数'}
+    m2:{key:'speed',  label:'路口超速率', target:4, goodHigh:false, redAt:7.5, numLabel:'超速通过路口次数', denLabel:'通过路口次数'}
   },
   rating:{
     rows: null,
     m1:{key:'redlight', label:'闯红灯率', target:23, goodHigh:false, numLabel:'闯红灯次数', denLabel:'遇到红灯次数'},
-    m2:{key:'reverse',  label:'考核里程逆行率', target:3, goodHigh:false, numLabel:'考核逆行里程', denLabel:'行驶里程'}
+    m2:{key:'reverse',  label:'里程逆行率', target:3, goodHigh:false, numLabel:'考核逆行里程', denLabel:'行驶里程'}
   }
 ,
   clothing:{target:95,goodHigh:true}};
@@ -511,6 +529,87 @@ function resetLvBtns(tab){
   if(currentClothingView==='checkfail') renderCheckFailTable();
 }
 
+// ══════════════════════════════════════════════════════════
+// 安全权益：周维度 / 日维度 工具（自然周、周均值、趋势折线）
+// ══════════════════════════════════════════════════════════
+var EG_CN=['一','二','三','四','五','六'];
+function egPad(n){return (n<10?'0':'')+n;}
+function egYearOf(mm){
+  var y=new Date().getFullYear();
+  var cm=new Date().getMonth()+1;
+  if(mm-cm>6)y--; else if(cm-mm>6)y++;
+  return y;
+}
+function buildMonthWeeks(ascDates){
+  // ascDates: 升序 "MM-DD"。以最新日期所属月份为当月划分自然周（周一起始：
+  // 第1周=1日至首个周日，其后每7天一周，月末不足7天为最后一周）。
+  // 只返回"已开始且有数据"的周 → 新的一周来了列才出现（与日维度出现逻辑一致）。
+  if(!ascDates.length)return [];
+  var mm=parseInt(ascDates[ascDates.length-1].slice(0,2),10);
+  var y=egYearOf(mm);
+  var lastDay=new Date(y,mm,0).getDate();
+  var dow=new Date(y,mm-1,1).getDay(); // 0=周日
+  var w1end=1+((7-dow)%7);
+  var bounds=[[1,Math.min(w1end,lastDay)]];
+  var s=w1end+1;
+  while(s<=lastDay){bounds.push([s,Math.min(s+6,lastDay)]);s+=7;}
+  var weeks=[];
+  bounds.forEach(function(b,i){
+    var days=ascDates.filter(function(d){
+      return parseInt(d.slice(0,2),10)===mm&&parseInt(d.slice(3,5),10)>=b[0]&&parseInt(d.slice(3,5),10)<=b[1];
+    });
+    if(!days.length)return;
+    weeks.push({label:'第'+(EG_CN[i]||i+1)+'周',range:egPad(mm)+'-'+egPad(b[0])+'~'+egPad(mm)+'-'+egPad(b[1]),days:days});
+  });
+  return weeks;
+}
+function weekAvgOf(r,key,w){
+  // 周维度值 = 该周已有日数据的平均值（数据源仅提供日粒度比率）
+  var vals=[];
+  w.days.forEach(function(d){
+    var v=r[key+'_daily']?r[key+'_daily'][d]:null;
+    if(v!==null&&v!==undefined&&!isNaN(v))vals.push(v);
+  });
+  if(!vals.length)return null;
+  var sum=0;vals.forEach(function(v){sum+=v;});
+  return Math.round(sum/vals.length*100)/100;
+}
+// 趋势折线：渲染为 data-URI 位图 <img>（带内容级缓存）
+// 原因：原先每行 4 个内联 SVG × 225 行 = 900 个 SVG、3150 个子节点，横向滚动时
+// 固定列叠加会触发整表重绘，这些矢量图形每帧都要重新描边/栅格化，导致横向滚动卡顿。
+// 改为 <img> 后：① 相同折线只生成/解码一次（缓存命中即复用）；② 绘制退化为贴图；
+// ③ html2canvas 截图对 <img> 的支持也最稳。
+var SPARK_URI={};
+function sparkline(vals,color){
+  var pts=[];
+  (vals||[]).forEach(function(v,i){if(v!==null&&v!==undefined&&!isNaN(v))pts.push([i,v]);});
+  if(!pts.length)return '<td class="rn">-</td>';
+  var W=88,H=26,pad=3;
+  var idxs=pts.map(function(p){return p[0];});
+  var vs=pts.map(function(p){return p[1];});
+  var minI=Math.min.apply(null,idxs),maxI=Math.max.apply(null,idxs);
+  var minV=Math.min.apply(null,vs),maxV=Math.max.apply(null,vs);
+  var coords=pts.map(function(p){
+    var x=(maxI===minI)?W/2:pad+(p[0]-minI)/(maxI-minI)*(W-2*pad);
+    var y=(maxV===minV)?H/2:H-pad-((p[1]-minV)/((maxV-minV)||1))*(H-2*pad);
+    return [Math.round(x*10)/10,Math.round(y*10)/10];
+  });
+  var tip=vs.map(function(v){return v.toFixed(2)+'%';}).join(' → ');
+  var key=color+'|'+coords.join(';');
+  var uri=SPARK_URI[key];
+  if(!uri){
+    var lastC=coords[coords.length-1];
+    var s='<svg xmlns="http://www.w3.org/2000/svg" width="'+W+'" height="'+H+'">';
+    s+='<line x1="'+pad+'" y1="'+(H-pad)+'" x2="'+(W-pad)+'" y2="'+(H-pad)+'" stroke="#E3EDF7" stroke-width="1"/>';
+    if(coords.length>1)s+='<polyline points="'+coords.map(function(c){return c.join(',');}).join(' ')+'" fill="none" stroke="'+color+'" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>';
+    s+='<circle cx="'+lastC[0]+'" cy="'+lastC[1]+'" r="2.3" fill="'+color+'"/>';
+    s+='</svg>';
+    uri='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(s);
+    SPARK_URI[key]=uri;
+  }
+  return '<td class="spark-td" title="'+tip+'"><img class="spark-img" src="'+uri+'" width="'+W+'" height="'+H+'" alt="" draggable="false"></td>';
+}
+
 function renderStation(tab){
   var cfg=METRIC_CFG[tab];
   var rows=getFilteredRows(tab);
@@ -534,7 +633,7 @@ function renderStation(tab){
   var m1=cfg.m1,m2=cfg.m2;
   var isEquity=(tab==='equity');
   // equity 多一列"安全权益得分"，插在"名称"列之后、m1指标列之前
-  var stickyWidths=isEquity?[80,80,220,90,90,110,90,110]:[80,80,220,90,110,90,110];
+  var stickyWidths=isEquity?[80,80,220,90,90,90,90,90]:[80,80,220,90,110,90,110];
   var stickyLefts=[];var acc=0;
   for(var si=0;si<stickyWidths.length;si++){stickyLefts.push(acc);acc+=stickyWidths[si];}
   function sth(i,extra){
@@ -550,34 +649,93 @@ function renderStation(tab){
   // 指标列在 stickyWidths 中的起始下标：equity 因为多插了一列"安全权益得分"，整体后移1位
   var base=isEquity?4:3;
 
+  // ═══ equity 专用：周维度 + 日维度分组（戴盔系带率 / 路口超速率 各自独立） ═══
+  var egWeeks=[], egDays=[];
+  if(isEquity){
+    var ascAll=dispDates.slice().sort(function(a,b){return a>b?1:a<b?-1:0;});
+    egDays=((selDate&&selDate.length)?ascAll:ascAll.slice(-7)).slice().reverse(); // 日维度：最新日期在前，默认最多7天
+    egWeeks=buildMonthWeeks(ascAll); // 周维度：最新日期所属月的自然周，有数据才出现
+  }
   var dCols=dispDates.map(function(d){return '<th colspan="2">'+d+'<br><small style="font-weight:400">'+m1.label+' / '+m2.label+'</small></th>';}).join('');
   var theadEl=document.getElementById(tab+'-thead');
-  if(theadEl)theadEl.innerHTML='<tr>'+
-    '<th '+sth(0)+'>大区</th>'+
-    '<th '+sth(1)+'>区域</th>'+
-    '<th '+sth(2,'text-align:left')+'>名称</th>'+
-    (isEquity?('<th '+sth(3)+'>安全权益得分（合计）</th>'):'')+
-    '<th '+sth(base)+'>'+m1.label+'<br><small style="color:#B3D0E8">'+(m1.goodHigh?'目标≥':'目标≤')+m1.target+'%</small></th>'+
-    '<th '+sth(base+1)+'>'+m1.label+'得分</th>'+
-    '<th '+sth(base+2)+'>'+m2.label+'<br><small style="color:#80deea">'+(m2.goodHigh?'目标≥':'目标≤')+m2.target+'%</small></th>'+
-    '<th '+sth(base+3)+'>'+m2.label+'得分</th>'+
-    dCols+'</tr>';
+  if(isEquity){
+    var grpName=function(label){return label.replace(/率$/,'');};
+    var nw=Math.max(egWeeks.length,1), nd=Math.max(egDays.length,1);
+    var subHtml='';
+    subHtml+=egWeeks.map(function(w){return '<th class="eg-g1" title="日期范围 '+w.range+'">'+w.label+'<br><small>'+w.range+'</small></th>';}).join('');
+    if(!egWeeks.length)subHtml+='<th class="eg-g1">-</th>';
+    subHtml+='<th class="eg-g1">趋势</th>';
+    subHtml+=egDays.map(function(d){return '<th class="eg-g2">'+d+'</th>';}).join('');
+    if(!egDays.length)subHtml+='<th class="eg-g2">-</th>';
+    subHtml+='<th class="eg-g2">趋势</th>';
+    subHtml+=egWeeks.map(function(w){return '<th class="eg-g3" title="日期范围 '+w.range+'">'+w.label+'<br><small>'+w.range+'</small></th>';}).join('');
+    if(!egWeeks.length)subHtml+='<th class="eg-g3">-</th>';
+    subHtml+='<th class="eg-g3">趋势</th>';
+    subHtml+=egDays.map(function(d){return '<th class="eg-g4">'+d+'</th>';}).join('');
+    if(!egDays.length)subHtml+='<th class="eg-g4">-</th>';
+    subHtml+='<th class="eg-g4">趋势</th>';
+    if(theadEl)theadEl.innerHTML='<tr class="eg-grp">'+
+      '<th '+sth(0)+' rowspan="2">大区</th>'+
+      '<th '+sth(1)+' rowspan="2">区域</th>'+
+      '<th '+sth(2,'text-align:left')+' rowspan="2">名称</th>'+
+      '<th '+sth(3)+' rowspan="2">安全权益得分（合计）</th>'+
+      '<th '+sth(base)+' rowspan="2">'+m1.label+'<br><small style="color:#B3D0E8">'+(m1.goodHigh?'目标≥':'目标≤')+m1.target+'%</small></th>'+
+      '<th '+sth(base+1)+' rowspan="2">'+m1.label+'得分</th>'+
+      '<th '+sth(base+2)+' rowspan="2">'+m2.label+'<br><small style="color:#80deea">'+(m2.goodHigh?'目标≥':'目标≤')+m2.target+'%</small></th>'+
+      '<th '+sth(base+3)+' rowspan="2">'+m2.label+'得分</th>'+
+      '<th class="eg-g1" colspan="'+(nw+1)+'">'+grpName(m1.label)+'周维度数据</th>'+
+      '<th class="eg-g2" colspan="'+(nd+1)+'">'+grpName(m1.label)+'日维度数据</th>'+
+      '<th class="eg-g3" colspan="'+(nw+1)+'">'+grpName(m2.label)+'周维度数据</th>'+
+      '<th class="eg-g4" colspan="'+(nd+1)+'">'+grpName(m2.label)+'日维度数据</th>'+
+      '</tr><tr class="eg-sub">'+subHtml+'</tr>';
+  } else if(theadEl){
+    theadEl.innerHTML='<tr>'+
+      '<th '+sth(0)+'>大区</th>'+
+      '<th '+sth(1)+'>区域</th>'+
+      '<th '+sth(2,'text-align:left')+'>名称</th>'+
+      '<th '+sth(base)+'>'+m1.label+'<br><small style="color:#B3D0E8">'+(m1.goodHigh?'目标≥':'目标≤')+m1.target+'%</small></th>'+
+      '<th '+sth(base+1)+'>'+m1.label+'得分</th>'+
+      '<th '+sth(base+2)+'>'+m2.label+'<br><small style="color:#80deea">'+(m2.goodHigh?'目标≥':'目标≤')+m2.target+'%</small></th>'+
+      '<th '+sth(base+3)+'>'+m2.label+'得分</th>'+
+      dCols+'</tr>';
+  }
 
   var html='';var siteCnt=0;
   rows.forEach(function(r){
     var lv=r.level;if(lv==='site')siteCnt++;
     var indent=lv==='merchant'?'&nbsp;&nbsp;└ ':lv==='site'?'&nbsp;&nbsp;&nbsp;&nbsp;· ':'';
-    var dCells=dispDates.map(function(d){
-      var v1=(r[m1.key+'_daily']&&r[m1.key+'_daily'][d]!==undefined)?r[m1.key+'_daily'][d]:null;
-      var v2=(r[m2.key+'_daily']&&r[m2.key+'_daily'][d]!==undefined)?r[m2.key+'_daily'][d]:null;
-      return '<td class="'+rc(v1,m1.target,m1.goodHigh,m1.redAt)+'">'+fr(v1)+'</td><td class="'+rc(v2,m2.target,m2.goodHigh,m2.redAt)+'">'+fr(v2)+'</td>';
-    }).join('');
     var equityScoreCell='';
     if(isEquity){
       var sh=scoreHelmet(r[m1.key+'_rate']);
       var ss=scoreSpeed(r[m2.key+'_rate']);
       var totalScore=(sh===null&&ss===null)?null:((sh||0)+(ss||0));
       equityScoreCell='<td '+stdc(3)+'>'+fscore(totalScore)+'</td>';
+    }
+    var tailCells='';
+    if(isEquity){
+      var dayAsc=egDays.slice().reverse(); // 时间升序（旧→新），供折线使用
+      var wkValsH=egWeeks.map(function(w){return weekAvgOf(r,m1.key,w);});
+      var wkValsS=egWeeks.map(function(w){return weekAvgOf(r,m2.key,w);});
+      var dayValsH=dayAsc.map(function(d){return (r[m1.key+'_daily']&&r[m1.key+'_daily'][d]!==undefined)?r[m1.key+'_daily'][d]:null;});
+      var dayValsS=dayAsc.map(function(d){return (r[m2.key+'_daily']&&r[m2.key+'_daily'][d]!==undefined)?r[m2.key+'_daily'][d]:null;});
+      var wkCellsH=egWeeks.map(function(w,i){var v=wkValsH[i];return '<td class="'+rc(v,m1.target,m1.goodHigh,m1.redAt)+'"'+(v!==null?' title="'+w.range+' 均值（'+w.days.length+'天）"':'')+'>'+fr(v)+'</td>';}).join('');
+      if(!egWeeks.length)wkCellsH='<td class="rn">-</td>';
+      var ddCellsH=egDays.map(function(d){var v=(r[m1.key+'_daily']&&r[m1.key+'_daily'][d]!==undefined)?r[m1.key+'_daily'][d]:null;return '<td class="'+rc(v,m1.target,m1.goodHigh,m1.redAt)+'">'+fr(v)+'</td>';}).join('');
+      if(!egDays.length)ddCellsH='<td class="rn">-</td>';
+      var wkCellsS=egWeeks.map(function(w,i){var v=wkValsS[i];return '<td class="'+rc(v,m2.target,m2.goodHigh,m2.redAt)+'"'+(v!==null?' title="'+w.range+' 均值（'+w.days.length+'天）"':'')+'>'+fr(v)+'</td>';}).join('');
+      if(!egWeeks.length)wkCellsS='<td class="rn">-</td>';
+      var ddCellsS=egDays.map(function(d){var v=(r[m2.key+'_daily']&&r[m2.key+'_daily'][d]!==undefined)?r[m2.key+'_daily'][d]:null;return '<td class="'+rc(v,m2.target,m2.goodHigh,m2.redAt)+'">'+fr(v)+'</td>';}).join('');
+      if(!egDays.length)ddCellsS='<td class="rn">-</td>';
+      tailCells=wkCellsH+sparkline(wkValsH,'#1E88E5')
+              +ddCellsH+sparkline(dayValsH,'#1E88E5')
+              +wkCellsS+sparkline(wkValsS,'#00ACC1')
+              +ddCellsS+sparkline(dayValsS,'#00ACC1');
+    } else {
+      tailCells=dispDates.map(function(d){
+        var v1=(r[m1.key+'_daily']&&r[m1.key+'_daily'][d]!==undefined)?r[m1.key+'_daily'][d]:null;
+        var v2=(r[m2.key+'_daily']&&r[m2.key+'_daily'][d]!==undefined)?r[m2.key+'_daily'][d]:null;
+        return '<td class="'+rc(v1,m1.target,m1.goodHigh,m1.redAt)+'">'+fr(v1)+'</td><td class="'+rc(v2,m2.target,m2.goodHigh,m2.redAt)+'">'+fr(v2)+'</td>';
+      }).join('');
     }
     html+='<tr class="lv-'+lv+'">'+
       '<td '+stdc(0)+'>'+(r.region||'')+'</td>'+
@@ -588,7 +746,7 @@ function renderStation(tab){
       '<td '+stdc(base+1)+'>'+fscore(isEquity?scoreHelmet(r[m1.key+'_rate']):scoreRedlight(r[m1.key+'_rate']))+'</td>'+
       '<td '+stdc(base+2,rc(r[m2.key+'_rate'],m2.target,m2.goodHigh,m2.redAt))+'>'+fr(r[m2.key+'_rate'])+'</td>'+
       '<td '+stdc(base+3)+'>'+fscore(isEquity?scoreSpeed(r[m2.key+'_rate']):scoreReverse(r[m2.key+'_rate']))+'</td>'+
-      dCells+'</tr>';
+      tailCells+'</tr>';
   });
   var tbodyEl=document.getElementById(tab+'-tbody');
   if(tbodyEl)tbodyEl.innerHTML=html||'<tr><td colspan="20" style="text-align:center;padding:24px;color:#546e7a">暂无数据</td></tr>';
@@ -675,16 +833,16 @@ function renderSummaryCards(tab,rows){
       var totalScore=(sh===null&&ss===null)?null:((sh||0)+(ss||0));
       var scoreColor=totalScore===null?'#0B4F8A':(totalScore>=0?'#2e7d32':totalScore>=-0.5?'#e65100':'#c62828');
       scoreBlock=
-        '<div style="width:1px;height:36px;background:#10324F;margin-bottom:4px;"></div>'+
-        '<div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">安全权益得分</div><div class="c-value" style="font-size:20px;color:'+scoreColor+';">'+(totalScore!==null?totalScore.toFixed(2):'-')+'</div></div>';
+        '<div style="width:1px;height:22px;background:#10324F;margin-bottom:0;"></div>'+
+        '<div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">安全权益得分</div><div class="c-value" style="font-size:15px;color:'+scoreColor+';">'+(totalScore!==null?totalScore.toFixed(2):'-')+'</div></div>';
     }
     regionHtml+=
       '<div class="card region-card">'+
-      '<div class="c-label" style="font-weight:700;color:#0B4F8A;margin-bottom:6px;">'+rname+'</div>'+
-      '<div style="display:flex;gap:16px;justify-content:center;align-items:flex-end;flex-wrap:wrap;">'+
-        '<div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">'+m1.label+'</div><div class="c-value" style="font-size:20px;color:'+c1+';">'+(v1!==null?v1.toFixed(2)+'%':'-')+'</div></div>'+
-        '<div style="width:1px;height:36px;background:#10324F;margin-bottom:4px;"></div>'+
-        '<div><div style="font-size:11px;color:#90a4ae;margin-bottom:2px;">'+m2.label+'</div><div class="c-value" style="font-size:20px;color:'+c2+';">'+(v2!==null?v2.toFixed(2)+'%':'-')+'</div></div>'+
+      '<div class="c-label" style="font-weight:700;color:#0B4F8A;margin-bottom:2px;">'+rname+'</div>'+
+      '<div style="display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;">'+
+        '<div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">'+m1.label+'</div><div class="c-value" style="font-size:15px;color:'+c1+';">'+(v1!==null?v1.toFixed(2)+'%':'-')+'</div></div>'+
+        '<div style="width:1px;height:22px;background:#10324F;margin-bottom:0;"></div>'+
+        '<div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">'+m2.label+'</div><div class="c-value" style="font-size:15px;color:'+c2+';">'+(v2!==null?v2.toFixed(2)+'%':'-')+'</div></div>'+
         scoreBlock+
       '</div></div>';
   });
@@ -866,12 +1024,12 @@ function renderRider(){
     '<th style="min-width:90px;">'+(ORDER_QTY_DATE||LATEST_DATE||'昨日')+'<br>配送完成运单量</th>'+
     '<th style="min-width:80px;background:#00695c!important;">'+(LATEST_DATE||'昨日')+'<br>戴盔系带率</th>'+
     '<th style="min-width:80px;background:#00695c!important;">累计<br>戴盔系带率</th>'+
-    '<th style="min-width:80px;background:#4527a0!important;">'+(LATEST_DATE||'昨日')+'<br>有灯路口超速率</th>'+
-    '<th style="min-width:80px;background:#4527a0!important;">累计<br>有灯路口超速率</th>'+
+    '<th style="min-width:80px;background:#4527a0!important;">'+(LATEST_DATE||'昨日')+'<br>路口超速率</th>'+
+    '<th style="min-width:80px;background:#4527a0!important;">累计<br>路口超速率</th>'+
     '<th style="min-width:80px;background:#ad1457!important;">'+(LATEST_DATE||'昨日')+'<br>闯红灯率</th>'+
     '<th style="min-width:80px;background:#ad1457!important;">累计<br>闯红灯率</th>'+
-    '<th style="min-width:80px;background:#e65100!important;">'+(LATEST_DATE||'昨日')+'<br>考核里程逆行率</th>'+
-    '<th style="min-width:80px;background:#e65100!important;">累计<br>考核里程逆行率</th>'+
+    '<th style="min-width:80px;background:#e65100!important;">'+(LATEST_DATE||'昨日')+'<br>里程逆行率</th>'+
+    '<th style="min-width:80px;background:#e65100!important;">累计<br>里程逆行率</th>'+
     '</tr>';
 
   var html=pageRows.map(function(r){
@@ -931,7 +1089,7 @@ function exportRiderTable(){
   var rows=filteredRiders;
   var _ld=LATEST_DATE||'昨日';
   var _oq=ORDER_QTY_DATE||_ld;
-  var header=['大区','区域','城市','站点名称','骑手','骑手名称',_oq+'配送完成运单量',_ld+'戴盔系带率','累计戴盔系带率',_ld+'有灯路口超速率','累计有灯路口超速率',_ld+'闯红灯率','累计闯红灯率',_ld+'考核里程逆行率','累计考核里程逆行率'];
+  var header=['大区','区域','城市','站点名称','骑手','骑手名称',_oq+'配送完成运单量',_ld+'戴盔系带率','累计戴盔系带率',_ld+'路口超速率','累计路口超速率',_ld+'闯红灯率','累计闯红灯率',_ld+'里程逆行率','累计里程逆行率'];
   function pctText(v){return (v===null||v===undefined||isNaN(v))?'':v.toFixed(2)+'%';}
   var html='<html><head><meta charset="UTF-8"></head><body><table border="1"><tr>'+header.map(function(h){return '<th>'+h+'</th>';}).join('')+'</tr>';
   rows.forEach(function(r){
@@ -1563,40 +1721,14 @@ function captureScreenshot(panelId) {
   // Clone target
   var clone = targetEl.cloneNode(true);
 
-  // equity 看板：整页截图时解除表格容器高度限制，并仅保留最近 7 天的日期列（日期列按降序渲染，保留前 7 个最新日期，其余删除）
+  // equity 看板：整页截图时解除表格容器高度限制
+  // （周/日维度改造后，日维度固定最多7列、周维度随当月周数增长，无需再按日期裁剪列）
   if (panelId === 'equity') {
     clone.querySelectorAll('.table-wrap-station, .table-wrap-rider, .table-wrap').forEach(function(w){
       w.style.maxHeight = 'none';
       w.style.maxWidth = 'none';
       w.style.overflow = 'visible';
     });
-    var thRow = clone.querySelector('#equity-thead tr');
-    if (thRow) {
-      var ths = Array.prototype.slice.call(thRow.children);
-      var dateThs = ths.filter(function(th){ return /^\d{2}-\d{2}/.test((th.textContent||'').replace(/\s/g,'').slice(0,5)); });
-      var keepCount = Math.min(dateThs.length, 7);
-      var removeCount = dateThs.length - keepCount;
-      var firstDateIdx = ths.indexOf(dateThs[0]);
-      if (removeCount > 0 && firstDateIdx >= 0) {
-        var delStart = firstDateIdx + keepCount;
-        for (var ri = 0; ri < removeCount; ri++) {
-          var th = thRow.children[delStart];
-          if (th) thRow.removeChild(th);
-        }
-        clone.querySelectorAll('#equity-table tbody tr').forEach(function(tr){
-          for (var cj = 0; cj < removeCount * 2; cj++) {
-            var td = tr.children[delStart];
-            if (td) tr.removeChild(td);
-          }
-        });
-      }
-      // 同步头部数据范围显示为截图保留的最近 7 天
-      var drEl = clone.querySelector('#dataRange');
-      if (drEl && dateThs.length) {
-        var kept = dateThs.slice(0, keepCount).map(function(th){ return (th.textContent||'').replace(/\s/g,'').slice(0,5); });
-        drEl.textContent = '数据范围: ' + kept[kept.length-1] + ' ~ ' + kept[0];
-      }
-    }
   }
 
   // Fix sticky cells → static (both inline and CSS-class origin)
@@ -2500,7 +2632,7 @@ function exportTableSpeedRider(){
         </td>
       </tr>
       <tr>
-        <td class="l"><b>有灯路口超速率</b></td>
+        <td class="l"><b>路口超速率</b></td>
         <td>扣分项</td>
         <td>【-1, 0】</td>
         <td class="l">
@@ -2517,7 +2649,7 @@ function exportTableSpeedRider(){
       ① <b>戴盔系带合格骑手占比</b>：分子 = Σ日(戴盔系带图像量 / 戴盔系带可识别图像量 ≥90%) 的骑手数；分母 = Σ日戴盔系带有效采集图像量 ≥1 的骑手数。分子分母日度统计，月度、周期维度加总后计算站点、城市、区域维度得分。<br>
       ② 全盔且系带无法判断的图像，视为戴盔系带合格图像，计入分子和分母。<br>
       ③ 戴盔系带分子/分母采集口径为"骑手骑行且开工有单状态"。<br>
-      ④ <b>有灯路口超速率</b>：分子 = Σ超速通过路口的次数；分母 = Σ通过路口的次数。分子分母日度统计，月度、周期维度加总后计算站点、城市、区域维度得分。<br>
+      ④ <b>路口超速率</b>：分子 = Σ超速通过路口的次数；分母 = Σ通过路口的次数。分子分母日度统计，月度、周期维度加总后计算站点、城市、区域维度得分。<br>
       ⑤ 仅统计有交通指示灯的路口；分子/分母采集口径为"骑手上路或有单状态"。<br>
       ⑥ 率值计算时保留小数点后 6 位（百分形式结果保留小数点后 4 位）。
     </div>
@@ -2541,5 +2673,37 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 function showEquityRules(){document.getElementById('equityRuleModal').style.display='block';}
 function closeEquityRules(){document.getElementById('equityRuleModal').style.display='none';}
+</script>
+<script>
+(function(){
+  var raf=0;
+  function pgfix(){
+    raf=0;
+    var bar=null;
+    var els=document.querySelectorAll('.header,.tab-bar');
+    for(var i=0;i<els.length;i++){
+      var el=els[i];
+      if(el.offsetHeight>0&&getComputedStyle(el).position==='sticky'){bar=el;break;}
+    }
+    var d=0;
+    if(bar){
+      var b=bar.getBoundingClientRect().bottom;
+      var ws=document.querySelectorAll('.table-wrap');
+      for(var j=0;j<ws.length;j++){
+        var w=ws[j];
+        if(w.clientHeight>0){
+          var t=w.getBoundingClientRect().top;
+          if(b-t>d)d=b-t;
+        }
+      }
+    }
+    var rs=document.documentElement.style;
+    if(d>0.5)rs.setProperty('--hdfix',d.toFixed(1)+'px');else rs.removeProperty('--hdfix');
+  }
+  function onS(){if(!raf)raf=requestAnimationFrame(pgfix);}
+  window.addEventListener('scroll',onS,{passive:true});
+  window.addEventListener('resize',onS);
+  pgfix();
+})();
 </script>
 </body></html>
