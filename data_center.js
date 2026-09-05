@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-06 07:39:53",
+  "updated_at": "2026-09-06 07:43:40",
   "groups": [
     {
       "title": "交通安全",
@@ -7,17 +7,17 @@ window.DATA_CENTER = {
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-06 07:21:27",
+        "data_mtime": "2026-09-06 07:40:56",
         "all_synced": false,
-        "synced_count": 11,
+        "synced_count": 9,
         "missing_count": 2,
-        "unsynced_count": 0,
+        "unsynced_count": 2,
         "sources": [
           {
             "type": "站点-戴盔",
-            "latest": "戴盔_2026-09-04-2026-09-04(统计日期)_1788564951427.xlsx",
-            "mtime": "2026-09-05 07:35:55",
-            "synced": true
+            "latest": "戴盔_2026-09-05-2026-09-05(统计日期)_1788651798836.xlsx",
+            "mtime": "2026-09-06 07:43:22",
+            "synced": false
           },
           {
             "type": "站点-速度",
@@ -39,9 +39,9 @@ window.DATA_CENTER = {
           },
           {
             "type": "骑手维度-戴盔",
-            "latest": "戴盔-骑手维度_2026-09-04-2026-09-04(统计日期)_1788564958655.xlsx",
-            "mtime": "2026-09-05 07:36:03",
-            "synced": true
+            "latest": "戴盔-骑手维度_2026-09-05-2026-09-05(统计日期)_1788651807121.xlsx",
+            "mtime": "2026-09-06 07:43:31",
+            "synced": false
           },
           {
             "type": "骑手维度-速度",
@@ -178,7 +178,7 @@ window.DATA_CENTER = {
         "data_files": [
           "履约项目\\data.js"
         ],
-        "data_mtime": "2026-09-06 07:39:53",
+        "data_mtime": "2026-09-06 07:43:40",
         "all_synced": true,
         "synced_count": 6,
         "missing_count": 0,
@@ -259,7 +259,7 @@ window.DATA_CENTER = {
           "护航服装\\data.js",
           "护航服装\\data_excluded.js"
         ],
-        "data_mtime": "2026-09-06 07:24:26",
+        "data_mtime": "2026-09-06 07:42:20",
         "all_synced": true,
         "synced_count": 2,
         "missing_count": 0,
