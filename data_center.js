@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-06 06:56:18",
+  "updated_at": "2026-09-06 07:01:28",
   "groups": [
     {
       "title": "交通安全",
@@ -180,9 +180,9 @@ window.DATA_CENTER = {
         ],
         "data_mtime": "2026-09-05 23:42:04",
         "all_synced": false,
-        "synced_count": 4,
+        "synced_count": 3,
         "missing_count": 2,
-        "unsynced_count": 0,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
@@ -210,9 +210,9 @@ window.DATA_CENTER = {
           },
           {
             "type": "骑手排班明细数据",
-            "latest": "骑手排班明细数据_49896033_20260905_065903.xlsx",
-            "mtime": "2026-09-05 06:59:19",
-            "synced": true
+            "latest": "骑手排班明细数据_49896033_20260906_065924.xlsx",
+            "mtime": "2026-09-06 06:59:53",
+            "synced": false
           },
           {
             "type": "表单列表",
@@ -259,23 +259,23 @@ window.DATA_CENTER = {
           "护航服装\\data.js",
           "护航服装\\data_excluded.js"
         ],
-        "data_mtime": "2026-09-05 23:43:43",
-        "all_synced": false,
-        "synced_count": 0,
+        "data_mtime": "2026-09-06 07:01:24",
+        "all_synced": true,
+        "synced_count": 2,
         "missing_count": 0,
-        "unsynced_count": 2,
+        "unsynced_count": 0,
         "sources": [
           {
             "type": "已剔除恶劣天气",
             "latest": "已剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260905-20260905(天)_1788648949394.xlsx",
             "mtime": "2026-09-06 06:55:52",
-            "synced": false
+            "synced": true
           },
           {
             "type": "未剔除恶劣天气",
             "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260905-20260905(天)_1788648914027.xlsx",
             "mtime": "2026-09-06 06:55:16",
-            "synced": false
+            "synced": true
           }
         ]
       },
