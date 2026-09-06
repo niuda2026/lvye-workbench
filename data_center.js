@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-06 07:52:27",
+  "updated_at": "2026-09-06 08:26:20",
   "groups": [
     {
       "title": "交通安全",
@@ -7,7 +7,7 @@ window.DATA_CENTER = {
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-06 07:47:00",
+        "data_mtime": "2026-09-06 08:26:20",
         "all_synced": false,
         "synced_count": 11,
         "missing_count": 2,
@@ -45,8 +45,8 @@ window.DATA_CENTER = {
           },
           {
             "type": "骑手维度-速度",
-            "latest": "速度-骑手维度_2026-09-05-2026-09-05(统计日期)_1788651835056.xlsx",
-            "mtime": "2026-09-06 07:43:59",
+            "latest": "速度-骑手维度_2026-09-05-2026-09-05(统计日期)_1788654144599.xlsx",
+            "mtime": "2026-09-06 08:24:30",
             "synced": true
           },
           {
