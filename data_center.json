@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-07 06:23:42",
+  "updated_at": "2026-09-07 06:27:58",
   "groups": [
     {
       "title": "交通安全",
@@ -179,10 +179,10 @@
           "履约项目\\data.js"
         ],
         "data_mtime": "2026-09-06 07:45:33",
-        "all_synced": true,
-        "synced_count": 6,
+        "all_synced": false,
+        "synced_count": 4,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 2,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
@@ -192,9 +192,9 @@
           },
           {
             "type": "巡检工单列表",
-            "latest": "巡检工单列表_1788649282184.xls",
-            "mtime": "2026-09-06 07:01:48",
-            "synced": true
+            "latest": "巡检工单列表_1788733633836.xls",
+            "mtime": "2026-09-07 06:27:55",
+            "synced": false
           },
           {
             "type": "巡检平台站点检核",
@@ -210,9 +210,9 @@
           },
           {
             "type": "骑手排班明细数据",
-            "latest": "骑手排班明细数据_49896033_20260906_065924.xlsx",
-            "mtime": "2026-09-06 06:59:53",
-            "synced": true
+            "latest": "骑手排班明细数据_49896033_20260907_062604.xlsx",
+            "mtime": "2026-09-07 06:26:37",
+            "synced": false
           },
           {
             "type": "表单列表",
@@ -259,11 +259,11 @@
           "护航服装\\data.js",
           "护航服装\\data_excluded.js"
         ],
-        "data_mtime": "2026-09-06 07:43:46",
-        "all_synced": false,
-        "synced_count": 1,
+        "data_mtime": "2026-09-07 06:27:55",
+        "all_synced": true,
+        "synced_count": 2,
         "missing_count": 0,
-        "unsynced_count": 1,
+        "unsynced_count": 0,
         "sources": [
           {
             "type": "已剔除恶劣天气",
@@ -275,7 +275,7 @@
             "type": "未剔除恶劣天气",
             "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260906-20260906(天)_1788733373741.xlsx",
             "mtime": "2026-09-07 06:23:00",
-            "synced": false
+            "synced": true
           }
         ]
       },
