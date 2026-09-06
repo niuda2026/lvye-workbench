@@ -69,8 +69,15 @@ tr.lv-merchant td.sticky-col.cell-good{background:#a5d6a7!important}
 tr.lv-merchant td.sticky-col.cell-bad{background:#ef9a9a!important}
 table.dt th.sticky-last,table.dt td.sticky-last{border-right:2px solid #0B4F8A!important;box-shadow:2px 0 4px rgba(11,79,138,.15)}
 /* ═══ 周维度/日维度 两行分组表头（与安全权益看板同款） ═══ */
-#rating-thead tr.eg-grp th{top:var(--hdfix,0px);height:32px;padding:4px 10px;font-size:12px;letter-spacing:1px;vertical-align:middle;border-color:rgba(255,255,255,.35)}
+/* 表头两行吸附：grp 行高度恒为32px（大格内容强制单行），sub 行 top 固定 +32px，
+   与安全权益看板同款结构，不依赖行高测量 */
+#rating-thead tr.eg-grp th{top:var(--hdfix,0px);height:32px;padding:4px 10px;font-size:12px;letter-spacing:1px;vertical-align:middle;border-color:rgba(255,255,255,.35);white-space:nowrap}
+#rating-thead tr.eg-grp th small{font-size:10px;font-weight:400;opacity:.85;letter-spacing:0}
 #rating-thead tr.eg-sub th{top:calc(var(--hdfix,0px) + 32px);padding:4px 5px;font-size:11px;letter-spacing:.3px;line-height:1.25;border-color:rgba(255,255,255,.3)}
+/* 工装 tab 同款两行分组表头（大格单行锁 32px） */
+#clothing-thead tr.eg-grp th{top:var(--hdfix,0px);height:32px;padding:4px 10px;font-size:12px;letter-spacing:1px;vertical-align:middle;border-color:rgba(255,255,255,.35);white-space:nowrap}
+#clothing-thead tr.eg-grp th small{font-size:10px;font-weight:400;opacity:.85;letter-spacing:0}
+#clothing-thead tr.eg-sub th{top:calc(var(--hdfix,0px) + 32px);padding:4px 5px;font-size:11px;letter-spacing:.3px;line-height:1.25;border-color:rgba(255,255,255,.3)}
 #rating-thead th.eg-g1,#rating-thead th.eg-g2{background:#8C2449}
 #rating-thead th.eg-g3,#rating-thead th.eg-g4{background:#75400C}
 table.dt td.spark-td .spark-img{display:block;margin:0 auto}
@@ -190,7 +197,7 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
   </div>
   <div class="table-wrap table-wrap-station" style="display: none;">
     <table class="dt" id="rating-table">
-      <thead id="rating-thead"><tr class="eg-grp"><th style="min-width:80px;left:0px" class="sticky-col" rowspan="2">大区</th><th style="min-width:80px;left:80px" class="sticky-col" rowspan="2">区域</th><th style="min-width:220px;left:160px;text-align:left" class="sticky-col" rowspan="2">名称</th><th style="min-width:90px;left:380px" class="sticky-col" rowspan="2">闯红灯率<br><small style="color:#B3D0E8">目标≤23%</small></th><th style="min-width:90px;left:470px" class="sticky-col" rowspan="2">闯红灯率得分</th><th style="min-width:90px;left:560px" class="sticky-col" rowspan="2">里程逆行率<br><small style="color:#80deea">目标≤3%</small></th><th style="min-width:90px;left:650px" class="sticky-col sticky-last" rowspan="2">里程逆行率得分</th></tr><tr class="eg-sub"></tr></thead>
+      <thead id="rating-thead"><tr class="eg-grp"><th style="min-width:80px;left:0px" class="sticky-col" rowspan="2">大区</th><th style="min-width:80px;left:80px" class="sticky-col" rowspan="2">区域</th><th style="min-width:220px;left:160px;text-align:center" class="sticky-col" rowspan="2">名称</th><th style="min-width:100px;left:380px" class="sticky-col sticky-last" rowspan="2">评级得分<br><small style="color:#B3D0E8;font-weight:400">服装+闯红灯+逆行</small></th><th colspan="3">美团服装 <small>工装≥80% · 工服≥92%</small></th><th class="eg-g1" colspan="2">闯红灯率 <small>目标≤23%</small></th><th class="eg-g3" colspan="2">里程逆行率 <small>目标≤3%</small></th></tr><tr class="eg-sub"><th>工装检核率</th><th>美团工服率</th><th>得分</th><th class="eg-g1">达成率</th><th class="eg-g1">得分</th><th class="eg-g3">达成率</th><th class="eg-g3">得分</th></tr></thead>
       <tbody id="rating-tbody"></tbody>
     </table>
   </div>
@@ -243,10 +250,10 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
 
 <script src="./兴达丨交通安全行为看板_files/xlsx.full.min.js.下载"></script>
 <script>
-// 数据由 data.js 通过 <script src> 加载
-/ ══════════════════════════════════════════════════════════
-/ 工具函数
-/ ══════════════════════════════════════════════════════════
+// 数据由 D:\兴达数据库\交通安全行为看板\data.js 通过 <script src> 加载
+// ══════════════════════════════════════════════════════════
+// 工具函数
+// ══════════════════════════════════════════════════════════
 function fr(v){
   if(v===null||v===undefined||isNaN(v))return '<span class="rn">-</span>';
   return v.toFixed(2)+'%';
@@ -796,7 +803,8 @@ function renderStation(tab){
   var m1=cfg.m1,m2=cfg.m2;
   var isEquity=(tab==='equity');
   // equity 多一列"安全权益得分"，插在"名称"列之后、m1指标列之前
-  var stickyWidths=isEquity?[80,80,220,90,90,110,90,110]:(tab==='clothing'?[80,80,220,90,90,110]:[80,80,220,90,90,90,90]);
+  // rating: 大区|区域|名称|评级得分（"美团服装"与"闯红灯率"组均为非固定滚动列）
+  var stickyWidths=isEquity?[80,80,220,90,90,110,90,110]:(tab==='clothing'?[80,80,220,90,90,110]:(tab==='rating'?[80,80,220,100]:[80,80,220,90,90,90,90]));
   var stickyLefts=[];var acc=0;
   for(var si=0;si<stickyWidths.length;si++){stickyLefts.push(acc);acc+=stickyWidths[si];}
   function sth(i,extra){
@@ -809,8 +817,8 @@ function renderStation(tab){
     var sty='left:'+stickyLefts[i]+'px'+(extraStyle?';'+extraStyle:'');
     return 'class="'+cls+'" style="'+sty+'"';
   }
-  // 指标列在 stickyWidths 中的起始下标：equity 因为多插了一列"安全权益得分"，整体后移1位
-  var base=isEquity?4:3;
+  // 指标列在 stickyWidths 中的起始下标：equity 因为多插了一列"安全权益得分"、rating 因为多插了一列"评级得分"，整体后移1位
+  var base=(isEquity||tab==='rating')?4:3;
 
   // ═══ rating 专用：周维度 + 日维度分组（闯红灯率 / 里程逆行率 各自独立） ═══
   var egWeeks=[], egDays=[];
@@ -824,36 +832,53 @@ function renderStation(tab){
   if(tab==='rating'&&theadEl){
     var grpName=function(label){return label.replace(/率$/,'');};
     var nw=Math.max(egWeeks.length,1), nd=Math.max(egDays.length,1);
-    var subHtml='';
-    subHtml+=egWeeks.map(function(w){return '<th class="eg-g1" title="日期范围 '+w.range+'">'+w.label+'<br><small>'+w.range+'</small></th>';}).join('');
-    if(!egWeeks.length)subHtml+='<th class="eg-g1">-</th>';
-    subHtml+='<th class="eg-g1">趋势</th>';
-    subHtml+=egDays.map(function(d){return '<th class="eg-g2">'+d+'</th>';}).join('');
-    if(!egDays.length)subHtml+='<th class="eg-g2">-</th>';
-    subHtml+='<th class="eg-g2">趋势</th>';
-    subHtml+=egWeeks.map(function(w){return '<th class="eg-g3" title="日期范围 '+w.range+'">'+w.label+'<br><small>'+w.range+'</small></th>';}).join('');
-    if(!egWeeks.length)subHtml+='<th class="eg-g3">-</th>';
-    subHtml+='<th class="eg-g3">趋势</th>';
-    subHtml+=egDays.map(function(d){return '<th class="eg-g4">'+d+'</th>';}).join('');
-    if(!egDays.length)subHtml+='<th class="eg-g4">-</th>';
-    subHtml+='<th class="eg-g4">趋势</th>';
+    var subHtml1='', subHtml2='';
+    subHtml1+=egWeeks.map(function(w){return '<th class="eg-g1" title="日期范围 '+w.range+'">'+w.label+'<br><small>'+w.range+'</small></th>';}).join('');
+    if(!egWeeks.length)subHtml1+='<th class="eg-g1">-</th>';
+    subHtml1+='<th class="eg-g1">趋势</th>';
+    subHtml1+=egDays.map(function(d){return '<th class="eg-g2">'+d+'</th>';}).join('');
+    if(!egDays.length)subHtml1+='<th class="eg-g2">-</th>';
+    subHtml1+='<th class="eg-g2">趋势</th>';
+    subHtml2+=egWeeks.map(function(w){return '<th class="eg-g3" title="日期范围 '+w.range+'">'+w.label+'<br><small>'+w.range+'</small></th>';}).join('');
+    if(!egWeeks.length)subHtml2+='<th class="eg-g3">-</th>';
+    subHtml2+='<th class="eg-g3">趋势</th>';
+    subHtml2+=egDays.map(function(d){return '<th class="eg-g4">'+d+'</th>';}).join('');
+    if(!egDays.length)subHtml2+='<th class="eg-g4">-</th>';
+    subHtml2+='<th class="eg-g4">趋势</th>';
+    var subCloth='<th>工装检核率</th><th>美团工服率</th><th>得分</th>';
+    var subRed='<th class="eg-g1">达成率</th><th class="eg-g1">得分</th>';
+    var subFix2='<th class="eg-g3">达成率</th><th class="eg-g3">得分</th>';
     theadEl.innerHTML='<tr class="eg-grp">'+
       '<th '+sth(0)+' rowspan="2">大区</th>'+
       '<th '+sth(1)+' rowspan="2">区域</th>'+
-      '<th '+sth(2,'text-align:left')+' rowspan="2">名称</th>'+
-      '<th '+sth(base)+' rowspan="2">'+m1.label+'<br><small style="color:#B3D0E8">'+(m1.goodHigh?'目标≥':'目标≤')+m1.target+'%</small></th>'+
-      '<th '+sth(base+1)+' rowspan="2">'+(m1.scoreLabel||m1.label+'得分')+'</th>'+
-      '<th '+sth(base+2)+' rowspan="2">'+m2.label+'<br><small style="color:#80deea">'+(m2.goodHigh?'目标≥':'目标≤')+m2.target+'%</small></th>'+
-      '<th '+sth(base+3)+' rowspan="2">'+(m2.scoreLabel||m2.label+'得分')+'</th>'+
+      '<th '+sth(2,'text-align:center')+' rowspan="2">名称</th>'+
+      '<th '+sth(3)+' rowspan="2">评级得分<br><small style="color:#B3D0E8;font-weight:400">服装+闯红灯+逆行</small></th>'+
+      '<th colspan="3">美团服装 <small>工装≥80% · 工服≥92%</small></th>'+
+      '<th class="eg-g1" colspan="2">'+m1.label+' <small>'+(m1.goodHigh?'目标≥':'目标≤')+m1.target+'%</small></th>'+
       '<th class="eg-g1" colspan="'+(nw+1)+'">'+grpName(m1.label)+'周维度数据</th>'+
       '<th class="eg-g2" colspan="'+(nd+1)+'">'+grpName(m1.label)+'日维度数据</th>'+
+      '<th class="eg-g3" colspan="2">'+m2.label+' <small>'+(m2.goodHigh?'目标≥':'目标≤')+m2.target+'%</small></th>'+
       '<th class="eg-g3" colspan="'+(nw+1)+'">'+grpName(m2.label)+'周维度数据</th>'+
       '<th class="eg-g4" colspan="'+(nd+1)+'">'+grpName(m2.label)+'日维度数据</th>'+
-      '</tr><tr class="eg-sub">'+subHtml+'</tr>';
+      '</tr><tr class="eg-sub">'+subCloth+subRed+subHtml1+subFix2+subHtml2+'</tr>';
+  } else if(tab==='clothing'&&theadEl){
+    /* 工装 tab：固定三列改为"美团服装"大格 + 工装检核率/美团工服率/得分 子列（与主表同款两级表头） */
+    theadEl.innerHTML='<tr class="eg-grp">'+
+      '<th '+sth(0)+' rowspan="2">大区</th>'+
+      '<th '+sth(1)+' rowspan="2">区域</th>'+
+      '<th '+sth(2,'text-align:center')+' rowspan="2">名称</th>'+
+      '<th class="sticky-col" colspan="3" style="min-width:'+(stickyWidths[base]+stickyWidths[base+1]+stickyWidths[base+2])+'px;left:'+stickyLefts[base]+'px">美团服装 <small>工装≥'+m1.target+'% · 工服≥'+m2.target+'%</small></th>'+
+      dispDates.map(function(d){return '<th colspan="2">'+d+'</th>';}).join('')+
+      '</tr><tr class="eg-sub">'+
+      '<th class="sticky-col" style="min-width:'+stickyWidths[base]+'px;left:'+stickyLefts[base]+'px">工装检核率</th>'+
+      '<th class="sticky-col" style="min-width:'+stickyWidths[base+1]+'px;left:'+stickyLefts[base+1]+'px">美团工服率</th>'+
+      '<th class="sticky-col sticky-last" style="min-width:'+stickyWidths[base+2]+'px;left:'+stickyLefts[base+2]+'px">得分</th>'+
+      dispDates.map(function(d){return '<th title="工装检核率">检核率</th><th title="美团工服率">工服率</th>';}).join('')+
+      '</tr>';
   } else if(theadEl)theadEl.innerHTML='<tr>'+
     '<th '+sth(0)+'>大区</th>'+
     '<th '+sth(1)+'>区域</th>'+
-    '<th '+sth(2,'text-align:left')+'>名称</th>'+
+    '<th '+sth(2,'text-align:center')+'>名称</th>'+
     (isEquity?('<th '+sth(3)+'>安全权益得分<br><small style="color:#B3D0E8">戴盔系带率得分+超速率得分</small></th>'):'')+
     (tab==='clothing'
       ? '<th '+sth(base)+'>'+m1.label+'<br><small style="color:#B3D0E8">'+(m1.goodHigh?'目标≥':'目标≤')+m1.target+'%</small></th>'+
@@ -867,12 +892,22 @@ function renderStation(tab){
     dCols+'</tr>';
 
   var html='';var siteCnt=0;
+  /* rating 主表"美团服装"列：按 层级|大区|区域|名称 匹配工装检核率/美团工服率/得分（与工装tab同源同口径） */
+  var clothMap=null, clothTotal=null;
+  if(tab==='rating'&&window.TAB_CLOTHING_ROWS){
+    clothMap={};
+    TAB_CLOTHING_ROWS.forEach(function(c){
+      if(!c)return;
+      if(c.level==='total'){clothTotal=c;return;}
+      clothMap[c.level+'|'+(c.region||'')+'|'+(c.subregion||'')+'|'+(c.name||'')]=c;
+    });
+  }
   rows.forEach(function(r){
     var lv=r.level;if(lv==='site')siteCnt++;
     var isProt=(lv==='site'&&tab!=='equity'&&isProtectedSite(r.name));
     function scCell(v){return isProt?'<span style="color:#90a4ae;font-weight:700;">不参与</span>':fscore(v);}
     var indent=lv==='merchant'?'&nbsp;&nbsp;└ ':lv==='site'?'&nbsp;&nbsp;&nbsp;&nbsp;· ':'';
-    var tailCells='';
+    var tailCells='', tail1='', tail2='';
     if(tab==='rating'){
       var dayAsc=egDays.slice().reverse(); // 时间升序（旧→新），供折线使用
       var wkVals1=egWeeks.map(function(w){return weekAvgOf(r,m1.key,w);});
@@ -887,10 +922,10 @@ function renderStation(tab){
       if(!egWeeks.length)wkCells2='<td class="rn">-</td>';
       var ddCells2=egDays.map(function(d){var v=(r[m2.key+'_daily']&&r[m2.key+'_daily'][d]!==undefined)?r[m2.key+'_daily'][d]:null;return '<td class="'+rc(v,m2.target,m2.goodHigh,m2.redAt)+'">'+fr(v)+'</td>';}).join('');
       if(!egDays.length)ddCells2='<td class="rn">-</td>';
-      tailCells=wkCells1+sparkline(wkVals1,'#1E88E5')
-              +ddCells1+sparkline(dayVals1,'#1E88E5')
-              +wkCells2+sparkline(wkVals2,'#00ACC1')
-              +ddCells2+sparkline(dayVals2,'#00ACC1');
+      tail1=wkCells1+sparkline(wkVals1,'#1E88E5')
+           +ddCells1+sparkline(dayVals1,'#1E88E5');
+      tail2=wkCells2+sparkline(wkVals2,'#00ACC1')
+           +ddCells2+sparkline(dayVals2,'#00ACC1');
     }else{
       tailCells=dispDates.map(function(d){
         var v1,v2;
@@ -922,6 +957,31 @@ function renderStation(tab){
         ? '<td '+stdc(base,rc(r[m1.key+'_rate'],m1.target,m1.goodHigh,m1.redAt))+'>'+fr(r[m1.key+'_rate'])+'</td>'+
           '<td '+stdc(base+1,rc(r[m2.key+'_rate'],m2.target,m2.goodHigh))+'>'+fr(r[m2.key+'_rate'])+'</td>'+
           '<td '+stdc(base+2)+'>'+scCell(scoreVisRule(r[m1.key+'_rate'],r.vis_rule_rate))+'</td>'
+        : tab==='rating'
+        ? (function(){
+            var cRow=(r.level==='total')?clothTotal:(clothMap?clothMap[(r.level||'')+'|'+(r.region||'')+'|'+(r.subregion||'')+'|'+(r.name||'')]:null);
+            var cScore=cRow?scoreVisRule(cRow.cloth_rate,cRow.vis_rule_rate):null;
+            var rlScore=scoreRedlight(r[m1.key+'_rate']);
+            var rvScore=scoreReverse(r[m2.key+'_rate']);
+            var totScore=(cScore===null&&rlScore===null&&rvScore===null)?null:((cScore||0)+(rlScore||0)+(rvScore||0));
+            function totCell(v){
+              if(isProt)return '<span style="color:#90a4ae;font-weight:700;">不参与</span>';
+              if(v===null||v===undefined||isNaN(v))return '<span class="rn">-</span>';
+              return '<span style="font-weight:700;color:'+(v>=0?'#2e7d32':'#c62828')+';">'+v.toFixed(2)+'</span>';
+            }
+            var totalCell='<td '+stdc(3)+' title="美团服装得分 + 闯红灯率得分 + 里程逆行率得分">'+totCell(totScore)+'</td>';
+            var clothCells=
+              '<td class="'+rc(cRow?cRow.cloth_rate:null,80,true)+'">'+fr(cRow?cRow.cloth_rate:null)+'</td>'+
+              '<td class="'+rc(cRow?cRow.vis_rate:null,92,true)+'">'+fr(cRow?cRow.vis_rate:null)+'</td>'+
+              '<td>'+scCell(cRow?scoreVisRule(cRow.cloth_rate,cRow.vis_rule_rate):null)+'</td>';
+            return totalCell+clothCells+
+              '<td class="'+rc(r[m1.key+'_rate'],m1.target,m1.goodHigh,m1.redAt)+'" style="min-width:90px">'+fr(r[m1.key+'_rate'])+'</td>'+
+              '<td style="min-width:90px">'+scCell(scoreRedlight(r[m1.key+'_rate']))+'</td>'+
+              tail1+
+              '<td class="'+rc(r[m2.key+'_rate'],m2.target,m2.goodHigh,m2.redAt)+'">'+fr(r[m2.key+'_rate'])+'</td>'+
+              '<td>'+scCell(scoreReverse(r[m2.key+'_rate']))+'</td>'+
+              tail2;
+          })()
         : '<td '+stdc(base,rc(r[m1.key+'_rate'],m1.target,m1.goodHigh,m1.redAt))+'>'+fr(r[m1.key+'_rate'])+'</td>'+
           '<td '+stdc(base+1)+'>'+(tab==='clothing'?passBadgeHtml(r[m1.key+'_rate'],m1.target,m1.goodHigh):scCell(isEquity?scoreHelmet(r[m1.key+'_rate']):scoreRedlight(r[m1.key+'_rate'])))+'</td>'+
           '<td '+stdc(base+2,rc(r[m2.key+'_rate'],m2.target,m2.goodHigh,m2.redAt))+'>'+fr(r[m2.key+'_rate'])+'</td>'+
@@ -2224,7 +2284,7 @@ function renderSpeedSitePanel(){
   var theadHtml = '<tr>'+
     '<th style="min-width:80px;left:0px" class="sticky-col">大区</th>'+
     '<th style="min-width:80px;left:80px" class="sticky-col">区域</th>'+
-    '<th style="min-width:220px;left:160px;text-align:left" class="sticky-col sticky-last">名称</th>';
+    '<th style="min-width:220px;left:160px;text-align:center" class="sticky-col sticky-last">名称</th>';
   dates.forEach(function(d){
     theadHtml += '<th>'+d+'</th>';
   });

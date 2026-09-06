@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兴达履约工作台 · 实名名单管理后台</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:"Microsoft YaHei","PingFang SC",sans-serif;
+    min-height:100vh; color:#e8f0ff;
+    background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(0,140,255,.22), transparent 60%),
+      radial-gradient(900px 500px at 110% 110%, rgba(0,220,255,.14), transparent 55%),
+      linear-gradient(160deg,#050d1f 0%,#0a1730 55%,#061224 100%);
+    background-attachment:fixed;
+  }
+  .grid-bg { position:fixed; inset:0; pointer-events:none; opacity:.5;
+    background-image:
+      linear-gradient(rgba(70,160,255,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(70,160,255,.06) 1px, transparent 1px);
+    background-size:44px 44px; }
+  .wrap { max-width:1180px; margin:0 auto; padding:26px 20px 60px; position:relative; z-index:1; }
+  header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; flex-wrap:wrap; gap:10px; }
+  .brand { display:flex; align-items:center; gap:14px; }
+  .logo { width:46px; height:46px; border-radius:12px; overflow:hidden; background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center; font-weight:700; color:#4dc3ff; }
+  .brand h1 { font-size:20px; letter-spacing:1px; }
+  .brand p { font-size:12px; color:#7fa3cc; margin-top:3px; }
+  .top-actions { display:flex; align-items:center; gap:10px; }
+  .status { display:flex; align-items:center; gap:7px; font-size:12px; padding:6px 12px; border-radius:20px;
+    background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); color:#9fb8d8; }
+  .dot { width:9px; height:9px; border-radius:50%; background:#f0b429; box-shadow:0 0 8px rgba(240,180,41,.7); }
+  .dot.ok { background:#2fe6a7; box-shadow:0 0 8px rgba(47,230,167,.7); }
+  .dot.err { background:#ff5d5d; box-shadow:0 0 8px rgba(255,93,93,.7); }
+  .card { background:rgba(13,30,60,.55); border:1px solid rgba(90,170,255,.22); border-radius:14px;
+    backdrop-filter:blur(10px); box-shadow:0 8px 30px rgba(0,0,0,.35); }
+  .toolbar { display:flex; align-items:center; justify-content:space-between; padding:14px 18px; flex-wrap:wrap; gap:12px; }
+  .toolbar .left { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .toolbar .right { display:flex; gap:8px; flex-wrap:wrap; }
+  .btn { cursor:pointer; border:1px solid rgba(90,170,255,.35); background:rgba(30,80,150,.25); color:#cfe6ff;
+    padding:8px 14px; border-radius:9px; font-size:13px; transition:.18s; white-space:nowrap; }
+  .btn:hover { background:rgba(40,110,200,.4); border-color:#4da6ff; }
+  .btn.primary { background:linear-gradient(135deg,#0d7dff,#00b8ff); border-color:transparent; color:#fff; font-weight:600; }
+  .btn.primary:hover { filter:brightness(1.12); }
+  .btn.danger { border-color:rgba(255,90,90,.4); color:#ffb4b4; background:rgba(150,40,40,.2); }
+  .btn.danger:hover { background:rgba(180,50,50,.35); }
+  .btn.ghost { background:transparent; border-color:rgba(255,255,255,.18); color:#aac4e4; }
+  .btn.ghost:hover { border-color:#4da6ff; color:#dcecff; }
+  .btn:disabled { opacity:.5; cursor:not-allowed; }
+  .seg { display:flex; border:1px solid rgba(90,170,255,.25); border-radius:9px; overflow:hidden; }
+  .seg button { border:none; background:transparent; color:#9fb8d8; padding:8px 14px; font-size:13px; cursor:pointer; }
+  .seg button.on { background:rgba(13,125,255,.35); color:#fff; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { text-align:left; padding:11px 14px; color:#7fa3cc; font-weight:600; border-bottom:1px solid rgba(90,170,255,.2);
+    background:rgba(20,50,95,.35); font-size:12px; letter-spacing:.5px; }
+  td { padding:10px 14px; border-bottom:1px solid rgba(90,170,255,.1); color:#d7e7ff; }
+  tr:hover td { background:rgba(40,100,190,.12); }
+  .t-name { font-weight:600; color:#fff; }
+  .t-mobile { font-family:Consolas,monospace; color:#8fd0ff; }
+  .t-role { color:#aac4e4; }
+  .t-area { color:#7fa3cc; font-size:12px; }
+  .t-idx { color:#7fa3cc; font-family:Consolas,monospace; font-size:12px; }
+  td input[type=date] { background:rgba(10,25,50,.7); border:1px solid rgba(90,170,255,.28); color:#d7e7ff;
+    border-radius:8px; padding:5px 8px; font-size:12px; color-scheme:dark; outline:none; cursor:pointer; }
+  td input[type=date]:focus { border-color:#4da6ff; }
+  td input[type=date]::-webkit-calendar-picker-indicator { filter:invert(.75); cursor:pointer; }
+  .op-btn { cursor:pointer; color:#4da6ff; margin-right:12px; font-size:12px; background:none; border:none; }
+  .op-btn:hover { text-decoration:underline; }
+  .op-btn.del { color:#ff8b8b; }
+  .empty { text-align:center; color:#7fa3cc; padding:46px 0; }
+  .count { padding:10px 18px; font-size:12px; color:#7fa3cc; border-top:1px solid rgba(90,170,255,.12); }
+
+  /* 页签 */
+  .tabbar { display:flex; gap:6px; padding:14px 18px 0; flex-wrap:wrap; }
+  .tab { cursor:pointer; border:1px solid rgba(90,170,255,.25); background:transparent; color:#9fb8d8;
+    padding:8px 18px; font-size:13px; border-radius:9px 9px 0 0; transition:.18s; }
+  .tab:hover { color:#dcecff; border-color:#4da6ff; }
+  .tab.on { background:linear-gradient(135deg,#0d7dff,#00b8ff); color:#fff; font-weight:600; border-color:transparent; }
+  .region-group { padding:4px 18px 14px; }
+  .region-head { font-size:13px; color:#cfe6ff; font-weight:600; margin:14px 0 8px; display:flex; align-items:center; gap:8px; }
+  .region-head .rcnt { font-size:11px; color:#7fa3cc; font-weight:400; }
+  .region-head:first-child { margin-top:6px; }
+
+  /* 登录遮罩 */
+  .mask { position:fixed; inset:0; background:rgba(4,12,26,.82); backdrop-filter:blur(8px); display:flex;
+    align-items:center; justify-content:center; z-index:50; }
+  .login-box { width:340px; padding:34px 30px 30px; text-align:center; }
+  .login-box .logo { margin:0 auto 16px; width:58px; height:58px; font-size:22px; }
+  .login-box h2 { font-size:17px; margin-bottom:6px; }
+  .login-box .tip { font-size:12px; color:#7fa3cc; margin-bottom:22px; }
+  .login-box input { width:100%; padding:11px 14px; border-radius:9px; border:1px solid rgba(90,170,255,.3);
+    background:rgba(10,25,50,.7); color:#e8f0ff; font-size:14px; outline:none; margin-bottom:16px; }
+  .login-box input:focus { border-color:#4da6ff; }
+  .login-err { color:#ff8b8b; font-size:12px; min-height:18px; margin-bottom:8px; }
+
+  /* 弹窗 */
+  .modal-mask { position:fixed; inset:0; background:rgba(4,12,26,.72); display:none; align-items:center;
+    justify-content:center; z-index:60; }
+  .modal-mask.show { display:flex; }
+  .modal { width:460px; max-width:92vw; padding:24px; }
+  .modal h3 { font-size:16px; margin-bottom:18px; }
+  .form-row { margin-bottom:14px; }
+  .form-row label { display:block; font-size:12px; color:#7fa3cc; margin-bottom:6px; }
+  .form-row input { width:100%; padding:10px 12px; border-radius:8px; border:1px solid rgba(90,170,255,.28);
+    background:rgba(10,25,50,.7); color:#e8f0ff; font-size:14px; outline:none; }
+  .form-row input:focus { border-color:#4da6ff; }
+  .form-row .sub { font-size:11px; color:#5b7fa8; margin-top:4px; }
+  .modal-btns { display:flex; justify-content:flex-end; gap:10px; margin-top:20px; }
+
+  .toast { position:fixed; top:24px; left:50%; transform:translateX(-50%) translateY(-90px); padding:10px 22px;
+    border-radius:10px; font-size:13px; background:rgba(10,30,60,.92); border:1px solid rgba(90,170,255,.4);
+    color:#dcecff; transition:.3s; z-index:99; box-shadow:0 6px 24px rgba(0,0,0,.4); }
+  .toast.show { transform:translateX(-50%) translateY(0); }
+  .toast.ok { border-color:rgba(47,230,167,.5); color:#bfffe8; }
+  .toast.err { border-color:rgba(255,93,93,.5); color:#ffc9c9; }
+  #fileInput { display:none; }
+  .tag-admin { display:inline-block; margin-left:6px; padding:1px 7px; border-radius:4px; font-size:10px; color:#ffd966;
+    background:rgba(120,90,0,.25); border:1px solid rgba(255,193,7,.4); }
+  .perm-modal { width:620px; max-height:84vh; overflow-y:auto; }
+  .perm-tip { font-size:12px; color:#7fa3cc; margin-bottom:12px; }
+  .perm-tip b { color:#ffd966; }
+  .perm-sec { margin-bottom:14px; }
+  .perm-sec-head { font-size:13px; color:#cfe6ff; font-weight:600; margin-bottom:8px; display:flex; align-items:center; gap:8px; }
+  .mini-btn { cursor:pointer; font-size:11px; color:#4da6ff; background:none; border:1px solid rgba(90,170,255,.3);
+    border-radius:6px; padding:2px 8px; }
+  .mini-btn:hover { background:rgba(40,110,200,.3); }
+  .perm-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:6px 14px; }
+  .perm-grid label { display:flex; align-items:center; gap:7px; font-size:12px; color:#d7e7ff; cursor:pointer;
+    padding:4px 6px; border-radius:6px; }
+  .perm-grid label:hover { background:rgba(40,100,190,.15); }
+  .perm-group-title { grid-column:1/-1; font-size:11px; color:#7fa3cc; margin-top:6px; font-weight:600; letter-spacing:.5px; }
+  input[type=checkbox] { accent-color:#0d7dff; cursor:pointer; }
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="logo">SG</div>
+      <div>
+        <h1>实名名单管理后台</h1>
+        <p>兴达履约工作台 · 登录授权名单维护</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <div class="status"><span class="dot" id="svcDot"></span><span id="svcText">服务检测中…</span></div>
+      <button class="btn ghost" id="btnShot" style="display:none" onclick="shotPage()">一键截图</button>
+      <button class="btn ghost" id="btnLogout" style="display:none">退出管理</button>
+      <button class="btn ghost" id="btnBackWork" style="display:none">回到数据工作台</button>
+    </div>
+  </header>
+
+  <div class="card" style="display:none" id="mainCard">
+    <div class="tabbar">
+      <button class="tab on" data-tab="main" onclick="switchTab('main')">名单管理</button>
+      <button class="tab" data-tab="report" onclick="switchTab('report')">周一安全汇报</button>
+    </div>
+    <div id="viewMain">
+    <div class="toolbar">
+      <div class="left">
+        <span style="font-size:12px;color:#7fa3cc">验证方式：</span>
+        <div class="seg" id="segVerify">
+          <button data-v="mobile" class="on">手机号后4位</button>
+          <button data-v="code">工号</button>
+        </div>
+      </div>
+      <div class="right">
+        <button class="btn" id="btnBatchPerm" onclick="openBatchPerm()">批量权限</button>
+        <button class="btn" id="btnAdd">+ 添加人员</button>
+        <button class="btn" id="btnExport">导出名单</button>
+        <button class="btn" id="btnImport">导入名单</button>
+        <button class="btn" id="btnPass">修改管理密码</button>
+        <button class="btn primary" id="btnSave">保存全部</button>
+      </div>
+    </div>
+    <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:36px"><input type="checkbox" id="chkAll" onclick="toggleAll(this)" title="全选"></th>
+            <th style="cursor:pointer;user-select:none" onclick="sortBy('name')">姓名 <span style="font-size:10px;color:#4da6ff;margin-left:2px" id="sname"></span></th>
+            <th style="cursor:pointer;user-select:none" onclick="sortBy('mobile')">手机号 <span style="font-size:10px;color:#4da6ff;margin-left:2px" id="smobile"></span></th>
+            <th style="cursor:pointer;user-select:none" onclick="sortBy('perm')">权限看板明细 <span style="font-size:10px;color:#4da6ff;margin-left:2px" id="sperm"></span></th>
+            <th style="cursor:pointer;user-select:none" onclick="sortBy('role')">职务 <span style="font-size:10px;color:#4da6ff;margin-left:2px" id="srole"></span></th>
+            <th style="cursor:pointer;user-select:none" onclick="sortBy('area')">所属区域 <span style="font-size:10px;color:#4da6ff;margin-left:2px" id="sarea"></span></th>
+            <th style="width:170px">操作</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <div class="empty" id="emptyTip" style="display:none">暂无名单人员，点击右上角「+ 添加人员」开始配置</div>
+    </div>
+    <div class="count" id="countTip">共 0 人</div>
+    </div>
+    <div id="viewReport" style="display:none">
+      <div class="toolbar">
+        <div class="left"><span style="font-size:12px;color:#7fa3cc">每周一例会 · 主持安全汇报数据负责人名单（自动同步：role = 安全专员，按五大区排序）</span>
+          <span id="reportDate" style="font-size:13px;color:#4dc3ff;font-weight:600"></span></div>
+        <div class="right"><button class="btn" onclick="load()">刷新名单</button></div>
+      </div>
+      <div class="region-group" id="reportBody"></div>
+      <div class="count" id="reportCountTip"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 登录遮罩 -->
+<div class="mask" id="loginMask">
+  <div class="card login-box">
+    <div class="logo">SG</div>
+    <h2>管理员验证</h2>
+    <p class="tip">请输入管理后台密码（默认 admin123，登录后请尽快修改）</p>
+    <input type="password" id="iptPass" placeholder="管理密码" autocomplete="off">
+    <div class="login-err" id="loginErr"></div>
+    <button class="btn primary" id="btnLogin" style="width:100%;padding:11px">进入管理后台</button>
+  </div>
+</div>
+
+<!-- 编辑弹窗 -->
+<div class="modal-mask" id="modalMask">
+  <div class="card modal">
+    <h3 id="modalTitle">添加人员</h3>
+    <div class="form-row"><label>姓名（登录时输入，必须完全一致）</label><input id="fName" placeholder="如：张三"></div>
+    <div class="form-row"><label>手机号（完整11位，登录验证取后4位）</label><input id="fMobile" placeholder="如：13812345678">
+      <div class="sub">验证方式为「手机号后4位」时使用；无手机号可留空</div></div>
+    <div class="form-row"><label>工号（验证方式为「工号」时使用）</label><input id="fCode" placeholder="如：0012"></div>
+    <div class="form-row"><label>职务</label><input id="fRole" placeholder="如：安全专员"></div>
+    <div class="form-row"><label>所属区域</label><input id="fArea" placeholder="如：华北三区/中西区域/太原"></div>
+    <div class="modal-btns">
+      <button class="btn ghost" id="btnCancel">取消</button>
+      <button class="btn primary" id="btnConfirm">确定</button>
+    </div>
+  </div>
+</div>
+
+<!-- 权限设置弹窗 -->
+<div class="modal-mask" id="permMask">
+  <div class="card modal perm-modal">
+    <h3 id="permTitle">设置权限</h3>
+    <div class="perm-tip">勾选 = 仅允许查看勾选项；<b>不勾选 = 不限制（全部可见）</b>。管理员不受此限制。</div>
+    <div class="perm-sec">
+      <div class="perm-sec-head">看板权限
+        <button class="mini-btn" onclick="permBoardsAll(true)">全选</button>
+        <button class="mini-btn" onclick="permBoardsAll(false)">清空</button>
+      </div>
+      <div id="permBoards"></div>
+    </div>
+    <div class="perm-sec">
+      <div class="perm-sec-head">区域权限
+        <button class="mini-btn" onclick="permAreasAll(true)">全选</button>
+        <button class="mini-btn" onclick="permAreasAll(false)">清空</button>
+      </div>
+      <div id="permAreas"></div>
+    </div>
+    <div class="modal-btns">
+      <button class="btn ghost" onclick="closePerm()">取消</button>
+      <button class="btn primary" onclick="savePerm()">确定</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="fileInput" accept=".json,application/json">
+
+<div class="toast" id="toast"></div>
+
+<script>
+var API = 'http://127.0.0.1:8777/api/users';
+var state = { verifyField:'mobile', adminPass:'', users:[] };
+var editIndex = -1;
+
+/* ---------- 工具 ---------- */
+function $(id){ return document.getElementById(id); }
+function toast(msg, type){
+  var t = $('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + (type||'');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(function(){ t.className = 'toast'; }, 2400);
+}
+function esc(s){
+  return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ---------- 服务连接检测 ---------- */
+function checkSvc(){
+  fetch('http://127.0.0.1:8777/health').then(function(r){ return r.json(); })
+    .then(function(){ $('svcDot').className='dot ok'; $('svcText').textContent='名单服务运行中'; })
+    .catch(function(){ $('svcDot').className='dot err'; $('svcText').textContent='服务未启动（运行 auth_server.py）'; });
+}
+
+/* ---------- 数据读取 ---------- */
+function load(){
+  fetch(API).then(function(r){ return r.json(); }).then(function(cfg){
+    state.verifyField = cfg.verifyField || 'mobile';
+    state.adminPass = cfg.adminPass || '';
+    state.users = cfg.users || [];
+    render();
+    checkSvc();
+  }).catch(function(){
+    $('svcDot').className='dot err';
+    $('svcText').textContent='服务未启动，无法读取名单';
+    toast('无法连接名单服务，请先启动 auth_server.py', 'err');
+  });
+}
+
+/* ---------- 周一安全汇报页签 ---------- */
+// 五大区固定顺序：华北一区→华北二区→华北三区→华东大区→中南大区
+var REGION_ORDER = ['华北一区','华北二区','华北三区','华东大区','中南大区'];
+// 大区归属：优先取 area 首段；首段不在五大区时，在完整 area 中查找包含的大区名（如"兴达总部/华北三区/中西区域"归华北三区）
+function getRegionOf(area){
+  var s = String(area || '');
+  var first = s.split('/')[0].trim();
+  if (REGION_ORDER.indexOf(first) >= 0) return first;
+  for (var i = 0; i < REGION_ORDER.length; i++){
+    if (s.indexOf(REGION_ORDER[i]) >= 0) return REGION_ORDER[i];
+  }
+  return '未分组';
+}
+// 实时从名单过滤 role = 安全专员（数据来自 /api/users，随 state.users 自动同步）；附带 __i 原始下标用于回写持久化
+function reportUsers(){
+  var out = [];
+  state.users.forEach(function(u, i){
+    if (String(u.role || '').trim() === '安全专员'){
+      var o = Object.assign({}, u);
+      o.__i = i;
+      out.push(o);
+    }
+  });
+  return out;
+}
+// 选择/清除汇报日期：写入对应用户记录并立即持久化（POST /api/users 原样透传，刷新后保留）
+function setReportDate(i, val){
+  if (!state.users[i]) return;
+  state.users[i].report_date = val || '';
+  renderReport();
+  save();
+}
+function renderReport(){
+  // 实时计算当前日期与中文星期（如"2026-08-31 星期一"）
+  var now = new Date();
+  var weeks = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+  function pad2(n){ return (n < 10 ? '0' : '') + n; }
+  $('reportDate').textContent = now.getFullYear() + '-' + pad2(now.getMonth() + 1) + '-' + pad2(now.getDate()) + ' ' + weeks[now.getDay()];
+  var groups = {}, ordered = [];
+  var list = reportUsers();
+  list.forEach(function(u){
+    var r = getRegionOf(u.area);
+    (groups[r] = groups[r] || []).push(u);
+  });
+  REGION_ORDER.forEach(function(r){ if (groups[r]) ordered.push(r); });
+  if (groups['未分组']) ordered.push('未分组');
+  var html = '', total = 0, num = 0; // num 全局从 1 连续编号
+  ordered.forEach(function(r){
+    var arr = groups[r];
+    total += arr.length;
+    html += '<div class="region-head">' + esc(r) + ' <span class="rcnt">' + arr.length + ' 人</span></div>';
+    html += '<table><thead><tr><th style="width:48px">序号</th><th>姓名</th><th>手机号</th><th>所属区域</th><th style="width:150px">汇报日期（主持完毕）</th></tr></thead><tbody>';
+    arr.forEach(function(u){
+      num += 1;
+      html += '<tr>'
+        + '<td class="t-idx">' + num + '</td>'
+        + '<td class="t-name">' + esc(u.name) + (u.admin ? ' <span class="tag-admin">管理员</span>' : '') + '</td>'
+        + '<td class="t-mobile">' + esc(u.mobile || '—') + '</td>'
+        + '<td class="t-area">' + esc(u.area || '—') + '</td>'
+        + '<td><input type="date" value="' + esc(u.report_date || '') + '" onchange="setReportDate(' + u.__i + ', this.value)" title="选择日期表示该专员已主持汇报完毕"></td>'
+        + '</tr>';
+    });
+    html += '</tbody></table>';
+  });
+  if (!ordered.length) html = '<div class="empty">暂无「安全专员」名单人员，请先在名单管理中添加</div>';
+  $('reportBody').innerHTML = html;
+  var doneCnt = list.filter(function(e){ return !!e.report_date; }).length;
+  $('reportCountTip').textContent = '安全专员共 ' + total + ' 人，已汇报 ' + doneCnt + ' 人（按五大区顺序分组）';
+}
+function switchTab(tab){
+  var isMain = (tab === 'main');
+  $('viewMain').style.display = isMain ? 'block' : 'none';
+  $('viewReport').style.display = isMain ? 'none' : 'block';
+  var btns = document.querySelectorAll('.tab');
+  btns.forEach(function(b){
+    b.className = 'tab' + (b.getAttribute('data-tab') === tab ? ' on' : '');
+  });
+  if (!isMain) renderReport();
+}
+
+/* ---------- 渲染 ---------- */
+var sortKey = '', sortDesc = true;
+// key -> 看板显示名（BOARD_GROUPS 由 boards.json 同步，找不到时原样返回）
+function keyToLabel(k){
+  for (var gi = 0; gi < BOARD_GROUPS.length; gi++){
+    var items = BOARD_GROUPS[gi].items || [];
+    for (var ii = 0; ii < items.length; ii++){
+      if (items[ii].key === k) return items[ii].label;
+    }
+  }
+  return k;
+}
+// 权限看板明细文本：未配置/空数组 = 不限（全部看板）
+function permText(u){
+  if (!u || !u.boards || !u.boards.length) return '不限（全部看板）';
+  return u.boards.map(keyToLabel).join('、');
+}
+var SORT_FIELDS = { name:'name', mobile:'mobile', role:'role', area:'area', perm: permText };
+function sortedUsers(){
+  var arr = state.users.map(function(u, i){ return { u: u, i: i }; });
+  if (!sortKey) return arr;
+  var f = SORT_FIELDS[sortKey];
+  arr.sort(function(a, b){
+    var va, vb;
+    if (typeof f === 'function'){ va = String(f(a.u)); vb = String(f(b.u)); }
+    else { va = String(a.u[f] || ''); vb = String(b.u[f] || ''); }
+    var r = va.localeCompare(vb, 'zh-Hans-CN');
+    return sortDesc ? -r : r;
+  });
+  return arr;
+}
+function sortBy(key){
+  if (sortKey === key) sortDesc = !sortDesc; else { sortKey = key; sortDesc = true; }
+  render();
+}
+function updateSortArrows(){
+  ['name','mobile','role','area','perm'].forEach(function(k){
+    var sp = $('s' + k);
+    if (sp) sp.textContent = (sortKey === k) ? (sortDesc ? '▼' : '▲') : '';
+  });
+}
+function render(){
+  var tbody = $('tbody'), html = '';
+  var rows = sortedUsers();
+  rows.forEach(function(entry){
+    var u = entry.u, i = entry.i;
+    html += '<tr>'
+      + '<td><input type="checkbox" class="row-chk" data-i="' + i + '" onclick="rowChk(this)"></td>'
+      + '<td class="t-name">' + esc(u.name) + (u.admin ? ' <span class="tag-admin">管理员</span>' : '') + '</td>'
+      + '<td class="t-mobile">' + esc(u.mobile || '<span style="color:#ff8b8b">未填</span>') + '</td>'
+      + '<td class="t-perm" style="max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="' + esc(permText(u)) + '">' + esc(permText(u)) + '</td>'
+      + '<td class="t-role">' + esc(u.role || '—') + '</td>'
+      + '<td class="t-area">' + esc(u.area || '—') + '</td>'
+      + '<td><button class="op-btn" onclick="openPerm(' + i + ')">权限</button>'
+      + '<button class="op-btn" onclick="openEdit(' + i + ')">编辑</button>'
+      + '<button class="op-btn del" onclick="removeUser(' + i + ')">删除</button></td>'
+      + '</tr>';
+  });
+  tbody.innerHTML = html;
+  updateSortArrows();
+  $('emptyTip').style.display = state.users.length ? 'none' : 'block';
+  $('countTip').textContent = '共 ' + state.users.length + ' 人（验证方式：' +
+    (state.verifyField === 'code' ? '工号' : '手机号后4位') + '）';
+  var btns = $('segVerify').querySelectorAll('button');
+  btns.forEach(function(b){ b.className = (b.getAttribute('data-v') === state.verifyField) ? 'on' : ''; });
+  renderReport(); // 汇报页签随名单实时同步
+}
+
+/* ---------- 弹窗 ---------- */
+function openAdd(){
+  editIndex = -1;
+  $('modalTitle').textContent = '添加人员';
+  $('fName').value=''; $('fMobile').value=''; $('fCode').value=''; $('fRole').value=''; $('fArea').value='';
+  $('modalMask').classList.add('show');
+}
+function openEdit(i){
+  editIndex = i;
+  var u = state.users[i];
+  $('modalTitle').textContent = '编辑人员：' + u.name;
+  $('fName').value = u.name||''; $('fMobile').value = u.mobile||''; $('fCode').value = u.code||'';
+  $('fRole').value = u.role||''; $('fArea').value = u.area||'';
+  $('modalMask').classList.add('show');
+}
+function closeModal(){ $('modalMask').classList.remove('show'); }
+function confirmModal(){
+  var name = $('fName').value.trim();
+  if (!name){ toast('姓名必填', 'err'); return; }
+  var base = (editIndex >= 0 && state.users[editIndex]) ? state.users[editIndex] : {};
+  var obj = Object.assign({}, base, {
+    name: name,
+    mobile: $('fMobile').value.trim(),
+    code: $('fCode').value.trim(),
+    role: $('fRole').value.trim(),
+    area: $('fArea').value.trim()
+  });
+  if (editIndex >= 0) state.users[editIndex] = obj;
+  else state.users.push(obj);
+  closeModal();
+  render();
+  toast('已更新本地名单，记得点「保存全部」生效', 'ok');
+}
+function removeUser(i){
+  if (!confirm('确认从登录名单中删除「' + state.users[i].name + '」？')) return;
+  state.users.splice(i, 1);
+  render();
+  toast('已删除，记得点「保存全部」生效');
+}
+
+/* ---------- 权限设置 ---------- */
+// 看板清单：服务启动时从 /api/boards（boards.json）实时拉取，增删看板只需改 boards.json；
+// 服务不可用时回退到下面的本地兜底（与工作台导航一一对应，file=null 的占位看板不参与权限配置）
+var BOARD_GROUPS = [
+  { title: '交通安全', items: [
+    { key: 'safe_equity', label: '安全权益看板', file: 'D:/兴达数据库/交通安全行为看板/安全权益看板.html' },
+    { key: 'safe_station', label: '站长安全评级', file: 'D:/兴达数据库/交通安全行为看板/站长安全评级看板.html' },
+    { key: 'safe_rider', label: '骑手交通行为明细', file: 'D:/兴达数据库/交通安全行为看板/骑手交通行为明细看板.html' },
+    { key: 'safe_highway', label: '高速监控看板', file: 'D:/兴达数据库/交通安全行为看板/高速监控看板.html' }
+  ] },
+  { title: '履约项目', items: [ { key: 'project', label: '履约项目看板', file: 'D:/兴达数据库/履约项目/兴达履约项目看板.html' } ] },
+  { title: '服装标准化', items: [
+    { key: 'clothing_main', label: '护航服装看板', file: 'D:/兴达数据库/护航服装/护航服装看板.html' },
+    { key: 'clothing_rate', label: '服装标准化率', file: 'D:/兴达数据库/交通安全行为看板/骑手服装标准化看板.html' }
+  ] },
+  { title: '骑手管理', items: [
+    { key: 'rider_detail', label: '在职骑手详情', file: 'D:/兴达数据库/在职骑手详情/在职骑手详情.html' },
+    { key: 'rider_control', label: '中西管控名单', file: 'D:/兴达数据库/交通安全行为看板/兴达丨交通安全行为看板.html#control' }
+  ] },
+  { title: '保险', items: [
+    { key: 'ins_meituan', label: '美团保险', file: 'D:/兴达数据库/骑手职业伤害保障/兴必达_骑手职业伤害保障数据看板.html' },
+    { key: 'ins_subsidy', label: '保险赔付补贴监控', file: 'D:/兴达数据库/骑手保障补贴/专送合作商骑手保障补贴考核看板.html' },
+    { key: 'ins_rate', label: '保险赔付率解读', file: null }
+  ] },
+  { title: '公司风险管理系统', items: [ { key: 'gongdan', label: '110工单', file: 'D:/兴达数据库/110工单/110工单看板.html' } ] }
+];
+var BOARDS_API = 'http://127.0.0.1:8777/api/boards';
+// 从服务端同步看板清单，成功后下次打开权限弹窗即用最新清单
+function loadBoardGroups(){
+  fetch(BOARDS_API).then(function(r){ return r.json(); }).then(function(cfg){
+    if (cfg && cfg.groups && cfg.groups.length) BOARD_GROUPS = cfg.groups;
+  }).catch(function(){ /* 服务不可用，使用本地兜底 */ });
+}
+var permIndex = -1;  // 单个用户下标；-1 表示批量
+var permBatch = [];  // 批量应用的用户下标列表
+
+function areaOptions(){
+  var set = {}, out = [];
+  state.users.forEach(function(u){
+    var a = String(u.area || '').split('/')[0].trim();
+    if (a) set[a] = 1;
+  });
+  Object.keys(set).sort().forEach(function(k){ out.push(k); });
+  return out;
+}
+function renderPermBoards(sel){
+  var html = '';
+  BOARD_GROUPS.forEach(function(g){
+    var items = (g.items || []).filter(function(it){ return !!it.file; }); // 占位看板不参与权限
+    if (!items.length) return;
+    html += '<div class="perm-group-title">' + esc(g.title) + '</div>';
+    items.forEach(function(it){
+      var checked = sel.indexOf(it.key) >= 0 ? ' checked' : '';
+      html += '<label><input type="checkbox" class="pb" value="' + esc(it.key) + '"' + checked + '>' + esc(it.label) + '</label>';
+    });
+  });
+  $('permBoards').innerHTML = '<div class="perm-grid">' + html + '</div>';
+}
+function renderPermAreas(sel){
+  var html = '';
+  areaOptions().forEach(function(a){
+    var checked = sel.indexOf(a) >= 0 ? ' checked' : '';
+    html += '<label><input type="checkbox" class="pa" value="' + esc(a) + '"' + checked + '>' + esc(a) + '</label>';
+  });
+  $('permAreas').innerHTML = '<div class="perm-grid">' + html + '</div>';
+}
+function permBoardsAll(on){
+  document.querySelectorAll('#permBoards .pb').forEach(function(c){ c.checked = on; });
+}
+function permAreasAll(on){
+  document.querySelectorAll('#permAreas .pa').forEach(function(c){ c.checked = on; });
+}
+function openPerm(i){
+  permIndex = i; permBatch = [];
+  var u = state.users[i];
+  $('permTitle').textContent = '设置权限：' + (u ? u.name : '');
+  renderPermBoards(u && u.boards ? u.boards : []);
+  renderPermAreas(u && u.areas ? u.areas : []);
+  $('permMask').classList.add('show');
+}
+function openBatchPerm(){
+  var sel = [];
+  document.querySelectorAll('.row-chk:checked').forEach(function(c){ sel.push(parseInt(c.getAttribute('data-i'), 10)); });
+  if (!sel.length){ toast('请先勾选要设置权限的人员（行首复选框）', 'err'); return; }
+  permIndex = -1; permBatch = sel;
+  var names = sel.map(function(i){ return state.users[i].name; }).join('、');
+  $('permTitle').textContent = '批量设置权限（' + sel.length + ' 人）：' + names;
+  renderPermBoards([]);
+  renderPermAreas([]);
+  $('permMask').classList.add('show');
+}
+function closePerm(){ $('permMask').classList.remove('show'); }
+function savePerm(){
+  var boards = [], areas = [];
+  document.querySelectorAll('#permBoards .pb:checked').forEach(function(c){ boards.push(c.value); });
+  document.querySelectorAll('#permAreas .pa:checked').forEach(function(c){ areas.push(c.value); });
+  var targets = (permIndex >= 0) ? [permIndex] : permBatch;
+  targets.forEach(function(i){
+    var u = state.users[i];
+    if (!u) return;
+    u.boards = boards;
+    u.areas = areas;
+  });
+  closePerm();
+  render();
+  toast('权限已更新（' + targets.length + ' 人），记得点「保存全部」生效', 'ok');
+}
+function toggleAll(cb){
+  document.querySelectorAll('.row-chk').forEach(function(c){ c.checked = cb.checked; });
+}
+function rowChk(cb){
+  var all = document.getElementById('chkAll');
+  if (all){ all.checked = document.querySelectorAll('.row-chk:checked').length === document.querySelectorAll('.row-chk').length; }
+}
+
+/* ---------- 保存 / 导入导出 ---------- */
+function save(){
+  var btn = $('btnSave');
+  btn.disabled = true; btn.textContent = '保存中…';
+  fetch(API, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(state)
+  }).then(function(r){ return r.json(); }).then(function(res){
+    if (res.ok){
+      toast('名单已保存，登录页实时生效', 'ok');
+      checkSvc();
+    } else {
+      toast('保存失败：' + (res.error||'未知错误'), 'err');
+    }
+  }).catch(function(){
+    toast('保存失败：无法连接名单服务', 'err');
+  }).finally(function(){
+    btn.disabled = false; btn.textContent = '保存全部';
+  });
+}
+function exportJson(){
+  var blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'auth_users_backup_' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast('已导出名单备份');
+}
+function importJson(){
+  $('fileInput').click();
+}
+
+/* ---------- 事件绑定 ---------- */
+$('btnAdd').addEventListener('click', openAdd);
+$('btnCancel').addEventListener('click', closeModal);
+$('btnConfirm').addEventListener('click', confirmModal);
+$('btnSave').addEventListener('click', save);
+$('btnExport').addEventListener('click', exportJson);
+$('btnImport').addEventListener('click', importJson);
+$('fileInput').addEventListener('change', function(e){
+  var f = e.target.files[0];
+  if (!f) return;
+  var reader = new FileReader();
+  reader.onload = function(){
+    try {
+      var cfg = JSON.parse(reader.result);
+      if (!cfg || !cfg.users || !Array.isArray(cfg.users)) throw new Error('文件格式不正确');
+      state.verifyField = cfg.verifyField || state.verifyField;
+      state.users = cfg.users;
+      if (cfg.adminPass) state.adminPass = cfg.adminPass;
+      render();
+      toast('已导入 ' + state.users.length + ' 人，记得点「保存全部」生效', 'ok');
+    } catch(err){
+      toast('导入失败：' + err.message, 'err');
+    }
+  };
+  reader.readAsText(f);
+  e.target.value = '';
+});
+$('segVerify').addEventListener('click', function(e){
+  var b = e.target.closest('button');
+  if (!b) return;
+  state.verifyField = b.getAttribute('data-v');
+  render();
+  toast('验证方式已切换为「' + (state.verifyField==='code' ? '工号' : '手机号后4位') + '」，记得保存生效');
+});
+$('btnPass').addEventListener('click', function(){
+  var p = prompt('请输入新的管理密码（至少4位）：');
+  if (p === null) return;
+  if (!p || p.length < 4){ toast('密码至少4位', 'err'); return; }
+  state.adminPass = p;
+  toast('管理密码已更新，点「保存全部」生效', 'ok');
+});
+
+/* ---------- 一键截图 ---------- */
+// 动态加载 html2canvas（本地无库，走 CDN；离线加载失败时给出提示）
+var _hcPromise = null;
+function ensureHtml2canvas(cb){
+  if (window.html2canvas){ cb(); return; }
+  if (_hcPromise){ _hcPromise.then(cb).catch(function(){}); return; }
+  _hcPromise = new Promise(function(resolve, reject){
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+    s.onload = function(){ resolve(); };
+    s.onerror = function(){ reject(new Error('无法加载截图组件，请联网后重试')); };
+    document.head.appendChild(s);
+  });
+  _hcPromise.then(cb).catch(function(e){ toast('截图组件加载失败：' + e.message, 'err'); });
+}
+function shotDateStr(){
+  var d = new Date();
+  function pad2(n){ return (n < 10 ? '0' : '') + n; }
+  return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate());
+}
+// 截图整个页面（含滚动区域全部内容），自动下载 PNG，文件名带当前日期
+function shotPage(){
+  var btn = $('btnShot');
+  btn.disabled = true; btn.textContent = '截图中…';
+  ensureHtml2canvas(function(){
+    var scrollX = window.scrollX, scrollY = window.scrollY;
+    window.scrollTo(0, 0);
+    html2canvas(document.body, {
+      useCORS: true,
+      scale: 2,
+      backgroundColor: '#0a1730',
+      windowWidth: document.documentElement.scrollWidth,
+      windowHeight: document.documentElement.scrollHeight,
+      scrollX: 0,
+      scrollY: -window.pageYOffset || 0,
+      logging: false
+    }).then(function(canvas){
+      var a = document.createElement('a');
+      a.download = '名单管理后台_' + shotDateStr() + '.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+      window.scrollTo(scrollX, scrollY);
+      toast('截图已下载：' + a.download, 'ok');
+    }).catch(function(e){
+      window.scrollTo(scrollX, scrollY);
+      toast('截图失败：' + (e && e.message ? e.message : e), 'err');
+    }).finally(function(){
+      btn.disabled = false; btn.textContent = '一键截图';
+    });
+  });
+}
+
+/* ---------- 管理员登录 ---------- */
+function doLogin(){
+  var p = $('iptPass').value;
+  if (!p){ $('loginErr').textContent = '请输入管理密码'; return; }
+  if (p === state.adminPass){
+    sessionStorage.setItem('xd_auth_admin', '1');
+    $('loginMask').style.display = 'none';
+    $('mainCard').style.display = 'block';
+    $('btnShot').style.display = 'inline-block';
+    $('btnLogout').style.display = 'inline-block';
+    $('btnBackWork').style.display = 'inline-block';
+    toast('登录成功，欢迎使用名单管理后台', 'ok');
+  } else {
+    $('loginErr').textContent = '密码错误，请重试';
+  }
+}
+$('btnLogin').addEventListener('click', doLogin);
+$('iptPass').addEventListener('keydown', function(e){ if (e.key === 'Enter') doLogin(); });
+$('btnLogout').addEventListener('click', function(){
+  sessionStorage.removeItem('xd_auth_admin');
+  $('loginMask').style.display = 'flex';
+  $('mainCard').style.display = 'none';
+  $('btnShot').style.display = 'none';
+  $('btnLogout').style.display = 'none';
+  $('btnBackWork').style.display = 'none';
+  $('iptPass').value = '';
+});
+$('btnBackWork').addEventListener('click', function(){
+  location.href = '总商数据监控-履约工作台.html';
+});
+
+/* ---------- 初始化 ---------- */
+checkSvc();
+loadBoardGroups(); // 同步看板清单（增删看板后此处自动更新权限列表）
+fetch(API).then(function(r){ return r.json(); }).then(function(cfg){
+  state.verifyField = cfg.verifyField || 'mobile';
+  state.adminPass = cfg.adminPass || '';
+  state.users = cfg.users || [];
+  if (sessionStorage.getItem('xd_auth_admin') === '1'){
+    $('loginMask').style.display = 'none';
+    $('mainCard').style.display = 'block';
+    $('btnShot').style.display = 'inline-block';
+    $('btnLogout').style.display = 'inline-block';
+    $('btnBackWork').style.display = 'inline-block';
+  }
+  render();
+}).catch(function(){
+  $('svcDot').className='dot err';
+  $('svcText').textContent='服务未启动，无法读取名单';
+});
+</script>
+</body>
+</html>

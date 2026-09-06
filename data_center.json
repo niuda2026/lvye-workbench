@@ -373,15 +373,6 @@
           "tab_keys": [],
           "monitored": false,
           "available": true
-        },
-        {
-          "key": "ins_xingda",
-          "label": "兴达美团保险看板",
-          "file": null,
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": false
         }
       ]
     },
