@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-08 07:39:17",
+  "updated_at": "2026-09-08 07:45:55",
   "groups": [
     {
       "title": "交通安全",
@@ -7,7 +7,7 @@
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-08 07:21:37",
+        "data_mtime": "2026-09-08 07:41:43",
         "all_synced": false,
         "synced_count": 12,
         "missing_count": 1,
@@ -170,7 +170,7 @@
         "data_files": [
           "履约项目\\data.js"
         ],
-        "data_mtime": "2026-09-08 07:25:13",
+        "data_mtime": "2026-09-08 07:45:27",
         "all_synced": true,
         "synced_count": 6,
         "missing_count": 0,
@@ -251,7 +251,7 @@
           "护航服装\\data.js",
           "护航服装\\data_excluded.js"
         ],
-        "data_mtime": "2026-09-08 07:23:36",
+        "data_mtime": "2026-09-08 07:43:56",
         "all_synced": true,
         "synced_count": 2,
         "missing_count": 0,
@@ -305,7 +305,7 @@
           "在职骑手详情\\在职骑手详情.html",
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-08 07:21:37",
+        "data_mtime": "2026-09-08 07:41:43",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -353,7 +353,7 @@
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-09-08 07:37:17",
+        "data_mtime": "2026-09-08 07:44:00",
         "all_synced": true,
         "synced_count": 4,
         "missing_count": 0,
@@ -374,7 +374,7 @@
           {
             "type": "V3内联数据",
             "latest": "v3_data.js",
-            "mtime": "2026-09-08 07:23:41",
+            "mtime": "2026-09-08 07:44:00",
             "synced": true
           },
           {
@@ -494,7 +494,7 @@
         "data_files": [
           "交通安全行为看板\\monthly_summary.js"
         ],
-        "data_mtime": "2026-09-08 07:23:41",
+        "data_mtime": "2026-09-08 07:44:00",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -503,7 +503,7 @@
           {
             "type": "交通安全data.js（归档源）",
             "latest": "data.js",
-            "mtime": "2026-09-08 07:21:37",
+            "mtime": "2026-09-08 07:41:43",
             "synced": true
           }
         ]
