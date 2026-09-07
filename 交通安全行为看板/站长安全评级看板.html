@@ -144,7 +144,7 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
 </style>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-<script src="data.js?09-06-73af62c3"></script>
+<script src="data.js?09-06-09f9aad8"></script>
 <script src="../护航服装/data_excluded.js?20260908"></script>
 </head>
 <body>
@@ -824,7 +824,7 @@ function renderStation(tab){
   var egWeeks=[], egDays=[];
   if(tab==='rating'){
     var ascAll=dispDates.slice().sort(function(a,b){return a>b?1:a<b?-1:0;});
-    egDays=((selDate&&selDate.length)?ascAll:ascAll.slice(-7)).slice().reverse(); // 日维度：最新日期在前，默认最多7天
+    egDays=((selDate&&selDate.length)?ascAll:ascAll.slice(-7)).slice(); // 日维度：日期由小到大（旧→新），默认最多7天
     egWeeks=buildMonthWeeks(ascAll); // 周维度：最新日期所属月的自然周，有数据才出现
   }
   var dCols=dispDates.map(function(d){return '<th colspan="2">'+d+'<br><small style="font-weight:400">'+m1.label+' / '+m2.label+'</small></th>';}).join('');
@@ -909,7 +909,7 @@ function renderStation(tab){
     var indent=lv==='merchant'?'&nbsp;&nbsp;└ ':lv==='site'?'&nbsp;&nbsp;&nbsp;&nbsp;· ':'';
     var tailCells='', tail1='', tail2='';
     if(tab==='rating'){
-      var dayAsc=egDays.slice().reverse(); // 时间升序（旧→新），供折线使用
+      var dayAsc=egDays.slice(); // 与表头同序（旧→新），供折线使用
       var wkVals1=egWeeks.map(function(w){return weekAvgOf(r,m1.key,w);});
       var wkVals2=egWeeks.map(function(w){return weekAvgOf(r,m2.key,w);});
       var dayVals1=dayAsc.map(function(d){return (r[m1.key+'_daily']&&r[m1.key+'_daily'][d]!==undefined)?r[m1.key+'_daily'][d]:null;});
