@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-07 11:03:58",
+  "updated_at": "2026-09-07 16:56:02",
   "groups": [
     {
       "title": "交通安全",
@@ -267,8 +267,8 @@
         "sources": [
           {
             "type": "已剔除恶劣天气",
-            "latest": "已剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260905-20260905(天)_1788648949394.xlsx",
-            "mtime": "2026-09-06 06:55:52",
+            "latest": "剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260906-20260906(天)_1788733344262.xlsx",
+            "mtime": "2026-09-07 06:22:31",
             "synced": true
           },
           {
@@ -308,7 +308,25 @@
     },
     {
       "title": "骑手管理",
-      "monitor": null,
+      "monitor": {
+        "data_files": [
+          "在职骑手详情\\在职骑手详情.html",
+          "交通安全行为看板\\data.js"
+        ],
+        "data_mtime": "2026-09-07 16:53:27",
+        "all_synced": true,
+        "synced_count": 1,
+        "missing_count": 0,
+        "unsynced_count": 0,
+        "sources": [
+          {
+            "type": "骑手排班明细数据",
+            "latest": "骑手排班明细数据_49896033_20260907_062604.xlsx",
+            "mtime": "2026-09-07 06:26:37",
+            "synced": true
+          }
+        ]
+      },
       "boards": [
         {
           "key": "rider_detail",
@@ -316,7 +334,7 @@
           "file": "D:/兴达数据库/在职骑手详情/在职骑手详情.html",
           "tabs": [],
           "tab_keys": [],
-          "monitored": false,
+          "monitored": true,
           "available": true
         },
         {
@@ -329,14 +347,52 @@
           "tab_keys": [
             "control"
           ],
-          "monitored": false,
+          "monitored": true,
           "available": true
         }
       ]
     },
     {
       "title": "保险",
-      "monitor": null,
+      "monitor": {
+        "data_files": [
+          "骑手保障补贴\\v3_data.js",
+          "骑手保障补贴\\bi_data\\latest.json",
+          "bi_insurance\\premium_latest.json",
+          "美团保险\\insurance_data.js"
+        ],
+        "data_mtime": "2026-09-07 08:23:50",
+        "all_synced": true,
+        "synced_count": 4,
+        "missing_count": 0,
+        "unsynced_count": 0,
+        "sources": [
+          {
+            "type": "BI赔付率快照",
+            "latest": "latest.json",
+            "mtime": "2026-09-07 08:20:56",
+            "synced": true
+          },
+          {
+            "type": "含税保费快照",
+            "latest": "premium_latest.json",
+            "mtime": "2026-09-07 08:23:50",
+            "synced": true
+          },
+          {
+            "type": "V3内联数据",
+            "latest": "v3_data.js",
+            "mtime": "2026-09-07 07:42:55",
+            "synced": true
+          },
+          {
+            "type": "美团保险数据",
+            "latest": "insurance_data.js",
+            "mtime": "2026-09-05 08:03:41",
+            "synced": true
+          }
+        ]
+      },
       "boards": [
         {
           "key": "ins_meituan",
@@ -344,7 +400,7 @@
           "file": "D:/兴达数据库/美团保险/美团保险看板.html",
           "tabs": [],
           "tab_keys": [],
-          "monitored": false,
+          "monitored": true,
           "available": true
         },
         {
@@ -353,7 +409,7 @@
           "file": "D:/兴达数据库/骑手职业伤害保障/兴必达_骑手职业伤害保障数据看板.html",
           "tabs": [],
           "tab_keys": [],
-          "monitored": false,
+          "monitored": true,
           "available": true
         },
         {
@@ -362,7 +418,7 @@
           "file": "D:/兴达数据库/骑手保障补贴/保险赔付补贴监控.html",
           "tabs": [],
           "tab_keys": [],
-          "monitored": false,
+          "monitored": true,
           "available": true
         },
         {
@@ -371,14 +427,31 @@
           "file": "D:/兴达数据库/美团保险/保险赔付率解读.html",
           "tabs": [],
           "tab_keys": [],
-          "monitored": false,
+          "monitored": true,
           "available": true
         }
       ]
     },
     {
       "title": "公司风险管理系统",
-      "monitor": null,
+      "monitor": {
+        "data_files": [
+          "110工单\\110工单看板.html"
+        ],
+        "data_mtime": "2026-08-15 09:46:31",
+        "all_synced": true,
+        "synced_count": 1,
+        "missing_count": 0,
+        "unsynced_count": 0,
+        "sources": [
+          {
+            "type": "看板页面（自包含）",
+            "latest": "110工单看板.html",
+            "mtime": "2026-08-15 09:46:31",
+            "synced": true
+          }
+        ]
+      },
       "boards": [
         {
           "key": "gongdan",
@@ -386,14 +459,31 @@
           "file": "D:/兴达数据库/110工单/110工单看板.html",
           "tabs": [],
           "tab_keys": [],
-          "monitored": false,
+          "monitored": true,
           "available": true
         }
       ]
     },
     {
       "title": "站点地图",
-      "monitor": null,
+      "monitor": {
+        "data_files": [
+          "全国站点地图\\data.js"
+        ],
+        "data_mtime": "2026-09-04 07:50:38",
+        "all_synced": true,
+        "synced_count": 1,
+        "missing_count": 0,
+        "unsynced_count": 0,
+        "sources": [
+          {
+            "type": "美团站点快照",
+            "latest": "meituan_stations_snapshot.json",
+            "mtime": "2026-09-04 07:45:54",
+            "synced": true
+          }
+        ]
+      },
       "boards": [
         {
           "key": "station_map",
@@ -401,14 +491,31 @@
           "file": "D:/兴达数据库/全国站点地图/全国站点地图.html",
           "tabs": [],
           "tab_keys": [],
-          "monitored": false,
+          "monitored": true,
           "available": true
         }
       ]
     },
     {
       "title": "月度累计",
-      "monitor": null,
+      "monitor": {
+        "data_files": [
+          "交通安全行为看板\\monthly_summary.js"
+        ],
+        "data_mtime": "2026-09-07 07:42:55",
+        "all_synced": true,
+        "synced_count": 1,
+        "missing_count": 0,
+        "unsynced_count": 0,
+        "sources": [
+          {
+            "type": "交通安全data.js（归档源）",
+            "latest": "data.js",
+            "mtime": "2026-09-07 08:02:27",
+            "synced": true
+          }
+        ]
+      },
       "boards": [
         {
           "key": "monthly_summary",
@@ -426,7 +533,7 @@
             "highway",
             "clothing"
           ],
-          "monitored": false,
+          "monitored": true,
           "available": true
         }
       ]

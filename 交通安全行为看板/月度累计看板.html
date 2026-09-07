@@ -19,6 +19,18 @@ body{background:#F0F6FC;color:#1a2e45;font-family:'Segoe UI','Microsoft YaHei','
 .filter-bar label{color:#0B4F8A;font-size:12px;white-space:nowrap;font-weight:500}
 .filter-bar select{background:#fff;color:#1a2e45;border:1px solid #8FB8DA;padding:5px 8px;border-radius:4px;font-size:13px;outline:none;font-weight:600;cursor:pointer}
 .filter-bar .hint{color:#78909c;font-size:12px}
+.ms-wrap{position:relative;display:inline-block;vertical-align:top;}
+.ms-btn{display:flex;align-items:center;justify-content:space-between;min-width:90px;max-width:160px;padding:5px 8px;background:#fff;border:1px solid #8FB8DA;border-radius:4px;font-size:12px;color:#1a2e45;cursor:pointer;user-select:none;gap:4px;}
+.ms-btn:hover{border-color:#0B4F8A;}
+.ms-label{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ms-arrow{font-size:10px;color:#4F6E87;transition:transform .2s;}
+.ms-wrap.open .ms-arrow{transform:rotate(180deg);}
+.ms-drop{display:none;position:absolute;top:calc(100% + 2px);left:0;min-width:120px;max-width:220px;max-height:220px;overflow-y:auto;background:#fff;border:1px solid #8FB8DA;border-radius:4px;box-shadow:0 4px 12px rgba(0,0,0,.12);z-index:9999;padding:4px 0;}
+.ms-wrap.open .ms-drop{display:block;}
+.ms-item{display:flex;align-items:center;gap:6px;padding:5px 10px;font-size:12px;color:#1a2e45;cursor:pointer;white-space:nowrap;}
+.ms-item:hover{background:#EAF2F9;}
+.ms-item input[type=checkbox]{margin:0;cursor:pointer;accent-color:#0B4F8A;}
+.ms-item.checked{background:#e8f5e9;font-weight:600;}
 .btn{padding:5px 14px;border-radius:4px;border:none;cursor:pointer;font-size:12px;font-weight:500;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
 .btn-secondary{background:#EAF2F9;color:#0B4F8A;border:1px solid #8FB8DA}
 .btn-secondary:hover{background:#B3D0E8}
@@ -86,6 +98,19 @@ tr.lv-site:hover td{background:#f0f7ff}
 </div>
 
 <div class="summary-row" id="summaryRow"></div>
+
+<div class="filter-bar">
+  <label>大区</label>
+  <div class="ms-wrap" id="msf-region"><div class="ms-btn" onclick="toggleMs('msf-region')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="msf-region-drop"></div></div>
+  <label>区域</label>
+  <div class="ms-wrap" id="msf-subregion"><div class="ms-btn" onclick="toggleMs('msf-subregion')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="msf-subregion-drop"></div></div>
+  <label>城市</label>
+  <div class="ms-wrap" id="msf-city"><div class="ms-btn" onclick="toggleMs('msf-city')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="msf-city-drop"></div></div>
+  <label>站点</label>
+  <div class="ms-wrap" id="msf-site"><div class="ms-btn" onclick="toggleMs('msf-site')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="msf-site-drop"></div></div>
+  <button class="btn btn-secondary" onclick="clearMsFilter()">清除筛选</button>
+  <span id="msFilterCount" style="color:#4F6E87;font-size:12px;margin-left:4px"></span>
+</div>
 
 <div class="tab-bar">
   <div class="tab-item active" data-tab="safety" onclick="switchTab('safety')">🛡️ 安全权益</div>
@@ -256,6 +281,128 @@ function totalCards(){
   row.innerHTML = cards.join('');
 }
 
+// ── 多选筛选（与安全权益看板同款：大区/区域/城市/站点 级联） ──
+var msfState={region:[],subregion:[],city:[],site:[]};
+function getMsfVals(k){return msfState[k]||[];}
+function toggleMs(wrapId){
+  var wrap=document.getElementById(wrapId);
+  if(!wrap)return;
+  var isOpen=wrap.classList.contains('open');
+  document.querySelectorAll('.ms-wrap.open').forEach(function(w){w.classList.remove('open');});
+  if(!isOpen)wrap.classList.add('open');
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.ms-wrap')){
+    document.querySelectorAll('.ms-wrap.open').forEach(function(w){w.classList.remove('open');});
+  }
+});
+function onMsfChange(key,cb){
+  var val=cb.value;
+  var sel=msfState[key]||[];
+  if(cb.checked){ if(sel.indexOf(val)<0)sel.push(val); }
+  else { sel=sel.filter(function(v){return v!==val;}); }
+  msfState[key]=sel;
+  var item=cb.parentElement;
+  if(item)item.classList.toggle('checked',cb.checked);
+  updateMsfLabel(key);
+  initMsfOptions();
+  renderAll();
+}
+function updateMsfLabel(key){
+  var wrap=document.getElementById('msf-'+key);
+  if(!wrap)return;
+  var lbl=wrap.querySelector('.ms-label');
+  if(!lbl)return;
+  var sel=msfState[key]||[];
+  lbl.textContent=sel.length===0?'全部':sel.length===1?sel[0]:sel.length+' 项已选';
+}
+function fillMsf(key,opts){
+  var drop=document.getElementById('msf-'+key+'-drop');
+  if(!drop)return;
+  var sel=msfState[key]||[];
+  drop.innerHTML=opts.map(function(o){
+    var chk=sel.indexOf(o)>=0;
+    return '<label class="ms-item'+(chk?' checked':'')+'" onclick="event.stopPropagation()"><input type="checkbox" value="'+esc(o)+'" '+(chk?'checked':'')+' onchange="onMsfChange(\''+key+'\',this)"> '+esc(o)+'</label>';
+  }).join('');
+  updateMsfLabel(key);
+}
+function initMsfOptions(){
+  var sites=MONTHLY.sites;
+  var selRegion=getMsfVals('region'), selSubr=getMsfVals('subregion'), selCity=getMsfVals('city');
+  var allRegions=[...new Set(sites.filter(function(r){return r.level==='subregion';}).map(function(r){return r.region;}))].filter(Boolean);
+  allRegions.sort(function(a,b){var i=REGION_ORDER.indexOf(a),j=REGION_ORDER.indexOf(b);if(i===-1)i=99;if(j===-1)j=99;return i-j;});
+  var allSubrRows=sites.filter(function(r){return r.level==='subregion';});
+  var filtSubrs=(selRegion.length?allSubrRows.filter(function(r){return selRegion.indexOf(r.region)>=0;}):allSubrRows)
+    .map(function(r){return r.name;}).filter(Boolean);
+  filtSubrs=[...new Set(filtSubrs)].sort(function(a,b){return a.localeCompare(b,'zh');});
+  var cityRows=sites.filter(function(r){return r.level==='merchant';});
+  var filtCityRows=cityRows.filter(function(r){
+    if(selRegion.length&&selRegion.indexOf(r.region)<0)return false;
+    if(selSubr.length&&selSubr.indexOf(r.subregion)<0)return false;
+    return true;
+  });
+  var filtCities=[...new Set(filtCityRows.map(function(r){return r.city||r.name;}))].filter(Boolean).sort(function(a,b){return a.localeCompare(b,'zh');});
+  var siteRows=sites.filter(function(r){return r.level==='site';});
+  var filtSites=siteRows.filter(function(r){
+    if(selRegion.length&&selRegion.indexOf(r.region)<0)return false;
+    if(selSubr.length&&selSubr.indexOf(r.subregion)<0)return false;
+    if(selCity.length&&selCity.indexOf(r.city)<0)return false;
+    return true;
+  }).map(function(r){return r.name;}).filter(Boolean);
+  filtSites=[...new Set(filtSites)].sort(function(a,b){return a.localeCompare(b,'zh');});
+  fillMsf('region',allRegions);
+  fillMsf('subregion',filtSubrs);
+  fillMsf('city',filtCities);
+  fillMsf('site',filtSites);
+}
+function getFilteredSites(){
+  var fs=msfState;
+  var rows=MONTHLY.sites;
+  return rows.filter(function(r){
+    var lv=r.level;
+    if(fs.region.length&&r.region&&fs.region.indexOf(r.region)<0)return false;
+    if(fs.subregion.length){
+      if(lv==='subregion'&&fs.subregion.indexOf(r.name)<0)return false;
+      if(lv!=='subregion'&&r.subregion&&fs.subregion.indexOf(r.subregion)<0)return false;
+    }
+    if(fs.city.length){
+      var cityVal=r.city||r.name||'';
+      if(lv==='merchant'&&fs.city.indexOf(cityVal)<0)return false;
+      if(lv==='site'&&fs.city.indexOf(r.city||'')<0)return false;
+      if(lv==='subregion'){
+        var matched=false;
+        for(var i=0;i<rows.length;i++){
+          var _r=rows[i];
+          if(_r.level==='merchant'&&fs.city.indexOf(_r.city||_r.name)>=0&&_r.subregion===r.subregion){matched=true;break;}
+        }
+        if(!matched)return false;
+      }
+    }
+    if(fs.site.length){
+      if(lv==='site'&&fs.site.indexOf(r.name)<0)return false;
+      if(lv!=='site'&&lv!=='total')return false;
+    }
+    return true;
+  });
+}
+function clearMsFilter(){
+  msfState={region:[],subregion:[],city:[],site:[]};
+  ['region','subregion','city','site'].forEach(function(k){
+    updateMsfLabel(k);
+    var drop=document.getElementById('msf-'+k+'-drop');
+    if(drop)drop.querySelectorAll('input[type=checkbox]').forEach(function(cb){cb.checked=false;cb.parentElement.classList.remove('checked');});
+  });
+  initMsfOptions();
+  renderAll();
+}
+function updateMsfCount(){
+  var el=document.getElementById('msFilterCount');
+  if(!el)return;
+  var rows=getFilteredSites();
+  var siteN=new Set(rows.filter(function(r){return r.level==='site';}).map(function(r){return r.name;})).size;
+  el.textContent='共 '+rows.length+' 行（站点 '+siteN+' 个）';
+}
+
 // ── Tab 切换 ──
 function switchTab(tab){
   curTab = tab;
@@ -289,8 +436,9 @@ function renderTable(tab, metrics){
   thead.innerHTML = head;
 
   // tbody
+  var fSites = getFilteredSites();
   var trs = [];
-  MONTHLY.sites.forEach(function(s){
+  fSites.forEach(function(s){
     if(tab==='clothing'){
       // 服装板块仅渲染当月/上月 cloth 或 vis 任一有数据的层级/站点
       var has = anyClothingHas(s, curMonth) || anyClothingHas(s, prevMonth);
@@ -336,6 +484,8 @@ function renderAll(){
   }
   syncHint();
   totalCards();
+  initMsfOptions();
+  updateMsfCount();
   renderTable('safety', PANELS.safety.metrics);
   renderTable('rating', PANELS.rating.metrics);
   renderTable('highway', PANELS.highway.metrics);
@@ -354,7 +504,7 @@ function exportTable(){
     if(pv){ rows[0].push(m.label+'('+pv+')'); rows[0].push('环比'); }
   });
   var filterClothing = (curTab==='clothing');
-  MONTHLY.sites.forEach(function(s){
+  getFilteredSites().forEach(function(s){
     if(filterClothing){
       var has = anyClothingHas(s,curMonth) || anyClothingHas(s,pv);
       if(!has) return;
