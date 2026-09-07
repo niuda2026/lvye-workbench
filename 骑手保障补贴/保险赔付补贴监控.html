@@ -112,10 +112,11 @@ window.addEventListener("message",function(ev){
   var d=ev.data||{};
   if(d.type!=="xd-v3-shot-done"||!__shotPending) return;
   __shotGot=true;
-  shotTip("⏳ 拼合中…");
+  shotSet(false); // 先还原按钮文案，保证截图顶栏里按钮是正常态
   ensureH2c(function(){
     var tb=document.querySelector(".topbar");
   html2canvas(tb,{scale:2,useCORS:true,backgroundColor:"#0b1f4d"}).then(function(topCv){
+    var btn=document.getElementById("btnShot"); if(btn&&__shotPending) btn.textContent="⏳ 拼合中…";
     var img=new Image();
     img.onload=function(){
       var c=document.createElement("canvas");

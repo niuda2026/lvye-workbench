@@ -1,10 +1,10 @@
 {
- "fetched_at": "20260906_064803",
+ "fetched_at": "20260907_082056",
  "alias": "rate",
  "row_count": 168,
  "month": "202609",
  "dt_range": "20260901~20260906",
- "source": "/api/mtbi/bi/671634811/data",
+ "source": "/api/mtbi/bi/671785826/data",
  "rows": [
   {
    "dt": "20260906",

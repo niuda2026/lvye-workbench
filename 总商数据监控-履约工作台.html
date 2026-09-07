@@ -208,8 +208,8 @@ html,body{height:100%;overflow:hidden;font-family:'Segoe UI','Microsoft YaHei','
 <script>
 // ===== 个人中心 =====
 var CURRENT_USER = null;
-var AUTH_API = 'http://127.0.0.1:8777/api/users';
-var BOARDS_API = 'http://127.0.0.1:8777/api/boards';
+var AUTH_API = 'auth_users.json';
+var BOARDS_API = 'boards.json';
 // 从服务端同步看板清单（boards.json），失败时保留本地兜底 navGroups
 function loadBoardConfig(){
   buildNav();
@@ -256,7 +256,7 @@ function renderProfile(){
   el('popRole2').textContent = u.role || '—';
   el('popArea').textContent = u.area || '—';
   el('popPerm').textContent = permSummary(u);
-  el('popAdminBtn').style.display = u.admin ? 'block' : 'none';
+  el('popAdminBtn').style.display = 'none'; // 公网版隐藏管理后台入口
 }
 function openAdmin(){
   window.open('名单管理后台.html', '_blank');
@@ -281,64 +281,64 @@ var navGroups = [
     title: '交通安全',
     short: '交通',
     items: [
-      { key: 'safe_equity', label: '安全权益看板', file: 'D:/兴达数据库/交通安全行为看板/安全权益看板.html' },
-      { key: 'safe_station', label: '站长安全评级', file: 'D:/兴达数据库/交通安全行为看板/站长安全评级看板.html' },
-      { key: 'safe_rider', label: '骑手交通行为明细', file: 'D:/兴达数据库/交通安全行为看板/骑手交通行为明细看板.html' },
-      { key: 'safe_highway', label: '高速监控看板', file: 'D:/兴达数据库/交通安全行为看板/高速监控看板.html' }
+      { key: 'safe_equity', label: '安全权益看板', file: '交通安全行为看板/安全权益看板.html' },
+      { key: 'safe_station', label: '站长安全评级', file: '交通安全行为看板/站长安全评级看板.html' },
+      { key: 'safe_rider', label: '骑手交通行为明细', file: '交通安全行为看板/骑手交通行为明细看板.html' },
+      { key: 'safe_highway', label: '高速监控看板', file: '交通安全行为看板/高速监控看板.html' }
     ]
   },
   {
     title: '履约项目',
     short: '履约',
     items: [
-      { key: 'project', label: '履约项目看板', file: 'D:/兴达数据库/履约项目/兴达履约项目看板.html' }
+      { key: 'project', label: '履约项目看板', file: '履约项目/兴达履约项目看板.html' }
     ]
   },
   {
     title: '服装标准化',
     short: '服装',
     items: [
-      { key: 'clothing_main', label: '护航服装看板', file: 'D:/兴达数据库/护航服装/护航服装看板.html' },
-      { key: 'clothing_rate', label: '服装标准化率', file: 'D:/兴达数据库/交通安全行为看板/骑手服装标准化看板.html' }
+      { key: 'clothing_main', label: '护航服装看板', file: '护航服装/护航服装看板.html' },
+      { key: 'clothing_rate', label: '服装标准化率', file: '交通安全行为看板/骑手服装标准化看板.html' }
     ]
   },
   {
     title: '骑手管理',
     short: '骑手',
     items: [
-      { key: 'rider_detail', label: '在职骑手详情', file: 'D:/兴达数据库/在职骑手详情/在职骑手详情.html' },
-      { key: 'rider_control', label: '中西管控名单', file: 'D:/兴达数据库/交通安全行为看板/兴达丨交通安全行为看板.html#control' }
+      { key: 'rider_detail', label: '在职骑手详情', file: '在职骑手详情/在职骑手详情.html' },
+      { key: 'rider_control', label: '中西管控名单', file: '交通安全行为看板/兴达丨交通安全行为看板.html#control' }
     ]
   },
   {
     title: '保险',
     short: '保险',
     items: [
-      { key: 'ins_meituan', label: '美团保险', file: 'D:/兴达数据库/美团保险/美团保险看板.html' },
-      { key: 'ins_old', label: '美团保险(旧)', file: 'D:/兴达数据库/骑手职业伤害保障/兴必达_骑手职业伤害保障数据看板.html' },
-      { key: 'ins_subsidy', label: '保险赔付补贴监控', file: 'D:/兴达数据库/骑手保障补贴/保险赔付补贴监控.html' },
-      { key: 'ins_rate', label: '保险赔付率解读', file: 'D:/兴达数据库/美团保险/保险赔付率解读.html' }
+      { key: 'ins_meituan', label: '美团保险', file: '美团保险/美团保险看板.html' },
+      { key: 'ins_old', label: '美团保险(旧)', file: '骑手职业伤害保障/兴必达_骑手职业伤害保障数据看板.html' },
+      { key: 'ins_subsidy', label: '保险赔付补贴监控', file: '骑手保障补贴/保险赔付补贴监控.html' },
+      { key: 'ins_rate', label: '保险赔付率解读', file: '美团保险/保险赔付率解读.html' }
     ]
   },
   {
     title: '公司风险管理系统',
     short: '风险',
     items: [
-      { key: 'gongdan', label: '110工单', file: 'D:/兴达数据库/110工单/110工单看板.html' }
+      { key: 'gongdan', label: '110工单', file: '110工单/110工单看板.html' }
     ]
   },
   {
     title: '站点地图',
     short: '地图',
     items: [
-      { key: 'station_map', label: '全国站点地图', file: 'D:/兴达数据库/全国站点地图/全国站点地图.html' }
+      { key: 'station_map', label: '全国站点地图', file: '全国站点地图/全国站点地图.html' }
     ]
   },
   {
     title: '数据中心',
     short: '数据',
     items: [
-      { key: 'data_center', label: '源数据更新状态', file: 'D:/兴达数据库/data_center.html' }
+      { key: 'data_center', label: '源数据更新状态', file: 'data_center.html' }
     ]
   }
 ];
@@ -592,6 +592,27 @@ window.addEventListener('message',function(ev){
     setTimeout(xdToastHide,6000);
     return;
   }
+  // 截图瞬间隐藏左侧导航（含悬浮菜单/收起按钮），内容区自动占满整宽；截完立即还原
+  // 用 class 切换（幂等），避免重复消息导致还原错乱
+  if(window.__xdShotBusy) return;
+  window.__xdShotBusy=true;
+  if(!document.getElementById('xdShotHideCss')){
+    var __st=document.createElement('style'); __st.id='xdShotHideCss';
+    __st.textContent='.xd-shot-hide{display:none!important}';
+    document.head.appendChild(__st);
+  }
+  var __hidEls=['sidebar','navFlyout','sidebarToggle']
+    .map(function(id){ return document.getElementById(id); })
+    .filter(function(el){ return !!el; });
+  __hidEls.forEach(function(el){ el.classList.add('xd-shot-hide'); });
+  function xdRestore(){
+    __hidEls.forEach(function(el){ el.classList.remove('xd-shot-hide'); });
+    window.__xdShotBusy=false;
+  }
+  setTimeout(function(){
+  // 隐藏侧栏后重新取一次看板区域位置（已左移并加宽）
+  var r2=frame?frame.getBoundingClientRect():null;
+  if(!r2||!r2.width){ r2=r; }
   html2canvas(document.body,{scale:2,useCORS:true,backgroundColor:'#F0F6FC',
     width:window.innerWidth,height:window.innerHeight,
     windowWidth:window.innerWidth,windowHeight:window.innerHeight
@@ -599,21 +620,20 @@ window.addEventListener('message',function(ev){
     var img=new Image();
     img.onload=function(){
       // 壳页拼图等比拉伸铺满看板区域
-      var dw=r.width, dh=d.h*(r.width/d.w);
+      var dw=r2.width, dh=d.h*(r2.width/d.w);
       var s=2;
       var out=document.createElement('canvas');
       out.width=topCv.width;
-      out.height=Math.max(topCv.height,Math.round((r.top+dh)*s));
+      out.height=Math.max(topCv.height,Math.round((r2.top+dh)*s));
       var ctx=out.getContext('2d');
-      // 画布超出整屏高度时，下方补底色（左侧补侧栏蓝、右侧补页面底色）
+      // 画布超出整屏高度时，下方补页面底色
       ctx.fillStyle='#F0F6FC'; ctx.fillRect(0,0,out.width,out.height);
       if(out.height>topCv.height){
-        var sw=(r.left>0?r.left:0);
-        ctx.fillStyle='#0B4F8A'; ctx.fillRect(0,topCv.height,Math.round(sw*s),out.height-topCv.height);
-        ctx.fillStyle='#F0F6FC'; ctx.fillRect(Math.round(sw*s),topCv.height,out.width-Math.round(sw*s),out.height-topCv.height);
+        ctx.fillStyle='#F0F6FC'; ctx.fillRect(0,topCv.height,out.width,out.height-topCv.height);
       }
       ctx.drawImage(topCv,0,0);
-      ctx.drawImage(img,Math.round(r.left*s),Math.round(r.top*s),Math.round(dw*s),Math.round(dh*s));
+      ctx.drawImage(img,Math.round(r2.left*s),Math.round(r2.top*s),Math.round(dw*s),Math.round(dh*s));
+      xdRestore();
       var dt=new Date();
       function p(n){ return (n<10?'0':'')+n; }
       var name='履约工作台_全页截图_'+dt.getFullYear()+p(dt.getMonth()+1)+p(dt.getDate())+'_'+p(dt.getHours())+p(dt.getMinutes())+p(dt.getSeconds())+'.png';
@@ -633,9 +653,10 @@ window.addEventListener('message',function(ev){
         setTimeout(xdToastHide,6000);
       }
     };
-    img.onerror=function(){ xdToastHide(); alert('全页截图拼合失败，请重试'); };
+    img.onerror=function(){ xdRestore(); xdToastHide(); alert('全页截图拼合失败，请重试'); };
     img.src=d.dataUrl;
-  }).catch(function(e){ xdToastHide(); alert('全页截图失败：'+(e&&e.message||e)); });
+  }).catch(function(e){ xdRestore(); xdToastHide(); alert('全页截图失败：'+(e&&e.message||e)); });
+  },150); // 等侧栏隐藏后的重排完成再截图
 });
 </script>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
