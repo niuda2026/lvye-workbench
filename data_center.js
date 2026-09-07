@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-08 07:05:37",
+  "updated_at": "2026-09-08 07:06:57",
   "groups": [
     {
       "title": "交通安全",
@@ -10,8 +10,8 @@ window.DATA_CENTER = {
         "data_mtime": "2026-09-08 07:05:36",
         "all_synced": false,
         "synced_count": 11,
-        "missing_count": 2,
-        "unsynced_count": 0,
+        "missing_count": 1,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "站点-戴盔",
@@ -81,9 +81,9 @@ window.DATA_CENTER = {
           },
           {
             "type": "加盟商指标达成",
-            "latest": "—",
-            "mtime": "--",
-            "synced": null
+            "latest": "_加盟商指标达成情况_2026-09-05-2026-09-07(天)_1788822354044.xlsx",
+            "mtime": "2026-09-08 07:05:58",
+            "synced": false
           },
           {
             "type": "未剔除恶劣天气(单量)",
@@ -170,7 +170,7 @@ window.DATA_CENTER = {
         "data_files": [
           "履约项目\\data.js"
         ],
-        "data_mtime": "2026-09-07 17:11:10",
+        "data_mtime": "2026-09-08 07:06:28",
         "all_synced": true,
         "synced_count": 6,
         "missing_count": 0,
