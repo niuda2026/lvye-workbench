@@ -3,7 +3,7 @@
 <html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>骑手交通行为明细看板</title>
+<title>骑手交通安全行为四项看板</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#F0F6FC;color:#1a2e45;font-family:'Segoe UI','Microsoft YaHei','PingFang SC',Arial,sans-serif;font-size:13px;min-height:100vh}
@@ -11,7 +11,7 @@ body{background:#F0F6FC;color:#1a2e45;font-family:'Segoe UI','Microsoft YaHei','
 .header-title{font-size:20px;font-weight:700;color:#ffffff;letter-spacing:1px;text-shadow:0 1px 3px rgba(0,0,0,.3)}
 .header-sub{font-size:12px;color:#B3D0E8;margin-top:3px}
 .header-right{text-align:right;font-size:12px;color:#B3D0E8;line-height:1.8}
-.tab-bar{display:none !important;background:#0B4F8A;border-bottom:2px solid #0A3D6B;padding:0 16px;gap:4px}
+.tab-bar{display:flex;position:sticky;top:0;z-index:60;background:#0B4F8A;border-bottom:2px solid #0A3D6B;padding:0 16px;gap:4px;box-shadow:0 2px 6px rgba(11,79,138,.25)}
 .tab-item{padding:10px 22px;cursor:pointer;color:#8FB8DA;border-bottom:3px solid transparent;font-size:13px;font-weight:500;transition:all .2s;white-space:nowrap}
 .tab-item:hover{color:#fff;background:rgba(255,255,255,.1)}
 .tab-item.active{color:#fff;border-bottom:3px solid #fff;background:rgba(255,255,255,.15)}
@@ -82,6 +82,7 @@ tr.lv-site:hover td{background:#f0f7ff}
 .ry{background:#fff3e0!important;color:#e65100!important;font-weight:600}
 .rr{background:#ffebee!important;color:#c62828!important;font-weight:600}
 .rn{color:#90a4ae}
+.warn-num{color:#d32f2f!important;font-weight:700}
 .region-cards-row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:12px;}
 .region-card{padding:16px 14px;text-align:center;min-height:110px;min-width:0;display:flex;flex-direction:column;justify-content:center;flex:none;max-width:none;}
 @media(max-width:1100px){.region-cards-row{grid-template-columns:repeat(3,1fr);}}
@@ -115,6 +116,28 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
 #rider-thead th.eg-g3{background:#ad1457!important}
 #rider-thead th.eg-g4{background:#e65100!important}
 
+/* ══ 骑手交通四项-站：两级分组表头（排版同安全权益看板站维度） ══ */
+#four-table{border-collapse:separate;border-spacing:0;contain:paint;border-top:1px solid #1E88E5;border-left:1px solid #1E88E5}
+#four-table th{border-style:solid;border-color:#1E88E5;border-width:0 1px 1px 0}
+#four-table td{border-style:solid;border-color:#e3edf7;border-width:0 1px 1px 0}
+#four-thead tr.eg-grp th{top:var(--hdfix,0px);height:32px;padding:4px 10px;font-size:12px;letter-spacing:1px;vertical-align:middle;border-color:rgba(255,255,255,.35);white-space:nowrap}
+#four-thead tr.eg-grp th small{font-size:10px;font-weight:400;opacity:.85;letter-spacing:0}
+#four-thead tr.eg-sub th{top:calc(var(--hdfix,0px) + 32px);padding:4px 5px;font-size:11px;letter-spacing:.3px;line-height:1.25;border-color:rgba(255,255,255,.3)}
+#four-thead tr.eg-sub th small{font-weight:400;font-size:9px;opacity:.85;letter-spacing:0}
+#four-thead th.eg-g1,#four-thead th.eg-g2,#four-thead th.eg-g3,#four-thead th.eg-g4,
+#four-thead th.eg-g5,#four-thead th.eg-g6,#four-thead th.eg-g7,#four-thead th.eg-g8{color:#fff}
+/* 戴盔系带率（蓝）与路口超速率（青）沿用安全权益看板配色；闯红灯率/里程逆行率沿用站长安全评级看板配色 */
+#four-thead th.eg-g1{background:#1E6091}
+#four-thead th.eg-g2{background:#1E6091}
+#four-thead th.eg-g3{background:#1F5F6B}
+#four-thead th.eg-g4{background:#154A55}
+#four-thead th.eg-g5{background:#8C2449}
+#four-thead th.eg-g6{background:#8C2449}
+#four-thead th.eg-g7{background:#75400C}
+#four-thead th.eg-g8{background:#75400C}
+table.dt td.spark-td{padding:2px 4px}
+table.dt td.spark-td .spark-img{display:block;margin:0 auto}
+
 
 #checkFailTable { border-collapse: collapse; width: 100%; font-size: 12px; }
 #checkFailTable th { background: #1E88E5; color: #fff; padding: 8px 6px; border: 1px solid #ddd; text-align: center; white-space: nowrap; }
@@ -128,7 +151,7 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
 </style>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-<script src="data.js?09-06-a6515c99"></script>
+<script src="data.js?09-06-dbc44ece"></script>
 </head>
 <body>
 
@@ -136,26 +159,53 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
   <div style="display:flex;align-items:center;gap:10px;">
     
     <div>
-      <div class="header-title">🚦 骑手交通行为明细看板</div>
+      <div class="header-title">🚦 骑手交通安全行为四项看板</div>
       <div class="header-sub">戴盔系带率 · 路口超速率 · 闯红灯率 · 里程逆行率</div>
     </div>
   </div>
   <div class="header-right">
     <div id="dataRange">数据范围: 08-01 ~ 08-11</div>
-    <div>戴盔系带率目标 ≥ <strong style="color:#B3D0E8">97%</strong> &nbsp;|&nbsp; 超速目标 ≤ <strong style="color:#80deea">4%</strong> &nbsp;|&nbsp; 闯红灯目标 ≤ <strong style="color:#80deea">23%</strong> &nbsp;|&nbsp; 逆行率目标 ≤ <strong style="color:#80deea">3%</strong> &nbsp;|&nbsp; 骑手服装标准化率目标 ≥ <strong style="color:#a5d6a7">95%</strong></div>
+    <div>戴盔系带率目标 ≥ <strong style="color:#B3D0E8">99%</strong> &nbsp;|&nbsp; 超速目标 ≤ <strong style="color:#80deea">2.58%</strong> &nbsp;|&nbsp; 闯红灯目标 ≤ <strong style="color:#80deea">16.23%</strong> &nbsp;|&nbsp; 逆行率目标 ≤ <strong style="color:#80deea">2.45%</strong></div>
   </div>
 </div>
 
 <div class="tab-bar">
-  <div class="tab-item" data-tab="equity" onclick="switchTab(&#39;equity&#39;)">🛡️ 安全权益看板</div>
-  <div class="tab-item" data-tab="rating" onclick="switchTab(&#39;rating&#39;)">🏅 站长安全评级看板</div>
-  <div class="tab-item active" data-tab="rider" onclick="switchTab(&#39;rider&#39;)">👤 骑手交通行为明细</div>
-  <div class="tab-item" data-tab="control" onclick="switchTab(&#39;control&#39;)">📋 中西管控名单</div>
-  <div class="tab-item" data-tab="speed-site" onclick="switchTab(&#39;speed-site&#39;)">⚡ 高速监控看板-站</div>
-  <div class="tab-item" data-tab="speed-rider" onclick="switchTab(&#39;speed-rider&#39;)">🏍️ 高速监控看板-骑手</div>
+  <div class="tab-item active" data-tab="four" onclick="switchTab(&#39;four&#39;)">🚦 骑手交通四项-站</div>
+  <div class="tab-item" data-tab="rider" onclick="switchTab(&#39;rider&#39;)">👤 骑手交通四项-骑手明细</div>
 </div>
+<!-- ══ 骑手交通四项-站（站维度：戴盔系带率+路口超速率+闯红灯率+里程逆行率） ══ -->
+<div class="panel active" id="panel-four">
+  <div class="summary-row" id="summary-cards-four"></div>
+  <div class="filter-bar">
+    <label>显示层级</label>
+    <button class="lv-btn active" id="lv-btn-four-subregion" onclick="toggleLvBtn('four','subregion')">区域行</button>
+    <button class="lv-btn active" id="lv-btn-four-merchant" onclick="toggleLvBtn('four','merchant')">城市行</button>
+    <button class="lv-btn active" id="lv-btn-four-site" onclick="toggleLvBtn('four','site')">站点行</button>
+    <label>大区</label>
+    <div class="ms-wrap" id="sf-four-region"><div class="ms-btn" onclick="toggleMs('sf-four-region')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="sf-four-region-drop"></div></div>
+    <label>区域</label>
+    <div class="ms-wrap" id="sf-four-subregion"><div class="ms-btn" onclick="toggleMs('sf-four-subregion')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="sf-four-subregion-drop"></div></div>
+    <label>城市</label>
+    <div class="ms-wrap" id="sf-four-city"><div class="ms-btn" onclick="toggleMs('sf-four-city')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="sf-four-city-drop"></div></div>
+    <label>站点</label>
+    <div class="ms-wrap" id="sf-four-site"><div class="ms-btn" onclick="toggleMs('sf-four-site')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="sf-four-site-drop"></div></div>
+    <label>日期</label>
+    <div class="ms-wrap" id="sf-four-date"><div class="ms-btn" onclick="toggleMs('sf-four-date')"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="sf-four-date-drop"></div></div>
+    <span id="filter-count-four" style="color:#4F6E87;font-size:12px;margin-left:4px"></span>
+    <button class="btn btn-secondary" onclick="clearFilter('four')">清除</button>
+    <button class="btn btn-export" onclick="exportFour()">⬇ 导出Excel</button>
+    <button class="btn btn-export" onclick="captureScreenshot('four')" style="margin-left:6px;">📷 一键截图</button>
+  </div>
+  <div class="table-wrap table-wrap-station">
+    <table class="dt" id="four-table">
+      <thead id="four-thead"><tr><th>加载中...</th></tr></thead>
+      <tbody id="four-tbody"></tbody>
+    </table>
+  </div>
+</div>
+
 <!-- ══ 安全权益看板（站维度：戴盔系带率 + 路口超速率） ══ -->
-<div class="panel active" id="panel-rider">
+<div class="panel" id="panel-rider">
   <div class="filter-bar">
     <label>大区</label>
     <div class="ms-wrap" id="ms-region"><div class="ms-btn" onclick="toggleMs(&#39;ms-region&#39;)"><span class="ms-label">全部</span><span class="ms-arrow">▾</span></div><div class="ms-drop" id="ms-region-drop"><label class="ms-item" onclick="event.stopPropagation()"><input type="checkbox" value="华北一区" onchange="onMsChange(&#39;region&#39;,this)"> 华北一区</label><label class="ms-item" onclick="event.stopPropagation()"><input type="checkbox" value="华北二区" onchange="onMsChange(&#39;region&#39;,this)"> 华北二区</label><label class="ms-item" onclick="event.stopPropagation()"><input type="checkbox" value="华北三区" onchange="onMsChange(&#39;region&#39;,this)"> 华北三区</label><label class="ms-item" onclick="event.stopPropagation()"><input type="checkbox" value="华东大区" onchange="onMsChange(&#39;region&#39;,this)"> 华东大区</label><label class="ms-item" onclick="event.stopPropagation()"><input type="checkbox" value="中南大区" onchange="onMsChange(&#39;region&#39;,this)"> 中南大区</label></div></div>
@@ -287,29 +337,28 @@ function syncSpeedFilter(source){
 // ══════════════════════════════════════════════════════════
 // Tab 切换
 // ══════════════════════════════════════════════════════════
-var curTab='equity';
+var curTab='four';
 function switchTab(tab){
   curTab=tab;
   document.querySelectorAll('.tab-item').forEach(function(el){el.classList.toggle('active',el.dataset.tab===tab);});
   document.querySelectorAll('.panel').forEach(function(el){el.classList.toggle('active',el.id==='panel-'+tab);});
   if(tab==='rider')renderRider();
-  if(tab==='equity')renderStation('equity');
-  METRIC_CFG.clothing.rows = CLOTHING_ROWS;
-  if(tab==='rating'){ renderStation('rating'); updateClothingSummaryCard(); }
-  if(tab==='speed-site'){syncSpeedFilter('rider');renderSpeedSitePanel();}
-  if(tab==='speed-rider'){speedRiderPage=1;syncSpeedFilter('site');renderSpeedRiderPanel();}
+  if(tab==='four')renderFour();
   }
 
 // ══ hash 导航（供总工作台 iframe 锚点跳转用） ══
 (function(){
   var HASH_TAB_MAP = {
-    'equity': 'equity',
-    'rating': 'rating',
+    'four': 'four',
+    'four-site': 'four',
     'rider-detail': 'rider',
-    'clothing': 'rating',
-    'control': 'control',
-    'speed-site': 'speed-site',
-    'speed-rider': 'speed-rider'
+    'rider': 'rider',
+    'equity': 'four',
+    'rating': 'four',
+    'clothing': 'four',
+    'control': 'rider',
+    'speed-site': 'four',
+    'speed-rider': 'four'
   };
   function handleHash(){
     var h = (location.hash || '').replace('#','');
@@ -339,11 +388,12 @@ var METRIC_CFG={
     m2:{key:'reverse',  label:'里程逆行率', target:3, goodHigh:false, numLabel:'考核逆行里程', denLabel:'行驶里程'}
   }
 ,
-  clothing:{target:95,goodHigh:true}};
+  clothing:{target:95,goodHigh:true},
+  four:{rows:null,m1:{key:'helmet',label:'戴盔系带率',target:99,goodHigh:true,redAt:97},m2:{key:'speed',label:'路口超速率',target:2.58,goodHigh:false,redAt:4.21}}};
 
-var sfState={equity:{region:[],subregion:[],city:[],site:[],date:[]}, rating:{region:[],subregion:[],city:[],site:[],date:[]}};
-var stationFilter={equity:{}, rating:{}};
-var _lvShow={equity:{subregion:true,merchant:true,site:true}, rating:{subregion:true,merchant:true,site:true}};
+var sfState={equity:{region:[],subregion:[],city:[],site:[],date:[]}, rating:{region:[],subregion:[],city:[],site:[],date:[]}, four:{region:[],subregion:[],city:[],site:[],date:[]}};
+var stationFilter={equity:{}, rating:{}, four:{}};
+var _lvShow={equity:{subregion:true,merchant:true,site:true}, rating:{subregion:true,merchant:true,site:true}, four:{subregion:true,merchant:true,site:true}};
 
 function getSfVals(tab,key){return (sfState[tab]&&sfState[tab][key])||[];}
 
@@ -428,7 +478,7 @@ function applyFilter(tab){
     site: getSfVals(tab,'site'),
     date: getSfVals(tab,'date')
   };
-  renderStation(tab);
+  if(tab==='four')renderFour();else renderStation(tab);
   if(currentClothingView==='clothing') renderClothingTable();
   if(currentClothingView==='checkfail') renderCheckFailTable();
 }
@@ -441,7 +491,7 @@ function clearFilter(tab){
   });
   initStationFilters(tab);
   stationFilter[tab]={};
-  renderStation(tab);
+  if(tab==='four')renderFour();else renderStation(tab);
   if(currentClothingView==='clothing') renderClothingTable();
   if(currentClothingView==='checkfail') renderCheckFailTable();
 }
@@ -484,7 +534,7 @@ function toggleLvBtn(tab,lv){
   _lvShow[tab][lv]=!_lvShow[tab][lv];
   var btn=document.getElementById('lv-btn-'+tab+'-'+lv);
   if(btn)btn.classList.toggle('active',_lvShow[tab][lv]);
-  renderStation(tab);
+  if(tab==='four')renderFour();else renderStation(tab);
   if(currentClothingView==='clothing') renderClothingTable();
   if(currentClothingView==='checkfail') renderCheckFailTable();
 }
@@ -494,7 +544,7 @@ function resetLvBtns(tab){
     var btn=document.getElementById('lv-btn-'+tab+'-'+lv);
     if(btn)btn.classList.add('active');
   });
-  renderStation(tab);
+  if(tab==='four')renderFour();else renderStation(tab);
   if(currentClothingView==='clothing') renderClothingTable();
   if(currentClothingView==='checkfail') renderCheckFailTable();
 }
@@ -692,7 +742,7 @@ function exportTable(tab){
 }
 
 // ══════════════════════════════════════════════════════════
-// 骑手交通行为明细
+// 骑手交通安全行为四项看板
 // ══════════════════════════════════════════════════════════
 var riderPage=1;
 var RIDER_PAGE_SIZE=300;
@@ -818,13 +868,13 @@ function clearRiderFilter(){
   renderRider();
 }
 
-function frate(v,goodHigh,target){
+function frate(v,goodHigh,target,mid){
   if(v===null||v===undefined)return '-';
   if(typeof v==='object')v=v.rate;
   if(v===null||v===undefined||isNaN(v))return '-';
   var ok = goodHigh? (v>=target) : (v<=target);
-  var mid = goodHigh? (v>=target-5) : (v<=target+5);
-  var color= ok?'#2e7d32':mid?'#e65100':'#c62828';
+  var midB = goodHigh? (v>=(mid!==undefined?mid:target-5)) : (v<=(mid!==undefined?mid:target+5));
+  var color= ok?'#2e7d32':midB?'#e65100':'#c62828';
   return '<span style="font-weight:700;color:'+color+';">'+v.toFixed(2)+'%</span>';
 }
 
@@ -870,10 +920,44 @@ function riderCumRate(r,idx){
   return c?c.rate:null;
 }
 // rc: goodHigh=true 越高越好；否则越低越好
-function riderRateCls(v,goodHigh,target){
+function riderRateCls(v,goodHigh,target,mid){
   var ok=goodHigh?v>=target:v<=target;
-  var mid=goodHigh?v>=target-5:v<=target+5;
-  return ok?'rg':mid?'ry':'rr';
+  var midB=goodHigh?v>=(mid!==undefined?mid:target-5):v<=(mid!==undefined?mid:target+5);
+  return ok?'rg':midB?'ry':'rr';
+}
+
+// 骑手明细单行 HTML（渲染与导出共用，保证导出与看板完全一致）
+function riderRowHtml(r,dwin,drev){
+  function numTxt(v){return (v===null||v===undefined||isNaN(v))?'-':Math.round(v).toLocaleString();}
+  function cntTd(v){return '<td>'+numTxt(v)+'</td>';}
+  // 戴盔未系带/全盔无法判断/未戴盔未系带 三列：值>0 时醒目颜色
+  function cntWarn(v){var bad=(v!==null&&v!==undefined&&!isNaN(v)&&v>0);return '<td'+(bad?' class="warn-num"':'')+'>'+numTxt(v)+'</td>';}
+  function dTd(rd,key,i,goodHigh,target,mid){
+    var v=(rd&&rd[key])?rd[key][i]:null;
+    if(v===null||v===undefined)return '<td class="rn" title="'+dwin[i]+'">-</td>';
+    return '<td class="'+riderRateCls(v,goodHigh,target,mid)+'" title="'+dwin[i]+'">'+v.toFixed(2)+'%</td>';
+  }
+  var rd=riderDayArr(r);
+  function dl(key,gh,tg,md){return drev.map(function(i){return dTd(rd,key,i,gh,tg,md);}).join('');}
+  return '<tr>'+
+    '<td style="position:sticky;left:0;background:#fff;z-index:5;">'+(r.region||'-')+'</td>'+
+    '<td style="position:sticky;left:80px;background:#fff;z-index:5;">'+(r.subr||'-')+'</td>'+
+    '<td style="position:sticky;left:160px;background:#fff;z-index:5;">'+(r.city||'-')+'</td>'+
+    '<td style="position:sticky;left:230px;background:#fff;z-index:5;">'+(r.site||'-')+'</td>'+
+    '<td style="position:sticky;left:380px;background:#fff;z-index:5;text-align:center;">'+(r.rid||'-')+'</td>'+
+    '<td style="position:sticky;left:470px;background:#fff;z-index:5;">'+(r.rider||'-')+'</td>'+
+    '<td style="position:sticky;left:550px;background:#fff;z-index:5;font-weight:700;" class="sticky-last">'+(r.order_qty!==null&&r.order_qty!==undefined?Math.round(r.order_qty).toLocaleString():'-')+'</td>'+
+    cntWarn(rd&&rd.x?rd.x[0]:null)+
+    cntWarn(rd&&rd.x?rd.x[1]:null)+
+    cntWarn(rd&&rd.x?rd.x[2]:null)+
+    '<td>'+frate(riderCumRate(r,0),true,99,97)+'</td>'+dl('h',true,99,97)+
+    cntTd(r.speed_day?r.speed_day.num:null)+cntTd(r.speed_day?r.speed_day.den:null)+
+    '<td>'+frate(riderCumRate(r,1),false,2.58,4.21)+'</td>'+dl('s',false,2.58,4.21)+
+    cntTd(r.redlight_day?r.redlight_day.num:null)+cntTd(r.redlight_day?r.redlight_day.den:null)+
+    '<td>'+frate(riderCumRate(r,2),false,16.23,27.89)+'</td>'+dl('r',false,16.23,27.89)+
+    cntTd(r.reverse_day?r.reverse_day.num:null)+cntTd(r.reverse_day?r.reverse_day.den:null)+
+    '<td>'+frate(riderCumRate(r,3),false,2.45,4.6)+'</td>'+dl('v',false,2.45,4.6)+
+    '</tr>';
 }
 
 function renderRider(){
@@ -895,8 +979,8 @@ function renderRider(){
   var _oq=ORDER_QTY_DATE||_ld;
   var dwin=riderDailyWin();
   var nd=dwin.length;
-  // 展示顺序：最新日期在前
-  var drev=[];for(var _i=nd-1;_i>=0;_i--)drev.push(_i);
+  // 展示顺序：日期由小到大（索引 0..nd-1，数值按索引取，天然对齐）
+  var drev=[];for(var _i=0;_i<nd;_i++)drev.push(_i);
 
   // ── 两级分组表头 ──
   var thead=document.getElementById('rider-thead');
@@ -913,19 +997,19 @@ function renderRider(){
       indTh('eg-g1','识别全盔且系带<br>无法判断图像量','戴盔未系带次数-识别全盔且系带无法判断图像量')+
       indTh('eg-g1','未戴盔且未<br>系带图像量','戴盔未系带次数-未戴盔且未系带图像量')+
       indTh('eg-g1','戴盔系带率<br>（累计）')+
-      grpTh('eg-g1','戴盔系带率日维度数据','目标≥98%');
+      grpTh('eg-g1','戴盔系带率日维度数据','目标≥99%');
     var blk2=indTh('eg-g2',_ld+'<br>路口超速次数',_ld+' 路口超速次数')+
       indTh('eg-g2',_ld+'<br>骑手通过路口次数',_ld+' 骑手通过路口次数')+
       indTh('eg-g2','路口超速率<br>（累计）')+
-      grpTh('eg-g2','路口超速率日维度数据','目标≤1.8%');
+      grpTh('eg-g2','路口超速率日维度数据','目标≤2.58%');
     var blk3=indTh('eg-g3',_ld+'<br>闯红灯次数',_ld+' 闯红灯次数')+
       indTh('eg-g3',_ld+'<br>遇到红灯次数',_ld+' 遇到红灯次数')+
       indTh('eg-g3','闯红灯率<br>（累计）')+
-      grpTh('eg-g3','闯红灯率日维度数据','目标≤20%');
+      grpTh('eg-g3','闯红灯率日维度数据','目标≤16.23%');
     var blk4=indTh('eg-g4',_ld+'<br>考核逆行里程',_ld+' 考核逆行里程')+
       indTh('eg-g4',_ld+'<br>行驶里程',_ld+' 行驶里程')+
       indTh('eg-g4','里程逆行率<br>（累计）')+
-      grpTh('eg-g4','里程逆行率日维度数据','目标≤3%');
+      grpTh('eg-g4','里程逆行率日维度数据','目标≤2.45%');
     thead.innerHTML='<tr class="eg-grp">'+fixTh+blk1+blk2+blk3+blk4+
       '</tr><tr class="eg-sub">'+
       drev.map(function(i){return dTh('eg-g1',i);}).join('')+
@@ -935,38 +1019,8 @@ function renderRider(){
       '</tr>';
   }
 
-  // ── 表体 ──
-  function numTxt(v){return (v===null||v===undefined||isNaN(v))?'-':Math.round(v).toLocaleString();}
-  function cntTd(v){return '<td>'+numTxt(v)+'</td>';}
-  function dTd(rd,key,i,goodHigh,target){
-    var v=(rd&&rd[key])?rd[key][i]:null;
-    if(v===null||v===undefined)return '<td class="rn" title="'+dwin[i]+'">-</td>';
-    return '<td class="'+riderRateCls(v,goodHigh,target)+'" title="'+dwin[i]+'">'+v.toFixed(2)+'%</td>';
-  }
-
-  var html=pageRows.map(function(r){
-    var rd=riderDayArr(r);
-    function dl(key,gh,tg){return drev.map(function(i){return dTd(rd,key,i,gh,tg);}).join('');}
-    return '<tr>'+
-      '<td style="position:sticky;left:0;background:#fff;z-index:5;">'+(r.region||'-')+'</td>'+
-      '<td style="position:sticky;left:80px;background:#fff;z-index:5;">'+(r.subr||'-')+'</td>'+
-      '<td style="position:sticky;left:160px;background:#fff;z-index:5;">'+(r.city||'-')+'</td>'+
-      '<td style="position:sticky;left:230px;background:#fff;z-index:5;">'+(r.site||'-')+'</td>'+
-      '<td style="position:sticky;left:380px;background:#fff;z-index:5;text-align:center;">'+(r.rid||'-')+'</td>'+
-      '<td style="position:sticky;left:470px;background:#fff;z-index:5;">'+(r.rider||'-')+'</td>'+
-      '<td style="position:sticky;left:550px;background:#fff;z-index:5;font-weight:700;" class="sticky-last">'+(r.order_qty!==null&&r.order_qty!==undefined?Math.round(r.order_qty).toLocaleString():'-')+'</td>'+
-      cntTd(rd&&rd.x?rd.x[0]:null)+
-      cntTd(rd&&rd.x?rd.x[1]:null)+
-      cntTd(rd&&rd.x?rd.x[2]:null)+
-      '<td>'+frate(riderCumRate(r,0),true,98)+'</td>'+dl('h',true,98)+
-      cntTd(r.speed_day?r.speed_day.num:null)+cntTd(r.speed_day?r.speed_day.den:null)+
-      '<td>'+frate(riderCumRate(r,1),false,1.8)+'</td>'+dl('s',false,1.8)+
-      cntTd(r.redlight_day?r.redlight_day.num:null)+cntTd(r.redlight_day?r.redlight_day.den:null)+
-      '<td>'+frate(riderCumRate(r,2),false,20)+'</td>'+dl('r',false,20)+
-      cntTd(r.reverse_day?r.reverse_day.num:null)+cntTd(r.reverse_day?r.reverse_day.den:null)+
-      '<td>'+frate(riderCumRate(r,3),false,3)+'</td>'+dl('v',false,3)+
-      '</tr>';
-  }).join('');
+  // ── 表体（与导出共用同一渲染函数） ──
+  var html=pageRows.map(function(r){return riderRowHtml(r,dwin,drev);}).join('');
 
   var tbody=document.getElementById('rider-tbody');
   var colCnt=20+4*nd;
@@ -1003,65 +1057,63 @@ function renderPagination(totalPages,totalRows){
 function goPage(p){riderPage=p;renderRider();}
 
 function exportRiderTable(){
-  var rows=filteredRiders;
-  var _ld=LATEST_DATE||'昨日';
-  var _oq=ORDER_QTY_DATE||_ld;
+  var table=document.getElementById('rider-table');
+  if(!table)return;
   var dwin=riderDailyWin();
-  // 与 renderRider 一致：drev 为索引数组（最新日期在前）
-  var drev=[];for(var _i=dwin.length-1;_i>=0;_i--)drev.push(_i);
-  var dDates=drev.map(function(i){return dwin[i];});
-  var ymd=riderYmd;
-  var header=['大区','区域','城市','站点名称','骑手','骑手名称',
-    _oq+'配送完成单',_ld+'戴盔未系带次数',_ld+'识别全盔且系带无法判断图像量',_ld+'未戴盔且未系带图像量','戴盔系带率（累计）']
-    .concat(dDates.map(ymd))
-    .concat([_ld+'路口超速次数',_ld+'骑手通过路口次数','路口超速率（累计）']).concat(dDates.map(ymd))
-    .concat([_ld+'闯红灯次数',_ld+'遇到红灯次数','闯红灯率（累计）']).concat(dDates.map(ymd))
-    .concat([_ld+'考核逆行里程',_ld+'行驶里程','里程逆行率（累计）']).concat(dDates.map(ymd));
-  function rateTxt(v){return (v===null||v===undefined||isNaN(v))?'-':v.toFixed(2)+'%';}
-  function rateColor(v,goodHigh,target){
-    if(v===null||v===undefined||isNaN(v))return '';
-    var ok = goodHigh? (v>=target) : (v<=target);
-    var mid = goodHigh? (v>=target-5) : (v<=target+5);
-    return ok?'#2e7d32':mid?'#e65100':'#c62828';
-  }
-  function pctTd(v,goodHigh,target){
-    var txt=rateTxt(v);
-    return '<td style="background-color:'+rateColor(v,goodHigh,target)+';">'+txt+'</td>';
-  }
-  function numTxt(v){return (v===null||v===undefined||isNaN(v))?'-':Math.round(v);}
-  function dArr(rd,key){return (rd&&rd[key])?rd[key]:[];}
-  var html='<html><head><meta charset="UTF-8"></head><body><table border="1"><tr>'+header.map(function(h){return '<th>'+h+'</th>';}).join('')+'</tr>';
-  rows.forEach(function(r){
-    var rd=riderDayArr(r);
-    var x=(rd&&rd.x)||[];
-    var dh=dArr(rd,'h'),ds=dArr(rd,'s'),dr=dArr(rd,'r'),dv=dArr(rd,'v');
-    function dayTd(arr,i,gh,tg){var v=arr.length?arr[i]:null;return pctTd(v,gh,tg);}
-    html+='<tr>'+
-      '<td>'+(r.region||'-')+'</td><td>'+(r.subr||'-')+'</td><td>'+(r.city||'-')+'</td><td>'+(r.site||'-')+'</td>'+
-      '<td>'+(r.rid||'-')+'</td><td>'+(r.rider||'-')+'</td>'+
-      '<td>'+(r.order_qty!==null&&r.order_qty!==undefined?Math.round(r.order_qty):'-')+'</td>'+
-      '<td>'+numTxt(x[0])+'</td><td>'+numTxt(x[1])+'</td><td>'+numTxt(x[2])+'</td>'+
-      pctTd(riderCumRate(r,0),true,98)+
-      drev.map(function(i){return dayTd(dh,i,true,98);}).join('')+
-      '<td>'+numTxt(r.speed_day?r.speed_day.num:null)+'</td><td>'+numTxt(r.speed_day?r.speed_day.den:null)+'</td>'+
-      pctTd(riderCumRate(r,1),false,1.8)+
-      drev.map(function(i){return dayTd(ds,i,false,1.8);}).join('')+
-      '<td>'+numTxt(r.redlight_day?r.redlight_day.num:null)+'</td><td>'+numTxt(r.redlight_day?r.redlight_day.den:null)+'</td>'+
-      pctTd(riderCumRate(r,2),false,20)+
-      drev.map(function(i){return dayTd(dr,i,false,20);}).join('')+
-      '<td>'+numTxt(r.reverse_day?r.reverse_day.num:null)+'</td><td>'+numTxt(r.reverse_day?r.reverse_day.den:null)+'</td>'+
-      pctTd(riderCumRate(r,3),false,3)+
-      drev.map(function(i){return dayTd(dv,i,false,3);}).join('')+
-      '</tr>';
+  var nd=dwin.length;
+  var drev=[];for(var _i=0;_i<nd;_i++)drev.push(_i); // 与看板一致：日期由小到大
+
+  // 表头：直接克隆看板真实表头（含两级分组），去掉 Excel 不认的粘性定位，
+  // 并把分组配色写成内联样式（Excel 的 CSS 解析不支持 !important，类样式会丢背景导致白字隐形）
+  var EG_COLOR={ 'eg-g1':'#00695c', 'eg-g2':'#4527a0', 'eg-g3':'#ad1457', 'eg-g4':'#e65100' };
+  var theadClone=table.querySelector('thead').cloneNode(true);
+  theadClone.querySelectorAll('th').forEach(function(th){
+    var st=th.getAttribute('style')||'';
+    st=st.replace(/position\s*:\s*sticky;?/gi,'').replace(/left\s*:\s*\d+px;?/gi,'').replace(/z-index\s*:\s*\d+;?/gi,'').replace(/top\s*:\s*[\d.]+px;?/gi,'');
+    var cls=' '+(th.getAttribute('class')||'')+' ';
+    var bg='';
+    Object.keys(EG_COLOR).forEach(function(g){ if(cls.indexOf(' '+g+' ')>=0)bg=EG_COLOR[g]; });
+    st+=';background:'+(bg||'#0B4F8A')+';color:#FFFFFF;';
+    th.setAttribute('style',st);
   });
-  html+='</table></body></html>';
-  var blob=new Blob([html],{type:'application/vnd.ms-excel;charset=utf-8'});
+
+  // 列宽：隐藏定宽行（当前页首行实际列宽 ×1.3，最小 90px）
+  var firstRow=table.querySelector('tbody tr');
+  var ws=[];
+  if(firstRow)firstRow.querySelectorAll('td').forEach(function(td){ws.push(Math.max(Math.round(td.offsetWidth*1.6),110));});
+  var hiddenRow=ws.length?('<tr style="display:none;height:0;">'+ws.map(function(w){return '<td width="'+w+'"></td>';}).join('')+'</tr>'):'';
+
+  // 表体：导出全部筛选结果（不只当前页），行模板与看板共用同一个函数
+  var bodyHtml=filteredRiders.map(function(r){return riderRowHtml(r,dwin,drev);}).join('')
+    .replace(/position:sticky;/g,'')
+    .replace(/z-index:\d+;/g,'');
+
+  var css='<style>'+
+    'table{border-collapse:collapse;font-family:"Microsoft YaHei",Arial,sans-serif;}'+
+    'th,td{border:.5pt solid #C9D8E8;padding:2px 4px;font-size:10pt;white-space:nowrap;vertical-align:middle;}'+
+    'th{background:#0B4F8A;color:#FFFFFF;font-weight:600;text-align:center;}'+
+    'td{text-align:center;}'+
+    '.rg{background:#e8f5e9;color:#2e7d32;font-weight:600;}'+
+    '.ry{background:#fff3e0;color:#e65100;font-weight:600;}'+
+    '.rr{background:#ffebee;color:#c62828;font-weight:600;}'+
+    '.rn{color:#90a4ae;}'+
+    '.warn-num{color:#d32f2f;font-weight:bold;}'+
+    '.eg-g1{background:#00695c!important;color:#fff;}'+
+    '.eg-g2{background:#4527a0!important;color:#fff;}'+
+    '.eg-g3{background:#ad1457!important;color:#fff;}'+
+    '.eg-g4{background:#e65100!important;color:#fff;}'+
+    '</style>';
+
+  var out='<table cellspacing="0">'+theadClone.innerHTML+hiddenRow+'<tbody>'+bodyHtml+'</tbody></table>';
+  var html='<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="UTF-8">'+css+
+    '<!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>骑手明细</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->'+
+    '</head><body>'+out+'<\/body><\/html>';
+  var blob=new Blob(['\ufeff'+html],{type:'application/vnd.ms-excel;charset=utf-8'});
   var a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
-  a.download='骑手交通行为明细_'+new Date().toLocaleDateString('zh-CN').replace(/\//g,'-')+'.xls';
+  a.download='骑手交通安全行为四项看板-骑手明细_'+new Date().toLocaleDateString('zh-CN').replace(/\//g,'-')+'.xls';
   a.click();
 }
-
 // ══════════════════════════════════════════════════════════
 // 骑手服装标准化率
 // ══════════════════════════════════════════════════════════
@@ -1623,7 +1675,7 @@ window.onload=function(){
   var dr=document.getElementById('dataRange');
   if(dr)dr.textContent='数据范围: '+(realDates[0]||'')+' ~ '+(realDates[realDates.length-1]||'');
 
-  switchTab('rider');
+  switchTab('four');
 };
 
 
@@ -1643,6 +1695,8 @@ function captureScreenshot(panelId) {
     } else {
       targetEl = document.querySelector('#panel-rating .table-wrap-station');
     }
+  } else if (panelId === 'four') {
+    targetEl = document.querySelector('#panel-four .table-wrap-station');
   } else if (panelId === 'rider') {
     targetEl = document.querySelector('#panel-rider .table-wrap-rider');
   } else if (panelId === 'equity') {
@@ -1659,11 +1713,20 @@ function captureScreenshot(panelId) {
 
   if (!targetEl) { alert('未找到截图目标元素'); return; }
 
-  // Clone target
-  var clone = targetEl.cloneNode(true);
+  // Clone target（four/rider 面板：连带页头标题栏+目标栏+汇总卡片一起截）
+  var clone;
+  if (panelId === 'four' || panelId === 'rider') {
+    clone = document.createElement('div');
+    var hdrEl = document.querySelector('body > .header');
+    if (hdrEl) clone.appendChild(hdrEl.cloneNode(true));
+    var panelEl = document.getElementById('panel-' + panelId);
+    if (panelEl) clone.appendChild(panelEl.cloneNode(true));
+  } else {
+    clone = targetEl.cloneNode(true);
+  }
 
-  // Fix sticky cells → static (both inline and CSS-class origin)
-  clone.querySelectorAll('th').forEach(function(el) { el.style.position = 'static'; });
+  // Fix sticky cells → static（表头+固定列统一处理：th/td 全量改 static，覆盖 CSS 类 sticky-col 与内联 sticky）
+  clone.querySelectorAll('th,td').forEach(function(el) { el.style.position = 'static'; });
   var stickyEls = clone.querySelectorAll('[style*="position:sticky"], [style*="position: sticky"]');
   stickyEls.forEach(function(el) { el.style.position = 'static'; });
 
@@ -1683,6 +1746,15 @@ function captureScreenshot(panelId) {
   clone.style.visibility = 'visible';
   clone.style.opacity = '1';
   clone.style.backgroundColor = '#ffffff';
+
+  // 展开内部表格滚动容器（否则行数被 max-height 裁剪）
+  if (panelId === 'four' || panelId === 'rider') {
+    clone.querySelectorAll('.table-wrap, .table-wrap-station, .table-wrap-rider').forEach(function(w) {
+      w.style.maxHeight = 'none';
+      w.style.overflow = 'visible';
+      w.style.height = 'auto';
+    });
+  }
 
   document.body.appendChild(clone);
 
@@ -1704,7 +1776,7 @@ function captureScreenshot(panelId) {
       String(now.getHours()).padStart(2, '0') +
       String(now.getMinutes()).padStart(2, '0') +
       String(now.getSeconds()).padStart(2, '0');
-    var names = { equity: '安全权益看板', rating: '站长安全评级看板', rider: '骑手交通行为明细', control: '中西管控名单' };
+    var names = { equity: '安全权益看板', rating: '站长安全评级看板', rider: '骑手交通安全行为四项看板', control: '中西管控名单' };
     var label = names[panelId] || panelId;
     var link = document.createElement('a');
     link.download = label + '_' + ts + '.png';
@@ -2541,6 +2613,292 @@ function exportTableSpeedRider(){
   exportToExcel(data,'高速监控看板-骑手');
 }
 
+// ══════════════════════════════════════════════════════════
+// 骑手交通四项-站
+// 排版同安全权益看板站维度（两级分组表头+固定列+周/日维度+趋势）
+// 戴盔系带率/路口超速率 ←→ 安全权益看板；闯红灯率/里程逆行率 ←→ 站长安全评级看板
+// 数据同源：data.js 的 TAB1_ROWS（num/den 重算，两个源看板亦然）
+// ══════════════════════════════════════════════════════════
+var FOUR_METRICS=[
+  {key:'helmet',label:'戴盔系带率',target:99,goodHigh:true,redAt:97,gMain:'eg-g1',gDay:'eg-g2',score:scoreHelmet,line:'#1E88E5'},
+  {key:'speed',label:'路口超速率',target:2.58,goodHigh:false,redAt:4.21,gMain:'eg-g3',gDay:'eg-g4',score:scoreSpeed,line:'#00ACC1'},
+  {key:'redlight',label:'闯红灯率',target:16.23,goodHigh:false,redAt:27.89,gMain:'eg-g5',gDay:'eg-g6',score:scoreRedlight,line:'#C62828'},
+  {key:'reverse',label:'里程逆行率',target:2.45,goodHigh:false,redAt:4.6,gMain:'eg-g7',gDay:'eg-g8',score:scoreReverse,line:'#8D6E63'}
+];
+var EG_CN=['一','二','三','四','五','六'];
+function egPad(n){return (n<10?'0':'')+n;}
+function egYearOf(mm){
+  var y=new Date().getFullYear();
+  var cm=new Date().getMonth()+1;
+  if(mm-cm>6)y--; else if(cm-mm>6)y++;
+  return y;
+}
+function buildMonthWeeks(ascDates){
+  if(!ascDates.length)return [];
+  var mm=parseInt(ascDates[ascDates.length-1].slice(0,2),10);
+  var y=egYearOf(mm);
+  var lastDay=new Date(y,mm,0).getDate();
+  var dow=new Date(y,mm-1,1).getDay();
+  var w1end=1+((7-dow)%7);
+  var bounds=[[1,Math.min(w1end,lastDay)]];
+  var s=w1end+1;
+  while(s<=lastDay){bounds.push([s,Math.min(s+6,lastDay)]);s+=7;}
+  var weeks=[];
+  bounds.forEach(function(b,i){
+    var days=ascDates.filter(function(d){
+      return parseInt(d.slice(0,2),10)===mm&&parseInt(d.slice(3,5),10)>=b[0]&&parseInt(d.slice(3,5),10)<=b[1];
+    });
+    if(!days.length)return;
+    weeks.push({label:'第'+(EG_CN[i]||i+1)+'周',range:egPad(mm)+'-'+egPad(b[0])+'~'+egPad(mm)+'-'+egPad(b[1]),days:days});
+  });
+  return weeks;
+}
+function weekAvgOf(r,key,w){
+  var vals=[];
+  w.days.forEach(function(d){
+    var v=r[key+'_daily']?r[key+'_daily'][d]:null;
+    if(v!==null&&v!==undefined&&!isNaN(v))vals.push(v);
+  });
+  if(!vals.length)return null;
+  var sum=0;vals.forEach(function(v){sum+=v;});
+  return Math.round(sum/vals.length*100)/100;
+}
+var SPARK_URI={};
+function sparkline(vals,color){
+  var pts=[];
+  (vals||[]).forEach(function(v,i){if(v!==null&&v!==undefined&&!isNaN(v))pts.push([i,v]);});
+  if(!pts.length)return '<td class="rn">-</td>';
+  var W=88,H=26,pad=3;
+  var idxs=pts.map(function(p){return p[0];});
+  var vs=pts.map(function(p){return p[1];});
+  var minI=Math.min.apply(null,idxs),maxI=Math.max.apply(null,idxs);
+  var minV=Math.min.apply(null,vs),maxV=Math.max.apply(null,vs);
+  var coords=pts.map(function(p){
+    var x=(maxI===minI)?W/2:pad+(p[0]-minI)/(maxI-minI)*(W-2*pad);
+    var y=(maxV===minV)?H/2:H-pad-((p[1]-minV)/((maxV-minV)||1))*(H-2*pad);
+    return [Math.round(x*10)/10,Math.round(y*10)/10];
+  });
+  var tip=vs.map(function(v){return v.toFixed(2)+'%';}).join(' → ');
+  var key=color+'|'+tip;
+  var uri=SPARK_URI[key];
+  if(!uri){
+    var lastC=coords[coords.length-1];
+    var s='<svg xmlns="http://www.w3.org/2000/svg" width="'+W+'" height="'+H+'">';
+    s+='<line x1="'+pad+'" y1="'+(H-pad)+'" x2="'+(W-pad)+'" y2="'+(H-pad)+'" stroke="#E3EDF7" stroke-width="1"/>';
+    if(coords.length>1)s+='<polyline points="'+coords.map(function(c){return c.join(',');}).join(' ')+'" fill="none" stroke="'+color+'" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>';
+    s+='<circle cx="'+lastC[0]+'" cy="'+lastC[1]+'" r="2.3" fill="'+color+'"/>';
+    s+='</svg>';
+    uri='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(s);
+    SPARK_URI[key]=uri;
+  }
+  return '<td class="spark-td" title="'+tip+'"><img class="spark-img" src="'+uri+'" width="'+W+'" height="'+H+'" alt="" draggable="false"></td>';
+}
+function fourTotalScore(r){
+  var s=0,any=false;
+  FOUR_METRICS.forEach(function(m){
+    var v=r?m.score(r[m.key+'_rate']):null;
+    if(v!==null&&v!==undefined&&!isNaN(v)){s+=v;any=true;}
+  });
+  return any?s:null;
+}
+function buildFourRows(){
+  // TAB1_ROWS（安全权益：戴盔系带/路口超速）+ TAB2_ROWS（站长评级：闯红灯/里程逆行）按 层级+名称 合并
+  if(METRIC_CFG.four.rows)return METRIC_CFG.four.rows;
+  var map={};
+  (typeof TAB2_ROWS!=='undefined'?TAB2_ROWS:[]).forEach(function(r){map[r.level+'|'+(r.name||'')+'|'+(r.city||'')]=r;});
+  var RK=['redlight_num','redlight_den','redlight_rate','redlight_daily','reverse_num','reverse_den','reverse_rate','reverse_daily'];
+  METRIC_CFG.four.rows=(TAB1_ROWS||[]).map(function(r){
+    var m=map[r.level+'|'+(r.name||'')+'|'+(r.city||'')];
+    if(m)RK.forEach(function(k){if(m[k]!==undefined)r[k]=m[k];});
+    return r;
+  });
+  return METRIC_CFG.four.rows;
+}
+function renderFour(){
+  buildFourRows();
+  if(!renderFour._init){initStationFilters('four');renderFour._init=true;}
+  var rows=getFilteredRows('four');
+  var regionRank={};
+  REGION_ORDER.forEach(function(reg,i){regionRank[reg]=i;});
+  rows.sort(function(a,b){
+    if(a.level==='total')return -1;
+    if(b.level==='total')return 1;
+    var ra=regionRank[a.region]!==undefined?regionRank[a.region]:99;
+    var rb=regionRank[b.region]!==undefined?regionRank[b.region]:99;
+    return ra-rb;
+  });
+  var selDate=(stationFilter.four||{}).date||[];
+  var allDates=DATES.filter(function(d){return d&&d.length===5;}).sort(function(a,b){return b>a?1:b<a?-1:0;});
+  var dispDates=(selDate&&selDate.length)?selDate.slice().sort(function(a,b){return b>a?1:b<a?-1:0;}):allDates;
+
+  renderFourSummary(rows);
+
+  var stickyWidths=[80,80,220];
+  var stickyLefts=[];var acc=0;
+  for(var si=0;si<stickyWidths.length;si++){stickyLefts.push(acc);acc+=stickyWidths[si];}
+  function sth(i,extra){
+    var isLast=(i===stickyWidths.length-1);
+    return 'style="min-width:'+stickyWidths[i]+'px;left:'+stickyLefts[i]+'px'+(extra?';'+extra:'')+'" class="sticky-col'+(isLast?' sticky-last':'')+'"';
+  }
+  function stdc(i,extraStyle){
+    var isLast=(i===stickyWidths.length-1);
+    return 'class="sticky-col'+(isLast?' sticky-last':'')+'" style="left:'+stickyLefts[i]+'px'+(extraStyle?';'+extraStyle:'')+'"';
+  }
+  var ascAll=dispDates.slice().sort(function(a,b){return a>b?1:a<b?-1:0;});
+  var egDays=((selDate&&selDate.length)?ascAll:ascAll.slice(-7)).slice(); // 日期由小到大
+  var egWeeks=buildMonthWeeks(ascAll);
+  var grpName=function(label){return label.replace(/率$/,'');};
+  var nw=Math.max(egWeeks.length,1), nd=Math.max(egDays.length,1);
+
+  var grpHead='',subHead='';
+  FOUR_METRICS.forEach(function(m){
+    grpHead+='<th class="'+m.gMain+'" colspan="1">'+m.label+' <small>'+(m.goodHigh?'目标≥':'目标≤')+m.target+'%</small></th>'+
+      '<th class="'+m.gMain+'" colspan="'+(nw+1)+'">'+grpName(m.label)+'周维度数据</th>'+
+      '<th class="'+m.gDay+'" colspan="'+(nd+1)+'">'+grpName(m.label)+'日维度数据</th>';
+    subHead+='<th class="'+m.gMain+'">月累计</th>';
+    egWeeks.forEach(function(w){subHead+='<th class="'+m.gMain+'" title="日期范围 '+w.range+'">'+w.label+'<br><small>'+w.range+'</small></th>';});
+    if(!egWeeks.length)subHead+='<th class="'+m.gMain+'">-</th>';
+    subHead+='<th class="'+m.gMain+'">趋势</th>';
+    egDays.forEach(function(d){subHead+='<th class="'+m.gDay+'">'+d+'</th>';});
+    if(!egDays.length)subHead+='<th class="'+m.gDay+'">-</th>';
+    subHead+='<th class="'+m.gDay+'">趋势</th>';
+  });
+  var theadEl=document.getElementById('four-thead');
+  if(theadEl)theadEl.innerHTML='<tr class="eg-grp">'+
+    '<th '+sth(0)+' rowspan="2">大区</th>'+
+    '<th '+sth(1)+' rowspan="2">区域</th>'+
+    '<th '+sth(2,'text-align:center')+' rowspan="2">名称</th>'+
+    grpHead+'</tr><tr class="eg-sub">'+subHead+'</tr>';
+
+  var html='';var siteCnt=0;
+  rows.forEach(function(r){
+    var lv=r.level;if(lv==='site')siteCnt++;
+    var indent=lv==='merchant'?'&nbsp;&nbsp;└ ':lv==='site'?'&nbsp;&nbsp;&nbsp;&nbsp;· ':'';
+    var dayAsc=egDays.slice(); // 与表头日期顺序一致（小→大）
+    var bodyCells='';
+    FOUR_METRICS.forEach(function(m){
+      var wkVals=egWeeks.map(function(w){return weekAvgOf(r,m.key,w);});
+      var dayVals=dayAsc.map(function(d){return (r[m.key+'_daily']&&r[m.key+'_daily'][d]!==undefined)?r[m.key+'_daily'][d]:null;});
+      var wkCells=egWeeks.map(function(w,i){var v=wkVals[i];return '<td class="'+rc(v,m.target,m.goodHigh,m.redAt)+'"'+(v!==null?' title="'+w.range+' 均值（'+w.days.length+'天）"':'')+'>'+fr(v)+'</td>';}).join('');
+      if(!egWeeks.length)wkCells='<td class="rn">-</td>';
+      var ddCells=egDays.map(function(d){var v=(r[m.key+'_daily']&&r[m.key+'_daily'][d]!==undefined)?r[m.key+'_daily'][d]:null;return '<td class="'+rc(v,m.target,m.goodHigh,m.redAt)+'">'+fr(v)+'</td>';}).join('');
+      if(!egDays.length)ddCells='<td class="rn">-</td>';
+      bodyCells+='<td class="'+rc(r[m.key+'_rate'],m.target,m.goodHigh,m.redAt)+'" style="min-width:90px">'+fr(r[m.key+'_rate'])+'</td>'+
+        wkCells+sparkline(wkVals,m.line)+ddCells+sparkline(dayVals,m.line);
+    });
+    html+='<tr class="lv-'+lv+'">'+
+      '<td '+stdc(0)+'>'+(r.region||'')+'</td>'+
+      '<td '+stdc(1)+'>'+(r.subregion||'')+'</td>'+
+      '<td '+stdc(2,'text-align:left;max-width:220px;overflow:hidden;text-overflow:ellipsis')+'>'+indent+(r.name||'')+'</td>'+
+      bodyCells+'</tr>';
+  });
+  var tbodyEl=document.getElementById('four-tbody');
+  if(tbodyEl)tbodyEl.innerHTML=html||'<tr><td colspan="40" style="text-align:center;padding:24px;color:#546e7a">暂无数据</td></tr>';
+  var cnt=document.getElementById('filter-count-four');
+  if(cnt)cnt.textContent='共 '+rows.length+' 行（站点 '+siteCnt+' 个）';
+}
+function renderFourSummary(rows){
+  var el=document.getElementById('summary-cards-four');
+  if(!el)return;
+  var totalRow=rows.find(function(r){return r.level==='total';});
+  var siteRows=rows.filter(function(r){return r.level==='site';});
+  var subRows=rows.filter(function(r){return r.level==='subregion';});
+  var merchantRows=rows.filter(function(r){return r.level==='merchant';});
+  var regionCnt=[...new Set(subRows.map(function(r){return r.region;}))].filter(Boolean).length;
+  function cc(v,t,goodHigh,bd){
+    if(v===null||v===undefined)return '';
+    if(goodHigh)return v>=t?'green':v>=(bd!==undefined?bd:t-5)?'yellow':'red';
+    return v<=t?'green':v<=(bd!==undefined?bd:t+5)?'yellow':'red';
+  }
+  var html='<div class="card"><div class="c-label">监控站点</div><div class="c-value">'+siteRows.length+' <span style="font-size:16px;color:#4F6E87">个</span></div><div class="c-sub">大区 '+regionCnt+' · 区域 '+subRows.length+' · 城市 '+merchantRows.length+'</div></div>';
+  FOUR_METRICS.forEach(function(m){
+    var v=totalRow?totalRow[m.key+'_rate']:null;
+    var pass=siteRows.filter(function(r){var x=r[m.key+'_rate'];if(x===null||x===undefined)return false;return m.goodHigh?x>=m.target:x<=m.target;}).length;
+    html+='<div class="card '+cc(v,m.target,m.goodHigh,m.redAt)+'"><div class="c-label">'+m.label+'（累计）</div><div class="c-value">'+(v!==null&&v!==undefined?v.toFixed(2)+'%':'-')+'</div><div class="c-sub">'+(m.goodHigh?'目标 ≥ ':'目标 ≤ ')+m.target+'% · 达标 '+pass+'/'+siteRows.length+'（未达标 '+(siteRows.length-pass)+'）</div></div>';
+  });
+  var regionHtml='<div class="region-cards-row">';
+  REGION_ORDER.forEach(function(rname){
+    var rRows=(METRIC_CFG.four.rows||[]).filter(function(r){return r.level==='subregion'&&r.region===rname;});
+    var blocks='';
+    FOUR_METRICS.forEach(function(m){
+      var n=0,d=0;
+      rRows.forEach(function(r){n+=(r[m.key+'_num']||0);d+=(r[m.key+'_den']||0);});
+      var v=d>0?Math.round(n/d*10000)/100:null;
+      var c=v===null?'#0B4F8A':(m.goodHigh?(v>=m.target?'#2e7d32':v>=(m.redAt!==undefined?m.redAt:m.target-5)?'#e65100':'#c62828'):(v<=m.target?'#2e7d32':v<=(m.redAt!==undefined?m.redAt:m.target+5)?'#e65100':'#c62828'));
+      blocks+='<div style="width:1px;height:22px;background:#10324F;"></div><div><div style="font-size:10px;color:#90a4ae;margin-bottom:1px;">'+m.label+'</div><div class="c-value" style="font-size:15px;color:'+c+';">'+(v!==null?v.toFixed(2)+'%':'-')+'</div></div>';
+    });
+    regionHtml+='<div class="card region-card" data-region="'+rname+'"><div class="c-label" style="font-weight:700;color:#0B4F8A;margin-bottom:2px;">'+rname+'</div><div style="display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;">'+blocks+'</div></div>';
+  });
+  regionHtml+='</div>';
+  el.innerHTML=html+regionHtml;
+}
+function _rgb2hex(c){
+  var m=String(c||'').match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+  if(!m)return '';
+  if(m[4]!==undefined&&parseFloat(m[4])===0)return '';
+  function h(n){var s=parseInt(n,10).toString(16);return s.length<2?'0'+s:s;}
+  return '#'+h(m[1])+h(m[2])+h(m[3]);
+}
+function exportFour(){
+  var table=document.getElementById('four-table');
+  if(!table)return;
+  var clone=table.cloneNode(true);
+  // 趋势 sparkline：svg img → canvas 转 PNG data-uri（Excel 不认 svg，认 png）
+  clone.querySelectorAll('img.spark-img').forEach(function(im){
+    try{
+      var w=im.width||88,h2=im.height||26;
+      var cv=document.createElement('canvas');cv.width=w*2;cv.height=h2*2;
+      var cx=cv.getContext('2d');cx.scale(2,2);cx.drawImage(im,0,0,w,h2);
+      im.src=cv.toDataURL('image/png');
+    }catch(e){}
+  });
+  // 逐格内联计算样式（背景/文字色/加粗/对齐），Excel 打开即所见即所得
+  var srcCells=table.querySelectorAll('th,td');
+  var dstCells=clone.querySelectorAll('th,td');
+  for(var i=0;i<dstCells.length;i++){
+    var s=srcCells[i],d=dstCells[i];
+    if(!s)break;
+    var cs=getComputedStyle(s);
+    var bg=_rgb2hex(cs.backgroundColor);
+    if(!bg){var p=s.parentElement;while(p&&p!==table){bg=_rgb2hex(getComputedStyle(p).backgroundColor);if(bg)break;p=p.parentElement;}}
+    var fg=_rgb2hex(cs.color);
+    var st='border:.5pt solid #C9D8E8;vertical-align:middle;font-size:10pt;white-space:nowrap;';
+    if(bg)st+='background:'+bg+';';
+    if(fg)st+='color:'+fg+';';
+    var fw=cs.fontWeight;
+    if(fw==='700'||fw==='bold'||parseInt(fw,10)>=600)st+='font-weight:bold;';
+    if(cs.textAlign&&cs.textAlign!=='start')st+='text-align:'+cs.textAlign+';';
+    d.removeAttribute('style');
+    d.setAttribute('style',st);
+    d.removeAttribute('class');
+  }
+  // 列宽：Excel 无法从合并表头推算列宽 → 注入一行隐藏定宽行（display:none）作为表格首行
+  var firstRow=table.querySelector('tbody tr');
+  if(firstRow){
+    var ws=[];
+    firstRow.querySelectorAll('td').forEach(function(td){ws.push(Math.max(Math.round(td.offsetWidth*1.3),90));});
+    if(ws.length){
+      var hr=document.createElement('tr');
+      hr.setAttribute('style','display:none;height:0;');
+      ws.forEach(function(w){
+        var td=document.createElement('td');
+        td.setAttribute('width',w);
+        hr.appendChild(td);
+      });
+      var theadEl=clone.querySelector('thead');
+      if(theadEl)theadEl.insertBefore(hr,theadEl.firstChild);
+    }
+  }
+  clone.setAttribute('cellspacing','0');
+  clone.setAttribute('style','border-collapse:collapse;font-family:Microsoft YaHei,Arial,sans-serif;');
+  var html='<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="UTF-8"><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>交通四项-站</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body>'+clone.outerHTML+'<\/body><\/html>';
+  var blob=new Blob(['\ufeff'+html],{type:'application/vnd.ms-excel;charset=utf-8'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='骑手交通安全行为四项看板-站维度_'+new Date().toLocaleDateString('zh-CN').replace(/\//g,'-')+'.xls';
+  a.click();
+}
+
 </script>
 
 
@@ -2556,8 +2914,41 @@ function exportTableSpeedRider(){
 
 <script>
 document.addEventListener('DOMContentLoaded',function(){
-  var el=document.getElementById('panel-rider');
+  var el=document.getElementById('panel-four');
   if(el)el.classList.add('active');
 });
+</script>
+<script>
+/* 四项-站两级吸顶表头：动态计算粘性顶栏高度 -> --hdfix（同安全权益看板） */
+(function(){
+  var raf=0;
+  function pgfix(){
+    raf=0;
+    var bar=null;
+    var els=document.querySelectorAll('.header,.tab-bar');
+    for(var i=0;i<els.length;i++){
+      var el=els[i];
+      if(el.offsetHeight>0&&getComputedStyle(el).position==='sticky'){bar=el;break;}
+    }
+    var d=0;
+    if(bar){
+      var b=bar.getBoundingClientRect().bottom;
+      var ws=document.querySelectorAll('.table-wrap');
+      for(var j=0;j<ws.length;j++){
+        var w=ws[j];
+        if(w.clientHeight>0){
+          var t=w.getBoundingClientRect().top;
+          if(b-t>d)d=b-t;
+        }
+      }
+    }
+    var rs=document.documentElement.style;
+    if(d>0.5)rs.setProperty('--hdfix',d.toFixed(1)+'px');else rs.removeProperty('--hdfix');
+  }
+  function onS(){if(!raf)raf=requestAnimationFrame(pgfix);}
+  window.addEventListener('scroll',onS,{passive:true});
+  window.addEventListener('resize',onS);
+  pgfix();
+})();
 </script>
 </body></html>

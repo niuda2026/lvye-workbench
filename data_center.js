@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-07 17:11:10",
+  "updated_at": "2026-09-08 07:05:37",
   "groups": [
     {
       "title": "交通安全",
@@ -7,7 +7,7 @@ window.DATA_CENTER = {
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-07 08:02:27",
+        "data_mtime": "2026-09-08 07:05:36",
         "all_synced": false,
         "synced_count": 11,
         "missing_count": 2,
@@ -63,14 +63,14 @@ window.DATA_CENTER = {
           },
           {
             "type": "安全指标监控(骑手)",
-            "latest": "安全指标监控_骑手维度_20260906-20260906(日期)_1788733288892.xlsx",
-            "mtime": "2026-09-07 06:21:33",
+            "latest": "安全指标监控_骑手维度_20260907-20260907(日期)_1788822214764.xlsx",
+            "mtime": "2026-09-08 07:03:39",
             "synced": true
           },
           {
             "type": "站维度",
-            "latest": "站维度_20260906-20260906(日期)_1788733278342.xlsx",
-            "mtime": "2026-09-07 06:21:22",
+            "latest": "站维度_20260907-20260907(日期)_1788822202964.xlsx",
+            "mtime": "2026-09-08 07:03:28",
             "synced": true
           },
           {
@@ -87,8 +87,8 @@ window.DATA_CENTER = {
           },
           {
             "type": "未剔除恶劣天气(单量)",
-            "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260906-20260906(天)_1788733373741.xlsx",
-            "mtime": "2026-09-07 06:23:00",
+            "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260907-20260907(天)_1788822262504.xlsx",
+            "mtime": "2026-09-08 07:04:40",
             "synced": true
           }
         ]
@@ -101,7 +101,7 @@ window.DATA_CENTER = {
           "tabs": [
             "🛡️ 安全权益看板",
             "🏅 站长安全评级看板",
-            "👤 骑手交通行为明细",
+            "👤 骑手交通安全行为四项看板",
             "📋 中西管控名单",
             "⚡ 高速监控看板-站",
             "🏍️ 高速监控看板-骑手"
@@ -134,23 +134,15 @@ window.DATA_CENTER = {
         },
         {
           "key": "safe_rider",
-          "label": "骑手交通行为明细",
+          "label": "交通安全四项",
           "file": "D:/兴达数据库/交通安全行为看板/骑手交通行为明细看板.html",
           "tabs": [
-            "🛡️ 安全权益看板",
-            "🏅 站长安全评级看板",
-            "👤 骑手交通行为明细",
-            "📋 中西管控名单",
-            "⚡ 高速监控看板-站",
-            "🏍️ 高速监控看板-骑手"
+            "🚦 骑手交通四项-站",
+            "👤 骑手交通四项-骑手明细"
           ],
           "tab_keys": [
-            "equity",
-            "rating",
-            "rider",
-            "control",
-            "speed-site",
-            "speed-rider"
+            "four",
+            "rider"
           ],
           "monitored": true,
           "available": true
@@ -259,22 +251,22 @@ window.DATA_CENTER = {
           "护航服装\\data.js",
           "护航服装\\data_excluded.js"
         ],
-        "data_mtime": "2026-09-07 07:42:50",
-        "all_synced": true,
-        "synced_count": 2,
+        "data_mtime": "2026-09-08 07:04:40",
+        "all_synced": false,
+        "synced_count": 1,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "已剔除恶劣天气",
-            "latest": "剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260906-20260906(天)_1788733344262.xlsx",
-            "mtime": "2026-09-07 06:22:31",
-            "synced": true
+            "latest": "已剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260907-20260907(天)_1788822306219.xlsx",
+            "mtime": "2026-09-08 07:05:12",
+            "synced": false
           },
           {
             "type": "未剔除恶劣天气",
-            "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260906-20260906(天)_1788733373741.xlsx",
-            "mtime": "2026-09-07 06:23:00",
+            "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260907-20260907(天)_1788822262504.xlsx",
+            "mtime": "2026-09-08 07:04:40",
             "synced": true
           }
         ]
@@ -313,7 +305,7 @@ window.DATA_CENTER = {
           "在职骑手详情\\在职骑手详情.html",
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-07 16:53:27",
+        "data_mtime": "2026-09-08 07:05:36",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -361,7 +353,7 @@ window.DATA_CENTER = {
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-09-07 08:23:50",
+        "data_mtime": "2026-09-08 07:04:45",
         "all_synced": true,
         "synced_count": 4,
         "missing_count": 0,
@@ -382,7 +374,7 @@ window.DATA_CENTER = {
           {
             "type": "V3内联数据",
             "latest": "v3_data.js",
-            "mtime": "2026-09-07 07:42:55",
+            "mtime": "2026-09-08 07:04:45",
             "synced": true
           },
           {
@@ -502,7 +494,7 @@ window.DATA_CENTER = {
         "data_files": [
           "交通安全行为看板\\monthly_summary.js"
         ],
-        "data_mtime": "2026-09-07 07:42:55",
+        "data_mtime": "2026-09-08 07:04:45",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -511,7 +503,7 @@ window.DATA_CENTER = {
           {
             "type": "交通安全data.js（归档源）",
             "latest": "data.js",
-            "mtime": "2026-09-07 08:02:27",
+            "mtime": "2026-09-08 07:05:36",
             "synced": true
           }
         ]

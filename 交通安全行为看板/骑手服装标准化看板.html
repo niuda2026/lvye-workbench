@@ -119,7 +119,7 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
 </style>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-<script src="data.js?09-06-a6515c99"></script>
+<script src="data.js?09-06-dbc44ece"></script>
 </head>
 <body>
 
@@ -704,19 +704,94 @@ function renderSummaryCards(tab,rows){
   el.innerHTML+=regionHtml;
 }
 
-function exportTable(tab){
-  var table=document.getElementById(tab+'-table');
-  var html='<html><head><meta charset="UTF-8"></head><body>'+table.outerHTML+'<\/body><\/html>';
-  var blob=new Blob([html],{type:'application/vnd.ms-excel;charset=utf-8'});
+/* ── 通用所见即所得导出：格式/颜色/趋势图/列宽 与看板完全一致 ── */
+function _xlsRgb2hex(c){
+  var m=String(c||'').match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+  if(!m)return '';
+  if(m[4]!==undefined&&parseFloat(m[4])===0)return '';
+  function h(n){var s=parseInt(n,10).toString(16);return s.length<2?'0'+s:s;}
+  return '#'+h(m[1])+h(m[2])+h(m[3]);
+}
+function exportTableWYSIWYG(table,sheetName,fileName){
+  if(!table){alert('未找到可导出的表格');return;}
+  var clone=table.cloneNode(true);
+  // 趋势图 svg → PNG（Excel 不认 svg）
+  clone.querySelectorAll('img').forEach(function(im){
+    var src=im.getAttribute('src')||'';
+    if(src.indexOf('data:image/svg')!==0)return;
+    try{
+      var w=im.width||88,hh=im.height||26;
+      var cv=document.createElement('canvas');cv.width=w*2;cv.height=hh*2;
+      var cx=cv.getContext('2d');cx.scale(2,2);cx.drawImage(im,0,0,w,hh);
+      im.setAttribute('src',cv.toDataURL('image/png'));
+    }catch(e){}
+  });
+  // canvas 元素 → PNG
+  clone.querySelectorAll('canvas').forEach(function(cv){
+    try{
+      var im=document.createElement('img');
+      im.setAttribute('width',cv.width);im.setAttribute('height',cv.height);
+      im.setAttribute('src',cv.toDataURL('image/png'));
+      cv.parentNode.replaceChild(im,cv);
+    }catch(e){}
+  });
+  // 逐格内联计算样式（背景含行回退、文字色、加粗、对齐、边框）
+  var srcCells=table.querySelectorAll('th,td');
+  var dstCells=clone.querySelectorAll('th,td');
+  for(var i=0;i<dstCells.length;i++){
+    var s=srcCells[i];if(!s)break;
+    var d=dstCells[i];
+    var cs=getComputedStyle(s);
+    var bg=_xlsRgb2hex(cs.backgroundColor);
+    if(!bg){var p=s.parentElement;while(p&&p!==table){bg=_xlsRgb2hex(getComputedStyle(p).backgroundColor);if(bg)break;p=p.parentElement;}}
+    var fg=_xlsRgb2hex(cs.color);
+    var st='border:.5pt solid #C9D8E8;vertical-align:middle;font-size:10pt;white-space:nowrap;';
+    if(bg)st+='background:'+bg+';';
+    if(fg)st+='color:'+fg+';';
+    var fw=cs.fontWeight;
+    if(fw==='700'||fw==='bold'||parseInt(fw,10)>=600)st+='font-weight:bold;';
+    if(cs.textAlign&&cs.textAlign!=='start')st+='text-align:'+cs.textAlign+';';
+    d.removeAttribute('style');
+    d.setAttribute('style',st);
+    d.removeAttribute('class');
+  }
+  // 隐藏定宽行：按实际渲染列宽 ×1.6（最小 110px），Excel 用它定列宽且该行不显示
+  var firstRow=table.querySelector('tbody tr');
+  if(firstRow){
+    var ws=[];
+    firstRow.querySelectorAll('td').forEach(function(td){ws.push(Math.max(Math.round(td.offsetWidth*1.6),110));});
+    if(ws.length){
+      var tmp=document.createElement('table');
+      tmp.innerHTML='<tr style="display:none;height:0;">'+ws.map(function(w){return '<td width="'+w+'"></td>';}).join('')+'</tr>';
+      var hrNode=tmp.querySelector('tr');
+      var th=clone.querySelector('thead');
+      if(th)th.insertBefore(hrNode,th.firstChild);
+      else{var nt=document.createElement('thead');nt.appendChild(hrNode);clone.insertBefore(nt,clone.firstChild);}
+    }
+  }
+  clone.setAttribute('cellspacing','0');
+  clone.setAttribute('style','border-collapse:collapse;font-family:"Microsoft YaHei",Arial,sans-serif;');
+  var html='<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="UTF-8">'+
+    '<!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>'+sheetName+'</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->'+
+    '</head><body>'+clone.outerHTML+'<\/body><\/html>';
+  var blob=new Blob(['\ufeff'+html],{type:'application/vnd.ms-excel;charset=utf-8'});
   var a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
-  var labelMap={equity:'安全权益看板',rating:'站长安全评级看板'};
-  a.download=(labelMap[tab]||tab)+'_'+new Date().toLocaleDateString('zh-CN').replace(/\//g,'-')+'.xls';
+  a.download=fileName;
   a.click();
 }
 
+var EXPORT_LABEL_MAP={equity:'安全权益看板',rating:'站长安全评级看板',clothing:'工装检核率美团工服率看板'};
+function exportTable(tab){
+  var label=(EXPORT_LABEL_MAP[tab]||tab);
+  var table=document.getElementById(tab+'-table');
+  if(!table){alert('未找到可导出的表格');return;}
+  exportTableWYSIWYG(table,label,label+'_'+new Date().toLocaleDateString('zh-CN').replace(/\//g,'-')+'.xls');
+}
+
+
 // ══════════════════════════════════════════════════════════
-// 骑手交通行为明细
+// 骑手交通安全行为四项看板
 // ══════════════════════════════════════════════════════════
 var riderPage=1;
 var RIDER_PAGE_SIZE=300;
@@ -961,7 +1036,7 @@ function exportRiderTable(){
   var blob=new Blob([html],{type:'application/vnd.ms-excel;charset=utf-8'});
   var a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
-  a.download='骑手交通行为明细_'+new Date().toLocaleDateString('zh-CN').replace(/\//g,'-')+'.xls';
+  a.download='骑手交通安全行为四项看板_'+new Date().toLocaleDateString('zh-CN').replace(/\//g,'-')+'.xls';
   a.click();
 }
 
@@ -1661,7 +1736,7 @@ function captureScreenshot(panelId) {
       String(now.getHours()).padStart(2, '0') +
       String(now.getMinutes()).padStart(2, '0') +
       String(now.getSeconds()).padStart(2, '0');
-    var names = { equity: '安全权益看板', rating: '站长安全评级看板', rider: '骑手交通行为明细', control: '中西管控名单' };
+    var names = { equity: '安全权益看板', rating: '站长安全评级看板', rider: '骑手交通安全行为四项看板', control: '中西管控名单' };
     var label = names[panelId] || panelId;
     var link = document.createElement('a');
     link.download = label + '_' + ts + '.png';
