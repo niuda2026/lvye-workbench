@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-09 06:48:24",
+  "updated_at": "2026-09-09 06:52:44",
   "groups": [
     {
       "title": "交通安全",
@@ -251,23 +251,23 @@ window.DATA_CENTER = {
           "护航服装\\data.js",
           "护航服装\\data_excluded.js"
         ],
-        "data_mtime": "2026-09-08 07:43:56",
-        "all_synced": false,
-        "synced_count": 0,
+        "data_mtime": "2026-09-09 06:52:39",
+        "all_synced": true,
+        "synced_count": 2,
         "missing_count": 0,
-        "unsynced_count": 2,
+        "unsynced_count": 0,
         "sources": [
           {
             "type": "已剔除恶劣天气",
             "latest": "已剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260908-20260908(天)_1788907623877.xlsx",
             "mtime": "2026-09-09 06:47:10",
-            "synced": false
+            "synced": true
           },
           {
             "type": "未剔除恶劣天气",
             "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260908-20260908(天)_1788907653182.xlsx",
             "mtime": "2026-09-09 06:47:45",
-            "synced": false
+            "synced": true
           }
         ]
       },
