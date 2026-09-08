@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-09 06:52:44",
+  "updated_at": "2026-09-09 06:56:36",
   "groups": [
     {
       "title": "交通安全",
@@ -170,11 +170,11 @@
         "data_files": [
           "履约项目\\data.js"
         ],
-        "data_mtime": "2026-09-08 07:45:27",
-        "all_synced": false,
-        "synced_count": 5,
+        "data_mtime": "2026-09-09 06:56:36",
+        "all_synced": true,
+        "synced_count": 6,
         "missing_count": 0,
-        "unsynced_count": 1,
+        "unsynced_count": 0,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
@@ -186,7 +186,7 @@
             "type": "巡检工单列表",
             "latest": "巡检工单列表_1788824754337.xls",
             "mtime": "2026-09-08 07:46:14",
-            "synced": false
+            "synced": true
           },
           {
             "type": "巡检平台站点检核",
@@ -202,8 +202,8 @@
           },
           {
             "type": "骑手排班明细数据",
-            "latest": "骑手排班明细数据_49896033_20260908_070831.xlsx",
-            "mtime": "2026-09-08 07:08:47",
+            "latest": "骑手排班明细数据_49896033_20260909_065348.xlsx",
+            "mtime": "2026-09-09 06:54:05",
             "synced": true
           },
           {
@@ -306,16 +306,16 @@
           "交通安全行为看板\\data.js"
         ],
         "data_mtime": "2026-09-09 06:48:23",
-        "all_synced": true,
-        "synced_count": 1,
+        "all_synced": false,
+        "synced_count": 0,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "骑手排班明细数据",
-            "latest": "骑手排班明细数据_49896033_20260908_070831.xlsx",
-            "mtime": "2026-09-08 07:08:47",
-            "synced": true
+            "latest": "骑手排班明细数据_49896033_20260909_065348.xlsx",
+            "mtime": "2026-09-09 06:54:05",
+            "synced": false
           }
         ]
       },
