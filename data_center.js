@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-09 06:56:36",
+  "updated_at": "2026-09-09 07:01:21",
   "groups": [
     {
       "title": "交通安全",
@@ -7,7 +7,7 @@ window.DATA_CENTER = {
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-09 06:48:23",
+        "data_mtime": "2026-09-09 07:00:25",
         "all_synced": false,
         "synced_count": 12,
         "missing_count": 1,
@@ -170,7 +170,7 @@ window.DATA_CENTER = {
         "data_files": [
           "履约项目\\data.js"
         ],
-        "data_mtime": "2026-09-09 06:56:36",
+        "data_mtime": "2026-09-09 07:01:20",
         "all_synced": true,
         "synced_count": 6,
         "missing_count": 0,
@@ -184,8 +184,8 @@ window.DATA_CENTER = {
           },
           {
             "type": "巡检工单列表",
-            "latest": "巡检工单列表_1788824754337.xls",
-            "mtime": "2026-09-08 07:46:14",
+            "latest": "巡检工单列表_1788908264575.xls",
+            "mtime": "2026-09-09 06:58:13",
             "synced": true
           },
           {
@@ -202,8 +202,8 @@ window.DATA_CENTER = {
           },
           {
             "type": "骑手排班明细数据",
-            "latest": "骑手排班明细数据_49896033_20260909_065348.xlsx",
-            "mtime": "2026-09-09 06:54:05",
+            "latest": "骑手排班明细数据_49896033_20260909_065821.xlsx",
+            "mtime": "2026-09-09 06:58:41",
             "synced": true
           },
           {
@@ -251,7 +251,7 @@ window.DATA_CENTER = {
           "护航服装\\data.js",
           "护航服装\\data_excluded.js"
         ],
-        "data_mtime": "2026-09-09 06:52:39",
+        "data_mtime": "2026-09-09 07:00:53",
         "all_synced": true,
         "synced_count": 2,
         "missing_count": 0,
@@ -305,17 +305,17 @@ window.DATA_CENTER = {
           "在职骑手详情\\在职骑手详情.html",
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-09 06:48:23",
-        "all_synced": false,
-        "synced_count": 0,
+        "data_mtime": "2026-09-09 07:00:25",
+        "all_synced": true,
+        "synced_count": 1,
         "missing_count": 0,
-        "unsynced_count": 1,
+        "unsynced_count": 0,
         "sources": [
           {
             "type": "骑手排班明细数据",
-            "latest": "骑手排班明细数据_49896033_20260909_065348.xlsx",
-            "mtime": "2026-09-09 06:54:05",
-            "synced": false
+            "latest": "骑手排班明细数据_49896033_20260909_065821.xlsx",
+            "mtime": "2026-09-09 06:58:41",
+            "synced": true
           }
         ]
       },
@@ -353,7 +353,7 @@ window.DATA_CENTER = {
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-09-08 17:11:51",
+        "data_mtime": "2026-09-09 07:00:55",
         "all_synced": true,
         "synced_count": 4,
         "missing_count": 0,
@@ -374,7 +374,7 @@ window.DATA_CENTER = {
           {
             "type": "V3内联数据",
             "latest": "v3_data.js",
-            "mtime": "2026-09-08 07:44:00",
+            "mtime": "2026-09-09 07:00:55",
             "synced": true
           },
           {
@@ -503,17 +503,17 @@ window.DATA_CENTER = {
         "data_files": [
           "交通安全行为看板\\monthly_summary.js"
         ],
-        "data_mtime": "2026-09-08 07:44:00",
-        "all_synced": false,
-        "synced_count": 0,
+        "data_mtime": "2026-09-09 07:00:55",
+        "all_synced": true,
+        "synced_count": 1,
         "missing_count": 0,
-        "unsynced_count": 1,
+        "unsynced_count": 0,
         "sources": [
           {
             "type": "交通安全data.js（归档源）",
             "latest": "data.js",
-            "mtime": "2026-09-09 06:48:23",
-            "synced": false
+            "mtime": "2026-09-09 07:00:25",
+            "synced": true
           }
         ]
       },
