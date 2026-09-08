@@ -76,6 +76,11 @@
         {
           "key": "ins_meituan",
           "label": "美团保险",
+          "file": "美团保险/美团保险明细看板.html"
+        },
+        {
+          "key": "ins_meituan_old",
+          "label": "美团保险(旧版)",
           "file": "美团保险/美团保险看板.html"
         },
         {

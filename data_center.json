@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-08 10:52:51",
+  "updated_at": "2026-09-09 06:48:24",
   "groups": [
     {
       "title": "交通安全",
@@ -7,7 +7,7 @@
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-08 08:01:46",
+        "data_mtime": "2026-09-09 06:48:23",
         "all_synced": false,
         "synced_count": 12,
         "missing_count": 1,
@@ -63,14 +63,14 @@
           },
           {
             "type": "安全指标监控(骑手)",
-            "latest": "安全指标监控_骑手维度_20260907-20260907(日期)_1788822214764.xlsx",
-            "mtime": "2026-09-08 07:03:39",
+            "latest": "安全指标监控_骑手维度_20260908-20260908(日期)_1788907564493.xlsx",
+            "mtime": "2026-09-09 06:46:10",
             "synced": true
           },
           {
             "type": "站维度",
-            "latest": "站维度_20260907-20260907(日期)_1788822202964.xlsx",
-            "mtime": "2026-09-08 07:03:28",
+            "latest": "站维度_20260908-20260908(日期)_1788907546839.xlsx",
+            "mtime": "2026-09-09 06:45:51",
             "synced": true
           },
           {
@@ -87,8 +87,8 @@
           },
           {
             "type": "未剔除恶劣天气(单量)",
-            "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260907-20260907(天)_1788822262504.xlsx",
-            "mtime": "2026-09-08 07:04:40",
+            "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260908-20260908(天)_1788907653182.xlsx",
+            "mtime": "2026-09-09 06:47:45",
             "synced": true
           }
         ]
@@ -252,22 +252,22 @@
           "护航服装\\data_excluded.js"
         ],
         "data_mtime": "2026-09-08 07:43:56",
-        "all_synced": true,
-        "synced_count": 2,
+        "all_synced": false,
+        "synced_count": 0,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 2,
         "sources": [
           {
             "type": "已剔除恶劣天气",
-            "latest": "已剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260907-20260907(天)_1788822306219.xlsx",
-            "mtime": "2026-09-08 07:05:12",
-            "synced": true
+            "latest": "已剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260908-20260908(天)_1788907623877.xlsx",
+            "mtime": "2026-09-09 06:47:10",
+            "synced": false
           },
           {
             "type": "未剔除恶劣天气",
-            "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260907-20260907(天)_1788822262504.xlsx",
-            "mtime": "2026-09-08 07:04:40",
-            "synced": true
+            "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260908-20260908(天)_1788907653182.xlsx",
+            "mtime": "2026-09-09 06:47:45",
+            "synced": false
           }
         ]
       },
@@ -305,7 +305,7 @@
           "在职骑手详情\\在职骑手详情.html",
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-08 08:01:46",
+        "data_mtime": "2026-09-09 06:48:23",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -353,22 +353,22 @@
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-09-08 07:44:00",
-        "all_synced": false,
-        "synced_count": 3,
+        "data_mtime": "2026-09-08 17:11:51",
+        "all_synced": true,
+        "synced_count": 4,
         "missing_count": 0,
-        "unsynced_count": 1,
+        "unsynced_count": 0,
         "sources": [
           {
             "type": "BI赔付率快照",
             "latest": "latest.json",
-            "mtime": "2026-09-08 07:34:50",
+            "mtime": "2026-09-08 14:30:16",
             "synced": true
           },
           {
             "type": "含税保费快照",
             "latest": "premium_latest.json",
-            "mtime": "2026-09-08 07:37:17",
+            "mtime": "2026-09-08 11:17:59",
             "synced": true
           },
           {
@@ -380,8 +380,8 @@
           {
             "type": "美团保险数据",
             "latest": "insurance_data.js",
-            "mtime": "2026-09-05 08:03:41",
-            "synced": false
+            "mtime": "2026-09-08 17:11:51",
+            "synced": true
           }
         ]
       },
@@ -389,6 +389,15 @@
         {
           "key": "ins_meituan",
           "label": "美团保险",
+          "file": "D:/兴达数据库/美团保险/美团保险明细看板.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": true,
+          "available": true
+        },
+        {
+          "key": "ins_meituan_old",
+          "label": "美团保险(旧版)",
           "file": "D:/兴达数据库/美团保险/美团保险看板.html",
           "tabs": [],
           "tab_keys": [],
@@ -495,16 +504,16 @@
           "交通安全行为看板\\monthly_summary.js"
         ],
         "data_mtime": "2026-09-08 07:44:00",
-        "all_synced": true,
-        "synced_count": 1,
+        "all_synced": false,
+        "synced_count": 0,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "交通安全data.js（归档源）",
             "latest": "data.js",
-            "mtime": "2026-09-08 08:01:46",
-            "synced": true
+            "mtime": "2026-09-09 06:48:23",
+            "synced": false
           }
         ]
       },
