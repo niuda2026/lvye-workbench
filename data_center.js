@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-09 07:01:21",
+  "updated_at": "2026-09-09 07:01:29",
   "groups": [
     {
       "title": "交通安全",
