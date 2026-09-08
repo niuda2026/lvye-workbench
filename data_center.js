@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-08 08:01:47",
+  "updated_at": "2026-09-08 10:52:51",
   "groups": [
     {
       "title": "交通安全",
@@ -354,10 +354,10 @@ window.DATA_CENTER = {
           "美团保险\\insurance_data.js"
         ],
         "data_mtime": "2026-09-08 07:44:00",
-        "all_synced": true,
-        "synced_count": 4,
+        "all_synced": false,
+        "synced_count": 3,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "BI赔付率快照",
@@ -381,7 +381,7 @@ window.DATA_CENTER = {
             "type": "美团保险数据",
             "latest": "insurance_data.js",
             "mtime": "2026-09-05 08:03:41",
-            "synced": true
+            "synced": false
           }
         ]
       },
