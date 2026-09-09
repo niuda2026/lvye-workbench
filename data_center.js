@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-10 06:53:40",
+  "updated_at": "2026-09-10 06:57:32",
   "groups": [
     {
       "title": "交通安全",
@@ -170,11 +170,11 @@ window.DATA_CENTER = {
         "data_files": [
           "履约项目\\data.js"
         ],
-        "data_mtime": "2026-09-09 07:24:48",
-        "all_synced": false,
-        "synced_count": 4,
+        "data_mtime": "2026-09-10 06:57:31",
+        "all_synced": true,
+        "synced_count": 6,
         "missing_count": 0,
-        "unsynced_count": 2,
+        "unsynced_count": 0,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
@@ -184,9 +184,9 @@ window.DATA_CENTER = {
           },
           {
             "type": "巡检工单列表",
-            "latest": "巡检工单列表_1788994363697.xls",
-            "mtime": "2026-09-10 06:52:53",
-            "synced": false
+            "latest": "巡检工单列表_1788994408917.xls",
+            "mtime": "2026-09-10 06:53:44",
+            "synced": true
           },
           {
             "type": "巡检平台站点检核",
@@ -196,20 +196,20 @@ window.DATA_CENTER = {
           },
           {
             "type": "考培-学习明细记录",
-            "latest": "_考培-学习明细记录_1788908380413.xlsx",
-            "mtime": "2026-09-09 07:02:12",
+            "latest": "_考培-学习明细记录_1788994531241.xlsx",
+            "mtime": "2026-09-10 06:55:43",
             "synced": true
           },
           {
             "type": "骑手排班明细数据",
             "latest": "骑手排班明细数据_49896033_20260910_065029.xlsx",
             "mtime": "2026-09-10 06:51:11",
-            "synced": false
+            "synced": true
           },
           {
             "type": "表单列表",
-            "latest": "表单列表_49896033_20260909_070217.xlsx",
-            "mtime": "2026-09-09 07:03:10",
+            "latest": "表单列表_49896033_20260910_065619.xlsx",
+            "mtime": "2026-09-10 06:56:48",
             "synced": true
           }
         ]
