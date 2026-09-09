@@ -221,6 +221,7 @@ th.op-col{background:#0B4F8A!important;color:#fff!important}
     <label style="color:#ffb74d;font-weight:600;">月覆盖率&lt;</label>
     <input type="number" id="filter-monrate" min="0" max="100" step="1" placeholder="%" style="width:60px;padding:4px 6px;border:1px solid #e65100;border-radius:4px;font-size:12px;background:#fff8f0;color:#e65100;font-weight:600;outline:none;" oninput="applyRateFilter()" title="筛选订单视觉覆盖率（月）小于此值的骑手" />
     <button class="btn btn-secondary" onclick="clearRiderFilter()">清除</button>
+    <button class="btn btn-export" onclick="exportRiderTable()">⬇ 导出Excel</button>
     <button class="btn btn-screenshot" onclick="screenshotPanel('rider')">📷 截图</button>
     <span id="rider-count" style="color:#4F6E87;font-size:12px;margin-left:4px"></span>
   </div>
@@ -1105,6 +1106,22 @@ function exportTable(){
   var table=document.getElementById('station-table');
   if(!table){alert('未找到可导出的表格');return;}
   exportTableWYSIWYG(table,'护航服装看板','护航服装看板_'+new Date().toLocaleDateString('zh-CN').replace(/\//g,'-')+'.xls');
+}
+
+function exportRiderTable(){
+  var table=document.getElementById('rider-table');
+  if(!table){alert('未找到可导出的表格');return;}
+  if(!table.querySelector('tbody tr')){alert('当前无骑手明细数据可导出');return;}
+  var oldSize=RIDER_PAGE_SIZE,oldPage=riderPage;
+  try{
+    // 临时按全部条数渲染（导出全部筛选结果，而不是只导当前页）
+    RIDER_PAGE_SIZE=999999;riderPage=1;renderRider();
+    exportTableWYSIWYG(table,'骑手维度明细','护航服装看板_骑手维度明细_'+new Date().toLocaleDateString('zh-CN').replace(/\//g,'-')+'.xls');
+  }finally{
+    RIDER_PAGE_SIZE=oldSize;
+    riderPage=Math.min(oldPage,Math.max(1,Math.ceil(filteredRiders.length/oldSize)));
+    renderRider();
+  }
 }
 
 
