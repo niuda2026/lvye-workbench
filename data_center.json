@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-10 06:47:45",
+  "updated_at": "2026-09-10 06:53:40",
   "groups": [
     {
       "title": "交通安全",
@@ -7,7 +7,7 @@
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-10 06:47:44",
+        "data_mtime": "2026-09-10 06:51:30",
         "all_synced": false,
         "synced_count": 12,
         "missing_count": 1,
@@ -81,8 +81,8 @@
           },
           {
             "type": "加盟商指标达成",
-            "latest": "_加盟商指标达成情况_2026-09-05-2026-09-07(天)_1788822354044.xlsx",
-            "mtime": "2026-09-08 07:05:58",
+            "latest": "_加盟商指标达成情况_2026-09-07-2026-09-09(天)_1788994079828.xlsx",
+            "mtime": "2026-09-10 06:48:03",
             "synced": true
           },
           {
@@ -171,10 +171,10 @@
           "履约项目\\data.js"
         ],
         "data_mtime": "2026-09-09 07:24:48",
-        "all_synced": true,
-        "synced_count": 6,
+        "all_synced": false,
+        "synced_count": 4,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 2,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
@@ -184,9 +184,9 @@
           },
           {
             "type": "巡检工单列表",
-            "latest": "巡检工单列表_1788908264575.xls",
-            "mtime": "2026-09-09 06:58:13",
-            "synced": true
+            "latest": "巡检工单列表_1788994363697.xls",
+            "mtime": "2026-09-10 06:52:53",
+            "synced": false
           },
           {
             "type": "巡检平台站点检核",
@@ -202,9 +202,9 @@
           },
           {
             "type": "骑手排班明细数据",
-            "latest": "骑手排班明细数据_49896033_20260909_065821.xlsx",
-            "mtime": "2026-09-09 06:58:41",
-            "synced": true
+            "latest": "骑手排班明细数据_49896033_20260910_065029.xlsx",
+            "mtime": "2026-09-10 06:51:11",
+            "synced": false
           },
           {
             "type": "表单列表",
@@ -251,23 +251,23 @@
           "护航服装\\data.js",
           "护航服装\\data_excluded.js"
         ],
-        "data_mtime": "2026-09-09 07:23:08",
-        "all_synced": false,
-        "synced_count": 0,
+        "data_mtime": "2026-09-10 06:53:36",
+        "all_synced": true,
+        "synced_count": 2,
         "missing_count": 0,
-        "unsynced_count": 2,
+        "unsynced_count": 0,
         "sources": [
           {
             "type": "已剔除恶劣天气",
             "latest": "已剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260909-20260909(天)_1788994034145.xlsx",
             "mtime": "2026-09-10 06:47:20",
-            "synced": false
+            "synced": true
           },
           {
             "type": "未剔除恶劣天气",
             "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260909-20260909(天)_1788993988086.xlsx",
             "mtime": "2026-09-10 06:46:35",
-            "synced": false
+            "synced": true
           }
         ]
       },
@@ -305,7 +305,7 @@
           "在职骑手详情\\在职骑手详情.html",
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-10 06:47:44",
+        "data_mtime": "2026-09-10 06:51:30",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -313,8 +313,8 @@
         "sources": [
           {
             "type": "骑手排班明细数据",
-            "latest": "骑手排班明细数据_49896033_20260909_065821.xlsx",
-            "mtime": "2026-09-09 06:58:41",
+            "latest": "骑手排班明细数据_49896033_20260910_065029.xlsx",
+            "mtime": "2026-09-10 06:51:11",
             "synced": true
           }
         ]
@@ -353,7 +353,7 @@
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-09-10 06:47:44",
+        "data_mtime": "2026-09-10 06:51:30",
         "all_synced": true,
         "synced_count": 4,
         "missing_count": 0,
@@ -374,7 +374,7 @@
           {
             "type": "V3内联数据",
             "latest": "v3_data.js",
-            "mtime": "2026-09-10 06:47:44",
+            "mtime": "2026-09-10 06:51:30",
             "synced": true
           },
           {
@@ -512,7 +512,7 @@
           {
             "type": "交通安全data.js（归档源）",
             "latest": "data.js",
-            "mtime": "2026-09-10 06:47:44",
+            "mtime": "2026-09-10 06:51:30",
             "synced": false
           }
         ]
