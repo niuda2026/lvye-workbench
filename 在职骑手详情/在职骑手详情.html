@@ -12,7 +12,7 @@ table{width:100%;border-collapse:collapse;font-size:13px}th{position:sticky;top:
 .progress-bar{display:none;background:linear-gradient(90deg,#1565c0,#0d47a1);color:#fff;padding:10px 20px;font-size:13px;align-items:center;gap:14px}.progress-bar.show{display:flex}.progress-bar .pb-label{font-weight:600;white-space:nowrap;min-width:90px}.progress-bar .pb-track{flex:1;height:8px;background:rgba(255,255,255,.2);border-radius:4px;overflow:hidden;position:relative}.progress-bar .pb-fill{height:100%;background:linear-gradient(90deg,#4fc3f7,#fff);width:0%;transition:width .6s ease;border-radius:4px;box-shadow:0 0 10px rgba(255,255,255,.5)}.progress-bar.done{background:linear-gradient(90deg,#2e7d32,#1b5e20)}.progress-bar.done .pb-fill{background:linear-gradient(90deg,#81c784,#c8e6c9)}.progress-bar.error{background:linear-gradient(90deg,#c62828,#7f0000)}.progress-bar .pb-pct{min-width:50px;text-align:right;font-weight:600;white-space:nowrap}.progress-bar .pb-detail{font-size:11px;opacity:.85;min-width:140px;text-align:right}
 .refresh-toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.85);color:#fff;padding:10px 24px;border-radius:6px;font-size:13px;z-index:2000;opacity:0;transition:opacity .3s;pointer-events:none;max-width:90vw;text-align:center}.refresh-toast.show{opacity:1;pointer-events:auto}.refresh-toast a{color:#90caf9;cursor:pointer;text-decoration:underline}</style></head><body>
 <div class="header"><div><h1>在职骑手详情<span id="svcDot" class="svc-dot warn" title="服务状态"></span><span id="svcLabel" class="svc-label">检测中...</span></h1><p>数据抓取于 2026-09-09 | 10520 名骑手 | 28 个城市 | 178 个站点 | 健康证 10160 / 回执单 360 / 未上传 0 | 已过期 7 人 | 3天内到期 74 人 | 7天内到期 139 人 | 30天内到期 438 人</p></div><button class="btn-refresh" id="btnRefresh" title="点击抓取最新在职骑手数据（服务应已开机自启）">刷新数据</button>
-<div id="refreshTip" style="display:none;background:#fff8e1;color:#5d4037;padding:10px 18px;font-size:13px;border-bottom:1px solid #ffe0b2;text-align:center">后台服务未就绪（127.0.0.1:8769）→ 请联系 AI 助手排查（服务应已注册为开机自启）</div></div>
+<div id="refreshTip" style="display:none;background:#fff8e1;color:#5d4037;padding:14px 18px;font-size:13px;border-bottom:1px solid #ffe0b2;text-align:center">后台服务未就绪（127.0.0.1:8769）→<a id="startServiceLink" href="rider://start" style="display:inline-block;margin-left:6px;padding:6px 14px;background:#ff9800;color:#fff;border-radius:4px;font-weight:600;text-decoration:none">一键启动后台服务</a>（浏览器会弹"是否打开外部应用"，点"打开"即可；服务会跑在后台）</div></div>
 <div class="progress-bar" id="progressBar"><span class="pb-label" id="pbLabel">初始化...</span><div class="pb-track"><div class="pb-fill" id="pbFill"></div></div><span class="pb-pct" id="pbPct">0%</span><span class="pb-detail" id="pbDetail">0/0</span></div>
 <div class="stats">
 <div class="sc"><div class="sc-icon">&#128101;</div><div class="l">总人数</div><div class="n">10520</div><div class="sub">28 城市&#8194;|&#8194;178 站点</div></div>
@@ -298,10 +298,24 @@ function startPolling(){ stopPolling(); pollTimer = setInterval(pollProgress, 80
 function stopPolling(){ if (pollTimer) { clearInterval(pollTimer); pollTimer = null; } }
 
 function fallbackGuide(){
-  // 服务未就绪：提示用户联系 AI 助手排查（服务应已注册为开机自启）
-  showToast('后台服务未就绪 → 请联系 AI 助手排查（服务应开机自启，无需双击脚本）');
+  // 服务未就绪：弹大条，按钮跳 rider:// 一键启动（前提：跑过 注册URL协议到浏览器.bat）
+  showToast('后台服务未就绪 → 点页面下方"一键启动后台服务"按钮');
   var tip = document.getElementById('refreshTip');
   if (tip) { tip.style.display = 'block'; }
+  if (tip && tip.scrollIntoView) { tip.scrollIntoView({behavior:'smooth', block:'start'}); }
+  var tries = 0;
+  var maxTries = 12;
+  var iv = setInterval(function(){
+    tries++;
+    fetch('/healthz').then(function(r){ return r.json(); }).then(function(j){
+      if (j && j.ok) {
+        clearInterval(iv);
+        showToast('后台服务已启动 ✓');
+        if (typeof updateSvcDot === 'function') updateSvcDot();
+        if (tip) tip.style.display = 'none';
+      } else if (tries >= maxTries) { clearInterval(iv); }
+    }).catch(function(){ if (tries >= maxTries) clearInterval(iv); });
+  }, 1000);
 }
 
 /* ---- 服务状态灯（每 5 秒 ping /healthz） ---- */
