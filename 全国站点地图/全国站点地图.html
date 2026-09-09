@@ -49,6 +49,11 @@ a:hover{text-decoration:underline}
 
 /* ===== 左侧面板 ===== */
 .panel{width:290px;min-width:290px;background:#fff;border-right:1px solid #dce4ec;display:flex;flex-direction:column;overflow:hidden}
+/* 面板收起/展开小按钮 */
+#panelToggle{position:fixed;top:50%;transform:translateY(-50%);left:290px;z-index:1500;width:18px;height:60px;border:none;background:linear-gradient(135deg,#0B4F8A,#1E88E5);color:#fff;font-size:11px;line-height:1;cursor:pointer;border-radius:0 8px 8px 0;box-shadow:2px 2px 8px rgba(11,79,138,.25);transition:left .2s;padding:0}
+#panelToggle:hover{background:linear-gradient(135deg,#0a4478,#1976d2);width:20px}
+body.panel-collapsed #panelToggle{left:0}
+body.panel-collapsed .panel{display:none}
 .panel-section{padding:12px 14px;border-bottom:1px solid #edf1f5}
 .panel-section h3{font-size:13px;font-weight:700;color:#0B4F8A;margin-bottom:10px;display:flex;align-items:center;gap:6px}
 .panel-section h3 .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#0B4F8A,#1E88E5)}
@@ -100,6 +105,28 @@ a:hover{text-decoration:underline}
 .popup-row .v{word-break:break-all}
 .popup-tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;color:#fff;margin-left:6px;vertical-align:1px}
 
+/* 导航按钮 */
+.nav-btns{display:flex;gap:6px;margin-top:8px;padding-top:8px;border-top:1px dashed #e3ebf2}
+.nav-btns a{flex:1;text-align:center;font-size:11px;font-weight:600;color:#fff;padding:6px 0;border-radius:6px;transition:opacity .15s}
+.nav-btns a:hover{opacity:.85;text-decoration:none}
+.nav-btns a.nav-amap{background:#0091FF !important;color:#fff !important}
+.nav-btns a.nav-qq{background:#07C160 !important;color:#fff !important}
+.nav-btns a.nav-baidu{background:#E64340 !important;color:#fff !important}
+/* 分享按钮与弹层 */
+.share-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);color:#fff;font-size:12px;padding:5px 14px;border-radius:16px;cursor:pointer;white-space:nowrap;transition:background .15s}
+.share-btn:hover{background:rgba(255,255,255,.28)}
+#shareMask{display:none;position:fixed;inset:0;background:rgba(15,35,60,.45);z-index:3000;align-items:center;justify-content:center}
+#shareCard{background:#fff;border-radius:14px;padding:22px 26px;width:340px;max-width:92vw;box-shadow:0 12px 40px rgba(0,0,0,.25);text-align:center;position:relative}
+#shareCard h3{font-size:15px;color:#0B4F8A;margin-bottom:4px}
+#shareCard .sub{font-size:11px;color:#90a4ae;margin-bottom:12px}
+#qrBox{width:220px;height:220px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;background:#f7fafd;border:1px solid #e3ebf2;border-radius:10px}
+#shareLink{width:100%;font-size:11px;color:#33475b;border:1px solid #dce4ec;border-radius:8px;padding:7px 8px;word-break:break-all;background:#f7fafd;margin-bottom:10px}
+#shareCard .btn-row{display:flex;gap:8px}
+#shareCard .btn-row button{flex:1;padding:8px 0;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer}
+#copyShareBtn{background:#0B4F8A;color:#fff}
+#closeShareBtn{background:#eef2f6;color:#546e7a}
+#shareCloseX{position:absolute;top:8px;right:12px;border:none;background:none;font-size:18px;color:#90a4ae;cursor:pointer;line-height:1}
+
 /* 聚合图标 */
 .mc-cluster{width:40px;height:40px;border-radius:50%;background:rgba(11,79,138,.8);border:2px solid rgba(255,255,255,.85);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.3)}
 </style>
@@ -121,9 +148,25 @@ a:hover{text-decoration:underline}
     <button data-layer="standard" class="active">标准</button>
     <button data-layer="satellite">卫星</button>
   </div>
+  <button class="share-btn" id="shareBtn">分享 ↗</button>
+</div>
+
+<div id="shareMask">
+  <div id="shareCard">
+    <button id="shareCloseX">×</button>
+    <h3>分享「全国站点地图」</h3>
+    <div class="sub">手机扫码或复制链接发给同事，打开后点任意点位即可导航</div>
+    <div id="qrBox">二维码生成中…</div>
+    <div id="shareLink"></div>
+    <div class="btn-row">
+      <button id="copyShareBtn">复制链接</button>
+      <button id="closeShareBtn">关闭</button>
+    </div>
+  </div>
 </div>
 
 <div class="body-wrap">
+  <button id="panelToggle" title="收起/展开侧边面板">◀</button>
   <div class="panel">
     <div class="panel-section">
       <h3><span class="dot"></span>点位分类 <span class="count" id="totalCount">0 个点位</span></h3>
@@ -357,7 +400,31 @@ function popupHtml(d){
   if (d.stationName) rows.push('<div class="popup-row"><span class="k">所属站点</span><span class="v">' + esc(d.stationName) + '</span></div>');
   if (d.roomNum) rows.push('<div class="popup-row"><span class="k">房间数</span><span class="v">' + esc(d.roomNum) + '</span></div>');
   if (d.stationId) rows.push('<div class="popup-row"><span class="k">站点ID</span><span class="v">' + esc(d.stationId) + '</span></div>');
+  rows.push(navBtnsHtml(d));
   return rows.join('');
+}
+
+/* ---------- 导航：高德 / 腾讯 / 百度 ---------- */
+/* 数据坐标为 GCJ-02（高德/腾讯直接用；百度先转 BD-09） */
+function gcj2bd(lng, lat){
+  var X_PI = 3.14159265358979324 * 3000.0 / 180.0;
+  var z = Math.sqrt(lng*lng + lat*lat) + 0.00002 * Math.sin(lat * X_PI);
+  var th = Math.atan2(lat, lng) + 0.000003 * Math.cos(lng * X_PI);
+  return [z * Math.cos(th) + 0.0065, z * Math.sin(th) + 0.006];
+}
+function navBtnsHtml(d){
+  if (d.lng === undefined || d.lat === undefined) return '';
+  var name = d.name || '';
+  var addr = d.address || '';
+  var amap = 'https://uri.amap.com/marker?position=' + d.lng + ',' + d.lat + '&name=' + encodeURIComponent(name);
+  var qq = 'https://apis.map.qq.com/uri/v1/marker?marker=coord:' + d.lat + ',' + d.lng + ';title:' + encodeURIComponent(name) + ';addr:' + encodeURIComponent(addr) + '&referer=xdworkbench';
+  var bd = gcj2bd(d.lng, d.lat);
+  var baidu = 'https://api.map.baidu.com/marker?location=' + bd[1] + ',' + bd[0] + '&title=' + encodeURIComponent(name) + '&content=' + encodeURIComponent(addr) + '&output=html&src=webapp.xdworkbench&coord_type=bd09ll';
+  return '<div class="nav-btns">'
+    + '<a class="nav-amap" target="_blank" rel="noopener" href="' + amap + '">高德导航</a>'
+    + '<a class="nav-qq" target="_blank" rel="noopener" href="' + qq + '">腾讯导航</a>'
+    + '<a class="nav-baidu" target="_blank" rel="noopener" href="' + baidu + '">百度导航</a>'
+    + '</div>';
 }
 
 /* ---------- 层级钻取统计（大区→省份→城市→行政区→站点） ---------- */
@@ -607,6 +674,12 @@ function bindEvents(){
     }
   });
   document.getElementById('exportBtn').addEventListener('click', exportCSV);
+  document.getElementById('panelToggle').addEventListener('click', function(){
+    var collapsed = document.body.classList.toggle('panel-collapsed');
+    this.textContent = collapsed ? '▶' : '◀';
+    this.title = collapsed ? '展开侧边面板' : '收起侧边面板';
+    setTimeout(function(){ if (window.map) map.invalidateSize(); }, 220);
+  });
   document.getElementById('floatBack').addEventListener('click', function(){
     if (!drill.length) return;
     drill.pop();
@@ -646,6 +719,60 @@ function ensureCss(){
 }
 ensureCss();
 loadLeaflet();
+
+/* ---------- 分享弹层 ---------- */
+var SHARE_URL_DEFAULT = 'https://564677ac90094cbdbd91eaa92a886c5c.app.workbuddy.link/%E5%85%A8%E5%9B%BD%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BE/%E5%85%A8%E5%9B%BD%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BE.html';
+function shareUrl(){
+  var h = location.href || '';
+  if (h.indexOf('http') === 0 && h.indexOf('workbuddy.link') >= 0) return h;
+  return SHARE_URL_DEFAULT;
+}
+var qrLoaded = false;
+function loadQrLib(cb){
+  if (qrLoaded) return cb();
+  var s = document.createElement('script');
+  s.src = 'https://cdn.bootcdn.net/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+  s.onload = function(){ qrLoaded = true; cb(); };
+  s.onerror = cb; /* 失败也回调，展示链接兜底 */
+  document.head.appendChild(s);
+}
+var shareOpen = false;
+function openShare(){
+  shareOpen = true;
+  document.getElementById('shareMask').style.display = 'flex';
+  var url = shareUrl();
+  document.getElementById('shareLink').textContent = url;
+  var box = document.getElementById('qrBox');
+  box.innerHTML = '二维码生成中…';
+  loadQrLib(function(){
+    if (!shareOpen) return;
+    if (typeof QRCode !== 'function'){ box.innerHTML = '<span style="font-size:11px;color:#90a4ae">二维码加载失败<br>可直接复制下方链接</span>'; return; }
+    box.innerHTML = '';
+    try { new QRCode(box, { text: url, width: 200, height: 200, correctLevel: QRCode.CorrectLevel.M }); }
+    catch(e){ box.innerHTML = '<span style="font-size:11px;color:#90a4ae">二维码生成失败</span>'; }
+  });
+}
+function closeShare(){
+  shareOpen = false;
+  document.getElementById('shareMask').style.display = 'none';
+}
+document.getElementById('shareBtn').addEventListener('click', openShare);
+document.getElementById('closeShareBtn').addEventListener('click', closeShare);
+document.getElementById('shareCloseX').addEventListener('click', closeShare);
+document.getElementById('shareMask').addEventListener('click', function(e){ if (e.target === this) closeShare(); });
+document.getElementById('copyShareBtn').addEventListener('click', function(){
+  var url = shareUrl();
+  var done = function(){ this.textContent = '已复制 ✓'; var b = this; setTimeout(function(){ b.textContent = '复制链接'; }, 1800); };
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(done.bind(this), function(){ fallbackCopy(url); done.call(document.getElementById('copyShareBtn')); });
+  } else { fallbackCopy(url); done.call(this); }
+  function fallbackCopy(txt){
+    var ta = document.createElement('textarea');
+    ta.value = txt; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch(e){}
+    document.body.removeChild(ta);
+  }
+});
 </script>
 </body>
 </html>
