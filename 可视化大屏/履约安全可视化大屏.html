@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>兴达履约安全可视化大屏</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:#030a16;
+  font-family:'Segoe UI','Microsoft YaHei','PingFang SC',Arial,sans-serif;color:#dbe9f7}
+#stage{position:fixed;inset:0;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,#0b2447 0%,#030a16 70%)}
+#screen{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:top left;
+  background:linear-gradient(180deg,#04122a 0%,#061a33 40%,#030d1e 100%);padding:14px 20px 18px}
+
+/* ── 顶部标题栏 ── */
+.hd{height:76px;display:flex;align-items:center;position:relative;
+  background:linear-gradient(90deg,rgba(0,150,255,.10),rgba(0,229,255,.05) 50%,rgba(0,150,255,.10));
+  border:1px solid rgba(64,158,255,.25);border-radius:6px;margin-bottom:12px}
+.hd .side{width:300px;display:flex;align-items:center;gap:10px;padding-left:14px;font-size:13px;color:#7fb3e0}
+.hd .side.r{justify-content:flex-end;padding-right:14px}
+.hd h1{flex:1;text-align:center;font-size:34px;font-weight:800;letter-spacing:6px;
+  background:linear-gradient(180deg,#ffffff,#63d7ff);-webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 0 24px rgba(0,180,255,.35)}
+.hd .tag{font-size:12px;padding:3px 10px;border:1px solid rgba(0,229,255,.45);border-radius:12px;color:#7de3ff}
+.hd .clock{font-size:20px;font-weight:700;color:#eaf6ff;font-variant-numeric:tabular-nums;letter-spacing:1px}
+.hd .date{font-size:12px;color:#8fc4e8;margin-left:6px}
+
+/* ── KPI 卡片行 ── */
+.kpis{display:grid;grid-template-columns:repeat(8,1fr);gap:10px;margin-bottom:12px}
+.kpi{background:linear-gradient(180deg,rgba(16,58,104,.55),rgba(9,32,62,.55));
+  border:1px solid rgba(64,158,255,.22);border-radius:6px;padding:10px 12px;position:relative;overflow:hidden}
+.kpi::after{content:'';position:absolute;left:0;top:0;width:3px;height:100%;background:#00d2ff}
+.kpi.g::after{background:#00d68f}.kpi.o::after{background:#ff9500}
+.kpi.r::after{background:#ff5b5b}.kpi.p::after{background:#a78bfa}
+.kpi .k{font-size:12px;color:#8fc4e8;letter-spacing:.5px}
+.kpi .v{font-size:26px;font-weight:800;color:#fff;line-height:1.25;font-variant-numeric:tabular-nums}
+.kpi .v small{font-size:13px;font-weight:600;color:#9fd0f0;margin-left:2px}
+.kpi .s{font-size:11px;color:#6f9fc4;margin-top:2px}
+
+/* ── 主体三列 ── */
+.body{display:grid;grid-template-columns:470px 1fr 470px;gap:12px;height:874px}
+.col{display:flex;flex-direction:column;gap:12px}
+.panel{background:linear-gradient(180deg,rgba(12,42,78,.5),rgba(7,26,50,.5));
+  border:1px solid rgba(64,158,255,.2);border-radius:6px;padding:10px 12px 6px;display:flex;flex-direction:column;position:relative}
+.panel > h3{font-size:14px;font-weight:700;color:#8fe0ff;letter-spacing:1px;margin-bottom:6px;
+  display:flex;align-items:center;gap:8px}
+.panel > h3::before{content:'';width:4px;height:14px;background:linear-gradient(180deg,#00e5ff,#0077ff);border-radius:2px}
+.panel > h3 .sub{margin-left:auto;font-size:11px;font-weight:400;color:#6f9fc4}
+.chart{flex:1;min-height:0}
+
+/* ── 中部环形指标 ── */
+.rings{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+.ring{height:172px;background:linear-gradient(180deg,rgba(16,58,104,.5),rgba(9,32,62,.5));
+  border:1px solid rgba(64,158,255,.22);border-radius:6px;padding:6px;position:relative}
+.ring .lb{position:absolute;left:0;right:0;bottom:8px;text-align:center;font-size:13px;color:#9fd0f0}
+.ring .lb b{display:block;font-size:14px;color:#8fe0ff;letter-spacing:1px;margin-top:1px}
+
+/* ── 风险站点表格 ── */
+.tbl{width:100%;border-collapse:collapse;font-size:12px}
+.tbl th{background:rgba(0,120,220,.22);color:#8fe0ff;font-weight:600;padding:5px 6px;text-align:left;
+  border-bottom:1px solid rgba(64,158,255,.25);position:sticky;top:0}
+.tbl td{padding:4px 6px;border-bottom:1px solid rgba(64,158,255,.08);color:#cfe4f7}
+.tbl tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.tbl td.rate{text-align:right;font-weight:800;color:#ffb020;font-variant-numeric:tabular-nums}
+.tbl td.num{text-align:right;color:#8fc4e8;font-variant-numeric:tabular-nums}
+.tbl .nm{max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.scroll{overflow:auto;flex:1;min-height:0}
+.scroll::-webkit-scrollbar{width:5px}.scroll::-webkit-scrollbar-thumb{background:rgba(64,158,255,.35);border-radius:3px}
+
+/* ── 同步状态 ── */
+.sync-list{display:flex;flex-direction:column;gap:5px;overflow:auto;padding-right:2px}
+.sync-row{display:flex;align-items:center;gap:8px;font-size:12px;color:#cfe4f7;
+  background:rgba(255,255,255,.03);border-radius:4px;padding:5px 8px}
+.sync-row .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sync-row.ok .dot{background:#00d68f;box-shadow:0 0 8px #00d68f}
+.sync-row.bad .dot{background:#ff5b5b;box-shadow:0 0 8px #ff5b5b}
+.sync-row .n{margin-left:auto;font-size:11px;color:#7fb3e0}
+.sync-row .t{color:#8fc4e8;font-size:11px;margin-left:6px}
+
+.foot{position:absolute;left:0;right:0;bottom:2px;text-align:center;font-size:11px;color:#4a7398}
+.badge{font-size:11px;color:#7fb3e0;border:1px solid rgba(64,158,255,.25);border-radius:10px;padding:1px 8px}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="screen">
+
+    <div class="hd">
+      <div class="side">
+        <span class="badge" id="dataBadge">数据日期 —</span>
+        <span id="genTime"></span>
+      </div>
+      <h1>兴 达 履 约 安 全 可 视 化 大 屏</h1>
+      <div class="side r">
+        <span class="clock" id="clock">--:--:--</span>
+        <span class="date" id="today"></span>
+      </div>
+    </div>
+
+    <div class="kpis" id="kpis"></div>
+
+    <div class="body">
+      <!-- 左列 -->
+      <div class="col">
+        <div class="panel" style="flex:1.25">
+          <h3>交通安全四项 · 近 9 天趋势<span class="sub" id="trendSub"></span></h3>
+          <div class="chart" id="c_trend"></div>
+        </div>
+        <div class="panel" style="flex:1.05">
+          <h3>各大区安全指标对比</h3>
+          <div class="chart" id="c_region"></div>
+        </div>
+        <div class="panel" style="flex:.95">
+          <h3>服装标准化 · 大区双维度<span class="sub">日美团工装率 / 月订单视觉覆盖率</span></h3>
+          <div class="chart" id="c_cloth"></div>
+        </div>
+        <div class="panel" style="flex:.9">
+          <h3>履约项目关键项 · 各大区达成</h3>
+          <div class="chart" id="c_proj"></div>
+        </div>
+      </div>
+
+      <!-- 中列 -->
+      <div class="col">
+        <div class="rings">
+          <div class="ring" id="r_helmet"><div class="lb">戴盔率<b>安全底线 98%</b></div></div>
+          <div class="ring" id="r_speed"><div class="lb">超速率<b>目标 ≤ 2%</b></div></div>
+          <div class="ring" id="r_red"><div class="lb">闯红灯率<b>目标 ≤ 15%</b></div></div>
+          <div class="ring" id="r_rev"><div class="lb">里程逆行率<b>目标 ≤ 2.5%</b></div></div>
+        </div>
+
+        <div class="panel" style="flex:1.1">
+          <h3>高风险站点 TOP10<span class="sub">超速 · 闯红灯 · 逆行（按分母大小过滤）</span></h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0">
+            <div style="display:flex;flex-direction:column;min-height:0">
+              <div style="font-size:12px;color:#ffb020;margin-bottom:4px">⚡ 超速率最高</div>
+              <div class="scroll"><table class="tbl" id="t_speed"></table></div>
+            </div>
+            <div style="display:flex;flex-direction:column;min-height:0">
+              <div style="font-size:12px;color:#ff8a8a;margin-bottom:4px">🚦 闯红灯率最高</div>
+              <div class="scroll"><table class="tbl" id="t_red"></table></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="flex:1">
+          <h3>站点分布 & 保险风险<span class="sub">左：城市点位数 TOP12 ｜ 右：城市已报预估赔付金额 TOP10</span></h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0">
+            <div class="chart" id="c_city"></div>
+            <div class="chart" id="c_ins"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右列 -->
+      <div class="col">
+        <div class="panel" style="flex:1">
+          <h3>保险概览 · 保费与赔付<span class="sub" id="insSub"></span></h3>
+          <div class="chart" id="c_prem"></div>
+        </div>
+        <div class="panel" style="flex:.9">
+          <h3>美团保险理赔案件 TOP10<span class="sub">按城市案件数</span></h3>
+          <div class="chart" id="c_claim"></div>
+        </div>
+        <div class="panel" style="flex:1">
+          <h3>源数据同步状态<span class="sub">来自数据中心</span></h3>
+          <div class="sync-list" id="syncList"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">数据来源：交通安全行为看板 · 履约项目 · 护航服装 · 全国站点地图 · 美团保险 · BI 赔付 · 保费（只读汇总，未改动任何源数据）</div>
+  </div>
+</div>
+
+<script src="_大屏数据.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script>
+if (typeof echarts === 'undefined') {
+  document.write('<script src="https://unpkg.com/echarts@5.4.3/dist/echarts.min.js"><\/script>');
+}
+</script>
+<script>
+/* ---------- 自适应缩放（1920×1080 等比铺满） ---------- */
+function fit(){
+  var s = Math.min(window.innerWidth/1920, window.innerHeight/1080);
+  var el = document.getElementById('screen');
+  el.style.transform = 'scale('+s+')';
+  el.style.left = Math.max(0, (window.innerWidth  - 1920*s)/2) + 'px';
+  el.style.top  = Math.max(0, (window.innerHeight - 1080*s)/2) + 'px';
+}
+window.addEventListener('resize', function(){ fit(); if(window.__charts) window.__charts.forEach(function(c){c.resize();}); });
+fit();
+
+var D = window.SCREEN_DATA || {};
+var fmt = function(n){ return (n==null||isNaN(n)) ? '-' : Number(n).toLocaleString('zh-CN'); };
+var money1 = function(n){ return '¥' + fmt(Math.round(n)); };
+var charts = []; window.__charts = charts;
+function mk(id, opt){
+  var el = document.getElementById(id); if(!el || typeof echarts==='undefined') return null;
+  var c = echarts.init(el, null, {renderer:'canvas'});
+  c.setOption(opt); charts.push(c); return c;
+}
+var AXIS = { axisLine:{lineStyle:{color:'rgba(120,180,230,.35)'}}, axisLabel:{color:'#8fc4e8',fontSize:11},
+  splitLine:{lineStyle:{color:'rgba(120,180,230,.10)'}} };
+var GRID = { left:8, right:12, top:26, bottom:4, containLabel:true };
+
+/* ---------- 时钟 ---------- */
+setInterval(function(){
+  var d = new Date();
+  var p = function(x){ return x<10?'0'+x:''+x; };
+  document.getElementById('clock').textContent = p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds());
+  document.getElementById('today').textContent = d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());
+}, 1000);
+
+/* ---------- 头部 ---------- */
+var meta = D.meta || {};
+document.getElementById('dataBadge').textContent = '数据日期 ' + (meta.data_date || '-') + ' ｜ 截至 ' + (meta.dates||[]).slice(-1)[0];
+document.getElementById('genTime').textContent = '汇总生成 ' + (meta.generated_at || '-');
+
+/* ---------- KPI 卡片 ---------- */
+var k = D.kpi || {};
+var cards = [
+  {c:'',    k:'在职骑手',   v:fmt(k.riders),            s:'排班在册 '+fmt(k.escort_riders)+' 人' },
+  {c:'g',   k:'站点 / 宿舍', v:fmt(k.sites)+' / '+fmt(k.dorms), s:'覆盖 '+fmt(k.cities)+' 个城市' },
+  {c:'g',   k:'戴盔率',     v:(k.helmet&&k.helmet.rate!=null?k.helmet.rate:'-'), u:'%', s:'近9天累计 '+fmt(k.helmet&&k.helmet.den)+' 单' },
+  {c:'o',   k:'超速率',     v:(k.speed&&k.speed.rate!=null?k.speed.rate:'-'),   u:'%', s:'目标 ≤ 2%' },
+  {c:'r',   k:'闯红灯率',   v:(k.redlight&&k.redlight.rate!=null?k.redlight.rate:'-'), u:'%', s:'目标 ≤ 15%' },
+  {c:'r',   k:'里程逆行率', v:(k.reverse&&k.reverse.rate!=null?k.reverse.rate:'-'), u:'%', s:'目标 ≤ 2.5%' },
+  {c:'p',   k:'当月保费',   v:money1(k.premium_total), s:'2026-09 · '+fmt(k.premium_cities)+' 城' },
+  {c:'p',   k:'已报预估赔付', v:money1(k.bi_est),      s:'已报 '+fmt(k.bi_reported)+' 起 / 已决 '+fmt(k.bi_resolved)+' 起' }
+];
+document.getElementById('kpis').innerHTML = cards.map(function(x){
+  return '<div class="kpi '+x.c+'"><div class="k">'+x.k+'</div><div class="v">'+x.v+(x.u?'<small>'+x.u+'</small>':'')+'</div><div class="s">'+x.s+'</div></div>';
+}).join('');
+
+/* ---------- 1. 四项趋势 ---------- */
+var t = D.trend || {};
+document.getElementById('trendSub').textContent = (t.dates||[]).length + ' 天 · 全司口径';
+mk('c_trend', {
+  tooltip:{trigger:'axis', backgroundColor:'rgba(6,26,50,.92)', borderColor:'rgba(64,158,255,.4)', textStyle:{color:'#dbe9f7'}},
+  legend:{data:['戴盔率','超速率','闯红灯率','逆行率'], textStyle:{color:'#8fc4e8',fontSize:11}, top:0, itemWidth:12, itemHeight:8},
+  grid:GRID,
+  xAxis:Object.assign({type:'category',data:t.dates||[]}, AXIS, {splitLine:{show:false}}),
+  yAxis:Object.assign({type:'value', axisLabel:{color:'#8fc4e8',fontSize:11,formatter:'{value}%'}}, {splitLine:{lineStyle:{color:'rgba(120,180,230,.10)'}}, axisLine:{show:false}}),
+  series:[
+    {name:'戴盔率', type:'line', smooth:true, data:t.helmet, itemStyle:{color:'#00d68f'}, lineStyle:{width:2}, showSymbol:false},
+    {name:'超速率', type:'line', smooth:true, data:t.speed, itemStyle:{color:'#ffb020'}, lineStyle:{width:2}, showSymbol:false},
+    {name:'闯红灯率', type:'line', smooth:true, data:t.redlight, itemStyle:{color:'#ff5b5b'}, lineStyle:{width:2}, showSymbol:false},
+    {name:'逆行率', type:'line', smooth:true, data:t.reverse, itemStyle:{color:'#a78bfa'}, lineStyle:{width:2}, showSymbol:false}
+  ]
+});
+
+/* ---------- 2. 大区对比 ---------- */
+var rg = D.regions || [];
+mk('c_region', {
+  tooltip:{trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:'rgba(6,26,50,.92)', borderColor:'rgba(64,158,255,.4)', textStyle:{color:'#dbe9f7'}},
+  legend:{data:['戴盔率','超速率','闯红灯率','逆行率'], textStyle:{color:'#8fc4e8',fontSize:11}, top:0, itemWidth:12, itemHeight:8},
+  grid:GRID,
+  xAxis:Object.assign({type:'category',data:rg.map(function(x){return x.name;})}, AXIS, {splitLine:{show:false}}),
+  yAxis:Object.assign({type:'value', axisLabel:{color:'#8fc4e8',fontSize:11,formatter:'{value}%'}}, {splitLine:{lineStyle:{color:'rgba(120,180,230,.10)'}}, axisLine:{show:false}}),
+  series:[
+    {name:'戴盔率', type:'bar', data:rg.map(function(x){return x.helmet;}), itemStyle:{color:'#00d68f'}, barMaxWidth:16},
+    {name:'超速率', type:'bar', data:rg.map(function(x){return x.speed;}), itemStyle:{color:'#ffb020'}, barMaxWidth:16},
+    {name:'闯红灯率', type:'bar', data:rg.map(function(x){return x.redlight;}), itemStyle:{color:'#ff5b5b'}, barMaxWidth:16},
+    {name:'逆行率', type:'bar', data:rg.map(function(x){return x.reverse;}), itemStyle:{color:'#a78bfa'}, barMaxWidth:16}
+  ]
+});
+
+/* ---------- 3. 服装标准化 ---------- */
+var cr = D.clothingRegion || [];
+mk('c_cloth', {
+  tooltip:{trigger:'axis', backgroundColor:'rgba(6,26,50,.92)', borderColor:'rgba(64,158,255,.4)', textStyle:{color:'#dbe9f7'}},
+  legend:{data:['日美团工装率','月订单视觉覆盖率'], textStyle:{color:'#8fc4e8',fontSize:11}, top:0, itemWidth:12, itemHeight:8},
+  grid:GRID,
+  xAxis:Object.assign({type:'category',data:cr.map(function(x){return x.name;})}, AXIS, {splitLine:{show:false}}),
+  yAxis:Object.assign({type:'value',max:100,axisLabel:{color:'#8fc4e8',fontSize:11,formatter:'{value}%'}}, {splitLine:{lineStyle:{color:'rgba(120,180,230,.10)'}}, axisLine:{show:false}}),
+  series:[
+    {name:'日美团工装率', type:'bar', data:cr.map(function(x){return x.day;}), itemStyle:{color:'#00d2ff'}, barMaxWidth:22,
+      markLine:{silent:true, symbol:'none', data:[{yAxis:92, label:{formatter:'目标92%',color:'#ffb020',fontSize:10}, lineStyle:{color:'#ffb020',type:'dashed'}}]}},
+    {name:'月订单视觉覆盖率', type:'line', smooth:true, data:cr.map(function(x){return x.month;}), itemStyle:{color:'#ff9500'}, lineStyle:{width:2}, symbolSize:6}
+  ]
+});
+
+/* ---------- 4. 履约项目（各大区） ---------- */
+var pr = D.projectRegion || { metrics:[], rows:[] };
+var PM_COLORS = ['#00d2ff', '#00d68f', '#ffb020', '#a78bfa'];
+mk('c_proj', {
+  tooltip:{trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:'rgba(6,26,50,.92)', borderColor:'rgba(64,158,255,.4)', textStyle:{color:'#dbe9f7'},
+    valueFormatter:function(v){ return v + '%'; }},
+  legend:{data:pr.metrics, textStyle:{color:'#8fc4e8',fontSize:11}, top:0, itemWidth:12, itemHeight:8},
+  grid:GRID,
+  xAxis:Object.assign({type:'category',data:(pr.rows||[]).map(function(x){return x.name;})}, AXIS, {splitLine:{show:false}}),
+  yAxis:Object.assign({type:'value',max:100,axisLabel:{color:'#8fc4e8',fontSize:11,formatter:'{value}%'}}, {splitLine:{lineStyle:{color:'rgba(120,180,230,.10)'}}, axisLine:{show:false}}),
+  series:pr.metrics.map(function(m,i){
+    return {name:m, type:'bar', barMaxWidth:14, data:(pr.rows||[]).map(function(x){return x[m];}),
+      itemStyle:{color:PM_COLORS[i % PM_COLORS.length]}};
+  })
+});
+
+/* ---------- 5. 中部四个环形 ---------- */
+function ring(id, value, color){
+  var v = (value==null?0:value);
+  var opt = {
+    series:[
+      {type:'pie', radius:['62%','80%'], center:['50%','45%'], silent:true, label:{show:false},
+        data:[{value:v, itemStyle:{color:color}}, {value:Math.max(0,100-v), itemStyle:{color:'rgba(120,180,230,.12)'}}]},
+      {type:'gauge', radius:'0%', center:['50%','45%'], startAngle:90, endAngle:-270, min:0, max:100,
+        axisLine:{show:false}, splitLine:{show:false}, axisTick:{show:false}, axisLabel:{show:false}, pointer:{show:false},
+        detail:{show:false}, title:{show:false}, data:[{value:v}]}
+    ],
+    graphic:[{type:'text', left:'center', top:'36%', style:{text:(v==null?'-':v.toFixed(2)+'%'), fill:'#fff', fontSize:26, fontWeight:800}}]
+  };
+  mk(id, opt);
+}
+ring('r_helmet', k.helmet&&k.helmet.rate, '#00d68f');
+ring('r_speed',  k.speed&&k.speed.rate,   '#ffb020');
+ring('r_red',    k.redlight&&k.redlight.rate, '#ff5b5b');
+ring('r_rev',    k.reverse&&k.reverse.rate,   '#a78bfa');
+
+/* ---------- 6. 风险站点表格 ---------- */
+function tbl(id, rows, unit){
+  var html = '<thead><tr><th>#</th><th>站点</th><th>大区</th><th style="text-align:right">比率</th><th style="text-align:right">分子/分母</th></tr></thead><tbody>';
+  (rows||[]).forEach(function(r,i){
+    html += '<tr><td>'+(i+1)+'</td><td class="nm" title="'+r.name+'">'+r.name+'</td><td>'+(r.region||'-')+'</td>'+
+      '<td class="rate">'+(r.rate==null?'-':r.rate.toFixed(2)+'%')+'</td><td class="num">'+fmt(r.num)+' / '+fmt(r.den)+'</td></tr>';
+  });
+  document.getElementById(id).innerHTML = html + '</tbody>';
+}
+tbl('t_speed', D.topSpeed, '%');
+tbl('t_red',   D.topRedlight, '%');
+
+/* ---------- 7. 城市点位 & 保险赔付 ---------- */
+var sc = (D.siteCity||[]).slice(0,12);
+mk('c_city', {
+  tooltip:{trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:'rgba(6,26,50,.92)', borderColor:'rgba(64,158,255,.4)', textStyle:{color:'#dbe9f7'}},
+  grid:{left:8,right:26,top:10,bottom:4,containLabel:true},
+  xAxis:Object.assign({type:'value'}, {splitLine:{lineStyle:{color:'rgba(120,180,230,.10)'}}, axisLine:{show:false}, axisLabel:{color:'#8fc4e8',fontSize:11}}),
+  yAxis:Object.assign({type:'category',data:sc.map(function(x){return x.city;}).reverse()}, AXIS, {splitLine:{show:false}}),
+  series:[{type:'bar', data:sc.map(function(x){return x.n;}).reverse(), barMaxWidth:12,
+    itemStyle:{color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:'#0077ff'},{offset:1,color:'#00e5ff'}]), borderRadius:[0,3,3,0]},
+    label:{show:true,position:'right',color:'#cfe4f7',fontSize:11}}]
+});
+
+var ie = (D.insTopEst||[]).slice(0,10);
+mk('c_ins', {
+  tooltip:{trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:'rgba(6,26,50,.92)', borderColor:'rgba(64,158,255,.4)', textStyle:{color:'#dbe9f7'}},
+  grid:{left:8,right:40,top:10,bottom:4,containLabel:true},
+  xAxis:Object.assign({type:'value', axisLabel:{color:'#8fc4e8',fontSize:11,formatter:function(v){return (v/1000)+'k';}}}, {splitLine:{lineStyle:{color:'rgba(120,180,230,.10)'}}, axisLine:{show:false}}),
+  yAxis:Object.assign({type:'category',data:ie.map(function(x){return x.city;}).reverse()}, AXIS, {splitLine:{show:false}}),
+  series:[{type:'bar', data:ie.map(function(x){return x.est;}).reverse(), barMaxWidth:12,
+    itemStyle:{color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:'#ff5b5b'},{offset:1,color:'#ffb020'}]), borderRadius:[0,3,3,0]},
+    label:{show:true,position:'right',color:'#cfe4f7',fontSize:11,formatter:function(p){return (p.value/1000).toFixed(1)+'k';}}}]
+});
+
+/* ---------- 8. 保费 & 赔付（柱+线） ---------- */
+var ip = (D.insTopPrem||[]).slice(0,10);
+document.getElementById('insSub').textContent = (meta.prem_month||'') + ' 保费 · ' + (meta.bi_month||'') + ' 赔付';
+mk('c_prem', {
+  tooltip:{trigger:'axis', backgroundColor:'rgba(6,26,50,.92)', borderColor:'rgba(64,158,255,.4)', textStyle:{color:'#dbe9f7'}},
+  legend:{data:['当月保费','已报预估赔付'], textStyle:{color:'#8fc4e8',fontSize:11}, top:0, itemWidth:12, itemHeight:8},
+  grid:GRID,
+  xAxis:Object.assign({type:'category',data:ip.map(function(x){return x.city;}), axisLabel:{color:'#8fc4e8',fontSize:11,interval:0,rotate:32}}, {splitLine:{show:false}}),
+  yAxis:Object.assign({type:'value', axisLabel:{color:'#8fc4e8',fontSize:11,formatter:function(v){return (v/1000)+'k';}}}, {splitLine:{lineStyle:{color:'rgba(120,180,230,.10)'}}, axisLine:{show:false}}),
+  series:[
+    {name:'当月保费', type:'bar', data:ip.map(function(x){return x.premium;}), itemStyle:{color:'#00d2ff'}, barMaxWidth:20},
+    {name:'已报预估赔付', type:'line', smooth:true, data:ip.map(function(x){ var m={}; (D.insTopEst||[]).forEach(function(y){m[y.city]=y.est;}); return m[x.city]||0; }),
+      itemStyle:{color:'#ffb020'}, lineStyle:{width:2}, symbolSize:6}
+  ]
+});
+
+/* ---------- 9. 理赔案件 ---------- */
+var ct = (D.claimTop||[]).slice(0,10);
+mk('c_claim', {
+  tooltip:{trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:'rgba(6,26,50,.92)', borderColor:'rgba(64,158,255,.4)', textStyle:{color:'#dbe9f7'},
+    formatter:function(ps){ var c=(D.claimTop||[]).find(function(x){return x.city===ps[0].name;}); return ps[0].name+'<br/>案件 '+ps[0].value+' 起'; }},
+  grid:{left:8,right:30,top:10,bottom:4,containLabel:true},
+  xAxis:Object.assign({type:'category',data:ct.map(function(x){return x.city;}), axisLabel:{color:'#8fc4e8',fontSize:11,interval:0,rotate:32}}, {splitLine:{show:false}}),
+  yAxis:Object.assign({type:'value'}, {splitLine:{lineStyle:{color:'rgba(120,180,230,.10)'}}, axisLine:{show:false}, axisLabel:{color:'#8fc4e8',fontSize:11}}),
+  series:[{type:'bar', data:ct.map(function(x){return x.cases;}), barMaxWidth:18,
+    itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#a78bfa'},{offset:1,color:'#5b6bff'}]), borderRadius:[3,3,0,0]}}]
+});
+
+/* ---------- 10. 源数据同步 ---------- */
+document.getElementById('syncList').innerHTML = (D.sync||[]).map(function(s){
+  return '<div class="sync-row '+(s.all_synced?'ok':'bad')+'"><span class="dot"></span>'+s.title+
+    '<span class="n">已同步 '+s.synced+(s.missing?(' · 缺 '+s.missing):'')+'</span><span class="t">'+s.mtime+'</span></div>';
+}).join('');
+</script>
+</body>
+</html>

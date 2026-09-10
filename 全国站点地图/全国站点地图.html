@@ -41,6 +41,19 @@ a:hover{text-decoration:underline}
 .body-wrap{display:flex;height:calc(100% - 52px)}
 #map{flex:1;background:#e5ecf2}
 
+/* ===== 窄屏（手机）适配：顶栏换行、控件不挤出屏幕 ===== */
+@media (max-width:700px){
+  .header{height:auto;flex-wrap:wrap;padding:6px 10px;gap:8px;row-gap:6px}
+  .header .title{font-size:15px;letter-spacing:0}
+  .header .back{font-size:11px;padding:4px 8px}
+  .header .search-box{order:10;width:100%;margin-left:0;flex:1 1 100%}
+  .header .search-box input{width:100%}
+  #suggestBox{min-width:0}
+  .header .layer-switch button{padding:4px 9px;font-size:11px}
+  .share-btn{padding:4px 10px;font-size:11px}
+  #panelToggle{height:48px}
+}
+
 /* ===== 右侧悬浮返回上级按钮 ===== */
 #floatBack{display:none;position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:2000;align-items:center;gap:6px;padding:10px 16px;background:linear-gradient(135deg,#0B4F8A,#1E88E5);color:#fff;font-size:13px;font-weight:600;border:none;border-radius:24px;box-shadow:0 4px 14px rgba(11,79,138,.4);cursor:pointer;transition:all .15s}
 #floatBack:hover{background:linear-gradient(135deg,#0a4478,#1976d2);box-shadow:0 6px 18px rgba(11,79,138,.5)}
@@ -115,6 +128,21 @@ body.panel-collapsed .panel{display:none}
 /* 分享按钮与弹层 */
 .share-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);color:#fff;font-size:12px;padding:5px 14px;border-radius:16px;cursor:pointer;white-space:nowrap;transition:background .15s}
 .share-btn:hover{background:rgba(255,255,255,.28)}
+/* 站点名称标签开关 */
+#labelToggle.active{background:#FF9500 !important;border-color:#FF9500 !important;color:#fff !important}
+#labelToggle.active:hover{background:#e8860a}
+/* 点位名称标签（常显） */
+.leaflet-tooltip.lbl-tip{background:transparent;border:none;box-shadow:none;padding:0;white-space:nowrap}
+.leaflet-tooltip.lbl-tip:before{display:none}
+.lbl-txt{display:inline-block;background:#1E88E5;color:#fff;font-size:10.5px;font-weight:600;line-height:1.45;padding:1px 6px;border-radius:9px;white-space:nowrap;box-shadow:0 1px 4px rgba(11,79,138,.32);border:1px solid rgba(255,255,255,.9);pointer-events:none;max-width:200px;overflow:hidden;text-overflow:ellipsis}
+.lbl-meituan .lbl-txt{background:#FF9500;border-color:#fff3e0}
+.lbl-dorm .lbl-txt{background:#1E88E5;border-color:#e3f2fd}
+.lbl-chehang .lbl-txt{background:#43A047;border-color:#e8f5e9}
+.lbl-headquarters .lbl-txt{background:#E53935;border-color:#ffebee}
+.lbl-hidden .leaflet-tooltip.lbl-tip{display:none}
+/* 标签模式提示条 */
+#labelToast{display:none;position:fixed;left:50%;top:66px;transform:translateX(-50%);z-index:2600;background:rgba(11,79,138,.92);color:#fff;font-size:12px;padding:7px 16px;border-radius:18px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+#labelToast.show{display:block}
 #shareMask{display:none;position:fixed;inset:0;background:rgba(15,35,60,.45);z-index:3000;align-items:center;justify-content:center}
 #shareCard{background:#fff;border-radius:14px;padding:22px 26px;width:340px;max-width:92vw;box-shadow:0 12px 40px rgba(0,0,0,.25);text-align:center;position:relative}
 #shareCard h3{font-size:15px;color:#0B4F8A;margin-bottom:4px}
@@ -148,8 +176,10 @@ body.panel-collapsed .panel{display:none}
     <button data-layer="standard" class="active">标准</button>
     <button data-layer="satellite">卫星</button>
   </div>
+  <button class="share-btn" id="labelToggle" title="显示/隐藏站点名称标签">🏷 站点名称</button>
   <button class="share-btn" id="shareBtn">分享 ↗</button>
 </div>
+<div id="labelToast"></div>
 
 <div id="shareMask">
   <div id="shareCard">
@@ -304,6 +334,7 @@ function initMap(){
 
   var clusterOptions = {
     maxClusterRadius: 50,
+    disableClusteringAtZoom: 11,   // 放大到 11 级以上不再聚合，便于名称标签逐个显示
     iconCreateFunction: function(cluster){
       var count = cluster.getChildCount();
       return L.divIcon({ html: '<div class="mc-cluster">' + count + '</div>', className: '', iconSize: [40, 40] });
@@ -318,6 +349,25 @@ function initMap(){
   buildSuggestIndex();
   applyFilter('');
   bindEvents();
+  updateLabelVisibility(false);
+  syncLayout();
+  window.addEventListener('resize', function(){ syncLayout(); });
+  // 手机/窄屏：默认收起左侧面板，让地图占满屏幕
+  if (window.innerWidth < 700){
+    document.body.classList.add('panel-collapsed');
+    var _pt = document.getElementById('panelToggle');
+    if (_pt){ _pt.textContent = '▶'; _pt.title = '展开侧边面板'; }
+    setTimeout(function(){ map.invalidateSize(); }, 200);
+  }
+}
+
+/* 顶栏高度会随窄屏换行变化，动态给地图区高度并重算地图尺寸 */
+function syncLayout(){
+  var hd = document.querySelector('.header');
+  var bw = document.querySelector('.body-wrap');
+  if (!hd || !bw) return;
+  bw.style.height = (window.innerHeight - hd.offsetHeight) + 'px';
+  if (map) setTimeout(function(){ map.invalidateSize(); }, 60);
 }
 
 /* ---------- 点位图标（DivIcon 彩色圆点） ---------- */
@@ -366,9 +416,12 @@ function applyFilter(q){
     layerGroups[cat].clearLayers();
   });
   markerIndex = {};
-  filteredData.forEach(function(d){
+  filteredData.forEach(function(d, di){
     var m = L.marker([d.lat, d.lng], { icon: iconFor(d.category) });
     m.bindPopup(popupHtml(d));
+    d._lblDir = (di % 2 === 0) ? 'right' : 'left';   // 左右交替，减少密集区域标签互相压盖
+    m._d = d;
+    if (labelOn) bindLabel(m, d);
     layerGroups[d.category].addLayer(m);
     markerIndex[d.name] = m;
   });
@@ -380,6 +433,59 @@ function applyFilter(q){
   });
   renderDrill();
   fitDrill();
+}
+
+/* ---------- 点位名称常显标签 ---------- */
+var LABEL_KEY = 'xd_map_labels_v1';
+var labelOn = true;                       // 默认开启
+var LABEL_MIN_ZOOM = 10;                   // 低于该层级自动隐藏（避免全国视野挤成一团）
+var LABEL_MAX_POINTS = 60;                 // 或当前筛选点位数 ≤ 该值时也显示
+
+try { var _ls = localStorage.getItem(LABEL_KEY); if (_ls === '0') labelOn = false; } catch (e) {}
+
+function bindLabel(m, d){
+  var text = d.name || '';
+  if (!text) return;
+  var dir = d._lblDir || 'right';
+  m.bindTooltip('<span class="lbl-txt">' + esc(text) + '</span>', {
+    permanent: true, direction: dir, offset: (dir === 'left' ? [-8, -30] : [8, -30]), opacity: 1,
+    interactive: false, className: 'lbl-tip lbl-' + d.category, sticky: false
+  });
+}
+function unbindLabel(m){ if (m && m.getTooltip()) m.unbindTooltip(); }
+
+/* 是否显示名称：放大到一定层级，或当前点位数不多时显示 */
+function labelShouldShow(){
+  if (!labelOn) return false;
+  return map.getZoom() >= LABEL_MIN_ZOOM || filteredData.length <= LABEL_MAX_POINTS;
+}
+function updateLabelVisibility(showToast){
+  if (!map) return;
+  var show = labelShouldShow();
+  map.getContainer().classList.toggle('lbl-hidden', !show);
+  var btn = document.getElementById('labelToggle');
+  if (btn) btn.classList.toggle('active', labelOn);
+  if (showToast && labelOn && !show){
+    labelToast('当前视野点位较多，已自动隐藏名称 · 放大地图或钻取到城市即可看到');
+  }
+}
+function labelToast(msg){
+  var t = document.getElementById('labelToast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._tm);
+  t._tm = setTimeout(function(){ t.classList.remove('show'); }, 3600);
+}
+/* 开关：把标签绑到当前所有 marker（或全部摘掉） */
+function applyLabelMode(){
+  Object.keys(markerIndex).forEach(function(k){
+    var m = markerIndex[k];
+    if (labelOn) bindLabel(m, m._d);
+    else unbindLabel(m);
+  });
+  updateLabelVisibility(true);
+  try { localStorage.setItem(LABEL_KEY, labelOn ? '1' : '0'); } catch (e) {}
 }
 
 function popupHtml(d){
@@ -674,6 +780,11 @@ function bindEvents(){
     }
   });
   document.getElementById('exportBtn').addEventListener('click', exportCSV);
+  map.on('zoomend', function(){ updateLabelVisibility(false); });
+  document.getElementById('labelToggle').addEventListener('click', function(){
+    labelOn = !labelOn;
+    applyLabelMode();
+  });
   document.getElementById('panelToggle').addEventListener('click', function(){
     var collapsed = document.body.classList.toggle('panel-collapsed');
     this.textContent = collapsed ? '▶' : '◀';
