@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-11 06:50:21",
+  "updated_at": "2026-09-11 06:56:10",
   "groups": [
     {
       "title": "交通安全",
@@ -7,10 +7,10 @@ window.DATA_CENTER = {
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-11 06:50:20",
-        "all_synced": false,
-        "synced_count": 12,
-        "missing_count": 1,
+        "data_mtime": "2026-09-11 06:54:35",
+        "all_synced": true,
+        "synced_count": 13,
+        "missing_count": 0,
         "unsynced_count": 0,
         "sources": [
           {
@@ -75,14 +75,14 @@ window.DATA_CENTER = {
           },
           {
             "type": "抽检不合格明细",
-            "latest": "—",
-            "mtime": "--",
-            "synced": null
+            "latest": "_抽检不合格的骑手明细_2026-09-08-2026-09-10(天)_1789080649327.xlsx",
+            "mtime": "2026-09-11 06:50:53",
+            "synced": true
           },
           {
             "type": "加盟商指标达成",
-            "latest": "_加盟商指标达成情况_2026-09-07-2026-09-09(天)_1788994079828.xlsx",
-            "mtime": "2026-09-10 06:48:03",
+            "latest": "_加盟商指标达成情况_2026-09-08-2026-09-10(天)_1789080622596.xlsx",
+            "mtime": "2026-09-11 06:50:29",
             "synced": true
           },
           {
@@ -171,10 +171,10 @@ window.DATA_CENTER = {
           "履约项目\\data.js"
         ],
         "data_mtime": "2026-09-10 07:01:22",
-        "all_synced": true,
-        "synced_count": 6,
+        "all_synced": false,
+        "synced_count": 5,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
@@ -184,9 +184,9 @@ window.DATA_CENTER = {
           },
           {
             "type": "巡检工单列表",
-            "latest": "巡检工单列表_1788994408917.xls",
-            "mtime": "2026-09-10 06:53:44",
-            "synced": true
+            "latest": "巡检工单列表_1789080831205.xls",
+            "mtime": "2026-09-11 06:54:00",
+            "synced": false
           },
           {
             "type": "巡检平台站点检核",
@@ -251,17 +251,17 @@ window.DATA_CENTER = {
           "护航服装\\data.js",
           "护航服装\\data_excluded.js"
         ],
-        "data_mtime": "2026-09-10 06:53:36",
-        "all_synced": false,
-        "synced_count": 1,
+        "data_mtime": "2026-09-11 06:56:05",
+        "all_synced": true,
+        "synced_count": 2,
         "missing_count": 0,
-        "unsynced_count": 1,
+        "unsynced_count": 0,
         "sources": [
           {
             "type": "已剔除恶劣天气",
             "latest": "已剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260910-20260910(天)_1789080550971.xlsx",
             "mtime": "2026-09-11 06:49:18",
-            "synced": false
+            "synced": true
           },
           {
             "type": "未剔除恶劣天气",
@@ -305,7 +305,7 @@ window.DATA_CENTER = {
           "在职骑手详情\\在职骑手详情.html",
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-11 06:50:20",
+        "data_mtime": "2026-09-11 06:54:35",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -353,7 +353,7 @@ window.DATA_CENTER = {
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-09-11 06:50:21",
+        "data_mtime": "2026-09-11 06:54:36",
         "all_synced": true,
         "synced_count": 4,
         "missing_count": 0,
@@ -374,7 +374,7 @@ window.DATA_CENTER = {
           {
             "type": "V3内联数据",
             "latest": "v3_data.js",
-            "mtime": "2026-09-11 06:50:21",
+            "mtime": "2026-09-11 06:54:36",
             "synced": true
           },
           {
@@ -512,7 +512,7 @@ window.DATA_CENTER = {
           {
             "type": "交通安全data.js（归档源）",
             "latest": "data.js",
-            "mtime": "2026-09-11 06:50:20",
+            "mtime": "2026-09-11 06:54:35",
             "synced": false
           }
         ]
