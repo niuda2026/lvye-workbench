@@ -1736,20 +1736,27 @@ function renderKnifeTab() {
 // ─── Tab 6: 充换电血压看板 ───────────────────────────────────
 function renderChargeBPTab() {
   var columns = [
-    {key:'bp_rate', label:'血压检测率', isPct:false, isSumRatio:true},
-    {key:'bp_num', label:'血压_num', isPct:false, isSumRatio:false},
-    {key:'bp_den', label:'血压_den', isPct:false, isSumRatio:false},
-    {key:'vehicle_rate', label:'载具审核通过率', isPct:false, isSumRatio:true},
-    {key:'vehicle_num', label:'载具_num', isPct:false, isSumRatio:false},
-    {key:'vehicle_den', label:'载具_den', isPct:false, isSumRatio:false},
-    {key:'charge_up_rate', label:'充换电上传提交率', isPct:false, isSumRatio:true},
-    {key:'charge_up_num', label:'上传_num', isPct:false, isSumRatio:false},
-    {key:'charge_up_den', label:'上传_den', isPct:false, isSumRatio:false},
-    {key:'charge_check_rate', label:'充换电审核通过率', isPct:false, isSumRatio:true},
-    {key:'charge_check_num', label:'审核_num', isPct:false, isSumRatio:false},
-    {key:'charge_check_den', label:'审核_den', isPct:false, isSumRatio:false}
+    {key:'bp_rate',          label:'检测率',   isPct:false, isSumRatio:true},
+    {key:'bp_num',           label:'已上报',   isPct:false, isSumRatio:false},
+    {key:'bp_den',           label:'在职骑手', isPct:false, isSumRatio:false},
+    {key:'vehicle_rate',     label:'通过率',   isPct:false, isSumRatio:true},
+    {key:'vehicle_num',      label:'通过',     isPct:false, isSumRatio:false},
+    {key:'vehicle_den',      label:'已出结果', isPct:false, isSumRatio:false},
+    {key:'charge_up_rate',   label:'提交率',   isPct:false, isSumRatio:true},
+    {key:'charge_up_num',    label:'已上报',   isPct:false, isSumRatio:false},
+    {key:'charge_up_den',    label:'在职骑手', isPct:false, isSumRatio:false},
+    {key:'charge_check_rate',label:'通过率',   isPct:false, isSumRatio:true},
+    {key:'charge_check_num', label:'通过',     isPct:false, isSumRatio:false},
+    {key:'charge_check_den', label:'已出结果', isPct:false, isSumRatio:false}
   ];
-  renderStandardTab('chargebp', 'CHARGEBP_DATA', columns, null);
+  // 两级中文表头：每组=率+分子+分母，与「早会审核」等看板风格一致
+  var headerGroups = [
+    {label:'血压检测率',            colspan:3, bgColor:'#c4b5fd', textColor:'#4c1d95'},
+    {label:'载具审核通过率（暂缺数据源）', colspan:3, bgColor:'#e5e7eb', textColor:'#374151'},
+    {label:'充换电上传提交率',      colspan:3, bgColor:'#93c5fd', textColor:'#10324F'},
+    {label:'充换电审核通过率',      colspan:3, bgColor:'#6ee7b7', textColor:'#064e3b'}
+  ];
+  renderStandardTab('chargebp', 'CHARGEBP_DATA', columns, null, headerGroups);
   cbInitOnce();
   cbSiteCards();
 }
@@ -2578,12 +2585,23 @@ function exportTable(tabId) {
   var tbody = document.getElementById(tbodyId);
   var thead = document.getElementById(theadId);
   
-  // Headers
-  var headerCells = thead.querySelectorAll('tr:last-child th');
+  // Headers（兼容单级/两级表头：两级时补回 rowspan 列，子列拼上父级分组名，避免列错位）
+  var _hc = function(th){ return th.textContent.replace(/"/g,'""').replace(/\n/g,' ').trim(); };
+  var _theadTrs = thead.querySelectorAll('tr');
   var headerRow = [];
-  headerCells.forEach(function(th) {
-    headerRow.push('"'+th.textContent.replace(/"/g,'""').replace(/\n/g,' ')+'"');
-  });
+  if (_theadTrs.length > 1) {
+    var _parents = [];
+    _theadTrs[0].querySelectorAll('th').forEach(function(th){
+      var nm = _hc(th);
+      if (th.getAttribute('rowspan')) { headerRow.push('"'+nm+'"'); }
+      else { var n = parseInt(th.getAttribute('colspan')||'1',10); for (var i=0;i<n;i++) _parents.push(nm); }
+    });
+    _theadTrs[_theadTrs.length-1].querySelectorAll('th').forEach(function(th,i){
+      headerRow.push('"' + (_parents[i] ? _parents[i]+'-'+_hc(th) : _hc(th)) + '"');
+    });
+  } else {
+    _theadTrs[0].querySelectorAll('th').forEach(function(th){ headerRow.push('"'+_hc(th)+'"'); });
+  }
   rows.push(headerRow.join(','));
   
   // Body - only visible rows
