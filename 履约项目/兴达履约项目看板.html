@@ -185,6 +185,30 @@ table.dt thead{background:transparent}
 .clothing-view-bar{display:flex;align-items:center;gap:6px;padding:6px 16px;background:#fff8e1;border-bottom:1px solid #ffcc02;flex-wrap:wrap}
 .clothing-view-bar .view-label{font-size:12px;color:#4F6E87;font-weight:600;margin-right:4px}
 
+/* ── 充换电血压看板：双子Tab（2026-09-11 接入） ── */
+.cb-subtab-bar{display:flex;gap:0;background:#fff;border-bottom:2px solid #d6e4f0;padding:0 16px}
+.cb-subtab{padding:11px 22px;cursor:pointer;font-size:13px;font-weight:600;color:#4F6E87;border-bottom:3px solid transparent;transition:all .15s;display:flex;align-items:center;gap:6px}
+.cb-subtab:hover{color:#0B4F8A;background:#f4f9ff}
+.cb-subtab.active{color:#0B4F8A;border-bottom-color:#1E88E5;background:#f4f9ff}
+.cb-cnt{font-size:11px;font-weight:500;background:#EAF2F9;color:#0B4F8A;border-radius:9px;padding:0 7px;line-height:16px}
+.cb-subtab.active .cb-cnt{background:#1E88E5;color:#fff}
+.cb-range{margin-left:auto;display:flex;align-items:center;gap:6px;padding:6px 0}
+.cb-range-cap{font-size:12px;color:#0B4F8A;font-weight:600}
+.cb-range input[type=date]{padding:3px 6px;border:1px solid #8FB8DA;border-radius:4px;font-size:12px;font-family:inherit;color:#1a2e45;background:#fff}
+.cb-range-sep{color:#4F6E87;font-size:12px}
+.cb-rbtn{padding:3px 10px;border:1px solid #8FB8DA;background:#fff;color:#4F6E87;border-radius:4px;font-size:12px;cursor:pointer;font-family:inherit}
+.cb-rbtn:hover{border-color:#0B4F8A;color:#0B4F8A}
+.cb-rbtn.cur{background:#1E88E5;color:#fff;border-color:#1E88E5}
+.cb-range-note{font-size:11px;color:#90a4ae;margin-left:2px}
+table.dt th.cb-grp-b{background:#6a4bab}
+table.dt th.cb-grp-c{background:#0d6bb5}
+table.dt th.cb-grp-w{background:#0a8f6a}
+tr.cb-row-noup td{background:#fff7f7}
+tr.cb-row-noup:hover td{background:#ffefef}
+.cb-tag-up{display:inline-block;padding:1px 8px;border-radius:9px;font-size:11px;font-weight:600}
+.cb-tag-up.yes{background:#e8f5e9;color:#2e7d32}
+.cb-tag-up.no{background:#fdecea;color:#c62828}
+
 </style>
 </head>
 <body>
@@ -405,6 +429,21 @@ table.dt thead{background:transparent}
 </div>
 <!-- Tab: chargebp -->
 <div class="panel" id="panel-chargebp">
+  <div class="cb-subtab-bar">
+    <div class="cb-subtab active" data-t="site" onclick="cbSwitchSub('site')">🏢 站点维度达成</div>
+    <div class="cb-subtab" data-t="rider" onclick="cbSwitchSub('rider')">🛵 骑手维度明细<span class="cb-cnt" id="cbCntRider">-</span></div>
+    <div class="cb-range">
+      <span class="cb-range-cap">上传日期</span>
+      <input type="date" id="cbD1" onchange="cbOnRange()"><span class="cb-range-sep">~</span>
+      <input type="date" id="cbD2" onchange="cbOnRange()">
+      <button class="cb-rbtn" onclick="cbQuickRange(event,'all')">全部（累计）</button>
+      <button class="cb-rbtn" onclick="cbQuickRange(event,'thisMonth')">本月</button>
+      <button class="cb-rbtn" onclick="cbQuickRange(event,'prev3')">近3天</button>
+      <button class="cb-rbtn" onclick="cbQuickRange(event,'today')">今天</button>
+      <span class="cb-range-note" id="cbRangeNote"></span>
+    </div>
+  </div>
+  <div id="cb-panel-site">
   <div class="summary-row" id="summary-cards-chargebp"></div>
     <div class="sub-tab-bar">
     <span class="sub-tab-label">显示层级：</span>
@@ -431,7 +470,42 @@ table.dt thead{background:transparent}
       <tbody id="tbody-chargebp"></tbody>
     </table>
   </div>
-  
+  </div><!-- /cb-panel-site -->
+
+  <!-- ══ 子Tab2：骑手维度明细 ══ -->
+  <div id="cb-panel-rider" style="display:none">
+    <div class="summary-row" id="cbCardsRider"></div>
+    <div class="filter-bar">
+      <label>大区</label><div class="ms-wrap" id="ms-cbregion"><div class="ms-btn" onclick="cbToggleMs('cbregion')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>区域</label><div class="ms-wrap" id="ms-cbsubr"><div class="ms-btn" onclick="cbToggleMs('cbsubr')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>城市</label><div class="ms-wrap" id="ms-cbcity"><div class="ms-btn" onclick="cbToggleMs('cbcity')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>站点</label><div class="ms-wrap" id="ms-cbsite"><div class="ms-btn" onclick="cbToggleMs('cbsite')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>血压</label><div class="ms-wrap" id="ms-cbbpt"><div class="ms-btn" onclick="cbToggleMs('cbbpt')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>充电</label><div class="ms-wrap" id="ms-cbcst"><div class="ms-btn" onclick="cbToggleMs('cbcst')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>换电</label><div class="ms-wrap" id="ms-cbwst"><div class="ms-btn" onclick="cbToggleMs('cbwst')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <input class="inp" id="cbQ" placeholder="🔍 骑手ID / 姓名" oninput="cbRenderRider(1)">
+      <button class="btn btn-secondary" onclick="cbClearF()">清除筛选</button>
+      <button class="btn btn-export" onclick="cbExportTbl()">&#128229; 导出Excel</button>
+      <span class="filter-count" id="cbCntRiderF"></span>
+    </div>
+    <div class="table-wrap table-wrap-rider">
+      <table class="dt" id="cbTblRider">
+        <thead><tr>
+          <th rowspan="2">大区</th><th rowspan="2">区域</th><th rowspan="2">城市</th><th rowspan="2">站点名称</th>
+          <th rowspan="2">骑手ID</th><th rowspan="2">骑手姓名</th><th rowspan="2">排班状态</th>
+          <th colspan="3" class="cb-grp-b">血压上报</th>
+          <th colspan="5" class="cb-grp-c">充电信息上报</th>
+          <th colspan="4" class="cb-grp-w">换电信息上报</th>
+        </tr><tr>
+          <th class="cb-grp-b">上报</th><th class="cb-grp-b">状态</th><th class="cb-grp-b">提交时间</th>
+          <th class="cb-grp-c">上报</th><th class="cb-grp-c">审核状态</th><th class="cb-grp-c">提交时间</th><th class="cb-grp-c">电池电压</th><th class="cb-grp-c">电池品牌</th>
+          <th class="cb-grp-w">上报</th><th class="cb-grp-w">审核状态</th><th class="cb-grp-w">提交时间</th><th class="cb-grp-w">换电品牌</th>
+        </tr></thead>
+        <tbody id="cbTbodyRider"></tbody>
+      </table>
+    </div>
+    <div class="pager" id="cbPager"></div>
+  </div>
 </div>
 <!-- Tab: training -->
 <div class="panel" id="panel-training">
@@ -500,6 +574,21 @@ table.dt thead{background:transparent}
 
 <script src="../交通安全行为看板/data.js"></script>
 <script src="data.js"></script>
+<script src="充换电血压_data.js"></script>
+<script>
+/* 充换电血压：用烽火台真实数据回填 CHARGEBP_DATA（vehicle_* 无数据源，保持 0） */
+(function(){
+  try{
+    if(typeof CHARGEBP_DATA==='object' && window.CB_BOARD_PATCH){
+      var n=0;
+      Object.keys(window.CB_BOARD_PATCH).forEach(function(k){
+        if(CHARGEBP_DATA[k]){ Object.assign(CHARGEBP_DATA[k], window.CB_BOARD_PATCH[k]); n++; }
+      });
+      console.log('[充换电血压] 已回填 '+n+' 个站点');
+    }
+  }catch(e){ console.warn('[充换电血压] 回填失败', e); }
+})();
+</script>
 <script>
 
 // ─── 服装标准化率：数据与变量 ────────────────────────────
@@ -1660,6 +1749,318 @@ function renderChargeBPTab() {
     {key:'charge_check_den', label:'审核_den', isPct:false, isSumRatio:false}
   ];
   renderStandardTab('chargebp', 'CHARGEBP_DATA', columns, null);
+  cbInitOnce();
+  cbSiteCards();
+}
+
+/* 站点维度：追加充换电/血压专属 KPI 卡（renderStandardTab 只出「站点数」一张） */
+function cbSiteCards(){
+  var box = document.getElementById('summary-cards-chargebp');
+  if(!box || typeof CHARGEBP_DATA !== 'object') return;
+  var olds = box.querySelectorAll('.cb-kpi');
+  for (var i=0;i<olds.length;i++) olds[i].parentNode.removeChild(olds[i]);
+  var num = function(v){ var n = Number(v); return isFinite(n) ? n : 0; };
+  var firstKey = {};
+  Object.keys(CHARGEBP_DATA).forEach(function(k){
+    var n = cbNormSite(k); if(!(n in firstKey)) firstKey[n] = k;
+  });
+  var bpN=0,bpD=0,upN=0,upD=0,ckN=0,ckD=0,sites=0;
+  Object.keys(firstKey).forEach(function(n){
+    var d = CHARGEBP_DATA[firstKey[n]] || {};
+    bpN += num(d.bp_num); bpD += num(d.bp_den);
+    upN += num(d.charge_up_num); upD += num(d.charge_up_den);
+    ckN += num(d.charge_check_num); ckD += num(d.charge_check_den);
+    if(num(d.charge_up_den) > 0) sites++;
+  });
+  var pct = function(n,d){ return d ? (n/d*100).toFixed(2)+'%' : '0%'; };
+  var cls = function(n,d){ var r = d ? n/d*100 : 0; return r>=90?'green':(r>=60?'yellow':'red'); };
+  var html =
+      cbCard('在职骑手（分母）', bpD.toLocaleString(), '当天排班在册', '')
+    + cbCard('有排班站点', sites.toLocaleString(), '共 '+Object.keys(CHARGEBP_DATA).length+' 站', '')
+    + cbCard('血压检测率', pct(bpN,bpD), '血压上报 '+bpN.toLocaleString()+' 人', cls(bpN,bpD))
+    + cbCard('充换电上传提交率', pct(upN,upD), '已上报 '+upN.toLocaleString()+' 人（充电∪换电去重）', cls(upN,upD))
+    + cbCard('充换电审核通过率', pct(ckN,ckD), '通过 '+ckN.toLocaleString()+' / 已出结果 '+ckD.toLocaleString(), cls(ckN,ckD));
+  var tmp = document.createElement('div');
+  tmp.style.display = 'contents';
+  tmp.innerHTML = html;
+  var cs = tmp.querySelectorAll('.card');
+  for (var j=0;j<cs.length;j++) cs[j].classList.add('cb-kpi');
+  box.appendChild(tmp);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   充换电血压看板 · 骑手维度（2026-09-11 接入）
+   数据源：充换电血压_data.js（烽火台自动抓取，当月口径）
+   全部标识符加 cb 前缀，避免与看板既有函数冲突
+   站点维度通过改写 CHARGEBP_DATA 实现与日期筛选联动
+   ══════════════════════════════════════════════════════════════ */
+var cbMeta = window.CB_META || {}, cbRoster = window.CB_ROSTER || [], cbRec = window.CB_REC || [];
+var cbRosterSet = {}, cbRidx = {}, cbInited = false;
+var cbSf = {cbregion:[],cbsubr:[],cbcity:[],cbsite:[],cbbpt:[],cbcst:[],cbwst:[]};
+var cbPage = 1, cbPer = 50, cbFiltered = [];
+cbRoster.forEach(function(r){ cbRosterSet[r[4]] = 1; });
+
+function cbNormSite(s){
+  s = String(s == null ? '' : s).replace(/\u3000/g,' ').replace(/\xa0/g,' ');
+  var o = '';
+  for (var i=0;i<s.length;i++){ var c = s.charCodeAt(i); o += (c>=0xFF01 && c<=0xFF5E) ? String.fromCharCode(c-0xFEE0) : s.charAt(i); }
+  return o.trim().replace(/^V(?=兴必达|【)/,'');
+}
+function cbUniq(a){ var s={},o=[]; (a||[]).forEach(function(x){ if(x && !s[x]){ s[x]=1; o.push(x); } }); return o.sort(); }
+
+/* ── 独立多选下拉 ── */
+function cbToggleMs(k){
+  var w = document.getElementById('ms-'+k); if(!w) return;
+  var o = w.classList.contains('open');
+  var all = document.querySelectorAll('.ms-wrap');
+  for (var i=0;i<all.length;i++) all[i].classList.remove('open');
+  if(!o) w.classList.add('open');
+}
+document.addEventListener('click', function(e){
+  if(!e.target.closest || !e.target.closest('.ms-wrap')){
+    var all = document.querySelectorAll('.ms-wrap.open');
+    for (var i=0;i<all.length;i++) all[i].classList.remove('open');
+  }
+});
+function cbInitMs(k, opts, onchg){
+  var w = document.getElementById('ms-'+k); if(!w) return;
+  var d = w.querySelector('.ms-drop'); d.innerHTML = '';
+  if(!cbSf[k]) cbSf[k] = [];
+  cbSf[k] = cbSf[k].filter(function(v){ return opts.indexOf(v) >= 0; });
+  opts.forEach(function(v){
+    var it = document.createElement('div'); it.className = 'ms-item';
+    var cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = cbSf[k].indexOf(v) >= 0;
+    cb.onchange = function(){ cbOnMs(k, v, cb.checked, onchg); };
+    it.appendChild(cb); it.appendChild(document.createTextNode(v));
+    it.onclick = function(e){ if(e.target !== cb){ cb.checked = !cb.checked; cbOnMs(k, v, cb.checked, onchg); } };
+    d.appendChild(it);
+  });
+  cbUpdMsLabel(k);
+}
+function cbOnMs(k, v, on, onchg){
+  var a = cbSf[k], i = a.indexOf(v);
+  if(on && i < 0) a.push(v);
+  if(!on && i >= 0) a.splice(i,1);
+  cbUpdMsLabel(k); if(onchg) onchg();
+}
+function cbUpdMsLabel(k){
+  var w = document.getElementById('ms-'+k); if(!w) return;
+  var s = cbSf[k] || [];
+  w.querySelector('.ms-label').textContent = s.length===0 ? '全部' : (s.length===1 ? s[0] : '已选'+s.length+'项');
+}
+function cbClearF(){
+  Object.keys(cbSf).forEach(function(k){ cbSf[k] = []; });
+  var q = document.getElementById('cbQ'); if(q) q.value = '';
+  cbRenderRider(1);
+}
+
+/* ── 子Tab切换 ── */
+function cbSwitchSub(t){
+  var ts = document.querySelectorAll('.cb-subtab');
+  for (var i=0;i<ts.length;i++) ts[i].classList.toggle('active', ts[i].getAttribute('data-t') === t);
+  var ps = document.getElementById('cb-panel-site'), pr = document.getElementById('cb-panel-rider');
+  if(ps) ps.style.display = (t === 'site') ? '' : 'none';
+  if(pr) pr.style.display = (t === 'rider') ? '' : 'none';
+  if(t === 'rider') cbRenderRider(1);
+}
+
+/* ── 日期范围 + 骑手上报索引 ── */
+function cbRebuildIndex(){
+  var e1 = document.getElementById('cbD1'), e2 = document.getElementById('cbD2');
+  var d1 = e1 ? e1.value : '', d2 = e2 ? e2.value : '';
+  cbRidx = {};
+  for (var i=0;i<cbRec.length;i++){
+    var r = cbRec[i];
+    if(d1 && r[2] < d1) continue;
+    if(d2 && r[2] > d2) continue;
+    if(!cbRosterSet[r[0]]) continue;              // 只统计在职名册内骑手
+    var o = cbRidx[r[0]] || (cbRidx[r[0]] = {});
+    o[r[1]] = r;                                   // cbRec 按时间升序 → 后写即最新
+  }
+  var recN = 0, bpN = 0;
+  Object.keys(cbRidx).forEach(function(rid){
+    var o = cbRidx[rid], has = false;
+    if(o.B) bpN++;
+    ['C','S'].forEach(function(k){ if(o[k]) has = true; });
+    if(has) recN++;                                // 去重人数，不是人次
+  });
+  var n = document.getElementById('cbRangeNote');
+  if(n) n.textContent = (d1||d2)
+    ? ('范围 '+d1+' ~ '+d2+' · 充换电 '+recN+' 人 · 血压 '+bpN+' 人')
+    : ('累计 '+(cbMeta.dateMin||'')+' ~ '+(cbMeta.dateMax||'')+' · 充换电 '+recN+' 人 · 血压 '+bpN+' 人');
+}
+
+/* ── 站点维度联动：按当前日期范围重写 CHARGEBP_DATA ── */
+function cbApplyBoard(){
+  if(typeof CHARGEBP_DATA !== 'object' || !cbRoster.length) return;
+  var agg = {};
+  function slot(s){ if(!agg[s]) agg[s] = {bpN:0,bpD:0,upN:0,upD:0,ckN:0,ckD:0}; return agg[s]; }
+  for (var i=0;i<cbRoster.length;i++){ var a = slot(cbRoster[i][3]); a.bpD++; a.upD++; }
+  var rid2site = {};
+  for (var i=0;i<cbRoster.length;i++) rid2site[cbRoster[i][4]] = cbRoster[i][3];
+  Object.keys(cbRidx).forEach(function(rid){
+    var o = cbRidx[rid], st = rid2site[rid]; if(!st) return;
+    var a = slot(st);
+    if(o.B) a.bpN++;
+    if(o.C || o.S) a.upN++;
+    ['C','S'].forEach(function(k){
+      var x = o[k]; if(!x) return;
+      var s = x[3];
+      if(s && s !== '已提交'){ a.ckD++; if(s === '审核通过') a.ckN++; }
+    });
+  });
+  var rate = function(n,d){ return d ? Math.round(n/d*10000)/100 : 0; };
+  // 同一站点可能有多个 key（带/不带 V 前缀），只填第一个，避免汇总时双计
+  var firstKey = {};
+  Object.keys(CHARGEBP_DATA).forEach(function(k){
+    var n = cbNormSite(k);
+    if(!(n in firstKey)) firstKey[n] = k;
+  });
+  Object.keys(CHARGEBP_DATA).forEach(function(k){
+    var row = CHARGEBP_DATA[k];
+    var a = (firstKey[cbNormSite(k)] === k) ? agg[cbNormSite(k)] : null;
+    var bpN=0,bpD=0,upN=0,upD=0,ckN=0,ckD=0;
+    if(a){ bpN=a.bpN; bpD=a.bpD; upN=a.upN; upD=a.upD; ckN=a.ckN; ckD=a.ckD; }
+    row.bp_num=bpN; row.bp_den=bpD; row.bp_rate=rate(bpN,bpD);
+    row.bp_rate_num=bpN; row.bp_rate_den=bpD;      // 渲染器 isSumRatio 取 key+'_num'/key+'_den'
+    row.charge_up_num=upN; row.charge_up_den=upD; row.charge_up_rate=rate(upN,upD);
+    row.charge_up_rate_num=upN; row.charge_up_rate_den=upD;
+    row.charge_check_num=ckN; row.charge_check_den=ckD; row.charge_check_rate=rate(ckN,ckD);
+    row.charge_check_rate_num=ckN; row.charge_check_rate_den=ckD;
+    row.vehicle_num=0; row.vehicle_den=0; row.vehicle_rate=0;   // 无数据源
+    row.vehicle_rate_num=0; row.vehicle_rate_den=0;
+  });
+}
+function cbOnRange(){ cbRebuildIndex(); cbApplyBoard(); cbRenderRider(1);
+  if(typeof renderChargeBPTab === 'function') renderChargeBPTab(); }
+function cbQuickRange(ev, k){
+  var mx = cbMeta.dateMax || '';
+  var e1 = document.getElementById('cbD1'), e2 = document.getElementById('cbD2');
+  if(!e1 || !e2 || !mx) return;
+  function shift(d, n){ var t = new Date(d+'T00:00:00'); t.setDate(t.getDate()-n);
+    return t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0'); }
+  if(k === 'all'){ e1.value=''; e2.value=''; }
+  else if(k === 'thisMonth'){ e1.value = mx.slice(0,8)+'01'; e2.value = mx; }
+  else if(k === 'prev3'){ e1.value = shift(mx,2); e2.value = mx; }
+  else if(k === 'today'){ e1.value = mx; e2.value = mx; }
+  var bs = document.querySelectorAll('.cb-rbtn');
+  for (var i=0;i<bs.length;i++) bs[i].classList.remove('cur');
+  if(ev && ev.target) ev.target.classList.add('cur');
+  cbOnRange();
+}
+
+/* ── 骑手维度行与渲染 ── */
+function cbRiderRows(){
+  var qEl = document.getElementById('cbQ');
+  var q = ((qEl && qEl.value) || '').trim().toLowerCase();
+  var out = [];
+  for (var i=0;i<cbRoster.length;i++){
+    var r = cbRoster[i];
+    if(cbSf.cbregion.length && cbSf.cbregion.indexOf(r[0]) < 0) continue;
+    if(cbSf.cbsubr.length && cbSf.cbsubr.indexOf(r[1]) < 0) continue;
+    if(cbSf.cbcity.length && cbSf.cbcity.indexOf(r[2]) < 0) continue;
+    if(cbSf.cbsite.length && cbSf.cbsite.indexOf(r[3]) < 0) continue;
+    var o = cbRidx[r[4]] || {}, c = o.C || null, w = o.S || null, bp = o.B || null;
+    var cs = c ? '已上报' : '未上报', ws = w ? '已上报' : '未上报', bs = bp ? '已上报' : '未上报';
+    if(cbSf.cbcst.length && cbSf.cbcst.indexOf(cs) < 0) continue;
+    if(cbSf.cbwst.length && cbSf.cbwst.indexOf(ws) < 0) continue;
+    if(cbSf.cbbpt.length && cbSf.cbbpt.indexOf(bs) < 0) continue;
+    if(q && (r[4]+' '+r[5]).toLowerCase().indexOf(q) < 0) continue;
+    out.push([r[0],r[1],r[2],r[3],r[4],r[5],r[6],
+      bs, bp?bp[3]:'', bp?bp[4]:'',
+      cs, c?c[3]:'', c?c[4]:'', c?c[5]:'', c?c[6]:'',
+      ws, w?w[3]:'', w?w[4]:'', w?w[5]:'']);
+  }
+  return out;
+}
+function cbStCls(s){ if(s==='审核通过') return 'st-ok'; if(s==='审核不通过'||s==='系统审核不通过') return 'st-no'; if(s==='已提交') return 'st-wait'; return 'st-none'; }
+function cbTagUp(v){ return '<span class="cb-tag-up '+(v==='已上报'?'yes':'no')+'">'+v+'</span>'; }
+function cbCard(l,v,s,cls){ return '<div class="card '+(cls||'')+'"><div class="c-label">'+l+'</div><div class="c-value">'+v+'</div><div class="c-sub">'+s+'</div></div>'; }
+
+function cbRenderRider(p){
+  var all = cbRiderRows(); cbFiltered = all;
+  if(!all.length && !cbRoster.length) return;
+  var upN=0,chgN=0,swpN=0,bpN=0;
+  all.forEach(function(r){
+    if(r[7]==='已上报') bpN++;
+    if(r[10]==='已上报') chgN++;
+    if(r[15]==='已上报') swpN++;
+    if(r[7]==='已上报'||r[10]==='已上报'||r[15]==='已上报') upN++;
+  });
+  cbInitMs('cbregion', cbUniq(cbRoster.map(function(r){return r[0];})), function(){cbRenderRider(1);});
+  cbInitMs('cbsubr',   cbUniq(all.map(function(r){return r[1];})), function(){cbRenderRider(1);});
+  cbInitMs('cbcity',   cbUniq(all.map(function(r){return r[2];})), function(){cbRenderRider(1);});
+  cbInitMs('cbsite',   cbUniq(all.map(function(r){return r[3];})), function(){cbRenderRider(1);});
+  cbInitMs('cbbpt', ['已上报','未上报'], function(){cbRenderRider(1);});
+  cbInitMs('cbcst', ['已上报','未上报'], function(){cbRenderRider(1);});
+  cbInitMs('cbwst', ['已上报','未上报'], function(){cbRenderRider(1);});
+
+  cbPage = p || 1;
+  var tot = Math.max(1, Math.ceil(all.length/cbPer));
+  if(cbPage > tot) cbPage = tot;
+  var seg = all.slice((cbPage-1)*cbPer, cbPage*cbPer);
+  var h = '';
+  if(!seg.length) h = '<tr><td colspan="19" class="empty">无符合条件的数据</td></tr>';
+  seg.forEach(function(r){
+    var noUp = (r[7]!=='已上报' && r[10]!=='已上报' && r[15]!=='已上报');
+    h += '<tr class="lv-site'+(noUp?' cb-row-noup':'')+'"><td class="l">'+r[0]+'</td><td class="l">'+r[1]+'</td><td>'+r[2]+'</td><td class="l">'+r[3]+'</td>'
+      + '<td>'+r[4]+'</td><td class="l">'+r[5]+'</td><td>'+r[6]+'</td>'
+      + '<td>'+cbTagUp(r[7])+'</td><td class="'+cbStCls(r[8])+'">'+(r[8]||'-')+'</td><td>'+(r[9]||'-')+'</td>'
+      + '<td>'+cbTagUp(r[10])+'</td><td class="'+cbStCls(r[11])+'">'+(r[11]||'-')+'</td><td>'+(r[12]||'-')+'</td><td>'+(r[13]||'-')+'</td><td class="l">'+(r[14]||'-')+'</td>'
+      + '<td>'+cbTagUp(r[15])+'</td><td class="'+cbStCls(r[16])+'">'+(r[16]||'-')+'</td><td>'+(r[17]||'-')+'</td><td class="l">'+(r[18]||'-')+'</td></tr>';
+  });
+  var tb = document.getElementById('cbTbodyRider'); if(tb) tb.innerHTML = h;
+
+  var pg = document.getElementById('cbPager');
+  if(pg){
+    var b = '<span>共 <b style="color:#0B4F8A">'+all.length.toLocaleString()+'</b> 名骑手 · 第 '+cbPage+' / '+tot+' 页（每页 '+cbPer+'）</span>';
+    b += '<div style="margin-left:auto;display:flex;gap:6px">';
+    b += '<button onclick="cbRenderRider(1)"'+(cbPage===1?' disabled':'')+'>« 首页</button>';
+    b += '<button onclick="cbRenderRider('+(cbPage-1)+')"'+(cbPage===1?' disabled':'')+'>‹ 上一页</button>';
+    for (var i=Math.max(1,cbPage-2); i<=Math.min(tot,cbPage+2); i++)
+      b += '<button class="'+(i===cbPage?'cur':'')+'" onclick="cbRenderRider('+i+')">'+i+'</button>';
+    b += '<button onclick="cbRenderRider('+(cbPage+1)+')"'+(cbPage===tot?' disabled':'')+'>下一页 ›</button>';
+    b += '<button onclick="cbRenderRider('+tot+')"'+(cbPage===tot?' disabled':'')+'>末页 »</button></div>';
+    pg.innerHTML = b;
+  }
+
+  var pc = function(n){ return all.length ? (n/all.length*100).toFixed(2)+'%' : '0%'; };
+  var bothN = all.filter(function(r){ return r[7]==='已上报' && r[15]==='已上报'; }).length;
+  var noneN = all.length - all.filter(function(r){ return r[7]==='已上报'||r[10]==='已上报'||r[15]==='已上报'; }).length;
+  var cards = document.getElementById('cbCardsRider');
+  if(cards) cards.innerHTML =
+     cbCard('在职骑手', all.length.toLocaleString(), '当天排班在册', '')
+   + cbCard('血压+换电双达标', bothN.toLocaleString(), '核心达成 '+pc(bothN), 'green')
+   + cbCard('任一已上报', upN.toLocaleString(), '覆盖率 '+pc(upN), 'green')
+   + cbCard('完全未上报', noneN.toLocaleString(), '需要跟进', noneN?'red':'')
+   + cbCard('血压已上报', bpN.toLocaleString(), '覆盖率 '+pc(bpN), '')
+   + cbCard('换电已上报', swpN.toLocaleString(), '覆盖率 '+pc(swpN), '')
+   + cbCard('充电已上报', chgN.toLocaleString(), '覆盖率 '+pc(chgN), '（低量渠道，作参考）');
+  var cf = document.getElementById('cbCntRiderF'); if(cf) cf.textContent = '筛选后 '+all.length+' 人';
+  var cr = document.getElementById('cbCntRider'); if(cr) cr.textContent = all.length.toLocaleString();
+}
+
+function cbExportTbl(){
+  var t = document.getElementById('cbTblRider'); if(!t) return;
+  var clone = t.cloneNode(true);
+  var html = '<html xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="utf-8">'
+    + '<style>td,th{border:1px solid #ccc;font-family:"Microsoft YaHei";font-size:11pt;text-align:center;mso-number-format:"\\@"}'
+    + 'th{background:#0B4F8A;color:#fff;font-weight:600}</style></head><body>'
+    + '<table border="1">'+clone.innerHTML+'</table></body></html>';
+  var blob = new Blob(['\ufeff'+html], {type:'application/vnd.ms-excel'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = '充换电血压看板_骑手维度_'+new Date().toLocaleDateString('zh-CN').replace(/\//g,'-')+'.xls';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+}
+
+function cbInitOnce(){
+  if(cbInited || !cbRoster.length) return;
+  cbInited = true;
+  var e1 = document.getElementById('cbD1'), e2 = document.getElementById('cbD2');
+  if(e1 && e2){ e1.min = cbMeta.dateMin; e1.max = cbMeta.dateMax; e2.min = cbMeta.dateMin; e2.max = cbMeta.dateMax; }
+  var first = document.querySelector('.cb-rbtn'); if(first) first.classList.add('cur');
+  cbRebuildIndex(); cbApplyBoard(); cbRenderRider(1);
 }
 
 // ─── Tab 7: 线上线下考培 ─────────────────────────────────────
