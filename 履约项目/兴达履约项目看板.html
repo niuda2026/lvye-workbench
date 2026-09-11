@@ -2605,6 +2605,7 @@ function exportTable(tabId) {
   rows.push(headerRow.join(','));
   
   // Body - only visible rows
+  var _hdrN = headerRow.length;
   var bodyRows = tbody.querySelectorAll('tr');
   bodyRows.forEach(function(tr) {
     if (tr.style.display === 'none') return;
@@ -2614,6 +2615,8 @@ function exportTable(tabId) {
       var txt = cell.textContent.replace(/"/g,'""').replace(/\n/g,' ').trim();
       row.push('"'+txt+'"');
     });
+    // 层级汇总行（colspan 单格，如「XX区域汇总」「XX城市」）补空列，避免导出后整行错位
+    if (row.length === 1 && _hdrN > 1) { while (row.length < _hdrN) row.push('""'); }
     rows.push(row.join(','));
   });
   
