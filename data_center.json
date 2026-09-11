@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-12 06:50:53",
+  "updated_at": "2026-09-12 06:54:00",
   "action_summary": {
     "total": 13,
     "ok": 8,
@@ -264,7 +264,7 @@
             "latest": "充换电血压_data.js",
             "mtime": "2026-09-11 21:49:03",
             "max_age_hours": 13,
-            "age_hours": 9.0,
+            "age_hours": 9.1,
             "ok": true,
             "note": "每日 07:30/15:00 两次"
           },
@@ -274,7 +274,7 @@
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-09-11 21:44:35",
             "max_age_hours": 30,
-            "age_hours": 9.1,
+            "age_hours": 9.2,
             "ok": true,
             "note": "早间自动化抓取"
           }
@@ -352,7 +352,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-09-12 06:41:57",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": ""
           }
@@ -422,7 +422,7 @@
             "latest": "_crawl_service.log",
             "mtime": "2026-09-10 07:30:12",
             "max_age_hours": 26,
-            "age_hours": 47.3,
+            "age_hours": 47.4,
             "ok": false,
             "note": ""
           }
@@ -510,7 +510,7 @@
             "latest": "latest.json",
             "mtime": "2026-09-11 09:44:54",
             "max_age_hours": 26,
-            "age_hours": 21.1,
+            "age_hours": 21.2,
             "ok": true,
             "note": ""
           },
@@ -520,7 +520,7 @@
             "latest": "premium_latest.json",
             "mtime": "2026-09-11 15:44:19",
             "max_age_hours": 26,
-            "age_hours": 15.1,
+            "age_hours": 15.2,
             "ok": true,
             "note": ""
           },
@@ -732,7 +732,7 @@
             "latest": "_大屏数据.js",
             "mtime": "2026-09-11 00:18:08",
             "max_age_hours": 26,
-            "age_hours": 30.5,
+            "age_hours": 30.6,
             "ok": false,
             "note": ""
           }
@@ -795,7 +795,7 @@
             "latest": "monthly_summary.js",
             "mtime": "2026-09-09 08:08:49",
             "max_age_hours": 72,
-            "age_hours": 70.7,
+            "age_hours": 70.8,
             "ok": true,
             "note": "月度归档，可适当放宽"
           }
