@@ -2252,12 +2252,12 @@ function renderRiderTabPage(page) {
     var info = getSiteInfo(r[3]);
 
     if (info.区域 !== prevRegion) {
-      rows += '<tr class="lv-subregion"><td class="sticky-col" style="left:0;min-width:80px" colspan="21">'+escHtml(info.区域)+'汇总</td></tr>';
+      rows += '<tr class="lv-subregion"><td class="sticky-col" style="left:0;min-width:80px" colspan="22">'+escHtml(info.区域)+'汇总</td></tr>';
       prevRegion = info.区域;
       prevCity = '';
     }
     if (info.城市 !== prevCity) {
-      rows += '<tr class="lv-merchant"><td class="sticky-col" style="left:0;min-width:80px" colspan="21">'+escHtml(info.城市)+'</td></tr>';
+      rows += '<tr class="lv-merchant"><td class="sticky-col" style="left:0;min-width:80px" colspan="22">'+escHtml(info.城市)+'</td></tr>';
       prevCity = info.城市;
     }
 
