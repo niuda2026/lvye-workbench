@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-11 08:08:39",
+  "updated_at": "2026-09-11 08:11:56",
   "groups": [
     {
       "title": "交通安全",
@@ -7,7 +7,7 @@ window.DATA_CENTER = {
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-11 08:08:38",
+        "data_mtime": "2026-09-11 08:11:55",
         "all_synced": true,
         "synced_count": 13,
         "missing_count": 0,
@@ -305,7 +305,7 @@ window.DATA_CENTER = {
           "在职骑手详情\\在职骑手详情.html",
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-11 08:08:38",
+        "data_mtime": "2026-09-11 08:11:55",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -353,7 +353,7 @@ window.DATA_CENTER = {
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-09-11 08:08:38",
+        "data_mtime": "2026-09-11 08:11:55",
         "all_synced": true,
         "synced_count": 4,
         "missing_count": 0,
@@ -374,7 +374,7 @@ window.DATA_CENTER = {
           {
             "type": "V3内联数据",
             "latest": "v3_data.js",
-            "mtime": "2026-09-11 08:08:38",
+            "mtime": "2026-09-11 08:11:55",
             "synced": true
           },
           {
@@ -512,7 +512,7 @@ window.DATA_CENTER = {
           {
             "type": "交通安全data.js（归档源）",
             "latest": "data.js",
-            "mtime": "2026-09-11 08:08:38",
+            "mtime": "2026-09-11 08:11:55",
             "synced": false
           }
         ]
