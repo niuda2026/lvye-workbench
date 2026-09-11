@@ -484,6 +484,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
       <label>充电</label><div class="ms-wrap" id="ms-cbcst"><div class="ms-btn" onclick="cbToggleMs('cbcst')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
       <label>换电</label><div class="ms-wrap" id="ms-cbwst"><div class="ms-btn" onclick="cbToggleMs('cbwst')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
       <input class="inp" id="cbQ" placeholder="🔍 骑手ID / 姓名" oninput="cbRenderRider(1)">
+      <button class="btn btn-secondary" onclick="cbOnlyNone()" title="血压·充电·换电 三项均未上报，直接导出跟进名单">⚠ 只看完全未上报</button>
       <button class="btn btn-secondary" onclick="cbClearF()">清除筛选</button>
       <button class="btn btn-export" onclick="cbExportTbl()">&#128229; 导出Excel</button>
       <span class="filter-count" id="cbCntRiderF"></span>
@@ -1850,7 +1851,14 @@ function cbUpdMsLabel(k){
 }
 function cbClearF(){
   Object.keys(cbSf).forEach(function(k){ cbSf[k] = []; });
+  Object.keys(cbSf).forEach(function(k){ cbUpdMsLabel(k); });
   var q = document.getElementById('cbQ'); if(q) q.value = '';
+  cbRenderRider(1);
+}
+/* 快捷：三项均未上报 → 可直接导出跟进名单 */
+function cbOnlyNone(){
+  cbSf.cbbpt = ['未上报']; cbSf.cbcst = ['未上报']; cbSf.cbwst = ['未上报'];
+  cbUpdMsLabel('cbbpt'); cbUpdMsLabel('cbcst'); cbUpdMsLabel('cbwst');
   cbRenderRider(1);
 }
 
@@ -1979,7 +1987,15 @@ function cbCard(l,v,s,cls){ return '<div class="card '+(cls||'')+'"><div class="
 
 function cbRenderRider(p){
   var all = cbRiderRows(); cbFiltered = all;
-  if(!all.length && !cbRoster.length) return;
+  if(!cbRoster.length){                       // 数据文件缺失时给明确提示，而不是空白表格
+    var tb0 = document.getElementById('cbTbodyRider');
+    if(tb0) tb0.innerHTML = '<tr><td colspan="19" class="empty">'
+      + '充换电血压数据未加载（缺少 充换电血压_data.js）<br>请运行「履约项目\\_方案预览\\一键刷新_充换电血压.bat」生成</td></tr>';
+    var pg0 = document.getElementById('cbPager'); if(pg0) pg0.innerHTML = '';
+    var c0 = document.getElementById('cbCardsRider'); if(c0) c0.innerHTML = '';
+    var f0 = document.getElementById('cbCntRiderF'); if(f0) f0.textContent = '数据未加载';
+    return;
+  }
   var upN=0,chgN=0,swpN=0,bpN=0;
   all.forEach(function(r){
     if(r[7]==='已上报') bpN++;
