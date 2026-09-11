@@ -249,7 +249,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
     <span class="sub-tab-sep"></span>
     <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-    <button class="btn-rules" onclick="openRulesModal()">充换电血压上传规则</button>
+    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
   </div>
 <div class="filter-bar" id="filter-bar-morning">
     <label>大区</label><div class="ms-wrap" id="ms-region-morning"><div class="ms-btn" onclick="toggleMs('region-morning')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
@@ -285,7 +285,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
     <span class="sub-tab-sep"></span>
     <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-    <button class="btn-rules" onclick="openRulesModal()">充换电血压上传规则</button>
+    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
   </div>
 <div class="filter-bar" id="filter-bar-safety">
     <label>大区</label><div class="ms-wrap" id="ms-region-safety"><div class="ms-btn" onclick="toggleMs('region-safety')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
@@ -378,7 +378,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
     <span class="sub-tab-sep"></span>
     <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-    <button class="btn-rules" onclick="openRulesModal()">充换电血压上传规则</button>
+    <button class="btn-rules" onclick="openBoxRulesModal()">餐箱消毒规则</button>
   </div>
 <div class="filter-bar" id="filter-bar-box">
     <label>大区</label><div class="ms-wrap" id="ms-region-box"><div class="ms-btn" onclick="toggleMs('region-box')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
@@ -400,33 +400,73 @@ tr.cb-row-noup:hover td{background:#ffefef}
 </div>
 <!-- Tab: knife -->
 <div class="panel" id="panel-knife">
-  <div class="summary-row" id="summary-cards-knife"></div>
+  <div class="cb-subtab-bar">
+    <div class="cb-subtab active" data-t="site" onclick="knSwitchSub('site')">🏢 站点维度达成</div>
+    <div class="cb-subtab" data-t="rider" onclick="knSwitchSub('rider')">🛵 骑手维度明细<span class="cb-cnt" id="knCntRider">-</span></div>
+    <div class="cb-range">
+      <span class="cb-range-cap">统计周期：当月1日~至今</span>
+      <span class="cb-range-note" id="knRangeNote"></span>
+    </div>
+  </div>
+
+  <!-- ══ 子Tab1：站点维度达成 ══ -->
+  <div id="kn-panel-site">
+    <div class="summary-row" id="summary-cards-knife"></div>
     <div class="sub-tab-bar">
-    <span class="sub-tab-label">显示层级：</span>
-    <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleViewBtn('subregion')">区域行</button>
-    <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleViewBtn('merchant')">城市行</button>
-    <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
-    <span class="sub-tab-sep"></span>
-    <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-    <button class="btn-rules" onclick="openRulesModal()">充换电血压上传规则</button>
+      <span class="sub-tab-label">显示层级：</span>
+      <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleViewBtn('subregion')">区域行</button>
+      <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleViewBtn('merchant')">城市行</button>
+      <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
+      <span class="sub-tab-sep"></span>
+      <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
+      <button class="btn-rules" onclick="openKnifeRulesModal()">带刀巡检规则</button>
+    </div>
+    <div class="filter-bar" id="filter-bar-knife">
+      <label>大区</label><div class="ms-wrap" id="ms-region-knife"><div class="ms-btn" onclick="toggleMs('region-knife')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>区域</label><div class="ms-wrap" id="ms-subregion-knife"><div class="ms-btn" onclick="toggleMs('subregion-knife')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>城市</label><div class="ms-wrap" id="ms-city-knife"><div class="ms-btn" onclick="toggleMs('city-knife')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>站点</label><div class="ms-wrap" id="ms-site-knife"><div class="ms-btn" onclick="toggleMs('site-knife')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <button class="btn btn-secondary" onclick="clearFilter('knife')">清除筛选</button>
+      <button class="btn btn-export" onclick="exportTable('knife')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
+      <button class="btn btn-screenshot" onclick="screenshotPanel('knife')" title="截取当前看板">&#128247; 截图</button>
+      <span class="filter-count" id="filter-count-knife"></span>
+    </div>
+    <div class="table-wrap table-wrap-station">
+      <table class="dt" id="tbl-knife">
+        <thead id="thead-knife"></thead>
+        <tbody id="tbody-knife"></tbody>
+      </table>
+    </div>
   </div>
-<div class="filter-bar" id="filter-bar-knife">
-    <label>大区</label><div class="ms-wrap" id="ms-region-knife"><div class="ms-btn" onclick="toggleMs('region-knife')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
-    <label>区域</label><div class="ms-wrap" id="ms-subregion-knife"><div class="ms-btn" onclick="toggleMs('subregion-knife')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
-    <label>城市</label><div class="ms-wrap" id="ms-city-knife"><div class="ms-btn" onclick="toggleMs('city-knife')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
-    <label>站点</label><div class="ms-wrap" id="ms-site-knife"><div class="ms-btn" onclick="toggleMs('site-knife')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
-    <button class="btn btn-secondary" onclick="clearFilter('knife')">清除筛选</button>
-    <button class="btn btn-export" onclick="exportTable('knife')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
-    <button class="btn btn-screenshot" onclick="screenshotPanel('knife')" title="截取当前看板">&#128247; 截图</button>
-    <span class="filter-count" id="filter-count-knife"></span>
+
+  <!-- ══ 子Tab2：骑手维度明细 ══ -->
+  <div id="kn-panel-rider" style="display:none">
+    <div class="summary-row" id="knCardsRider"></div>
+    <div class="filter-bar">
+      <label>大区</label><div class="ms-wrap" id="ms-knregion"><div class="ms-btn" onclick="knToggleMs('knregion')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>区域</label><div class="ms-wrap" id="ms-knsubr"><div class="ms-btn" onclick="knToggleMs('knsubr')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>城市</label><div class="ms-wrap" id="ms-kncity"><div class="ms-btn" onclick="knToggleMs('kncity')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>站点</label><div class="ms-wrap" id="ms-knsite"><div class="ms-btn" onclick="knToggleMs('knsite')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>状态</label><div class="ms-wrap" id="ms-knstatus"><div class="ms-btn" onclick="knToggleMs('knstatus')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <input class="inp" id="knQ" placeholder="🔍 骑手ID / 姓名" oninput="knRenderRider(1)">
+      <button class="btn btn-secondary" onclick="knClearF()">清除筛选</button>
+      <button class="btn btn-export" onclick="knExportTbl()">&#128229; 导出Excel</button>
+      <span class="filter-count" id="knCntRiderF"></span>
+    </div>
+    <div class="table-wrap table-wrap-rider">
+      <table class="dt" id="knTblRider">
+        <thead><tr>
+          <th>大区</th><th>区域</th><th>城市</th><th>站点名称</th>
+          <th>骑手ID</th><th>骑手姓名</th>
+          <th>提交时间</th><th>状态</th>
+          <th>签到时间</th><th>整改完成时间</th><th>提交人</th>
+          <th>检查合规项数</th><th>总检查项数</th>
+        </tr></thead>
+        <tbody id="knTbodyRider"></tbody>
+      </table>
+    </div>
+    <div class="pager" id="knPager"></div>
   </div>
-  <div class="table-wrap table-wrap-station">
-    <table class="dt" id="tbl-knife">
-      <thead id="thead-knife"></thead>
-      <tbody id="tbody-knife"></tbody>
-    </table>
-  </div>
-  
 </div>
 <!-- Tab: chargebp -->
 <div class="panel" id="panel-chargebp">
@@ -453,7 +493,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
     <span class="sub-tab-sep"></span>
     <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-    <button class="btn-rules" onclick="openRulesModal()">充换电血压上传规则</button>
+    <button class="btn-rules" onclick="openChargeBPRulesModal()">充换电血压上传规则</button>
   </div>
 <div class="filter-bar" id="filter-bar-chargebp">
     <label>大区</label><div class="ms-wrap" id="ms-region-chargebp"><div class="ms-btn" onclick="toggleMs('region-chargebp')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
@@ -485,7 +525,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
       <label>充电</label><div class="ms-wrap" id="ms-cbcst"><div class="ms-btn" onclick="cbToggleMs('cbcst')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
       <label>换电</label><div class="ms-wrap" id="ms-cbwst"><div class="ms-btn" onclick="cbToggleMs('cbwst')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
       <input class="inp" id="cbQ" placeholder="🔍 骑手ID / 姓名" oninput="cbRenderRider(1)">
-      <button class="btn btn-secondary" onclick="cbOnlyNone()" title="血压·充电·换电 三项均未上报，直接导出跟进名单">⚠ 只看完全未上报</button>
+      <button class="btn btn-secondary" onclick="cbOnlyNone()" title="血压·充电·换电 三项均未上传，直接导出跟进名单">⚠ 只看完全未上传</button>
       <button class="btn btn-secondary" onclick="cbClearF()">清除筛选</button>
       <button class="btn btn-export" onclick="cbExportTbl()">&#128229; 导出Excel</button>
       <span class="filter-count" id="cbCntRiderF"></span>
@@ -495,12 +535,12 @@ tr.cb-row-noup:hover td{background:#ffefef}
         <thead><tr>
           <th rowspan="2">大区</th><th rowspan="2">区域</th><th rowspan="2">城市</th><th rowspan="2">站点名称</th>
           <th rowspan="2">骑手ID</th><th rowspan="2">骑手姓名</th><th rowspan="2">排班状态</th>
-          <th colspan="3" class="cb-grp-b">血压上报</th>
+          <th colspan="3" class="cb-grp-b">血压上传</th>
           <th colspan="4" class="cb-grp-v">载具审核（骑手）</th>
-          <th colspan="5" class="cb-grp-c">充电信息上报</th>
-          <th colspan="4" class="cb-grp-w">换电信息上报</th>
+          <th colspan="5" class="cb-grp-c">充电信息上传</th>
+          <th colspan="4" class="cb-grp-w">换电信息上传</th>
         </tr><tr>
-          <th class="cb-grp-b">上报</th><th class="cb-grp-b">状态</th><th class="cb-grp-b">提交时间</th>
+          <th class="cb-grp-b">上传</th><th class="cb-grp-b">状态</th><th class="cb-grp-b">提交时间</th>
           <th class="cb-grp-v">载具类型</th><th class="cb-grp-v">审核状态</th><th class="cb-grp-v">变更日期</th><th class="cb-grp-v">驳回原因</th>
           <th class="cb-grp-c">上报</th><th class="cb-grp-c">审核状态</th><th class="cb-grp-c">提交时间</th><th class="cb-grp-c">电池电压</th><th class="cb-grp-c">电池品牌</th>
           <th class="cb-grp-w">上报</th><th class="cb-grp-w">审核状态</th><th class="cb-grp-w">提交时间</th><th class="cb-grp-w">换电品牌</th>
@@ -521,7 +561,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
     <span class="sub-tab-sep"></span>
     <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-    <button class="btn-rules" onclick="openRulesModal()">充换电血压上传规则</button>
+    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
   </div>
 <div class="filter-bar" id="filter-bar-training">
     <label>大区</label><div class="ms-wrap" id="ms-region-training"><div class="ms-btn" onclick="toggleMs('region-training')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
@@ -551,7 +591,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
     <span class="sub-tab-sep"></span>
     <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-    <button class="btn-rules" onclick="openRulesModal()">充换电血压上传规则</button>
+    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
   </div>
 <div class="filter-bar" id="filter-bar-rider">
     <label>大区</label><div class="ms-wrap" id="ms-region-rider"><div class="ms-btn" onclick="toggleMs('region-rider')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
@@ -579,6 +619,9 @@ tr.cb-row-noup:hover td{background:#ffefef}
 <script src="D:/兴达数据库/交通安全行为看板/data.js"></script>
 <script src="D:/兴达数据库/履约项目/data.js"></script>
 <script src="D:/兴达数据库/履约项目/充换电血压_data.js"></script>
+<script src="D:/兴达数据库/履约项目/knife_rider_data.js"></script>
+<!-- 截图库 -->
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js" crossorigin="anonymous"></script>
 <script>
 /* 充换电血压：用烽火台真实数据回填 CHARGEBP_DATA；vehicle_* 已由 build_proposal_data.py 从 BI 211337 接入 */
 (function(){
@@ -1727,40 +1770,259 @@ function renderBoxTab() {
 }
 
 // ─── Tab 5: 带刀巡检看板 ─────────────────────────────────────
-function renderKnifeTab() {
+var knMeta = window.KNIFE_META || {};
+var knRiderData = window.KNIFE_RIDER_DATA || [];
+var knSf = {knregion:[],knsubr:[],kncity:[],knsite:[],knstatus:[]};
+var knPage = 1, knPer = 50, knFiltered = [];
+
+function knSwitchSub(t){
+  var ts = document.querySelectorAll('#panel-knife .cb-subtab');
+  for (var i=0;i<ts.length;i++) ts[i].classList.toggle('active', ts[i].getAttribute('data-t') === t);
+  var ps = document.getElementById('kn-panel-site'), pr = document.getElementById('kn-panel-rider');
+  if(ps) ps.style.display = (t === 'site') ? '' : 'none';
+  if(pr) pr.style.display = (t === 'rider') ? '' : 'none';
+  if(t === 'site') knRenderSite();
+  if(t === 'rider') knRenderRider(1);
+}
+
+function knUpdateNote(){
+  var n = document.getElementById('knRangeNote');
+  if(!n) return;
+  var m = knMeta;
+  var txt = '明细 ' + (m.record_count || 0) + ' 条';
+  if(m.date_range && m.date_range.min && m.date_range.max){
+    txt += ' · ' + m.date_range.min + ' ~ ' + m.date_range.max;
+  }
+  if(m.reg_file_date){
+    txt += ' · 1号注册分母=' + m.reg_file_date + '排班';
+  }
+  n.textContent = txt;
+}
+
+function knInit(){
+  knUpdateNote();
+  // 若数据未加载则显示提示
+  if(!knRiderData.length){
+    var tb = document.getElementById('knTbodyRider');
+    if(tb) tb.innerHTML = '<tr><td colspan="13" class="empty">带刀巡检数据未加载（缺少 knife_rider_data.js）<br>请运行「履约项目\\build_knife_data.py」生成</td></tr>';
+    return;
+  }
+  // 为站点维度补齐 isSumRatio 需要的 _num/_den
+  if(typeof KNIFE_DATA === 'object'){
+    Object.keys(KNIFE_DATA).forEach(function(site){
+      var d = KNIFE_DATA[site];
+      d.week_cover_rate_num = d.week_cover_num || 0;
+      d.week_cover_rate_den = d.reg_1st || 0;
+      d.compliance_rate_num = d.compliance_num || 0;
+      d.compliance_rate_den = d.checked_month || 0;
+    });
+  }
+}
+
+function knRenderSite() {
   var columns = [
-    {key:'rate', label:'带刀合规率', isPct:false, isSumRatio:true},
-    {key:'num', label:'已检查数', isPct:false, isSumRatio:false},
-    {key:'den', label:'注册骑手数', isPct:false, isSumRatio:false}
+    {key:'reg_1st', label:'1号注册骑手', isPct:false, isSumRatio:false},
+    {key:'checked_month', label:'本月已检查', isPct:false, isSumRatio:false},
+    {key:'checked_2plus', label:'月度被检查2次以上', isPct:false, isSumRatio:false},
+    {key:'checked_dedup2', label:'本月去重2次后', isPct:false, isSumRatio:false},
+    {key:'status_no', label:'无需整改', isPct:false, isSumRatio:false},
+    {key:'status_wait', label:'待整改', isPct:false, isSumRatio:false},
+    {key:'status_audit', label:'整改待审核', isPct:false, isSumRatio:false},
+    {key:'status_fail', label:'整改不通过', isPct:false, isSumRatio:false},
+    {key:'status_appeal', label:'待申诉', isPct:false, isSumRatio:false},
+    {key:'week_cover_rate', label:'本周覆盖率（剔除2次以上骑手）', isPct:false, isSumRatio:true},
+    {key:'compliance_rate', label:'合规率', isPct:false, isSumRatio:true}
   ];
-  renderStandardTab('knife', 'KNIFE_DATA', columns, null);
+  var headerGroups = [
+    {label:'巡检达成', colspan:9, bgColor:'#FDE68A', textColor:'#92400E'},
+    {label:'本周覆盖率（剔除2次以上骑手）', colspan:1, bgColor:'#BFDBFE', textColor:'#1E3A8A'},
+    {label:'合规率', colspan:1, bgColor:'#BBF7D0', textColor:'#166534'}
+  ];
+  renderStandardTab('knife', 'KNIFE_DATA', columns, null, headerGroups);
+}
+
+function knToggleMs(k){
+  var w = document.getElementById('ms-'+k); if(!w) return;
+  var o = w.classList.contains('open');
+  var all = document.querySelectorAll('.ms-wrap');
+  for (var i=0;i<all.length;i++) all[i].classList.remove('open');
+  if(!o) w.classList.add('open');
+}
+function knUpdMsLabel(k){
+  var w = document.getElementById('ms-'+k); if(!w) return;
+  var s = knSf[k] || [];
+  w.querySelector('.ms-label').textContent = s.length===0 ? '全部' : (s.length===1 ? s[0] : '已选'+s.length+'项');
+}
+function knOnMs(k, v, on, onchg){
+  var a = knSf[k], i = a.indexOf(v);
+  if(on && i < 0) a.push(v);
+  if(!on && i >= 0) a.splice(i,1);
+  knUpdMsLabel(k); if(onchg) onchg();
+}
+function knInitMs(k, opts, onchg){
+  var w = document.getElementById('ms-'+k); if(!w) return;
+  var d = w.querySelector('.ms-drop'); d.innerHTML = '';
+  if(!knSf[k]) knSf[k] = [];
+  knSf[k] = knSf[k].filter(function(v){ return opts.indexOf(v) >= 0; });
+  opts.forEach(function(v){
+    var it = document.createElement('div'); it.className = 'ms-item';
+    var cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = knSf[k].indexOf(v) >= 0;
+    cb.onchange = function(){ knOnMs(k, v, cb.checked, onchg); };
+    it.appendChild(cb); it.appendChild(document.createTextNode(v));
+    it.onclick = function(e){ if(e.target !== cb){ cb.checked = !cb.checked; knOnMs(k, v, cb.checked, onchg); } };
+    d.appendChild(it);
+  });
+  knUpdMsLabel(k);
+}
+
+function knRows(){
+  var qEl = document.getElementById('knQ');
+  var q = ((qEl && qEl.value) || '').trim().toLowerCase();
+  var out = [];
+  for (var i=0;i<knRiderData.length;i++){
+    var r = knRiderData[i];
+    if(knSf.knregion.length && knSf.knregion.indexOf(r[0]) < 0) continue;
+    if(knSf.knsubr.length   && knSf.knsubr.indexOf(r[1])   < 0) continue;
+    if(knSf.kncity.length   && knSf.kncity.indexOf(r[2])   < 0) continue;
+    if(knSf.knsite.length   && knSf.knsite.indexOf(r[3])   < 0) continue;
+    if(knSf.knstatus.length && knSf.knstatus.indexOf(r[7]) < 0) continue;
+    if(q && (r[4]+' '+r[5]).toLowerCase().indexOf(q) < 0) continue;
+    out.push(r);
+  }
+  return out;
+}
+
+function knStatusCls(s){
+  if(s === '无需整改') return 'st-ok';
+  if(s === '整改不通过') return 'st-no';
+  if(s === '待整改' || s === '整改待审核' || s === '待申诉') return 'st-wait';
+  return 'st-none';
+}
+function knCard(l,v,s,cls){ return '<div class="card '+(cls||'')+'"><div class="c-label">'+l+'</div><div class="c-value">'+v+'</div><div class="c-sub">'+s+'</div></div>'; }
+
+function knRenderRider(p){
+  var all = knRows(); knFiltered = all;
+  if(!knRiderData.length){
+    var tb0 = document.getElementById('knTbodyRider');
+    if(tb0) tb0.innerHTML = '<tr><td colspan="13" class="empty">带刀巡检数据未加载（缺少 knife_rider_data.js）<br>请运行「履约项目\\build_knife_data.py」生成</td></tr>';
+    var pg0 = document.getElementById('knPager'); if(pg0) pg0.innerHTML = '';
+    var c0 = document.getElementById('knCardsRider'); if(c0) c0.innerHTML = '';
+    var f0 = document.getElementById('knCntRiderF'); if(f0) f0.textContent = '数据未加载';
+    return;
+  }
+
+  // 筛选下拉选项（从全量数据按上游级联生成）
+  var regionOpts = knUniq(knRiderData.map(function(r){return r[0];}));
+  var subrOpts   = knUniq(knRiderData.filter(function(r){ return !knSf.knregion.length || knSf.knregion.indexOf(r[0]) >= 0; }).map(function(r){return r[1];}));
+  var cityOpts   = knUniq(knRiderData.filter(function(r){ return (!knSf.knregion.length || knSf.knregion.indexOf(r[0]) >= 0) && (!knSf.knsubr.length || knSf.knsubr.indexOf(r[1]) >= 0); }).map(function(r){return r[2];}));
+  var siteOpts   = knUniq(knRiderData.filter(function(r){ return (!knSf.knregion.length || knSf.knregion.indexOf(r[0]) >= 0) && (!knSf.knsubr.length || knSf.knsubr.indexOf(r[1]) >= 0) && (!knSf.kncity.length || knSf.kncity.indexOf(r[2]) >= 0); }).map(function(r){return r[3];}));
+  var statusOpts = knUniq(knRiderData.map(function(r){return r[7];}));
+  knInitMs('knregion', regionOpts, function(){knRenderRider(1);});
+  knInitMs('knsubr',   subrOpts,   function(){knRenderRider(1);});
+  knInitMs('kncity',   cityOpts,   function(){knRenderRider(1);});
+  knInitMs('knsite',   siteOpts,   function(){knRenderRider(1);});
+  knInitMs('knstatus', statusOpts, function(){knRenderRider(1);});
+
+  knPage = p || 1;
+  var tot = Math.max(1, Math.ceil(all.length/knPer));
+  if(knPage > tot) knPage = tot;
+  var seg = all.slice((knPage-1)*knPer, knPage*knPer);
+  var h = '';
+  if(!seg.length) h = '<tr><td colspan="13" class="empty">无符合条件的数据</td></tr>';
+  seg.forEach(function(r){
+    h += '<tr><td class="l">'+r[0]+'</td><td class="l">'+r[1]+'</td><td>'+r[2]+'</td><td class="l">'+r[3]+'</td>'
+      + '<td>'+r[4]+'</td><td class="l">'+r[5]+'</td>'
+      + '<td>'+r[6]+'</td><td class="'+knStatusCls(r[7])+'">'+r[7]+'</td>'
+      + '<td>'+r[8]+'</td><td>'+r[9]+'</td><td class="l">'+r[10]+'</td>'
+      + '<td>'+r[11]+'</td><td>'+r[12]+'</td></tr>';
+  });
+  var tb = document.getElementById('knTbodyRider'); if(tb) tb.innerHTML = h;
+
+  var pg = document.getElementById('knPager');
+  if(pg){
+    var b = '<span>共 <b style="color:#0B4F8A">'+all.length.toLocaleString()+'</b> 条记录 · 第 '+knPage+' / '+tot+' 页（每页 '+knPer+'）</span>';
+    b += '<div style="margin-left:auto;display:flex;gap:6px">';
+    b += '<button onclick="knRenderRider(1)"'+(knPage===1?' disabled':'')+'>« 首页</button>';
+    b += '<button onclick="knRenderRider('+(knPage-1)+')"'+(knPage===1?' disabled':'')+'>‹ 上一页</button>';
+    for (var i=Math.max(1,knPage-2); i<=Math.min(tot,knPage+2); i++)
+      b += '<button class="'+(i===knPage?'cur':'')+'" onclick="knRenderRider('+i+')">'+i+'</button>';
+    b += '<button onclick="knRenderRider('+(knPage+1)+')"'+(knPage===tot?' disabled':'')+'>下一页 ›</button>';
+    b += '<button onclick="knRenderRider('+tot+')"'+(knPage===tot?' disabled':'')+'>末页 »</button></div>';
+    pg.innerHTML = b;
+  }
+
+  // KPI 卡
+  var total = all.length;
+  var noCnt = all.filter(function(r){return r[7]==='无需整改';}).length;
+  var waitCnt = all.filter(function(r){return r[7]==='待整改';}).length;
+  var auditCnt = all.filter(function(r){return r[7]==='整改待审核';}).length;
+  var failCnt = all.filter(function(r){return r[7]==='整改不通过';}).length;
+  var appealCnt = all.filter(function(r){return r[7]==='待申诉';}).length;
+  var cards = document.getElementById('knCardsRider');
+  if(cards) cards.innerHTML =
+    knCard('巡检记录', total.toLocaleString(), '当月加盟骑手车辆检查', '')
+  + knCard('无需整改', noCnt.toLocaleString(), '占比 ' + (total? (noCnt/total*100).toFixed(2)+'%' : '0%'), 'green')
+  + knCard('待整改', waitCnt.toLocaleString(), '需站长跟进', waitCnt?'red':'')
+  + knCard('整改待审核', auditCnt.toLocaleString(), '审核中', '')
+  + knCard('整改不通过', failCnt.toLocaleString(), '需整改', failCnt?'red':'')
+  + knCard('待申诉', appealCnt.toLocaleString(), '申诉中', '');
+  var cf = document.getElementById('knCntRiderF'); if(cf) cf.textContent = '筛选后 '+all.length+' 条';
+  var cr = document.getElementById('knCntRider'); if(cr) cr.textContent = all.length.toLocaleString();
+}
+
+function knUniq(a){ var s={},o=[]; (a||[]).forEach(function(x){ if(x && !s[x]){ s[x]=1; o.push(x); } }); return o.sort(); }
+function knClearF(){
+  Object.keys(knSf).forEach(function(k){ knSf[k] = []; });
+  Object.keys(knSf).forEach(function(k){ knUpdMsLabel(k); });
+  var q = document.getElementById('knQ'); if(q) q.value = '';
+  knRenderRider(1);
+}
+function knExportTbl(){
+  var t = document.getElementById('knTblRider');
+  if(!t){ alert('未找到表格'); return; }
+  var now = new Date();
+  var ts = now.getFullYear() + ('0' + (now.getMonth()+1)).slice(-2) + ('0' + now.getDate()).slice(-2);
+  exportTableWYSIWYG(t, '带刀巡检_骑手维度', '带刀巡检看板_骑手维度_' + ts + '.xls');
+}
+
+function renderKnifeTab() {
+  knInit();
+  knRenderSite();
+  knUpdateNote();
 }
 
 // ─── Tab 6: 充换电血压看板 ───────────────────────────────────
 function renderChargeBPTab() {
+  // 先补齐新计算列（bp_not / charge_up_not / vehicle_not / charge_check_not），
+  // 否则首次渲染时 *_not 字段尚未生成，会显示为 0。
+  cbInitOnce();
+  cbApplyBoard();
   var columns = [
     {key:'bp_rate',          label:'检测率',   isPct:false, isSumRatio:true},
-    {key:'bp_num',           label:'已上报',   isPct:false, isSumRatio:false},
+    {key:'bp_num',           label:'已上传',   isPct:false, isSumRatio:false},
     {key:'bp_den',           label:'在职骑手', isPct:false, isSumRatio:false},
+    {key:'bp_not',           label:'未上传',   isPct:false, isSumRatio:false},
     {key:'vehicle_rate',     label:'通过率',   isPct:false, isSumRatio:true},
     {key:'vehicle_num',      label:'通过',     isPct:false, isSumRatio:false},
     {key:'vehicle_den',      label:'已出结果', isPct:false, isSumRatio:false},
+    {key:'vehicle_not',      label:'未通过',   isPct:false, isSumRatio:false},
     {key:'charge_up_rate',   label:'提交率',   isPct:false, isSumRatio:true},
-    {key:'charge_up_num',    label:'已上报',   isPct:false, isSumRatio:false},
+    {key:'charge_up_num',    label:'已上传',   isPct:false, isSumRatio:false},
     {key:'charge_up_den',    label:'在职骑手', isPct:false, isSumRatio:false},
+    {key:'charge_up_not',    label:'未上传',   isPct:false, isSumRatio:false},
     {key:'charge_check_rate',label:'通过率',   isPct:false, isSumRatio:true},
     {key:'charge_check_num', label:'通过',     isPct:false, isSumRatio:false},
-    {key:'charge_check_den', label:'已出结果', isPct:false, isSumRatio:false}
+    {key:'charge_check_den', label:'已出结果', isPct:false, isSumRatio:false},
+    {key:'charge_check_not', label:'未通过',   isPct:false, isSumRatio:false}
   ];
-  // 两级中文表头：每组=率+分子+分母，与「早会审核」等看板风格一致
+  // 两级中文表头：每组=率+分子+分母+未上传，与「早会审核」等看板风格一致
   var headerGroups = [
-    {label:'血压检测率',            colspan:3, bgColor:'#c4b5fd', textColor:'#4c1d95'},
-    {label:'载具审核通过率', colspan:3, bgColor:'#e5e7eb', textColor:'#374151'},
-    {label:'充换电上传提交率',      colspan:3, bgColor:'#93c5fd', textColor:'#10324F'},
-    {label:'充换电审核通过率',      colspan:3, bgColor:'#6ee7b7', textColor:'#064e3b'}
+    {label:'血压检测率',            colspan:4, bgColor:'#c4b5fd', textColor:'#4c1d95'},
+    {label:'载具审核通过率', colspan:4, bgColor:'#e5e7eb', textColor:'#374151'},
+    {label:'充换电上传提交率',      colspan:4, bgColor:'#93c5fd', textColor:'#10324F'},
+    {label:'充换电审核通过率',      colspan:4, bgColor:'#6ee7b7', textColor:'#064e3b'}
   ];
   renderStandardTab('chargebp', 'CHARGEBP_DATA', columns, null, headerGroups);
-  cbInitOnce();
   cbSiteCards();
 }
 
@@ -1775,12 +2037,13 @@ function cbSiteCards(){
   Object.keys(CHARGEBP_DATA).forEach(function(k){
     var n = cbNormSite(k); if(!(n in firstKey)) firstKey[n] = k;
   });
-  var bpN=0,bpD=0,upN=0,upD=0,ckN=0,ckD=0,sites=0;
+  var bpN=0,bpD=0,upN=0,upD=0,ckN=0,ckD=0,vN=0,vD=0,sites=0;
   Object.keys(firstKey).forEach(function(n){
     var d = CHARGEBP_DATA[firstKey[n]] || {};
     bpN += num(d.bp_num); bpD += num(d.bp_den);
     upN += num(d.charge_up_num); upD += num(d.charge_up_den);
     ckN += num(d.charge_check_num); ckD += num(d.charge_check_den);
+    vN += num(d.vehicle_num); vD += num(d.vehicle_den);
     if(num(d.charge_up_den) > 0) sites++;
   });
   var pct = function(n,d){ return d ? (n/d*100).toFixed(2)+'%' : '0%'; };
@@ -1788,9 +2051,10 @@ function cbSiteCards(){
   var html =
       cbCard('在职骑手（分母）', bpD.toLocaleString(), '当天排班在册', '')
     + cbCard('有排班站点', sites.toLocaleString(), '共 '+Object.keys(CHARGEBP_DATA).length+' 站', '')
-    + cbCard('血压检测率', pct(bpN,bpD), '血压上报 '+bpN.toLocaleString()+' 人', cls(bpN,bpD))
-    + cbCard('充换电上传提交率', pct(upN,upD), '已上报 '+upN.toLocaleString()+' 人（充电∪换电去重）', cls(upN,upD))
-    + cbCard('充换电审核通过率', pct(ckN,ckD), '通过 '+ckN.toLocaleString()+' / 已出结果 '+ckD.toLocaleString(), cls(ckN,ckD));
+    + cbCard('血压检测率', pct(bpN,bpD), '血压已上传 '+bpN.toLocaleString()+' 人 / 未上传 '+(bpD-bpN).toLocaleString()+' 人', cls(bpN,bpD))
+    + cbCard('充换电上传提交率', pct(upN,upD), '已上传 '+upN.toLocaleString()+' 人（充电∪换电去重）', cls(upN,upD))
+    + cbCard('充换电审核通过率', pct(ckN,ckD), '通过 '+ckN.toLocaleString()+' / 已出结果 '+ckD.toLocaleString()+' / 未通过 '+(ckD-ckN).toLocaleString()+' 人', cls(ckN,ckD))
+    + cbCard('载具审核通过率', pct(vN,vD), '通过 '+vN.toLocaleString()+' / 已出结果 '+vD.toLocaleString()+' / 未通过 '+(vD-vN).toLocaleString()+' 人', cls(vN,vD));
   var tmp = document.createElement('div');
   tmp.style.display = 'contents';
   tmp.innerHTML = html;
@@ -1877,9 +2141,9 @@ function cbClearF(){
   var q = document.getElementById('cbQ'); if(q) q.value = '';
   cbRenderRider(1);
 }
-/* 快捷：三项均未上报 → 可直接导出跟进名单 */
+/* 快捷：三项均未上传 → 可直接导出跟进名单 */
 function cbOnlyNone(){
-  cbSf.cbbpt = ['未上报']; cbSf.cbcst = ['未上报']; cbSf.cbwst = ['未上报'];
+  cbSf.cbbpt = ['未上传']; cbSf.cbcst = ['未上传']; cbSf.cbwst = ['未上传'];
   cbUpdMsLabel('cbbpt'); cbUpdMsLabel('cbcst'); cbUpdMsLabel('cbwst');
   cbRenderRider(1);
 }
@@ -1951,13 +2215,15 @@ function cbApplyBoard(){
     var a = (firstKey[cbNormSite(k)] === k) ? agg[cbNormSite(k)] : null;
     var bpN=0,bpD=0,upN=0,upD=0,ckN=0,ckD=0;
     if(a){ bpN=a.bpN; bpD=a.bpD; upN=a.upN; upD=a.upD; ckN=a.ckN; ckD=a.ckD; }
-    row.bp_num=bpN; row.bp_den=bpD; row.bp_rate=rate(bpN,bpD);
+    row.bp_num=bpN; row.bp_den=bpD; row.bp_rate=rate(bpN,bpD); row.bp_not=bpD-bpN;
     row.bp_rate_num=bpN; row.bp_rate_den=bpD;      // 渲染器 isSumRatio 取 key+'_num'/key+'_den'
-    row.charge_up_num=upN; row.charge_up_den=upD; row.charge_up_rate=rate(upN,upD);
+    row.charge_up_num=upN; row.charge_up_den=upD; row.charge_up_rate=rate(upN,upD); row.charge_up_not=upD-upN;
     row.charge_up_rate_num=upN; row.charge_up_rate_den=upD;
     row.charge_check_num=ckN; row.charge_check_den=ckD; row.charge_check_rate=rate(ckN,ckD);
     row.charge_check_rate_num=ckN; row.charge_check_rate_den=ckD;
+    row.charge_check_not = ckD - ckN;
     // 载具审核是昨日单日时点快照，不随日期范围变化；保留 data.js 写入的真实值，不再覆盖成 0
+    row.vehicle_not = (Number(row.vehicle_den)||0) - (Number(row.vehicle_num)||0);
   });
   // 给骑手维度建站点->载具快照映射（优先用和站点维度一致的 firstKey，避免 V 前缀重复站点双计）
   cbSiteVehicle = {};
@@ -1996,7 +2262,7 @@ function cbRiderRows(){
     if(cbSf.cbcity.length && cbSf.cbcity.indexOf(r[2]) < 0) continue;
     if(cbSf.cbsite.length && cbSf.cbsite.indexOf(r[3]) < 0) continue;
     var o = cbRidx[r[4]] || {}, c = o.C || null, w = o.S || null, bp = o.B || null;
-    var cs = c ? '已上报' : '未上报', ws = w ? '已上报' : '未上报', bs = bp ? '已上报' : '未上报';
+    var cs = c ? '已上传' : '未上传', ws = w ? '已上传' : '未上传', bs = bp ? '已上传' : '未上传';
     if(cbSf.cbcst.length && cbSf.cbcst.indexOf(cs) < 0) continue;
     if(cbSf.cbwst.length && cbSf.cbwst.indexOf(ws) < 0) continue;
     if(cbSf.cbbpt.length && cbSf.cbbpt.indexOf(bs) < 0) continue;
@@ -2013,7 +2279,7 @@ function cbRiderRows(){
   return out;
 }
 function cbStCls(s){ if(s==='审核通过'||s==='已通过') return 'st-ok'; if(s==='审核不通过'||s==='系统审核不通过') return 'st-no'; if(s==='已提交') return 'st-wait'; return 'st-none'; }
-function cbTagUp(v){ return '<span class="cb-tag-up '+(v==='已上报'?'yes':'no')+'">'+v+'</span>'; }
+function cbTagUp(v){ return '<span class="cb-tag-up '+(v==='已上传'?'yes':'no')+'">'+v+'</span>'; }
 function cbCard(l,v,s,cls){ return '<div class="card '+(cls||'')+'"><div class="c-label">'+l+'</div><div class="c-value">'+v+'</div><div class="c-sub">'+s+'</div></div>'; }
 
 function cbRenderRider(p){
@@ -2029,10 +2295,10 @@ function cbRenderRider(p){
   }
   var upN=0,chgN=0,swpN=0,bpN=0;
   all.forEach(function(r){
-    if(r[7]==='已上报') bpN++;
-    if(r[14]==='已上报') chgN++;
-    if(r[19]==='已上报') swpN++;
-    if(r[7]==='已上报'||r[14]==='已上报'||r[19]==='已上报') upN++;
+    if(r[7]==='已上传') bpN++;
+    if(r[14]==='已上传') chgN++;
+    if(r[19]==='已上传') swpN++;
+    if(r[7]==='已上传'||r[14]==='已上传'||r[19]==='已上传') upN++;
   });
   // 筛选项必须从全量名册按上游级联生成，不能从已过滤的 all 取，
   // 否则选了一个城市后下拉只剩该城市，导致无法多选。
@@ -2044,9 +2310,9 @@ function cbRenderRider(p){
   cbInitMs('cbsubr',   subrOpts,   function(){cbRenderRider(1);});
   cbInitMs('cbcity',   cityOpts,   function(){cbRenderRider(1);});
   cbInitMs('cbsite',   siteOpts,   function(){cbRenderRider(1);});
-  cbInitMs('cbbpt', ['已上报','未上报'], function(){cbRenderRider(1);});
-  cbInitMs('cbcst', ['已上报','未上报'], function(){cbRenderRider(1);});
-  cbInitMs('cbwst', ['已上报','未上报'], function(){cbRenderRider(1);});
+  cbInitMs('cbbpt', ['已上传','未上传'], function(){cbRenderRider(1);});
+  cbInitMs('cbcst', ['已上传','未上传'], function(){cbRenderRider(1);});
+  cbInitMs('cbwst', ['已上传','未上传'], function(){cbRenderRider(1);});
 
   cbPage = p || 1;
   var tot = Math.max(1, Math.ceil(all.length/cbPer));
@@ -2055,7 +2321,7 @@ function cbRenderRider(p){
   var h = '';
   if(!seg.length) h = '<tr><td colspan="23" class="empty">无符合条件的数据</td></tr>';
   seg.forEach(function(r){
-    var noUp = (r[7]!=='已上报' && r[14]!=='已上报' && r[19]!=='已上报');
+    var noUp = (r[7]!=='已上传' && r[14]!=='已上传' && r[19]!=='已上传');
     h += '<tr class="lv-site'+(noUp?' cb-row-noup':'')+'"><td class="l">'+r[0]+'</td><td class="l">'+r[1]+'</td><td>'+r[2]+'</td><td class="l">'+r[3]+'</td>'
       + '<td>'+r[4]+'</td><td class="l">'+r[5]+'</td><td>'+r[6]+'</td>'
       + '<td>'+cbTagUp(r[7])+'</td><td class="'+cbStCls(r[8])+'">'+(r[8]||'-')+'</td><td>'+(r[9]||'-')+'</td>'
@@ -2079,33 +2345,27 @@ function cbRenderRider(p){
   }
 
   var pc = function(n){ return all.length ? (n/all.length*100).toFixed(2)+'%' : '0%'; };
-  var bothN = all.filter(function(r){ return r[7]==='已上报' && r[19]==='已上报'; }).length;
-  var noneN = all.length - all.filter(function(r){ return r[7]==='已上报'||r[14]==='已上报'||r[19]==='已上报'; }).length;
+  var bothN = all.filter(function(r){ return r[7]==='已上传' && r[19]==='已上传'; }).length;
+  var noneN = all.length - all.filter(function(r){ return r[7]==='已上传'||r[14]==='已上传'||r[19]==='已上传'; }).length;
   var cards = document.getElementById('cbCardsRider');
   if(cards) cards.innerHTML =
      cbCard('在职骑手', all.length.toLocaleString(), '当天排班在册', '')
    + cbCard('血压+换电双达标', bothN.toLocaleString(), '核心达成 '+pc(bothN), 'green')
-   + cbCard('任一已上报', upN.toLocaleString(), '覆盖率 '+pc(upN), 'green')
-   + cbCard('完全未上报', noneN.toLocaleString(), '需要跟进', noneN?'red':'')
-   + cbCard('血压已上报', bpN.toLocaleString(), '覆盖率 '+pc(bpN), '')
-   + cbCard('换电已上报', swpN.toLocaleString(), '覆盖率 '+pc(swpN), '')
-   + cbCard('充电已上报', chgN.toLocaleString(), '覆盖率 '+pc(chgN), '（低量渠道，作参考）');
+   + cbCard('任一已上传', upN.toLocaleString(), '覆盖率 '+pc(upN), 'green')
+   + cbCard('完全未上传', noneN.toLocaleString(), '需要跟进', noneN?'red':'')
+   + cbCard('血压已上传', bpN.toLocaleString(), '覆盖率 '+pc(bpN), '')
+   + cbCard('换电已上传', swpN.toLocaleString(), '覆盖率 '+pc(swpN), '')
+   + cbCard('充电已上传', chgN.toLocaleString(), '覆盖率 '+pc(chgN), '（低量渠道，作参考）');
   var cf = document.getElementById('cbCntRiderF'); if(cf) cf.textContent = '筛选后 '+all.length+' 人';
   var cr = document.getElementById('cbCntRider'); if(cr) cr.textContent = all.length.toLocaleString();
 }
 
-function cbExportTbl(){
-  var t = document.getElementById('cbTblRider'); if(!t) return;
-  var clone = t.cloneNode(true);
-  var html = '<html xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="utf-8">'
-    + '<style>td,th{border:1px solid #ccc;font-family:"Microsoft YaHei";font-size:11pt;text-align:center;mso-number-format:"\\@"}'
-    + 'th{background:#0B4F8A;color:#fff;font-weight:600}</style></head><body>'
-    + '<table border="1">'+clone.innerHTML+'</table></body></html>';
-  var blob = new Blob(['\ufeff'+html], {type:'application/vnd.ms-excel'});
-  var a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = '充换电血压看板_骑手维度_'+new Date().toLocaleDateString('zh-CN').replace(/\//g,'-')+'.xls';
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+function cbExportTbl() {
+  var t = document.getElementById('cbTblRider');
+  if (!t) { alert('未找到表格'); return; }
+  var now = new Date();
+  var ts = now.getFullYear() + ('0' + (now.getMonth() + 1)).slice(-2) + ('0' + now.getDate()).slice(-2);
+  exportTableWYSIWYG(t, '充换电血压_骑手维度', '充换电血压看板_骑手维度_' + ts + '.xls');
 }
 
 function cbInitOnce(){
@@ -2571,122 +2831,110 @@ function refreshCascadeOptions(tabId) {
 
 
 // ══════════════════════════════════════════════════════════
-// ★ 导出 Excel（CSV）
+// ★ 导出 Excel（所见即所得，与看板格式一致）
 // ══════════════════════════════════════════════════════════
-function exportTable(tabId) {
-  // Handle equip tab sub-views
-  var theadId = 'thead-'+tabId;
-  var tbodyId = 'tbody-'+tabId;
-  if (tabId === 'equip' && currentEquipView === 'clothing') {
-    theadId = 'clothing-thead';
-    tbodyId = 'clothing-tbody';
-  } else if (tabId === 'equip' && currentEquipView === 'checkfail') {
-    // checkFailTable has its own structure
-    var tbody = document.querySelector('#checkFailTable tbody');
-    if (!tbody) { alert('未找到表格'); return; }
-    var rows = [];
-    var thead = document.querySelector('#checkFailTable thead');
-    var headerCells = thead.querySelectorAll('tr:last-child th');
-    var headerRow = [];
-    headerCells.forEach(function(th) { headerRow.push('"'+th.textContent.replace(/"/g,'""').replace(/\n/g,' ')+'"'); });
-    rows.push(headerRow.join(','));
-    var bodyRows = tbody.querySelectorAll('tr');
-    bodyRows.forEach(function(tr) {
-      if (tr.style.display === 'none') return;
-      var cells = tr.querySelectorAll('th, td');
-      var row = [];
-      cells.forEach(function(cell) {
-        var txt = cell.textContent.replace(/"/g,'""').replace(/\n/g,' ').trim();
-        row.push('"'+txt+'"');
-      });
-      rows.push(row.join(','));
-    });
-    var csv = '\uFEFF' + rows.join('\n');
-    var blob = new Blob([csv], {type:'text/csv;charset=utf-8'});
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url;
-    var now = new Date();
-    var ts = now.getFullYear()+('0'+(now.getMonth()+1)).slice(-2)+('0'+now.getDate()).slice(-2);
-    a.download = '履约项目看板_抽检不合格骑手明细_'+ts+'.csv';
-    a.click();
-    URL.revokeObjectURL(url);
-    return;
-  }
 
-  var table = document.getElementById('tbl-'+tabId);
-  if (!table && !(tabId === 'equip')) { alert('未找到表格'); return; }
-  if (tabId === 'equip' && currentEquipView === 'clothing') {
-    table = document.getElementById('clothing-table');
-    theadId = 'clothing-thead';
-    tbodyId = 'clothing-tbody';
-  }
-  if (!table && tabId === 'equip') { alert('未找到表格'); return; }
-  
-  var rows = [];
-  // Get visible rows only
-  var tbody = document.getElementById(tbodyId);
-  var thead = document.getElementById(theadId);
-  
-  // Headers（兼容单级/两级表头：两级时补回 rowspan 列，子列拼上父级分组名，避免列错位）
-  var _hc = function(th){ return th.textContent.replace(/"/g,'""').replace(/\n/g,' ').trim(); };
-  var _theadTrs = thead.querySelectorAll('tr');
-  var headerRow = [];
-  if (_theadTrs.length > 1) {
-    var _parents = [];
-    _theadTrs[0].querySelectorAll('th').forEach(function(th){
-      var nm = _hc(th);
-      if (th.getAttribute('rowspan')) { headerRow.push('"'+nm+'"'); }
-      else { var n = parseInt(th.getAttribute('colspan')||'1',10); for (var i=0;i<n;i++) _parents.push(nm); }
-    });
-    _theadTrs[_theadTrs.length-1].querySelectorAll('th').forEach(function(th,i){
-      headerRow.push('"' + (_parents[i] ? _parents[i]+'-'+_hc(th) : _hc(th)) + '"');
-    });
-  } else {
-    _theadTrs[0].querySelectorAll('th').forEach(function(th){
-      var nm = _hc(th);
-      var n = parseInt(th.getAttribute('colspan')||'1',10);
-      headerRow.push('"'+nm+'"');
-      for (var i=1;i<n;i++) headerRow.push('""');   // colspan 列展开成 n 列，保证与数据行等宽
-    });
-  }
-  rows.push(headerRow.join(','));
-  
-  // Body - only visible rows
-  var _hdrN = headerRow.length;
-  var bodyRows = tbody.querySelectorAll('tr');
-  bodyRows.forEach(function(tr) {
-    if (tr.style.display === 'none') return;
-    var cells = tr.querySelectorAll('th, td');
-    var row = [];
-    cells.forEach(function(cell) {
-      var txt = cell.textContent.replace(/"/g,'""').replace(/\n/g,' ').trim();
-      row.push('"'+txt+'"');
-    });
-    // 层级汇总行（colspan 单格，如「XX区域汇总」「XX城市」）补空列，避免导出后整行错位
-    if (row.length === 1 && _hdrN > 1) { while (row.length < _hdrN) row.push('""'); }
-    rows.push(row.join(','));
+/* ── 通用所见即所得导出：格式/颜色/对齐/列宽 与看板完全一致 ── */
+function _xlsRgb2hex(c) {
+  var m = String(c || '').match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+  if (!m) return '';
+  if (m[4] !== undefined && parseFloat(m[4]) === 0) return '';
+  function h(n) { var s = parseInt(n, 10).toString(16); return s.length < 2 ? '0' + s : s; }
+  return '#' + h(m[1]) + h(m[2]) + h(m[3]);
+}
+function exportTableWYSIWYG(table, sheetName, fileName) {
+  if (!table) { alert('未找到可导出的表格'); return; }
+  var clone = table.cloneNode(true);
+  // 趋势图 svg → PNG（Excel 不认 svg）
+  clone.querySelectorAll('img').forEach(function(im) {
+    var src = im.getAttribute('src') || '';
+    if (src.indexOf('data:image/svg') !== 0) return;
+    try {
+      var w = im.width || 88, hh = im.height || 26;
+      var cv = document.createElement('canvas'); cv.width = w * 2; cv.height = hh * 2;
+      var cx = cv.getContext('2d'); cx.scale(2, 2); cx.drawImage(im, 0, 0, w, hh);
+      im.setAttribute('src', cv.toDataURL('image/png'));
+    } catch (e) {}
   });
-  
-  // Add BOM for Excel UTF-8
-  var csv = '\uFEFF' + rows.join('\n');
-  var blob = new Blob([csv], {type:'text/csv;charset=utf-8'});
-  var url = URL.createObjectURL(blob);
+  // canvas 元素 → PNG
+  clone.querySelectorAll('canvas').forEach(function(cv) {
+    try {
+      var im = document.createElement('img');
+      im.setAttribute('width', cv.width); im.setAttribute('height', cv.height);
+      im.setAttribute('src', cv.toDataURL('image/png'));
+      cv.parentNode.replaceChild(im, cv);
+    } catch (e) {}
+  });
+  // 逐格内联计算样式（背景含行回退、文字色、加粗、对齐、边框）
+  var srcCells = table.querySelectorAll('th,td');
+  var dstCells = clone.querySelectorAll('th,td');
+  for (var i = 0; i < dstCells.length; i++) {
+    var s = srcCells[i]; if (!s) break;
+    var d = dstCells[i];
+    var cs = getComputedStyle(s);
+    var bg = _xlsRgb2hex(cs.backgroundColor);
+    if (!bg) {
+      var p = s.parentElement;
+      while (p && p !== table) { bg = _xlsRgb2hex(getComputedStyle(p).backgroundColor); if (bg) break; p = p.parentElement; }
+    }
+    var fg = _xlsRgb2hex(cs.color);
+    var st = 'border:.5pt solid #C9D8E8;vertical-align:middle;font-size:10pt;white-space:nowrap;';
+    if (bg) st += 'background:' + bg + ';';
+    if (fg) st += 'color:' + fg + ';';
+    var fw = cs.fontWeight;
+    if (fw === '700' || fw === 'bold' || parseInt(fw, 10) >= 600) st += 'font-weight:bold;';
+    if (cs.textAlign && cs.textAlign !== 'start') st += 'text-align:' + cs.textAlign + ';';
+    d.removeAttribute('style');
+    d.setAttribute('style', st);
+    d.removeAttribute('class');
+  }
+  // 隐藏定宽行：按实际渲染列宽 ×1.4（最小 90px），Excel 用它定列宽且该行不显示
+  var firstRow = table.querySelector('tbody tr');
+  if (firstRow) {
+    var ws = [];
+    firstRow.querySelectorAll('td').forEach(function(td) { ws.push(Math.max(Math.round(td.offsetWidth * 1.4), 90)); });
+    if (ws.length) {
+      var tmp = document.createElement('table');
+      tmp.innerHTML = '<tr style="display:none;height:0;">' + ws.map(function(w) { return '<td width="' + w + '"></td>'; }).join('') + '</tr>';
+      var hrNode = tmp.querySelector('tr');
+      var th = clone.querySelector('thead');
+      if (th) th.insertBefore(hrNode, th.firstChild);
+      else { var nt = document.createElement('thead'); nt.appendChild(hrNode); clone.insertBefore(nt, clone.firstChild); }
+    }
+  }
+  clone.setAttribute('cellspacing', '0');
+  clone.setAttribute('style', 'border-collapse:collapse;font-family:"Microsoft YaHei",Arial,sans-serif;');
+  var html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="UTF-8">' +
+    '<!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>' + sheetName + '</x:Name><x:WorksheetOptions><x:DisplayGridlines/><x:FreezePanes/><x:FrozenNoSplit/><x:SplitHorizontal>1</x:SplitHorizontal><x:TopRowBottomPane>1</x:TopRowBottomPane></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->' +
+    '</head><body>' + clone.outerHTML + '<\/body><\/html>';
+  var blob = new Blob(['\ufeff' + html], { type: 'application/vnd.ms-excel;charset=utf-8' });
   var a = document.createElement('a');
-  a.href = url;
+  a.href = URL.createObjectURL(blob);
+  a.download = fileName;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+}
+
+function exportTable(tabId) {
+  var tableId = 'tbl-' + tabId;
+  if (tabId === 'equip' && currentEquipView === 'clothing') {
+    tableId = 'clothing-table';
+  } else if (tabId === 'equip' && currentEquipView === 'checkfail') {
+    tableId = 'checkFailTable';
+  }
+  var table = document.getElementById(tableId);
+  if (!table) { alert('未找到表格'); return; }
+
   var tabNames = {
-    'morning':'站点早会','safety':'履约安全检查','equip':'骑手装备标准化率',
-    'box':'餐箱消毒看板','knife':'带刀巡检看板','chargebp':'充换电血压看板',
-    'training':'线上线下考培','rider':'骑手维度执行'
+    'morning': '站点早会', 'safety': '履约安全检查', 'equip': '骑手装备标准化率',
+    'box': '餐箱消毒看板', 'knife': '带刀巡检看板', 'chargebp': '充换电血压看板',
+    'training': '线上线下考培', 'rider': '骑手维度执行'
   };
-  var now = new Date();
-  var ts = now.getFullYear()+('0'+(now.getMonth()+1)).slice(-2)+('0'+now.getDate()).slice(-2);
-    var expName = (tabNames[tabId]||tabId);
+  var expName = (tabNames[tabId] || tabId);
   if (tabId === 'equip' && currentEquipView === 'clothing') expName = '骑手服装标准化率';
   if (tabId === 'equip' && currentEquipView === 'checkfail') expName = '抽检不合格骑手明细';
-  a.download = '履约项目看板_'+ expName +'_'+ts+'.csv';
-  a.click();
-  URL.revokeObjectURL(url);
+  var now = new Date();
+  var ts = now.getFullYear() + ('0' + (now.getMonth() + 1)).slice(-2) + ('0' + now.getDate()).slice(-2);
+  exportTableWYSIWYG(table, expName, '履约项目看板_' + expName + '_' + ts + '.xls');
 }
 
 // ══════════════════════════════════════════════════════════
@@ -2773,6 +3021,24 @@ function openRulesModal() {
 function closeRulesModal() {
   document.getElementById('rulesModal').classList.remove('show');
 }
+function openChargeBPRulesModal() {
+  document.getElementById('chargeBPRulesModal').classList.add('show');
+}
+function closeChargeBPRulesModal() {
+  document.getElementById('chargeBPRulesModal').classList.remove('show');
+}
+function openBoxRulesModal() {
+  document.getElementById('boxRulesModal').classList.add('show');
+}
+function closeBoxRulesModal() {
+  document.getElementById('boxRulesModal').classList.remove('show');
+}
+function openKnifeRulesModal() {
+  document.getElementById('knifeRulesModal').classList.add('show');
+}
+function closeKnifeRulesModal() {
+  document.getElementById('knifeRulesModal').classList.remove('show');
+}
 function openEquipRulesModal() {
   document.getElementById('equipRulesModal').classList.add('show');
 }
@@ -2781,12 +3047,53 @@ function closeEquipRulesModal() {
 }
 </script>
 
-<!-- ─── 审核规则弹窗 ─── -->
+<!-- ─── 早会审核规则弹窗 ─── -->
 <div class="modal-overlay" id="rulesModal" onclick="if(event.target===this)closeRulesModal()">
 <div class="modal-content">
 <div class="modal-header">
-<span class="modal-title">站点充换电血压上传规则</span>
+<span class="modal-title">站点早会审核规则</span>
 <button class="modal-close" onclick="closeRulesModal()">&times;</button>
+</div>
+<div class="modal-body">
+<ol>
+<li>
+<b>站点自检（站长任务）提交日：</b><br>
+华东、中南站点：<span class="highlight">偶数日</span>提交<br>
+华北、华南站点：<span class="highlight">奇数日</span>提交
+</li>
+<li>
+<b>当月新B1建站（首单日期当月）：</b><br>
+每日提交，次月按大区任务自查
+</li>
+<li>
+<b>早会提交时间（日常早会/报备早会）：</b><br>
+需在<span class="highlight">当日 20:00 前</span>通过星火APP（加盟站点）或骑手APP（驻点站点）完成提交，不区分奇数日/偶数日，每天都需要按时提交。
+</li>
+<li>
+<b>早会提交以系统签到时间为准：</b><br>
+不早于当日 <span class="highlight">7:00</span>，最晚不晚于 <span class="highlight">20:00</span>。<br>
+未在规定时间内提交早会，视为<span class="highlight">"未召开早会"</span>，按 <span class="highlight">1000元/站/天</span>承担违约责任。
+</li>
+<li>
+<b>恶劣天气报备早会：</b><br>
+情景举证不通过按 <span class="highlight">500元/站/天</span> 承担违约责任。
+</li>
+<li>
+<b>日常早会驳回处罚标准：</b><br>
+① 重点内容交流驳回 = <span class="highlight">50元/站/天</span><br>
+② 仪容仪表驳回 = <span class="highlight">100元/站/天</span><br>
+③ 签到驳回 = <span class="highlight">100元/站/天</span>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<!-- ─── 充换电血压上传规则弹窗 ─── -->
+<div class="modal-overlay" id="chargeBPRulesModal" onclick="if(event.target===this)closeChargeBPRulesModal()">
+<div class="modal-content">
+<div class="modal-header">
+<span class="modal-title">站点充换电血压上传规则</span>
+<button class="modal-close" onclick="closeChargeBPRulesModal()">&times;</button>
 </div>
 <div class="modal-body" style="max-height:70vh;overflow:auto;font-size:13px;line-height:1.55;">
 <div style="margin-bottom:10px;padding:8px;background:#f0f9ff;border-left:3px solid #0B4F8A;border-radius:4px;">
@@ -2922,6 +3229,176 @@ function closeEquipRulesModal() {
 </div>
 </div>
 </div>
+<!-- ─── 餐箱消毒规则弹窗 ─── -->
+<div class="modal-overlay" id="boxRulesModal" onclick="if(event.target===this)closeBoxRulesModal()">
+<div class="modal-content">
+<div class="modal-header">
+<span class="modal-title">餐箱消毒看板考核规则</span>
+<button class="modal-close" onclick="closeBoxRulesModal()">&times;</button>
+</div>
+<div class="modal-body" style="max-height:70vh;overflow:auto;font-size:13px;line-height:1.55;">
+
+<details open style="margin-bottom:8px;">
+<summary style="font-weight:700;color:#0B4F8A;font-size:14px;cursor:pointer;padding:4px 0;">一、指标说明</summary>
+<div style="padding-left:8px;">
+<div style="font-weight:700;color:#333;margin:6px 0 3px;">数据查看时间</div>
+<ol style="margin:0 0 8px;padding-left:18px;">
+<li>受审核周期影响，上周周日的数据最晚在本周周三审核完，所以数据查看时效为 <span class="highlight">T+3</span>。</li>
+<li>数据按照整周周一至周日统计（选取自然周），剩余天数转结至次月核算。</li>
+</ol>
+<div style="font-weight:700;color:#333;margin:6px 0 3px;">指标口径</div>
+<ol style="margin:0 0 8px;padding-left:18px;">
+<li><b>有效骑手数</b> = 当周有单天数 &gt; 2 的在职骑手。</li>
+<li><b>餐箱清洁消毒提交率</b> = Σ考核周期内提交餐箱清洁消毒有单骑手数 / Σ当周有单骑手数。</li>
+<li><b>餐箱清洁消毒合规率</b> = Σ考核周期内餐箱清洁消毒最终审核通过有单骑手数 / Σ考核周期内提交餐箱清洁消毒有单骑手数。</li>
+<li><b>骑手消毒标准化率</b>（考核周期内有效骑手中合规的骑手占比） = 餐箱清洁消毒提交率 × 餐箱清洁消毒合规率。</li>
+<li><b>跨站跑单</b>：骑手一周内跨站跑单（例如：1天在A站，1天在B站），两站提交一次即可，分子分母分别记入两站；同一天内骑手多次绑定和解绑组织操作，以当天最终所在站点为准。</li>
+<li><b>不同考核时间周期计算规则</b>：周分子累加 / 周分母累加。</li>
+</ol>
+</div>
+</details>
+
+<details open style="margin-bottom:8px;">
+<summary style="font-weight:700;color:#0B4F8A;font-size:14px;cursor:pointer;padding:4px 0;">二、违约金说明</summary>
+<div style="padding-left:8px;">
+<div style="margin-bottom:10px;padding:8px;background:#fffbe6;border-left:3px solid #faad14;border-radius:4px;">
+违约金额核算标准最终以合作商管理办法为准；餐箱消毒违约金额由<span class="highlight">标准化率不达标、虚假消毒、无消毒记录骑手以及安全违禁物</span>四部分组成；该报表数据不含无消毒骑手产生的违约金额、不含质检虚假违约金额。
+</div>
+<div style="font-weight:700;color:#333;margin:6px 0 3px;">1. 档位合计 ≤ 5 时</div>
+<div style="margin:0 0 8px;padding-left:8px;">
+若【标准化率不达标档位 + 因虚假消毒需要降低档位 + 无消毒记录骑手位】 ≤ 5，则按档位查看需要承担的违约金额：标准化率不达标档位 + 因虚假消毒需要降低档位 + 无消毒记录骑手档位（报表不含） + 安全违禁物承担的违约金额 <span class="highlight">2500元/站/月</span> 或 <span class="highlight">5000元/站/月</span>。
+</div>
+<div style="font-weight:700;color:#333;margin:6px 0 3px;">2. 档位合计 &gt; 5 时</div>
+<div style="margin:0 0 8px;padding-left:8px;">
+若【标准化率不达标档位 + 因虚假消毒需要降低档位 + 无消毒记录骑手档位】 &gt; 5，则按照场景5的2倍承担责任，即 <span class="highlight">5000元/站/月</span> + 安全违禁物承担的违约金额 <span class="highlight">2500元/站/月</span> 或 <span class="highlight">5000元/站/月</span>。
+</div>
+<div style="font-weight:700;color:#333;margin:6px 0 3px;">3. 档位对照</div>
+<table style="width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:12px;text-align:center;">
+<tr style="background:#e8f4fc;"><th style="border:1px solid #b6d8ee;padding:5px;">档位</th><th style="border:1px solid #b6d8ee;padding:5px;">违约金</th></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">档位1</td><td style="border:1px solid #ddd;padding:5px;">不需要承担违约金额</td></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">档位2</td><td style="border:1px solid #ddd;padding:5px;">1000元/站/月</td></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">档位3</td><td style="border:1px solid #ddd;padding:5px;">1500元/站/月</td></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">档位4</td><td style="border:1px solid #ddd;padding:5px;">2000元/站/月</td></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">档位5</td><td style="border:1px solid #ddd;padding:5px;">2500元/站/月</td></tr>
+</table>
+</div>
+</details>
+
+<div style="margin-top:10px;padding-top:8px;border-top:1px dashed #ccc;font-size:12px;color:#666;">
+<b>说明：</b>以上内容来自餐箱消毒看板考核说明与违约金说明，具体执行以最新合作商管理办法为准。
+</div>
+</div>
+</div>
+</div>
+
+<!-- ─── 带刀巡检规则弹窗 ─── -->
+<div class="modal-overlay" id="knifeRulesModal" onclick="if(event.target===this)closeKnifeRulesModal()">
+<div class="modal-content">
+<div class="modal-header">
+<span class="modal-title">带刀巡检看板规则</span>
+<button class="modal-close" onclick="closeKnifeRulesModal()">&times;</button>
+</div>
+<div class="modal-body" style="max-height:70vh;overflow:auto;font-size:13px;line-height:1.55;">
+
+<details open style="margin-bottom:8px;">
+<summary style="font-weight:700;color:#0B4F8A;font-size:14px;cursor:pointer;padding:4px 0;">一、车辆带刀检核</summary>
+<div style="padding-left:8px;">
+<p style="margin:6px 0 10px;"><b>管制刀具：</b>包含但不限于匕首、三棱刀、弹簧刀、跳刀等，其他相似的单刃、双刃、三棱尖刀，刀身长度超过 <span class="highlight">60毫米</span> 的刀具或其他锋利物品等。</p>
+</div>
+</details>
+
+<details open style="margin-bottom:8px;">
+<summary style="font-weight:700;color:#0B4F8A;font-size:14px;cursor:pointer;padding:4px 0;">二、考核口径（最新变更）</summary>
+<div style="padding-left:8px;">
+<ul style="margin:0 0 8px;padding-left:18px;">
+<li><b>月度目标：</b>骑手带刀检核月度目标 <span class="highlight">不低于 50%</span>。</li>
+<li><b>单个骑手频次：</b>单个骑手每月最多被检查 <span class="highlight">2 次</span>。</li>
+<li><b>百人站检核量：</b>100 人以上站点，月度检核不少于 <span class="highlight">50 人</span>。</li>
+<li><b>分母口径：</b>分母为 <span class="highlight">每月 1 号注册的骑手</span>。</li>
+</ul>
+<div style="padding:6px;background:#fffbe6;border:1px solid #ffe58f;border-radius:4px;font-size:12px;margin-bottom:8px;">
+<b>注意：</b>上述口径为最新变更要求，看板数据后续将按此口径对接；当前展示数据仍以现有数据源为准。
+</div>
+</div>
+</details>
+
+<details open style="margin-bottom:8px;">
+<summary style="font-weight:700;color:#0B4F8A;font-size:14px;cursor:pointer;padding:4px 0;">三、自检机制违约说明</summary>
+<div style="padding-left:8px;">
+<p style="margin:6px 0 8px;">加盟站长每个自然周周日 <span class="highlight">24:00 前</span>，通过星火 APP 上传站点当周（周一注册骑手数）至少 <span class="highlight">25%</span>；单个骑手当月上传超过 <span class="highlight">2 次</span>，第 3 次开始不算。若站点超过 100 人，上传 <span class="highlight">25 人</span> 即达标。经过总部平台运营组审核，最终得到餐箱 &amp; 储物箱检核是否合规的结果。</p>
+<ul style="margin:0 0 10px;padding-left:18px;">
+<li>整周均无单的骑手当周无需抽检。</li>
+<li>所上传视频时长不得小于 <span class="highlight">5 秒</span>。</li>
+<li>骑手上传视频时须体现车辆全貌。</li>
+</ul>
+<div style="font-weight:700;color:#333;margin:6px 0 3px;">检核标准与驳回标签</div>
+<table style="width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:12px;">
+<tr style="background:#e8f4fc;">
+<th style="border:1px solid #b6d8ee;padding:5px;text-align:left;width:40px;">序号</th>
+<th style="border:1px solid #b6d8ee;padding:5px;text-align:left;width:90px;">检查大项</th>
+<th style="border:1px solid #b6d8ee;padding:5px;text-align:left;width:180px;">检查小项</th>
+<th style="border:1px solid #b6d8ee;padding:5px;text-align:left;">检核标准</th>
+<th style="border:1px solid #b6d8ee;padding:5px;text-align:left;width:160px;">驳回标签</th>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:5px;">1</td>
+<td style="border:1px solid #ddd;padding:5px;">签到</td>
+<td style="border:1px solid #ddd;padding:5px;">核对骑手车辆及骑手本人信息</td>
+<td style="border:1px solid #ddd;padding:5px;">签到环节拍摄骑手和车辆合照，上传巡检系统</td>
+<td style="border:1px solid #ddd;padding:5px;">无人员信息；无车辆全貌图像信息</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:5px;">2</td>
+<td style="border:1px solid #ddd;padding:5px;">餐箱&amp;储物箱</td>
+<td style="border:1px solid #ddd;padding:5px;">餐箱内不允许存放刀具、甩棍等违禁品；车辆储物箱不允许存放刀具、甩棍等违禁品</td>
+<td style="border:1px solid #ddd;padding:5px;">拍摄餐箱内检查视频不低于 5 秒；拍摄储物箱内检查视频不低于 5 秒</td>
+<td style="border:1px solid #ddd;padding:5px;">拍摄不清晰；大量物品掩盖无法判定是否有刀或其他违禁品</td>
+</tr>
+</table>
+</div>
+</details>
+
+<details open style="margin-bottom:8px;">
+<summary style="font-weight:700;color:#0B4F8A;font-size:14px;cursor:pointer;padding:4px 0;">四、自检提交标准</summary>
+<div style="padding-left:8px;">
+<ul style="margin:0 0 8px;padding-left:18px;">
+<li><b>站长操作路径：</b>星火 APP → 站点巡检【加盟】→ 骑手巡检 → 车辆检核。</li>
+<li><b>站长查看路径：</b>烽火台 → 业务管理 → 服务中心 → 表单管理 → 表单查看。</li>
+<li><b>站长审核/申诉路径：</b>烽火台 → 业务管理 → 审核平台 → 业务流程 → 待定 → 审核/申诉。</li>
+</ul>
+</div>
+</details>
+
+<details open style="margin-bottom:8px;">
+<summary style="font-weight:700;color:#0B4F8A;font-size:14px;cursor:pointer;padding:4px 0;">五、违约处罚</summary>
+<div style="padding-left:8px;">
+<table style="width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:12px;">
+<tr style="background:#e8f4fc;">
+<th style="border:1px solid #b6d8ee;padding:5px;text-align:left;width:120px;">项目</th>
+<th style="border:1px solid #b6d8ee;padding:5px;text-align:left;">内容</th>
+<th style="border:1px solid #b6d8ee;padding:5px;text-align:left;width:140px;">责任承担</th>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:5px;">是否按时提交</td>
+<td style="border:1px solid #ddd;padding:5px;">检核数量未达标</td>
+<td style="border:1px solid #ddd;padding:5px;"><span class="highlight">1000 元/次</span>，整改不达标需承担双倍违约金</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd;padding:5px;">提交质量合规</td>
+<td style="border:1px solid #ddd;padding:5px;">拍摄餐箱内检查视频低于 5 秒；拍摄储物箱内检查视频低于 5 秒；拍摄不清晰；大量物品掩盖无法判定是否有刀或其他违禁品</td>
+<td style="border:1px solid #ddd;padding:5px;"><span class="highlight">100 元/人/次</span>，整改不达标需承担双倍违约金</td>
+</tr>
+</table>
+</div>
+</details>
+
+<div style="margin-top:10px;padding-top:8px;border-top:1px dashed #ccc;font-size:12px;color:#666;">
+<b>说明：</b>以上内容来自带刀巡检看板规则说明，具体执行以最新合作商管理办法为准。
+</div>
+</div>
+</div>
+</div>
+
 <!-- ─── 骑手装备处罚规则弹窗 ─── -->
 <div class="modal-overlay" id="equipRulesModal" onclick="if(event.target===this)closeEquipRulesModal()">
 <div class="modal-content">

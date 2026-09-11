@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>数据中心 - 源数据同步监控</title>
 <style>
   :root {
@@ -365,6 +368,8 @@
         <div class="kpi green"><div class="num" id="kpiSynced">-</div><div class="lbl">✅ 源数据已同步</div></div>
         <div class="kpi amber"><div class="num" id="kpiUnsync">-</div><div class="lbl">⏳ 看板待更新</div></div>
         <div class="kpi red"><div class="num" id="kpiMissing">-</div><div class="lbl">🚫 源数据缺失</div></div>
+        <div class="kpi green"><div class="num" id="kpiActionOk">-</div><div class="lbl">⚙️ 动作正常</div></div>
+        <div class="kpi red"><div class="num" id="kpiActionAlert">-</div><div class="lbl">🚨 动作未执行</div></div>
       </div>
     </div>
   </div>
@@ -378,7 +383,7 @@
   <div class="container" id="groups"></div>
   <div class="footer">兴达履约安全工作台 · 数据中心</div>
 
-<script src="data_center.js"></script>
+<script src="data_center.js?v=202609112300"></script>
 <script>
   var showOnlyAlert = false;
 
@@ -408,7 +413,8 @@
   function groupIcon(title) {
     var map = {
       '交通安全': '🚦', '履约项目': '📋', '服装标准化': '👕', '骑手管理': '🏍️',
-      '保险': '🛡️', '公司风险管理系统': '⚠️', '站点地图': '🗺️', '月度累计': '📅'
+      '保险': '🛡️', '公司风险管理系统': '⚠️', '站点地图': '🗺️', '月度累计': '📅',
+      '数据中心': '🖥️'
     };
     return map[title] || '📁';
   }
@@ -417,16 +423,51 @@
       '交通安全': ['#eff6ff', '#3b82f6'], '履约项目': ['#f0fdf4', '#22c55e'],
       '服装标准化': ['#fdf4ff', '#c026d3'], '骑手管理': ['#fff7ed', '#f97316'],
       '保险': ['#eff6ff', '#0ea5e9'], '公司风险管理系统': ['#fef2f2', '#ef4444'],
-      '站点地图': ['#f0fdfa', '#14b8a6'], '月度累计': ['#eef2ff', '#6366f1']
+      '站点地图': ['#f0fdfa', '#14b8a6'], '月度累计': ['#eef2ff', '#6366f1'],
+      '数据中心': ['#f8fafc', '#64748b']
     };
     return map[title] || ['#f8fafc', '#64748b'];
   }
 
   function groupBadge(mon) {
     if (!mon) return '<span class="badge none"><span class="b-dot"></span>暂无监控</span>';
-    if (mon.all_synced) return '<span class="badge ok"><span class="b-dot"></span>全部已同步</span>';
+    var ast = mon.action_stats || {alert_count:0, missing_count:0};
+    var actionAlert = ast.alert_count + ast.missing_count;
+    if (actionAlert > 0) return '<span class="badge miss"><span class="b-dot"></span>' + actionAlert + ' 个动作未执行</span>';
     if (mon.missing_count > 0) return '<span class="badge miss"><span class="b-dot"></span>缺失 ' + mon.missing_count + ' 项源数据</span>';
-    return '<span class="badge warn"><span class="b-dot"></span>' + mon.unsynced_count + ' 项待更新</span>';
+    if (mon.unsynced_count > 0) return '<span class="badge warn"><span class="b-dot"></span>' + mon.unsynced_count + ' 项待更新</span>';
+    return '<span class="badge ok"><span class="b-dot"></span>全部健康</span>';
+  }
+
+  function actHtml(ok) {
+    if (ok === true) return '<span class="st ok">已执行</span>';
+    if (ok === false) return '<span class="st miss">超期未执行</span>';
+    return '<span class="st miss">未找到</span>';
+  }
+
+  function renderActions(mon, baseStr) {
+    if (!mon || !(mon.actions || []).length) {
+      return '';
+    }
+    var ast = mon.action_stats || {};
+    var metaTxt = '<span class="m">逻辑动作 <b style="color:#0f172a">' + ast.ok_count + '/' + ast.total + '</b> 正常</span>' +
+      (ast.alert_count ? '<span class="m" style="color:#dc2626">　|　超期 ' + ast.alert_count + '</span>' : '') +
+      (ast.missing_count ? '<span class="m" style="color:#dc2626">　|　缺失 ' + ast.missing_count + '</span>' : '');
+
+    var rows = '';
+    mon.actions.forEach(function(a) {
+      var note = a.note ? '<span class="rel" style="color:#64748b;margin-left:6px">(' + a.note + ')</span>' : '';
+      var age = a.age_hours !== null ? '<span class="rel">' + Math.round(a.age_hours) + ' 小时前</span>' : '';
+      rows += '<tr' + (a.ok === false ? ' class="alert-miss-row"' : '') + '>' +
+        '<td class="type">' + a.label + '</td>' +
+        '<td><div class="fname" title="' + a.path + '">' + a.latest + '</div></td>' +
+        '<td class="time">' + a.mtime + age + note + '</td>' +
+        '<td>' + actHtml(a.ok) + '</td></tr>';
+    });
+    return '<div class="monitor-wrap" style="margin-top:14px">' +
+      '<div class="monitor-head"><div class="mh-row"><b>逻辑动作执行监控</b></div><div style="text-align:right;font-size:11.5px;line-height:1.9">' + metaTxt + '</div></div>' +
+      '<table><thead><tr><th>动作名称</th><th>监控文件</th><th>最后执行时间</th><th>状态</th></tr></thead>' +
+      '<tbody>' + rows + '</tbody></table></div>';
   }
 
   function renderMonitor(mon, baseStr) {
@@ -449,10 +490,11 @@
         '<td class="time">' + s.mtime + '<span class="rel">' + relTime(s.mtime, baseStr) + '</span></td>' +
         '<td>' + stHtml(s.synced) + '</td></tr>';
     });
+    var srcTable = total ? '<table><thead><tr><th>源数据类型</th><th>最新源数据文件</th><th>源数据更新时间</th><th>同步状态</th></tr></thead>' +
+      '<tbody>' + rows + '</tbody></table>' : '<div style="padding:14px 0;color:#64748b;font-size:12px">本分组未配置 M 盘/本地源数据监控。</div>';
     return '<div class="monitor-wrap">' +
       '<div class="monitor-head"><div class="mh-row"><b>源数据同步明细</b></div><div style="text-align:right;font-size:11.5px;line-height:1.9">' + metaTxt + '</div></div>' +
-      '<table><thead><tr><th>源数据类型</th><th>最新源数据文件</th><th>源数据更新时间</th><th>同步状态</th></tr></thead>' +
-      '<tbody>' + rows + '</tbody></table></div>';
+      srcTable + '</div>';
   }
 
   function render(data) {
@@ -467,6 +509,7 @@
 
     /* overview totals */
     var totSources = 0, totSynced = 0, totUnsync = 0, totMissing = 0, totBoards = 0;
+    var totActions = 0, actionOk = 0, actionAlert = 0, actionMissing = 0;
     data.groups.forEach(function(g) {
       totBoards += (g.boards || []).length;
       if (g.monitor) {
@@ -474,6 +517,11 @@
         totSynced += g.monitor.synced_count || 0;
         totUnsync += g.monitor.unsynced_count || 0;
         totMissing += g.monitor.missing_count || 0;
+        var ast = g.monitor.action_stats || {};
+        totActions += ast.total || 0;
+        actionOk += ast.ok_count || 0;
+        actionAlert += ast.alert_count || 0;
+        actionMissing += ast.missing_count || 0;
       }
     });
     var pct = totSources ? Math.round(totSynced / totSources * 100) : 100;
@@ -486,12 +534,17 @@
     document.getElementById('donutSide').innerHTML =
       '共 <b style="color:#0f172a">' + totSources + '</b> 项源数据，其中 <b style="color:#059669">' + totSynced + '</b> 项已同步' +
       (totUnsync ? '，<b style="color:#d97706">' + totUnsync + '</b> 项看板待更新' : '') +
-      (totMissing ? '，<b style="color:#dc2626">' + totMissing + '</b> 项源缺失' : '');
+      (totMissing ? '，<b style="color:#dc2626">' + totMissing + '</b> 项源缺失' : '') +
+      '<br>共 <b style="color:#0f172a">' + totActions + '</b> 个逻辑动作，<b style="color:#059669">' + actionOk + '</b> 个正常' +
+      (actionAlert ? '，<b style="color:#dc2626">' + actionAlert + '</b> 个超期未执行' : '') +
+      (actionMissing ? '，<b style="color:#dc2626">' + actionMissing + '</b> 个动作文件缺失' : '');
     document.getElementById('kpiGroups').textContent = data.groups.length;
     document.getElementById('kpiBoards').textContent = totBoards;
     document.getElementById('kpiSynced').textContent = totSynced;
     document.getElementById('kpiUnsync').textContent = totUnsync;
     document.getElementById('kpiMissing').textContent = totMissing;
+    document.getElementById('kpiActionOk').textContent = actionOk;
+    document.getElementById('kpiActionAlert').textContent = actionAlert + actionMissing;
 
     /* toolbar anchors */
     var toolbar = document.getElementById('toolbar');
@@ -500,7 +553,9 @@
       var a = document.createElement('a');
       a.className = 'anchor-chip';
       a.href = '#grp-' + gi;
-      var stColor = !g.monitor ? '#cbd5e1' : (g.monitor.all_synced ? '#34d399' : (g.monitor.missing_count > 0 ? '#f87171' : '#fbbf24'));
+      var ast = g.monitor ? (g.monitor.action_stats || {}) : {};
+      var actionAlertCnt = ast.alert_count + ast.missing_count;
+      var stColor = !g.monitor ? '#cbd5e1' : ((g.monitor.all_synced && ast.all_ok) ? '#34d399' : ((g.monitor.missing_count > 0 || actionAlertCnt > 0) ? '#f87171' : '#fbbf24'));
       var cntTxt = g.monitor ? (g.monitor.synced_count + '/' + (g.monitor.sources || []).length) : (g.boards ? g.boards.length + ' 板' : '');
       a.innerHTML = '<span class="gdot" style="background:' + stColor + '"></span>' + g.title +
         (cntTxt ? '<span class="cnt">' + cntTxt + '</span>' : '');
@@ -512,10 +567,12 @@
       var card = document.createElement('div');
       card.className = 'group';
       card.id = 'grp-' + gi;
-      if (g.monitor && !g.monitor.all_synced) {
-        card.className += g.monitor.missing_count > 0 ? ' alert-miss' : ' alert-warn';
+      var ast2 = g.monitor ? (g.monitor.action_stats || {}) : {};
+      var hasActionAlert = ast2.alert_count + ast2.missing_count > 0;
+      if (g.monitor && (!g.monitor.all_synced || hasActionAlert)) {
+        card.className += (g.monitor.missing_count > 0 || hasActionAlert) ? ' alert-miss' : ' alert-warn';
       }
-      if (showOnlyAlert && g.monitor && g.monitor.all_synced) {
+      if (showOnlyAlert && g.monitor && g.monitor.all_synced && !hasActionAlert) {
         card.style.display = 'none';
       }
 
@@ -561,7 +618,7 @@
           '</div><div class="tabs">' + tabs + '</div></div>';
       });
 
-      card.innerHTML = head + '<div class="board-list">' + boardRows + '</div>' + renderMonitor(g.monitor, baseStr);
+      card.innerHTML = head + '<div class="board-list">' + boardRows + '</div>' + renderMonitor(g.monitor, baseStr) + renderActions(g.monitor, baseStr);
       wrap.appendChild(card);
     });
   }
@@ -575,7 +632,9 @@
     groups.forEach(function(card, gi) {
       var mon = null;
       if (window.DATA_CENTER && window.DATA_CENTER.groups[gi]) mon = window.DATA_CENTER.groups[gi].monitor;
-      var isAlert = mon && !mon.all_synced;
+      var ast = mon ? (mon.action_stats || {}) : {};
+      var hasActionAlert = ast.alert_count + ast.missing_count > 0;
+      var isAlert = mon && (!mon.all_synced || hasActionAlert);
       card.style.display = (showOnlyAlert && !isAlert) ? 'none' : '';
     });
   }

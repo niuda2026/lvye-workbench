@@ -1,5 +1,18 @@
 {
-  "updated_at": "2026-09-11 08:12:47",
+  "updated_at": "2026-09-12 00:54:03",
+  "action_summary": {
+    "total": 13,
+    "ok": 9,
+    "alert": 4,
+    "missing": 0,
+    "alert_groups": [
+      "骑手管理",
+      "保险",
+      "公司风险管理系统",
+      "站点地图"
+    ],
+    "all_ok": false
+  },
   "groups": [
     {
       "title": "交通安全",
@@ -91,7 +104,27 @@
             "mtime": "2026-09-10 06:46:35",
             "synced": true
           }
-        ]
+        ],
+        "actions": [
+          {
+            "label": "交通安全数据更新",
+            "path": "交通安全行为看板\\update_log.txt",
+            "latest": "update_log.txt",
+            "mtime": "2026-09-11 08:12:46",
+            "max_age_hours": 26,
+            "age_hours": 16.7,
+            "ok": true,
+            "note": ""
+          }
+        ],
+        "action_stats": {
+          "ok_count": 1,
+          "alert_count": 0,
+          "missing_count": 0,
+          "total": 1,
+          "all_ok": true
+        },
+        "all_healthy": true
       },
       "boards": [
         {
@@ -115,7 +148,8 @@
             "speed-rider"
           ],
           "monitored": true,
-          "available": true
+          "available": true,
+          "is_self_monitor": false
         },
         {
           "key": "safe_station",
@@ -130,7 +164,8 @@
             ""
           ],
           "monitored": true,
-          "available": true
+          "available": true,
+          "is_self_monitor": false
         },
         {
           "key": "safe_rider",
@@ -145,7 +180,8 @@
             "rider"
           ],
           "monitored": true,
-          "available": true
+          "available": true,
+          "is_self_monitor": false
         },
         {
           "key": "safe_highway",
@@ -160,7 +196,8 @@
             "speed-rider"
           ],
           "monitored": true,
-          "available": true
+          "available": true,
+          "is_self_monitor": false
         }
       ]
     },
@@ -168,11 +205,11 @@
       "title": "履约项目",
       "monitor": {
         "data_files": [
-          "履约项目\\data.js"
+          "履约项目\\充换电血压_data.js"
         ],
-        "data_mtime": "2026-09-11 07:05:36",
+        "data_mtime": "2026-09-11 21:49:03",
         "all_synced": true,
-        "synced_count": 6,
+        "synced_count": 7,
         "missing_count": 0,
         "unsynced_count": 0,
         "sources": [
@@ -211,8 +248,44 @@
             "latest": "表单列表_49896033_20260911_065957.xlsx",
             "mtime": "2026-09-11 07:00:33",
             "synced": true
+          },
+          {
+            "type": "载具审核-骑手明细(BI)",
+            "latest": "vehicle_audit_rider.json",
+            "mtime": "2026-09-11 21:44:35",
+            "synced": true
           }
-        ]
+        ],
+        "actions": [
+          {
+            "label": "充换电血压数据构建",
+            "path": "履约项目\\充换电血压_data.js",
+            "latest": "充换电血压_data.js",
+            "mtime": "2026-09-11 21:49:03",
+            "max_age_hours": 13,
+            "age_hours": 3.1,
+            "ok": true,
+            "note": "每日 07:30/15:00 两次"
+          },
+          {
+            "label": "载具审核-骑手明细(BI)",
+            "path": "vehicle_audit\\vehicle_audit_rider.json",
+            "latest": "vehicle_audit_rider.json",
+            "mtime": "2026-09-11 21:44:35",
+            "max_age_hours": 30,
+            "age_hours": 3.2,
+            "ok": true,
+            "note": "早间自动化抓取"
+          }
+        ],
+        "action_stats": {
+          "ok_count": 2,
+          "alert_count": 0,
+          "missing_count": 0,
+          "total": 2,
+          "all_ok": true
+        },
+        "all_healthy": true
       },
       "boards": [
         {
@@ -240,7 +313,8 @@
             "rider"
           ],
           "monitored": true,
-          "available": true
+          "available": true,
+          "is_self_monitor": false
         }
       ]
     },
@@ -269,7 +343,27 @@
             "mtime": "2026-09-10 06:46:35",
             "synced": true
           }
-        ]
+        ],
+        "actions": [
+          {
+            "label": "服装标准化数据更新",
+            "path": "护航服装\\update_log.txt",
+            "latest": "update_log.txt",
+            "mtime": "2026-09-11 06:56:57",
+            "max_age_hours": 26,
+            "age_hours": 18.0,
+            "ok": true,
+            "note": ""
+          }
+        ],
+        "action_stats": {
+          "ok_count": 1,
+          "alert_count": 0,
+          "missing_count": 0,
+          "total": 1,
+          "all_ok": true
+        },
+        "all_healthy": true
       },
       "boards": [
         {
@@ -285,7 +379,8 @@
             "rider"
           ],
           "monitored": true,
-          "available": true
+          "available": true,
+          "is_self_monitor": false
         },
         {
           "key": "clothing_rate",
@@ -294,7 +389,8 @@
           "tabs": [],
           "tab_keys": [],
           "monitored": true,
-          "available": true
+          "available": true,
+          "is_self_monitor": false
         }
       ]
     },
@@ -317,7 +413,27 @@
             "mtime": "2026-09-11 07:02:54",
             "synced": true
           }
-        ]
+        ],
+        "actions": [
+          {
+            "label": "在职骑手CDP抓取",
+            "path": "在职骑手详情\\_crawl_service.log",
+            "latest": "_crawl_service.log",
+            "mtime": "2026-09-10 07:30:12",
+            "max_age_hours": 26,
+            "age_hours": 41.4,
+            "ok": false,
+            "note": ""
+          }
+        ],
+        "action_stats": {
+          "ok_count": 0,
+          "alert_count": 1,
+          "missing_count": 0,
+          "total": 1,
+          "all_ok": false
+        },
+        "all_healthy": false
       },
       "boards": [
         {
@@ -327,7 +443,8 @@
           "tabs": [],
           "tab_keys": [],
           "monitored": true,
-          "available": true
+          "available": true,
+          "is_self_monitor": false
         },
         {
           "key": "rider_control",
@@ -340,7 +457,8 @@
             "control"
           ],
           "monitored": true,
-          "available": true
+          "available": true,
+          "is_self_monitor": false
         }
       ]
     },
@@ -353,22 +471,22 @@
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-09-11 08:12:46",
-        "all_synced": true,
-        "synced_count": 4,
+        "data_mtime": "2026-09-11 15:44:19",
+        "all_synced": false,
+        "synced_count": 3,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "BI赔付率快照",
             "latest": "latest.json",
-            "mtime": "2026-09-10 09:13:56",
+            "mtime": "2026-09-11 09:44:54",
             "synced": true
           },
           {
             "type": "含税保费快照",
             "latest": "premium_latest.json",
-            "mtime": "2026-09-10 09:18:41",
+            "mtime": "2026-09-11 15:44:19",
             "synced": true
           },
           {
@@ -381,9 +499,59 @@
             "type": "美团保险数据",
             "latest": "insurance_data.js",
             "mtime": "2026-09-08 17:11:51",
-            "synced": true
+            "synced": false
           }
-        ]
+        ],
+        "actions": [
+          {
+            "label": "BI赔付率快照",
+            "path": "骑手保障补贴\\bi_data\\latest.json",
+            "latest": "latest.json",
+            "mtime": "2026-09-11 09:44:54",
+            "max_age_hours": 26,
+            "age_hours": 15.2,
+            "ok": true,
+            "note": ""
+          },
+          {
+            "label": "含税保费快照",
+            "path": "bi_insurance\\premium_latest.json",
+            "latest": "premium_latest.json",
+            "mtime": "2026-09-11 15:44:19",
+            "max_age_hours": 26,
+            "age_hours": 9.2,
+            "ok": true,
+            "note": ""
+          },
+          {
+            "label": "V3内联数据",
+            "path": "骑手保障补贴\\v3_data.js",
+            "latest": "v3_data.js",
+            "mtime": "2026-09-11 08:12:46",
+            "max_age_hours": 26,
+            "age_hours": 16.7,
+            "ok": true,
+            "note": ""
+          },
+          {
+            "label": "美团保险理赔数据",
+            "path": "美团保险\\insurance_data.js",
+            "latest": "insurance_data.js",
+            "mtime": "2026-09-08 17:11:51",
+            "max_age_hours": 72,
+            "age_hours": 79.7,
+            "ok": false,
+            "note": ""
+          }
+        ],
+        "action_stats": {
+          "ok_count": 3,
+          "alert_count": 1,
+          "missing_count": 0,
+          "total": 4,
+          "all_ok": false
+        },
+        "all_healthy": false
       },
       "boards": [
         {
@@ -393,7 +561,8 @@
           "tabs": [],
           "tab_keys": [],
           "monitored": true,
-          "available": true
+          "available": true,
+          "is_self_monitor": false
         },
         {
           "key": "ins_meituan_old",
@@ -402,7 +571,8 @@
           "tabs": [],
           "tab_keys": [],
           "monitored": true,
-          "available": true
+          "available": true,
+          "is_self_monitor": false
         },
         {
           "key": "ins_old",
@@ -411,7 +581,8 @@
           "tabs": [],
           "tab_keys": [],
           "monitored": true,
-          "available": true
+          "available": true,
+          "is_self_monitor": false
         },
         {
           "key": "ins_subsidy",
@@ -420,7 +591,8 @@
           "tabs": [],
           "tab_keys": [],
           "monitored": true,
-          "available": true
+          "available": true,
+          "is_self_monitor": false
         },
         {
           "key": "ins_rate",
@@ -429,7 +601,8 @@
           "tabs": [],
           "tab_keys": [],
           "monitored": true,
-          "available": true
+          "available": true,
+          "is_self_monitor": false
         }
       ]
     },
@@ -451,7 +624,27 @@
             "mtime": "2026-08-15 09:46:31",
             "synced": true
           }
-        ]
+        ],
+        "actions": [
+          {
+            "label": "110工单数据更新",
+            "path": "110工单\\110工单看板.html",
+            "latest": "110工单看板.html",
+            "mtime": "2026-08-15 09:46:31",
+            "max_age_hours": 168,
+            "age_hours": 663.1,
+            "ok": false,
+            "note": "更新频率待确认，先按 7 天"
+          }
+        ],
+        "action_stats": {
+          "ok_count": 0,
+          "alert_count": 1,
+          "missing_count": 0,
+          "total": 1,
+          "all_ok": false
+        },
+        "all_healthy": false
       },
       "boards": [
         {
@@ -461,7 +654,8 @@
           "tabs": [],
           "tab_keys": [],
           "monitored": true,
-          "available": true
+          "available": true,
+          "is_self_monitor": false
         }
       ]
     },
@@ -483,7 +677,27 @@
             "mtime": "2026-09-09 17:58:26",
             "synced": true
           }
-        ]
+        ],
+        "actions": [
+          {
+            "label": "美团站点快照更新",
+            "path": "全国站点地图\\update_stations.log",
+            "latest": "update_stations.log",
+            "mtime": "2026-09-09 17:58:26",
+            "max_age_hours": 26,
+            "age_hours": 54.9,
+            "ok": false,
+            "note": ""
+          }
+        ],
+        "action_stats": {
+          "ok_count": 0,
+          "alert_count": 1,
+          "missing_count": 0,
+          "total": 1,
+          "all_ok": false
+        },
+        "all_healthy": false
       },
       "boards": [
         {
@@ -493,7 +707,64 @@
           "tabs": [],
           "tab_keys": [],
           "monitored": true,
-          "available": true
+          "available": true,
+          "is_self_monitor": false
+        }
+      ]
+    },
+    {
+      "title": "数据中心",
+      "monitor": {
+        "data_files": [
+          "可视化大屏\\_大屏数据.js"
+        ],
+        "data_mtime": "2026-09-11 00:18:08",
+        "all_synced": true,
+        "synced_count": 0,
+        "missing_count": 0,
+        "unsynced_count": 0,
+        "sources": [],
+        "actions": [
+          {
+            "label": "可视化大屏数据刷新",
+            "path": "可视化大屏\\_大屏数据.js",
+            "latest": "_大屏数据.js",
+            "mtime": "2026-09-11 00:18:08",
+            "max_age_hours": 26,
+            "age_hours": 24.6,
+            "ok": true,
+            "note": ""
+          }
+        ],
+        "action_stats": {
+          "ok_count": 1,
+          "alert_count": 0,
+          "missing_count": 0,
+          "total": 1,
+          "all_ok": true
+        },
+        "all_healthy": true
+      },
+      "boards": [
+        {
+          "key": "data_center",
+          "label": "源数据更新状态（监控中心）",
+          "file": "D:/兴达数据库/data_center.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": true
+        },
+        {
+          "key": "screen_main",
+          "label": "可视化大屏（方案）",
+          "file": "D:/兴达数据库/可视化大屏/履约安全可视化大屏.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": true,
+          "available": true,
+          "is_self_monitor": false
         }
       ]
     },
@@ -515,7 +786,27 @@
             "mtime": "2026-09-11 08:12:46",
             "synced": false
           }
-        ]
+        ],
+        "actions": [
+          {
+            "label": "月度累计归档",
+            "path": "交通安全行为看板\\monthly_summary.js",
+            "latest": "monthly_summary.js",
+            "mtime": "2026-09-09 08:08:49",
+            "max_age_hours": 72,
+            "age_hours": 64.8,
+            "ok": true,
+            "note": "月度归档，可适当放宽"
+          }
+        ],
+        "action_stats": {
+          "ok_count": 1,
+          "alert_count": 0,
+          "missing_count": 0,
+          "total": 1,
+          "all_ok": true
+        },
+        "all_healthy": false
       },
       "boards": [
         {
@@ -535,7 +826,8 @@
             "clothing"
           ],
           "monitored": true,
-          "available": true
+          "available": true,
+          "is_self_monitor": false
         }
       ]
     }
