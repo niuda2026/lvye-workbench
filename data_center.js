@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-12 06:45:02",
+  "updated_at": "2026-09-12 06:46:02",
   "action_summary": {
     "total": 13,
     "ok": 8,
@@ -210,9 +210,9 @@ window.DATA_CENTER = {
         ],
         "data_mtime": "2026-09-11 21:49:03",
         "all_synced": false,
-        "synced_count": 6,
+        "synced_count": 5,
         "missing_count": 0,
-        "unsynced_count": 1,
+        "unsynced_count": 2,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
@@ -222,9 +222,9 @@ window.DATA_CENTER = {
           },
           {
             "type": "巡检工单列表",
-            "latest": "巡检工单列表_1789081005426.xls",
-            "mtime": "2026-09-11 06:57:02",
-            "synced": true
+            "latest": "巡检工单列表_1789166719282.xls",
+            "mtime": "2026-09-12 06:45:49",
+            "synced": false
           },
           {
             "type": "巡检平台站点检核",
@@ -422,7 +422,7 @@ window.DATA_CENTER = {
             "latest": "_crawl_service.log",
             "mtime": "2026-09-10 07:30:12",
             "max_age_hours": 26,
-            "age_hours": 47.2,
+            "age_hours": 47.3,
             "ok": false,
             "note": ""
           }
@@ -732,7 +732,7 @@ window.DATA_CENTER = {
             "latest": "_大屏数据.js",
             "mtime": "2026-09-11 00:18:08",
             "max_age_hours": 26,
-            "age_hours": 30.4,
+            "age_hours": 30.5,
             "ok": false,
             "note": ""
           }
