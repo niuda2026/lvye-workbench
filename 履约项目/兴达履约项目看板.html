@@ -2010,10 +2010,16 @@ function cbRenderRider(p){
     if(r[15]==='已上报') swpN++;
     if(r[7]==='已上报'||r[10]==='已上报'||r[15]==='已上报') upN++;
   });
-  cbInitMs('cbregion', cbUniq(cbRoster.map(function(r){return r[0];})), function(){cbRenderRider(1);});
-  cbInitMs('cbsubr',   cbUniq(all.map(function(r){return r[1];})), function(){cbRenderRider(1);});
-  cbInitMs('cbcity',   cbUniq(all.map(function(r){return r[2];})), function(){cbRenderRider(1);});
-  cbInitMs('cbsite',   cbUniq(all.map(function(r){return r[3];})), function(){cbRenderRider(1);});
+  // 筛选项必须从全量名册按上游级联生成，不能从已过滤的 all 取，
+  // 否则选了一个城市后下拉只剩该城市，导致无法多选。
+  var regionOpts = cbUniq(cbRoster.map(function(r){return r[0];}));
+  var subrOpts   = cbUniq(cbRoster.filter(function(r){ return !cbSf.cbregion.length || cbSf.cbregion.indexOf(r[0]) >= 0; }).map(function(r){return r[1];}));
+  var cityOpts   = cbUniq(cbRoster.filter(function(r){ return (!cbSf.cbregion.length || cbSf.cbregion.indexOf(r[0]) >= 0) && (!cbSf.cbsubr.length || cbSf.cbsubr.indexOf(r[1]) >= 0); }).map(function(r){return r[2];}));
+  var siteOpts   = cbUniq(cbRoster.filter(function(r){ return (!cbSf.cbregion.length || cbSf.cbregion.indexOf(r[0]) >= 0) && (!cbSf.cbsubr.length || cbSf.cbsubr.indexOf(r[1]) >= 0) && (!cbSf.cbcity.length || cbSf.cbcity.indexOf(r[2]) >= 0); }).map(function(r){return r[3];}));
+  cbInitMs('cbregion', regionOpts, function(){cbRenderRider(1);});
+  cbInitMs('cbsubr',   subrOpts,   function(){cbRenderRider(1);});
+  cbInitMs('cbcity',   cityOpts,   function(){cbRenderRider(1);});
+  cbInitMs('cbsite',   siteOpts,   function(){cbRenderRider(1);});
   cbInitMs('cbbpt', ['已上报','未上报'], function(){cbRenderRider(1);});
   cbInitMs('cbcst', ['已上报','未上报'], function(){cbRenderRider(1);});
   cbInitMs('cbwst', ['已上报','未上报'], function(){cbRenderRider(1);});
@@ -2187,16 +2193,24 @@ function renderRiderTabPage(page) {
   var end = Math.min(start + perPage, data.length);
   var pageData = data.slice(start, end);
 
-  // Collect filter options
+  // Collect filter options from FULL rider data, applying only upstream cascade filters
+  // so that selecting a city does not hide the other cities (fixes "can only single-select" bug).
+  var raw = window.RIDER_DATA || [];
+  var regionState = sfState['region-rider'] || [];
+  var subregionState = sfState['subregion-rider'] || [];
+  var cityState = sfState['city-rider'] || [];
   var allRegions = [], allCities = [], allSites = [];
   var rSet = {}, cSet = {}, sSet = {};
-  for (var i=0;i<data.length;i++) {
-    var info = getSiteInfo(data[i][3]);
+  for (var i=0;i<raw.length;i++) {
+    var info = getSiteInfo(raw[i][3]);
     if (!rSet[info.大区]) { rSet[info.大区]=true; allRegions.push(info.大区); }
+    if (regionState.length > 0 && regionState.indexOf(info.大区) < 0) continue;
+    if (subregionState.length > 0 && subregionState.indexOf(info.区域) < 0) continue;
     if (!cSet[info.城市]) { cSet[info.城市]=true; allCities.push(info.城市); }
-    if (!sSet[data[i][3]]) { sSet[data[i][3]]=true; allSites.push(data[i][3]); }
+    if (cityState.length > 0 && cityState.indexOf(info.城市) < 0) continue;
+    if (!sSet[raw[i][3]]) { sSet[raw[i][3]]=true; allSites.push(raw[i][3]); }
   }
-  allRegions.sort(function(a,b){var ia=REGION_ORDER.indexOf(a),ib=REGION_ORDER.indexOf(b);if(ia<0)ia=99;if(ib<0)ib=99;return ia-ib;}); allCities.sort(); allSites.sort();
+  allRegions.sort(function(a,b){var ia=REGION_ORDER.indexOf(a),ib=REGION_ORDER.indexOf(b);if(ia<0)ia=99;if(ib<0)ib=99;return ia-ib;}); allCities.sort(function(a,b){return a.localeCompare(b,'zh');}); allSites.sort();
 
   if (typeof sfState['region-rider'] === 'undefined') sfState['region-rider']=[];
   if (typeof sfState['subregion-rider'] === 'undefined') sfState['subregion-rider']=[];
