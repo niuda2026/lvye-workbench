@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-12 06:49:59",
+  "updated_at": "2026-09-12 06:50:53",
   "action_summary": {
     "total": 13,
     "ok": 8,
@@ -540,7 +540,7 @@ window.DATA_CENTER = {
             "latest": "insurance_data.js",
             "mtime": "2026-09-08 17:11:51",
             "max_age_hours": 72,
-            "age_hours": 85.6,
+            "age_hours": 85.7,
             "ok": false,
             "note": ""
           }
