@@ -1752,7 +1752,7 @@ function renderChargeBPTab() {
   // 两级中文表头：每组=率+分子+分母，与「早会审核」等看板风格一致
   var headerGroups = [
     {label:'血压检测率',            colspan:3, bgColor:'#c4b5fd', textColor:'#4c1d95'},
-    {label:'载具审核通过率（暂缺数据源）', colspan:3, bgColor:'#e5e7eb', textColor:'#374151'},
+    {label:'载具审核通过率（待接入 readata）', colspan:3, bgColor:'#e5e7eb', textColor:'#374151'},
     {label:'充换电上传提交率',      colspan:3, bgColor:'#93c5fd', textColor:'#10324F'},
     {label:'充换电审核通过率',      colspan:3, bgColor:'#6ee7b7', textColor:'#064e3b'}
   ];
@@ -2841,6 +2841,20 @@ function closeEquipRulesModal() {
 <tr><td style="border:1px solid #ddd;padding:5px;">测压中</td><td style="border:1px solid #ddd;padding:5px;">袖带需绑定在手臂关节处；人脸需对着手机摄像头；禁止嚼东西/说话；摄像头需同时看清血压仪上血压值和绑袖带手臂。</td></tr>
 <tr><td style="border:1px solid #ddd;padding:5px;">测压后</td><td style="border:1px solid #ddd;padding:5px;">及时将袖带中空气挤压完，整理好设备，完成测压后点击上传。</td></tr>
 </table>
+</div>
+</details>
+
+<details open style="margin-bottom:8px;">
+<summary style="font-weight:700;color:#0B4F8A;font-size:14px;cursor:pointer;padding:4px 0;">载具审核（待接入 readata）</summary>
+<div style="padding-left:8px;">
+<div style="padding:6px;background:#f3f4f6;border-left:3px solid #9ca3af;border-radius:4px;font-size:12px;margin-bottom:8px;">
+<b>数据源已定位：</b>readata 美团数据平台「商-载具审核监控-履约」（安全数据中心 › 商数据监控）。该报表含骑手载具已上传与审核明细，是看板「载具审核通过率」列的数据源；审核通过标准见第一节「骑具上传规范」。
+</div>
+<div style="font-weight:700;color:#333;margin:6px 0 3px;">口径（接入后生效）</div>
+<ul style="margin:0 0 8px;padding-left:18px;">
+<li><b>载具审核通过率</b> = 载具审核通过骑手数 / 应上传载具的在职骑手数（分母口径以 readata 接入后为准）。</li>
+<li>当前看板该列暂为 <b>0 占位</b>，待 readata 登录态到位后由抓取脚本自动回填（不改动工作台现有抓取链路）。</li>
+</ul>
 </div>
 </details>
 
