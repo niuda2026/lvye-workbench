@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-11 08:08:30",
+  "updated_at": "2026-09-11 08:08:39",
   "groups": [
     {
       "title": "交通安全",
@@ -7,7 +7,7 @@
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-11 08:08:29",
+        "data_mtime": "2026-09-11 08:08:38",
         "all_synced": true,
         "synced_count": 13,
         "missing_count": 0,
@@ -51,8 +51,8 @@
           },
           {
             "type": "骑手维度-闯红灯",
-            "latest": "_闯红灯-骑手维度_2026-09-09-2026-09-09(统计日期)_1788996739718.xlsx",
-            "mtime": "2026-09-10 07:32:24",
+            "latest": "_闯红灯-骑手维度_2026-09-10-2026-09-10(统计日期)_1789085309517.xlsx",
+            "mtime": "2026-09-11 08:08:37",
             "synced": true
           },
           {
@@ -305,7 +305,7 @@
           "在职骑手详情\\在职骑手详情.html",
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-11 08:08:29",
+        "data_mtime": "2026-09-11 08:08:38",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -353,7 +353,7 @@
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-09-11 08:08:30",
+        "data_mtime": "2026-09-11 08:08:38",
         "all_synced": true,
         "synced_count": 4,
         "missing_count": 0,
@@ -374,7 +374,7 @@
           {
             "type": "V3内联数据",
             "latest": "v3_data.js",
-            "mtime": "2026-09-11 08:08:30",
+            "mtime": "2026-09-11 08:08:38",
             "synced": true
           },
           {
@@ -512,7 +512,7 @@
           {
             "type": "交通安全data.js（归档源）",
             "latest": "data.js",
-            "mtime": "2026-09-11 08:08:29",
+            "mtime": "2026-09-11 08:08:38",
             "synced": false
           }
         ]
