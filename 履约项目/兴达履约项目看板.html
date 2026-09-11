@@ -248,7 +248,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
     <span class="sub-tab-sep"></span>
     <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
+    <button class="btn-rules" onclick="openRulesModal()">充换电血压上传规则</button>
   </div>
 <div class="filter-bar" id="filter-bar-morning">
     <label>大区</label><div class="ms-wrap" id="ms-region-morning"><div class="ms-btn" onclick="toggleMs('region-morning')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
@@ -284,7 +284,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
     <span class="sub-tab-sep"></span>
     <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
+    <button class="btn-rules" onclick="openRulesModal()">充换电血压上传规则</button>
   </div>
 <div class="filter-bar" id="filter-bar-safety">
     <label>大区</label><div class="ms-wrap" id="ms-region-safety"><div class="ms-btn" onclick="toggleMs('region-safety')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
@@ -377,7 +377,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
     <span class="sub-tab-sep"></span>
     <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
+    <button class="btn-rules" onclick="openRulesModal()">充换电血压上传规则</button>
   </div>
 <div class="filter-bar" id="filter-bar-box">
     <label>大区</label><div class="ms-wrap" id="ms-region-box"><div class="ms-btn" onclick="toggleMs('region-box')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
@@ -407,7 +407,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
     <span class="sub-tab-sep"></span>
     <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
+    <button class="btn-rules" onclick="openRulesModal()">充换电血压上传规则</button>
   </div>
 <div class="filter-bar" id="filter-bar-knife">
     <label>大区</label><div class="ms-wrap" id="ms-region-knife"><div class="ms-btn" onclick="toggleMs('region-knife')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
@@ -452,7 +452,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
     <span class="sub-tab-sep"></span>
     <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
+    <button class="btn-rules" onclick="openRulesModal()">充换电血压上传规则</button>
   </div>
 <div class="filter-bar" id="filter-bar-chargebp">
     <label>大区</label><div class="ms-wrap" id="ms-region-chargebp"><div class="ms-btn" onclick="toggleMs('region-chargebp')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
@@ -518,7 +518,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
     <span class="sub-tab-sep"></span>
     <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
+    <button class="btn-rules" onclick="openRulesModal()">充换电血压上传规则</button>
   </div>
 <div class="filter-bar" id="filter-bar-training">
     <label>大区</label><div class="ms-wrap" id="ms-region-training"><div class="ms-btn" onclick="toggleMs('region-training')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
@@ -548,7 +548,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
     <span class="sub-tab-sep"></span>
     <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
+    <button class="btn-rules" onclick="openRulesModal()">充换电血压上传规则</button>
   </div>
 <div class="filter-bar" id="filter-bar-rider">
     <label>大区</label><div class="ms-wrap" id="ms-region-rider"><div class="ms-btn" onclick="toggleMs('region-rider')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
@@ -2760,40 +2760,126 @@ function closeEquipRulesModal() {
 <div class="modal-overlay" id="rulesModal" onclick="if(event.target===this)closeRulesModal()">
 <div class="modal-content">
 <div class="modal-header">
-<span class="modal-title">站点早会审核规则</span>
+<span class="modal-title">站点充换电血压上传规则</span>
 <button class="modal-close" onclick="closeRulesModal()">&times;</button>
 </div>
-<div class="modal-body">
-<ol>
-<li>
-<b>站点自检（站长任务）提交日：</b><br>
-华东、中南站点：<span class="highlight">偶数日</span>提交<br>
-华北、华南站点：<span class="highlight">奇数日</span>提交
+<div class="modal-body" style="max-height:70vh;overflow:auto;font-size:13px;line-height:1.55;">
+<div style="margin-bottom:10px;padding:8px;background:#f0f9ff;border-left:3px solid #0B4F8A;border-radius:4px;">
+<b>适用范围：</b>合作商签约骑手在配送履约过程中使用的电动自行车、摩托车、四轮机动车等载具；血压测量适用于全体在职骑手。
+</div>
+
+<details open style="margin-bottom:8px;">
+<summary style="font-weight:700;color:#0B4F8A;font-size:14px;cursor:pointer;padding:4px 0;">一、骑手载具上传规范</summary>
+<div style="padding-left:8px;">
+<div style="font-weight:700;color:#333;margin:6px 0 3px;">1. 基本要求</div>
+<ul style="margin:0 0 8px;padding-left:18px;">
+<li><b>载具要求：</b>符合国家相关标准，机动车具备合法登记证书和行驶证；电动车符合新国标、具备国家3C认证；禁止违规改装原厂配件、外设蓄电池托架、拆除限速器等关键组件；配送电动车电池额定电压<span class="highlight">禁止超过48V</span>。</li>
+<li><b>驾驶要求：</b>严格遵守交通规则、信号灯、限速规定、车道规则及安全驾驶行为，全程佩戴符合国家标准的安全头盔。</li>
+<li><b>证件要求：</b>驾驶机动车需持有相应驾驶证并确保证件有效，按时换证和年审。</li>
+<li><b>材料要求：</b>提交材料真实、合法、有效，不得隐瞒真实情况或提供虚假材料。</li>
+</ul>
+<div style="font-weight:700;color:#333;margin:6px 0 3px;">2. 上传与审核</div>
+<ul style="margin:0 0 8px;padding-left:18px;">
+<li><b>提交路径：</b>App 个人中心 → 我的交通工具 → 选择交通工具 → 电动车或摩托车（按实际选择）→ 上传。</li>
+<li><b>时效要求：</b>自收到标准之日起组织全量骑手完成载具上传；已通过骑手每年提交一次即可。后续每月监督未通过、更换载具及新入职骑手的载具上传情况。</li>
+<li><b>审核时效：</b>载具信息提交后 <span class="highlight">3 个工作日内</span>完成审核；指标测算以考核月 <span class="highlight">10 日</span>审核结果作为依据。</li>
+</ul>
+<div style="font-weight:700;color:#333;margin:6px 0 3px;">3. 审核通过标准</div>
+<table style="width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:12px;">
+<tr style="background:#e8f4fc;"><th style="border:1px solid #b6d8ee;padding:5px;text-align:left;width:70px;">类别</th><th style="border:1px solid #b6d8ee;padding:5px;text-align:left;">通过标准</th></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">电动车</td><td style="border:1px solid #ddd;padding:5px;">本人提交，提供真实、一致的车牌，且人车合影清晰规范。</td></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">摩托车</td><td style="border:1px solid #ddd;padding:5px;">本人提交，提供真实、一致、有效的行驶证原件、驾驶证原件，且人车合影清晰规范。</td></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">四轮车</td><td style="border:1px solid #ddd;padding:5px;">本人提交，提供真实、一致、有效的驾驶证原件、行驶证原件，且人车合影清晰规范。</td></tr>
+</table>
+</div>
+</details>
+
+<details open style="margin-bottom:8px;">
+<summary style="font-weight:700;color:#0B4F8A;font-size:14px;cursor:pointer;padding:4px 0;">二、骑手充换电信息上传规范</summary>
+<div style="padding-left:8px;">
+<ul style="margin:0 0 8px;padding-left:18px;">
+<li><b>提交路径：</b>App 个人中心 → 安全中心 → 充换电统计 → 电动车或摩托车（按实际选择）→ 上传。</li>
+<li><b>时效要求：</b>每月 <span class="highlight">20 日前</span>组织全量在职骑手完成充换电信息上传（每月一次），确保信息完整准确。</li>
+<li><b>审核时效：</b>充换电信息提交后 <span class="highlight">3 个工作日内</span>完成审核；指标测算以上月 <span class="highlight">1-23 日</span>的审核结果作为依据。</li>
+</ul>
+<div style="font-weight:700;color:#333;margin:6px 0 3px;">上传标准</div>
+<table style="width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:12px;">
+<tr style="background:#e8f4fc;"><th style="border:1px solid #b6d8ee;padding:5px;text-align:left;width:50px;">类别</th><th style="border:1px solid #b6d8ee;padding:5px;text-align:left;">要求</th></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">换电</td><td style="border:1px solid #ddd;padding:5px;">按指引选择“电动车-使用换电”，搜索换电品牌；上传可证明本人使用和订单在有效期内的换电 APP/小程序截图；与本人信息一致，不上传无关信息，严禁造假、P图、翻拍。</td></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">充电</td><td style="border:1px solid #ddd;padding:5px;">按指引选择“电动车-充电柜（桩）充电”，搜索电池品牌；填写的电池品牌/规格/生产日期需与电池铭牌照片一致；电池电压需 <span class="highlight">&lt;72V</span>。</td></tr>
+</table>
+<div style="padding:6px;background:#fffbe6;border:1px solid #ffe58f;border-radius:4px;font-size:12px;margin-bottom:8px;">
+<b>常见误区：</b>宁德时代/三元/锂电/这锂/铁塔等不是电池品牌，选择时请以铭牌上的具体电池品牌为准；充电方式与换电方式不要混选。
+</div>
+</div>
+</details>
+
+<details open style="margin-bottom:8px;">
+<summary style="font-weight:700;color:#0B4F8A;font-size:14px;cursor:pointer;padding:4px 0;">三、血压分级及测量要求</summary>
+<div style="padding-left:8px;">
+<div style="font-weight:700;color:#333;margin:6px 0 3px;">1. 血压分级标准</div>
+<table style="width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:12px;text-align:center;">
+<tr style="background:#e8f4fc;"><th style="border:1px solid #b6d8ee;padding:5px;">血压等级</th><th style="border:1px solid #b6d8ee;padding:5px;">高压（收缩压）</th><th style="border:1px solid #b6d8ee;padding:5px;">低压（舒张压）</th></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">正常血压</td><td style="border:1px solid #ddd;padding:5px;">&lt;120</td><td style="border:1px solid #ddd;padding:5px;">&lt;80</td></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">正常高值</td><td style="border:1px solid #ddd;padding:5px;">120-139</td><td style="border:1px solid #ddd;padding:5px;">80-89</td></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">高血压一级</td><td style="border:1px solid #ddd;padding:5px;">140-159</td><td style="border:1px solid #ddd;padding:5px;">90-99</td></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">高血压二级</td><td style="border:1px solid #ddd;padding:5px;">160-179</td><td style="border:1px solid #ddd;padding:5px;">100-109</td></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;color:#d32f2f;font-weight:700;">高血压三级</td><td style="border:1px solid #ddd;padding:5px;color:#d32f2f;font-weight:700;">&gt;179</td><td style="border:1px solid #ddd;padding:5px;color:#d32f2f;font-weight:700;">&gt;110</td></tr>
+</table>
+<div style="font-weight:700;color:#333;margin:6px 0 3px;">2. 血压测量要求</div>
+<div style="padding:6px;background:#fffbe6;border:1px solid #ffe58f;border-radius:4px;font-size:12px;margin-bottom:8px;">
+骑手需应测尽测，<b>100% 测量</b>。
+</div>
+<ul style="margin:0 0 8px;padding-left:18px;">
+<li><b>当月新注册骑手：</b>完成规范测压视频学习 → 完成测压授权 → 需在跑单前完成血压测量并上传，否则会被限制接单。</li>
+<li><b>非当月新注册骑手：</b>需在当月 <span class="highlight">16 日（含）</span>前完成血压测量并上传，否则会被限制接单。</li>
+</ul>
+<div style="font-weight:700;color:#333;margin:6px 0 3px;">3. 视频测量动作规范</div>
+<table style="width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:12px;">
+<tr style="background:#e8f4fc;"><th style="border:1px solid #b6d8ee;padding:5px;text-align:left;width:55px;">节点</th><th style="border:1px solid #b6d8ee;padding:5px;text-align:left;">动作与要求</th></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">测压前</td><td style="border:1px solid #ddd;padding:5px;">连接站点 WiFi，扫码链接设备，打开手机前置摄像头，进入 App 安全中心测压入口；骑手本人测压，静坐 <span class="highlight">10 分钟</span>以上；测压前不要嚼槟榔。</td></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">测压中</td><td style="border:1px solid #ddd;padding:5px;">袖带需绑定在手臂关节处；人脸需对着手机摄像头；禁止嚼东西/说话；摄像头需同时看清血压仪上血压值和绑袖带手臂。</td></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">测压后</td><td style="border:1px solid #ddd;padding:5px;">及时将袖带中空气挤压完，整理好设备，完成测压后点击上传。</td></tr>
+</table>
+</div>
+</details>
+
+<details open style="margin-bottom:8px;">
+<summary style="font-weight:700;color:#0B4F8A;font-size:14px;cursor:pointer;padding:4px 0;">四、考核与问责</summary>
+<div style="padding-left:8px;">
+<div style="font-weight:700;color:#333;margin:6px 0 3px;">1. 充换电考核</div>
+<ul style="margin:0 0 8px;padding-left:18px;">
+<li><b>换电率</b> = 换电审核通过骑手数 / 电动车骑手数，目标 <span class="highlight">85%</span>。
+  <ul style="margin:4px 0;padding-left:18px;font-size:12px;">
+  <li>[85%, 100%]：不问责（第一档）</li>
+  <li>[65%, 85%)：违约金 <span class="highlight">1000 元/月/城市商</span>（第二档）</li>
+  <li>[0, 65%)：违约金 <span class="highlight">3000 元/月/城市商</span>（第三档）</li>
+  </ul>
 </li>
-<li>
-<b>当月新B1建站（首单日期当月）：</b><br>
-每日提交，次月按大区任务自查
-</li>
-<li>
-<b>早会提交时间（日常早会/报备早会）：</b><br>
-需在<span class="highlight">当日 20:00 前</span>通过星火APP（加盟站点）或骑手APP（驻点站点）完成提交，不区分奇数日/偶数日，每天都需要按时提交。
-</li>
-<li>
-<b>早会提交以系统签到时间为准：</b><br>
-不早于当日 <span class="highlight">7:00</span>，最晚不晚于 <span class="highlight">20:00</span>。<br>
-未在规定时间内提交早会，视为<span class="highlight">"未召开早会"</span>，按 <span class="highlight">1000元/站/天</span> 承担违约责任。
-</li>
-<li>
-<b>恶劣天气报备早会：</b><br>
-情景举证不通过按 <span class="highlight">500元/站/天</span> 承担违约责任。
-</li>
-<li>
-<b>日常早会驳回处罚标准：</b><br>
-① 重点内容交流驳回 = <span class="highlight">50元/站/天</span><br>
-② 仪容仪表驳回 = <span class="highlight">100元/站/天</span><br>
-③ 签到驳回 = <span class="highlight">100元/站/天</span>
-</li>
-</ol>
+<li>考核以月为周期，分别计算各项指标并叠加问责。</li>
+</ul>
+<div style="font-weight:700;color:#333;margin:6px 0 3px;">2. 血压考核</div>
+<table style="width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:12px;">
+<tr style="background:#e8f4fc;"><th style="border:1px solid #b6d8ee;padding:5px;text-align:left;">考核项目</th><th style="border:1px solid #b6d8ee;padding:5px;text-align:left;">口径</th><th style="border:1px solid #b6d8ee;padding:5px;text-align:left;width:50px;">目标</th><th style="border:1px solid #b6d8ee;padding:5px;text-align:left;">问责标准</th></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">加盟骑手测压率</td><td style="border:1px solid #ddd;padding:5px;">测量血压骑手量 / 在职骑手量<br><span style="font-size:11px;color:#666;">注：未测压按审核不通过计入</span></td><td style="border:1px solid #ddd;padding:5px;">95%</td><td style="border:1px solid #ddd;padding:5px;">≥95% 不问责；&lt;95% 违约金 <span class="highlight">2000 元/站/月</span>。</td></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">高血压三级骑手就诊闭环率</td><td style="border:1px solid #ddd;padding:5px;">上传就诊凭证骑手量 / 高风险骑手量</td><td style="border:1px solid #ddd;padding:5px;">90%</td><td style="border:1px solid #ddd;padding:5px;">≥90% 不问责；&lt;90% 违约金 <span class="highlight">2000 元/站/月</span>。</td></tr>
+<tr><td style="border:1px solid #ddd;padding:5px;">虚假测压</td><td style="border:1px solid #ddd;padding:5px;">包括但不限于：非本人测压、P图、录制手机视频等</td><td style="border:1px solid #ddd;padding:5px;">-</td><td style="border:1px solid #ddd;padding:5px;">按应管尽管原则，判定虚假测压按 <span class="highlight">500 元/人</span>承担违约责任。</td></tr>
+</table>
+<div style="font-weight:700;color:#333;margin:6px 0 3px;">3. 其他违规场景</div>
+<ul style="margin:0 0 8px;padding-left:18px;">
+<li><b>虚假上传：</b>电动车骑手虚假上报为摩托车骑手、充电骑手虚假上报为换电骑手等，承担 <span class="highlight">1000 元/人</span>违约金。</li>
+<li><b>虚假检查：</b>隐患电动车（电池）检查情况与实际不符，承担 <span class="highlight">1000 元/人</span>违约金。</li>
+<li><b>虚假申诉：</b>利用翻拍、P图、造假图像作为申诉凭证，承担 <span class="highlight">1000 元/人</span>违约金。</li>
+</ul>
+<div style="padding:6px;background:#fffbe6;border:1px solid #ffe58f;border-radius:4px;font-size:12px;margin-bottom:8px;">
+<b>特殊情况报备：</b>新建站/撤站、切商/换站、非商侧原因导致的审核错误等，需在每月 <span class="highlight">第 5 个工作日</span>前向安全经理报备并提交凭证。
+</div>
+</div>
+</details>
+
+<div style="margin-top:10px;padding-top:8px;border-top:1px dashed #ccc;font-size:12px;color:#666;">
+<b>资料来源：</b>《合作商骑手载具安全管理标准》（MTPS-ZS-DA-V6-20260186）及血压上传管理规范。弹窗内容为摘要，具体执行以最新制度文件为准。
+</div>
 </div>
 </div>
 </div>
