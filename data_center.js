@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-12 06:41:59",
+  "updated_at": "2026-09-12 06:45:02",
   "action_summary": {
     "total": 13,
     "ok": 8,
@@ -113,7 +113,7 @@ window.DATA_CENTER = {
             "latest": "update_log.txt",
             "mtime": "2026-09-12 06:39:44",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": ""
           }
@@ -352,7 +352,7 @@ window.DATA_CENTER = {
             "latest": "update_log.txt",
             "mtime": "2026-09-12 06:41:57",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": ""
           }
@@ -530,7 +530,7 @@ window.DATA_CENTER = {
             "latest": "v3_data.js",
             "mtime": "2026-09-12 06:39:44",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": ""
           },
@@ -540,7 +540,7 @@ window.DATA_CENTER = {
             "latest": "insurance_data.js",
             "mtime": "2026-09-08 17:11:51",
             "max_age_hours": 72,
-            "age_hours": 85.5,
+            "age_hours": 85.6,
             "ok": false,
             "note": ""
           }
@@ -633,7 +633,7 @@ window.DATA_CENTER = {
             "latest": "110工单看板.html",
             "mtime": "2026-08-15 09:46:31",
             "max_age_hours": 168,
-            "age_hours": 668.9,
+            "age_hours": 669.0,
             "ok": false,
             "note": "更新频率待确认，先按 7 天"
           }
@@ -686,7 +686,7 @@ window.DATA_CENTER = {
             "latest": "update_stations.log",
             "mtime": "2026-09-09 17:58:26",
             "max_age_hours": 26,
-            "age_hours": 60.7,
+            "age_hours": 60.8,
             "ok": false,
             "note": ""
           }
