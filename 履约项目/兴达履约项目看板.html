@@ -496,12 +496,12 @@ tr.cb-row-noup:hover td{background:#ffefef}
           <th rowspan="2">大区</th><th rowspan="2">区域</th><th rowspan="2">城市</th><th rowspan="2">站点名称</th>
           <th rowspan="2">骑手ID</th><th rowspan="2">骑手姓名</th><th rowspan="2">排班状态</th>
           <th colspan="3" class="cb-grp-b">血压上报</th>
-          <th colspan="3" class="cb-grp-v">载具审核（站点）</th>
+          <th colspan="4" class="cb-grp-v">载具审核（骑手）</th>
           <th colspan="5" class="cb-grp-c">充电信息上报</th>
           <th colspan="4" class="cb-grp-w">换电信息上报</th>
         </tr><tr>
           <th class="cb-grp-b">上报</th><th class="cb-grp-b">状态</th><th class="cb-grp-b">提交时间</th>
-          <th class="cb-grp-v">通过数</th><th class="cb-grp-v">分母</th><th class="cb-grp-v">通过率</th>
+          <th class="cb-grp-v">载具类型</th><th class="cb-grp-v">审核状态</th><th class="cb-grp-v">变更日期</th><th class="cb-grp-v">驳回原因</th>
           <th class="cb-grp-c">上报</th><th class="cb-grp-c">审核状态</th><th class="cb-grp-c">提交时间</th><th class="cb-grp-c">电池电压</th><th class="cb-grp-c">电池品牌</th>
           <th class="cb-grp-w">上报</th><th class="cb-grp-w">审核状态</th><th class="cb-grp-w">提交时间</th><th class="cb-grp-w">换电品牌</th>
         </tr></thead>
@@ -576,9 +576,9 @@ tr.cb-row-noup:hover td{background:#ffefef}
   <div class="pagination" id="pagination-rider"></div>
 </div>
 
-<script src="../交通安全行为看板/data.js"></script>
-<script src="data.js"></script>
-<script src="充换电血压_data.js"></script>
+<script src="D:/兴达数据库/交通安全行为看板/data.js"></script>
+<script src="D:/兴达数据库/履约项目/data.js"></script>
+<script src="D:/兴达数据库/履约项目/充换电血压_data.js"></script>
 <script>
 /* 充换电血压：用烽火台真实数据回填 CHARGEBP_DATA；vehicle_* 已由 build_proposal_data.py 从 BI 211337 接入 */
 (function(){
@@ -1808,7 +1808,18 @@ function cbSiteCards(){
 var cbMeta = window.CB_META || {}, cbRoster = window.CB_ROSTER || [], cbRec = window.CB_REC || [];
 var cbRosterSet = {}, cbRidx = {}, cbInited = false;
 var cbSf = {cbregion:[],cbsubr:[],cbcity:[],cbsite:[],cbbpt:[],cbcst:[],cbwst:[]};
-var cbSiteVehicle = {}; // 站点(归一化) -> {num,den,rate}，骑手维度用
+var cbSiteVehicle = {}; // 站点(归一化) -> {num,den,rate}，站点维度用
+// 骑手级载具审核明细（readata BI 211337「审核明细」卡片，骑手维度，昨日单日时点）
+// CB_RIDER_VEHICLE: {rider_id: [type, status, date, reason]}
+var cbRiderVehicle = {};
+(function(){
+  var m = window.CB_RIDER_VEHICLE || {};
+  for (var k in m){
+    if(!m.hasOwnProperty(k)) continue;
+    var a = m[k] || [];
+    cbRiderVehicle[k] = {type: a[0]||'', status: a[1]||'', date: a[2]||'', reason: (a[3]||'')};
+  }
+})();
 var cbPage = 1, cbPer = 50, cbFiltered = [];
 cbRoster.forEach(function(r){ cbRosterSet[r[4]] = 1; });
 
@@ -1992,15 +2003,16 @@ function cbRiderRows(){
     if(q && (r[4]+' '+r[5]).toLowerCase().indexOf(q) < 0) continue;
     var siteNorm = cbNormSite(r[3]);
     var v = cbSiteVehicle[siteNorm] || {num:0, den:0, rate:0};
+    var rv = cbRiderVehicle[r[4]] || null;   // 骑手级载具审核明细（BI 211337 骑手维度）
     out.push([r[0],r[1],r[2],r[3],r[4],r[5],r[6],
       bs, bp?bp[3]:'', bp?bp[4]:'',
-      v.num, v.den, v.rate? (v.rate+'%') : '-',
+      rv?rv.type:'-', rv?rv.status:'-', rv?rv.date:'-', rv?(rv.reason||'-'):'-',
       cs, c?c[3]:'', c?c[4]:'', c?c[5]:'', c?c[6]:'',
       ws, w?w[3]:'', w?w[4]:'', w?w[5]:'']);
   }
   return out;
 }
-function cbStCls(s){ if(s==='审核通过') return 'st-ok'; if(s==='审核不通过'||s==='系统审核不通过') return 'st-no'; if(s==='已提交') return 'st-wait'; return 'st-none'; }
+function cbStCls(s){ if(s==='审核通过'||s==='已通过') return 'st-ok'; if(s==='审核不通过'||s==='系统审核不通过') return 'st-no'; if(s==='已提交') return 'st-wait'; return 'st-none'; }
 function cbTagUp(v){ return '<span class="cb-tag-up '+(v==='已上报'?'yes':'no')+'">'+v+'</span>'; }
 function cbCard(l,v,s,cls){ return '<div class="card '+(cls||'')+'"><div class="c-label">'+l+'</div><div class="c-value">'+v+'</div><div class="c-sub">'+s+'</div></div>'; }
 
@@ -2008,7 +2020,7 @@ function cbRenderRider(p){
   var all = cbRiderRows(); cbFiltered = all;
   if(!cbRoster.length){                       // 数据文件缺失时给明确提示，而不是空白表格
     var tb0 = document.getElementById('cbTbodyRider');
-    if(tb0) tb0.innerHTML = '<tr><td colspan="22" class="empty">'
+    if(tb0) tb0.innerHTML = '<tr><td colspan="23" class="empty">'
       + '充换电血压数据未加载（缺少 充换电血压_data.js）<br>请运行「履约项目\\_方案预览\\一键刷新_充换电血压.bat」生成</td></tr>';
     var pg0 = document.getElementById('cbPager'); if(pg0) pg0.innerHTML = '';
     var c0 = document.getElementById('cbCardsRider'); if(c0) c0.innerHTML = '';
@@ -2018,9 +2030,9 @@ function cbRenderRider(p){
   var upN=0,chgN=0,swpN=0,bpN=0;
   all.forEach(function(r){
     if(r[7]==='已上报') bpN++;
-    if(r[10]==='已上报') chgN++;
-    if(r[15]==='已上报') swpN++;
-    if(r[7]==='已上报'||r[10]==='已上报'||r[15]==='已上报') upN++;
+    if(r[14]==='已上报') chgN++;
+    if(r[19]==='已上报') swpN++;
+    if(r[7]==='已上报'||r[14]==='已上报'||r[19]==='已上报') upN++;
   });
   // 筛选项必须从全量名册按上游级联生成，不能从已过滤的 all 取，
   // 否则选了一个城市后下拉只剩该城市，导致无法多选。
@@ -2041,15 +2053,15 @@ function cbRenderRider(p){
   if(cbPage > tot) cbPage = tot;
   var seg = all.slice((cbPage-1)*cbPer, cbPage*cbPer);
   var h = '';
-  if(!seg.length) h = '<tr><td colspan="22" class="empty">无符合条件的数据</td></tr>';
+  if(!seg.length) h = '<tr><td colspan="23" class="empty">无符合条件的数据</td></tr>';
   seg.forEach(function(r){
-    var noUp = (r[7]!=='已上报' && r[13]!=='已上报' && r[18]!=='已上报');
+    var noUp = (r[7]!=='已上报' && r[14]!=='已上报' && r[19]!=='已上报');
     h += '<tr class="lv-site'+(noUp?' cb-row-noup':'')+'"><td class="l">'+r[0]+'</td><td class="l">'+r[1]+'</td><td>'+r[2]+'</td><td class="l">'+r[3]+'</td>'
       + '<td>'+r[4]+'</td><td class="l">'+r[5]+'</td><td>'+r[6]+'</td>'
       + '<td>'+cbTagUp(r[7])+'</td><td class="'+cbStCls(r[8])+'">'+(r[8]||'-')+'</td><td>'+(r[9]||'-')+'</td>'
-      + '<td>'+(r[10]||'-')+'</td><td>'+(r[11]||'-')+'</td><td>'+(r[12]||'-')+'</td>'
-      + '<td>'+cbTagUp(r[13])+'</td><td class="'+cbStCls(r[14])+'">'+(r[14]||'-')+'</td><td>'+(r[15]||'-')+'</td><td>'+(r[16]||'-')+'</td><td class="l">'+(r[17]||'-')+'</td>'
-      + '<td>'+cbTagUp(r[18])+'</td><td class="'+cbStCls(r[19])+'">'+(r[19]||'-')+'</td><td>'+(r[20]||'-')+'</td><td class="l">'+(r[21]||'-')+'</td></tr>';
+      + '<td>'+(r[10]||'-')+'</td><td class="'+cbStCls(r[11])+'">'+(r[11]||'-')+'</td><td>'+(r[12]||'-')+'</td><td>'+(r[13]||'-')+'</td>'
+      + '<td>'+cbTagUp(r[14])+'</td><td class="'+cbStCls(r[15])+'">'+(r[15]||'-')+'</td><td>'+(r[16]||'-')+'</td><td>'+(r[17]||'-')+'</td><td class="l">'+(r[18]||'-')+'</td>'
+      + '<td>'+cbTagUp(r[19])+'</td><td class="'+cbStCls(r[20])+'">'+(r[20]||'-')+'</td><td>'+(r[21]||'-')+'</td><td class="l">'+(r[22]||'-')+'</td></tr>';
   });
   var tb = document.getElementById('cbTbodyRider'); if(tb) tb.innerHTML = h;
 
@@ -2067,8 +2079,8 @@ function cbRenderRider(p){
   }
 
   var pc = function(n){ return all.length ? (n/all.length*100).toFixed(2)+'%' : '0%'; };
-  var bothN = all.filter(function(r){ return r[7]==='已上报' && r[18]==='已上报'; }).length;
-  var noneN = all.length - all.filter(function(r){ return r[7]==='已上报'||r[13]==='已上报'||r[18]==='已上报'; }).length;
+  var bothN = all.filter(function(r){ return r[7]==='已上报' && r[19]==='已上报'; }).length;
+  var noneN = all.length - all.filter(function(r){ return r[7]==='已上报'||r[14]==='已上报'||r[19]==='已上报'; }).length;
   var cards = document.getElementById('cbCardsRider');
   if(cards) cards.innerHTML =
      cbCard('在职骑手', all.length.toLocaleString(), '当天排班在册', '')
