@@ -2220,7 +2220,11 @@ function renderRiderTabPage(page) {
   var thead = '<tr>';
   thead += '<th class="sticky-col" style="left:0;min-width:80px">大区</th>';
   thead += '<th class="sticky-col" style="left:80px;min-width:100px">区域</th>';
-  thead += '<th class="sticky-col sticky-last" style="left:180px;min-width:400px" colspan="7">站点信息 / 骑手维度</th>';
+  // 原来这里是一个 colspan=7 的「站点信息 / 骑手维度」大格，后面又重复声明了骑手ID/姓名/入职时间/有单天数/小组 5 列，
+  // 导致表头逻辑列 27 vs 数据行 22，从第 3 列起整体错位 5 列（表头「骑手ID」下面是「消毒」值）。
+  // 现按数据行实际列结构拆成「城市」「站点」，与数据行 22 列一一对应（sticky left 与数据行城市/站点严格对齐）。
+  thead += '<th class="sticky-col sticky-last" style="left:180px;min-width:80px">城市</th>';
+  thead += '<th class="sticky-col sticky-last" style="left:260px;min-width:180px">站点</th>';
   thead += '<th>骑手ID</th><th>姓名</th><th>入职时间</th><th>有单天数</th><th>小组</th>';
   thead += '<th>消毒</th><th>带刀</th><th>血压</th><th>载具</th><th>充换电</th>';
   thead += '<th>华北新骑手安全专项培训</th><th>风险骑手安全培训(26年6月)</th>';
@@ -2600,7 +2604,12 @@ function exportTable(tabId) {
       headerRow.push('"' + (_parents[i] ? _parents[i]+'-'+_hc(th) : _hc(th)) + '"');
     });
   } else {
-    _theadTrs[0].querySelectorAll('th').forEach(function(th){ headerRow.push('"'+_hc(th)+'"'); });
+    _theadTrs[0].querySelectorAll('th').forEach(function(th){
+      var nm = _hc(th);
+      var n = parseInt(th.getAttribute('colspan')||'1',10);
+      headerRow.push('"'+nm+'"');
+      for (var i=1;i<n;i++) headerRow.push('""');   // colspan 列展开成 n 列，保证与数据行等宽
+    });
   }
   rows.push(headerRow.join(','));
   
