@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-12 06:46:02",
+  "updated_at": "2026-09-12 06:49:59",
   "action_summary": {
     "total": 13,
     "ok": 8,
@@ -113,7 +113,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-09-12 06:39:44",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": ""
           }
@@ -210,9 +210,9 @@
         ],
         "data_mtime": "2026-09-11 21:49:03",
         "all_synced": false,
-        "synced_count": 5,
+        "synced_count": 3,
         "missing_count": 0,
-        "unsynced_count": 2,
+        "unsynced_count": 4,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
@@ -234,9 +234,9 @@
           },
           {
             "type": "考培-学习明细记录",
-            "latest": "_考培-学习明细记录_1789081159239.xlsx",
-            "mtime": "2026-09-11 06:59:30",
-            "synced": true
+            "latest": "_考培-学习明细记录_1789166877045.xlsx",
+            "mtime": "2026-09-12 06:48:07",
+            "synced": false
           },
           {
             "type": "骑手排班明细数据",
@@ -246,9 +246,9 @@
           },
           {
             "type": "表单列表",
-            "latest": "表单列表_49896033_20260911_065957.xlsx",
-            "mtime": "2026-09-11 07:00:33",
-            "synced": true
+            "latest": "表单列表_49896033_20260912_064827.xlsx",
+            "mtime": "2026-09-12 06:49:12",
+            "synced": false
           },
           {
             "type": "载具审核-骑手明细(BI)",
@@ -264,7 +264,7 @@
             "latest": "充换电血压_data.js",
             "mtime": "2026-09-11 21:49:03",
             "max_age_hours": 13,
-            "age_hours": 8.9,
+            "age_hours": 9.0,
             "ok": true,
             "note": "每日 07:30/15:00 两次"
           },
@@ -274,7 +274,7 @@
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-09-11 21:44:35",
             "max_age_hours": 30,
-            "age_hours": 9.0,
+            "age_hours": 9.1,
             "ok": true,
             "note": "早间自动化抓取"
           }
@@ -510,7 +510,7 @@
             "latest": "latest.json",
             "mtime": "2026-09-11 09:44:54",
             "max_age_hours": 26,
-            "age_hours": 21.0,
+            "age_hours": 21.1,
             "ok": true,
             "note": ""
           },
@@ -520,7 +520,7 @@
             "latest": "premium_latest.json",
             "mtime": "2026-09-11 15:44:19",
             "max_age_hours": 26,
-            "age_hours": 15.0,
+            "age_hours": 15.1,
             "ok": true,
             "note": ""
           },
@@ -530,7 +530,7 @@
             "latest": "v3_data.js",
             "mtime": "2026-09-12 06:39:44",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": ""
           },
@@ -633,7 +633,7 @@
             "latest": "110工单看板.html",
             "mtime": "2026-08-15 09:46:31",
             "max_age_hours": 168,
-            "age_hours": 669.0,
+            "age_hours": 669.1,
             "ok": false,
             "note": "更新频率待确认，先按 7 天"
           }
@@ -686,7 +686,7 @@
             "latest": "update_stations.log",
             "mtime": "2026-09-09 17:58:26",
             "max_age_hours": 26,
-            "age_hours": 60.8,
+            "age_hours": 60.9,
             "ok": false,
             "note": ""
           }
@@ -795,7 +795,7 @@
             "latest": "monthly_summary.js",
             "mtime": "2026-09-09 08:08:49",
             "max_age_hours": 72,
-            "age_hours": 70.6,
+            "age_hours": 70.7,
             "ok": true,
             "note": "月度归档，可适当放宽"
           }
