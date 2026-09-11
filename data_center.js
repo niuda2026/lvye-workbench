@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-12 06:41:56",
+  "updated_at": "2026-09-12 06:41:59",
   "action_summary": {
     "total": 13,
     "ok": 8,
@@ -350,7 +350,7 @@ window.DATA_CENTER = {
             "label": "服装标准化数据更新",
             "path": "护航服装\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-09-12 06:41:55",
+            "mtime": "2026-09-12 06:41:57",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
