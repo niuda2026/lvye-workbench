@@ -616,10 +616,10 @@ tr.cb-row-noup:hover td{background:#ffefef}
   <div class="pagination" id="pagination-rider"></div>
 </div>
 
-<script src="../交通安全行为看板/data.js"></script>
-<script src="data.js"></script>
-<script src="充换电血压_data.js"></script>
-<script src="knife_rider_data.js"></script>
+<script src="D:/兴达数据库/交通安全行为看板/data.js"></script>
+<script src="D:/兴达数据库/履约项目/data.js"></script>
+<script src="D:/兴达数据库/履约项目/充换电血压_data.js"></script>
+<script src="D:/兴达数据库/履约项目/knife_rider_data.js"></script>
 <!-- 截图库 -->
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js" crossorigin="anonymous"></script>
 <script>
@@ -1811,7 +1811,8 @@ function knInit(){
   if(typeof KNIFE_DATA === 'object'){
     Object.keys(KNIFE_DATA).forEach(function(site){
       var d = KNIFE_DATA[site];
-      d.week_cover_rate_num = d.week_cover_num || 0;
+      // 本月覆盖率 = 本月去重2次后 / 1号注册骑手；合规率 = 无需整改 / 本月已检查
+      d.week_cover_rate_num = (d.checked_dedup2 != null ? d.checked_dedup2 : (d.checked_month || 0) - (d.checked_2plus || 0));
       d.week_cover_rate_den = d.reg_1st || 0;
       d.compliance_rate_num = d.compliance_num || 0;
       d.compliance_rate_den = d.checked_month || 0;
@@ -1830,12 +1831,12 @@ function knRenderSite() {
     {key:'status_audit', label:'整改待审核', isPct:false, isSumRatio:false},
     {key:'status_fail', label:'整改不通过', isPct:false, isSumRatio:false},
     {key:'status_appeal', label:'待申诉', isPct:false, isSumRatio:false},
-    {key:'week_cover_rate', label:'本周覆盖率（剔除2次以上骑手）', isPct:false, isSumRatio:true},
-    {key:'compliance_rate', label:'合规率', isPct:false, isSumRatio:true}
+    {key:'week_cover_rate', label:'本月覆盖率', isPct:true, isSumRatio:true},
+    {key:'compliance_rate', label:'合规率', isPct:true, isSumRatio:true}
   ];
   var headerGroups = [
     {label:'巡检达成', colspan:9, bgColor:'#FDE68A', textColor:'#92400E'},
-    {label:'本周覆盖率（剔除2次以上骑手）', colspan:1, bgColor:'#BFDBFE', textColor:'#1E3A8A'},
+    {label:'本月覆盖率', colspan:1, bgColor:'#BFDBFE', textColor:'#1E3A8A'},
     {label:'合规率', colspan:1, bgColor:'#BBF7D0', textColor:'#166534'}
   ];
   renderStandardTab('knife', 'KNIFE_DATA', columns, null, headerGroups);

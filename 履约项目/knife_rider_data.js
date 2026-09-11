@@ -1,10 +1,10 @@
 /* 带刀巡检数据：站点维度 + 骑手维度明细
- * 生成时间：2026-09-12 01:36:53
+ * 生成时间：2026-09-12 01:42:57
  * 数据源：巡检工单列表_1789081005426.xls（巡检类型=加盟骑手，检查方式=车辆检查）
  * 分母来源：2026-09-01 排班明细（每月1号在册骑手，无1号则取当月最早）
  */
 var KNIFE_META = {
-  "generated_at": "2026-09-12 01:36:53",
+  "generated_at": "2026-09-12 01:42:57",
   "source_file": "巡检工单列表_1789081005426.xls",
   "source_file_mtime": "2026-09-11 06:57:02",
   "reg_file_date": "2026-09-01",
@@ -30,10 +30,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 4,
-    "week_cover_rate": 0.0465,
+    "week_cover_num": 29,
+    "week_cover_rate": 33.72,
     "compliance_num": 29,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【西安】北院门站": {
     "region": "华北三区",
@@ -48,10 +48,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 9,
-    "week_cover_rate": 0.1125,
+    "week_cover_num": 37,
+    "week_cover_rate": 46.25,
     "compliance_num": 37,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【马鞍山】市政中心站": {
     "region": "中南大区",
@@ -66,10 +66,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 2,
-    "week_cover_rate": 0.05,
+    "week_cover_num": 22,
+    "week_cover_rate": 55.0,
     "compliance_num": 22,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【合肥】大摩站": {
     "region": "中南大区",
@@ -85,9 +85,9 @@ var KNIFE_DATA = {
     "status_fail": 0,
     "status_appeal": 0,
     "week_cover_num": 4,
-    "week_cover_rate": 0.0714,
+    "week_cover_rate": 7.14,
     "compliance_num": 4,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【洛阳】太康路站": {
     "region": "华北二区",
@@ -102,10 +102,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 4,
-    "week_cover_rate": 0.1143,
+    "week_cover_num": 14,
+    "week_cover_rate": 40.0,
     "compliance_num": 14,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【商丘】中原车城站": {
     "region": "华北二区",
@@ -120,10 +120,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 6,
-    "week_cover_rate": 0.4286,
+    "week_cover_num": 8,
+    "week_cover_rate": 57.14,
     "compliance_num": 8,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【锦州】锦绣前程站": {
     "region": "华北一区",
@@ -132,16 +132,16 @@ var KNIFE_DATA = {
     "reg_1st": 94,
     "checked_month": 55,
     "checked_2plus": 1,
-    "checked_dedup2": 55,
+    "checked_dedup2": 54,
     "status_no": 55,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 7,
-    "week_cover_rate": 0.0745,
+    "week_cover_num": 54,
+    "week_cover_rate": 57.45,
     "compliance_num": 55,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【洛阳】新都汇站": {
     "region": "华北二区",
@@ -157,9 +157,9 @@ var KNIFE_DATA = {
     "status_fail": 0,
     "status_appeal": 0,
     "week_cover_num": 2,
-    "week_cover_rate": 0.0303,
+    "week_cover_rate": 3.03,
     "compliance_num": 2,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【秦皇岛】乐购站": {
     "region": "华北一区",
@@ -168,16 +168,16 @@ var KNIFE_DATA = {
     "reg_1st": 80,
     "checked_month": 58,
     "checked_2plus": 2,
-    "checked_dedup2": 58,
+    "checked_dedup2": 56,
     "status_no": 57,
     "status_wait": 1,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 36,
-    "week_cover_rate": 0.45,
+    "week_cover_num": 56,
+    "week_cover_rate": 70.0,
     "compliance_num": 57,
-    "compliance_rate": 0.9828
+    "compliance_rate": 98.28
   },
   "兴必达【黄山】老街站": {
     "region": "中南大区",
@@ -192,10 +192,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 1,
-    "week_cover_rate": 0.0089,
+    "week_cover_num": 18,
+    "week_cover_rate": 16.07,
     "compliance_num": 18,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【蚌埠】宝龙广场": {
     "region": "中南大区",
@@ -204,16 +204,16 @@ var KNIFE_DATA = {
     "reg_1st": 106,
     "checked_month": 4,
     "checked_2plus": 1,
-    "checked_dedup2": 4,
+    "checked_dedup2": 3,
     "status_no": 4,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
     "week_cover_num": 3,
-    "week_cover_rate": 0.0283,
+    "week_cover_rate": 2.83,
     "compliance_num": 4,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【合肥】龙居站": {
     "region": "中南大区",
@@ -228,10 +228,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 2,
-    "week_cover_rate": 0.0435,
+    "week_cover_num": 17,
+    "week_cover_rate": 36.96,
     "compliance_num": 17,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【信阳】大信站": {
     "region": "华北二区",
@@ -246,10 +246,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 5,
-    "week_cover_rate": 0.0658,
+    "week_cover_num": 19,
+    "week_cover_rate": 25.0,
     "compliance_num": 19,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【上海】徐家汇站": {
     "region": "华东大区",
@@ -264,10 +264,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 1,
-    "week_cover_rate": 0.0109,
+    "week_cover_num": 24,
+    "week_cover_rate": 26.09,
     "compliance_num": 24,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【秦皇岛】山海关站": {
     "region": "华北一区",
@@ -282,10 +282,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 13,
-    "week_cover_rate": 0.1102,
+    "week_cover_num": 29,
+    "week_cover_rate": 24.58,
     "compliance_num": 29,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【秦皇岛】东方明珠城站": {
     "region": "华北一区",
@@ -301,9 +301,9 @@ var KNIFE_DATA = {
     "status_fail": 0,
     "status_appeal": 0,
     "week_cover_num": 15,
-    "week_cover_rate": 0.2273,
+    "week_cover_rate": 22.73,
     "compliance_num": 15,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【西安】南稍门站": {
     "region": "华北三区",
@@ -312,16 +312,16 @@ var KNIFE_DATA = {
     "reg_1st": 199,
     "checked_month": 73,
     "checked_2plus": 1,
-    "checked_dedup2": 73,
+    "checked_dedup2": 72,
     "status_no": 73,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 3,
-    "week_cover_rate": 0.0151,
+    "week_cover_num": 72,
+    "week_cover_rate": 36.18,
     "compliance_num": 73,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【西安】枫林华府站": {
     "region": "华北三区",
@@ -336,10 +336,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 1,
-    "week_cover_rate": 0.0081,
+    "week_cover_num": 59,
+    "week_cover_rate": 47.97,
     "compliance_num": 58,
-    "compliance_rate": 0.9831
+    "compliance_rate": 98.31
   },
   "兴必达【西安】鱼化寨站": {
     "region": "华北三区",
@@ -354,10 +354,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 1,
-    "week_cover_rate": 0.0091,
+    "week_cover_num": 40,
+    "week_cover_rate": 36.36,
     "compliance_num": 40,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【洛阳】盛唐站": {
     "region": "华北二区",
@@ -372,10 +372,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 3,
-    "week_cover_rate": 0.1154,
+    "week_cover_num": 10,
+    "week_cover_rate": 38.46,
     "compliance_num": 10,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【西安】河址西站": {
     "region": "华北三区",
@@ -390,10 +390,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 7,
-    "week_cover_rate": 0.0737,
+    "week_cover_num": 22,
+    "week_cover_rate": 23.16,
     "compliance_num": 22,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【上海】金山北站": {
     "region": "华东大区",
@@ -408,10 +408,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 7,
-    "week_cover_rate": 0.07,
+    "week_cover_num": 32,
+    "week_cover_rate": 32.0,
     "compliance_num": 31,
-    "compliance_rate": 0.9688
+    "compliance_rate": 96.88
   },
   "兴必达【洛阳】洛浦站": {
     "region": "华北二区",
@@ -426,10 +426,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 5,
-    "week_cover_rate": 0.0543,
+    "week_cover_num": 10,
+    "week_cover_rate": 10.87,
     "compliance_num": 10,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【上海】九亭站": {
     "region": "华东大区",
@@ -445,9 +445,9 @@ var KNIFE_DATA = {
     "status_fail": 0,
     "status_appeal": 0,
     "week_cover_num": 10,
-    "week_cover_rate": 0.1724,
+    "week_cover_rate": 17.24,
     "compliance_num": 10,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【南京】金盛站": {
     "region": "华东大区",
@@ -462,10 +462,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 5,
-    "week_cover_rate": 0.1111,
+    "week_cover_num": 10,
+    "week_cover_rate": 22.22,
     "compliance_num": 10,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【上海】金桥站": {
     "region": "华东大区",
@@ -474,16 +474,16 @@ var KNIFE_DATA = {
     "reg_1st": 57,
     "checked_month": 31,
     "checked_2plus": 1,
-    "checked_dedup2": 31,
+    "checked_dedup2": 30,
     "status_no": 30,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 7,
-    "week_cover_rate": 0.1228,
+    "week_cover_num": 30,
+    "week_cover_rate": 52.63,
     "compliance_num": 30,
-    "compliance_rate": 0.9677
+    "compliance_rate": 96.77
   },
   "兴必达【马鞍山】鸿泰站": {
     "region": "中南大区",
@@ -498,10 +498,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 16,
-    "week_cover_rate": 0.2353,
+    "week_cover_num": 26,
+    "week_cover_rate": 38.24,
     "compliance_num": 26,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【阜阳】颍泉万达站": {
     "region": "中南大区",
@@ -516,10 +516,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 8,
-    "week_cover_rate": 0.1159,
+    "week_cover_num": 28,
+    "week_cover_rate": 40.58,
     "compliance_num": 28,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【秦皇岛】在水一方站": {
     "region": "华北一区",
@@ -528,16 +528,16 @@ var KNIFE_DATA = {
     "reg_1st": 93,
     "checked_month": 60,
     "checked_2plus": 1,
-    "checked_dedup2": 60,
+    "checked_dedup2": 59,
     "status_no": 57,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 4,
-    "week_cover_rate": 0.043,
+    "week_cover_num": 59,
+    "week_cover_rate": 63.44,
     "compliance_num": 57,
-    "compliance_rate": 0.95
+    "compliance_rate": 95.0
   },
   "兴必达【铜陵】汇金广场站": {
     "region": "中南大区",
@@ -552,10 +552,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 7,
-    "week_cover_rate": 0.0778,
+    "week_cover_num": 43,
+    "week_cover_rate": 47.78,
     "compliance_num": 43,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【张家口】金悦站": {
     "region": "华北一区",
@@ -570,10 +570,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 23,
-    "week_cover_rate": 0.1983,
+    "week_cover_num": 42,
+    "week_cover_rate": 36.21,
     "compliance_num": 42,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【滁州】醉翁亭站": {
     "region": "中南大区",
@@ -588,10 +588,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 10,
-    "week_cover_rate": 0.1562,
+    "week_cover_num": 13,
+    "week_cover_rate": 20.31,
     "compliance_num": 13,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【合肥】奥体站": {
     "region": "中南大区",
@@ -607,9 +607,9 @@ var KNIFE_DATA = {
     "status_fail": 0,
     "status_appeal": 0,
     "week_cover_num": 15,
-    "week_cover_rate": 0.3125,
+    "week_cover_rate": 31.25,
     "compliance_num": 15,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【青岛】火车站站": {
     "region": "中南大区",
@@ -624,10 +624,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 11,
-    "week_cover_rate": 0.0982,
+    "week_cover_num": 32,
+    "week_cover_rate": 28.57,
     "compliance_num": 32,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【上海】八佰伴站": {
     "region": "华东大区",
@@ -643,9 +643,9 @@ var KNIFE_DATA = {
     "status_fail": 0,
     "status_appeal": 0,
     "week_cover_num": 57,
-    "week_cover_rate": 0.3455,
+    "week_cover_rate": 34.55,
     "compliance_num": 57,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【通辽】东城站": {
     "region": "华北一区",
@@ -660,10 +660,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 5,
-    "week_cover_rate": 0.098,
+    "week_cover_num": 13,
+    "week_cover_rate": 25.49,
     "compliance_num": 13,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【合肥】和平广场": {
     "region": "中南大区",
@@ -678,10 +678,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 1,
-    "week_cover_rate": 0.0179,
+    "week_cover_num": 10,
+    "week_cover_rate": 17.86,
     "compliance_num": 10,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【郑州】大卫城站": {
     "region": "华北二区",
@@ -696,10 +696,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 22,
-    "week_cover_rate": 0.2529,
+    "week_cover_num": 27,
+    "week_cover_rate": 31.03,
     "compliance_num": 27,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【信阳】和美站": {
     "region": "华北二区",
@@ -714,10 +714,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 3,
-    "week_cover_rate": 0.0429,
+    "week_cover_num": 12,
+    "week_cover_rate": 17.14,
     "compliance_num": 12,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【秦皇岛】乐购二站": {
     "region": "华北一区",
@@ -732,10 +732,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 11,
-    "week_cover_rate": 0.1746,
+    "week_cover_num": 28,
+    "week_cover_rate": 44.44,
     "compliance_num": 28,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【秦皇岛】环岛站": {
     "region": "华北一区",
@@ -750,10 +750,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 11,
-    "week_cover_rate": 0.1447,
+    "week_cover_num": 34,
+    "week_cover_rate": 44.74,
     "compliance_num": 34,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【唐山】十九各庄站": {
     "region": "华北一区",
@@ -762,16 +762,16 @@ var KNIFE_DATA = {
     "reg_1st": 99,
     "checked_month": 56,
     "checked_2plus": 1,
-    "checked_dedup2": 56,
+    "checked_dedup2": 55,
     "status_no": 55,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 20,
-    "week_cover_rate": 0.202,
+    "week_cover_num": 55,
+    "week_cover_rate": 55.56,
     "compliance_num": 55,
-    "compliance_rate": 0.9821
+    "compliance_rate": 98.21
   },
   "兴必达【天津】青光站": {
     "region": "华北一区",
@@ -787,9 +787,9 @@ var KNIFE_DATA = {
     "status_fail": 0,
     "status_appeal": 0,
     "week_cover_num": 12,
-    "week_cover_rate": 0.3333,
+    "week_cover_rate": 33.33,
     "compliance_num": 12,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【北京】云岗站": {
     "region": "华东大区",
@@ -805,9 +805,9 @@ var KNIFE_DATA = {
     "status_fail": 0,
     "status_appeal": 0,
     "week_cover_num": 3,
-    "week_cover_rate": 0.0714,
+    "week_cover_rate": 7.14,
     "compliance_num": 3,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【秦皇岛】孟营站": {
     "region": "华北一区",
@@ -822,10 +822,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 18,
-    "week_cover_rate": 0.1314,
+    "week_cover_num": 40,
+    "week_cover_rate": 29.2,
     "compliance_num": 40,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【秦皇岛】孟营二站": {
     "region": "华北一区",
@@ -834,16 +834,16 @@ var KNIFE_DATA = {
     "reg_1st": 67,
     "checked_month": 3,
     "checked_2plus": 1,
-    "checked_dedup2": 3,
+    "checked_dedup2": 2,
     "status_no": 3,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
     "week_cover_num": 2,
-    "week_cover_rate": 0.0299,
+    "week_cover_rate": 2.99,
     "compliance_num": 3,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【北京】狼垡站": {
     "region": "华东大区",
@@ -859,9 +859,9 @@ var KNIFE_DATA = {
     "status_fail": 0,
     "status_appeal": 0,
     "week_cover_num": 5,
-    "week_cover_rate": 0.4545,
+    "week_cover_rate": 45.45,
     "compliance_num": 5,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【铜陵】财富广场站": {
     "region": "中南大区",
@@ -876,10 +876,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 5,
-    "week_cover_rate": 0.0735,
+    "week_cover_num": 18,
+    "week_cover_rate": 26.47,
     "compliance_num": 18,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【阜阳】人民路站": {
     "region": "中南大区",
@@ -894,10 +894,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 1,
-    "week_cover_rate": 0.0127,
+    "week_cover_num": 48,
+    "week_cover_rate": 60.76,
     "compliance_num": 48,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【洛阳】道北站": {
     "region": "华北二区",
@@ -912,10 +912,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 6,
-    "week_cover_rate": 0.1364,
+    "week_cover_num": 23,
+    "week_cover_rate": 52.27,
     "compliance_num": 23,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【天津】东丽湖站": {
     "region": "华北一区",
@@ -930,10 +930,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 45,
-    "week_cover_rate": 0.4592,
+    "week_cover_num": 56,
+    "week_cover_rate": 57.14,
     "compliance_num": 56,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【合肥】天珑广场": {
     "region": "中南大区",
@@ -949,9 +949,9 @@ var KNIFE_DATA = {
     "status_fail": 0,
     "status_appeal": 0,
     "week_cover_num": 12,
-    "week_cover_rate": 0.1765,
+    "week_cover_rate": 17.65,
     "compliance_num": 12,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【上海】莘庄站": {
     "region": "华东大区",
@@ -960,16 +960,16 @@ var KNIFE_DATA = {
     "reg_1st": 103,
     "checked_month": 33,
     "checked_2plus": 1,
-    "checked_dedup2": 33,
+    "checked_dedup2": 32,
     "status_no": 33,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 10,
-    "week_cover_rate": 0.0971,
+    "week_cover_num": 32,
+    "week_cover_rate": 31.07,
     "compliance_num": 33,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【上海】都市站": {
     "region": "华东大区",
@@ -984,10 +984,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 2,
-    "week_cover_rate": 0.029,
+    "week_cover_num": 6,
+    "week_cover_rate": 8.7,
     "compliance_num": 6,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【上海】北洋泾": {
     "region": "华东大区",
@@ -1002,10 +1002,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 2,
-    "week_cover_rate": 0.0312,
+    "week_cover_num": 37,
+    "week_cover_rate": 57.81,
     "compliance_num": 36,
-    "compliance_rate": 0.973
+    "compliance_rate": 97.3
   },
   "兴必达【南京】南京南站": {
     "region": "华东大区",
@@ -1021,9 +1021,9 @@ var KNIFE_DATA = {
     "status_fail": 0,
     "status_appeal": 0,
     "week_cover_num": 6,
-    "week_cover_rate": 0.0769,
+    "week_cover_rate": 7.69,
     "compliance_num": 6,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【上海】江镇站": {
     "region": "华东大区",
@@ -1038,10 +1038,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 1,
-    "week_cover_rate": 0.0323,
+    "week_cover_num": 15,
+    "week_cover_rate": 48.39,
     "compliance_num": 15,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【天津】海光寺站": {
     "region": "华北一区",
@@ -1056,10 +1056,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 9,
-    "week_cover_rate": 0.0682,
+    "week_cover_num": 14,
+    "week_cover_rate": 10.61,
     "compliance_num": 14,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【郑州】德化站": {
     "region": "华北二区",
@@ -1074,10 +1074,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 2,
-    "week_cover_rate": 0.0244,
+    "week_cover_num": 46,
+    "week_cover_rate": 56.1,
     "compliance_num": 46,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【上海】新桥站": {
     "region": "华东大区",
@@ -1086,16 +1086,16 @@ var KNIFE_DATA = {
     "reg_1st": 29,
     "checked_month": 21,
     "checked_2plus": 1,
-    "checked_dedup2": 21,
+    "checked_dedup2": 20,
     "status_no": 21,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 1,
-    "week_cover_rate": 0.0345,
+    "week_cover_num": 20,
+    "week_cover_rate": 68.97,
     "compliance_num": 21,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【西安】田园都市站": {
     "region": "华北三区",
@@ -1110,10 +1110,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 3,
-    "week_cover_rate": 0.0411,
+    "week_cover_num": 28,
+    "week_cover_rate": 38.36,
     "compliance_num": 28,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【洛阳】百货楼站": {
     "region": "华北二区",
@@ -1128,10 +1128,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 6,
-    "week_cover_rate": 0.0822,
+    "week_cover_num": 30,
+    "week_cover_rate": 41.1,
     "compliance_num": 30,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【西安】汉城站": {
     "region": "华北三区",
@@ -1140,16 +1140,16 @@ var KNIFE_DATA = {
     "reg_1st": 194,
     "checked_month": 101,
     "checked_2plus": 1,
-    "checked_dedup2": 101,
+    "checked_dedup2": 100,
     "status_no": 101,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 1,
-    "week_cover_rate": 0.0052,
+    "week_cover_num": 100,
+    "week_cover_rate": 51.55,
     "compliance_num": 101,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【马鞍山】雨山公园站": {
     "region": "中南大区",
@@ -1164,10 +1164,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 2,
-    "week_cover_rate": 0.1176,
+    "week_cover_num": 5,
+    "week_cover_rate": 29.41,
     "compliance_num": 5,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【太原】服装城站": {
     "region": "华北三区",
@@ -1176,16 +1176,16 @@ var KNIFE_DATA = {
     "reg_1st": 86,
     "checked_month": 32,
     "checked_2plus": 1,
-    "checked_dedup2": 32,
+    "checked_dedup2": 31,
     "status_no": 32,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 13,
-    "week_cover_rate": 0.1512,
+    "week_cover_num": 31,
+    "week_cover_rate": 36.05,
     "compliance_num": 32,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【长春】安庆路站": {
     "region": "华北一区",
@@ -1200,10 +1200,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 1,
-    "week_cover_rate": 0.0185,
+    "week_cover_num": 34,
+    "week_cover_rate": 62.96,
     "compliance_num": 34,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【西安】庆安站": {
     "region": "华北三区",
@@ -1218,10 +1218,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 11,
-    "week_cover_rate": 0.0764,
+    "week_cover_num": 51,
+    "week_cover_rate": 35.42,
     "compliance_num": 51,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【唐山】银丰站": {
     "region": "华北一区",
@@ -1236,10 +1236,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 2,
-    "week_cover_rate": 0.087,
+    "week_cover_num": 11,
+    "week_cover_rate": 47.83,
     "compliance_num": 11,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【天津】圣光站": {
     "region": "华北一区",
@@ -1254,10 +1254,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 1,
-    "week_cover_rate": 0.0119,
+    "week_cover_num": 11,
+    "week_cover_rate": 13.1,
     "compliance_num": 11,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【北京】果园站": {
     "region": "华东大区",
@@ -1272,10 +1272,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 7,
-    "week_cover_rate": 0.0909,
+    "week_cover_num": 29,
+    "week_cover_rate": 37.66,
     "compliance_num": 29,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【长春】活力汇站": {
     "region": "华北一区",
@@ -1290,10 +1290,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 17,
-    "week_cover_rate": 0.2394,
+    "week_cover_num": 21,
+    "week_cover_rate": 29.58,
     "compliance_num": 21,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【阜新】开发区站": {
     "region": "华北一区",
@@ -1308,10 +1308,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 5,
-    "week_cover_rate": 0.061,
+    "week_cover_num": 50,
+    "week_cover_rate": 60.98,
     "compliance_num": 50,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【青岛】曼哈顿站": {
     "region": "中南大区",
@@ -1326,10 +1326,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 2,
+    "week_cover_rate": 1.96,
     "compliance_num": 2,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【张家口】银座站": {
     "region": "华北一区",
@@ -1344,10 +1344,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 36,
+    "week_cover_rate": 60.0,
     "compliance_num": 36,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【锦州】笔架山站": {
     "region": "华北一区",
@@ -1362,10 +1362,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 34,
+    "week_cover_rate": 51.52,
     "compliance_num": 34,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【张家口】宣化东站": {
     "region": "华北一区",
@@ -1374,16 +1374,16 @@ var KNIFE_DATA = {
     "reg_1st": 78,
     "checked_month": 46,
     "checked_2plus": 1,
-    "checked_dedup2": 46,
+    "checked_dedup2": 45,
     "status_no": 46,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 45,
+    "week_cover_rate": 57.69,
     "compliance_num": 46,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【商丘】平台站": {
     "region": "华北二区",
@@ -1398,10 +1398,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 26,
+    "week_cover_rate": 59.09,
     "compliance_num": 26,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【蚌埠】淮上大道站": {
     "region": "中南大区",
@@ -1416,10 +1416,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 26,
+    "week_cover_rate": 53.06,
     "compliance_num": 26,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【洛阳】滨河站": {
     "region": "华北二区",
@@ -1434,10 +1434,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 57,
+    "week_cover_rate": 62.64,
     "compliance_num": 57,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【秦皇岛】老龙头站": {
     "region": "华北一区",
@@ -1446,16 +1446,16 @@ var KNIFE_DATA = {
     "reg_1st": 49,
     "checked_month": 27,
     "checked_2plus": 1,
-    "checked_dedup2": 27,
+    "checked_dedup2": 26,
     "status_no": 27,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 26,
+    "week_cover_rate": 53.06,
     "compliance_num": 27,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【张家口】武城站": {
     "region": "华北一区",
@@ -1470,10 +1470,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 16,
+    "week_cover_rate": 61.54,
     "compliance_num": 16,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【阜新】长虹站": {
     "region": "华北一区",
@@ -1488,10 +1488,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 6,
+    "week_cover_rate": 18.75,
     "compliance_num": 6,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【运城】世纪广场站": {
     "region": "华北三区",
@@ -1506,10 +1506,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 22,
+    "week_cover_rate": 51.16,
     "compliance_num": 22,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【青岛】四方站": {
     "region": "中南大区",
@@ -1524,10 +1524,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 51,
+    "week_cover_rate": 64.56,
     "compliance_num": 51,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【阜阳】千百意站": {
     "region": "中南大区",
@@ -1542,10 +1542,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 2,
+    "week_cover_rate": 9.52,
     "compliance_num": 2,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【张家口】百盛站": {
     "region": "华北一区",
@@ -1554,16 +1554,16 @@ var KNIFE_DATA = {
     "reg_1st": 71,
     "checked_month": 44,
     "checked_2plus": 1,
-    "checked_dedup2": 44,
+    "checked_dedup2": 43,
     "status_no": 43,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 43,
+    "week_cover_rate": 60.56,
     "compliance_num": 43,
-    "compliance_rate": 0.9773
+    "compliance_rate": 97.73
   },
   "兴必达【西安】东关站": {
     "region": "华北三区",
@@ -1578,10 +1578,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 78,
+    "week_cover_rate": 50.32,
     "compliance_num": 78,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【锦州】虎跃站": {
     "region": "华北一区",
@@ -1596,10 +1596,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 14,
+    "week_cover_rate": 21.88,
     "compliance_num": 14,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【青岛】中央CBD站": {
     "region": "中南大区",
@@ -1608,16 +1608,16 @@ var KNIFE_DATA = {
     "reg_1st": 132,
     "checked_month": 8,
     "checked_2plus": 1,
-    "checked_dedup2": 8,
+    "checked_dedup2": 7,
     "status_no": 8,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 7,
+    "week_cover_rate": 5.3,
     "compliance_num": 8,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【张家口】金鼎站": {
     "region": "华北一区",
@@ -1632,10 +1632,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 60,
+    "week_cover_rate": 61.86,
     "compliance_num": 60,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【枣庄】美铭广场站": {
     "region": "中南大区",
@@ -1650,10 +1650,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 16,
+    "week_cover_rate": 12.9,
     "compliance_num": 16,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【滁州】花博园站": {
     "region": "中南大区",
@@ -1662,16 +1662,16 @@ var KNIFE_DATA = {
     "reg_1st": 0,
     "checked_month": 24,
     "checked_2plus": 1,
-    "checked_dedup2": 24,
+    "checked_dedup2": 23,
     "status_no": 24,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
+    "week_cover_num": 23,
     "week_cover_rate": 0,
     "compliance_num": 24,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【天津】汊沽港站": {
     "region": "华北一区",
@@ -1686,10 +1686,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 16,
+    "week_cover_rate": 34.04,
     "compliance_num": 14,
-    "compliance_rate": 0.875
+    "compliance_rate": 87.5
   },
   "兴必达【上海】隆昌站": {
     "region": "华东大区",
@@ -1704,10 +1704,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 2,
+    "week_cover_rate": 4.55,
     "compliance_num": 2,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【锦州】凌西站": {
     "region": "华北一区",
@@ -1722,10 +1722,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 8,
+    "week_cover_rate": 11.11,
     "compliance_num": 8,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【张家口】宣化站": {
     "region": "华北一区",
@@ -1740,10 +1740,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 62,
+    "week_cover_rate": 54.39,
     "compliance_num": 62,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【西安】八府庄站": {
     "region": "华北三区",
@@ -1758,10 +1758,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 33,
+    "week_cover_rate": 35.48,
     "compliance_num": 33,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【秦皇岛】环岛二站": {
     "region": "华北一区",
@@ -1776,10 +1776,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 12,
+    "week_cover_rate": 15.0,
     "compliance_num": 12,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【阜新】细河站": {
     "region": "华北一区",
@@ -1794,10 +1794,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 11,
+    "week_cover_rate": 10.58,
     "compliance_num": 11,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【西安】东关二站": {
     "region": "华北三区",
@@ -1806,16 +1806,16 @@ var KNIFE_DATA = {
     "reg_1st": 150,
     "checked_month": 74,
     "checked_2plus": 1,
-    "checked_dedup2": 74,
+    "checked_dedup2": 73,
     "status_no": 74,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 73,
+    "week_cover_rate": 48.67,
     "compliance_num": 74,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【唐山】银泰城站": {
     "region": "华北一区",
@@ -1830,10 +1830,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 29,
+    "week_cover_rate": 60.42,
     "compliance_num": 29,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【合肥】时代天街站": {
     "region": "中南大区",
@@ -1848,10 +1848,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 46,
+    "week_cover_rate": 63.01,
     "compliance_num": 46,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【合肥】大唐国际": {
     "region": "中南大区",
@@ -1866,10 +1866,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 27,
+    "week_cover_rate": 71.05,
     "compliance_num": 27,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【青岛】城阳国学公园站": {
     "region": "中南大区",
@@ -1884,10 +1884,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 1,
+    "week_cover_rate": 1.32,
     "compliance_num": 1,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【临沂】河东站": {
     "region": "中南大区",
@@ -1902,10 +1902,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 12,
+    "week_cover_rate": 12.12,
     "compliance_num": 12,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【南京】上元大街站": {
     "region": "华东大区",
@@ -1920,10 +1920,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 17,
+    "week_cover_rate": 27.42,
     "compliance_num": 17,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【长春】开运站": {
     "region": "华北一区",
@@ -1938,10 +1938,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 28,
+    "week_cover_rate": 68.29,
     "compliance_num": 28,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【蚌埠】明珠站": {
     "region": "中南大区",
@@ -1956,10 +1956,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 18,
+    "week_cover_rate": 66.67,
     "compliance_num": 18,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【唐山】万达站点": {
     "region": "华北一区",
@@ -1974,10 +1974,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 39,
+    "week_cover_rate": 66.1,
     "compliance_num": 39,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【青岛】水悦城站": {
     "region": "中南大区",
@@ -1992,10 +1992,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 8,
+    "week_cover_rate": 21.62,
     "compliance_num": 8,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【青岛】君峰路站": {
     "region": "中南大区",
@@ -2010,10 +2010,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 26,
+    "week_cover_rate": 37.68,
     "compliance_num": 26,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【西安】杜陵邑站": {
     "region": "华北三区",
@@ -2028,10 +2028,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 29,
+    "week_cover_rate": 32.58,
     "compliance_num": 29,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【天津】张家窝站": {
     "region": "华北一区",
@@ -2046,10 +2046,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 57,
+    "week_cover_rate": 52.78,
     "compliance_num": 56,
-    "compliance_rate": 0.9825
+    "compliance_rate": 98.25
   },
   "兴必达【洛阳】洛拖站": {
     "region": "华北二区",
@@ -2064,10 +2064,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 20,
+    "week_cover_rate": 31.75,
     "compliance_num": 20,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【阜阳】恒大站": {
     "region": "中南大区",
@@ -2082,10 +2082,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 23,
+    "week_cover_rate": 65.71,
     "compliance_num": 23,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【天津】洪湖里站": {
     "region": "华北一区",
@@ -2100,10 +2100,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 43,
+    "week_cover_rate": 51.19,
     "compliance_num": 42,
-    "compliance_rate": 0.9767
+    "compliance_rate": 97.67
   },
   "兴必达【长春】欧亚卖场站": {
     "region": "华北一区",
@@ -2118,10 +2118,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 14,
+    "week_cover_rate": 35.9,
     "compliance_num": 14,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【西安】等驾坡站": {
     "region": "华北三区",
@@ -2136,10 +2136,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 35,
+    "week_cover_rate": 63.64,
     "compliance_num": 35,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【秦皇岛】北戴河站": {
     "region": "华北一区",
@@ -2154,10 +2154,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 34,
+    "week_cover_rate": 21.12,
     "compliance_num": 34,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【郑州】龙子湖站": {
     "region": "华北二区",
@@ -2172,10 +2172,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 9,
+    "week_cover_rate": 20.45,
     "compliance_num": 9,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【唐山】八方站": {
     "region": "华北一区",
@@ -2190,10 +2190,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 69,
+    "week_cover_rate": 66.99,
     "compliance_num": 69,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【枣庄】站前广场站": {
     "region": "中南大区",
@@ -2208,10 +2208,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 37,
+    "week_cover_rate": 32.74,
     "compliance_num": 37,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【秦皇岛】大学站": {
     "region": "华北一区",
@@ -2226,10 +2226,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 50,
+    "week_cover_rate": 58.82,
     "compliance_num": 50,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【锦州】凌河站": {
     "region": "华北一区",
@@ -2244,10 +2244,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 2,
+    "week_cover_rate": 4.55,
     "compliance_num": 2,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【枣庄】山亭站": {
     "region": "中南大区",
@@ -2262,10 +2262,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 13,
+    "week_cover_rate": 59.09,
     "compliance_num": 13,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【临沂】联安大厦站": {
     "region": "中南大区",
@@ -2274,16 +2274,16 @@ var KNIFE_DATA = {
     "reg_1st": 55,
     "checked_month": 35,
     "checked_2plus": 1,
-    "checked_dedup2": 35,
+    "checked_dedup2": 34,
     "status_no": 35,
     "status_wait": 0,
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 34,
+    "week_cover_rate": 61.82,
     "compliance_num": 35,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【唐山】信息大厦站": {
     "region": "华北一区",
@@ -2298,10 +2298,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 57,
+    "week_cover_rate": 56.44,
     "compliance_num": 57,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【商丘】文化路站": {
     "region": "华北二区",
@@ -2316,10 +2316,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 13,
+    "week_cover_rate": 68.42,
     "compliance_num": 13,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【合肥】港汇广场站": {
     "region": "中南大区",
@@ -2334,10 +2334,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 3,
+    "week_cover_rate": 5.66,
     "compliance_num": 2,
-    "compliance_rate": 0.6667
+    "compliance_rate": 66.67
   },
   "兴必达【马鞍山】金鹰站": {
     "region": "中南大区",
@@ -2352,10 +2352,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 1,
+    "week_cover_rate": 1.75,
     "compliance_num": 1,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【通辽】通达一站": {
     "region": "华北一区",
@@ -2370,10 +2370,10 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 1,
+    "week_cover_rate": 2.27,
     "compliance_num": 1,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   },
   "兴必达【枣庄】光明广场站": {
     "region": "中南大区",
@@ -2388,9 +2388,9 @@ var KNIFE_DATA = {
     "status_audit": 0,
     "status_fail": 0,
     "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0.0,
+    "week_cover_num": 1,
+    "week_cover_rate": 1.69,
     "compliance_num": 1,
-    "compliance_rate": 1.0
+    "compliance_rate": 100.0
   }
 };
