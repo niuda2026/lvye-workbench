@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-13 07:04:30",
+  "updated_at": "2026-09-13 07:05:32",
   "action_summary": {
     "total": 14,
     "ok": 8,
@@ -268,7 +268,7 @@ window.DATA_CENTER = {
             "latest": "充换电血压_data.js",
             "mtime": "2026-09-12 15:43:39",
             "max_age_hours": 13,
-            "age_hours": 15.3,
+            "age_hours": 15.4,
             "ok": false,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
