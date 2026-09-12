@@ -1205,6 +1205,7 @@ function renderStandardTab(tabId, dataVar, columns, extra, headerGroups) {
     updateClothingRegionCards();
   } else {
     document.getElementById('summary-cards-'+tabId).innerHTML = cardHtml;
+    if (tabId === 'knife' && typeof knSiteCards === 'function') knSiteCards(visibleRows);
   }
 }
 
@@ -1899,6 +1900,47 @@ function knRenderSite() {
     {label:'合规率', colspan:1, bgColor:'#BBF7D0', textColor:'#166534'}
   ];
   renderStandardTab('knife', 'KNIFE_DATA', columns, null, headerGroups);
+}
+
+/* 站点维度：追加带刀巡检专属 KPI 卡（renderStandardTab 只出「站点数」一张） */
+function knSiteCards(visibleRows){
+  var box = document.getElementById('summary-cards-knife');
+  if(!box || typeof KNIFE_DATA !== 'object') return;
+  // 清掉上次追加的卡片，保留 renderStandardTab 生成的「站点数」
+  var olds = box.querySelectorAll('.kn-kpi');
+  for(var i=0;i<olds.length;i++) olds[i].parentNode.removeChild(olds[i]);
+  var num = function(v){ var n = Number(v); return isFinite(n) ? n : 0; };
+  var reg=0, checked=0, no=0, wait=0, audit=0, fail=0, appeal=0, coverNum=0, compNum=0;
+  visibleRows.forEach(function(s){
+    var d = KNIFE_DATA[s.site] || {};
+    reg += num(d.reg_1st);
+    checked += num(d.checked_month);
+    no += num(d.status_no);
+    wait += num(d.status_wait);
+    audit += num(d.status_audit);
+    fail += num(d.status_fail);
+    appeal += num(d.status_appeal);
+    coverNum += num(d.week_cover_num);
+    compNum += num(d.compliance_num);
+  });
+  var pct = function(n,d){ return d ? (n/d*100).toFixed(2)+'%' : '0%'; };
+  var cls = function(n,d){ var r = d ? n/d*100 : 0; return r>=90?'green':(r>=60?'yellow':'red'); };
+  var html =
+      knCard('1号注册骑手', reg.toLocaleString(), '站点维度分母', '')
+    + knCard('本月已检查', checked.toLocaleString(), '总巡检人次', '')
+    + knCard('月度覆盖率', pct(coverNum,reg), '去重2次后 '+coverNum.toLocaleString()+' / 分母 '+reg.toLocaleString()+' 人', cls(coverNum,reg))
+    + knCard('合规率', pct(compNum,checked), '无需整改 '+compNum.toLocaleString()+' / 已检查 '+checked.toLocaleString()+' 人', cls(compNum,checked))
+    + knCard('无需整改', no.toLocaleString(), '通过项', 'green')
+    + knCard('待整改', wait.toLocaleString(), '需站长跟进', wait?'red':'')
+    + knCard('整改不通过', fail.toLocaleString(), '需整改', fail?'red':'')
+    + knCard('整改待审核', audit.toLocaleString(), '审核中', audit?'yellow':'')
+    + knCard('待申诉', appeal.toLocaleString(), '申诉中', appeal?'yellow':'');
+  var tmp = document.createElement('div');
+  tmp.style.display = 'contents';
+  tmp.innerHTML = html;
+  var cs = tmp.querySelectorAll('.card');
+  for(var j=0;j<cs.length;j++) cs[j].classList.add('kn-kpi');
+  box.appendChild(tmp);
 }
 
 function knToggleMs(k){
