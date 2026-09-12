@@ -1,16 +1,15 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-13 07:05:32",
+  "updated_at": "2026-09-13 07:08:03",
   "action_summary": {
     "total": 14,
-    "ok": 8,
-    "alert": 6,
+    "ok": 9,
+    "alert": 5,
     "missing": 0,
     "alert_groups": [
       "履约项目",
       "骑手管理",
       "保险",
       "公司风险管理系统",
-      "站点地图",
       "数据中心"
     ],
     "all_ok": false
@@ -281,7 +280,7 @@ window.DATA_CENTER = {
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-09-12 09:16:23",
             "max_age_hours": 30,
-            "age_hours": 21.8,
+            "age_hours": 21.9,
             "ok": true,
             "note": "早间自动化抓取",
             "fail_hits": [],
@@ -375,7 +374,7 @@ window.DATA_CENTER = {
             "latest": "update_log.txt",
             "mtime": "2026-09-13 07:03:36",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -552,7 +551,7 @@ window.DATA_CENTER = {
             "latest": "premium_latest.json",
             "mtime": "2026-09-12 10:04:18",
             "max_age_hours": 26,
-            "age_hours": 21.0,
+            "age_hours": 21.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -565,7 +564,7 @@ window.DATA_CENTER = {
             "latest": "v3_data.js",
             "mtime": "2026-09-13 07:03:40",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -674,7 +673,7 @@ window.DATA_CENTER = {
             "latest": "110工单看板.html",
             "mtime": "2026-08-15 09:46:31",
             "max_age_hours": 168,
-            "age_hours": 693.3,
+            "age_hours": 693.4,
             "ok": false,
             "note": "更新频率待确认，先按 7 天",
             "fail_hits": [],
@@ -710,7 +709,7 @@ window.DATA_CENTER = {
         "data_files": [
           "全国站点地图\\data.js"
         ],
-        "data_mtime": "2026-09-09 17:58:26",
+        "data_mtime": "2026-09-13 07:08:03",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -719,7 +718,7 @@ window.DATA_CENTER = {
           {
             "type": "美团站点快照",
             "latest": "meituan_stations_snapshot.json",
-            "mtime": "2026-09-09 17:58:26",
+            "mtime": "2026-09-13 07:08:01",
             "synced": true
           }
         ],
@@ -728,10 +727,10 @@ window.DATA_CENTER = {
             "label": "美团站点快照更新",
             "path": "全国站点地图\\update_stations.log",
             "latest": "update_stations.log",
-            "mtime": "2026-09-09 17:58:26",
+            "mtime": "2026-09-13 07:08:03",
             "max_age_hours": 26,
-            "age_hours": 85.1,
-            "ok": false,
+            "age_hours": 0.0,
+            "ok": true,
             "note": "",
             "fail_hits": [],
             "fail_lines": [],
@@ -739,13 +738,13 @@ window.DATA_CENTER = {
           }
         ],
         "action_stats": {
-          "ok_count": 0,
-          "alert_count": 1,
+          "ok_count": 1,
+          "alert_count": 0,
           "missing_count": 0,
           "total": 1,
-          "all_ok": false
+          "all_ok": true
         },
-        "all_healthy": false
+        "all_healthy": true
       },
       "boards": [
         {
@@ -845,7 +844,7 @@ window.DATA_CENTER = {
             "latest": "monthly_summary.js",
             "mtime": "2026-09-13 07:03:39",
             "max_age_hours": 72,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
