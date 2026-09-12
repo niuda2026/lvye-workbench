@@ -1841,7 +1841,10 @@ function knUpdateNote(){
     txt += ' · ' + m.date_range.min + ' ~ ' + m.date_range.max;
   }
   if(m.reg_file_date){
-    txt += ' · 1号注册分母=' + m.reg_file_date + '排班';
+    txt += ' · 站点分母(1号注册)=' + m.reg_file_date + '排班';
+  }
+  if(m.roster_file_date){
+    txt += ' · 骑手明细(最新在职)=' + m.roster_file_date + '排班';
   }
   n.textContent = txt;
 }
@@ -2023,7 +2026,7 @@ function knRenderRider(p){
   var appealCnt  = all.filter(function(r){return r[7]==='待申诉';}).length;
   var cards = document.getElementById('knCardsRider');
   if(cards) cards.innerHTML =
-    knCard('在职骑手', total.toLocaleString(), '当月排班在册', '')
+    knCard('在职骑手', total.toLocaleString(), '最新在职骑手名册', '')
   + knCard('已巡检', checkedCnt.toLocaleString(), '覆盖率 ' + (total? (checkedCnt/total*100).toFixed(2)+'%' : '0%'), 'green')
   + knCard('未巡检', noneCnt.toLocaleString(), '需跟进', noneCnt?'red':'')
   + knCard('无需整改', noCnt.toLocaleString(), '占比 ' + (checkedCnt? (noCnt/checkedCnt*100).toFixed(2)+'%' : '0%'), 'green')
