@@ -387,33 +387,72 @@ tr.cb-row-noup:hover td{background:#ffefef}
 </div>
 <!-- Tab: box -->
 <div class="panel" id="panel-box">
-  <div class="summary-row" id="summary-cards-box"></div>
+  <div class="cb-subtab-bar">
+    <div class="cb-subtab active" data-t="site" onclick="bxSwitchSub('site')">🏢 站点维度达成</div>
+    <div class="cb-subtab" data-t="rider" onclick="bxSwitchSub('rider')">🛵 骑手维度明细<span class="cb-cnt" id="bxCntRider">-</span></div>
+    <div class="cb-range">
+      <span class="cb-range-cap">统计周期：当月1日~至今</span>
+      <span class="cb-range-note" id="bxRangeNote"></span>
+    </div>
+  </div>
+
+  <!-- ══ 子Tab1：站点维度达成 ══ -->
+  <div id="bx-panel-site">
+    <div class="summary-row" id="summary-cards-box"></div>
     <div class="sub-tab-bar">
-    <span class="sub-tab-label">显示层级：</span>
-    <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleViewBtn('subregion')">区域行</button>
-    <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleViewBtn('merchant')">城市行</button>
-    <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
-    <span class="sub-tab-sep"></span>
-    <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-    <button class="btn-rules" onclick="openBoxRulesModal()">餐箱消毒规则</button>
+      <span class="sub-tab-label">显示层级：</span>
+      <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleViewBtn('subregion')">区域行</button>
+      <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleViewBtn('merchant')">城市行</button>
+      <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
+      <span class="sub-tab-sep"></span>
+      <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
+      <button class="btn-rules" onclick="openBoxRulesModal()">餐箱消毒规则</button>
+    </div>
+    <div class="filter-bar" id="filter-bar-box">
+      <label>大区</label><div class="ms-wrap" id="ms-region-box"><div class="ms-btn" onclick="toggleMs('region-box')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>区域</label><div class="ms-wrap" id="ms-subregion-box"><div class="ms-btn" onclick="toggleMs('subregion-box')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>城市</label><div class="ms-wrap" id="ms-city-box"><div class="ms-btn" onclick="toggleMs('city-box')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>站点</label><div class="ms-wrap" id="ms-site-box"><div class="ms-btn" onclick="toggleMs('site-box')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <button class="btn btn-secondary" onclick="clearFilter('box')">清除筛选</button>
+      <button class="btn btn-export" onclick="exportTable('box')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
+      <button class="btn btn-screenshot" onclick="screenshotPanel('box')" title="截取当前看板">&#128247; 截图</button>
+      <span class="filter-count" id="filter-count-box"></span>
+    </div>
+    <div class="table-wrap table-wrap-station">
+      <table class="dt" id="tbl-box">
+        <thead id="thead-box"></thead>
+        <tbody id="tbody-box"></tbody>
+      </table>
+    </div>
   </div>
-<div class="filter-bar" id="filter-bar-box">
-    <label>大区</label><div class="ms-wrap" id="ms-region-box"><div class="ms-btn" onclick="toggleMs('region-box')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
-    <label>区域</label><div class="ms-wrap" id="ms-subregion-box"><div class="ms-btn" onclick="toggleMs('subregion-box')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
-    <label>城市</label><div class="ms-wrap" id="ms-city-box"><div class="ms-btn" onclick="toggleMs('city-box')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
-    <label>站点</label><div class="ms-wrap" id="ms-site-box"><div class="ms-btn" onclick="toggleMs('site-box')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
-    <button class="btn btn-secondary" onclick="clearFilter('box')">清除筛选</button>
-    <button class="btn btn-export" onclick="exportTable('box')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
-    <button class="btn btn-screenshot" onclick="screenshotPanel('box')" title="截取当前看板">&#128247; 截图</button>
-    <span class="filter-count" id="filter-count-box"></span>
+
+  <!-- ══ 子Tab2：骑手维度明细 ══ -->
+  <div id="bx-panel-rider" style="display:none">
+    <div class="summary-row" id="bxCardsRider"></div>
+    <div class="filter-bar">
+      <label>大区</label><div class="ms-wrap" id="ms-bxregion"><div class="ms-btn" onclick="bxToggleMs('bxregion')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>区域</label><div class="ms-wrap" id="ms-bxsubr"><div class="ms-btn" onclick="bxToggleMs('bxsubr')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>城市</label><div class="ms-wrap" id="ms-bxcity"><div class="ms-btn" onclick="bxToggleMs('bxcity')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>站点</label><div class="ms-wrap" id="ms-bxsite"><div class="ms-btn" onclick="bxToggleMs('bxsite')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>状态</label><div class="ms-wrap" id="ms-bxstatus"><div class="ms-btn" onclick="bxToggleMs('bxstatus')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <input class="inp" id="bxQ" placeholder="🔍 骑手ID / 姓名" oninput="bxRenderRider(1)">
+      <button class="btn btn-secondary" onclick="bxClearF()">清除筛选</button>
+      <button class="btn btn-secondary" onclick="bxOnlyNone()" title="只看未消毒骑手，直接导出跟进名单">⚠ 只看未消毒</button>
+      <button class="btn btn-export" onclick="bxExportTbl()">&#128229; 导出Excel</button>
+      <span class="filter-count" id="bxCntRiderF"></span>
+    </div>
+    <div class="table-wrap table-wrap-rider">
+      <table class="dt" id="bxTblRider">
+        <thead><tr>
+          <th>大区</th><th>区域</th><th>城市</th><th>站点名称</th>
+          <th>骑手ID</th><th>骑手姓名</th><th>排班状态</th>
+          <th>提交时间</th><th>审核状态</th>
+        </tr></thead>
+        <tbody id="bxTbodyRider"></tbody>
+      </table>
+    </div>
+    <div class="pager" id="bxPager"></div>
   </div>
-  <div class="table-wrap table-wrap-station">
-    <table class="dt" id="tbl-box">
-      <thead id="thead-box"></thead>
-      <tbody id="tbody-box"></tbody>
-    </table>
-  </div>
-  
 </div>
 <!-- Tab: knife -->
 <div class="panel" id="panel-knife">
@@ -644,6 +683,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
 <script src="data.js"></script>
 <script src="充换电血压_data.js"></script>
 <script src="knife_rider_data.js"></script>
+<script src="box_rider_data.js"></script>
 <!-- 截图库 -->
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js" crossorigin="anonymous"></script>
 <script>
@@ -1816,13 +1856,229 @@ function renderCheckFailPagination(totalPages, totalRows) {
 }
 
 // ─── Tab 4: 餐箱消毒看板 ─────────────────────────────────────
+var bxMeta = window.BOX_META || {};
+var bxRoster = window.BOX_ROSTER || [];
+var bxLatest = window.BOX_LATEST || {};
+var bxSf = {bxregion:[],bxsubr:[],bxcity:[],bxsite:[],bxstatus:[]};
+var bxPage = 1, bxPer = 50, bxFiltered = [];
+var bxSub = 'site';
+var BOX_STATUSES = ['未消毒','已通过','审核中','已驳回'];
+
 function renderBoxTab() {
+  bxInitOnce();
+  if(bxSub === 'rider'){ bxRenderRider(1); return; }
   var columns = [
-    {key:'rate', label:'消毒标准化率', isPct:false, isSumRatio:true},
+    {key:'rate', label:'消毒标准化率', isPct:true, isSumRatio:true},
     {key:'num', label:'消毒合格数', isPct:false, isSumRatio:false},
-    {key:'den', label:'应消毒数', isPct:false, isSumRatio:false}
+    {key:'box_den', label:'应消毒数', isPct:false, isSumRatio:false},
+    {key:'pending', label:'审核中', isPct:false, isSumRatio:false},
+    {key:'rejected', label:'已驳回', isPct:false, isSumRatio:false},
+    {key:'box_not', label:'未消毒', isPct:false, isSumRatio:false, isBad:true}
   ];
   renderStandardTab('box', 'BOX_DATA', columns, null);
+  bxSiteCards();
+  bxUpdateNote();
+}
+
+function bxUpdateNote(){
+  var n = document.getElementById('bxRangeNote');
+  if(!n) return;
+  var txt = '在职骑手 ' + (bxMeta.roster_count || 0) + ' 人 · 已匹配 ' + (bxMeta.matched_count || 0) + ' 人';
+  if(bxMeta.source_file) txt += ' · 表单 ' + bxMeta.source_file;
+  n.textContent = txt;
+}
+
+function bxSwitchSub(t){
+  bxSub = t;
+  var ts = document.querySelectorAll('#panel-box .cb-subtab');
+  for(var i=0;i<ts.length;i++) ts[i].classList.toggle('active', ts[i].getAttribute('data-t') === t);
+  var ps = document.getElementById('bx-panel-site'), pr = document.getElementById('bx-panel-rider');
+  if(ps) ps.style.display = (t === 'site') ? '' : 'none';
+  if(pr) pr.style.display = (t === 'rider') ? '' : 'none';
+  if(t === 'site') renderBoxTab();
+  if(t === 'rider') bxRenderRider(1);
+}
+
+/* 站点维度：追加餐箱消毒专属 KPI 卡 */
+function bxSiteCards(){
+  var box = document.getElementById('summary-cards-box');
+  if(!box || typeof BOX_DATA !== 'object') return;
+  var olds = box.querySelectorAll('.bx-kpi');
+  for(var i=0;i<olds.length;i++) olds[i].parentNode.removeChild(olds[i]);
+  var num = function(v){ var n = Number(v); return isFinite(n) ? n : 0; };
+  var den=0, q=0, p=0, rj=0, notc=0;
+  Object.keys(BOX_DATA).forEach(function(site){
+    if(isFiltered(site, 'box')) return;
+    var d = BOX_DATA[site];
+    den += num(d.den); q += num(d.num); p += num(d.pending); rj += num(d.rejected); notc += num(d.not);
+  });
+  var rate = den ? (q/den*100) : 0;
+  var pct = function(n,d){ return d ? (n/d*100).toFixed(2)+'%' : '0%'; };
+  var cls = function(n,d){ var r = d ? n/d*100 : 0; return r>=90?'green':(r>=60?'yellow':'red'); };
+  var html =
+      bxCard('站点数', Object.keys(BOX_DATA).length.toLocaleString(), '有在职骑手站点', '') +
+      bxCard('应消毒骑手', den.toLocaleString(), '当天排班在册', '') +
+      bxCard('消毒合格数', q.toLocaleString(), '审核已通过', q?'green':'') +
+      bxCard('消毒标准化率', pct(q,den), '合格 / 应消毒', cls(q,den)) +
+      bxCard('未消毒', notc.toLocaleString(), '待跟进', notc?'red':'') +
+      bxCard('审核中', p.toLocaleString(), '待平台审核', p?'yellow':'') +
+      bxCard('已驳回', rj.toLocaleString(), '需整改重提', rj?'red':'');
+  var tmp = document.createElement('div');
+  tmp.style.display = 'contents';
+  tmp.innerHTML = html;
+  var cs = tmp.querySelectorAll('.card');
+  for(var j=0;j<cs.length;j++) cs[j].classList.add('bx-kpi');
+  box.appendChild(tmp);
+}
+
+function bxCard(l,v,s,cls){ return '<div class="card '+(cls||'')+'"><div class="c-label">'+l+'</div><div class="c-value">'+v+'</div><div class="c-sub">'+s+'</div></div>'; }
+
+/* 独立多选下拉 */
+function bxToggleMs(k){
+  var w = document.getElementById('ms-'+k); if(!w) return;
+  var o = w.classList.contains('open');
+  var all = document.querySelectorAll('.ms-wrap');
+  for(var i=0;i<all.length;i++) all[i].classList.remove('open');
+  if(!o) w.classList.add('open');
+}
+function bxInitMs(k, opts, onchg){
+  var w = document.getElementById('ms-'+k); if(!w) return;
+  var d = w.querySelector('.ms-drop'); d.innerHTML = '';
+  if(!bxSf[k]) bxSf[k] = [];
+  bxSf[k] = bxSf[k].filter(function(v){ return opts.indexOf(v) >= 0; });
+  opts.forEach(function(v){
+    var it = document.createElement('div'); it.className = 'ms-item';
+    var cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = bxSf[k].indexOf(v) >= 0;
+    cb.onchange = function(){ bxOnMs(k, v, cb.checked, onchg); };
+    it.appendChild(cb); it.appendChild(document.createTextNode(v));
+    it.onclick = function(e){ if(e.target !== cb){ cb.checked = !cb.checked; bxOnMs(k, v, cb.checked, onchg); } };
+    d.appendChild(it);
+  });
+  bxUpdMsLabel(k);
+}
+function bxOnMs(k, v, on, onchg){
+  var a = bxSf[k], i = a.indexOf(v);
+  if(on && i < 0) a.push(v);
+  if(!on && i >= 0) a.splice(i,1);
+  bxUpdMsLabel(k); if(onchg) onchg();
+}
+function bxUpdMsLabel(k){
+  var w = document.getElementById('ms-'+k); if(!w) return;
+  var s = bxSf[k] || [];
+  w.querySelector('.ms-label').textContent = s.length===0 ? '全部' : (s.length===1 ? s[0] : '已选'+s.length+'项');
+}
+function bxClearF(){
+  Object.keys(bxSf).forEach(function(k){ bxSf[k] = []; });
+  Object.keys(bxSf).forEach(function(k){ bxUpdMsLabel(k); });
+  var q = document.getElementById('bxQ'); if(q) q.value = '';
+  bxRenderRider(1);
+}
+function bxOnlyNone(){
+  bxSf.bxstatus = ['未消毒'];
+  bxUpdMsLabel('bxstatus');
+  bxRenderRider(1);
+}
+
+/* 骑手维度行与渲染 */
+function bxRows(){
+  var qEl = document.getElementById('bxQ');
+  var q = ((qEl && qEl.value) || '').trim().toLowerCase();
+  var out = [];
+  for(var i=0;i<bxRoster.length;i++){
+    var r = bxRoster[i]; // [大区,区域,城市,站点,骑手ID,姓名,班次]
+    if(bxSf.bxregion.length && bxSf.bxregion.indexOf(r[0]) < 0) continue;
+    if(bxSf.bxsubr.length   && bxSf.bxsubr.indexOf(r[1])   < 0) continue;
+    if(bxSf.bxcity.length   && bxSf.bxcity.indexOf(r[2])   < 0) continue;
+    if(bxSf.bxsite.length   && bxSf.bxsite.indexOf(r[3])   < 0) continue;
+    var rec = bxLatest[r[4]]; // [站点, 提交时间, 审核状态] 或 undefined
+    var status = rec ? rec[2] : '未消毒';
+    if(bxSf.bxstatus.length && bxSf.bxstatus.indexOf(status) < 0) continue;
+    if(q && (r[4]+' '+r[5]).toLowerCase().indexOf(q) < 0) continue;
+    out.push([r[0], r[1], r[2], r[3], r[4], r[5], r[6], rec?rec[1]:'', status]);
+  }
+  return out;
+}
+function bxStatusCls(s){
+  if(s === '未消毒') return 'st-kn-none';
+  if(s === '已通过') return 'st-kn-ok';
+  if(s === '审核中') return 'st-kn-audit';
+  if(s === '已驳回') return 'st-kn-no';
+  return 'st-kn-none';
+}
+function bxRenderRider(p){
+  var all = bxRows(); bxFiltered = all;
+  if(!bxRoster.length){
+    var tb0 = document.getElementById('bxTbodyRider');
+    if(tb0) tb0.innerHTML = '<tr><td colspan="9" class="empty">餐箱消毒数据未加载（缺少 box_rider_data.js）<br>请运行「履约项目\\build_box_data.py」生成</td></tr>';
+    var pg0 = document.getElementById('bxPager'); if(pg0) pg0.innerHTML = '';
+    var c0 = document.getElementById('bxCardsRider'); if(c0) c0.innerHTML = '';
+    var f0 = document.getElementById('bxCntRiderF'); if(f0) f0.textContent = '数据未加载';
+    var cr = document.getElementById('bxCntRider'); if(cr) cr.textContent = '-';
+    return;
+  }
+  // 筛选项从全量名册按上游级联生成
+  var regionOpts = bxUniq(bxRoster.map(function(r){return r[0];}));
+  var subrOpts   = bxUniq(bxRoster.filter(function(r){ return !bxSf.bxregion.length || bxSf.bxregion.indexOf(r[0]) >= 0; }).map(function(r){return r[1];}));
+  var cityOpts   = bxUniq(bxRoster.filter(function(r){ return (!bxSf.bxregion.length || bxSf.bxregion.indexOf(r[0]) >= 0) && (!bxSf.bxsubr.length || bxSf.bxsubr.indexOf(r[1]) >= 0); }).map(function(r){return r[2];}));
+  var siteOpts   = bxUniq(bxRoster.filter(function(r){ return (!bxSf.bxregion.length || bxSf.bxregion.indexOf(r[0]) >= 0) && (!bxSf.bxsubr.length || bxSf.bxsubr.indexOf(r[1]) >= 0) && (!bxSf.bxcity.length || bxSf.bxcity.indexOf(r[2]) >= 0); }).map(function(r){return r[3];}));
+  bxInitMs('bxregion', regionOpts, function(){bxRenderRider(1);});
+  bxInitMs('bxsubr',   subrOpts,   function(){bxRenderRider(1);});
+  bxInitMs('bxcity',   cityOpts,   function(){bxRenderRider(1);});
+  bxInitMs('bxsite',   siteOpts,   function(){bxRenderRider(1);});
+  bxInitMs('bxstatus', BOX_STATUSES.slice(), function(){bxRenderRider(1);});
+
+  bxPage = p || 1;
+  var tot = Math.max(1, Math.ceil(all.length/bxPer));
+  if(bxPage > tot) bxPage = tot;
+  var seg = all.slice((bxPage-1)*bxPer, bxPage*bxPer);
+  var h = '';
+  if(!seg.length) h = '<tr><td colspan="9" class="empty">无符合条件的数据</td></tr>';
+  seg.forEach(function(r){
+    h += '<tr><td class="l">'+r[0]+'</td><td class="l">'+r[1]+'</td><td>'+r[2]+'</td><td class="l">'+r[3]+'</td>'
+      + '<td>'+r[4]+'</td><td class="l">'+r[5]+'</td><td>'+r[6]+'</td>'
+      + '<td>'+r[7]+'</td><td class="'+bxStatusCls(r[8])+'">'+r[8]+'</td></tr>';
+  });
+  var tb = document.getElementById('bxTbodyRider'); if(tb) tb.innerHTML = h;
+
+  var pg = document.getElementById('bxPager');
+  if(pg){
+    var b = '<span>共 <b style="color:#0B4F8A">'+all.length.toLocaleString()+'</b> 名骑手 · 第 '+bxPage+' / '+tot+' 页（每页 '+bxPer+'）</span>';
+    b += '<div style="margin-left:auto;display:flex;gap:6px">';
+    b += '<button onclick="bxRenderRider(1)"'+(bxPage===1?' disabled':'')+'>« 首页</button>';
+    b += '<button onclick="bxRenderRider('+(bxPage-1)+')"'+(bxPage===1?' disabled':'')+'>‹ 上一页</button>';
+    for(var i=Math.max(1,bxPage-2); i<=Math.min(tot,bxPage+2); i++)
+      b += '<button class="'+(i===bxPage?'cur':'')+'" onclick="bxRenderRider('+i+')">'+i+'</button>';
+    b += '<button onclick="bxRenderRider('+(bxPage+1)+')"'+(bxPage===tot?' disabled':'')+'>下一页 ›</button>';
+    b += '<button onclick="bxRenderRider('+tot+')"'+(bxPage===tot?' disabled':'')+'>末页 »</button></div>';
+    pg.innerHTML = b;
+  }
+
+  // 骑手维度 KPI 卡
+  var notN = all.filter(function(r){return r[8]==='未消毒';}).length;
+  var qN   = all.filter(function(r){return r[8]==='已通过';}).length;
+  var pN   = all.filter(function(r){return r[8]==='审核中';}).length;
+  var rjN  = all.filter(function(r){return r[8]==='已驳回';}).length;
+  var rate = all.length ? (qN/all.length*100).toFixed(2)+'%' : '0%';
+  var cards = document.getElementById('bxCardsRider');
+  if(cards) cards.innerHTML =
+     bxCard('在职骑手', all.length.toLocaleString(), '当天排班在册', '')
+   + bxCard('消毒标准化率', rate, '已通过 '+qN.toLocaleString()+' / 在职 '+all.length.toLocaleString(), qN/all.length>=0.9?'green':(qN/all.length>=0.6?'yellow':'red'))
+   + bxCard('未消毒', notN.toLocaleString(), '需站长跟进', notN?'red':'')
+   + bxCard('已通过', qN.toLocaleString(), '审核通过', qN?'green':'')
+   + bxCard('审核中', pN.toLocaleString(), '平台审核中', pN?'yellow':'')
+   + bxCard('已驳回', rjN.toLocaleString(), '需整改重提', rjN?'red':'');
+  var cf = document.getElementById('bxCntRiderF'); if(cf) cf.textContent = '筛选后 '+all.length+' 人';
+  var cr = document.getElementById('bxCntRider'); if(cr) cr.textContent = all.length.toLocaleString();
+}
+function bxUniq(a){ var s={},o=[]; (a||[]).forEach(function(x){ if(x && !s[x]){ s[x]=1; o.push(x); } }); return o.sort(); }
+function bxExportTbl(){
+  var now = new Date();
+  var ts = now.getFullYear() + ('0' + (now.getMonth() + 1)).slice(-2) + ('0' + now.getDate()).slice(-2);
+  exportPagedTableAll('bxTblRider', bxRows, bxRenderRider, 'bxPer', 'bxPage',
+    '餐箱消毒_骑手维度', '餐箱消毒看板_骑手维度_' + ts + '.xls');
+}
+function bxInitOnce(){
+  // 数据文件缺失时由 bxRenderRider 提示
 }
 
 // ─── Tab 5: 带刀巡检看板 ─────────────────────────────────────
