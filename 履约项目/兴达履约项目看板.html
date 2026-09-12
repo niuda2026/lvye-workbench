@@ -1868,14 +1868,27 @@ function renderBoxTab() {
   bxInitOnce();
   if(bxSub === 'rider'){ bxRenderRider(1); return; }
   var columns = [
-    {key:'rate', label:'消毒标准化率', isPct:true, isSumRatio:true},
-    {key:'num', label:'消毒合格数', isPct:false, isSumRatio:false},
-    {key:'box_den', label:'应消毒数', isPct:false, isSumRatio:false},
-    {key:'pending', label:'审核中', isPct:false, isSumRatio:false},
-    {key:'rejected', label:'已驳回', isPct:false, isSumRatio:false},
-    {key:'box_not', label:'未消毒', isPct:false, isSumRatio:false, isBad:true}
+    // 有单骑手达成（黄色组）
+    {key:'yx_den', label:'有单骑手数', isPct:false, isSumRatio:false},
+    {key:'q_yx', label:'已消毒', isPct:false, isSumRatio:false},
+    {key:'rej_yx', label:'驳回数', isPct:false, isSumRatio:false},
+    {key:'pend_yx', label:'审核中', isPct:false, isSumRatio:false},
+    {key:'cov_yx', label:'覆盖率', isPct:true, isSumRatio:true},
+    {key:'comp_yx', label:'合规率', isPct:true, isSumRatio:true},
+    // 有效骑手达成（蓝色组）
+    {key:'eff_den', label:'有效骑手数', isPct:false, isSumRatio:false},
+    {key:'q_eff', label:'已消毒', isPct:false, isSumRatio:false},
+    {key:'rej_eff', label:'驳回数', isPct:false, isSumRatio:false},
+    {key:'pend_eff', label:'审核中', isPct:false, isSumRatio:false},
+    {key:'cov_eff', label:'覆盖率', isPct:true, isSumRatio:true},
+    {key:'comp_eff', label:'合规率', isPct:true, isSumRatio:true},
+    {key:'std_eff', label:'达标率', isPct:true, isSumRatio:true}
   ];
-  renderStandardTab('box', 'BOX_DATA', columns, null);
+  var headerGroups = [
+    {label:'有单骑手达成', colspan:6, bgColor:'#f6c244', textColor:'#1a1a1a'},
+    {label:'有效骑手达成', colspan:7, bgColor:'#0078d4', textColor:'#ffffff'}
+  ];
+  renderStandardTab('box', 'BOX_DATA', columns, null, headerGroups);
   bxSiteCards();
   bxUpdateNote();
 }
