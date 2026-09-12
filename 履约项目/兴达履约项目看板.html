@@ -446,6 +446,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
         <thead><tr>
           <th>大区</th><th>区域</th><th>城市</th><th>站点名称</th>
           <th>骑手ID</th><th>骑手姓名</th><th>排班状态</th>
+          <th>本周是否有单</th><th>本周有单天数</th>
           <th>提交时间</th><th>审核状态</th>
         </tr></thead>
         <tbody id="bxTbodyRider"></tbody>
@@ -2007,7 +2008,8 @@ function bxRows(){
     var status = rec ? rec[2] : '未消毒';
     if(bxSf.bxstatus.length && bxSf.bxstatus.indexOf(status) < 0) continue;
     if(q && (r[4]+' '+r[5]).toLowerCase().indexOf(q) < 0) continue;
-    out.push([r[0], r[1], r[2], r[3], r[4], r[5], r[6], rec?rec[1]:'', status]);
+    var od = window.BOX_ORDER ? (window.BOX_ORDER[r[4]] || ['否', 0]) : ['否', 0];
+    out.push([r[0], r[1], r[2], r[3], r[4], r[5], r[6], od[0], od[1], rec?rec[1]:'', status]);
   }
   return out;
 }
@@ -2022,7 +2024,7 @@ function bxRenderRider(p){
   var all = bxRows(); bxFiltered = all;
   if(!bxRoster.length){
     var tb0 = document.getElementById('bxTbodyRider');
-    if(tb0) tb0.innerHTML = '<tr><td colspan="9" class="empty">餐箱消毒数据未加载（缺少 box_rider_data.js）<br>请运行「履约项目\\build_box_data.py」生成</td></tr>';
+    if(tb0) tb0.innerHTML = '<tr><td colspan="11" class="empty">餐箱消毒数据未加载（缺少 box_rider_data.js）<br>请运行「履约项目\\build_box_data.py」生成</td></tr>';
     var pg0 = document.getElementById('bxPager'); if(pg0) pg0.innerHTML = '';
     var c0 = document.getElementById('bxCardsRider'); if(c0) c0.innerHTML = '';
     var f0 = document.getElementById('bxCntRiderF'); if(f0) f0.textContent = '数据未加载';
@@ -2045,11 +2047,13 @@ function bxRenderRider(p){
   if(bxPage > tot) bxPage = tot;
   var seg = all.slice((bxPage-1)*bxPer, bxPage*bxPer);
   var h = '';
-  if(!seg.length) h = '<tr><td colspan="9" class="empty">无符合条件的数据</td></tr>';
+  if(!seg.length) h = '<tr><td colspan="11" class="empty">无符合条件的数据</td></tr>';
   seg.forEach(function(r){
+    var orderCls = r[7] === '是' ? 'st-kn-ok' : 'st-kn-none';
     h += '<tr><td class="l">'+r[0]+'</td><td class="l">'+r[1]+'</td><td>'+r[2]+'</td><td class="l">'+r[3]+'</td>'
       + '<td>'+r[4]+'</td><td class="l">'+r[5]+'</td><td>'+r[6]+'</td>'
-      + '<td>'+r[7]+'</td><td class="'+bxStatusCls(r[8])+'">'+r[8]+'</td></tr>';
+      + '<td class="'+orderCls+'">'+r[7]+'</td><td>'+r[8]+'</td>'
+      + '<td>'+r[9]+'</td><td class="'+bxStatusCls(r[10])+'">'+r[10]+'</td></tr>';
   });
   var tb = document.getElementById('bxTbodyRider'); if(tb) tb.innerHTML = h;
 
