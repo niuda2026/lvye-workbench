@@ -1912,7 +1912,7 @@ function knSiteCards(visibleRows){
   var olds = box.querySelectorAll('.kn-kpi');
   for(var i=0;i<olds.length;i++) olds[i].parentNode.removeChild(olds[i]);
   var num = function(v){ var n = Number(v); return isFinite(n) ? n : 0; };
-  var reg=0, checked=0, no=0, wait=0, audit=0, fail=0, appeal=0, coverNum=0, compNum=0;
+  var reg=0, checked=0, no=0, wait=0, audit=0, fail=0, appeal=0, coverNum=0, compNum=0, big=0;
   visibleRows.forEach(function(s){
     var d = KNIFE_DATA[s.site] || {};
     reg += num(d.reg_1st);
@@ -1924,9 +1924,30 @@ function knSiteCards(visibleRows){
     appeal += num(d.status_appeal);
     coverNum += num(d.week_cover_num);
     compNum += num(d.compliance_num);
+    // 大站：站点名不含「集约」「联盟签约」
+    if (s.site.indexOf('集约') < 0 && s.site.indexOf('联盟签约') < 0) big++;
   });
   var pct = function(n,d){ return d ? (n/d*100).toFixed(2)+'%' : '0%'; };
   var cls = function(n,d){ var r = d ? n/d*100 : 0; return r>=90?'green':(r>=60?'yellow':'red'); };
+  // 定位「站点数」卡片（renderStandardTab 生成），把大网站点数插到它前面
+  var siteCard = null;
+  var kids = box.querySelectorAll('.card');
+  for (var k=0;k<kids.length;k++){
+    var lab = kids[k].querySelector('.c-label');
+    if (lab && lab.textContent === '站点数'){ siteCard = kids[k]; break; }
+  }
+  var bigCard = document.createElement('div');
+  bigCard.className = 'card kn-kpi';
+  bigCard.innerHTML = '<div class="c-label">大网站点数</div><div class="c-value">'+big.toLocaleString()+'</div><div class="c-sub">含所有非集约/联盟签约站点</div>';
+  if (siteCard) box.insertBefore(bigCard, siteCard);
+  else box.insertBefore(bigCard, box.firstChild);
+  // 站点数卡片加副标题
+  if (siteCard){
+    var sub = siteCard.querySelector('.c-sub');
+    if (!sub){ sub = document.createElement('div'); sub.className = 'c-sub'; siteCard.appendChild(sub); }
+    sub.textContent = '集约站、联盟签约站无需巡检';
+  }
+  // 其余 KPI 卡
   var html =
       knCard('1号注册骑手', reg.toLocaleString(), '站点维度分母', '')
     + knCard('本月已检查', checked.toLocaleString(), '总巡检人次', '')
