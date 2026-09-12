@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-13 07:28:24",
+  "updated_at": "2026-09-13 07:31:13",
   "action_summary": {
     "total": 14,
     "ok": 9,
@@ -113,7 +113,7 @@ window.DATA_CENTER = {
             "latest": "update_log.txt",
             "mtime": "2026-09-13 07:21:38",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -256,7 +256,7 @@ window.DATA_CENTER = {
           {
             "type": "载具审核-骑手明细(BI)",
             "latest": "vehicle_audit_rider.json",
-            "mtime": "2026-09-12 09:16:23",
+            "mtime": "2026-09-13 07:30:27",
             "synced": true
           }
         ],
@@ -267,7 +267,7 @@ window.DATA_CENTER = {
             "latest": "充换电血压_data.js",
             "mtime": "2026-09-12 15:43:39",
             "max_age_hours": 13,
-            "age_hours": 15.7,
+            "age_hours": 15.8,
             "ok": false,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
@@ -278,9 +278,9 @@ window.DATA_CENTER = {
             "label": "载具审核-骑手明细(BI)",
             "path": "vehicle_audit\\vehicle_audit_rider.json",
             "latest": "vehicle_audit_rider.json",
-            "mtime": "2026-09-12 09:16:23",
+            "mtime": "2026-09-13 07:30:27",
             "max_age_hours": 30,
-            "age_hours": 22.2,
+            "age_hours": 0.0,
             "ok": true,
             "note": "早间自动化抓取",
             "fail_hits": [],
