@@ -209,6 +209,12 @@ tr.cb-row-noup:hover td{background:#ffefef}
 .cb-tag-up{display:inline-block;padding:1px 8px;border-radius:9px;font-size:11px;font-weight:600}
 .cb-tag-up.yes{background:#e8f5e9;color:#2e7d32}
 .cb-tag-up.no{background:#fdecea;color:#c62828}
+/* 「未上传/未通过」列配色图例 */
+.cb-legend{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 8px 2px;font-size:12px;color:#5b6b7c}
+.cb-legend .cb-lg{display:inline-block;padding:1px 8px;border-radius:9px;font-weight:600}
+.cb-legend .cb-lg.rg{background:#e8f5e9;color:#2e7d32}
+.cb-legend .cb-lg.ry{background:#fff3e0;color:#e65100}
+.cb-legend .cb-lg.rr{background:#ffebee;color:#c62828}
 
 </style>
 </head>
@@ -505,6 +511,13 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <button class="btn btn-screenshot" onclick="screenshotPanel('chargebp')" title="截取当前看板">&#128247; 截图</button>
     <span class="filter-count" id="filter-count-chargebp"></span>
   </div>
+  <div class="cb-legend">
+    <span>「未上传 / 未通过」列配色：</span>
+    <span class="cb-lg rg">0 · 无遗漏</span>
+    <span class="cb-lg ry">占比 &lt; 5%</span>
+    <span class="cb-lg rr">占比 ≥ 5%</span>
+    <span style="color:#90a4ae">（占比 = 未上传/未通过 ÷ 该组分母，如 在职骑手、已出结果）</span>
+  </div>
   <div class="table-wrap table-wrap-station">
     <table class="dt" id="tbl-chargebp">
       <thead id="thead-chargebp"></thead>
@@ -616,10 +629,10 @@ tr.cb-row-noup:hover td{background:#ffefef}
   <div class="pagination" id="pagination-rider"></div>
 </div>
 
-<script src="D:/兴达数据库/交通安全行为看板/data.js"></script>
-<script src="D:/兴达数据库/履约项目/data.js"></script>
-<script src="D:/兴达数据库/履约项目/充换电血压_data.js"></script>
-<script src="D:/兴达数据库/履约项目/knife_rider_data.js"></script>
+<script src="../交通安全行为看板/data.js"></script>
+<script src="data.js"></script>
+<script src="充换电血压_data.js"></script>
+<script src="knife_rider_data.js"></script>
 <!-- 截图库 -->
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js" crossorigin="anonymous"></script>
 <script>
@@ -663,6 +676,25 @@ function frate(v) {
   if (n >= 95) return {text:t,cls:'rg'};
   if (n >= 85) return {text:t,cls:'ry'};
   return {text:t,cls:'rr'};
+}
+
+/* ─── 「未上传 / 未通过」列配色（2026-09-12）──────────────────
+   按「占该组分母的比例」分档，让问题站点一眼可见：
+     0            → 绿（无遗漏）
+     占比 < 5%    → 黄（零星遗漏）
+     占比 ≥ 5%    → 红（需要跟进）
+   分母 key 由列 key 推导：xxx_not → xxx_den                     */
+function badDenKey(key) { return String(key).replace(/_not$/, '_den'); }
+function fbad(nv, dv) {
+  var n = rc(nv);
+  if (n <= 0) return {cls:'rg', text:fr(nv), title:'无未上传/未通过'};
+  var d = rc(dv);
+  var ratio = d > 0 ? n / d : 1;
+  return {
+    cls: ratio >= 0.05 ? 'rr' : 'ry',
+    text: fr(nv),
+    title: '占分母 ' + (ratio * 100).toFixed(1) + '%（' + n + ' / ' + d + '）'
+  };
 }
 
 // ─── 维度信息 ──────────────────────────────────────────────
@@ -1051,6 +1083,9 @@ function renderStandardTab(tabId, dataVar, columns, extra, headerGroups) {
     } else if (columns[k].isPct) {
       var r = frate(totals[key]);
       rows += '<td class="'+r.cls+'">'+r.text+'</td>';
+    } else if (columns[k].isBad) {
+      var b = fbad(totals[key], totals[badDenKey(key)]);
+      rows += '<td class="'+b.cls+'" title="'+b.title+'">'+b.text+'</td>';
     } else {
       rows += '<td>'+fr(totals[key])+'</td>';
     }
@@ -1082,6 +1117,9 @@ function renderStandardTab(tabId, dataVar, columns, extra, headerGroups) {
         } else if (columns[k].isPct) {
           var r = frate(ra[key]);
           rows += '<td class="'+r.cls+'">'+r.text+'</td>';
+        } else if (columns[k].isBad) {
+          var b = fbad(ra[key], ra[badDenKey(key)]);
+          rows += '<td class="'+b.cls+'" title="'+b.title+'">'+b.text+'</td>';
         } else {
           rows += '<td>'+fr(ra[key])+'</td>';
         }
@@ -1109,6 +1147,9 @@ function renderStandardTab(tabId, dataVar, columns, extra, headerGroups) {
         } else if (columns[k].isPct) {
           var r = frate(ma[key]);
           rows += '<td class="'+r.cls+'">'+r.text+'</td>';
+        } else if (columns[k].isBad) {
+          var b = fbad(ma[key], ma[badDenKey(key)]);
+          rows += '<td class="'+b.cls+'" title="'+b.title+'">'+b.text+'</td>';
         } else {
           rows += '<td>'+fr(ma[key])+'</td>';
         }
@@ -1126,6 +1167,9 @@ function renderStandardTab(tabId, dataVar, columns, extra, headerGroups) {
       if (columns[k].isPct) {
         var r = frate(v);
         rows += '<td class="'+r.cls+'">'+r.text+'</td>';
+      } else if (columns[k].isBad) {
+        var b = fbad(v, d[badDenKey(key)]);
+        rows += '<td class="'+b.cls+'" title="'+b.title+'">'+b.text+'</td>';
       } else if (columns[k].isSafetyHl) {
         // For training counts: >0 highlight red
         var nv = rc(v);
@@ -1979,11 +2023,11 @@ function knClearF(){
   knRenderRider(1);
 }
 function knExportTbl(){
-  var t = document.getElementById('knTblRider');
-  if(!t){ alert('未找到表格'); return; }
   var now = new Date();
   var ts = now.getFullYear() + ('0' + (now.getMonth()+1)).slice(-2) + ('0' + now.getDate()).slice(-2);
-  exportTableWYSIWYG(t, '带刀巡检_骑手维度', '带刀巡检看板_骑手维度_' + ts + '.xls');
+  // 导出「当前筛选的全部记录」，不只是当前分页的 50 条
+  exportPagedTableAll('knTblRider', knRows, knRenderRider, 'knPer', 'knPage',
+    '带刀巡检_骑手维度', '带刀巡检看板_骑手维度_' + ts + '.xls');
 }
 
 function renderKnifeTab() {
@@ -2002,19 +2046,19 @@ function renderChargeBPTab() {
     {key:'bp_rate',          label:'检测率',   isPct:false, isSumRatio:true},
     {key:'bp_num',           label:'已上传',   isPct:false, isSumRatio:false},
     {key:'bp_den',           label:'在职骑手', isPct:false, isSumRatio:false},
-    {key:'bp_not',           label:'未上传',   isPct:false, isSumRatio:false},
+    {key:'bp_not',           label:'未上传',   isPct:false, isSumRatio:false, isBad:true},
     {key:'vehicle_rate',     label:'通过率',   isPct:false, isSumRatio:true},
     {key:'vehicle_num',      label:'通过',     isPct:false, isSumRatio:false},
     {key:'vehicle_den',      label:'已出结果', isPct:false, isSumRatio:false},
-    {key:'vehicle_not',      label:'未通过',   isPct:false, isSumRatio:false},
+    {key:'vehicle_not',      label:'未通过',   isPct:false, isSumRatio:false, isBad:true},
     {key:'charge_up_rate',   label:'提交率',   isPct:false, isSumRatio:true},
     {key:'charge_up_num',    label:'已上传',   isPct:false, isSumRatio:false},
     {key:'charge_up_den',    label:'在职骑手', isPct:false, isSumRatio:false},
-    {key:'charge_up_not',    label:'未上传',   isPct:false, isSumRatio:false},
+    {key:'charge_up_not',    label:'未上传',   isPct:false, isSumRatio:false, isBad:true},
     {key:'charge_check_rate',label:'通过率',   isPct:false, isSumRatio:true},
     {key:'charge_check_num', label:'通过',     isPct:false, isSumRatio:false},
     {key:'charge_check_den', label:'已出结果', isPct:false, isSumRatio:false},
-    {key:'charge_check_not', label:'未通过',   isPct:false, isSumRatio:false}
+    {key:'charge_check_not', label:'未通过',   isPct:false, isSumRatio:false, isBad:true}
   ];
   // 两级中文表头：每组=率+分子+分母+未上传，与「早会审核」等看板风格一致
   var headerGroups = [
@@ -2362,11 +2406,11 @@ function cbRenderRider(p){
 }
 
 function cbExportTbl() {
-  var t = document.getElementById('cbTblRider');
-  if (!t) { alert('未找到表格'); return; }
   var now = new Date();
   var ts = now.getFullYear() + ('0' + (now.getMonth() + 1)).slice(-2) + ('0' + now.getDate()).slice(-2);
-  exportTableWYSIWYG(t, '充换电血压_骑手维度', '充换电血压看板_骑手维度_' + ts + '.xls');
+  // 导出「当前筛选的全部骑手」，不只是当前分页的 50 条
+  exportPagedTableAll('cbTblRider', cbRiderRows, cbRenderRider, 'cbPer', 'cbPage',
+    '充换电血压_骑手维度', '充换电血压看板_骑手维度_' + ts + '.xls');
 }
 
 function cbInitOnce(){
@@ -2913,6 +2957,31 @@ function exportTableWYSIWYG(table, sheetName, fileName) {
   a.href = URL.createObjectURL(blob);
   a.download = fileName;
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
+}
+
+/* ─── 分页表格「导出全部」通用helper（2026-09-12）──────────────
+   用户报：充换电血压/带刀巡检的骑手维度明细导出 Excel 只有当前页那 50 条。
+   原因：导出函数直接拿 DOM 里的表格，而 DOM 里只有当前分页的行。
+   做法：临时把「每页条数」放大到全量 → 重渲染出一页全量行 → 导出 → 还原分页与页码。
+   getRows()  返回当前筛选后的全部行（如 cbRiderRows / knRows）
+   render(p)  对应渲染函数（如 cbRenderRider / knRenderRider）
+   perName/pageName 是分页变量的全局名（如 'cbPer' / 'cbPage'）      */
+function exportPagedTableAll(tableId, getRows, render, perName, pageName, sheetName, fileName) {
+  var t = document.getElementById(tableId);
+  if (!t) { alert('未找到表格'); return; }
+  var all = getRows();
+  if (!all || !all.length) { alert('当前筛选结果为空，没有可导出的数据'); return; }
+  if (all.length > 3000 && !confirm('当前筛选共 ' + all.length.toLocaleString() +
+      ' 条记录，导出全部数据可能需要几十秒，是否继续？')) return;
+  var oldPer = window[perName], oldPage = window[pageName];
+  window[perName] = all.length;           // 一页装下全部 → 渲染出全量行
+  try {
+    render(1);
+    exportTableWYSIWYG(t, sheetName, fileName);
+  } finally {
+    window[perName] = oldPer;             // 还原用户原来的分页视图
+    render(oldPage || 1);
+  }
 }
 
 function exportTable(tabId) {
