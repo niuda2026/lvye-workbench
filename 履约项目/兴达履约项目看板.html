@@ -2052,8 +2052,8 @@ function bxRenderRider(p){
     var orderCls = r[7] === '是' ? 'st-kn-ok' : 'st-kn-none';
     h += '<tr><td class="l">'+r[0]+'</td><td class="l">'+r[1]+'</td><td>'+r[2]+'</td><td class="l">'+r[3]+'</td>'
       + '<td>'+r[4]+'</td><td class="l">'+r[5]+'</td><td>'+r[6]+'</td>'
-      + '<td class="'+orderCls+'">'+r[7]+'</td><td>'+r[8]+'</td>'
-      + '<td>'+r[9]+'</td><td class="'+bxStatusCls(r[10])+'">'+r[10]+'</td></tr>';
+      + '<td class="'+orderCls+'" style="text-align:center">'+r[7]+'</td><td>'+r[8]+'</td>'
+      + '<td>'+r[9]+'</td><td class="'+bxStatusCls(r[10])+'" style="text-align:center">'+r[10]+'</td></tr>';
   });
   var tb = document.getElementById('bxTbodyRider'); if(tb) tb.innerHTML = h;
 
