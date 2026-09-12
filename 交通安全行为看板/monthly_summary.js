@@ -3,7 +3,7 @@ window.MONTHLY_SUMMARY = {
   "2026-08",
   "2026-09"
  ],
- "updated": "2026-09-13 07:24:25",
+ "updated": "2026-09-13 07:43:46",
  "sites": [
   {
    "level": "total",
@@ -7936,24 +7936,24 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-09": {
     "helmet": {
-     "num": 62,
-     "den": 63,
-     "rate": 98.41
+     "num": 66,
+     "den": 67,
+     "rate": 98.51
     },
     "speed": {
-     "num": 341,
-     "den": 10475,
-     "rate": 3.26
+     "num": 369,
+     "den": 11257,
+     "rate": 3.28
     },
     "redlight": {
-     "num": 286,
-     "den": 2082,
-     "rate": 13.74
+     "num": 307,
+     "den": 2250,
+     "rate": 13.64
     },
     "reverse": {
-     "num": 52386,
-     "den": 2469925,
-     "rate": 2.12
+     "num": 55991,
+     "den": 2649720,
+     "rate": 2.11
     },
     "clothing": {
      "cloth": {
