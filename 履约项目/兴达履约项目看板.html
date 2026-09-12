@@ -1815,9 +1815,12 @@ function renderBoxTab() {
 
 // ─── Tab 5: 带刀巡检看板 ─────────────────────────────────────
 var knMeta = window.KNIFE_META || {};
-var knRiderData = window.KNIFE_RIDER_DATA || [];
+var knRoster = window.KNIFE_ROSTER || [];
+var knLatest = window.KNIFE_LATEST || {};
+var knRiderData = window.KNIFE_RIDER_DATA || []; // 保留兼容，新骑手维度用 knRoster + knLatest
 var knSf = {knregion:[],knsubr:[],kncity:[],knsite:[],knstatus:[]};
 var knPage = 1, knPer = 50, knFiltered = [];
+var KNIFE_STATUSES = ['未巡检','无需整改','整改通过','待整改','整改待审核','整改不通过','申诉待审核','待申诉'];
 
 function knSwitchSub(t){
   var ts = document.querySelectorAll('#panel-knife .cb-subtab');
@@ -1833,7 +1836,7 @@ function knUpdateNote(){
   var n = document.getElementById('knRangeNote');
   if(!n) return;
   var m = knMeta;
-  var txt = '明细 ' + (m.record_count || 0) + ' 条';
+  var txt = '在职骑手 ' + (m.roster_count || 0) + ' 人 · 已巡检 ' + (m.matched_count || 0) + ' 人';
   if(m.date_range && m.date_range.min && m.date_range.max){
     txt += ' · ' + m.date_range.min + ' ~ ' + m.date_range.max;
   }
@@ -1846,7 +1849,7 @@ function knUpdateNote(){
 function knInit(){
   knUpdateNote();
   // 若数据未加载则显示提示
-  if(!knRiderData.length){
+  if(!knRoster.length){
     var tb = document.getElementById('knTbodyRider');
     if(tb) tb.innerHTML = '<tr><td colspan="13" class="empty">带刀巡检数据未加载（缺少 knife_rider_data.js）<br>请运行「履约项目\\build_knife_data.py」生成</td></tr>';
     return;
@@ -1924,30 +1927,43 @@ function knRows(){
   var qEl = document.getElementById('knQ');
   var q = ((qEl && qEl.value) || '').trim().toLowerCase();
   var out = [];
-  for (var i=0;i<knRiderData.length;i++){
-    var r = knRiderData[i];
+  for (var i=0;i<knRoster.length;i++){
+    var r = knRoster[i]; // [大区,区域,城市,站点,骑手ID,骑手姓名,班次]
     if(knSf.knregion.length && knSf.knregion.indexOf(r[0]) < 0) continue;
     if(knSf.knsubr.length   && knSf.knsubr.indexOf(r[1])   < 0) continue;
     if(knSf.kncity.length   && knSf.kncity.indexOf(r[2])   < 0) continue;
     if(knSf.knsite.length   && knSf.knsite.indexOf(r[3])   < 0) continue;
-    if(knSf.knstatus.length && knSf.knstatus.indexOf(r[7]) < 0) continue;
+    var rec = knLatest[r[4]]; // 最新巡检记录或 undefined
+    var status = rec ? rec[7] : '未巡检';
+    if(knSf.knstatus.length && knSf.knstatus.indexOf(status) < 0) continue;
     if(q && (r[4]+' '+r[5]).toLowerCase().indexOf(q) < 0) continue;
-    out.push(r);
+    // 合并输出：站点/区域用名册，巡检明细用最新记录
+    out.push([
+      r[0], r[1], r[2], r[3], r[4], r[5],
+      rec ? rec[6] : '',      // 提交时间
+      status,                  // 状态
+      rec ? rec[8] : '',      // 签到时间
+      rec ? rec[9] : '',      // 整改完成时间
+      rec ? rec[10] : '',     // 提交人
+      rec ? rec[11] : '',     // 检查合规项数
+      rec ? rec[12] : ''      // 总检查项数
+    ]);
   }
   return out;
 }
 
 function knStatusCls(s){
-  if(s === '无需整改') return 'st-ok';
+  if(s === '无需整改' || s === '整改通过') return 'st-ok';
   if(s === '整改不通过') return 'st-no';
-  if(s === '待整改' || s === '整改待审核' || s === '待申诉') return 'st-wait';
-  return 'st-none';
+  if(s === '待整改' || s === '整改待审核' || s === '申诉待审核' || s === '待申诉') return 'st-wait';
+  if(s === '未巡检') return 'st-none';
+  return '';
 }
 function knCard(l,v,s,cls){ return '<div class="card '+(cls||'')+'"><div class="c-label">'+l+'</div><div class="c-value">'+v+'</div><div class="c-sub">'+s+'</div></div>'; }
 
 function knRenderRider(p){
   var all = knRows(); knFiltered = all;
-  if(!knRiderData.length){
+  if(!knRoster.length){
     var tb0 = document.getElementById('knTbodyRider');
     if(tb0) tb0.innerHTML = '<tr><td colspan="13" class="empty">带刀巡检数据未加载（缺少 knife_rider_data.js）<br>请运行「履约项目\\build_knife_data.py」生成</td></tr>';
     var pg0 = document.getElementById('knPager'); if(pg0) pg0.innerHTML = '';
@@ -1956,12 +1972,12 @@ function knRenderRider(p){
     return;
   }
 
-  // 筛选下拉选项（从全量数据按上游级联生成）
-  var regionOpts = knUniq(knRiderData.map(function(r){return r[0];}));
-  var subrOpts   = knUniq(knRiderData.filter(function(r){ return !knSf.knregion.length || knSf.knregion.indexOf(r[0]) >= 0; }).map(function(r){return r[1];}));
-  var cityOpts   = knUniq(knRiderData.filter(function(r){ return (!knSf.knregion.length || knSf.knregion.indexOf(r[0]) >= 0) && (!knSf.knsubr.length || knSf.knsubr.indexOf(r[1]) >= 0); }).map(function(r){return r[2];}));
-  var siteOpts   = knUniq(knRiderData.filter(function(r){ return (!knSf.knregion.length || knSf.knregion.indexOf(r[0]) >= 0) && (!knSf.knsubr.length || knSf.knsubr.indexOf(r[1]) >= 0) && (!knSf.kncity.length || knSf.kncity.indexOf(r[2]) >= 0); }).map(function(r){return r[3];}));
-  var statusOpts = knUniq(knRiderData.map(function(r){return r[7];}));
+  // 筛选下拉选项（从全量名册按上游级联生成；状态固定含"未巡检"）
+  var regionOpts = knUniq(knRoster.map(function(r){return r[0];}));
+  var subrOpts   = knUniq(knRoster.filter(function(r){ return !knSf.knregion.length || knSf.knregion.indexOf(r[0]) >= 0; }).map(function(r){return r[1];}));
+  var cityOpts   = knUniq(knRoster.filter(function(r){ return (!knSf.knregion.length || knSf.knregion.indexOf(r[0]) >= 0) && (!knSf.knsubr.length || knSf.knsubr.indexOf(r[1]) >= 0); }).map(function(r){return r[2];}));
+  var siteOpts   = knUniq(knRoster.filter(function(r){ return (!knSf.knregion.length || knSf.knregion.indexOf(r[0]) >= 0) && (!knSf.knsubr.length || knSf.knsubr.indexOf(r[1]) >= 0) && (!knSf.kncity.length || knSf.kncity.indexOf(r[2]) >= 0); }).map(function(r){return r[3];}));
+  var statusOpts = KNIFE_STATUSES.slice();
   knInitMs('knregion', regionOpts, function(){knRenderRider(1);});
   knInitMs('knsubr',   subrOpts,   function(){knRenderRider(1);});
   knInitMs('kncity',   cityOpts,   function(){knRenderRider(1);});
@@ -1985,7 +2001,7 @@ function knRenderRider(p){
 
   var pg = document.getElementById('knPager');
   if(pg){
-    var b = '<span>共 <b style="color:#0B4F8A">'+all.length.toLocaleString()+'</b> 条记录 · 第 '+knPage+' / '+tot+' 页（每页 '+knPer+'）</span>';
+    var b = '<span>共 <b style="color:#0B4F8A">'+all.length.toLocaleString()+'</b> 名骑手 · 第 '+knPage+' / '+tot+' 页（每页 '+knPer+'）</span>';
     b += '<div style="margin-left:auto;display:flex;gap:6px">';
     b += '<button onclick="knRenderRider(1)"'+(knPage===1?' disabled':'')+'>« 首页</button>';
     b += '<button onclick="knRenderRider('+(knPage-1)+')"'+(knPage===1?' disabled':'')+'>‹ 上一页</button>';
@@ -1996,22 +2012,26 @@ function knRenderRider(p){
     pg.innerHTML = b;
   }
 
-  // KPI 卡
+  // KPI 卡：以全部在职骑手为分母
   var total = all.length;
-  var noCnt = all.filter(function(r){return r[7]==='无需整改';}).length;
-  var waitCnt = all.filter(function(r){return r[7]==='待整改';}).length;
-  var auditCnt = all.filter(function(r){return r[7]==='整改待审核';}).length;
-  var failCnt = all.filter(function(r){return r[7]==='整改不通过';}).length;
-  var appealCnt = all.filter(function(r){return r[7]==='待申诉';}).length;
+  var checkedCnt = all.filter(function(r){return r[7]!=='未巡检';}).length;
+  var noneCnt    = all.filter(function(r){return r[7]==='未巡检';}).length;
+  var noCnt      = all.filter(function(r){return r[7]==='无需整改';}).length;
+  var waitCnt    = all.filter(function(r){return r[7]==='待整改';}).length;
+  var auditCnt   = all.filter(function(r){return r[7]==='整改待审核';}).length;
+  var failCnt    = all.filter(function(r){return r[7]==='整改不通过';}).length;
+  var appealCnt  = all.filter(function(r){return r[7]==='待申诉';}).length;
   var cards = document.getElementById('knCardsRider');
   if(cards) cards.innerHTML =
-    knCard('巡检记录', total.toLocaleString(), '当月加盟骑手车辆检查', '')
-  + knCard('无需整改', noCnt.toLocaleString(), '占比 ' + (total? (noCnt/total*100).toFixed(2)+'%' : '0%'), 'green')
+    knCard('在职骑手', total.toLocaleString(), '当月排班在册', '')
+  + knCard('已巡检', checkedCnt.toLocaleString(), '覆盖率 ' + (total? (checkedCnt/total*100).toFixed(2)+'%' : '0%'), 'green')
+  + knCard('未巡检', noneCnt.toLocaleString(), '需跟进', noneCnt?'red':'')
+  + knCard('无需整改', noCnt.toLocaleString(), '占比 ' + (checkedCnt? (noCnt/checkedCnt*100).toFixed(2)+'%' : '0%'), 'green')
   + knCard('待整改', waitCnt.toLocaleString(), '需站长跟进', waitCnt?'red':'')
   + knCard('整改待审核', auditCnt.toLocaleString(), '审核中', '')
   + knCard('整改不通过', failCnt.toLocaleString(), '需整改', failCnt?'red':'')
   + knCard('待申诉', appealCnt.toLocaleString(), '申诉中', '');
-  var cf = document.getElementById('knCntRiderF'); if(cf) cf.textContent = '筛选后 '+all.length+' 条';
+  var cf = document.getElementById('knCntRiderF'); if(cf) cf.textContent = '筛选后 '+all.length+' 名';
   var cr = document.getElementById('knCntRider'); if(cr) cr.textContent = all.length.toLocaleString();
 }
 
