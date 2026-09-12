@@ -1,8 +1,8 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-12 08:12:49",
+  "updated_at": "2026-09-12 08:28:00",
   "action_summary": {
-    "total": 13,
-    "ok": 7,
+    "total": 14,
+    "ok": 8,
     "alert": 6,
     "missing": 0,
     "alert_groups": [
@@ -114,9 +114,12 @@ window.DATA_CENTER = {
             "latest": "update_log.txt",
             "mtime": "2026-09-12 06:39:44",
             "max_age_hours": 26,
-            "age_hours": 1.6,
+            "age_hours": 1.8,
             "ok": true,
-            "note": ""
+            "note": "",
+            "fail_hits": [],
+            "fail_lines": [],
+            "block_time": null
           }
         ],
         "action_stats": {
@@ -209,7 +212,7 @@ window.DATA_CENTER = {
         "data_files": [
           "履约项目\\充换电血压_data.js"
         ],
-        "data_mtime": "2026-09-12 07:32:51",
+        "data_mtime": "2026-09-12 08:20:28",
         "all_synced": true,
         "synced_count": 7,
         "missing_count": 0,
@@ -263,11 +266,14 @@ window.DATA_CENTER = {
             "label": "充换电血压数据构建",
             "path": "履约项目\\充换电血压_data.js",
             "latest": "充换电血压_data.js",
-            "mtime": "2026-09-12 07:32:51",
+            "mtime": "2026-09-12 08:20:28",
             "max_age_hours": 13,
-            "age_hours": 0.7,
+            "age_hours": 0.1,
             "ok": true,
-            "note": "每日 07:30/15:00 两次"
+            "note": "每日 07:30/15:00 两次",
+            "fail_hits": [],
+            "fail_lines": [],
+            "block_time": null
           },
           {
             "label": "载具审核-骑手明细(BI)",
@@ -275,16 +281,32 @@ window.DATA_CENTER = {
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-09-12 07:58:04",
             "max_age_hours": 30,
-            "age_hours": 0.2,
+            "age_hours": 0.5,
             "ok": true,
-            "note": "早间自动化抓取"
+            "note": "早间自动化抓取",
+            "fail_hits": [],
+            "fail_lines": [],
+            "block_time": null
+          },
+          {
+            "label": "每日刷新·抓取成败",
+            "path": "daily_refresh_log.txt",
+            "latest": "daily_refresh_log.txt",
+            "mtime": "2026-09-12 08:21:19",
+            "max_age_hours": 13,
+            "age_hours": 0.1,
+            "ok": true,
+            "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
+            "fail_hits": [],
+            "fail_lines": [],
+            "block_time": "2026-09-12 08:21"
           }
         ],
         "action_stats": {
-          "ok_count": 2,
+          "ok_count": 3,
           "alert_count": 0,
           "missing_count": 0,
-          "total": 2,
+          "total": 3,
           "all_ok": true
         },
         "all_healthy": true
@@ -353,9 +375,12 @@ window.DATA_CENTER = {
             "latest": "update_log.txt",
             "mtime": "2026-09-12 06:41:57",
             "max_age_hours": 26,
-            "age_hours": 1.5,
+            "age_hours": 1.8,
             "ok": true,
-            "note": ""
+            "note": "",
+            "fail_hits": [],
+            "fail_lines": [],
+            "block_time": null
           }
         ],
         "action_stats": {
@@ -423,9 +448,12 @@ window.DATA_CENTER = {
             "latest": "_crawl_service.log",
             "mtime": "2026-09-10 07:30:12",
             "max_age_hours": 26,
-            "age_hours": 48.7,
+            "age_hours": 49.0,
             "ok": false,
-            "note": ""
+            "note": "",
+            "fail_hits": [],
+            "fail_lines": [],
+            "block_time": null
           }
         ],
         "action_stats": {
@@ -511,9 +539,12 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-09-11 09:44:54",
             "max_age_hours": 26,
-            "age_hours": 22.5,
+            "age_hours": 22.7,
             "ok": true,
-            "note": ""
+            "note": "",
+            "fail_hits": [],
+            "fail_lines": [],
+            "block_time": null
           },
           {
             "label": "含税保费快照",
@@ -521,9 +552,12 @@ window.DATA_CENTER = {
             "latest": "premium_latest.json",
             "mtime": "2026-09-11 15:44:19",
             "max_age_hours": 26,
-            "age_hours": 16.5,
+            "age_hours": 16.7,
             "ok": true,
-            "note": ""
+            "note": "",
+            "fail_hits": [],
+            "fail_lines": [],
+            "block_time": null
           },
           {
             "label": "V3内联数据",
@@ -531,9 +565,12 @@ window.DATA_CENTER = {
             "latest": "v3_data.js",
             "mtime": "2026-09-12 06:39:44",
             "max_age_hours": 26,
-            "age_hours": 1.6,
+            "age_hours": 1.8,
             "ok": true,
-            "note": ""
+            "note": "",
+            "fail_hits": [],
+            "fail_lines": [],
+            "block_time": null
           },
           {
             "label": "美团保险理赔数据",
@@ -541,9 +578,12 @@ window.DATA_CENTER = {
             "latest": "insurance_data.js",
             "mtime": "2026-09-08 17:11:51",
             "max_age_hours": 72,
-            "age_hours": 87.0,
+            "age_hours": 87.3,
             "ok": false,
-            "note": ""
+            "note": "",
+            "fail_hits": [],
+            "fail_lines": [],
+            "block_time": null
           }
         ],
         "action_stats": {
@@ -634,9 +674,12 @@ window.DATA_CENTER = {
             "latest": "110工单看板.html",
             "mtime": "2026-08-15 09:46:31",
             "max_age_hours": 168,
-            "age_hours": 670.4,
+            "age_hours": 670.7,
             "ok": false,
-            "note": "更新频率待确认，先按 7 天"
+            "note": "更新频率待确认，先按 7 天",
+            "fail_hits": [],
+            "fail_lines": [],
+            "block_time": null
           }
         ],
         "action_stats": {
@@ -687,9 +730,12 @@ window.DATA_CENTER = {
             "latest": "update_stations.log",
             "mtime": "2026-09-09 17:58:26",
             "max_age_hours": 26,
-            "age_hours": 62.2,
+            "age_hours": 62.5,
             "ok": false,
-            "note": ""
+            "note": "",
+            "fail_hits": [],
+            "fail_lines": [],
+            "block_time": null
           }
         ],
         "action_stats": {
@@ -733,9 +779,12 @@ window.DATA_CENTER = {
             "latest": "_大屏数据.js",
             "mtime": "2026-09-11 00:18:08",
             "max_age_hours": 26,
-            "age_hours": 31.9,
+            "age_hours": 32.2,
             "ok": false,
-            "note": ""
+            "note": "",
+            "fail_hits": [],
+            "fail_lines": [],
+            "block_time": null
           }
         ],
         "action_stats": {
@@ -796,9 +845,12 @@ window.DATA_CENTER = {
             "latest": "monthly_summary.js",
             "mtime": "2026-09-09 08:08:49",
             "max_age_hours": 72,
-            "age_hours": 72.1,
+            "age_hours": 72.3,
             "ok": false,
-            "note": "月度归档，可适当放宽"
+            "note": "月度归档，可适当放宽",
+            "fail_hits": [],
+            "fail_lines": [],
+            "block_time": null
           }
         ],
         "action_stats": {

@@ -458,10 +458,16 @@
     mon.actions.forEach(function(a) {
       var note = a.note ? '<span class="rel" style="color:#64748b;margin-left:6px">(' + a.note + ')</span>' : '';
       var age = a.age_hours !== null ? '<span class="rel">' + Math.round(a.age_hours) + ' 小时前</span>' : '';
+      // 日志类动作的失败原因（文件新 ≠ 抓取成功）
+      var failTip = '';
+      if ((a.fail_lines || []).length) {
+        failTip = '<div class="rel" style="color:#dc2626;white-space:normal;max-width:520px;margin-top:3px">' +
+          '⚠ ' + a.fail_lines.map(function(s){ return s.replace(/</g,'&lt;'); }).join('<br>⚠ ') + '</div>';
+      }
       rows += '<tr' + (a.ok === false ? ' class="alert-miss-row"' : '') + '>' +
         '<td class="type">' + a.label + '</td>' +
         '<td><div class="fname" title="' + a.path + '">' + a.latest + '</div></td>' +
-        '<td class="time">' + a.mtime + age + note + '</td>' +
+        '<td class="time">' + a.mtime + age + note + failTip + '</td>' +
         '<td>' + actHtml(a.ok) + '</td></tr>';
     });
     return '<div class="monitor-wrap" style="margin-top:14px">' +
