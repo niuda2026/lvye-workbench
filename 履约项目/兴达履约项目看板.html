@@ -70,6 +70,15 @@ tr.lv-site:hover td{background:#f0f7ff}
 .ry{background:#fff3e0!important;color:#e65100!important;font-weight:600}
 .rr{background:#ffebee!important;color:#c62828!important;font-weight:600}
 .rn{color:#90a4ae}
+/* 带刀巡检看板 - 审核状态颜色区分（8种状态各自独立） */
+.st-kn-none{display:inline-block;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:600;background:#eceff1!important;color:#546e7a!important}
+.st-kn-ok{display:inline-block;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:600;background:#e8f5e9!important;color:#2e7d32!important}
+.st-kn-pass{display:inline-block;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:600;background:#e3f2fd!important;color:#1565c0!important}
+.st-kn-wait{display:inline-block;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:600;background:#ffebee!important;color:#c62828!important}
+.st-kn-audit{display:inline-block;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:600;background:#fff3e0!important;color:#e65100!important}
+.st-kn-no{display:inline-block;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:600;background:#ffcdd2!important;color:#b71c1c!important}
+.st-kn-appeal-audit{display:inline-block;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:600;background:#f3e5f5!important;color:#7b1fa2!important}
+.st-kn-appeal{display:inline-block;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:600;background:#fce4ec!important;color:#c2185b!important}
 .region-cards-row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:12px;}
 .region-card{padding:16px 14px;text-align:center;min-height:110px;min-width:0;display:flex;flex-direction:column;justify-content:center;flex:none;max-width:none;}
 @media(max-width:1100px){.region-cards-row{grid-template-columns:repeat(3,1fr);}}
@@ -1956,11 +1965,16 @@ function knRows(){
 }
 
 function knStatusCls(s){
-  if(s === '无需整改' || s === '整改通过') return 'st-ok';
-  if(s === '整改不通过') return 'st-no';
-  if(s === '待整改' || s === '整改待审核' || s === '申诉待审核' || s === '待申诉') return 'st-wait';
-  if(s === '未巡检') return 'st-none';
-  return '';
+  // 带刀巡检 8 种审核状态独立颜色（对应 .st-kn-* 样式）
+  if(s === '未巡检') return 'st-kn-none';
+  if(s === '无需整改') return 'st-kn-ok';
+  if(s === '整改通过') return 'st-kn-pass';
+  if(s === '待整改') return 'st-kn-wait';
+  if(s === '整改待审核') return 'st-kn-audit';
+  if(s === '整改不通过') return 'st-kn-no';
+  if(s === '申诉待审核') return 'st-kn-appeal-audit';
+  if(s === '待申诉') return 'st-kn-appeal';
+  return 'st-kn-none';
 }
 function knCard(l,v,s,cls){ return '<div class="card '+(cls||'')+'"><div class="c-label">'+l+'</div><div class="c-value">'+v+'</div><div class="c-sub">'+s+'</div></div>'; }
 
