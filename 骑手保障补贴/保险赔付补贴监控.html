@@ -140,4 +140,9 @@ window.addEventListener("message",function(ev){
   });
 });
 document.querySelectorAll(".tab").forEach(function(t){
-  t.onclick = function()
+  t.onclick = function(){ pick(+t.dataset.i); };
+});
+pick(cur);
+</script>
+</body>
+</html>
