@@ -501,6 +501,16 @@ td .overdue-tag { color: var(--red-500); font-size: .6875rem; font-weight: 600; 
 }
 .toast.show { opacity: 1; }
 
+/* City dashboard */
+.city-kpi { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 20px; }
+.city-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 20px; }
+.city-left, .city-right { display: flex; flex-direction: column; gap: 20px; }
+.city-chart-card { flex: 1; min-height: 280px; }
+.city-bar { height: 380px; }
+.city-table-card { flex: 1; }
+.rank { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: #f1f5f9; color: var(--text-secondary); font-size: .75rem; font-weight: 700; }
+.rank.top { background: var(--blue-500); color: #fff; }
+
 /* Responsive */
 @media (max-width: 1100px) {
   .stat-cards { grid-template-columns: repeat(2, 1fr); }
@@ -524,8 +534,9 @@ td .overdue-tag { color: var(--red-500); font-size: .6875rem; font-weight: 600; 
     <nav>
       <div class="nav-group">
         <div class="nav-group-title">风险事件</div>
+        <div class="nav-item" data-module="city"><span class="icon">&#127759;</span>城市监控</div>
         <div class="nav-item" data-module="report"><span class="icon">+</span>事件上报</div>
-        <div class="nav-item active" data-module="process"><span class="icon">&#128203;</span>事件处理</div>
+        <div class="nav-item" data-module="process"><span class="icon">&#128203;</span>事件处理</div>
       </div>
       <div class="nav-group">
         <div class="nav-group-title">风险线索</div>
@@ -548,8 +559,45 @@ td .overdue-tag { color: var(--red-500); font-size: .6875rem; font-weight: 600; 
       </div>
     </div>
 
+    <!-- 城市监控模块 -->
+    <div id="cityModule">
+      <div class="city-kpi" id="cityKpiCards"></div>
+      <div class="city-layout">
+        <div class="city-left">
+          <div class="chart-card city-chart-card">
+            <h3>全国城市工单分布 TOP15</h3>
+            <div class="chart-wrap city-bar"><canvas id="chartCityRank"></canvas></div>
+          </div>
+          <div class="chart-card city-chart-card">
+            <h3>工单类型占比</h3>
+            <div class="chart-wrap doughnut"><canvas id="chartCityType"></canvas></div>
+          </div>
+        </div>
+        <div class="city-right">
+          <div class="table-card city-table-card">
+            <div class="table-header"><span class="info" id="cityTableInfo">城市实时排行</span></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>排名</th><th>城市</th><th>工单数</th><th>待处理</th><th>处理中</th><th>已关闭</th><th>占比</th></tr></thead>
+                <tbody id="cityTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="table-card city-table-card">
+            <div class="table-header"><span class="info">最新工单滚动</span></div>
+            <div class="table-wrap" style="max-height:320px;overflow:auto">
+              <table>
+                <thead><tr><th>时间</th><th>城市</th><th>类型</th><th>状态</th><th>摘要</th></tr></thead>
+                <tbody id="cityLatestBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 事件处理模块 -->
-    <div id="processModule">
+    <div id="processModule" style="display:none">
       <div class="stat-cards" id="processStatCards"></div>
       <div class="primary-tabs" id="processTabs"></div>
       <div class="filter-bar" id="processFilters">
@@ -679,10 +727,11 @@ td .overdue-tag { color: var(--red-500); font-size: .6875rem; font-weight: 600; 
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="110_data.js"></script>
 <script>
 // ==================== DATA LAYER ====================
 let rawData = null;
-let currentModule = 'process';
+let currentModule = 'city';
 let currentProcessView = 'pending';
 let currentClueView = 'pending';
 let currentProcessPage = 1;
@@ -696,8 +745,6 @@ const PROCESS_VIEW_NAMES = { pending: '待我处理', history: '处理历史', n
 const CLUE_VIEW_KEYS = ['pending', 'history', 'notify'];
 const CLUE_VIEW_NAMES = { pending: '待我核实', history: '核实历史', notify: '通知我的' };
 const STATUS_TAGS = { '待处理': 'pending', '处理中': 'processing', '关单待审核': 'closed', '已关闭': 'closed', '未审核': 'pending', '已核实': 'closed' };
-
-const EMBEDDED_DATA = {"lastUpdated":"2026-09-13 16:21:44","sourceUrl":"https://fxgl365.com/110/w/desktop/process/list","module":"事件处理","views":{"pending":10,"history":232,"notify":1,"shared":2519,"qaFail":0},"stats":{"total":2762,"pending":10,"processing":0,"pendingReview":0,"overdue":3},"orders":[{"id":"2026071754944","business":"履约业务-专送","source":"客诉升级","type":"交通事故","occurTime":"2026-07-15 12:42","city":"河北省唐山市路北区","level":"蓝色","summary":"背景：骑手孙树清在配送途中与非机动车发生碰撞…","status":"待处理","reportTime":"2026-07-17 17:18:22","updateTime":"2026-07-17 17:18:23","reporter":"于廉达","handler":"李文龙，黄可鑫，许洁茹","overdue":true,"overdueDays":9,"detail":{"basic":{"eventNum":"2026071754944","business":"履约业务-专送","eventType":"交通事故","occurTime":"2026-07-15 12:42","city":"河北省/唐山市/路北区","location":"中国河北省唐山市路北区文化路街道北新东道35号","summary":"骑手孙树清在配送途中与非机动车发生碰撞，造成财产损失。用户反馈骑手态度问题，要求赔偿。","specialCrowd":"否","attachments":"事故现场照片.jpg"},"rider":{"name":"孙树清","phone":"180****7864","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"2449228513","skaShop":"不涉及","faq2":"外卖非订单问题","notifyType":"指导会商","csOrderStatus":"风险事件处理中"},"eventDetail":{"nature":"财损","cause":"-","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"1"},"other":{"insuranceReported":"已报保险","insuranceNo":"10426079100613144511","compensationDone":"未完成","suspectedDisability":"否","compensationAmount":"-","mediaCoverage":"否","policeInvolvedBiz":"是","regulatorInvolved":"否","litigation":"否","compliant":"是","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"},"progressTimeline":[{"stage":"已上报","time":"2026-07-17 17:18:22","done":true},{"stage":"开始响应","time":"","done":false},{"stage":"完成响应","time":"","done":false},{"stage":"跟进中","time":"2026-07-17 17:18:23","done":false},{"stage":"关闭","time":"","done":false}],"people":{"reporter":[{"name":"于廉达","role":"上报人","org":"-"}],"handler":[{"name":"李文龙","role":"处理人","org":"-"}],"coHandlers":[{"name":"李文龙","role":"共同处理人","org":"-"},{"name":"黄可鑫","role":"共同处理人","org":"-"},{"name":"许洁茹","role":"共同处理人","org":"-"}],"notifiers":[{"name":"系统通知","role":"通知人","org":"-"}]}},"auxData":{"workStatus":{"name":"孙树清","id":"73651989","inShift":"是","inWorkHours":"是","inOrder":"否","orderCount":"0"},"orderStats":{"totalOrders":"1407","dailyAvg":"32.0","onlineHours":"9.65h","weeklyAvg":"34.0","weeklyActiveHours":"7.97h","monthlyActiveDays":"29天"},"safetyBehavior":{"dailySpeed":"8.52km/h","weeklySpeed":"9.55","cityAvg":"11.87","distractionRate":"5.71%","helmetRate":"100%","strapRate":"100%"}},"progress":[{"time":"2026-07-17 17:18","person":"于廉达/yulianda","content":"事件上报，等待分配处理人"}],"logs":[{"time":"2026-07-17 17:18:23","operator":"于廉达/yulianda","action":"创建风险事件","detail":"创建工单 2026071754944"},{"time":"2026-07-17 17:18:23","operator":"系统","action":"关联工单","detail":"关联客服工单 2449228513"},{"time":"2026-07-17 17:18:23","operator":"系统","action":"触发通知","detail":"通知处理人：李文龙，黄可鑫，许洁茹"}],"elephant":{"groupName":"蓝#财损#0715唐山市专送骑手孙树清撞车问题（19人）","groupId":"70836088170","groupType":"外部群"},"insurance":{"current":[{"reportNo":"10426079100613144511","claimNo":"-","policyNo":"-","caseNo":"-","insured":"孙树清","location":"唐山市路北区","time":"2026-07-15","amount":"500","settlement":"-","status":"待初审"}],"history":[]},"related":{"linked":[],"suspectedDuplicate":[{"id":"2026072065092","business":"履约业务-专送","source":"客诉升级","type":"交通事故","level":"蓝色","status":"待处理","reportTime":"2026-07-20","reporter":"-","handler":"-"}]}},{"id":"2026072063911","business":"履约业务-专送","source":"客诉升级","type":"交通事故","occurTime":"2026-07-19 21:30","city":"天津市和平区","level":"蓝色","summary":"骑手在天津市和平区配送途中发生交通事故…","status":"待处理","reportTime":"2026-07-20 09:15:00","updateTime":"2026-07-20 09:15:01","reporter":"贾钦雯","handler":"石瑞，许洁茹","overdue":true,"overdueDays":4,"detail":{"basic":{"eventNum":"2026072063911","business":"履约业务-专送","eventType":"交通事故","occurTime":"2026-07-19 21:30","city":"天津市/和平区","location":"天津市和平区南京路","summary":"骑手在天津市和平区配送途中发生交通事故，涉及第三方车辆。","specialCrowd":"否","attachments":"-"},"rider":{"name":"-","phone":"-","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"-","skaShop":"-","faq2":"-","notifyType":"-","csOrderStatus":"-"},"eventDetail":{"nature":"财损","cause":"-","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"-"},"other":{"insuranceReported":"-","insuranceNo":"-","compensationDone":"-","suspectedDisability":"-","compensationAmount":"-","mediaCoverage":"-","policeInvolvedBiz":"-","regulatorInvolved":"-","litigation":"-","compliant":"-","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"},"progressTimeline":[{"stage":"已上报","time":"2026-07-20 09:15:00","done":true},{"stage":"开始响应","time":"","done":false},{"stage":"完成响应","time":"","done":false},{"stage":"跟进中","time":"2026-07-20 09:15:01","done":false},{"stage":"关闭","time":"","done":false}],"people":{"reporter":[{"name":"贾钦雯","role":"上报人","org":"-"}],"handler":[{"name":"石瑞","role":"处理人","org":"-"}],"coHandlers":[{"name":"石瑞","role":"共同处理人","org":"-"},{"name":"许洁茹","role":"共同处理人","org":"-"}],"notifiers":[{"name":"系统通知","role":"通知人","org":"-"}]}},"auxData":null,"progress":[],"logs":[],"elephant":null,"insurance":{"current":[],"history":[]},"related":{"linked":[],"suspectedDuplicate":[]}},{"id":"2026072167262","business":"履约业务-专送","source":"客诉升级","type":"交通事故","occurTime":"2026-07-18 13:41","city":"吉林省长春市朝阳区","level":"蓝色","summary":"骑手孙树清与三者事故，双方未就医。来电人诉求：需要保险进行理赔。","status":"待处理","reportTime":"2026-07-20 16:08:40","updateTime":"2026-07-20 16:08:41","reporter":"甘嘉宁","handler":"黄可鑫，李文龙，许洁茹","overdue":true,"overdueDays":3,"detail":{"basic":{"eventNum":"2026072167262","business":"履约业务-专送","eventType":"交通事故","occurTime":"2026-07-18 13:41","city":"河北省/唐山市/路北区","location":"唐山市路北区文化路街道北新东到35号","summary":"骑手孙树清与三者事故，骑手受伤不严重，来电人诉求：需要保险进行理赔。","specialCrowd":"否","attachments":"-"},"rider":{"name":"孙树清","phone":"180****7864","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"2453089189","skaShop":"不涉及","faq2":"外卖非订单问题","notifyType":"指导会商","csOrderStatus":"风险事件处理中"},"eventDetail":{"nature":"财损","cause":"-","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"未告知"},"other":{"insuranceReported":"已报保险","insuranceNo":"10426079100613144511","compensationDone":"-","suspectedDisability":"-","compensationAmount":"-","mediaCoverage":"-","policeInvolvedBiz":"是","regulatorInvolved":"-","litigation":"-","compliant":"否","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"},"progressTimeline":[{"stage":"已上报","time":"2026-07-20 16:08:40","done":true},{"stage":"开始响应","time":"","done":false},{"stage":"完成响应","time":"","done":false},{"stage":"跟进中","time":"2026-07-20 16:08:41","done":false},{"stage":"关闭","time":"","done":false}],"people":{"reporter":[{"name":"甘嘉宁","role":"上报人","org":"-"}],"handler":[{"name":"黄可鑫","role":"处理人","org":"-"}],"coHandlers":[{"name":"黄可鑫","role":"共同处理人","org":"-"},{"name":"李文龙","role":"共同处理人","org":"-"},{"name":"许洁茹","role":"共同处理人","org":"-"}],"notifiers":[{"name":"系统通知","role":"通知人","org":"-"}]}},"auxData":null,"progress":[],"logs":[],"elephant":null,"insurance":{"current":[],"history":[]},"related":{"linked":[],"suspectedDuplicate":[]}},{"id":"2026072065092","business":"履约业务-专送","source":"客诉升级","type":"交通事故","occurTime":"2026-07-15 12:42","city":"河北省唐山市路北区","level":"蓝色","summary":"骑手孙树清与三者事故，双方未就医。来电人诉求：需要保险进行理赔。","status":"待处理","reportTime":"2026-07-20 16:08:40","updateTime":"2026-07-20 16:08:41","reporter":"甘嘉宁","handler":"黄可鑫，李文龙，许洁茹","overdue":true,"overdueDays":4,"detail":{"basic":{"eventNum":"2026072065092","business":"履约业务-专送","eventType":"交通事故","occurTime":"2026-07-15 12:42","city":"河北省/唐山市/路北区","location":"唐山市路北区文化路街道北新东到35号","summary":"骑手孙树清与三者事故，骑手受伤不严重，来电人诉求：需要保险进行理赔。","specialCrowd":"否","attachments":"-"},"rider":{"name":"孙树清","phone":"180****7864","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"2453089189","skaShop":"不涉及","faq2":"外卖非订单问题","notifyType":"指导会商","csOrderStatus":"风险事件处理中"},"eventDetail":{"nature":"财损","cause":"-","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"未告知"},"other":{"insuranceReported":"已报保险","insuranceNo":"10426079100613144511","compensationDone":"未完成","suspectedDisability":"否","compensationAmount":"-","mediaCoverage":"否","policeInvolvedBiz":"是","regulatorInvolved":"否","litigation":"否","compliant":"否","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"},"progressTimeline":[{"stage":"已上报","time":"2026-07-20 16:08:40","done":true},{"stage":"开始响应","time":"","done":false},{"stage":"完成响应","time":"","done":false},{"stage":"跟进中","time":"2026-07-20 16:08:41","done":false},{"stage":"关闭","time":"","done":false}],"people":{"reporter":[{"name":"甘嘉宁","role":"上报人","org":"-"}],"handler":[{"name":"黄可鑫","role":"处理人","org":"-"}],"coHandlers":[{"name":"黄可鑫","role":"共同处理人","org":"-"},{"name":"李文龙","role":"共同处理人","org":"-"},{"name":"许洁茹","role":"共同处理人","org":"-"}],"notifiers":[{"name":"系统通知","role":"通知人","org":"-"}]}},"auxData":null,"progress":[{"time":"2026-07-20 16:08","person":"甘嘉宁","content":"事件上报，等待分配处理人"}],"logs":[{"time":"2026-07-20 16:08:40","operator":"甘嘉宁","action":"创建风险事件","detail":"创建工单 2026072065092"},{"time":"2026-07-20 16:08:40","operator":"系统","action":"关联工单","detail":"关联客服工单 2453089189"}],"elephant":null,"insurance":{"current":[{"reportNo":"10426079100613144511","claimNo":"-","policyNo":"-","caseNo":"-","insured":"孙树清","location":"唐山市路北区","time":"2026-07-15","amount":"-","settlement":"-","status":"已报保险"}],"history":[]},"related":{"linked":[],"suspectedDuplicate":[{"id":"2026071754944","business":"履约业务-专送","type":"交通事故","level":"蓝色","status":"待处理"}]}},{"id":"2026072375317","business":"履约业务-专送","source":"客诉升级","type":"交通事故","occurTime":"2026-06-28 11:59","city":"河北省张家口市桥西区","level":"蓝色","summary":"骑手主责，双方受伤，车损2400元。保险已出理赔，差站点授权。骑手：蒯英杰，兴必达【张家口】百盛站。","status":"待处理","reportTime":"2026-07-23 11:16:06","updateTime":"2026-07-23 11:16:07","reporter":"陆志姣","handler":"黄可鑫，孟健，李文龙，许洁茹","overdue":false,"overdueDays":0,"detail":{"basic":{"eventNum":"2026072375317","business":"履约业务-专送","eventType":"交通事故","occurTime":"2026-06-28 11:59","city":"河北省/张家口市/桥西区","location":"清水河中路","summary":"骑手主责，双方受伤，车损2400元。保险已出理赔，差站点授权。骑手：蒯英杰 192****3480。","specialCrowd":"否","attachments":"-"},"rider":{"name":"蒯英杰","phone":"192****3480","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"2455757310","skaShop":"不涉及","faq2":"外卖非订单问题","notifyType":"协助","csOrderStatus":"风险事件处理中"},"eventDetail":{"nature":"财损","cause":"-","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"无"},"other":{"insuranceReported":"已报保险","insuranceNo":"ACHDLQR37126W00F9OR1","compensationDone":"-","suspectedDisability":"-","compensationAmount":"-","mediaCoverage":"-","policeInvolvedBiz":"是","regulatorInvolved":"-","litigation":"-","compliant":"是","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"},"progressTimeline":[{"stage":"已上报","time":"2026-07-23 11:16:06","done":true},{"stage":"开始响应","time":"","done":false},{"stage":"完成响应","time":"","done":false},{"stage":"跟进中","time":"2026-07-23 11:16:07","done":false},{"stage":"关闭","time":"","done":false}],"people":{"reporter":[{"name":"陆志姣","role":"上报人","org":"-"}],"handler":[{"name":"黄可鑫","role":"处理人","org":"-"}],"coHandlers":[{"name":"黄可鑫","role":"共同处理人","org":"-"},{"name":"孟健","role":"共同处理人","org":"-"},{"name":"李文龙","role":"共同处理人","org":"-"},{"name":"许洁茹","role":"共同处理人","org":"-"}],"notifiers":[{"name":"系统通知","role":"通知人","org":"-"}]}},"auxData":null,"progress":[],"logs":[],"elephant":null,"insurance":{"current":[],"history":[]},"related":{"linked":[],"suspectedDuplicate":[]}},{"id":"2026072170210","business":"履约业务-专送","source":"客诉升级","type":"交通事故","occurTime":"2026-07-08 21:31","city":"四川省成都市锦江区","level":"蓝色","summary":"骑手剐蹭用户在小区停放的车辆，要求处理损失。骑手：狄开文，兴必达【枣庄】美铭广场站。","status":"待处理","reportTime":"2026-07-21 20:37:54","updateTime":"2026-07-21 20:37:54","reporter":"史艾禾","handler":"许洁茹，卢生有","overdue":false,"overdueDays":0,"detail":{"basic":{"eventNum":"2026072170210","business":"履约业务-专送","eventType":"交通事故","occurTime":"2026-07-08 21:31","city":"四川省/成都/锦江区","location":"春风海棠小区1栋","summary":"骑手剐蹭用户在小区停放的车辆，要求处理损失。骑手：狄开文，兴必达【枣庄】美铭广场站。","specialCrowd":"否","attachments":"-"},"rider":{"name":"狄开文","phone":"187****5232","orderNo":"2602203021551284392","shopName":"蜜雪冰城（王府井店）","deliveryType":"美团快送","csOrderNo":"2455601924","skaShop":"不涉及","faq2":"外卖订单问题","notifyType":"指导会商","csOrderStatus":"风险事件处理中"},"eventDetail":{"nature":"-","cause":"-","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"-"},"other":{"insuranceReported":"-","insuranceNo":"-","compensationDone":"-","suspectedDisability":"-","compensationAmount":"-","mediaCoverage":"-","policeInvolvedBiz":"-","regulatorInvolved":"-","litigation":"-","compliant":"-","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"},"progressTimeline":[{"stage":"已上报","time":"2026-07-21 20:37:54","done":true},{"stage":"开始响应","time":"","done":false},{"stage":"完成响应","time":"","done":false},{"stage":"跟进中","time":"2026-07-21 20:37:54","done":false},{"stage":"关闭","time":"","done":false}],"people":{"reporter":[{"name":"史艾禾","role":"上报人","org":"-"}],"handler":[{"name":"许洁茹","role":"处理人","org":"-"}],"coHandlers":[{"name":"许洁茹","role":"共同处理人","org":"-"},{"name":"卢生有","role":"共同处理人","org":"-"}],"notifiers":[{"name":"系统通知","role":"通知人","org":"-"}]}},"auxData":null,"progress":[{"time":"2026-07-21 20:37","person":"史艾禾","content":"事件上报，等待分配处理人"}],"logs":[{"time":"2026-07-21 20:37:54","operator":"史艾禾/shiyihe","action":"创建风险事件","detail":"创建工单 2026072170210"}],"elephant":{"groupName":"蓝色_0708_交通事故_履约业务-专送(客诉升级)_成都市","groupId":"70847653034","groupType":"外部群"},"insurance":{"current":[],"history":[]},"related":{"linked":[],"suspectedDuplicate":[]}},{"id":"2026072271532","business":"履约业务-专送","source":"客诉升级","type":"其他安全事件","occurTime":"2026-07-21 11:18","city":"山东省青岛市即墨区","level":"蓝色","summary":"用户表示骑手在配送订单时在楼道大小便，物业已清理，要求平台处理。","status":"待处理","reportTime":"2026-07-22 11:23:35","updateTime":"2026-07-22 11:23:36","reporter":"侯肖萌","handler":"许洁茹，卢生有","overdue":false,"overdueDays":0,"detail":{"basic":{"eventNum":"2026072271532","business":"履约业务-专送","eventType":"其他安全事件","occurTime":"2026-07-21 11:18","city":"山东省/青岛/即墨区","location":"山东省青岛市即墨区星河城三期-3号楼","summary":"用户表示骑手在配送订单时在楼道大小便，物业已清理，要求平台处理。","specialCrowd":"否","attachments":"-"},"rider":{"name":"-","phone":"-","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"-","skaShop":"-","faq2":"-","notifyType":"-","csOrderStatus":"-"},"eventDetail":{"nature":"-","cause":"-","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"-"},"other":{"insuranceReported":"-","insuranceNo":"-","compensationDone":"-","suspectedDisability":"-","compensationAmount":"-","mediaCoverage":"-","policeInvolvedBiz":"-","regulatorInvolved":"-","litigation":"-","compliant":"-","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"},"progressTimeline":[{"stage":"已上报","time":"2026-07-22 11:23:35","done":true},{"stage":"开始响应","time":"","done":false},{"stage":"完成响应","time":"","done":false},{"stage":"跟进中","time":"2026-07-22 11:23:36","done":false},{"stage":"关闭","time":"","done":false}],"people":{"reporter":[{"name":"侯肖萌","role":"上报人","org":"-"}],"handler":[{"name":"许洁茹","role":"处理人","org":"-"}],"coHandlers":[{"name":"许洁茹","role":"共同处理人","org":"-"},{"name":"卢生有","role":"共同处理人","org":"-"}],"notifiers":[{"name":"系统通知","role":"通知人","org":"-"}]}},"auxData":null,"progress":[{"time":"2026-07-22 11:23","person":"侯肖萌","content":"事件上报，等待分配处理人"}],"logs":[{"time":"2026-07-22 11:23:35","operator":"侯肖萌","action":"创建风险事件","detail":"创建工单 2026072271532"}],"elephant":null,"insurance":{"current":[],"history":[]},"related":{"linked":[],"suspectedDuplicate":[]}},{"id":"2026072273591","business":"履约业务-专送","source":"客诉升级","type":"交通事故","occurTime":"2026-07-21 13:00","city":"山东省青岛市城阳区","level":"蓝色","summary":"骑手送餐途中驾驶电动车实线变道与逆行电动车碰撞，造成膝关节损伤等。三者左胳膊左腿擦伤，电动车受损及玉手镯断裂。","status":"待处理","reportTime":"2026-07-22 18:45:35","updateTime":"2026-07-22 18:45:35","reporter":"李杏然","handler":"许洁茹，卢生有","overdue":false,"overdueDays":0,"detail":{"basic":{"eventNum":"2026072273591","business":"履约业务-专送","eventType":"交通事故","occurTime":"2026-07-21 13:00","city":"山东省/青岛/城阳区","location":"山东省青岛市城阳区城阳街道荟城路536号","summary":"骑手送餐途中驾驶电动车实线变道与逆行电动车碰撞，造成膝关节损伤等。三者左胳膊左腿擦伤，电动车受损及玉手镯断裂。","specialCrowd":"否","attachments":"-"},"rider":{"name":"-","phone":"-","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"2454513135","skaShop":"-","faq2":"-","notifyType":"-","csOrderStatus":"-"},"eventDetail":{"nature":"人伤+财损","cause":"-","locationType":"-","roadType":"-","propertyLoss":"电动车受损、玉手镯断裂","policeInvolved":"-","accidentType":"-","vehicleType":"电动车","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"-"},"other":{"insuranceReported":"-","insuranceNo":"-","compensationDone":"-","suspectedDisability":"-","compensationAmount":"-","mediaCoverage":"-","policeInvolvedBiz":"-","regulatorInvolved":"-","litigation":"-","compliant":"-","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"},"progressTimeline":[{"stage":"已上报","time":"2026-07-22 18:45:35","done":true},{"stage":"开始响应","time":"","done":false},{"stage":"完成响应","time":"","done":false},{"stage":"跟进中","time":"2026-07-22 18:45:35","done":false},{"stage":"关闭","time":"","done":false}],"people":{"reporter":[{"name":"李杏然","role":"上报人","org":"-"}],"handler":[{"name":"许洁茹","role":"处理人","org":"-"}],"coHandlers":[{"name":"许洁茹","role":"共同处理人","org":"-"},{"name":"卢生有","role":"共同处理人","org":"-"}],"notifiers":[{"name":"系统通知","role":"通知人","org":"-"}]}},"auxData":null,"progress":[{"time":"2026-07-22 18:45","person":"李杏然","content":"事件上报，等待分配处理人"}],"logs":[{"time":"2026-07-22 18:45:35","operator":"李杏然","action":"创建风险事件","detail":"创建工单 2026072273591"}],"elephant":null,"insurance":{"current":[],"history":[]},"related":{"linked":[],"suspectedDuplicate":[]}},{"id":"2026072377879","business":"履约业务-专送","source":"客诉升级","type":"动物伤人","occurTime":"2026-07-23 09:30","city":"河北省秦皇岛市北戴河区","level":"蓝色","summary":"骑手配送时被有主人的狗咬伤，正在打狂犬疫苗，咨询保险是否理赔。骑手：武林冲，兴必达【秦皇岛】北戴河站。","status":"待处理","reportTime":"2026-07-23 21:30:07","updateTime":"2026-07-24 10:34:58","reporter":"叶红","handler":"许洁茹，卢生有","overdue":false,"overdueDays":0,"detail":{"basic":{"eventNum":"2026072377879","business":"履约业务-专送","eventType":"动物伤人","occurTime":"2026-07-23 09:30","city":"河北省/秦皇岛/北戴河区","location":"秦皇岛市北戴河区海滨镇","summary":"骑手配送时被有主人的狗咬伤，正在打狂犬疫苗，咨询保险是否理赔。骑手：武林冲，兴必达【秦皇岛】北戴河站。","specialCrowd":"否","attachments":"-"},"rider":{"name":"武林冲","phone":"150****9466","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"2457445015","skaShop":"-","faq2":"-","notifyType":"-","csOrderStatus":"-"},"eventDetail":{"nature":"人伤","cause":"狗咬伤","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"-"},"other":{"insuranceReported":"-","insuranceNo":"-","compensationDone":"-","suspectedDisability":"-","compensationAmount":"-","mediaCoverage":"-","policeInvolvedBiz":"-","regulatorInvolved":"-","litigation":"-","compliant":"-","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"},"progressTimeline":[{"stage":"已上报","time":"2026-07-23 21:30:07","done":true},{"stage":"开始响应","time":"","done":false},{"stage":"完成响应","time":"","done":false},{"stage":"跟进中","time":"2026-07-24 10:34:58","done":false},{"stage":"关闭","time":"","done":false}],"people":{"reporter":[{"name":"叶红","role":"上报人","org":"-"}],"handler":[{"name":"许洁茹","role":"处理人","org":"-"}],"coHandlers":[{"name":"许洁茹","role":"共同处理人","org":"-"},{"name":"卢生有","role":"共同处理人","org":"-"}],"notifiers":[{"name":"系统通知","role":"通知人","org":"-"}]}},"auxData":null,"progress":[{"time":"2026-07-23 21:30","person":"叶红","content":"事件上报，等待分配处理人"}],"logs":[{"time":"2026-07-23 21:30:07","operator":"叶红/yehong06","action":"创建风险事件","detail":"创建工单 2026072377879"},{"time":"2026-07-24 10:34:58","operator":"系统","action":"更新","detail":"事件信息更新"}],"elephant":null,"insurance":{"current":[],"history":[]},"related":{"linked":[],"suspectedDuplicate":[]}},{"id":"2026072478736","business":"履约业务-专送","source":"客诉升级","type":"交通事故","occurTime":"2026-07-24 16:57","city":"-","level":"蓝色","summary":"最新上报工单（当天），详情待补充。","status":"待处理","reportTime":"2026-07-24 16:57:00","updateTime":"2026-07-24 16:57:00","reporter":"-","handler":"许洁茹","overdue":false,"overdueDays":0,"detail":{"basic":{"eventNum":"2026072478736","business":"履约业务-专送","eventType":"交通事故","occurTime":"2026-07-24 16:57","city":"-","location":"-","summary":"最新上报工单（当天），详情待补充。","specialCrowd":"-","attachments":"-"},"rider":{"name":"-","phone":"-","orderNo":"-","shopName":"-","deliveryType":"-","csOrderNo":"-","skaShop":"-","faq2":"-","notifyType":"-","csOrderStatus":"-"},"eventDetail":{"nature":"-","cause":"-","locationType":"-","roadType":"-","propertyLoss":"-","policeInvolved":"-","accidentType":"-","vehicleType":"-","judgment":"-","riderLiable":"-","accidentNature":"-","investigation":"-","investigationType":"-","policeInfo":"-"},"other":{"insuranceReported":"-","insuranceNo":"-","compensationDone":"-","suspectedDisability":"-","compensationAmount":"-","mediaCoverage":"-","policeInvolvedBiz":"-","regulatorInvolved":"-","litigation":"-","compliant":"-","csShouldEscalate":"-","csCrisisLiability":"-","riskLevel":"-","inOrder":"-","stabilityRisk":"-"},"progressTimeline":[{"stage":"已上报","time":"2026-07-24 16:57:00","done":true},{"stage":"开始响应","time":"","done":false},{"stage":"完成响应","time":"","done":false},{"stage":"跟进中","time":"2026-07-24 16:57:00","done":false},{"stage":"关闭","time":"","done":false}],"people":{"reporter":[{"name":"-","role":"上报人","org":"-"}],"handler":[{"name":"许洁茹","role":"处理人","org":"-"}],"coHandlers":[{"name":"许洁茹","role":"共同处理人","org":"-"}],"notifiers":[{"name":"系统通知","role":"通知人","org":"-"}]}},"auxData":null,"progress":[],"logs":[],"elephant":null,"insurance":{"current":[],"history":[]},"related":{"linked":[],"suspectedDuplicate":[]}}],"sourceUrls":{"processList":"https://fxgl365.com/110/w/desktop/process/list?activeTab={tab}","clueList":"https://fxgl365.com/110/w/desktop/clue/list","detail":"https://fxgl365.com/110/w/desktop/process/detail/{id}"},"clues":[{"id":"XS260913753911316","business":"履约业务-专送","source":"保险系统接入","type":"保险接入","status":"未审核","content":"骑手驾驶电动车从...","city":"山东省青岛市即墨区","clueDate":"2026-09-11","sourceDate":"2026-09-13","sourceSystem":"保险系统接入","overdue":false},{"id":"XS26091378327059","business":"履约业务-专送","source":"保险系统接入","type":"保险接入","status":"未审核","content":"骑手驾驶电动车在...","city":"河北省唐山市路南区","clueDate":"2026-09-12","sourceDate":"2026-09-13","sourceSystem":"保险系统接入","overdue":false},{"id":"XS260913787484307","business":"履约业务-专送","source":"保险系统接入","type":"保险接入","status":"未审核","content":"骑手送餐途中逆行...","city":"河北省秦皇岛市海港区","clueDate":"2026-09-13","sourceDate":"2026-09-13","sourceSystem":"保险系统接入","overdue":false},{"id":"XS260913780855013","business":"履约业务-专送","source":"保险系统接入","type":"保险接入","status":"未审核","content":"骑手取完餐后倒车...","city":"安徽省合肥市蜀山区","clueDate":"2026-09-11","sourceDate":"2026-09-13","sourceSystem":"保险系统接入","overdue":false},{"id":"XS260913986012416","business":"履约业务-专送","source":"保险系统接入","type":"保险接入","status":"未审核","content":"骑手张鹏在送餐途...","city":"辽宁省锦州市太和区","clueDate":"2026-09-12","sourceDate":"2026-09-13","sourceSystem":"保险系统接入","overdue":false},{"id":"XS260913800763319","business":"履约业务-专送","source":"保险系统接入","type":"保险接入","status":"未审核","content":"骑手取餐时变更车...","city":"陕西省西安市雁塔区","clueDate":"2026-09-13","sourceDate":"2026-09-13","sourceSystem":"保险系统接入","overdue":false},{"id":"XS260913910656806","business":"履约业务-专送","source":"保险系统接入","type":"保险接入","status":"未审核","content":"骑手张晨在上班途...","city":"河北省秦皇岛市海港区","clueDate":"2026-09-11","sourceDate":"2026-09-13","sourceSystem":"保险系统接入","overdue":false},{"id":"XS26091378327060","business":"履约业务-专送","source":"保险系统接入","type":"保险接入","status":"未审核","content":"骑手李超在配送途...","city":"河北省唐山市路南区","clueDate":"2026-09-12","sourceDate":"2026-09-13","sourceSystem":"保险系统接入","overdue":false}],"clueViews":{"pending":6,"history":2,"notify":0}};
 
 function loadData() {
   rawData = EMBEDDED_DATA;
@@ -724,9 +771,11 @@ document.querySelectorAll('.nav-item').forEach(el => {
     el.classList.add('active');
     const mod = el.dataset.module;
     currentModule = mod;
+    document.getElementById('cityModule').style.display = mod === 'city' ? '' : 'none';
     document.getElementById('processModule').style.display = mod === 'process' ? '' : 'none';
     document.getElementById('clueModule').style.display = mod === 'clue' ? '' : 'none';
     if (mod === 'report') {
+      document.getElementById('cityModule').style.display = 'none';
       document.getElementById('processModule').style.display = 'none';
       document.getElementById('clueModule').style.display = 'none';
       document.getElementById('pageTitle').textContent = '事件上报';
@@ -737,6 +786,11 @@ document.querySelectorAll('.nav-item').forEach(el => {
     } else {
       const rp = document.getElementById('reportPlaceholder');
       if (rp) rp.remove();
+    }
+    if (mod === 'city') {
+      document.getElementById('pageTitle').textContent = '城市监控';
+      document.getElementById('pageSubTitle').textContent = '全国城市工单实时态势 — fxgl365.com';
+      renderCityModule();
     }
     if (mod === 'process') {
       document.getElementById('pageTitle').textContent = '事件处理';
@@ -857,6 +911,67 @@ function applyClueFilters() { toast('筛选功能需对接真实数据，当前�
 function clearClueFilters() { document.querySelectorAll('#clueFilters input').forEach(i => i.value = ''); toast('已清空筛选'); }
 function exportClueTable() { toast('导出功能需对接真实数据，当前为前端占位'); }
 function openClue(id) { toast('线索详情弹窗待补充，当前点击线索编号 ' + id); }
+
+// ==================== CITY DASHBOARD ====================
+function renderCityModule() {
+  const orders = rawData?.orders || [];
+  const cityStats = rawData?.cityStats || [];
+  const total = orders.length;
+  const pending = orders.filter(o => o.status === '待处理').length;
+  const processing = orders.filter(o => o.status === '处理中').length;
+  const todayStr = new Date().toISOString().slice(0, 10);
+  const today = orders.filter(o => (o.reportTime || '').startsWith(todayStr)).length;
+  document.getElementById('cityKpiCards').innerHTML = [
+    { cls: 'total', label: '覆盖城市', value: cityStats.length },
+    { cls: 'pending', label: '待处理工单', value: pending },
+    { cls: 'processing', label: '处理中工单', value: processing },
+    { cls: 'done', label: '今日新增', value: today }
+  ].map(c => `<div class="stat-card ${c.cls}"><div class="label">${c.label}</div><div class="value">${c.value}</div></div>`).join('');
+
+  // city rank table
+  const totalCount = total || 1;
+  document.getElementById('cityTableInfo').textContent = `全国城市实时排行 · 共 ${cityStats.length} 个城市`;
+  document.getElementById('cityTableBody').innerHTML = cityStats.slice(0, 20).map((c, i) => `
+    <tr>
+      <td><span class="rank ${i < 3 ? 'top' : ''}">${i + 1}</span></td>
+      <td>${c.name}</td>
+      <td><strong>${c.count}</strong></td>
+      <td>${c.pending}</td>
+      <td>${c.processing}</td>
+      <td>${c.closed}</td>
+      <td>${(c.count * 100 / totalCount).toFixed(1)}%</td>
+    </tr>
+  `).join('');
+
+  // latest orders
+  const latest = [...orders].sort((a, b) => (b.reportTime || '').localeCompare(a.reportTime || '')).slice(0, 15);
+  document.getElementById('cityLatestBody').innerHTML = latest.map(o => `
+    <tr>
+      <td>${o.reportTime?.slice(0, 16) || '-'}</td>
+      <td>${o.city?.slice(0, 10) || '-'}</td>
+      <td>${o.type}</td>
+      <td><span class="tag ${STATUS_TAGS[o.status] || 'pending'}">${o.status}</span></td>
+      <td class="summary" title="${escapeHtml(o.summary)}">${o.summary?.slice(0, 40) || '-'}...</td>
+    </tr>
+  `).join('');
+
+  renderCityCharts(cityStats);
+}
+function renderCityCharts(cityStats) {
+  destroyCharts();
+  const top15 = cityStats.slice(0, 15).reverse();
+  chartInstances.cityRank = new Chart(document.getElementById('chartCityRank'), {
+    type: 'bar',
+    data: { labels: top15.map(c => c.name), datasets: [{ label: '工单数', data: top15.map(c => c.count), backgroundColor: '#0B4F8A', borderRadius: 4, barThickness: 16 }] },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { display: false } } } }
+  });
+  const typeData = rawData?.typeDistribution || [];
+  chartInstances.cityType = new Chart(document.getElementById('chartCityType'), {
+    type: 'doughnut',
+    data: { labels: typeData.map(d => d.name), datasets: [{ data: typeData.map(d => d.value), backgroundColor: ['#0B4F8A', '#f59e0b', '#ef4444', '#10b981', '#8b5cf6', '#6366f1'], borderWidth: 2, borderColor: '#fff' }] },
+    options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, font: { size: 11 } } } } }
+  });
+}
 
 // ==================== CHARTS ====================
 function renderCharts() {
@@ -1096,7 +1211,8 @@ async function refreshData() {
   await loadData();
   btn.classList.remove('loading');
   document.getElementById('lastUpdated').textContent = '更新于 ' + (rawData?.lastUpdated || '--');
-  if (currentModule === 'process') { renderProcessModule(); }
+  if (currentModule === 'city') { renderCityModule(); }
+  else if (currentModule === 'process') { renderProcessModule(); }
   else if (currentModule === 'clue') { renderClueModule(); }
   showToast('数据已刷新');
 }
@@ -1106,7 +1222,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 (async function init() {
   await loadData();
   document.getElementById('lastUpdated').textContent = '更新于 ' + (rawData?.lastUpdated || '--');
-  renderProcessModule();
+  renderCityModule();
 })();
 
 </script>
