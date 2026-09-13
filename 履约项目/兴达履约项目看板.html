@@ -856,6 +856,10 @@ function clearFilter(tabId) {
   applyFilter();
 }
 function applyFilter() {
+  // Remember which dropdown is open so user can multi-select without it closing after each click
+  var openWrap = document.querySelector('.ms-wrap.open');
+  var openId = openWrap ? openWrap.id.replace('ms-', '') : null;
+
   // Refresh cascade options (region → subregion → city → site) for all tabs
   var tabIds2 = ['morning','safety','equip','box','knife','chargebp','training','rider'];
   tabIds2.forEach(function(tid) {
@@ -868,9 +872,9 @@ function applyFilter() {
   if (!activePanel) return;
   var panelId = activePanel.id;
   var tabId = panelId.replace('panel-','');
-  if (tabId === 'rider') { renderRiderTabPage(1); return; }
+  if (tabId === 'rider') { renderRiderTabPage(1); }
   // For equip tab, re-render based on current sub-view to avoid resetting view state
-  if (tabId === 'equip') {
+  else if (tabId === 'equip') {
     METRIC_CFG.clothing.rows = (typeof CLOTHING_ROWS !== 'undefined') ? CLOTHING_ROWS : [];
     METRIC_CFG.clothing.target = 95;
     if (currentEquipView === 'clothing') { renderClothingTable(); updateClothingSummaryCard(); updateClothingRegionCards(); }
@@ -880,6 +884,9 @@ function applyFilter() {
     // Rerender the current tab
     switchTab(tabId);
   }
+
+  // Re-open the dropdown after re-render so multi-select keeps flowing
+  if (openId) toggleMs(openId);
 }
 
 // Close dropdowns on outside click
