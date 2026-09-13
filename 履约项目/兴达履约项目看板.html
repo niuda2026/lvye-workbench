@@ -2418,19 +2418,19 @@ function renderChargeBPTab() {
   cbInitOnce();
   cbApplyBoard();
   var columns = [
-    {key:'bp_rate',          label:'检测率',   isPct:false, isSumRatio:true},
+    {key:'bp_rate',          label:'检测率',   isPct:true, isSumRatio:true},
     {key:'bp_num',           label:'已上传',   isPct:false, isSumRatio:false},
     {key:'bp_den',           label:'在职骑手', isPct:false, isSumRatio:false},
     {key:'bp_not',           label:'未上传',   isPct:false, isSumRatio:false, isBad:true},
-    {key:'vehicle_rate',     label:'通过率',   isPct:false, isSumRatio:true},
+    {key:'vehicle_rate',     label:'通过率',   isPct:true, isSumRatio:true},
     {key:'vehicle_num',      label:'通过',     isPct:false, isSumRatio:false},
     {key:'vehicle_den',      label:'已出结果', isPct:false, isSumRatio:false},
     {key:'vehicle_not',      label:'未通过',   isPct:false, isSumRatio:false, isBad:true},
-    {key:'charge_up_rate',   label:'提交率',   isPct:false, isSumRatio:true},
+    {key:'charge_up_rate',   label:'提交率',   isPct:true, isSumRatio:true},
     {key:'charge_up_num',    label:'已上传',   isPct:false, isSumRatio:false},
     {key:'charge_up_den',    label:'在职骑手', isPct:false, isSumRatio:false},
     {key:'charge_up_not',    label:'未上传',   isPct:false, isSumRatio:false, isBad:true},
-    {key:'charge_check_rate',label:'通过率',   isPct:false, isSumRatio:true},
+    {key:'charge_check_rate',label:'通过率',   isPct:true, isSumRatio:true},
     {key:'charge_check_num', label:'通过',     isPct:false, isSumRatio:false},
     {key:'charge_check_den', label:'已出结果', isPct:false, isSumRatio:false},
     {key:'charge_check_not', label:'未通过',   isPct:false, isSumRatio:false, isBad:true}
