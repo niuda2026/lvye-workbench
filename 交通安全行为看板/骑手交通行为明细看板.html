@@ -441,7 +441,8 @@ function onSfChange(tab,key,cb){
   updateSfLabel(tab,key);
   initStationFilters(tab);
   applyFilter(tab);
-}  if(tab==='four')syncRiderFromStation();
+  if(tab==='four')syncRiderFromStation();
+}
 
 function updateSfLabel(tab,key){
   var wrap=document.getElementById('sf-'+tab+'-'+key);
@@ -823,7 +824,8 @@ function onMsChange(key,cb){
   if(item){item.classList.toggle('checked',cb.checked);}
   updateRiderMsLabel(key);
   applyRiderFilter();
-}  syncStationFromRider();
+  syncStationFromRider();
+}
 
 function updateRiderMsLabel(key){
   var wrap=document.getElementById('ms-'+key);
