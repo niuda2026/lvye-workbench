@@ -17,7 +17,7 @@
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
     background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
   .mono{font-family:"SF Mono",Consolas,"Roboto Mono",monospace;font-variant-numeric:tabular-nums}
-  .wrap{max-width:1480px;margin:0 auto;padding:18px 22px 60px}
+  .wrap{max-width:1600px;margin:0 auto;padding:18px 22px 60px}
 
   /* Header */
   header.top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:18px}
@@ -32,12 +32,19 @@
     box-shadow:0 0 0 0 rgba(16,185,129,.5);animation:pulse 2s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(16,185,129,.5)}70%{box-shadow:0 0 0 8px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}
 
+  /* Top tabs */
+  .top-tabs{display:flex;gap:8px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+  .top-tabs .tab{padding:10px 22px;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:.15s}
+  .top-tabs .tab:hover{color:var(--primary)}
+  .top-tabs .tab.active{color:var(--primary);border-bottom-color:var(--primary);background:#fff}
+  .tab-panel{display:none}
+  .tab-panel.active{display:block}
+
   /* KPI */
-  .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:18px}
-  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-  .kpi .label{font-size:12px;color:var(--muted);margin-bottom:8px}
-  .kpi .val{font-size:28px;font-weight:700;line-height:1}
-  .kpi .val small{font-size:13px;font-weight:500;color:var(--muted);margin-left:3px}
+  .kpis{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-bottom:18px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .kpi .label{font-size:12px;color:var(--muted);margin-bottom:6px}
+  .kpi .val{font-size:24px;font-weight:700;line-height:1}
   .kpi .bar{position:absolute;left:0;top:0;height:3px;width:100%}
   .kpi.k-total .bar{background:var(--primary)} .kpi.k-total .val{color:var(--primary)}
   .kpi.k-pend .bar{background:var(--red)} .kpi.k-pend .val{color:var(--red)}
@@ -45,6 +52,8 @@
   .kpi.k-done .bar{background:var(--green)} .kpi.k-done .val{color:var(--green)}
   .kpi.k-new .bar{background:var(--purple)} .kpi.k-new .val{color:var(--purple)}
   .kpi.k-city .bar{background:#0ea5e9} .kpi.k-city .val{color:#0ea5e9}
+  .kpi.k-region .bar{background:#6366f1} .kpi.k-region .val{color:#6366f1}
+  .kpi.k-station .bar{background:#ec4899} .kpi.k-station .val{color:#ec4899}
 
   /* Layout grid */
   .grid{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;margin-bottom:16px}
@@ -52,19 +61,17 @@
   .panel h3{font-size:14px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
   .panel h3 .dot{width:6px;height:6px;border-radius:50%;background:var(--primary)}
   .panel h3 .sub{font-size:11px;color:var(--muted);font-weight:400;margin-left:auto}
-
   .chart-box{position:relative;height:300px}
   .chart-box.sm{height:240px}
 
   /* City table */
-  .city-table{width:100%;border-collapse:collapse;font-size:13px}
-  .city-table th,.city-table td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
-  .city-table th{font-size:12px;color:var(--muted);font-weight:600;cursor:pointer;user-select:none}
-  .city-table th:hover{color:var(--primary)}
-  .city-table td.num{text-align:right;font-family:"SF Mono",Consolas,monospace}
-  .city-table tbody tr:hover{background:var(--primary-soft)}
-  .rank{display:inline-flex;width:22px;height:22px;border-radius:6px;background:#eef2ff;color:var(--primary);
-    font-size:12px;font-weight:700;align-items:center;justify-content:center}
+  .city-table,.data-table{width:100%;border-collapse:collapse;font-size:13px}
+  .city-table th,.city-table td,.data-table th,.data-table td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+  .city-table th,.data-table th{font-size:12px;color:var(--muted);font-weight:600;cursor:pointer;user-select:none;position:sticky;top:0;background:#fff;z-index:1}
+  .city-table th:hover,.data-table th:hover{color:var(--primary)}
+  .city-table td.num,.data-table td.num{text-align:right;font-family:"SF Mono",Consolas,monospace}
+  .city-table tbody tr:hover,.data-table tbody tr:hover{background:var(--primary-soft);cursor:pointer}
+  .rank{display:inline-flex;width:22px;height:22px;border-radius:6px;background:#eef2ff;color:var(--primary);font-size:12px;font-weight:700;align-items:center;justify-content:center}
   .rank.top{background:var(--primary);color:#fff}
   .pctbar{position:relative;height:8px;background:#eef2f7;border-radius:5px;width:90px;display:inline-block;vertical-align:middle;overflow:hidden}
   .pctbar>span{position:absolute;left:0;top:0;height:100%;border-radius:5px;background:linear-gradient(90deg,#60a5fa,#2563eb)}
@@ -75,7 +82,7 @@
   .b-red{background:#fee2e2;color:#b91c1c} .b-orange{background:#ffedd5;color:#c2410c}
   .b-yellow{background:#fef9c3;color:#a16207} .b-blue{background:#dbeafe;color:#1d4ed8}
 
-  /* Latest + recent */
+  /* Latest */
   .latest{list-style:none;max-height:300px;overflow:auto}
   .latest li{padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
   .latest li:last-child{border-bottom:none}
@@ -83,19 +90,48 @@
   .latest .city{font-weight:600} .latest .t{color:var(--muted);font-size:12px}
   .latest .meta{color:var(--muted);font-size:12px;margin-top:3px;display:flex;gap:10px;flex-wrap:wrap}
 
-  .filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
-  .filters input,.filters select{padding:7px 10px;border:1px solid var(--line);border-radius:8px;font-size:13px;outline:none}
-  .filters input:focus,.filters select:focus{border-color:var(--primary)}
-  .filters .grow{flex:1;min-width:180px}
-  table.recent{width:100%;border-collapse:collapse;font-size:13px}
-  table.recent th,table.recent td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
-  table.recent th{font-size:12px;color:var(--muted);font-weight:600;cursor:pointer;position:sticky;top:0;background:#fff}
-  table.recent tbody tr:hover{background:var(--primary-soft)}
+  /* Detail filters */
+  .filter-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px;padding:12px;background:#f8fafc;border:1px solid var(--line);border-radius:10px}
+  .filter-bar label{font-size:12px;color:var(--muted);margin-right:-4px}
+  .filter-bar input,.filter-bar select{padding:7px 10px;border:1px solid var(--line);border-radius:8px;font-size:13px;outline:none;background:#fff}
+  .filter-bar input:focus,.filter-bar select:focus{border-color:var(--primary)}
+  .filter-bar .grow{flex:1;min-width:180px}
+  .filter-bar button{padding:7px 16px;border:none;border-radius:8px;background:var(--primary);color:#fff;font-size:13px;cursor:pointer}
+  .filter-bar button:hover{background:#1d4ed8}
+  .filter-bar button.secondary{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .filter-bar button.secondary:hover{background:#f3f4f6}
+
+  /* Pagination */
+  .pager{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-top:12px;font-size:13px;color:var(--muted)}
+  .pager button{padding:5px 12px;border:1px solid var(--line);background:#fff;border-radius:6px;cursor:pointer}
+  .pager button:disabled{opacity:.5;cursor:not-allowed}
+  .pager input{width:46px;text-align:center;padding:5px;border:1px solid var(--line);border-radius:6px}
+
+  /* Modal */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+  .modal-overlay.show{display:flex}
+  .modal{background:#fff;border-radius:14px;width:min(960px,100%);max-height:90vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+  .modal-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+  .modal-header h2{font-size:17px;font-weight:700}
+  .modal-header .close{width:32px;height:32px;border-radius:8px;border:none;background:#f3f4f6;cursor:pointer;font-size:18px;line-height:1}
+  .modal-body{padding:18px 20px;overflow:auto;max-height:70vh}
+  .detail-section{margin-bottom:18px}
+  .detail-section h4{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #eef2f7}
+  .kv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 16px}
+  .kv-grid.wide{grid-template-columns:repeat(2,1fr)}
+  .kv{display:flex;flex-direction:column;gap:2px}
+  .kv .k{font-size:12px;color:var(--muted)}
+  .kv .v{font-size:13px;color:var(--ink);word-break:break-all;white-space:pre-wrap}
+  .kv .v.mono{font-family:"SF Mono",Consolas,monospace}
+  .rider-card{border:1px solid var(--line);border-radius:10px;padding:12px;background:#f8fafc;margin-bottom:10px}
+  .rider-card h5{font-size:13px;font-weight:600;margin-bottom:8px}
+  .attachment{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:#f8fafc;margin:0 8px 8px 0;font-size:12px;color:var(--primary);cursor:pointer;text-decoration:none}
+
   .note{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5}
   .empty{padding:30px;text-align:center;color:var(--muted)}
 
-  @media(max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr}}
-  @media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:1100px){.kpis{grid-template-columns:repeat(4,1fr)}.grid{grid-template-columns:1fr}.kv-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.filter-bar{flex-direction:column;align-items:stretch}.kv-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -112,108 +148,152 @@
     </div>
   </header>
 
-  <!-- KPI -->
-  <section class="kpis" id="kpis"></section>
+  <div class="top-tabs">
+    <div class="tab active" data-tab="chart">图表分析</div>
+    <div class="tab" data-tab="detail">工单明细</div>
+  </div>
 
-  <!-- Charts row -->
-  <section class="grid">
-    <div class="panel">
-      <h3><span class="dot"></span>城市工单分布 TOP10<span class="sub">按工单总量</span></h3>
-      <div class="chart-box"><canvas id="cityChart"></canvas></div>
-    </div>
-    <div class="panel">
-      <h3><span class="dot"></span>工单状态分布<span class="sub">待处理 / 处理中 / 完成</span></h3>
-      <div class="chart-box"><canvas id="statusChart"></canvas></div>
-    </div>
-  </section>
-
-  <section class="grid">
-    <div class="panel">
-      <h3><span class="dot"></span>近 30 天上报趋势<span class="sub">按创建日期</span></h3>
-      <div class="chart-box sm"><canvas id="trendChart"></canvas></div>
-    </div>
-    <div class="panel">
-      <h3><span class="dot"></span>事件类型 TOP10<span class="sub">按工单量</span></h3>
-      <div class="chart-box sm"><canvas id="typeChart"></canvas></div>
-    </div>
-  </section>
-
-  <!-- City monitor table -->
-  <section class="panel" style="margin-bottom:16px">
-    <h3><span class="dot"></span>城市实时监控表<span class="sub" id="citySub"></span></h3>
-    <div style="overflow:auto;max-height:420px">
-      <table class="city-table" id="cityTable">
-        <thead><tr>
-          <th data-k="rank">#</th><th data-k="name">城市</th>
-          <th data-k="count" class="num">工单总数</th>
-          <th data-k="pending" class="num">待处理</th>
-          <th data-k="processing" class="num">处理中</th>
-          <th data-k="done" class="num">完成</th>
-          <th data-k="count">占比</th>
-        </tr></thead>
-        <tbody id="cityBody"></tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- Latest -->
-  <section class="grid">
-    <div class="panel">
-      <h3><span class="dot"></span>最新工单<span class="sub">最近 20 条</span></h3>
-      <ul class="latest" id="latestList"></ul>
-    </div>
-    <div class="panel">
-      <h3><span class="dot"></span>事件处理明细<span class="sub" id="recentSub"></span></h3>
-      <div class="filters">
-        <input class="grow" id="fSearch" placeholder="搜索 编号 / 城市 / 类型 / 处理人">
-        <select id="fStatus">
-          <option value="">全部状态</option>
-          <option value="待处理">待处理</option>
-          <option value="处理中">处理中</option>
-          <option value="处理完成">处理完成</option>
-        </select>
-        <select id="fLevel">
-          <option value="">全部等级</option>
-          <option value="红色">红色</option>
-          <option value="橙色">橙色</option>
-          <option value="黄色">黄色</option>
-          <option value="蓝色">蓝色</option>
-        </select>
+  <!-- 图表分析 Tab -->
+  <div class="tab-panel active" id="panel-chart">
+    <section class="kpis" id="kpis"></section>
+    <section class="grid">
+      <div class="panel">
+        <h3><span class="dot"></span>城市工单分布 TOP10<span class="sub">按工单总量</span></h3>
+        <div class="chart-box"><canvas id="cityChart"></canvas></div>
       </div>
-      <div style="overflow:auto;max-height:360px">
-        <table class="recent" id="recentTable">
+      <div class="panel">
+        <h3><span class="dot"></span>工单状态分布<span class="sub">待处理 / 处理中 / 完成</span></h3>
+        <div class="chart-box"><canvas id="statusChart"></canvas></div>
+      </div>
+    </section>
+    <section class="grid">
+      <div class="panel">
+        <h3><span class="dot"></span>近 30 天上报趋势<span class="sub">按创建日期</span></h3>
+        <div class="chart-box sm"><canvas id="trendChart"></canvas></div>
+      </div>
+      <div class="panel">
+        <h3><span class="dot"></span>事件类型 TOP10<span class="sub">按工单量</span></h3>
+        <div class="chart-box sm"><canvas id="typeChart"></canvas></div>
+      </div>
+    </section>
+    <section class="panel" style="margin-bottom:16px">
+      <h3><span class="dot"></span>城市实时监控表<span class="sub" id="citySub"></span></h3>
+      <div style="overflow:auto;max-height:420px">
+        <table class="city-table" id="cityTable">
           <thead><tr>
-            <th>编号</th><th>城市</th><th>类型</th><th>等级</th>
-            <th>状态</th><th>上报时间</th><th>处理人</th>
+            <th data-k="rank">#</th><th data-k="name">城市</th>
+            <th data-k="count" class="num">工单总数</th>
+            <th data-k="pending" class="num">待处理</th>
+            <th data-k="processing" class="num">处理中</th>
+            <th data-k="done" class="num">完成</th>
+            <th data-k="count">占比</th>
           </tr></thead>
-          <tbody id="recentBody"></tbody>
+          <tbody id="cityBody"></tbody>
         </table>
       </div>
-      <div class="note" id="dataNote"></div>
+    </section>
+    <section class="grid">
+      <div class="panel">
+        <h3><span class="dot"></span>最新工单<span class="sub">最近 20 条</span></h3>
+        <ul class="latest" id="latestList"></ul>
+      </div>
+      <div class="panel">
+        <h3><span class="dot"></span>大区工单分布<span class="sub" id="regionSub"></span></h3>
+        <div class="chart-box sm"><canvas id="regionChart"></canvas></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 工单明细 Tab -->
+  <div class="tab-panel" id="panel-detail">
+    <div class="filter-bar">
+      <label>大区</label><select id="fltRegion"><option value="">全部大区</option></select>
+      <label>区域</label><select id="fltArea"><option value="">全部区域</option></select>
+      <label>城市</label><select id="fltCity"><option value="">全部城市</option></select>
+      <label>站点</label><select id="fltStation"><option value="">全部站点</option></select>
+      <label>状态</label><select id="fltStatus"><option value="">全部状态</option><option>待处理</option><option>处理中</option><option>处理完成</option><option>其他</option></select>
+      <label>等级</label><select id="fltLevel"><option value="">全部等级</option><option>红色</option><option>橙色</option><option>黄色</option><option>蓝色</option></select>
+      <input type="date" id="fltDateFrom" title="上报时间从">
+      <input type="date" id="fltDateTo" title="上报时间到">
+      <input class="grow" id="fltSearch" placeholder="搜索 编号 / 城市 / 站点 / 类型 / 处理人 / 事件经过">
+      <button onclick="resetFilters()">重置</button>
     </div>
-  </section>
+    <div class="panel" style="padding:0;overflow:hidden">
+      <div style="overflow:auto;max-height:calc(100vh - 290px)">
+        <table class="data-table" id="detailTable">
+          <thead><tr>
+            <th data-k="id">编号</th>
+            <th data-k="region">大区</th>
+            <th data-k="area">区域</th>
+            <th data-k="city">城市</th>
+            <th data-k="station">站点</th>
+            <th data-k="type">类型</th>
+            <th data-k="level">等级</th>
+            <th data-k="status">状态</th>
+            <th data-k="reportTime">上报时间</th>
+            <th data-k="handler">处理人</th>
+          </tr></thead>
+          <tbody id="detailBody"></tbody>
+        </table>
+      </div>
+      <div class="pager" id="detailPager"></div>
+    </div>
+    <div class="note" id="dataNote"></div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this) closeModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>工单详情 <span class="mono" id="mdEventNo" style="color:var(--muted);font-size:14px"></span></h2>
+      <button class="close" onclick="closeModal()">&times;</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
 </div>
 
 <script>
 let rawData = null;
 let charts = {};
 let citySort = {k:'count', dir:-1};
+let detailSort = {k:'reportTime', dir:-1};
+let detailPage = 1;
+const DETAIL_PAGE_SIZE = 50;
+let filteredRecords = [];
 
 function fmt(n){ return (n||0).toLocaleString('zh-CN'); }
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function statusBadge(s){
   if(s==='待处理') return '<span class="badge b-pend">待处理</span>';
   if(s==='处理中') return '<span class="badge b-proc">处理中</span>';
-  return '<span class="badge b-done">处理完成</span>';
+  if(s==='处理完成') return '<span class="badge b-done">处理完成</span>';
+  return '<span class="badge b-blue">'+(s||'其他')+'</span>';
 }
 function levelBadge(l){
   const m={'红色':'b-red','橙色':'b-orange','黄色':'b-yellow','蓝色':'b-blue'};
-  return '<span class="badge '+(m[l]||'b-blue')+'">'+l+'</span>';
+  return '<span class="badge '+(m[l]||'b-blue')+'">'+esc(l)+'</span>';
 }
 
+/* ---------- Tabs ---------- */
+function bindTabs(){
+  document.querySelectorAll('.top-tabs .tab').forEach(t=>{
+    t.onclick = ()=>{
+      document.querySelectorAll('.top-tabs .tab').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById('panel-'+t.dataset.tab).classList.add('active');
+      if(t.dataset.tab==='chart' && !charts.city) renderCharts();
+    };
+  });
+}
+
+/* ---------- Chart Tab ---------- */
 function renderHeader(){
   document.getElementById('updated').textContent = rawData.lastUpdated || '--';
   const note = rawData.meta && rawData.meta.statusNote ? rawData.meta.statusNote : '';
-  document.getElementById('dataNote').textContent = '说明：' + note + ' ｜ 数据由 fetch_110_cdp.py 经 CDP 在登录态页面内抓取，运行「一键刷新110工单数据.bat」可更新。';
+  const dnote = rawData.meta && rawData.meta.detailNote ? rawData.meta.detailNote : '';
+  document.getElementById('dataNote').textContent = '说明：' + note + ' ' + dnote + ' ｜ 数据由 fetch_110_cdp.py 经 CDP 在登录态页面内抓取，运行「一键刷新110工单数据.bat」可更新。';
 }
 
 function renderKPI(){
@@ -225,6 +305,7 @@ function renderKPI(){
     {c:'k-done', label:'处理完成', val:fmt(k.done)},
     {c:'k-new', label:'今日新增', val:fmt(k.todayNew)},
     {c:'k-city', label:'覆盖城市', val:fmt(k.cityCount)},
+    {c:'k-region', label:'覆盖大区', val:fmt(k.regionCount||0)},
   ];
   document.getElementById('kpis').innerHTML = cards.map(c=>
     `<div class="kpi ${c.c}"><div class="bar"></div><div class="label">${c.label}</div>
@@ -235,7 +316,6 @@ function destroyCharts(){ for(const k in charts){ if(charts[k]){ charts[k].destr
 
 function renderCharts(){
   destroyCharts();
-  // 城市 TOP10
   const cities = (rawData.cityStats||[]).slice(0,10).reverse();
   charts.city = new Chart(document.getElementById('cityChart'),{
     type:'bar',
@@ -246,7 +326,6 @@ function renderCharts(){
       plugins:{legend:{display:false}},
       scales:{x:{ticks:{precision:0},grid:{color:'#f1f5f9'}},y:{grid:{display:false}}}}
   });
-  // 状态分布 环形
   const sd = rawData.statusDist||[];
   const colorMap={'待处理':'#ef4444','处理中':'#f59e0b','处理完成':'#10b981'};
   charts.status = new Chart(document.getElementById('statusChart'),{
@@ -257,7 +336,6 @@ function renderCharts(){
     options:{responsive:true,maintainAspectRatio:false,cutout:'62%',
       plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:14}}}}
   });
-  // 趋势
   const tr = rawData.trend||[];
   charts.trend = new Chart(document.getElementById('trendChart'),{
     type:'line',
@@ -269,13 +347,22 @@ function renderCharts(){
       plugins:{legend:{display:false}},
       scales:{x:{ticks:{maxTicksLimit:12},grid:{display:false}},y:{ticks:{precision:0},grid:{color:'#f1f5f9'}}}}
   });
-  // 类型 TOP10
   const td = (rawData.typeDist||[]).slice(0,10).reverse();
   charts.type = new Chart(document.getElementById('typeChart'),{
     type:'bar',
     data:{labels:td.map(t=>t.name),
       datasets:[{label:'工单量',data:td.map(t=>t.value),
         backgroundColor:'#7c3aed',borderRadius:5}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{x:{ticks:{precision:0},grid:{color:'#f1f5f9'}},y:{grid:{display:false}}}}
+  });
+  const rd = (rawData.regionDist||[]).slice(0,10).reverse();
+  charts.region = new Chart(document.getElementById('regionChart'),{
+    type:'bar',
+    data:{labels:rd.map(r=>r.name),
+      datasets:[{label:'工单量',data:rd.map(r=>r.value),
+        backgroundColor:'#6366f1',borderRadius:5}]},
     options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false}},
       scales:{x:{ticks:{precision:0},grid:{color:'#f1f5f9'}},y:{grid:{display:false}}}}
@@ -292,7 +379,7 @@ function renderCity(){
     const pct = (r.count/total*100).toFixed(1);
     return `<tr>
       <td><span class="rank ${i<3?'top':''}">${i+1}</span></td>
-      <td>${r.name}</td>
+      <td>${esc(r.name)}</td>
       <td class="num mono">${fmt(r.count)}</td>
       <td class="num mono" style="color:var(--red)">${fmt(r.pending)}</td>
       <td class="num mono" style="color:var(--amber)">${fmt(r.processing)}</td>
@@ -305,38 +392,225 @@ function renderCity(){
 function renderLatest(){
   const ls = rawData.latest||[];
   document.getElementById('latestList').innerHTML = ls.map(o=>
-    `<li><div class="ln"><span class="city">${o.city}</span><span class="t mono">${o.reportTime||''}</span></div>
-     <div class="meta"><span>${o.type||''}</span>${levelBadge(o.level)} ${statusBadge(o.status)}
-     <span>编号 ${o.eventNo||''}</span></div></li>`).join('')
+    `<li><div class="ln"><span class="city">${esc(o.city)}</span><span class="t mono">${o.reportTime||''}</span></div>
+     <div class="meta"><span>${esc(o.type||'')}</span>${levelBadge(o.level)} ${statusBadge(o.status)}
+     <span>编号 ${esc(o.eventNo||'')}</span></div></li>`).join('')
     || '<li class="empty">暂无数据</li>';
 }
 
-function renderRecent(){
-  const all = rawData.recent||[];
-  const kw = (document.getElementById('fSearch').value||'').trim().toLowerCase();
-  const fs = document.getElementById('fStatus').value;
-  const fl = document.getElementById('fLevel').value;
-  let rows = all.filter(o=>{
-    if(fs && o.status!==fs) return false;
-    if(fl && o.level!==fl) return false;
-    if(kw){ const s=(o.id+' '+(o.city||'')+' '+(o.type||'')+' '+(o.handler||'')).toLowerCase(); if(!s.includes(kw)) return false; }
-    return true;
-  });
-  document.getElementById('recentSub').textContent = `匹配 ${rows.length} / ${all.length} 条`;
-  document.getElementById('recentBody').innerHTML = rows.slice(0,200).map(o=>
-    `<tr><td class="mono">${o.id||''}</td><td>${o.city||''}</td><td>${o.type||''}</td>
-     <td>${levelBadge(o.level)}</td><td>${statusBadge(o.status)}</td>
-     <td class="mono">${o.reportTime||''}</td><td>${o.handler||'-'}</td></tr>`).join('')
-    || '<tr><td colspan="7" class="empty">无匹配记录</td></tr>';
+/* ---------- Detail Tab ---------- */
+function initDetailFilters(){
+  const opts = rawData.filterOptions || {};
+  const fill = (id, arr)=>{
+    const sel = document.getElementById(id);
+    const cur = sel.value;
+    sel.innerHTML = '<option value="">全部' + (id==='fltRegion'?'大区':id==='fltArea'?'区域':id==='fltCity'?'城市':'站点') + '</option>'
+      + (arr||[]).map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');
+    sel.value = cur;
+  };
+  fill('fltRegion', opts.regions);
+  fill('fltArea', opts.areas);
+  fill('fltCity', opts.cities);
+  fill('fltStation', opts.stations);
 }
 
+function getFilteredRecords(){
+  const fr = document.getElementById('fltRegion').value;
+  const fa = document.getElementById('fltArea').value;
+  const fc = document.getElementById('fltCity').value;
+  const fs = document.getElementById('fltStation').value;
+  const fst = document.getElementById('fltStatus').value;
+  const fl = document.getElementById('fltLevel').value;
+  const df = document.getElementById('fltDateFrom').value;
+  const dt = document.getElementById('fltDateTo').value;
+  const kw = (document.getElementById('fltSearch').value||'').trim().toLowerCase();
+  return (rawData.records||[]).filter(o=>{
+    if(fr && o.region!==fr) return false;
+    if(fa && o.area!==fa) return false;
+    if(fc && o.city!==fc) return false;
+    if(fs && o.station!==fs) return false;
+    if(fst && o.status!==fst) return false;
+    if(fl && o.level!==fl) return false;
+    if(df && (o.reportTime||'')<df+' 00:00:00') return false;
+    if(dt && (o.reportTime||'')>dt+' 23:59:59') return false;
+    if(kw){
+      const s = (o.id+' '+(o.region||'')+' '+(o.area||'')+' '+(o.city||'')+' '+(o.station||'')+' '+(o.type||'')+' '+(o.handler||'')+' '+(o.summary||'')).toLowerCase();
+      if(!s.includes(kw)) return false;
+    }
+    return true;
+  });
+}
+
+function renderDetailTable(){
+  filteredRecords = getFilteredRecords();
+  const total = filteredRecords.length;
+  filteredRecords.sort((a,b)=>{
+    let av = a[detailSort.k]||'', bv = b[detailSort.k]||'';
+    if(detailSort.k==='id'){ av=String(av); bv=String(bv); }
+    return (av>=bv?1:-1)*detailSort.dir;
+  });
+  const maxPage = Math.max(1, Math.ceil(total/DETAIL_PAGE_SIZE));
+  detailPage = Math.min(detailPage, maxPage);
+  const start = (detailPage-1)*DETAIL_PAGE_SIZE;
+  const pageRows = filteredRecords.slice(start, start+DETAIL_PAGE_SIZE);
+  document.getElementById('detailBody').innerHTML = pageRows.map(o=>
+    `<tr onclick="openDetail('${esc(o.id)}')">
+      <td class="mono">${esc(o.id)}</td>
+      <td>${esc(o.region)}</td>
+      <td>${esc(o.area)}</td>
+      <td>${esc(o.city)}</td>
+      <td>${esc(o.station)}</td>
+      <td>${esc(o.type)}</td>
+      <td>${levelBadge(o.level)}</td>
+      <td>${statusBadge(o.status)}</td>
+      <td class="mono">${o.reportTime||''}</td>
+      <td>${esc(o.handler||'-')}</td>
+    </tr>`).join('') || '<tr><td colspan="10" class="empty">无匹配记录</td></tr>';
+  renderPager(total, maxPage);
+}
+
+function renderPager(total, maxPage){
+  document.getElementById('detailPager').innerHTML = `
+    <span>共 ${fmt(total)} 条，每页 ${DETAIL_PAGE_SIZE} 条，第 ${detailPage}/${maxPage} 页</span>
+    <button ${detailPage<=1?'disabled':''} onclick="goPage(${detailPage-1})">上一页</button>
+    <input type="number" min="1" max="${maxPage}" value="${detailPage}" onchange="goPage(Number(this.value))">
+    <button ${detailPage>=maxPage?'disabled':''} onclick="goPage(${detailPage+1})">下一页</button>`;
+}
+window.goPage = function(n){ detailPage = n; renderDetailTable(); };
+
+function resetFilters(){
+  ['fltRegion','fltArea','fltCity','fltStation','fltStatus','fltLevel','fltSearch','fltDateFrom','fltDateTo'].forEach(id=>{
+    document.getElementById(id).value = '';
+  });
+  detailPage = 1; detailSort = {k:'reportTime', dir:-1};
+  renderDetailTable();
+}
+window.resetFilters = resetFilters;
+
+function bindDetailFilters(){
+  ['fltRegion','fltArea','fltCity','fltStation','fltStatus','fltLevel','fltDateFrom','fltDateTo','fltSearch'].forEach(id=>{
+    const el = document.getElementById(id);
+    el.addEventListener('input', ()=>{ detailPage=1; renderDetailTable(); });
+    el.addEventListener('change', ()=>{ detailPage=1; renderDetailTable(); });
+  });
+  document.querySelectorAll('#detailTable th[data-k]').forEach(th=>{
+    th.onclick = ()=>{
+      const k = th.dataset.k;
+      if(detailSort.k===k) detailSort.dir *= -1;
+      else { detailSort.k=k; detailSort.dir=-1; }
+      renderDetailTable();
+    };
+  });
+}
+
+/* ---------- Modal ---------- */
+function openDetail(eventNo){
+  const rec = (rawData.records||[]).find(r=>r.id===eventNo);
+  if(!rec) return;
+  const d = rec.detail || {};
+  document.getElementById('mdEventNo').textContent = eventNo;
+  document.getElementById('modalOverlay').classList.add('show');
+
+  const kv = (label, val, cls='')=>`<div class="kv"><span class="k">${esc(label)}</span><span class="v ${cls}">${esc(val)}</span></div>`;
+
+  let html = '';
+  // 基本信息
+  html += `<div class="detail-section"><h4>基本信息</h4><div class="kv-grid">
+    ${kv('事件编号', d.eventNo||rec.id, 'mono')}
+    ${kv('标题', d.title||rec.title||'-')}
+    ${kv('事件类型', d.type||rec.type)}
+    ${kv('事件等级', d.level||rec.level)}
+    ${kv('当前状态', d.status||rec.status)}
+    ${kv('来源系统', d.source||rec.source)}
+    ${kv('事发时间', d.occurTime||rec.occurTime)}
+    ${kv('上报时间', d.reportTime||rec.reportTime)}
+    ${kv('更新时间', d.updateTime||rec.updateTime)}
+    ${kv('关单时间', d.endTime||'-')}
+    ${kv('processId', d.processId||'-', 'mono')}
+    ${kv('taskKey', d.taskKey||'-', 'mono')}
+  </div></div>`;
+
+  // 组织信息
+  html += `<div class="detail-section"><h4>组织信息</h4><div class="kv-grid">
+    ${kv('履约大区', d.region||rec.region)}
+    ${kv('履约区域', d.area||rec.area)}
+    ${kv('配送城市', d.city||rec.city)}
+    ${kv('站点', d.station||rec.station)}
+    ${kv('站点类型', d.stationType||'-')}
+    ${kv('站点ID', d.stationId||'-', 'mono')}
+    ${kv('城市商名称', d.cityMerchant||'-')}
+    ${kv('加盟商名称', d.franchisee||rec.franchisee||'-')}
+  </div><div style="margin-top:8px"><span class="k">组织路径</span><div class="v">${esc(d.orgPath||rec.orgPath||'-')}</div></div></div>`;
+
+  // 事件信息
+  html += `<div class="detail-section"><h4>事件信息</h4><div class="kv-grid">
+    ${kv('事发省份', d.province||rec.province)}
+    ${kv('事发城市', d.city||rec.city)}
+    ${kv('事发区县', d.district||rec.district)}
+    ${kv('事发地点', d.address||rec.address)}
+    ${kv('核实状态', d.checkInfoStatus||'-')}
+    ${kv('核实结果', d.checkInfoResult||'-')}
+  </div><div style="margin-top:8px"><span class="k">事件经过</span><div class="v">${esc(d.course||rec.summary||'-')}</div></div></div>`;
+
+  // 骑手信息
+  const riders = d.riders || [];
+  if(riders.length){
+    html += `<div class="detail-section"><h4>骑手信息（${riders.length}人）</h4>`;
+    riders.forEach(r=>{
+      html += `<div class="rider-card"><h5>${esc(r.riderName||'-')} ${r.riderPhone?'<span class="mono">'+esc(r.riderPhone)+'</span>':''}</h5>
+        <div class="kv-grid">
+          ${kv('骑手ID', r.riderId||'-', 'mono')}
+          ${kv('所属站点', r.stationName||'-')}
+          ${kv('在职状态', r.jobStatusDesc||'-')}
+          ${kv('组织类型', r.orgTypeDesc||'-')}
+          ${kv('性别', r.genderDesc||'-')}
+          ${kv('年龄', r.age||'-')}
+        </div></div>`;
+    });
+    html += '</div>';
+  }
+
+  // 处理人员
+  html += `<div class="detail-section"><h4>人员信息</h4><div class="kv-grid">
+    ${kv('上报人账号', d.createAccountId||rec.reporter||'-', 'mono')}
+    ${kv('更新人账号', d.updateAccountId||'-', 'mono')}
+    ${kv('处理人', rec.handler||'-')}
+  </div></div>`;
+
+  // 扩展字段
+  if(Object.keys(d.tenantCustomInfo||{}).length){
+    html += `<div class="detail-section"><h4>租户自定义字段</h4><div class="kv-grid">`
+      + Object.entries(d.tenantCustomInfo).map(([k,v])=>kv(k, Array.isArray(v)?v.join('、'):v)).join('')
+      + '</div></div>';
+  }
+  if(Object.keys(d.eventTypeInfo||{}).length){
+    html += `<div class="detail-section"><h4>事件类型字段</h4><div class="kv-grid">`
+      + Object.entries(d.eventTypeInfo).map(([k,v])=>kv(k, Array.isArray(v)?v.join('、'):v)).join('')
+      + '</div></div>';
+  }
+
+  // 附件
+  if(d.attachments && d.attachments.length){
+    html += `<div class="detail-section"><h4>附件（${d.attachments.length}）</h4>`;
+    d.attachments.forEach(a=>{
+      const url = a.url || a.attachmentUrl || '#';
+      const name = a.name || a.fileName || '附件';
+      html += `<a class="attachment" href="${esc(url)}" target="_blank" title="${esc(url)}">${esc(name)}</a>`;
+    });
+    html += '</div>';
+  }
+
+  document.getElementById('modalBody').innerHTML = html;
+}
+window.openDetail = openDetail;
+
+function closeModal(){ document.getElementById('modalOverlay').classList.remove('show'); }
+window.closeModal = closeModal;
+
+/* ---------- Global ---------- */
 function bindUI(){
   document.querySelectorAll('#cityTable th[data-k]').forEach(th=>{
     th.onclick=()=>{ const k=th.dataset.k; if(citySort.k===k) citySort.dir*=-1; else {citySort.k=k; citySort.dir=-1;} renderCity(); };
-  });
-  ['fSearch','fStatus','fLevel'].forEach(id=>{
-    document.getElementById(id).addEventListener('input',renderRecent);
-    document.getElementById(id).addEventListener('change',renderRecent);
   });
 }
 
@@ -352,7 +626,8 @@ function tickClock(){
 }
 
 function renderAll(){
-  renderHeader(); renderKPI(); renderCharts(); renderCity(); renderLatest(); renderRecent();
+  renderHeader(); renderKPI(); renderCharts(); renderCity(); renderLatest();
+  initDetailFilters(); renderDetailTable();
 }
 
 (async function init(){
@@ -361,10 +636,11 @@ function renderAll(){
     return;
   }
   rawData = EMBEDDED_DATA;
+  bindTabs();
   bindUI();
+  bindDetailFilters();
   renderAll();
   tickClock(); setInterval(tickClock,1000);
-  // 自动刷新：公网 http 环境下每 60s 重新拉取数据文件
   setInterval(async ()=>{
     try{
       const r = await fetch('110_data.js?t='+Date.now(),{cache:'no-store'});
@@ -376,7 +652,7 @@ function renderAll(){
       if(nd.lastUpdated!==rawData.lastUpdated){
         rawData = nd; renderAll();
       }
-    }catch(e){ /* file:// 下静默失败 */ }
+    }catch(e){}
   },60000);
 })();
 </script>
