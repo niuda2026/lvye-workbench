@@ -2082,11 +2082,11 @@ function bxRenderRider(p){
     pg.innerHTML = b;
   }
 
-  // 骑手维度 KPI 卡
-  var notN = all.filter(function(r){return r[8]==='未消毒';}).length;
-  var qN   = all.filter(function(r){return r[8]==='已通过';}).length;
-  var pN   = all.filter(function(r){return r[8]==='审核中';}).length;
-  var rjN  = all.filter(function(r){return r[8]==='已驳回';}).length;
+  // 骑手维度 KPI 卡（审核状态在 bxRows 输出数组的第 10 列）
+  var notN = all.filter(function(r){return r[10]==='未消毒';}).length;
+  var qN   = all.filter(function(r){return r[10]==='已通过';}).length;
+  var pN   = all.filter(function(r){return r[10]==='审核中';}).length;
+  var rjN  = all.filter(function(r){return r[10]==='已驳回';}).length;
   var rate = all.length ? (qN/all.length*100).toFixed(2)+'%' : '0%';
   var cards = document.getElementById('bxCardsRider');
   if(cards) cards.innerHTML =
@@ -3445,10 +3445,13 @@ function screenshotPanel(tabId) {
 
 // ─── 初始化 ─────────────────────────────────────────────────
 window.onload = function() {
-  if (typeof LATEST_DATE !== 'undefined') { LATEST_DATE = '08-13'; }
-  if (typeof LATEST_DATE !== 'undefined') {
-    document.getElementById('dataRange').textContent = '数据日期: 2026年8月 | 更新: '+LATEST_DATE;
-  }
+  // 顶部数据日期/更新日期动态取当前月/当天（避免硬编码过期）
+  var now = new Date();
+  var m = String(now.getMonth()+1).padStart(2,'0');
+  var d = String(now.getDate()).padStart(2,'0');
+  var y = now.getFullYear();
+  if (typeof LATEST_DATE !== 'undefined') { LATEST_DATE = m+'-'+d; }
+  document.getElementById('dataRange').textContent = '数据日期: '+y+'年'+m+'月 | 更新: '+m+'-'+d;
   // Initialize filter states
   var tabIds = ['morning','safety','equip','box','knife','chargebp','training','rider'];
   for (var t=0;t<tabIds.length;t++) {

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-13 19:07:06",
+  "updated_at": "2026-09-13 21:54:55",
   "action_summary": {
     "total": 14,
     "ok": 11,
@@ -111,7 +111,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-09-13 12:23:52",
             "max_age_hours": 26,
-            "age_hours": 6.7,
+            "age_hours": 9.5,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -209,11 +209,11 @@
         "data_files": [
           "履约项目\\充换电血压_data.js"
         ],
-        "data_mtime": "2026-09-13 15:08:09",
-        "all_synced": true,
-        "synced_count": 7,
+        "data_mtime": "2026-09-13 19:58:57",
+        "all_synced": false,
+        "synced_count": 6,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
@@ -235,9 +235,9 @@
           },
           {
             "type": "考培-学习明细记录",
-            "latest": "_考培-学习明细记录_1789253877164.xlsx",
-            "mtime": "2026-09-13 06:58:09",
-            "synced": true
+            "latest": "_考培-学习明细记录_1789307594633.xlsx",
+            "mtime": "2026-09-13 21:53:21",
+            "synced": false
           },
           {
             "type": "骑手排班明细数据",
@@ -263,9 +263,9 @@
             "label": "充换电血压数据构建",
             "path": "履约项目\\充换电血压_data.js",
             "latest": "充换电血压_data.js",
-            "mtime": "2026-09-13 15:08:09",
+            "mtime": "2026-09-13 19:58:57",
             "max_age_hours": 13,
-            "age_hours": 4.0,
+            "age_hours": 1.9,
             "ok": true,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
@@ -278,7 +278,7 @@
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-09-13 07:30:27",
             "max_age_hours": 30,
-            "age_hours": 11.6,
+            "age_hours": 14.4,
             "ok": true,
             "note": "早间自动化抓取",
             "fail_hits": [],
@@ -289,14 +289,14 @@
             "label": "每日刷新·抓取成败",
             "path": "daily_refresh_log.txt",
             "latest": "daily_refresh_log.txt",
-            "mtime": "2026-09-13 18:05:54",
+            "mtime": "2026-09-13 21:15:31",
             "max_age_hours": 13,
-            "age_hours": 1.0,
+            "age_hours": 0.7,
             "ok": true,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
             "fail_hits": [],
             "fail_lines": [],
-            "block_time": "2026-09-13 17:03:51"
+            "block_time": "2026-09-13 20:08:10"
           }
         ],
         "action_stats": {
@@ -306,7 +306,7 @@
           "total": 3,
           "all_ok": true
         },
-        "all_healthy": true
+        "all_healthy": false
       },
       "boards": [
         {
@@ -372,7 +372,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-09-13 07:43:43",
             "max_age_hours": 26,
-            "age_hours": 11.4,
+            "age_hours": 14.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -445,7 +445,7 @@
             "latest": "_crawl_service.log",
             "mtime": "2026-09-10 07:30:12",
             "max_age_hours": 26,
-            "age_hours": 83.6,
+            "age_hours": 86.4,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -536,7 +536,7 @@
             "latest": "latest.json",
             "mtime": "2026-09-13 10:32:30",
             "max_age_hours": 26,
-            "age_hours": 8.6,
+            "age_hours": 11.4,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -549,7 +549,7 @@
             "latest": "premium_latest.json",
             "mtime": "2026-09-13 10:38:42",
             "max_age_hours": 26,
-            "age_hours": 8.5,
+            "age_hours": 11.3,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -562,7 +562,7 @@
             "latest": "v3_data.js",
             "mtime": "2026-09-13 12:23:52",
             "max_age_hours": 26,
-            "age_hours": 6.7,
+            "age_hours": 9.5,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -575,7 +575,7 @@
             "latest": "insurance_data.js",
             "mtime": "2026-09-08 17:11:51",
             "max_age_hours": 72,
-            "age_hours": 121.9,
+            "age_hours": 124.7,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -651,7 +651,7 @@
         "data_files": [
           "110工单\\110工单看板.html"
         ],
-        "data_mtime": "2026-09-13 18:26:06",
+        "data_mtime": "2026-09-13 19:09:23",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -660,7 +660,7 @@
           {
             "type": "看板页面（自包含）",
             "latest": "110工单看板.html",
-            "mtime": "2026-09-13 18:26:06",
+            "mtime": "2026-09-13 19:09:23",
             "synced": true
           }
         ],
@@ -669,9 +669,9 @@
             "label": "110工单数据更新",
             "path": "110工单\\110工单看板.html",
             "latest": "110工单看板.html",
-            "mtime": "2026-09-13 18:26:06",
+            "mtime": "2026-09-13 19:09:23",
             "max_age_hours": 168,
-            "age_hours": 0.7,
+            "age_hours": 2.8,
             "ok": true,
             "note": "更新频率待确认，先按 7 天",
             "fail_hits": [],
@@ -727,7 +727,7 @@
             "latest": "update_stations.log",
             "mtime": "2026-09-13 07:47:18",
             "max_age_hours": 26,
-            "age_hours": 11.3,
+            "age_hours": 14.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -776,7 +776,7 @@
             "latest": "_大屏数据.js",
             "mtime": "2026-09-11 00:18:08",
             "max_age_hours": 26,
-            "age_hours": 66.8,
+            "age_hours": 69.6,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -842,7 +842,7 @@
             "latest": "monthly_summary.js",
             "mtime": "2026-09-13 07:43:46",
             "max_age_hours": 72,
-            "age_hours": 11.4,
+            "age_hours": 14.2,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
