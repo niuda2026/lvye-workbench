@@ -397,6 +397,39 @@ var _lvShow={equity:{subregion:true,merchant:true,site:true}, rating:{subregion:
 
 function getSfVals(tab,key){return (sfState[tab]&&sfState[tab][key])||[];}
 
+// ══════════════════════════════════════════════════════════
+// 交通四项：站维度(four) 与 骑手明细维度(rider) 筛选联动
+// 共享 4 个地理维度（大区/区域/城市/站点），date 仅站维度有、不联动
+// ══════════════════════════════════════════════════════════
+function riderUniverse(key){
+  if(key==='region')return [...new Set(RIDERS.map(function(r){return r.region;}))];
+  if(key==='subregion')return [...new Set(RIDERS.map(function(r){return r.subr;}))];
+  if(key==='city')return [...new Set(RIDERS.map(function(r){return r.city;}))];
+  if(key==='site')return [...new Set(RIDERS.map(function(r){return r.site;}))];
+  return [];
+}
+function stationUniverse(key){
+  var rows=(METRIC_CFG.four&&METRIC_CFG.four.rows)||[];
+  if(key==='region')return [...new Set(rows.filter(function(r){return r.level==='subregion';}).map(function(r){return r.region;}))];
+  if(key==='subregion')return [...new Set(rows.filter(function(r){return r.level==='subregion';}).map(function(r){return r.name;}))];
+  if(key==='city')return [...new Set(rows.filter(function(r){return r.level==='merchant';}).map(function(r){return r.city||r.name;}))];
+  if(key==='site')return [...new Set(rows.filter(function(r){return r.level==='site';}).map(function(r){return r.name;}))];
+  return [];
+}
+function _intersectArr(a,b){var s=new Set(b);return (a||[]).filter(function(v){return s.has(v);});}
+// 站维度改 -> 同步骑手维度（取交集，避免把骑手维度筛空）
+function syncRiderFromStation(){
+  ['region','subregion','city','site'].forEach(function(k){ msState[k]=_intersectArr(sfState.four[k],riderUniverse(k)); });
+  applyRiderFilter();
+}
+// 骑手维度改 -> 同步站维度（取交集，避免把站维度筛空）
+function syncStationFromRider(){
+  ['region','subregion','city','site'].forEach(function(k){ sfState.four[k]=_intersectArr(msState[k],stationUniverse(k)); });
+  initStationFilters('four');
+  applyFilter('four');
+}
+
+
 function onSfChange(tab,key,cb){
   var val=cb.value;
   var sel=sfState[tab][key]||[];
@@ -408,7 +441,8 @@ function onSfChange(tab,key,cb){
   updateSfLabel(tab,key);
   initStationFilters(tab);
   applyFilter(tab);
-}
+}  if(tab==='four')syncRiderFromStation();
+
 function updateSfLabel(tab,key){
   var wrap=document.getElementById('sf-'+tab+'-'+key);
   if(!wrap)return;
@@ -491,6 +525,7 @@ function clearFilter(tab){
   });
   initStationFilters(tab);
   stationFilter[tab]={};
+  if(tab==='four'){['region','subregion','city','site'].forEach(function(k){msState[k]=[];});applyRiderFilter();}
   if(tab==='four')renderFour();else renderStation(tab);
   if(currentClothingView==='clothing') renderClothingTable();
   if(currentClothingView==='checkfail') renderCheckFailTable();
@@ -788,7 +823,8 @@ function onMsChange(key,cb){
   if(item){item.classList.toggle('checked',cb.checked);}
   updateRiderMsLabel(key);
   applyRiderFilter();
-}
+}  syncStationFromRider();
+
 function updateRiderMsLabel(key){
   var wrap=document.getElementById('ms-'+key);
   if(!wrap)return;
@@ -865,6 +901,7 @@ function clearRiderFilter(){
   riderFilter={};
   riderPage=1;
   initRiderFilters();
+  ['region','subregion','city','site'].forEach(function(k){sfState.four[k]=[];});initStationFilters('four');applyFilter('four');
   renderRider();
 }
 
