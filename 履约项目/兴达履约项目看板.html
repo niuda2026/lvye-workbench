@@ -190,6 +190,13 @@ table.dt thead{background:transparent}
 #clothing-table-wrap .lv-subregion td.sticky-col{background:#F0F6FC!important}
 #clothing-table-wrap .lv-merchant td.sticky-col{background:#F2F7FB!important}
 #clothing-table-wrap .lv-site:hover td.sticky-col{background:#f0f7ff!important}
+/* ─── 考培骑手维度明细状态颜色 ─── */
+.trst-pass{background:#e8f5e9!important;color:#2e7d32!important;font-weight:600}
+.trst-warn{background:#fff8e1!important;color:#f57f17!important;font-weight:600}
+.trst-gray{background:#f5f5f5!important;color:#616161!important;font-weight:600}
+.trst-red{background:#ffebee!important;color:#c62828!important;font-weight:600}
+.trst-blue{background:#e3f2fd!important;color:#1565c0!important;font-weight:600}
+.trst-cancel{background:#f3e5f5!important;color:#7b1fa2!important;font-weight:600}
 .photo-modal{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;overflow:auto;background:rgba(0,0,0,.8)}
 .photo-modal .photo-content{margin:5% auto;display:block;max-width:80%;max-height:80%}
 .photo-modal .photo-close{position:absolute;top:20px;right:35px;color:#fff;font-size:40px;font-weight:700;cursor:pointer}
@@ -2985,10 +2992,12 @@ var trSf = {trregion:[], trsubr:[], trcity:[], trsite:[]};
 
 function trStatusClass(s){
   s = String(s || '');
-  if (s.indexOf('已通过') >= 0) return 'green';
-  if (s.indexOf('学习中') >= 0 || s.indexOf('进行中') >= 0) return 'yellow';
-  if (s.indexOf('未学习') >= 0 || s.indexOf('未开始') >= 0) return 'gray';
-  if (s.indexOf('未通过') >= 0 || s.indexOf('不通过') >= 0) return 'red';
+  if (s.indexOf('已通过') >= 0) return 'trst-pass';
+  if (s.indexOf('学习中') >= 0 || s.indexOf('进行中') >= 0) return 'trst-warn';
+  if (s.indexOf('未学习') >= 0 || s.indexOf('未开始') >= 0) return 'trst-gray';
+  if (s.indexOf('未通过') >= 0 || s.indexOf('不通过') >= 0) return 'trst-red';
+  if (s.indexOf('未报名') >= 0) return 'trst-blue';
+  if (s.indexOf('报名取消') >= 0 || s.indexOf('已取消') >= 0) return 'trst-cancel';
   return '';
 }
 function trToggleMs(k){
