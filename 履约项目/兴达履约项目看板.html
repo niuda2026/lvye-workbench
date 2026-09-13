@@ -885,8 +885,13 @@ function applyFilter() {
     switchTab(tabId);
   }
 
-  // Re-open the dropdown after re-render so multi-select keeps flowing
-  if (openId) toggleMs(openId);
+  // Keep the dropdown open after re-render so multi-select keeps flowing
+  // (renderStandardTab only rebuilds the .ms-drop items, the wrapper + its .open class persist;
+  //  we explicitly ensure it stays open, matching 骑手交通四项's behavior of re-rendering only the table)
+  if (openId) {
+    var w = document.getElementById('ms-' + openId);
+    if (w) w.classList.add('open');
+  }
 }
 
 // Close dropdowns on outside click
