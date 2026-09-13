@@ -39,6 +39,11 @@ body{background:#F0F6FC;color:#1a2e45;font-family:'Segoe UI','Microsoft YaHei','
 .card{background:#ffffff;border:1px solid #d6e4f0;border-radius:6px;padding:12px 16px;min-width:140px;flex:1;max-width:220px;box-shadow:0 1px 4px rgba(11,79,138,.08)}
 #summary-cards-knife{flex-wrap:nowrap;overflow-x:auto}
 #summary-cards-knife .card{flex:1 1 auto;min-width:0;max-width:none;padding:12px 8px;white-space:nowrap;text-align:center}
+#summary-cards-training,#summary-cards-training-rider{align-items:stretch}
+#summary-cards-training .card,#summary-cards-training-rider .card{flex:1 1 160px;max-width:200px;min-width:140px;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:12px 10px}
+#summary-cards-training .card .c-label,#summary-cards-training-rider .card .c-label{white-space:normal;line-height:1.3;min-height:28px;display:flex;align-items:center;justify-content:center}
+#summary-cards-training .card .c-value,#summary-cards-training-rider .card .c-value{margin:4px 0}
+#summary-cards-training .card .c-sub,#summary-cards-training-rider .card .c-sub{white-space:normal;line-height:1.3}
 .card .c-label{font-size:11px;color:#4F6E87;margin-bottom:4px;letter-spacing:.3px}
 .card .c-value{font-size:22px;font-weight:700;color:#0B4F8A;font-variant-numeric:tabular-nums;letter-spacing:.2px}
 .card .c-sub{font-size:11px;color:#90a4ae;margin-top:3px}
@@ -226,6 +231,21 @@ tr.cb-row-noup:hover td{background:#ffefef}
 .cb-legend .cb-lg.rg{background:#e8f5e9;color:#2e7d32}
 .cb-legend .cb-lg.ry{background:#fff3e0;color:#e65100}
 .cb-legend .cb-lg.rr{background:#ffebee;color:#c62828}
+
+/* ─── 考试项目配置弹窗 ─── */
+#trainingConfigModal .modal-content{max-width:520px}
+.tc-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.tc-row input{flex:1;padding:6px 8px;border:1px solid #8FB8DA;border-radius:4px;font-size:12px;color:#1a2e45}
+.tc-row input.tc-id{flex:0 0 90px}
+.tc-row .btn-del{background:#ffebee;color:#c62828;border:1px solid #ef9a9a;border-radius:4px;padding:4px 10px;cursor:pointer;font-size:12px;font-weight:500}
+.tc-row .btn-del:hover{background:#ffcdd2}
+.tc-add-wrap{display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:1px dashed #d6e4f0}
+.tc-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
+.tc-actions button{padding:6px 16px;border-radius:4px;border:none;cursor:pointer;font-size:13px;font-weight:500}
+.tc-actions .btn-cancel{background:#EAF2F9;color:#0B4F8A;border:1px solid #8FB8DA}
+.tc-actions .btn-save{background:#0B4F8A;color:#fff}
+.tc-actions .btn-save:hover{background:#0A3D6B}
+.tc-note{font-size:11px;color:#4F6E87;margin-top:10px;line-height:1.5}
 
 </style>
 </head>
@@ -617,33 +637,64 @@ tr.cb-row-noup:hover td{background:#ffefef}
 </div>
 <!-- Tab: training -->
 <div class="panel" id="panel-training">
-  <div class="summary-row" id="summary-cards-training"></div>
+  <div class="cb-subtab-bar">
+    <div class="cb-subtab active" data-t="site" onclick="trSwitchSub('site')">🏢 站维度达成</div>
+    <div class="cb-subtab" data-t="rider" onclick="trSwitchSub('rider')">🛵 骑手维度明细<span class="cb-cnt" id="trCntRider">-</span></div>
+  </div>
+
+  <!-- ══ 子Tab1：站维度达成 ══ -->
+  <div id="tr-panel-site">
+    <div class="summary-row" id="summary-cards-training"></div>
     <div class="sub-tab-bar">
-    <span class="sub-tab-label">显示层级：</span>
-    <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleViewBtn('subregion')">区域行</button>
-    <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleViewBtn('merchant')">城市行</button>
-    <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
-    <span class="sub-tab-sep"></span>
-    <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
+      <span class="sub-tab-label">显示层级：</span>
+      <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleViewBtn('subregion')">区域行</button>
+      <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleViewBtn('merchant')">城市行</button>
+      <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
+      <span class="sub-tab-sep"></span>
+      <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
+      <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
+    </div>
+    <div class="filter-bar" id="filter-bar-training">
+      <label>大区</label><div class="ms-wrap" id="ms-region-training"><div class="ms-btn" onclick="toggleMs('region-training')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>区域</label><div class="ms-wrap" id="ms-subregion-training"><div class="ms-btn" onclick="toggleMs('subregion-training')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>城市</label><div class="ms-wrap" id="ms-city-training"><div class="ms-btn" onclick="toggleMs('city-training')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>站点</label><div class="ms-wrap" id="ms-site-training"><div class="ms-btn" onclick="toggleMs('site-training')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <button class="btn btn-secondary" onclick="clearFilter('training')">清除筛选</button>
+      <button class="btn btn-secondary" onclick="openTrainingConfigModal()" title="增删改考试项目ID与名称">⚙ 配置考试项目</button>
+      <button class="btn btn-export" onclick="exportTable('training')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
+      <button class="btn btn-screenshot" onclick="screenshotPanel('training')" title="截取当前看板">&#128247; 截图</button>
+      <span class="filter-count" id="filter-count-training"></span>
+    </div>
+    <div class="table-wrap table-wrap-station">
+      <table class="dt" id="tbl-training">
+        <thead id="thead-training"></thead>
+        <tbody id="tbody-training"></tbody>
+      </table>
+    </div>
   </div>
-<div class="filter-bar" id="filter-bar-training">
-    <label>大区</label><div class="ms-wrap" id="ms-region-training"><div class="ms-btn" onclick="toggleMs('region-training')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
-    <label>区域</label><div class="ms-wrap" id="ms-subregion-training"><div class="ms-btn" onclick="toggleMs('subregion-training')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
-    <label>城市</label><div class="ms-wrap" id="ms-city-training"><div class="ms-btn" onclick="toggleMs('city-training')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
-    <label>站点</label><div class="ms-wrap" id="ms-site-training"><div class="ms-btn" onclick="toggleMs('site-training')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
-    <button class="btn btn-secondary" onclick="clearFilter('training')">清除筛选</button>
-    <button class="btn btn-export" onclick="exportTable('training')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
-    <button class="btn btn-screenshot" onclick="screenshotPanel('training')" title="截取当前看板">&#128247; 截图</button>
-    <span class="filter-count" id="filter-count-training"></span>
+
+  <!-- ══ 子Tab2：骑手维度明细 ══ -->
+  <div id="tr-panel-rider" style="display:none">
+    <div class="summary-row" id="summary-cards-training-rider"></div>
+    <div class="filter-bar">
+      <label>大区</label><div class="ms-wrap" id="ms-trregion"><div class="ms-btn" onclick="trToggleMs('trregion')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>区域</label><div class="ms-wrap" id="ms-trsubr"><div class="ms-btn" onclick="trToggleMs('trsubr')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>城市</label><div class="ms-wrap" id="ms-trcity"><div class="ms-btn" onclick="trToggleMs('trcity')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>站点</label><div class="ms-wrap" id="ms-trsite"><div class="ms-btn" onclick="trToggleMs('trsite')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <input class="inp" id="trQ" placeholder="🔍 骑手ID / 姓名" oninput="trRenderRider(1)">
+      <button class="btn btn-secondary" onclick="trClearF()">清除筛选</button>
+      <button class="btn btn-secondary" onclick="openTrainingConfigModal()" title="增删改考试项目ID与名称">⚙ 配置考试项目</button>
+      <button class="btn btn-export" onclick="trExport()">&#128229; 导出Excel</button>
+      <span class="filter-count" id="trCntRiderF"></span>
+    </div>
+    <div class="table-wrap table-wrap-rider">
+      <table class="dt" id="trTblRider">
+        <thead id="trTheadRider"></thead>
+        <tbody id="trTbodyRider"></tbody>
+      </table>
+    </div>
+    <div class="pager" id="trPager"></div>
   </div>
-  <div class="table-wrap table-wrap-station">
-    <table class="dt" id="tbl-training">
-      <thead id="thead-training"></thead>
-      <tbody id="tbody-training"></tbody>
-    </table>
-  </div>
-  
 </div>
 <!-- Tab: rider -->
 <div class="panel" id="panel-rider">
@@ -873,6 +924,7 @@ function applyFilter() {
   var panelId = activePanel.id;
   var tabId = panelId.replace('panel-','');
   if (tabId === 'rider') { renderRiderTabPage(1); }
+  else if (tabId === 'training') { trSwitchSub(trCurSub || 'site'); }
   // For equip tab, re-render based on current sub-view to avoid resetting view state
   else if (tabId === 'equip') {
     METRIC_CFG.clothing.rows = (typeof CLOTHING_ROWS !== 'undefined') ? CLOTHING_ROWS : [];
@@ -981,6 +1033,17 @@ function isFiltered(siteName, tabId) {
     if (siteState.length > 0 && siteState.indexOf(siteName) < 0) return true;
   }
   return false;
+}
+
+// 将站维度（通用筛选 sfState）的地理筛选同步到骑手维度明细（各看板独立 xxxSf）
+// map: {region:'bxregion', subregion:'bxsubr', city:'bxcity', site:'bxsite'}
+function syncStationFilterToRider(tabId, riderSf, map) {
+  if (typeof sfState !== 'object') return;
+  ['region','subregion','city','site'].forEach(function(dim){
+    var dstKey = map[dim];
+    if (!dstKey) return;
+    riderSf[dstKey] = (sfState[dim + '-' + tabId] || []).slice();
+  });
 }
 
 // ─── 通用渲染模板：带层级汇总的表格 ─────────────────────────
@@ -1915,6 +1978,8 @@ function bxUpdateNote(){
 }
 
 function bxSwitchSub(t){
+  var cur = document.querySelector('#panel-box .cb-subtab.active');
+  var fromSite = cur && cur.getAttribute('data-t') === 'site';
   bxSub = t;
   var ts = document.querySelectorAll('#panel-box .cb-subtab');
   for(var i=0;i<ts.length;i++) ts[i].classList.toggle('active', ts[i].getAttribute('data-t') === t);
@@ -1922,7 +1987,7 @@ function bxSwitchSub(t){
   if(ps) ps.style.display = (t === 'site') ? '' : 'none';
   if(pr) pr.style.display = (t === 'rider') ? '' : 'none';
   if(t === 'site') renderBoxTab();
-  if(t === 'rider') bxRenderRider(1);
+  if(t === 'rider'){ if(fromSite) syncStationFilterToRider('box', bxSf, {region:'bxregion',subregion:'bxsubr',city:'bxcity',site:'bxsite'}); bxRenderRider(1); }
 }
 
 /* 站点维度：追加餐箱消毒专属 KPI 卡 */
@@ -1932,9 +1997,10 @@ function bxSiteCards(){
   var olds = box.querySelectorAll('.bx-kpi');
   for(var i=0;i<olds.length;i++) olds[i].parentNode.removeChild(olds[i]);
   var num = function(v){ var n = Number(v); return isFinite(n) ? n : 0; };
-  var den=0, q=0, p=0, rj=0, notc=0;
+  var den=0, q=0, p=0, rj=0, notc=0, visibleSites=0;
   Object.keys(BOX_DATA).forEach(function(site){
     if(isFiltered(site, 'box')) return;
+    visibleSites++;
     var d = BOX_DATA[site];
     den += num(d.den); q += num(d.num); p += num(d.pending); rj += num(d.rejected); notc += num(d.not);
   });
@@ -1942,7 +2008,7 @@ function bxSiteCards(){
   var pct = function(n,d){ return d ? (n/d*100).toFixed(2)+'%' : '0%'; };
   var cls = function(n,d){ var r = d ? n/d*100 : 0; return r>=90?'green':(r>=60?'yellow':'red'); };
   var html =
-      bxCard('站点数', Object.keys(BOX_DATA).length.toLocaleString(), '有在职骑手站点', '') +
+      bxCard('站点数', visibleSites.toLocaleString(), '有在职骑手站点', '') +
       bxCard('应消毒骑手', den.toLocaleString(), '当天排班在册', '') +
       bxCard('消毒合格数', q.toLocaleString(), '审核已通过', q?'green':'') +
       bxCard('消毒标准化率', pct(q,den), '合格 / 应消毒', cls(q,den)) +
@@ -2120,13 +2186,15 @@ var knPage = 1, knPer = 50, knFiltered = [];
 var KNIFE_STATUSES = ['未巡检','无需整改','整改通过','待整改','整改待审核','整改不通过','申诉待审核','待申诉'];
 
 function knSwitchSub(t){
+  var cur = document.querySelector('#panel-knife .cb-subtab.active');
+  var fromSite = cur && cur.getAttribute('data-t') === 'site';
   var ts = document.querySelectorAll('#panel-knife .cb-subtab');
   for (var i=0;i<ts.length;i++) ts[i].classList.toggle('active', ts[i].getAttribute('data-t') === t);
   var ps = document.getElementById('kn-panel-site'), pr = document.getElementById('kn-panel-rider');
   if(ps) ps.style.display = (t === 'site') ? '' : 'none';
   if(pr) pr.style.display = (t === 'rider') ? '' : 'none';
   if(t === 'site') knRenderSite();
-  if(t === 'rider') knRenderRider(1);
+  if(t === 'rider'){ if(fromSite) syncStationFilterToRider('knife', knSf, {region:'knregion',subregion:'knsubr',city:'kncity',site:'knsite'}); knRenderRider(1); }
 }
 
 function knUpdateNote(){
@@ -2469,8 +2537,10 @@ function cbSiteCards(){
   Object.keys(CHARGEBP_DATA).forEach(function(k){
     var n = cbNormSite(k); if(!(n in firstKey)) firstKey[n] = k;
   });
-  var bpN=0,bpD=0,upN=0,upD=0,ckN=0,ckD=0,vN=0,vD=0,sites=0;
+  var bpN=0,bpD=0,upN=0,upD=0,ckN=0,ckD=0,vN=0,vD=0,sites=0,totalSites=0;
   Object.keys(firstKey).forEach(function(n){
+    totalSites++;
+    if (typeof isFiltered === 'function' && isFiltered(firstKey[n], 'chargebp')) return;
     var d = CHARGEBP_DATA[firstKey[n]] || {};
     bpN += num(d.bp_num); bpD += num(d.bp_den);
     upN += num(d.charge_up_num); upD += num(d.charge_up_den);
@@ -2482,7 +2552,7 @@ function cbSiteCards(){
   var cls = function(n,d){ var r = d ? n/d*100 : 0; return r>=90?'green':(r>=60?'yellow':'red'); };
   var html =
       cbCard('在职骑手（分母）', bpD.toLocaleString(), '当天排班在册', '')
-    + cbCard('有排班站点', sites.toLocaleString(), '共 '+Object.keys(CHARGEBP_DATA).length+' 站', '')
+    + cbCard('有排班站点', sites.toLocaleString(), '共 '+totalSites+' 站', '')
     + cbCard('血压检测率', pct(bpN,bpD), '血压已上传 '+bpN.toLocaleString()+' 人 / 未上传 '+(bpD-bpN).toLocaleString()+' 人', cls(bpN,bpD))
     + cbCard('充换电上传提交率', pct(upN,upD), '已上传 '+upN.toLocaleString()+' 人（充电∪换电去重）', cls(upN,upD))
     + cbCard('充换电审核通过率', pct(ckN,ckD), '通过 '+ckN.toLocaleString()+' / 已出结果 '+ckD.toLocaleString()+' / 未通过 '+(ckD-ckN).toLocaleString()+' 人', cls(ckN,ckD))
@@ -2582,12 +2652,14 @@ function cbOnlyNone(){
 
 /* ── 子Tab切换 ── */
 function cbSwitchSub(t){
+  var cur = document.querySelector('#panel-chargebp .cb-subtab.active');
+  var fromSite = cur && cur.getAttribute('data-t') === 'site';
   var ts = document.querySelectorAll('.cb-subtab');
   for (var i=0;i<ts.length;i++) ts[i].classList.toggle('active', ts[i].getAttribute('data-t') === t);
   var ps = document.getElementById('cb-panel-site'), pr = document.getElementById('cb-panel-rider');
   if(ps) ps.style.display = (t === 'site') ? '' : 'none';
   if(pr) pr.style.display = (t === 'rider') ? '' : 'none';
-  if(t === 'rider') cbRenderRider(1);
+  if(t === 'rider'){ if(fromSite) syncStationFilterToRider('chargebp', cbSf, {region:'cbregion',subregion:'cbsubr',city:'cbcity',site:'cbsite'}); cbRenderRider(1); }
 }
 
 /* ── 日期范围 + 骑手上报索引 ── */
@@ -2810,14 +2882,297 @@ function cbInitOnce(){
 }
 
 // ─── Tab 7: 线上线下考培 ─────────────────────────────────────
-function renderTrainingTab() {
-  var columns = [
-    {key:'train_north', label:'华北新骑手培训', isPct:false, isSumRatio:false, isSafetyHl:true},
-    {key:'train_risk', label:'风险骑手培训', isPct:false, isSumRatio:false, isSafetyHl:true},
-    {key:'exam_entry_rate', label:'入门测试通过率', isPct:false, isSumRatio:true},
-    {key:'exam_july_rate', label:'七月重点规则测评通过率', isPct:false, isSumRatio:true}
-  ];
-  renderStandardTab('training', 'TRAINING_DATA', columns, null);
+// 默认考试项目（用户可在此修改，或通过页面"配置考试项目"按钮维护）
+var DEFAULT_TRAINING_PROJECTS = [
+  {id:'4284', name:'华北新骑手安全专项培训'},
+  {id:'5292', name:'风险骑手安全培训（26年9月）'},
+  {id:'4681', name:'新骑手入门测试'},
+  {id:'7844', name:'2026年9月月度安全培训-加盟'},
+  {id:'7839', name:'商家出餐慢相关解析'},
+  {id:'7841', name:'骑手九月重点关注事项-2026'},
+  {id:'7856', name:'2026年9月重点规则测评'}
+];
+function getTrainingProjects() {
+  try {
+    var s = localStorage.getItem('trainingProjects');
+    if (s) return JSON.parse(s);
+  } catch(e){}
+  return DEFAULT_TRAINING_PROJECTS.slice();
+}
+function saveTrainingProjects(cfg) {
+  localStorage.setItem('trainingProjects', JSON.stringify(cfg));
+}
+function flattenTrainingData(cfg) {
+  var raw = window.TRAINING_DATA || {};
+  var out = {};
+  var ids = cfg.map(function(c){ return String(c.id); });
+  for (var site in raw) {
+    var d = raw[site];
+    var flat = {
+      region: d.region,
+      subr: d.subr,
+      city: d.city,
+      on_duty: d.on_duty || 0
+    };
+    var projs = d.projects || {};
+    for (var i=0;i<ids.length;i++) {
+      var pid = ids[i];
+      var p = projs[pid] || {name:'', num:0, den:(d.on_duty||0), rate:0};
+      flat['rate_' + pid] = p.rate;
+      flat['rate_' + pid + '_num'] = p.num;
+      flat['rate_' + pid + '_den'] = p.den;
+    }
+    out[site] = flat;
+  }
+  return out;
+}
+function trRenderSite() {
+  var cfg = getTrainingProjects();
+  var columns = [{key:'on_duty', label:'在职骑手', isPct:false, isSumRatio:false}];
+  for (var i=0;i<cfg.length;i++) {
+    columns.push({key:'rate_' + cfg[i].id, label: cfg[i].name, isPct:true, isSumRatio:true});
+  }
+  // 临时把平铺数据挂到 window 上供 renderStandardTab 使用
+  window.TRAINING_DATA_FLAT = flattenTrainingData(cfg);
+  renderStandardTab('training', 'TRAINING_DATA_FLAT', columns, null);
+
+  // 补充站维度 KPI 卡片：与当前筛选联动
+  var raw = window.TRAINING_DATA || {};
+  var ids = cfg.map(function(c){ return String(c.id); });
+  var totalProj = {};
+  for (var site in raw) {
+    if (isFiltered(site, 'training')) continue;
+    var d = raw[site];
+    var projs = d.projects || {};
+    for (var i=0;i<ids.length;i++) {
+      var pid = ids[i];
+      var p = projs[pid] || {num:0, den:0, rate:0};
+      if (!totalProj[pid]) totalProj[pid] = {num:0, den:0};
+      totalProj[pid].num += p.num || 0;
+      totalProj[pid].den += p.den || 0;
+    }
+  }
+  var cardHtml = '';
+  for (var i=0;i<cfg.length;i++) {
+    var pid = String(cfg[i].id);
+    var t = totalProj[pid] || {num:0, den:0};
+    var rate = t.den ? (t.num / t.den * 100) : 0;
+    var r = frate(rate);
+    cardHtml += '<div class="card"><div class="c-label">' + escHtml(cfg[i].name) + '</div><div class="c-value ' + r.cls + '">' + r.text + '</div><div class="c-sub">已通过 ' + t.num.toLocaleString() + ' / ' + t.den.toLocaleString() + '</div></div>';
+  }
+  document.getElementById('summary-cards-training').innerHTML = cardHtml;
+}
+
+/* ── 子Tab切换 ── */
+var trCurSub = 'site';
+function trSwitchSub(t){
+  var cur = document.querySelector('#panel-training .cb-subtab.active');
+  var fromSite = cur && cur.getAttribute('data-t') === 'site';
+  trCurSub = t;
+  var ts = document.querySelectorAll('#panel-training .cb-subtab');
+  for (var i=0;i<ts.length;i++) ts[i].classList.toggle('active', ts[i].getAttribute('data-t') === t);
+  var ps = document.getElementById('tr-panel-site'), pr = document.getElementById('tr-panel-rider');
+  if(ps) ps.style.display = (t === 'site') ? '' : 'none';
+  if(pr) pr.style.display = (t === 'rider') ? '' : 'none';
+  if(t === 'site') trRenderSite();
+  if(t === 'rider') { if(fromSite) syncStationFilterToRider('training', trSf, {region:'trregion',subregion:'trsubr',city:'trcity',site:'trsite'}); trInit(); trRenderRider(1); }
+}
+
+/* ── 骑手维度明细 ── */
+var trRiderData = window.TRAINING_RIDER_DATA || [];
+var trPage = 1, trPer = 50, trFiltered = [];
+var trSf = {trregion:[], trsubr:[], trcity:[], trsite:[]};
+
+function trStatusClass(s){
+  s = String(s || '');
+  if (s.indexOf('已通过') >= 0) return 'green';
+  if (s.indexOf('学习中') >= 0 || s.indexOf('进行中') >= 0) return 'yellow';
+  if (s.indexOf('未学习') >= 0 || s.indexOf('未开始') >= 0) return 'gray';
+  if (s.indexOf('未通过') >= 0 || s.indexOf('不通过') >= 0) return 'red';
+  return '';
+}
+function trToggleMs(k){
+  var w = document.getElementById('ms-'+k); if(!w) return;
+  var o = w.classList.contains('open');
+  var all = document.querySelectorAll('.ms-wrap');
+  for (var i=0;i<all.length;i++) all[i].classList.remove('open');
+  if(!o) w.classList.add('open');
+}
+function trUpdMsLabel(k){
+  var w = document.getElementById('ms-'+k); if(!w) return;
+  var s = trSf[k] || [];
+  w.querySelector('.ms-label').textContent = s.length===0 ? '全部' : (s.length===1 ? s[0] : '已选'+s.length+'项');
+}
+function trOnMs(k, v, on){
+  var a = trSf[k], i = a.indexOf(v);
+  if(on && i < 0) a.push(v);
+  if(!on && i >= 0) a.splice(i,1);
+  trUpdMsLabel(k); trRenderRider(1);
+}
+function trInitMs(k, opts){
+  var w = document.getElementById('ms-'+k); if(!w) return;
+  var d = w.querySelector('.ms-drop'); d.innerHTML = '';
+  if(!trSf[k]) trSf[k] = [];
+  trSf[k] = trSf[k].filter(function(v){ return opts.indexOf(v) >= 0; });
+  opts.forEach(function(v){
+    var it = document.createElement('div'); it.className = 'ms-item';
+    var cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = trSf[k].indexOf(v) >= 0;
+    cb.onchange = function(){ trOnMs(k, v, cb.checked); };
+    it.appendChild(cb); it.appendChild(document.createTextNode(v));
+    it.onclick = function(e){ e.stopPropagation(); if(e.target !== cb){ cb.checked = !cb.checked; trOnMs(k, v, cb.checked); } };
+    d.appendChild(it);
+  });
+  trUpdMsLabel(k);
+}
+function trUniq(a){ var s={},o=[]; (a||[]).forEach(function(x){ if(x && !s[x]){ s[x]=1; o.push(x); } }); return o.sort(); }
+function trInit(){
+  trRiderData = window.TRAINING_RIDER_DATA || [];
+  var regs=[], subrs=[], cities=[], sites=[];
+  for (var i=0;i<trRiderData.length;i++){
+    var r = trRiderData[i];
+    if(r.region) regs.push(r.region);
+    if(r.subr) subrs.push(r.subr);
+    if(r.city) cities.push(r.city);
+    if(r.site) sites.push(r.site);
+  }
+  trInitMs('trregion', trUniq(regs));
+  trInitMs('trsubr', trUniq(subrs));
+  trInitMs('trcity', trUniq(cities));
+  trInitMs('trsite', trUniq(sites));
+  var n = document.getElementById('trCntRider'); if(n) n.textContent = (window.TRAINING_ON_DUTY_COUNT || trRiderData.length).toLocaleString();
+}
+function trRows(){
+  var qEl = document.getElementById('trQ');
+  var q = ((qEl && qEl.value) || '').trim().toLowerCase();
+  var out = [];
+  for (var i=0;i<trRiderData.length;i++){
+    var r = trRiderData[i];
+    if(trSf.trregion.length && trSf.trregion.indexOf(r.region) < 0) continue;
+    if(trSf.trsubr.length   && trSf.trsubr.indexOf(r.subr)   < 0) continue;
+    if(trSf.trcity.length   && trSf.trcity.indexOf(r.city)   < 0) continue;
+    if(trSf.trsite.length   && trSf.trsite.indexOf(r.site)   < 0) continue;
+    if(q && (String(r.rid)+' '+String(r.name)).toLowerCase().indexOf(q) < 0) continue;
+    out.push(r);
+  }
+  return out;
+}
+function trRenderRider(page){
+  trPage = page || 1;
+  var all = trRows();
+  trFiltered = all;
+  var cfg = getTrainingProjects();
+  var tot = Math.max(1, Math.ceil(all.length / trPer));
+  if(trPage > tot) trPage = tot;
+  var start = (trPage - 1) * trPer;
+  var pageRows = all.slice(start, start + trPer);
+
+  // 表头
+  var th = '<tr><th>大区</th><th>区域</th><th>城市</th><th>站点名称</th><th>骑手ID</th><th>骑手姓名</th>';
+  for (var j=0;j<cfg.length;j++) th += '<th>' + escHtml(cfg[j].name) + '</th>';
+  th += '</tr>';
+  var thead = document.getElementById('trTheadRider'); if(thead) thead.innerHTML = th;
+
+  // 表体
+  var h = '';
+  if(all.length === 0){
+    h = '<tr><td colspan="'+(6+cfg.length)+'" class="empty">暂无骑手数据（请确认已生成 TRAINING_RIDER_DATA）</td></tr>';
+  } else {
+    for (var i=0;i<pageRows.length;i++){
+      var r = pageRows[i];
+      h += '<tr><td>'+escHtml(r.region)+'</td><td>'+escHtml(r.subr)+'</td><td>'+escHtml(r.city)+'</td><td>'+escHtml(r.site)+'</td><td>'+escHtml(r.rid)+'</td><td>'+escHtml(r.name)+'</td>';
+      for (var j=0;j<cfg.length;j++){
+        var st = (r.projects || {})[String(cfg[j].id)] || '-';
+        var cls = trStatusClass(st);
+        h += '<td' + (cls ? ' class="'+cls+'"' : '') + '>' + escHtml(st) + '</td>';
+      }
+      h += '</tr>';
+    }
+  }
+  var tb = document.getElementById('trTbodyRider'); if(tb) tb.innerHTML = h;
+
+  // 分页
+  var pg = document.getElementById('trPager');
+  if(pg){
+    var b = '<span>共 <b style="color:#0B4F8A">'+all.length.toLocaleString()+'</b> 名骑手 · 第 '+trPage+' / '+tot+' 页（每页 '+trPer+'）</span>';
+    b += '<div style="margin-left:auto;display:flex;gap:6px">';
+    b += '<button onclick="trRenderRider(1)"'+(trPage===1?' disabled':'')+'>« 首页</button>';
+    b += '<button onclick="trRenderRider('+(trPage-1)+')"'+(trPage===1?' disabled':'')+'>‹ 上一页</button>';
+    for(var p=Math.max(1,trPage-2); p<=Math.min(tot,trPage+2); p++)
+      b += '<button class="'+(p===trPage?'cur':'')+'" onclick="trRenderRider('+p+')">'+p+'</button>';
+    b += '<button onclick="trRenderRider('+(trPage+1)+')"'+(trPage===tot?' disabled':'')+'>下一页 ›</button>';
+    b += '<button onclick="trRenderRider('+tot+')"'+(trPage===tot?' disabled':'')+'>末页 »</button></div>';
+    pg.innerHTML = b;
+  }
+
+  // 骑手维度明细不再展示 KPI 卡片（与站点维度口径一致，避免重复且参差不齐）
+  var cards = document.getElementById('summary-cards-training-rider');
+  if(cards) cards.innerHTML = '';
+  var cf = document.getElementById('trCntRiderF'); if(cf) cf.textContent = '筛选后 '+all.length+' 人';
+}
+function trClearF(){
+  trSf.trregion=[]; trSf.trsubr=[]; trSf.trcity=[]; trSf.trsite=[];
+  document.getElementById('trQ').value='';
+  trInit(); trRenderRider(1);
+}
+function trExport(){
+  var now = new Date();
+  var ts = now.getFullYear() + ('0' + (now.getMonth() + 1)).slice(-2) + ('0' + now.getDate()).slice(-2);
+  exportPagedTableAll('trTblRider', trRows, trRenderRider, 'trPer', 'trPage',
+    '考培_骑手维度', '考培看板_骑手维度_' + ts + '.xls');
+}
+
+// 考试项目配置弹窗
+function openTrainingConfigModal() {
+  var list = document.getElementById('trainingConfigList');
+  var cfg = getTrainingProjects();
+  list.innerHTML = '';
+  for (var i=0;i<cfg.length;i++) {
+    var row = document.createElement('div');
+    row.className = 'tc-row';
+    row.innerHTML = '<input type="text" class="tc-id" placeholder="项目ID" value="' + escHtml(cfg[i].id) + '">' +
+      '<input type="text" class="tc-name" placeholder="显示名称" value="' + escHtml(cfg[i].name) + '">' +
+      '<button class="btn-del" onclick="this.parentElement.remove()">删除</button>';
+    list.appendChild(row);
+  }
+  document.getElementById('trainingConfigModal').classList.add('show');
+}
+function closeTrainingConfigModal() {
+  document.getElementById('trainingConfigModal').classList.remove('show');
+}
+function addTrainingConfigRow() {
+  var list = document.getElementById('trainingConfigList');
+  var row = document.createElement('div');
+  row.className = 'tc-row';
+  row.innerHTML = '<input type="text" class="tc-id" placeholder="项目ID">' +
+    '<input type="text" class="tc-name" placeholder="显示名称">' +
+    '<button class="btn-del" onclick="this.parentElement.remove()">删除</button>';
+  list.appendChild(row);
+}
+function resetTrainingConfig() {
+  if (confirm('确定恢复为默认考试项目吗？当前自定义内容将丢失。')) {
+    localStorage.removeItem('trainingProjects');
+    openTrainingConfigModal();
+  }
+}
+function saveTrainingConfigFromModal() {
+  var rows = document.getElementById('trainingConfigList').querySelectorAll('.tc-row');
+  var cfg = [];
+  for (var i=0;i<rows.length;i++) {
+    var id = rows[i].querySelector('.tc-id').value.trim();
+    var name = rows[i].querySelector('.tc-name').value.trim();
+    if (id && name) cfg.push({id:id, name:name});
+  }
+  if (cfg.length === 0) {
+    alert('至少保留一个考试项目。');
+    return;
+  }
+  saveTrainingProjects(cfg);
+  closeTrainingConfigModal();
+  trRenderSite();
+  if (trCurSub === 'rider') {
+    trInit();
+    trRenderRider(1);
+  }
 }
 
 // ─── Tab 8: 骑手维度执行 ─────────────────────────────────────
@@ -3058,7 +3413,7 @@ function switchTab(tab) {
   else if (tab === 'box') { renderBoxTab(); }
   else if (tab === 'knife') { renderKnifeTab(); }
   else if (tab === 'chargebp') { renderChargeBPTab(); }
-  else if (tab === 'training') { renderTrainingTab(); }
+  else if (tab === 'training') { trSwitchSub('site'); }
   else if (tab === 'rider') { renderRiderTabPage(1); }
 
   // Initialize subregion filter for this tab
@@ -3190,7 +3545,7 @@ function rerenderCurrentTab() {
   else if (tab === 'box') { renderBoxTab(); }
   else if (tab === 'knife') { renderKnifeTab(); }
   else if (tab === 'chargebp') { renderChargeBPTab(); }
-  else if (tab === 'training') { renderTrainingTab(); }
+  else if (tab === 'training') { trSwitchSub('site'); }
   else if (tab === 'rider') { renderRiderTabPage(1); }
 
   // Initialize subregion filter for this tab
@@ -3950,5 +4305,27 @@ function closeEquipRulesModal() {
   pgfix();
 })();
 </script>
+
+<!-- 考试项目配置弹窗 -->
+<div class="modal-overlay" id="trainingConfigModal" onclick="if(event.target===this)closeTrainingConfigModal()">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title">配置考试项目</div>
+      <button class="modal-close" onclick="closeTrainingConfigModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div id="trainingConfigList"></div>
+      <div class="tc-add-wrap">
+        <button class="btn btn-secondary" onclick="addTrainingConfigRow()">+ 添加项目</button>
+        <button class="btn btn-secondary" onclick="resetTrainingConfig()">恢复默认</button>
+      </div>
+      <div class="tc-note">提示：左侧填项目ID，右侧填显示名称。保存后立即生效；如需恢复本月默认项目，点击"恢复默认"。</div>
+      <div class="tc-actions">
+        <button class="btn-cancel" onclick="closeTrainingConfigModal()">取消</button>
+        <button class="btn-save" onclick="saveTrainingConfigFromModal()">保存并刷新</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
