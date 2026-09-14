@@ -788,6 +788,15 @@ function frate(v) {
   return {text:t,cls:'rr'};
 }
 
+// ─── 通过率/覆盖率配色（自定义合格线，如带刀巡检覆盖率≥50%合格）──
+//   passThreshold 由列定义传入（百分比阈值）。≥线 绿（合格），<线 红（不合格）；无分母显示 '-'。
+function fpass(rateVal, threshold) {
+  if (rateVal == null || rateVal === '' || isNaN(Number(rateVal))) return {text:'-', cls:'rn'};
+  var n = Number(rateVal);
+  var t = n.toFixed(1) + '%';
+  return n >= threshold ? {text:t, cls:'rg'} : {text:t, cls:'rr'};
+}
+
 /* ─── 「未上传 / 未通过」列配色（2026-09-12）──────────────────
    按「占该组分母的比例」分档，让问题站点一眼可见：
      0            → 绿（无遗漏）
@@ -1208,7 +1217,12 @@ function renderStandardTab(tabId, dataVar, columns, extra, headerGroups) {
     '<td class="sticky-col name-cell" style="left:230px;min-width:150px">总商汇总</td>';
   for (var k=0;k<columns.length;k++) {
     var key = columns[k].key;
-    if (columns[k].isSumRatio) {
+    if (columns[k].passThreshold != null) {
+      var ptn = totals[key+'_num'], ptd = totals[key+'_den'];
+      var pr = ptd > 0 ? (ptn/ptd*100) : null;
+      var rp = fpass(pr, columns[k].passThreshold);
+      rows += '<td class="'+rp.cls+'">'+rp.text+'</td>';
+    } else if (columns[k].isSumRatio) {
       var tn = totals[key+'_num'];
       var td = totals[key+'_den'];
       var tr = td > 0 ? (tn/td*100) : 0;
@@ -1243,12 +1257,17 @@ function renderStandardTab(tabId, dataVar, columns, extra, headerGroups) {
       var ra = regionAgg[rk];
       for (var k=0;k<columns.length;k++) {
         var key = columns[k].key;
-        if (columns[k].isSumRatio) {
-          var rn = ra[key+'_num']||0, rd = ra[key+'_den']||0;
-          var rr = rd > 0 ? (rn/rd*100) : 0;
-          var r = frate(rr);
-          rows += '<td class="'+r.cls+'">'+r.text+'</td>';
-        } else if (columns[k].isPct) {
+        if (columns[k].passThreshold != null) {
+        var prn = ra[key+'_num']||0, prd = ra[key+'_den']||0;
+        var prr = prd > 0 ? (prn/prd*100) : null;
+        var rrp = fpass(prr, columns[k].passThreshold);
+        rows += '<td class="'+rrp.cls+'">'+rrp.text+'</td>';
+      } else if (columns[k].isSumRatio) {
+        var rn = ra[key+'_num']||0, rd = ra[key+'_den']||0;
+        var rr = rd > 0 ? (rn/rd*100) : 0;
+        var r = frate(rr);
+        rows += '<td class="'+r.cls+'">'+r.text+'</td>';
+      } else if (columns[k].isPct) {
           var r = frate(ra[key]);
           rows += '<td class="'+r.cls+'">'+r.text+'</td>';
         } else if (columns[k].isBad) {
@@ -1273,12 +1292,17 @@ function renderStandardTab(tabId, dataVar, columns, extra, headerGroups) {
       var ma = merchantAgg[mk];
       for (var k=0;k<columns.length;k++) {
         var key = columns[k].key;
-        if (columns[k].isSumRatio) {
-          var cn = ma[key+'_num']||0, cd = ma[key+'_den']||0;
-          var cr = cd > 0 ? (cn/cd*100) : 0;
-          var r = frate(cr);
-          rows += '<td class="'+r.cls+'">'+r.text+'</td>';
-        } else if (columns[k].isPct) {
+        if (columns[k].passThreshold != null) {
+        var pcn = ma[key+'_num']||0, pcd = ma[key+'_den']||0;
+        var pcr = pcd > 0 ? (pcn/pcd*100) : null;
+        var rpc = fpass(pcr, columns[k].passThreshold);
+        rows += '<td class="'+rpc.cls+'">'+rpc.text+'</td>';
+      } else if (columns[k].isSumRatio) {
+        var cn = ma[key+'_num']||0, cd = ma[key+'_den']||0;
+        var cr = cd > 0 ? (cn/cd*100) : 0;
+        var r = frate(cr);
+        rows += '<td class="'+r.cls+'">'+r.text+'</td>';
+      } else if (columns[k].isPct) {
           var r = frate(ma[key]);
           rows += '<td class="'+r.cls+'">'+r.text+'</td>';
         } else if (columns[k].isBad) {
@@ -1298,7 +1322,10 @@ function renderStandardTab(tabId, dataVar, columns, extra, headerGroups) {
     for (var k=0;k<columns.length;k++) {
       var key = columns[k].key;
       var v = d[key];
-      if (columns[k].isPct) {
+      if (columns[k].passThreshold != null) {
+        var rpp = fpass(d[key], columns[k].passThreshold);
+        rows += '<td class="'+rpp.cls+'">'+rpp.text+'</td>';
+      } else if (columns[k].isPct) {
         var r = frate(v);
         rows += '<td class="'+r.cls+'">'+r.text+'</td>';
       } else if (columns[k].isBad) {
@@ -2253,12 +2280,12 @@ function knRenderSite() {
     {key:'status_audit', label:'整改待审核', isPct:false, isSumRatio:false},
     {key:'status_fail', label:'整改不通过', isPct:false, isSumRatio:false},
     {key:'status_appeal', label:'待申诉', isPct:false, isSumRatio:false},
-    {key:'week_cover_rate', label:'本月覆盖率', isPct:true, isSumRatio:true},
+    {key:'week_cover_rate', label:'本月覆盖率', isPct:true, isSumRatio:true, passThreshold:50},
     {key:'compliance_rate', label:'合规率', isPct:true, isSumRatio:true}
   ];
   var headerGroups = [
     {label:'巡检达成', colspan:9, bgColor:'#FDE68A', textColor:'#92400E'},
-    {label:'本月覆盖率', colspan:1, bgColor:'#BFDBFE', textColor:'#1E3A8A'},
+    {label:'本月覆盖率<br>≥50%合格', colspan:1, bgColor:'#BFDBFE', textColor:'#1E3A8A'},
     {label:'合规率', colspan:1, bgColor:'#BBF7D0', textColor:'#166534'}
   ];
   renderStandardTab('knife', 'KNIFE_DATA', columns, null, headerGroups);
@@ -2311,7 +2338,7 @@ function knSiteCards(visibleRows){
   var html =
       knCard('1号注册骑手', reg.toLocaleString(), '站点维度分母', '')
     + knCard('本月已检查', checked.toLocaleString(), '总巡检人次', '')
-    + knCard('月度覆盖率', pct(coverNum,reg), '去重2次后 '+coverNum.toLocaleString()+' / 分母 '+reg.toLocaleString()+' 人', cls(coverNum,reg))
+    + knCard('月度覆盖率', pct(coverNum,reg), '去重2次后 '+coverNum.toLocaleString()+' / 分母 '+reg.toLocaleString()+' 人（≥50%合格）', (!reg ? '' : (coverNum/reg*100 >= 50 ? 'green' : 'red')))
     + knCard('合规率', pct(compNum,checked), '无需整改 '+compNum.toLocaleString()+' / 已检查 '+checked.toLocaleString()+' 人', cls(compNum,checked))
     + knCard('无需整改', no.toLocaleString(), '通过项', 'green')
     + knCard('待整改', wait.toLocaleString(), '需站长跟进', wait?'red':'')
