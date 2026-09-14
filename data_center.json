@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-15 07:48:53",
+  "updated_at": "2026-09-15 07:49:02",
   "action_summary": {
     "total": 14,
     "ok": 11,
@@ -19,7 +19,7 @@
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-15 07:48:52",
+        "data_mtime": "2026-09-15 07:49:01",
         "all_synced": true,
         "synced_count": 13,
         "missing_count": 0,
@@ -109,7 +109,7 @@
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-09-15 07:48:53",
+            "mtime": "2026-09-15 07:49:01",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -425,7 +425,7 @@
           "在职骑手详情\\在职骑手详情.html",
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-15 07:48:52",
+        "data_mtime": "2026-09-15 07:49:01",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -498,7 +498,7 @@
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-09-15 07:48:53",
+        "data_mtime": "2026-09-15 07:49:01",
         "all_synced": false,
         "synced_count": 3,
         "missing_count": 0,
@@ -519,7 +519,7 @@
           {
             "type": "V3内联数据",
             "latest": "v3_data.js",
-            "mtime": "2026-09-15 07:48:53",
+            "mtime": "2026-09-15 07:49:01",
             "synced": true
           },
           {
@@ -549,7 +549,7 @@
             "latest": "premium_latest.json",
             "mtime": "2026-09-14 08:27:54",
             "max_age_hours": 26,
-            "age_hours": 23.3,
+            "age_hours": 23.4,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -560,7 +560,7 @@
             "label": "V3内联数据",
             "path": "骑手保障补贴\\v3_data.js",
             "latest": "v3_data.js",
-            "mtime": "2026-09-15 07:48:53",
+            "mtime": "2026-09-15 07:49:01",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -831,7 +831,7 @@
           {
             "type": "交通安全data.js（归档源）",
             "latest": "data.js",
-            "mtime": "2026-09-15 07:48:52",
+            "mtime": "2026-09-15 07:49:01",
             "synced": true
           }
         ],
