@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-15 06:55:49",
+  "updated_at": "2026-09-15 06:57:55",
   "action_summary": {
     "total": 14,
     "ok": 9,
@@ -212,9 +212,9 @@
         ],
         "data_mtime": "2026-09-14 08:09:44",
         "all_synced": false,
-        "synced_count": 6,
+        "synced_count": 4,
         "missing_count": 0,
-        "unsynced_count": 1,
+        "unsynced_count": 3,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
@@ -224,9 +224,9 @@
           },
           {
             "type": "巡检工单列表",
-            "latest": "巡检工单列表_1789342255229.xls",
-            "mtime": "2026-09-14 07:31:24",
-            "synced": true
+            "latest": "巡检工单列表_1789426636427.xls",
+            "mtime": "2026-09-15 06:57:25",
+            "synced": false
           },
           {
             "type": "巡检平台站点检核",
@@ -242,9 +242,9 @@
           },
           {
             "type": "骑手排班明细数据",
-            "latest": "骑手排班明细数据_49896033_20260914_064320.xlsx",
-            "mtime": "2026-09-14 06:43:42",
-            "synced": true
+            "latest": "骑手排班明细数据_49896033_20260915_065421.xlsx",
+            "mtime": "2026-09-15 06:56:04",
+            "synced": false
           },
           {
             "type": "表单列表",
@@ -279,7 +279,7 @@
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-09-13 07:30:27",
             "max_age_hours": 30,
-            "age_hours": 47.4,
+            "age_hours": 47.5,
             "ok": false,
             "note": "早间自动化抓取",
             "fail_hits": [],
@@ -427,16 +427,16 @@
           "交通安全行为看板\\data.js"
         ],
         "data_mtime": "2026-09-15 06:52:38",
-        "all_synced": true,
-        "synced_count": 1,
+        "all_synced": false,
+        "synced_count": 0,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "骑手排班明细数据",
-            "latest": "骑手排班明细数据_49896033_20260914_064320.xlsx",
-            "mtime": "2026-09-14 06:43:42",
-            "synced": true
+            "latest": "骑手排班明细数据_49896033_20260915_065421.xlsx",
+            "mtime": "2026-09-15 06:56:04",
+            "synced": false
           }
         ],
         "actions": [
@@ -446,7 +446,7 @@
             "latest": "_crawl_service.log",
             "mtime": "2026-09-10 07:30:12",
             "max_age_hours": 26,
-            "age_hours": 119.4,
+            "age_hours": 119.5,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -576,7 +576,7 @@
             "latest": "insurance_data.js",
             "mtime": "2026-09-08 17:11:51",
             "max_age_hours": 72,
-            "age_hours": 157.7,
+            "age_hours": 157.8,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -728,7 +728,7 @@
             "latest": "update_stations.log",
             "mtime": "2026-09-14 07:47:07",
             "max_age_hours": 26,
-            "age_hours": 23.1,
+            "age_hours": 23.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -777,7 +777,7 @@
             "latest": "_大屏数据.js",
             "mtime": "2026-09-11 00:18:08",
             "max_age_hours": 26,
-            "age_hours": 102.6,
+            "age_hours": 102.7,
             "ok": false,
             "note": "",
             "fail_hits": [],
