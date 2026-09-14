@@ -1,11 +1,11 @@
 /* 带刀巡检数据：站点维度 + 骑手维度明细
- * 生成时间：2026-09-14 07:45:02
+ * 生成时间：2026-09-14 07:55:15
  * 数据源：巡检工单列表_1789342255229.xls（巡检类型=加盟骑手，检查方式=车辆检查）
  * 站点分母来源：2026-09-01 排班明细（每月1号在册骑手，仅显示分母数量）
  * 骑手明细名册来源：2026-09-14 排班明细（最新在职骑手，匹配实时巡检记录）
  */
 var KNIFE_META = {
-  "generated_at": "2026-09-14 07:45:02",
+  "generated_at": "2026-09-14 07:55:15",
   "source_file": "巡检工单列表_1789342255229.xls",
   "source_file_mtime": "2026-09-14 07:31:24",
   "reg_file_date": "2026-09-01",
@@ -513,7 +513,7 @@ var KNIFE_DATA = {
     "region": "华北二区",
     "subr": "河南区域",
     "city": "郑州",
-    "reg_1st": 87,
+    "reg_1st": 92,
     "checked_month": 32,
     "checked_2plus": 0,
     "checked_dedup2": 32,
@@ -523,7 +523,7 @@ var KNIFE_DATA = {
     "status_fail": 0,
     "status_appeal": 0,
     "week_cover_num": 32,
-    "week_cover_rate": 36.78,
+    "week_cover_rate": 34.78,
     "compliance_num": 32,
     "compliance_rate": 100.0
   },
