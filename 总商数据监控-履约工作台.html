@@ -45,19 +45,20 @@ html,body{height:100%;font-family:"Microsoft YaHei","PingFang SC","Segoe UI",san
 body{display:flex;flex-direction:column}
 
 /* Header */
-.top-header{height:var(--header-h);background:linear-gradient(90deg,#00acc1 0%,#26c6da 100%);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 16px;flex-shrink:0;box-shadow:0 2px 4px rgba(0,0,0,.12);position:relative;z-index:30}
+.top-header{height:var(--header-h);background:linear-gradient(90deg,#00acc1 0%,#26c6da 100%);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 16px;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,.15),inset 0 -3px 0 #FFD100;position:relative;z-index:30}
 .header-left{display:flex;align-items:center;gap:12px}
 .hamburger{width:36px;height:36px;border-radius:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s}
 .hamburger:hover{background:rgba(255,255,255,.15)}
 .hamburger svg{width:22px;height:22px;fill:#fff}
 .brand{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:600;letter-spacing:.3px}
-.brand-dot{width:28px;height:28px;border-radius:50%;background:#fff;color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
+.brand-dot{width:28px;height:28px;border-radius:50%;background:#FFD100;color:#3a2c00;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.2)}
 .header-right{display:flex;align-items:center;gap:18px;font-size:14px}
 .header-right a,.header-right span{color:#fff;text-decoration:none;opacity:.95}
 .header-right a:hover{opacity:1;text-decoration:underline}
-.user-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);padding:4px 10px;border-radius:20px;cursor:pointer;transition:.2s}
-.user-pill:hover{background:rgba(255,255,255,.22)}
-.user-avatar{width:24px;height:24px;border-radius:50%;background:#fff;color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.user-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);padding:4px 10px;border:1px solid rgba(255,209,0,.55);border-radius:20px;cursor:pointer;transition:.2s;position:relative}
+.user-pill:hover{background:rgba(255,255,255,.22);border-color:#FFD100}
+.user-pill::after{content:"\25BE";font-size:10px;opacity:.85;margin-left:2px}
+.user-avatar{width:24px;height:24px;border-radius:50%;background:#FFD100;color:#3a2c00;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.2)}
 
 /* Notify */
 .notify-bar{height:var(--notify-h);background:var(--notify-bg);border-bottom:1px solid var(--notify-border);color:var(--notify-text);display:flex;align-items:center;justify-content:space-between;padding:0 16px;font-size:13px;flex-shrink:0;position:relative;z-index:29}
@@ -89,6 +90,7 @@ body{display:flex;flex-direction:column}
 .group-header.active::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;background:var(--accent);border-radius:0 2px 2px 0}
 .group-icon{width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-right:12px;fill:currentColor;opacity:.9}
 .sidebar.collapsed .group-icon{margin-right:0}
+.sidebar.collapsed .group-text{display:none}
 .group-text{flex:1;display:flex;align-items:center;justify-content:space-between;overflow:hidden}
 .group-title{font-size:14px;opacity:1;transition:opacity .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sidebar.collapsed .group-title{opacity:0;width:0}
@@ -108,7 +110,9 @@ body{display:flex;flex-direction:column}
 .sidebar.collapsed .menu-item{padding-left:19px}
 
 /* collapsed tooltip */
-.sidebar.collapsed .group-header{position:relative;justify-content:center;padding:0}
+.sidebar.collapsed .group-header{position:relative;justify-content:center;padding:0;height:48px}
+.sidebar.collapsed .menu-group{margin-bottom:6px}
+.sidebar.collapsed .group-items{display:none}
 .sidebar.collapsed .group-header:hover::after,
 .sidebar.collapsed .menu-item:hover::after{
   content:attr(data-title);position:absolute;left:56px;top:50%;transform:translateY(-50%);
@@ -188,9 +192,9 @@ body{display:flex;flex-direction:column}
   <div class="notify-left">
     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
     <div class="notify-items" id="notifyItems">
-      <span>【数据更新】昨日 BI 赔付率 / 保费数据已就绪</span>
-      <span>【待处理】带刀巡检 3 个站点覆盖率低于 50%</span>
-      <span>【待处理】充换电血压 2 个站点未达标</span>
+      <span onclick="loadBoard('data_center')">【数据更新】每日 07:00 / 07:20 / 07:40 自动刷新保险赔付、BI 赔付率与骑手明细数据</span>
+      <span onclick="loadBoard('project')">【口径说明】看板分母＝在职名册/在册骑手，分子＝名册内已上报（与手动导出口径不同）</span>
+      <span onclick="loadBoard('project')">【带刀巡检】当月覆盖率 ≥50% 视为合格，站点行已按绿/红标色</span>
     </div>
   </div>
   <div class="notify-right">
@@ -479,9 +483,7 @@ function buildNav(){
 
   container.innerHTML = html;
 
-  if (firstFileItem && !activeItem){
-    selectItem(firstFileItem.groupIdx, firstFileItem.itemIdx);
-  }
+  // 默认停留欢迎页，不自动打开任何看板（用户可在左侧菜单或欢迎页 tile 选择）
 }
 
 function toggleGroup(gi){
