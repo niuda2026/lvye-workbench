@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-15 07:45:11",
+  "updated_at": "2026-09-15 07:45:52",
   "action_summary": {
     "total": 14,
     "ok": 11,
@@ -445,7 +445,7 @@ window.DATA_CENTER = {
             "latest": "_crawl_service.log",
             "mtime": "2026-09-10 07:30:12",
             "max_age_hours": 26,
-            "age_hours": 120.2,
+            "age_hours": 120.3,
             "ok": false,
             "note": "",
             "fail_hits": [],
