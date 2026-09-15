@@ -151,7 +151,7 @@ table.dt td.spark-td .spark-img{display:block;margin:0 auto}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-<script src="data.js?09-14-715c610f"></script>
+<script src="data.js?09-07-c86830b5"></script>
 </head>
 <body>
 
@@ -2693,6 +2693,15 @@ function buildMonthWeeks(ascDates){
   return weeks;
 }
 function weekAvgOf(r,key,w){
+  // 周维度值 = 该周各日 Σ分子/Σ分母（累计口径，与日维度、月累计口径完全一致）
+  var dn=r[key+'_dayNumDen'];
+  var sn=0,sd=0;
+  w.days.forEach(function(d){
+    var v=(dn&&dn[d])?dn[d]:null;
+    if(v&&v.length>=2&&v[1]>0){sn+=v[0];sd+=v[1];}
+  });
+  if(sd>0)return Math.round(sn/sd*10000)/100;
+  // 兜底：dayNumDen 缺失时退回日比率均值，避免空值
   var vals=[];
   w.days.forEach(function(d){
     var v=r[key+'_daily']?r[key+'_daily'][d]:null;
@@ -2818,7 +2827,7 @@ function renderFour(){
     FOUR_METRICS.forEach(function(m){
       var wkVals=egWeeks.map(function(w){return weekAvgOf(r,m.key,w);});
       var dayVals=dayAsc.map(function(d){return (r[m.key+'_daily']&&r[m.key+'_daily'][d]!==undefined)?r[m.key+'_daily'][d]:null;});
-      var wkCells=egWeeks.map(function(w,i){var v=wkVals[i];return '<td class="'+rc(v,m.target,m.goodHigh,m.redAt)+'"'+(v!==null?' title="'+w.range+' 均值（'+w.days.length+'天）"':'')+'>'+fr(v)+'</td>';}).join('');
+      var wkCells=egWeeks.map(function(w,i){var v=wkVals[i];return '<td class="'+rc(v,m.target,m.goodHigh,m.redAt)+'"'+(v!==null?' title="'+w.range+' 周累计率（Σnum/Σden，'+w.days.length+'天）"':'')+'>'+fr(v)+'</td>';}).join('');
       if(!egWeeks.length)wkCells='<td class="rn">-</td>';
       var ddCells=egDays.map(function(d){var v=(r[m.key+'_daily']&&r[m.key+'_daily'][d]!==undefined)?r[m.key+'_daily'][d]:null;return '<td class="'+rc(v,m.target,m.goodHigh,m.redAt)+'">'+fr(v)+'</td>';}).join('');
       if(!egDays.length)ddCells='<td class="rn">-</td>';

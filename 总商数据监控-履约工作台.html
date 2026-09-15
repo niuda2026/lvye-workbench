@@ -78,8 +78,9 @@ body{display:flex;flex-direction:column}
 
 /* Sidebar */
 .sidebar{width:var(--sidebar-open);background:var(--sidebar);color:var(--text);display:flex;flex-direction:column;transition:width .25s ease;flex-shrink:0;overflow:hidden;position:relative;z-index:20}
-.sidebar.collapsed{width:var(--sidebar-closed)}
+.sidebar.collapsed{width:var(--sidebar-closed);overflow:visible}
 .sidebar-inner{flex:1;overflow-y:auto;overflow-x:hidden;padding:8px 0}
+.sidebar.collapsed .sidebar-inner{overflow:visible}
 .sidebar-inner::-webkit-scrollbar{width:4px}
 .sidebar-inner::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px}
 
@@ -109,15 +110,21 @@ body{display:flex;flex-direction:column}
 .sidebar.collapsed .menu-text{opacity:0;width:0}
 .sidebar.collapsed .menu-item{padding-left:19px}
 
-/* collapsed tooltip */
+/* collapsed flyout submenu */
 .sidebar.collapsed .group-header{position:relative;justify-content:center;padding:0;height:48px}
 .sidebar.collapsed .menu-group{margin-bottom:6px}
 .sidebar.collapsed .group-items{display:none}
 .sidebar.collapsed .group-header:hover::after,
 .sidebar.collapsed .menu-item:hover::after{
-  content:attr(data-title);position:absolute;left:56px;top:50%;transform:translateY(-50%);
-  background:#263238;color:#fff;padding:6px 10px;border-radius:4px;font-size:12px;white-space:nowrap;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)
+  display:none
 }
+.group-flyout{display:none;position:absolute;left:100%;top:0;min-width:200px;background:#1e2a35;border-radius:0 8px 8px 0;box-shadow:4px 0 16px rgba(0,0,0,.35);z-index:200;overflow:hidden}
+.group-flyout .flyout-title{padding:12px 14px 8px;font-size:12px;color:#90a4ae;font-weight:600;letter-spacing:.5px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.06)}
+.group-flyout .flyout-item{display:flex;align-items:center;height:40px;padding:0 14px;font-size:13px;color:#cfd8dc;cursor:pointer;transition:background .15s;white-space:nowrap}
+.group-flyout .flyout-item:hover{background:rgba(0,188,212,.15);color:#fff}
+.group-flyout .flyout-item.active{background:rgba(0,188,212,.22);color:#fff}
+.group-flyout .flyout-item.active::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;background:var(--accent);border-radius:0 2px 2px 0}
+.sidebar.collapsed .group-header:hover > .group-flyout{display:block}
 
 .sidebar-footer{padding:10px 16px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:var(--text-muted);white-space:nowrap;opacity:1;transition:opacity .2s}
 .sidebar.collapsed .sidebar-footer{opacity:0}
@@ -143,7 +150,7 @@ body{display:flex;flex-direction:column}
 .tile span{font-size:14px;color:#455a64}
 
 /* Profile popover */
-.profile-pop{display:none;position:fixed;left:210px;bottom:70px;width:280px;background:rgba(26,38,52,.97);border:1px solid rgba(0,188,212,.35);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:999;overflow:hidden;color:#eceff1}
+.profile-pop{display:none;position:fixed;right:16px;top:56px;width:280px;background:rgba(26,38,52,.97);border:1px solid rgba(0,188,212,.35);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:999;overflow:hidden;color:#eceff1}
 .profile-pop.show{display:block}
 .profile-pop-head{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:10px}
 .profile-pop-head .avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#FFC107,#FF9800);color:#3a2c00;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:16px}
@@ -173,7 +180,7 @@ body{display:flex;flex-direction:column}
       <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </div>
     <div class="brand">
-      <div class="brand-dot">兴</div>
+      <img class="brand-logo-img" src="brand_logo.png" alt="兴达" style="width:28px;height:28px;border-radius:6px;object-fit:contain"/>
       <span>兴达履约安全工作台</span>
     </div>
   </div>
@@ -313,7 +320,11 @@ function openAdmin(){ window.open('名单管理后台.html', '_blank'); }
 
 var profileBox = document.getElementById('profileBox');
 profileBox.addEventListener('click', function(e){
-  document.getElementById('profilePop').classList.toggle('show');
+  var pop = document.getElementById('profilePop');
+  var rect = profileBox.getBoundingClientRect();
+  pop.style.right = (document.documentElement.clientWidth - rect.right) + 'px';
+  pop.style.top = (rect.bottom + 6) + 'px';
+  pop.classList.toggle('show');
   e.stopPropagation();
 });
 document.addEventListener('click', function(e){
@@ -397,6 +408,11 @@ var navGroups = [
     items: [
       { key: 'monthly_summary', label: '月度累计看板', file: '交通安全行为看板/月度累计看板.html' }
     ]
+  },
+  {
+    title: '公司风险管理系统', short: '风控',
+    icon: '<path d="M12 2L3.5 6.5v5c0 5.25 3.55 9.7 8.5 11 4.95-1.3 8.5-5.75 8.5-11v-5L12 2zm0 14c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm.5-8H11v4l3 1.8-.75 1.23L10 13v-5h2.5z"/>',
+    items: []
   }
 ];
 
@@ -441,7 +457,14 @@ function loadBoardConfig(){
       navGroups = cfg.groups.map(function(g){
         // 服务端清单可能不含 icon，用本地兜底映射
         var local = navGroups.find(function(x){ return x.title === g.title; });
-        return { title: g.title, short: g.short || (local && local.short) || g.title.slice(0,2), icon: (local && local.icon) || '', items: g.items };
+        // 合并：服务端条目优先，本地独有的看板（如本地新增）追加在后，避免被整体覆盖
+        var items = (g.items || []).slice();
+        if (local && local.items){
+          var keys = {};
+          items.forEach(function(it){ if(it && it.key) keys[it.key] = 1; });
+          local.items.forEach(function(it){ if(it && it.key && !keys[it.key]) items.push(it); });
+        }
+        return { title: g.title, short: g.short || (local && local.short) || g.title.slice(0,2), icon: (local && local.icon) || '', items: items };
       });
       buildNav();
     }
@@ -469,6 +492,14 @@ function buildNav(){
     html += '<div class="group-title">' + escHtml(group.title) + '</div>';
     html += '</div>';
     html += '<div class="group-arrow' + (expanded ? '' : ' collapsed') + '">▼</div>';
+    /* flyout: shown on hover when sidebar collapsed */
+    html += '<div class="group-flyout">';
+    html += '<div class="flyout-title">' + escHtml(group.title) + '</div>';
+    items.forEach(function(item, ii){
+      var isActive = activeItem && activeItem.groupIdx === gi && activeItem.itemIdx === ii;
+      html += '<div class="flyout-item' + (isActive ? ' active' : '') + '" onclick="event.stopPropagation();selectItem(' + gi + ',' + ii + ')">' + escHtml(item.label) + '</div>';
+    });
+    html += '</div>';
     html += '</div>';
     html += '<div class="group-items' + (expanded ? '' : ' collapsed') + '" id="groupItems_' + gi + '" style="max-height:' + (items.length * 38) + 'px">';
     items.forEach(function(item, ii){
@@ -541,7 +572,8 @@ function showWelcome(){
 // ===== Sidebar Toggle =====
 var sidebar = document.getElementById('sidebar');
 var overlay = document.getElementById('overlay');
-var collapsed = false;
+var collapsed = true;
+sidebar.classList.toggle('collapsed', collapsed); // 默认收起，仅显示图标列
 document.getElementById('toggleSidebar').addEventListener('click', function(){
   collapsed = !collapsed;
   sidebar.classList.toggle('collapsed', collapsed);

@@ -126,13 +126,12 @@ window.addEventListener("message",function(ev){
       ctx.fillStyle="#0b1f4d"; ctx.fillRect(0,0,c.width,c.height);
       ctx.drawImage(topCv,Math.round((c.width-topCv.width)/2),0);
       ctx.drawImage(img,Math.round((c.width-img.width)/2),topCv.height);
+      // 始终直接下载（无论是否在 iframe 内），同时向父窗口发消息供工作台等外层消费
+      saveCanvas(c,"保险赔付补贴监控_截图_"+Date.now()+".png");
       if(window.parent && window.parent!==window){
-        window.parent.postMessage({type:"xd-shell-shot",dataUrl:c.toDataURL("image/png"),w:c.width/2,h:c.height/2},"*");
-        shotDone();
-      }else{
-        saveCanvas(c,"保险赔付补贴监控_截图_"+Date.now()+".png");
-        shotDone();
+        try{ window.parent.postMessage({type:"xd-shell-shot",dataUrl:c.toDataURL("image/png"),w:c.width/2,h:c.height/2},"*"); }catch(e){}
       }
+      shotDone();
     };
     img.onerror=function(){ shotDone(); alert("截图拼合失败，请重试"); };
     img.src=d.dataUrl;

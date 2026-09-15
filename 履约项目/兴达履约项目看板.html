@@ -16,6 +16,8 @@ body{background:#F0F6FC;color:#1a2e45;font-family:'Segoe UI','Microsoft YaHei','
 .tab-item:hover{color:#fff;background:rgba(255,255,255,.1)}
 .tab-item.active{color:#fff;border-bottom:3px solid #fff;background:rgba(255,255,255,.15)}
 .filter-bar{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding:10px 16px;background:#F2F7FB;border-bottom:1px solid #8FB8DA}
+/* 骑手维度筛选栏吸顶：滚动长表格时始终可见 */
+#cb-panel-rider .filter-bar{position:sticky;top:0;z-index:20;box-shadow:0 2px 6px rgba(11,79,138,.12)}
 .filter-bar label{color:#0B4F8A;font-size:12px;white-space:nowrap;font-weight:500}
 .ms-wrap{position:relative;display:inline-block;vertical-align:top;}
 .ms-btn{display:flex;align-items:center;justify-content:space-between;min-width:90px;max-width:160px;padding:5px 8px;background:#fff;border:1px solid #8FB8DA;border-radius:4px;font-size:12px;color:#1a2e45;cursor:pointer;user-select:none;gap:4px;}
@@ -141,6 +143,11 @@ table.dt thead{background:transparent}
 
 /* ─── 记录统计栏 ─── */
 .filter-count{font-size:12px;color:#0B4F8A;font-weight:600;margin-left:auto;white-space:nowrap}
+.inp{padding:5px 10px;border:1px solid #8FB8DA;border-radius:4px;font-size:12px;outline:none;background:#fff;color:#1a2e45;min-width:180px;transition:border-color .2s}
+.inp:focus{border-color:#0B4F8A;box-shadow:0 0 0 2px rgba(11,79,138,.15)}
+.inp::placeholder{color:#8FB8DA}
+/* 骑手维度快捷搜索框更醒目 */
+#cbQ{min-width:220px;font-size:13px;border-color:#0B4F8A;background:#fffdf7;font-weight:500}
 
 /* ─── 数据加载提示 ─── */
 .status-bar{padding:6px 16px;background:#fff8e1;border-bottom:1px solid #ffe082;font-size:11px;color:#795548;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
@@ -418,7 +425,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <div class="cb-subtab active" data-t="site" onclick="bxSwitchSub('site')">🏢 站点维度达成</div>
     <div class="cb-subtab" data-t="rider" onclick="bxSwitchSub('rider')">🛵 骑手维度明细<span class="cb-cnt" id="bxCntRider">-</span></div>
     <div class="cb-range">
-      <span class="cb-range-cap">统计周期：当月1日~至今</span>
+      <span class="cb-range-cap">统计周期：<span id="bxRangeCap">本周</span></span>
       <span class="cb-range-note" id="bxRangeNote"></span>
     </div>
   </div>
@@ -2004,9 +2011,11 @@ function renderBoxTab() {
 }
 
 function bxUpdateNote(){
+  var cap = document.getElementById('bxRangeCap');
+  if(cap && bxMeta.period_text) cap.textContent = bxMeta.period_text;
   var n = document.getElementById('bxRangeNote');
   if(!n) return;
-  var txt = '在职骑手 ' + (bxMeta.roster_count || 0) + ' 人 · 已匹配 ' + (bxMeta.matched_count || 0) + ' 人';
+  var txt = '在职骑手 ' + (bxMeta.roster_count || 0) + ' 人 · 有效骑手 ' + (bxMeta.effective_count || 0) + ' 人 · 已匹配 ' + (bxMeta.matched_count || 0) + ' 人';
   if(bxMeta.source_file) txt += ' · 表单 ' + bxMeta.source_file;
   n.textContent = txt;
 }
@@ -2727,9 +2736,9 @@ function cbApplyBoard(){
   if(typeof CHARGEBP_DATA !== 'object' || !cbRoster.length) return;
   var agg = {};
   function slot(s){ if(!agg[s]) agg[s] = {bpN:0,bpD:0,upN:0,upD:0,ckN:0,ckD:0}; return agg[s]; }
-  for (var i=0;i<cbRoster.length;i++){ var a = slot(cbRoster[i][3]); a.bpD++; a.upD++; }
+  for (var i=0;i<cbRoster.length;i++){ var a = slot(cbNormSite(cbRoster[i][3])); a.bpD++; a.upD++; }
   var rid2site = {};
-  for (var i=0;i<cbRoster.length;i++) rid2site[cbRoster[i][4]] = cbRoster[i][3];
+  for (var i=0;i<cbRoster.length;i++) rid2site[cbRoster[i][4]] = cbNormSite(cbRoster[i][3]);
   Object.keys(cbRidx).forEach(function(rid){
     var o = cbRidx[rid], st = rid2site[rid]; if(!st) return;
     var a = slot(st);
