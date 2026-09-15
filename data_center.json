@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-15 17:52:08",
+  "updated_at": "2026-09-15 17:53:21",
   "action_summary": {
     "total": 14,
     "ok": 11,
@@ -109,7 +109,7 @@
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-09-15 17:51:32",
+            "mtime": "2026-09-15 17:52:50",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -291,7 +291,7 @@
             "latest": "daily_refresh_log.txt",
             "mtime": "2026-09-15 17:13:16",
             "max_age_hours": 13,
-            "age_hours": 0.6,
+            "age_hours": 0.7,
             "ok": true,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
             "fail_hits": [],
