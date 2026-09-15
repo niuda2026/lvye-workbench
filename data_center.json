@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-15 08:18:48",
+  "updated_at": "2026-09-15 08:19:06",
   "action_summary": {
     "total": 14,
     "ok": 11,
@@ -549,7 +549,7 @@
             "latest": "premium_latest.json",
             "mtime": "2026-09-14 08:27:54",
             "max_age_hours": 26,
-            "age_hours": 23.8,
+            "age_hours": 23.9,
             "ok": true,
             "note": "",
             "fail_hits": [],
