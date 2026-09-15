@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-16 07:56:26",
+  "updated_at": "2026-09-16 07:57:52",
   "action_summary": {
     "total": 14,
     "ok": 12,
@@ -20,9 +20,9 @@ window.DATA_CENTER = {
         ],
         "data_mtime": "2026-09-16 07:53:26",
         "all_synced": false,
-        "synced_count": 7,
+        "synced_count": 5,
         "missing_count": 0,
-        "unsynced_count": 6,
+        "unsynced_count": 8,
         "sources": [
           {
             "type": "站点-戴盔",
@@ -38,9 +38,9 @@ window.DATA_CENTER = {
           },
           {
             "type": "站点-闯红灯",
-            "latest": "_闯红灯_2026-09-08-2026-09-14(统计日期)_1789465637010.xlsx",
-            "mtime": "2026-09-15 17:47:21",
-            "synced": true
+            "latest": "_闯红灯_2026-09-15-2026-09-15(统计日期)_1789516595790.xlsx",
+            "mtime": "2026-09-16 07:56:39",
+            "synced": false
           },
           {
             "type": "站点-逆行",
@@ -62,9 +62,9 @@ window.DATA_CENTER = {
           },
           {
             "type": "骑手维度-闯红灯",
-            "latest": "_闯红灯-骑手维度_2026-09-08-2026-09-14(统计日期)_1789465651009.xlsx",
-            "mtime": "2026-09-15 17:47:41",
-            "synced": true
+            "latest": "_闯红灯-骑手维度_2026-09-15-2026-09-15(统计日期)_1789516604433.xlsx",
+            "mtime": "2026-09-16 07:56:48",
+            "synced": false
           },
           {
             "type": "骑手维度-逆行",
@@ -371,7 +371,7 @@ window.DATA_CENTER = {
             "latest": "update_log.txt",
             "mtime": "2026-09-16 07:54:16",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -444,7 +444,7 @@ window.DATA_CENTER = {
             "latest": "_crawl_service.log",
             "mtime": "2026-09-16 06:42:02",
             "max_age_hours": 26,
-            "age_hours": 1.2,
+            "age_hours": 1.3,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -535,7 +535,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-09-15 13:59:58",
             "max_age_hours": 26,
-            "age_hours": 17.9,
+            "age_hours": 18.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -561,7 +561,7 @@ window.DATA_CENTER = {
             "latest": "v3_data.js",
             "mtime": "2026-09-16 07:54:20",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -574,7 +574,7 @@ window.DATA_CENTER = {
             "latest": "insurance_data.js",
             "mtime": "2026-09-08 17:11:51",
             "max_age_hours": 72,
-            "age_hours": 182.7,
+            "age_hours": 182.8,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -775,7 +775,7 @@ window.DATA_CENTER = {
             "latest": "_大屏数据.js",
             "mtime": "2026-09-11 00:18:08",
             "max_age_hours": 26,
-            "age_hours": 127.6,
+            "age_hours": 127.7,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -841,7 +841,7 @@ window.DATA_CENTER = {
             "latest": "monthly_summary.js",
             "mtime": "2026-09-16 07:54:20",
             "max_age_hours": 72,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
