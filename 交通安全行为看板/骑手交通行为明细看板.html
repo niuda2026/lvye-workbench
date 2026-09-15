@@ -151,7 +151,7 @@ table.dt td.spark-td .spark-img{display:block;margin:0 auto}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-<script src="data.js?09-14-7b32550c"></script>
+<script src="data.js?09-14-9b1726bd"></script>
 </head>
 <body>
 
@@ -945,6 +945,11 @@ function riderDayArr(r){ // 该骑手的日维度数组 {h,s,r,v,x}
 }
 // 当月累计率：RIDER_MONTH.data[rid]=[hN,hD,sN,sD,rN,rD,vN,vD]；idx 0=h,1=s,2=r,3=v
 function riderCumRate(r,idx){
+  // 当月累计率 = 骑手当月 Σ分子/Σ分母；helmet_cum 等已是全月(14天)累计 Σnum/Σden（零误差），优先使用
+  var c=r[['helmet_cum','speed_cum','redlight_cum','reverse_cum'][idx]];
+  if(c&&c.den>0) return Math.round(c.num/c.den*10000)/100;
+  if(c&&c.rate!=null) return c.rate;
+  // 兜底：RIDER_MONTH 增量聚合（需历史 data.js 逐步累加；clean re-run 仅含最新一天，故不作为首选）
   try{
     if(typeof RIDER_MONTH!=='undefined'&&RIDER_MONTH&&RIDER_MONTH.data){
       var e=RIDER_MONTH.data[String(r.rid)];
@@ -952,11 +957,9 @@ function riderCumRate(r,idx){
         var n=e[idx*2]||0,d=e[idx*2+1]||0;
         return d>0?Math.round(n/d*10000)/100:null;
       }
-      return null;
     }
   }catch(e2){}
-  var c=r[['helmet_cum','speed_cum','redlight_cum','reverse_cum'][idx]];
-  return c?c.rate:null;
+  return null;
 }
 // rc: goodHigh=true 越高越好；否则越低越好
 function riderRateCls(v,goodHigh,target,mid){
