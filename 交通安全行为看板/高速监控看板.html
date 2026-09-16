@@ -119,7 +119,7 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
 </style>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-<script src="data.js?09-14-b5871dff"></script>
+<script src="D:/兴达数据库/交通安全行为看板/data.js?09-15-15a34032"></script>
 </head>
 <body>
 
@@ -373,10 +373,10 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
 
 <script src="./兴达丨交通安全行为看板_files/xlsx.full.min.js.下载"></script>
 <script>
-// 数据由 data.js 通过 <script src> 加载
-/ ══════════════════════════════════════════════════════════
-/ 工具函数
-/ ══════════════════════════════════════════════════════════
+// 数据由 D:\兴达数据库\交通安全行为看板\data.js 通过 <script src> 加载
+// ══════════════════════════════════════════════════════════
+// 工具函数
+// ══════════════════════════════════════════════════════════
 function fr(v){
   if(v===null||v===undefined||isNaN(v))return '<span class="rn">-</span>';
   return v.toFixed(2)+'%';
@@ -2377,18 +2377,15 @@ function exportTableWYSIWYG(table,sheetName,fileName){
     d.setAttribute('style',st);
     d.removeAttribute('class');
   }
-  // 隐藏定宽行：按实际渲染列宽 ×1.6（最小 110px），Excel 用它定列宽且该行不显示
+  // 列宽：用 colgroup/col 定义（Excel 原生支持），不再注入隐藏行——隐藏行会导致导出后标题与数据之间夹一行隐藏空行，筛选失效
   var firstRow=table.querySelector('tbody tr');
   if(firstRow){
     var ws=[];
     firstRow.querySelectorAll('td').forEach(function(td){ws.push(Math.max(Math.round(td.offsetWidth*1.6),110));});
     if(ws.length){
-      var tmp=document.createElement('table');
-      tmp.innerHTML='<tr style="display:none;height:0;">'+ws.map(function(w){return '<td width="'+w+'"></td>';}).join('')+'</tr>';
-      var hrNode=tmp.querySelector('tr');
-      var th=clone.querySelector('thead');
-      if(th)th.insertBefore(hrNode,th.firstChild);
-      else{var nt=document.createElement('thead');nt.appendChild(hrNode);clone.insertBefore(nt,clone.firstChild);}
+      var cg=document.createElement('colgroup');
+      cg.innerHTML=ws.map(function(w){return '<col width="'+w+'" style="width:'+w+'px">';}).join('');
+      clone.insertBefore(cg,clone.firstChild);
     }
   }
   clone.removeAttribute('id');
