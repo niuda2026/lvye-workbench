@@ -3039,32 +3039,34 @@ function cbRiderRows(){
     if(cbSf.cbcst.length && cbSf.cbcst.indexOf(cs) < 0) continue;
     if(cbSf.cbwst.length && cbSf.cbwst.indexOf(ws) < 0) continue;
     if(cbSf.cbbpt.length && cbSf.cbbpt.indexOf(bs) < 0) continue;
-    /* ── 表头详细筛选（2026-09-16）：逐列取值过滤 ── */
-    if(!cbInF(r[6],'cbfsched')) continue;   // 排班状态
-    if(!cbInF(r[8],'cbfbps')) continue;     // 血压·审核状态
-    if(!cbInF(r[9],'cbfbptm')) continue;    // 血压·提交时间(按日)
-    if(!cbInF(r[10],'cbfvt')) continue;     // 载具类型
-    if(!cbInF(r[11],'cbfvs')) continue;     // 载具·审核状态
-    if(!cbInF(r[12],'cbfvd')) continue;     // 载具·变更日期(按日)
-    if(!cbInF(r[13],'cbfvr')) continue;     // 载具·驳回原因
-    if(!cbInF(r[15],'cbfcs')) continue;     // 充电·审核状态
-    if(!cbInF(r[16],'cbfctm')) continue;    // 充电·提交时间(按日)
-    if(!cbInF(r[17],'cbfcv')) continue;     // 电池电压
-    if(!cbInF(r[18],'cbfcb')) continue;     // 电池品牌
-    if(!cbInF(r[20],'cbfws')) continue;     // 换电·审核状态
-    if(!cbInF(r[21],'cbfwtm')) continue;    // 换电·提交时间(按日)
-    if(!cbInF(r[22],'cbfwb')) continue;     // 换电品牌
-    if(cbTxtF.rid && String(r[4]).toLowerCase().indexOf(cbTxtF.rid) < 0) continue;
-    if(cbTxtF.nm && String(r[5]).toLowerCase().indexOf(cbTxtF.nm) < 0) continue;
-    if(q && (r[4]+' '+r[5]).toLowerCase().indexOf(q) < 0) continue;
     var siteNorm = cbNormSite(r[3]);
     var v = cbSiteVehicle[siteNorm] || {num:0, den:0, rate:0};
     var rv = cbRiderVehicle[r[4]] || null;   // 骑手级载具审核明细（BI 211337 骑手维度）
-    out.push([r[0],r[1],r[2],r[3],r[4],r[5],r[6],
+    // 先拼出 23 列明细行（列号 = cbColMap 序号），再按表头筛选逐列过滤
+    var row = [r[0],r[1],r[2],r[3],r[4],r[5],r[6],
       bs, bp?bp[3]:'', bp?bp[4]:'',
       rv?rv.type:'-', rv?rv.status:'-', rv?rv.date:'-', rv?(rv.reason||'-'):'-',
       cs, c?c[3]:'', c?c[4]:'', c?c[5]:'', c?c[6]:'',
-      ws, w?w[3]:'', w?w[4]:'', w?w[5]:'']);
+      ws, w?w[3]:'', w?w[4]:'', w?w[5]:''];
+    /* ── 表头详细筛选（2026-09-16）：对拼好的行逐列取值过滤 ── */
+    if(!cbInF(row[6],'cbfsched')) continue;   // 排班状态
+    if(!cbInF(row[8],'cbfbps')) continue;     // 血压·审核状态
+    if(!cbInF(row[9],'cbfbptm')) continue;    // 血压·提交时间(按日)
+    if(!cbInF(row[10],'cbfvt')) continue;     // 载具类型
+    if(!cbInF(row[11],'cbfvs')) continue;     // 载具·审核状态
+    if(!cbInF(row[12],'cbfvd')) continue;     // 载具·变更日期(按日)
+    if(!cbInF(row[13],'cbfvr')) continue;     // 载具·驳回原因
+    if(!cbInF(row[15],'cbfcs')) continue;     // 充电·审核状态
+    if(!cbInF(row[16],'cbfctm')) continue;    // 充电·提交时间(按日)
+    if(!cbInF(row[17],'cbfcv')) continue;     // 电池电压
+    if(!cbInF(row[18],'cbfcb')) continue;     // 电池品牌
+    if(!cbInF(row[20],'cbfws')) continue;     // 换电·审核状态
+    if(!cbInF(row[21],'cbfwtm')) continue;    // 换电·提交时间(按日)
+    if(!cbInF(row[22],'cbfwb')) continue;     // 换电品牌
+    if(cbTxtF.rid && String(row[4]).toLowerCase().indexOf(cbTxtF.rid) < 0) continue;
+    if(cbTxtF.nm && String(row[5]).toLowerCase().indexOf(cbTxtF.nm) < 0) continue;
+    if(q && (row[4]+' '+row[5]).toLowerCase().indexOf(q) < 0) continue;
+    out.push(row);
   }
   return out;
 }
