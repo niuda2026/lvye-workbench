@@ -3,7 +3,7 @@ window.MONTHLY_SUMMARY = {
   "2026-08",
   "2026-09"
  ],
- "updated": "2026-09-17 07:00:38",
+ "updated": "2026-09-17 07:20:37",
  "sites": [
   {
    "level": "total",
@@ -83,8 +83,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.58
+     "days": 16,
+     "pct": 2.6
     }
    }
   },
@@ -166,8 +166,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.46
+     "days": 16,
+     "pct": 3.55
     }
    }
   },
@@ -249,8 +249,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.46
+     "days": 16,
+     "pct": 3.55
     }
    }
   },
@@ -332,8 +332,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.99
+     "days": 16,
+     "pct": 3.12
     }
    }
   },
@@ -415,8 +415,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 8.36
+     "days": 16,
+     "pct": 7.84
     }
    }
   },
@@ -498,7 +498,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -581,8 +581,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.18
+     "days": 16,
+     "pct": 1.1
     }
    }
   },
@@ -664,8 +664,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.4
+     "days": 16,
+     "pct": 0.45
     }
    }
   },
@@ -747,7 +747,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -830,8 +830,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 7.16
+     "days": 16,
+     "pct": 6.96
     }
    }
   },
@@ -913,7 +913,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -996,7 +996,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -1079,7 +1079,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.07
     }
    }
@@ -1162,7 +1162,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 1.59
     }
    }
@@ -1245,8 +1245,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.32
+     "days": 16,
+     "pct": 2.31
     }
    }
   },
@@ -1328,8 +1328,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.97
+     "days": 16,
+     "pct": 2.08
     }
    }
   },
@@ -1411,7 +1411,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 2.31
     }
    }
@@ -1494,7 +1494,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -1577,7 +1577,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -1660,7 +1660,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -1743,7 +1743,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -1826,7 +1826,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 13,
+     "days": 14,
      "pct": 0.0
     }
    }
@@ -1909,7 +1909,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 13,
+     "days": 14,
      "pct": 0.0
     }
    }
@@ -1992,8 +1992,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 14,
-     "pct": 57.14
+     "days": 15,
+     "pct": 60.0
     }
    }
   },
@@ -2075,7 +2075,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 14,
+     "days": 15,
      "pct": 0.0
     }
    }
@@ -2158,7 +2158,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -2241,7 +2241,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 14,
+     "days": 15,
      "pct": 0.0
     }
    }
@@ -2324,8 +2324,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.17
+     "days": 16,
+     "pct": 1.15
     }
    }
   },
@@ -2407,8 +2407,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.36
+     "days": 16,
+     "pct": 0.34
     }
    }
   },
@@ -2490,8 +2490,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.36
+     "days": 16,
+     "pct": 0.34
     }
    }
   },
@@ -2573,8 +2573,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.13
+     "days": 16,
+     "pct": 1.12
     }
    }
   },
@@ -2656,8 +2656,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.02
+     "days": 16,
+     "pct": 1.05
     }
    }
   },
@@ -2739,8 +2739,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.43
+     "days": 16,
+     "pct": 1.48
     }
    }
   },
@@ -2822,8 +2822,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.55
+     "days": 16,
+     "pct": 0.52
     }
    }
   },
@@ -2905,8 +2905,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.83
+     "days": 16,
+     "pct": 0.78
     }
    }
   },
@@ -2988,8 +2988,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.96
+     "days": 16,
+     "pct": 1.01
     }
    }
   },
@@ -3071,8 +3071,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.19
+     "days": 16,
+     "pct": 1.12
     }
    }
   },
@@ -3154,8 +3154,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.09
+     "days": 16,
+     "pct": 2.04
     }
    }
   },
@@ -3237,8 +3237,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.18
+     "days": 16,
+     "pct": 0.23
     }
    }
   },
@@ -3320,8 +3320,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.32
+     "days": 16,
+     "pct": 1.31
     }
    }
   },
@@ -3403,8 +3403,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.44
+     "days": 16,
+     "pct": 0.48
     }
    }
   },
@@ -3486,8 +3486,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.66
+     "days": 16,
+     "pct": 1.73
     }
    }
   },
@@ -3569,7 +3569,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 3.49
     }
    }
@@ -3652,8 +3652,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.68
+     "days": 16,
+     "pct": 1.57
     }
    }
   },
@@ -3735,7 +3735,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -3818,7 +3818,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -3901,8 +3901,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.27
+     "days": 16,
+     "pct": 1.19
     }
    }
   },
@@ -3984,8 +3984,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.57
+     "days": 16,
+     "pct": 2.41
     }
    }
   },
@@ -4067,8 +4067,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.57
+     "days": 16,
+     "pct": 2.41
     }
    }
   },
@@ -4150,7 +4150,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.15
     }
    }
@@ -4233,7 +4233,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.15
     }
    }
@@ -4316,8 +4316,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.37
+     "days": 16,
+     "pct": 0.35
     }
    }
   },
@@ -4399,7 +4399,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -4444,7 +4444,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -4527,7 +4527,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -4572,8 +4572,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.54
+     "days": 16,
+     "pct": 0.55
     }
    }
   },
@@ -4617,7 +4617,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -4700,8 +4700,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.46
+     "days": 16,
+     "pct": 1.44
     }
    }
   },
@@ -4783,8 +4783,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.41
+     "days": 16,
+     "pct": 1.38
     }
    }
   },
@@ -4866,8 +4866,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.43
+     "days": 16,
+     "pct": 2.42
     }
    }
   },
@@ -4949,8 +4949,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.75
+     "days": 16,
+     "pct": 0.7
     }
    }
   },
@@ -5032,8 +5032,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.25
+     "days": 16,
+     "pct": 1.35
     }
    }
   },
@@ -5115,8 +5115,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.61
+     "days": 16,
+     "pct": 1.51
     }
    }
   },
@@ -5198,7 +5198,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -5281,8 +5281,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.94
+     "days": 16,
+     "pct": 2.96
     }
    }
   },
@@ -5364,8 +5364,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.3
+     "days": 16,
+     "pct": 2.16
     }
    }
   },
@@ -5447,8 +5447,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.33
+     "days": 16,
+     "pct": 2.37
     }
    }
   },
@@ -5530,8 +5530,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.36
+     "days": 16,
+     "pct": 1.28
     }
    }
   },
@@ -5613,8 +5613,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.07
+     "days": 16,
+     "pct": 1.0
     }
    }
   },
@@ -5696,8 +5696,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.82
+     "days": 16,
+     "pct": 0.77
     }
    }
   },
@@ -5779,7 +5779,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -5862,8 +5862,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.65
+     "days": 16,
+     "pct": 1.6
     }
    }
   },
@@ -6028,8 +6028,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.15
+     "days": 16,
+     "pct": 2.07
     }
    }
   },
@@ -6111,8 +6111,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.92
+     "days": 16,
+     "pct": 1.8
     }
    }
   },
@@ -6194,8 +6194,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.76
+     "days": 16,
+     "pct": 0.71
     }
    }
   },
@@ -6277,8 +6277,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.89
+     "days": 16,
+     "pct": 3.65
     }
    }
   },
@@ -6360,8 +6360,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.11
+     "days": 16,
+     "pct": 1.04
     }
    }
   },
@@ -6443,8 +6443,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.86
+     "days": 16,
+     "pct": 1.96
     }
    }
   },
@@ -6526,8 +6526,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.06
+     "days": 16,
+     "pct": 3.19
     }
    }
   },
@@ -6609,8 +6609,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.67
+     "days": 16,
+     "pct": 0.74
     }
    }
   },
@@ -6692,8 +6692,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.31
+     "days": 16,
+     "pct": 1.36
     }
    }
   },
@@ -6775,8 +6775,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.0
+     "days": 16,
+     "pct": 0.09
     }
    }
   },
@@ -6858,7 +6858,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -6941,8 +6941,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.55
+     "days": 16,
+     "pct": 0.51
     }
    }
   },
@@ -7024,8 +7024,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.52
+     "days": 16,
+     "pct": 2.84
     }
    }
   },
@@ -7107,8 +7107,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.16
+     "days": 16,
+     "pct": 3.17
     }
    }
   },
@@ -7190,8 +7190,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.63
+     "days": 16,
+     "pct": 1.53
     }
    }
   },
@@ -7273,8 +7273,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.78
+     "days": 16,
+     "pct": 0.73
     }
    }
   },
@@ -7356,8 +7356,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.75
+     "days": 16,
+     "pct": 0.7
     }
    }
   },
@@ -7439,8 +7439,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.63
+     "days": 16,
+     "pct": 1.53
     }
    }
   },
@@ -7522,7 +7522,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -7605,8 +7605,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.73
+     "days": 16,
+     "pct": 0.69
     }
    }
   },
@@ -7688,8 +7688,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.09
+     "days": 16,
+     "pct": 2.98
     }
    }
   },
@@ -7771,8 +7771,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.09
+     "days": 16,
+     "pct": 2.98
     }
    }
   },
@@ -7854,7 +7854,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 2.87
     }
    }
@@ -7937,8 +7937,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 5.0
+     "days": 16,
+     "pct": 4.98
     }
    }
   },
@@ -8020,8 +8020,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.55
+     "days": 16,
+     "pct": 1.62
     }
    }
   },
@@ -8186,8 +8186,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 7.05
+     "days": 16,
+     "pct": 7.16
     }
    }
   },
@@ -8269,8 +8269,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.27
+     "days": 16,
+     "pct": 3.23
     }
    }
   },
@@ -8352,8 +8352,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.72
+     "days": 16,
+     "pct": 3.73
     }
    }
   },
@@ -8435,8 +8435,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 8.3
+     "days": 16,
+     "pct": 8.07
     }
    }
   },
@@ -8518,8 +8518,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.53
+     "days": 16,
+     "pct": 2.85
     }
    }
   },
@@ -8601,8 +8601,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.66
+     "days": 16,
+     "pct": 1.63
     }
    }
   },
@@ -8684,8 +8684,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.39
+     "days": 16,
+     "pct": 2.36
     }
    }
   },
@@ -8767,8 +8767,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.01
+     "days": 16,
+     "pct": 2.02
     }
    }
   },
@@ -8850,8 +8850,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.5
+     "days": 16,
+     "pct": 1.45
     }
    }
   },
@@ -8933,8 +8933,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.75
+     "days": 16,
+     "pct": 3.27
     }
    }
   },
@@ -9016,8 +9016,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.33
+     "days": 16,
+     "pct": 0.31
     }
    }
   },
@@ -9099,7 +9099,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -9182,7 +9182,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 3.16
     }
    }
@@ -9265,8 +9265,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.61
+     "days": 16,
+     "pct": 0.57
     }
    }
   },
@@ -9348,8 +9348,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 5.38
+     "days": 16,
+     "pct": 5.25
     }
    }
   },
@@ -9431,8 +9431,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.04
+     "days": 16,
+     "pct": 1.99
     }
    }
   },
@@ -9514,8 +9514,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 4.02
+     "days": 16,
+     "pct": 3.99
     }
    }
   },
@@ -9597,8 +9597,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 6.26
+     "days": 16,
+     "pct": 6.23
     }
    }
   },
@@ -9680,7 +9680,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.07
     }
    }
@@ -9763,7 +9763,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -9846,7 +9846,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -9929,8 +9929,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.56
+     "days": 16,
+     "pct": 1.58
     }
    }
   },
@@ -10012,8 +10012,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.09
+     "days": 16,
+     "pct": 1.96
     }
    }
   },
@@ -10095,8 +10095,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.47
+     "days": 16,
+     "pct": 2.32
     }
    }
   },
@@ -10178,8 +10178,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.71
+     "days": 16,
+     "pct": 1.6
     }
    }
   },
@@ -10261,8 +10261,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.41
+     "days": 16,
+     "pct": 3.46
     }
    }
   },
@@ -10344,8 +10344,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.75
+     "days": 16,
+     "pct": 3.0
     }
    }
   },
@@ -10427,8 +10427,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 4.67
+     "days": 16,
+     "pct": 4.72
     }
    }
   },
@@ -10510,8 +10510,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.81
+     "days": 16,
+     "pct": 2.64
     }
    }
   },
@@ -10593,8 +10593,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.08
+     "days": 16,
+     "pct": 1.12
     }
    }
   },
@@ -10676,8 +10676,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.47
+     "days": 16,
+     "pct": 0.44
     }
    }
   },
@@ -10759,8 +10759,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.29
+     "days": 16,
+     "pct": 0.27
     }
    }
   },
@@ -10842,8 +10842,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.63
+     "days": 16,
+     "pct": 0.79
     }
    }
   },
@@ -10925,8 +10925,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.22
+     "days": 16,
+     "pct": 0.31
     }
    }
   },
@@ -11008,8 +11008,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.18
+     "days": 16,
+     "pct": 1.52
     }
    }
   },
@@ -11091,8 +11091,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 4.38
+     "days": 16,
+     "pct": 4.37
     }
    }
   },
@@ -11174,8 +11174,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.0
+     "days": 16,
+     "pct": 0.94
     }
    }
   },
@@ -11257,8 +11257,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.26
+     "days": 16,
+     "pct": 2.33
     }
    }
   },
@@ -11340,7 +11340,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -11423,7 +11423,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -11506,8 +11506,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.41
+     "days": 16,
+     "pct": 1.32
     }
    }
   },
@@ -11589,8 +11589,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.36
+     "days": 16,
+     "pct": 1.39
     }
    }
   },
@@ -11672,8 +11672,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.36
+     "days": 16,
+     "pct": 3.15
     }
    }
   },
@@ -11755,7 +11755,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -11838,8 +11838,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.83
+     "days": 16,
+     "pct": 0.78
     }
    }
   },
@@ -11921,8 +11921,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.34
+     "days": 16,
+     "pct": 2.47
     }
    }
   },
@@ -12004,7 +12004,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -12087,8 +12087,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.99
+     "days": 16,
+     "pct": 3.33
     }
    }
   },
@@ -12170,7 +12170,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -12253,8 +12253,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.53
+     "days": 16,
+     "pct": 3.54
     }
    }
   },
@@ -12336,8 +12336,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.83
+     "days": 16,
+     "pct": 2.82
     }
    }
   },
@@ -12419,8 +12419,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.54
+     "days": 16,
+     "pct": 2.73
     }
    }
   },
@@ -12502,8 +12502,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 8.05
+     "days": 16,
+     "pct": 8.01
     }
    }
   },
@@ -12585,8 +12585,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.4
+     "days": 16,
+     "pct": 1.5
     }
    }
   },
@@ -12668,8 +12668,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.48
+     "days": 16,
+     "pct": 0.45
     }
    }
   },
@@ -12751,8 +12751,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 4.08
+     "days": 16,
+     "pct": 3.82
     }
    }
   },
@@ -12834,8 +12834,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.42
+     "days": 16,
+     "pct": 0.4
     }
    }
   },
@@ -12917,8 +12917,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 6.73
+     "days": 16,
+     "pct": 6.71
     }
    }
   },
@@ -13000,8 +13000,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 10.26
+     "days": 16,
+     "pct": 10.18
     }
    }
   },
@@ -13083,8 +13083,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.93
+     "days": 16,
+     "pct": 3.68
     }
    }
   },
@@ -13166,8 +13166,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.97
+     "days": 16,
+     "pct": 2.92
     }
    }
   },
@@ -13249,8 +13249,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.06
+     "days": 16,
+     "pct": 3.13
     }
    }
   },
@@ -13332,8 +13332,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 12.24
+     "days": 16,
+     "pct": 12.51
     }
    }
   },
@@ -13415,8 +13415,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.93
+     "days": 16,
+     "pct": 0.87
     }
    }
   },
@@ -13498,7 +13498,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -13543,8 +13543,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 14,
-     "pct": 5.12
+     "days": 15,
+     "pct": 4.78
     }
    }
   },
@@ -13626,8 +13626,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 21.91
+     "days": 16,
+     "pct": 22.16
     }
    }
   },
@@ -13709,8 +13709,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.43
+     "days": 16,
+     "pct": 2.44
     }
    }
   },
@@ -13792,8 +13792,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.26
+     "days": 16,
+     "pct": 2.31
     }
    }
   },
@@ -13875,8 +13875,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.87
+     "days": 16,
+     "pct": 1.88
     }
    }
   },
@@ -13958,7 +13958,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -14041,8 +14041,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.8
+     "days": 16,
+     "pct": 0.97
     }
    }
   },
@@ -14124,8 +14124,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 4.64
+     "days": 16,
+     "pct": 4.47
     }
    }
   },
@@ -14207,8 +14207,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.16
+     "days": 16,
+     "pct": 1.09
     }
    }
   },
@@ -14290,8 +14290,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 6.26
+     "days": 16,
+     "pct": 6.36
     }
    }
   },
@@ -14373,8 +14373,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.54
+     "days": 16,
+     "pct": 2.58
     }
    }
   },
@@ -14456,8 +14456,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.86
+     "days": 16,
+     "pct": 2.06
     }
    }
   },
@@ -14539,8 +14539,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.8
+     "days": 16,
+     "pct": 2.73
     }
    }
   },
@@ -14622,8 +14622,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.46
+     "days": 16,
+     "pct": 0.54
     }
    }
   },
@@ -14705,8 +14705,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 6.52
+     "days": 16,
+     "pct": 6.67
     }
    }
   },
@@ -14788,8 +14788,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 6.33
+     "days": 16,
+     "pct": 6.07
     }
    }
   },
@@ -14871,8 +14871,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.25
+     "days": 16,
+     "pct": 2.11
     }
    }
   },
@@ -14954,8 +14954,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.36
+     "days": 16,
+     "pct": 0.34
     }
    }
   },
@@ -15037,8 +15037,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.92
+     "days": 16,
+     "pct": 2.13
     }
    }
   },
@@ -15120,8 +15120,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 4.62
+     "days": 16,
+     "pct": 4.59
     }
    }
   },
@@ -15203,8 +15203,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 4.99
+     "days": 16,
+     "pct": 5.45
     }
    }
   },
@@ -15286,8 +15286,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.44
+     "days": 16,
+     "pct": 3.4
     }
    }
   },
@@ -15369,8 +15369,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.76
+     "days": 16,
+     "pct": 3.69
     }
    }
   },
@@ -15452,8 +15452,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.51
+     "days": 16,
+     "pct": 0.66
     }
    }
   },
@@ -15535,7 +15535,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -15618,8 +15618,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.54
+     "days": 16,
+     "pct": 0.51
     }
    }
   },
@@ -15701,8 +15701,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.74
+     "days": 16,
+     "pct": 0.7
     }
    }
   },
@@ -15784,8 +15784,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.09
+     "days": 16,
+     "pct": 2.12
     }
    }
   },
@@ -15867,8 +15867,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.06
+     "days": 16,
+     "pct": 2.04
     }
    }
   },
@@ -15950,8 +15950,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.06
+     "days": 16,
+     "pct": 2.04
     }
    }
   },
@@ -16033,8 +16033,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 1.99
+     "days": 16,
+     "pct": 1.98
     }
    }
   },
@@ -16116,8 +16116,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.42
+     "days": 16,
+     "pct": 0.4
     }
    }
   },
@@ -16199,8 +16199,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 5.83
+     "days": 16,
+     "pct": 5.79
     }
    }
   },
@@ -16282,7 +16282,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -16365,7 +16365,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 2.25
     }
    }
@@ -16448,8 +16448,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.3
+     "days": 16,
+     "pct": 2.34
     }
    }
   },
@@ -16531,7 +16531,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 1.79
     }
    }
@@ -16614,7 +16614,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -16697,7 +16697,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.1
     }
    }
@@ -16780,8 +16780,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.15
+     "days": 16,
+     "pct": 0.14
     }
    }
   },
@@ -16863,8 +16863,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.54
+     "days": 16,
+     "pct": 3.57
     }
    }
   },
@@ -16946,8 +16946,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.46
+     "days": 16,
+     "pct": 0.43
     }
    }
   },
@@ -17029,8 +17029,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 13.6
+     "days": 16,
+     "pct": 13.81
     }
    }
   },
@@ -17195,8 +17195,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.25
+     "days": 16,
+     "pct": 0.31
     }
    }
   },
@@ -17278,8 +17278,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.12
+     "days": 16,
+     "pct": 2.06
     }
    }
   },
@@ -17361,8 +17361,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.44
+     "days": 16,
+     "pct": 2.38
     }
    }
   },
@@ -17444,8 +17444,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 3.51
+     "days": 16,
+     "pct": 3.49
     }
    }
   },
@@ -17527,8 +17527,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 2.54
+     "days": 16,
+     "pct": 2.38
     }
    }
   },
@@ -17610,7 +17610,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -17693,8 +17693,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 7.48
+     "days": 16,
+     "pct": 7.55
     }
    }
   },
@@ -17776,8 +17776,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 4.65
+     "days": 16,
+     "pct": 4.64
     }
    }
   },
@@ -17859,7 +17859,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 0.0
     }
    }
@@ -17942,8 +17942,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 7.45
+     "days": 16,
+     "pct": 7.46
     }
    }
   },
@@ -18025,8 +18025,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 6.51
+     "days": 16,
+     "pct": 6.47
     }
    }
   },
@@ -18108,8 +18108,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 9.18
+     "days": 16,
+     "pct": 9.3
     }
    }
   },
@@ -18191,7 +18191,7 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
+     "days": 16,
      "pct": 2.28
     }
    }
@@ -18274,8 +18274,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 0.68
+     "days": 16,
+     "pct": 0.64
     }
    }
   },
@@ -18357,8 +18357,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 27.03
+     "days": 16,
+     "pct": 27.65
     }
    }
   },
@@ -18440,8 +18440,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 9.22
+     "days": 16,
+     "pct": 9.29
     }
    }
   },
@@ -18523,8 +18523,8 @@ window.MONTHLY_SUMMARY = {
      }
     },
     "high_speed": {
-     "days": 15,
-     "pct": 6.7
+     "days": 16,
+     "pct": 6.63
     }
    }
   }

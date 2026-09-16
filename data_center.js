@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-17 07:17:05",
+  "updated_at": "2026-09-17 07:17:42",
   "action_summary": {
     "total": 14,
     "ok": 12,
@@ -108,7 +108,7 @@ window.DATA_CENTER = {
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-09-17 07:15:33",
+            "mtime": "2026-09-17 07:17:10",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -724,7 +724,7 @@ window.DATA_CENTER = {
             "label": "美团站点快照更新",
             "path": "全国站点地图\\update_stations.log",
             "latest": "update_stations.log",
-            "mtime": "2026-09-17 07:14:55",
+            "mtime": "2026-09-17 07:17:36",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
