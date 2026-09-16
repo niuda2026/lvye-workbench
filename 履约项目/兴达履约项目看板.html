@@ -2809,7 +2809,10 @@ function cbCloseColDrop(){ var d = document.getElementById('cbColDrop'); if(d) d
 document.addEventListener('click', function(e){
   if(e.target.closest && !e.target.closest('#cbColDrop') && !e.target.closest('.cb-funnel')) cbCloseColDrop();
 });
-window.addEventListener('scroll', cbCloseColDrop, true);
+window.addEventListener('scroll', function(e){
+  if(e.target && e.target.closest && e.target.closest('#cbColDrop')) return; // 弹窗内列表滚动不关闭
+  cbCloseColDrop();
+}, true);
 window.addEventListener('resize', cbCloseColDrop);
 function cbOpenColFilter(ev, col){
   var m = cbColMap[col]; if(!m) return;
@@ -2882,12 +2885,18 @@ function cbOpenColFilter(ev, col){
       renderList(se.value);
     };
   }
-  var rect = ev.target.getBoundingClientRect();
+  var d2 = ev.target.closest ? (ev.target.closest('th') || ev.target) : ev.target;
+  var r = d2.getBoundingClientRect();
   d.style.display = 'block';
-  var left = Math.max(4, Math.min(rect.left - 40, window.innerWidth - 276));
+  var dw = d.offsetWidth, dh = d.offsetHeight;
+  var left = Math.round(r.left + r.width/2 - dw/2);
+  left = Math.max(4, Math.min(left, window.innerWidth - dw - 4));
   d.style.left = left + 'px';
-  var top = rect.bottom + 4;
-  if(top + 380 > window.innerHeight) top = Math.max(4, rect.top - 380);
+  var top = r.bottom + 4;
+  if(top + dh > window.innerHeight - 4){
+    var above = r.top - dh - 4;
+    top = (above >= 4) ? above : Math.max(4, window.innerHeight - dh - 4);
+  }
   d.style.top = top + 'px';
 }
 function cbInjectColFilterCss(){
