@@ -2616,7 +2616,10 @@ function cbSiteCards(){
    ══════════════════════════════════════════════════════════════ */
 var cbMeta = window.CB_META || {}, cbRoster = window.CB_ROSTER || [], cbRec = window.CB_REC || [];
 var cbRosterSet = {}, cbRidx = {}, cbInited = false;
-var cbSf = {cbregion:[],cbsubr:[],cbcity:[],cbsite:[],cbbpt:[],cbcst:[],cbwst:[]};
+var cbSf = {cbregion:[],cbsubr:[],cbcity:[],cbsite:[],cbbpt:[],cbcst:[],cbwst:[],
+  cbfsched:[],cbfbps:[],cbfbptm:[],cbfvt:[],cbfvs:[],cbfvd:[],cbfvr:[],
+  cbfcs:[],cbfctm:[],cbfcv:[],cbfcb:[],cbfws:[],cbfwtm:[],cbfwb:[]};
+var cbTxtF = {rid:'', nm:''};   // 表头筛选：骑手ID / 姓名 文本包含
 var cbSiteVehicle = {}; // 站点(归一化) -> {num,den,rate}，站点维度用
 // 骑手级载具审核明细（readata BI 211337「审核明细」卡片，骑手维度，昨日单日时点）
 // CB_RIDER_VEHICLE: {rider_id: [type, status, date, reason]}
@@ -2683,6 +2686,7 @@ function cbUpdMsLabel(k){
 function cbClearF(){
   Object.keys(cbSf).forEach(function(k){ cbSf[k] = []; });
   Object.keys(cbSf).forEach(function(k){ cbUpdMsLabel(k); });
+  cbTxtF.rid = ''; cbTxtF.nm = '';
   var q = document.getElementById('cbQ'); if(q) q.value = '';
   cbRenderRider(1);
 }
@@ -2691,6 +2695,228 @@ function cbOnlyNone(){
   cbSf.cbbpt = ['未上传']; cbSf.cbcst = ['未上传']; cbSf.cbwst = ['未上传'];
   cbUpdMsLabel('cbbpt'); cbUpdMsLabel('cbcst'); cbUpdMsLabel('cbwst');
   cbRenderRider(1);
+}
+
+/* ══ 表头详细筛选工具（2026-09-16）══════════════════════════
+   每个列标题右侧一个漏斗 ▽，点开下拉：
+   · 文本列(骑手ID/姓名)：包含关键字筛选
+   · 其余列：取值多选(带搜索/计数)，提交时间/变更日期按「日」聚合
+   · 大区/区域/城市/站点/血压/充电/换电 与顶部筛选条双向同步
+   ══════════════════════════════════════════════════════════ */
+var cbColMap = [
+  {key:'cbregion', label:'大区'},
+  {key:'cbsubr',   label:'区域'},
+  {key:'cbcity',   label:'城市'},
+  {key:'cbsite',   label:'站点名称'},
+  {key:'@rid',     label:'骑手ID', mode:'txt'},
+  {key:'@nm',      label:'骑手姓名', mode:'txt'},
+  {key:'cbfsched', label:'排班状态'},
+  {key:'cbbpt',    label:'血压·上传'},
+  {key:'cbfbps',   label:'血压·状态'},
+  {key:'cbfbptm',  label:'血压·提交时间', datePrefix:true},
+  {key:'cbfvt',    label:'载具类型'},
+  {key:'cbfvs',    label:'载具·审核状态'},
+  {key:'cbfvd',    label:'载具·变更日期', datePrefix:true},
+  {key:'cbfvr',    label:'载具·驳回原因'},
+  {key:'cbcst',    label:'充电·上报'},
+  {key:'cbfcs',    label:'充电·审核状态'},
+  {key:'cbfctm',   label:'充电·提交时间', datePrefix:true},
+  {key:'cbfcv',    label:'电池电压'},
+  {key:'cbfcb',    label:'电池品牌'},
+  {key:'cbwst',    label:'换电·上报'},
+  {key:'cbfws',    label:'换电·审核状态'},
+  {key:'cbfwtm',   label:'换电·提交时间', datePrefix:true},
+  {key:'cbfwb',    label:'换电品牌'}
+];
+function cbColVal(v, datePrefix){
+  if(v === null || v === undefined || v === '') return '(空白)';
+  var s = String(v);
+  return datePrefix ? s.slice(0,10) : s;
+}
+function cbColDef(k){
+  for (var i=0;i<cbColMap.length;i++) if(cbColMap[i].key === k) return cbColMap[i];
+  return null;
+}
+function cbInF(v, k){
+  var a = cbSf[k]; if(!a || !a.length) return true;
+  var m = cbColDef(k);
+  return a.indexOf(cbColVal(v, m && m.datePrefix)) >= 0;
+}
+/* 本列候选取值：清掉本列自身筛选后重算，保证多选不互斥 */
+function cbColOpts(col){
+  var m = cbColMap[col];
+  var saved = cbSf[m.key]; cbSf[m.key] = [];
+  var rows = cbRiderRows();
+  cbSf[m.key] = saved || [];
+  var vals = {};
+  rows.forEach(function(r){
+    var v = cbColVal(r[col], m.datePrefix);
+    vals[v] = (vals[v]||0)+1;
+  });
+  return Object.keys(vals).map(function(v){ return {v:v, n:vals[v]}; })
+    .sort(function(a,b){
+      if(a.v === '(空白)') return -1;
+      if(b.v === '(空白)') return 1;
+      return a.v < b.v ? -1 : a.v > b.v ? 1 : 0;
+    });
+}
+var cbFunnelBuilt = false;
+function cbBuildFunnels(){
+  if(cbFunnelBuilt) return; cbFunnelBuilt = true;
+  var thead = document.querySelector('#cbTblRider thead'); if(!thead) return;
+  var col = 0;
+  for (var ri=0; ri<thead.rows.length; ri++){
+    var ths = thead.rows[ri].cells;
+    for (var ti=0; ti<ths.length; ti++){
+      var th = ths[ti];
+      if(col >= cbColMap.length) break;
+      var span = Number(th.rowSpan)||1;
+      if(span === 2 || ri === 1){       // 顶层 rowspan=2 列头 / 第二行列头
+        (function(c, thE){
+          var f = document.createElement('span');
+          f.className = 'cb-funnel'; f.setAttribute('data-col', c);
+          f.textContent = '▽';
+          f.title = '筛选：' + cbColMap[c].label;
+          f.onclick = function(ev){ ev.stopPropagation(); cbOpenColFilter(ev, c); };
+          thE.appendChild(f);
+        })(col, th);
+        col++;
+      }                                  // 第1行的组头(血压上传/载具审核…)跳过不占列号
+    }
+  }
+  cbInjectColFilterCss();
+}
+function cbSyncFunnels(){
+  if(!cbFunnelBuilt) return;
+  var fs = document.querySelectorAll('#cbTblRider .cb-funnel');
+  for (var i=0;i<fs.length;i++){
+    var c = Number(fs[i].getAttribute('data-col'));
+    var m = cbColMap[c]; if(!m) continue;
+    var act = (m.mode === 'txt') ? !!cbTxtF[m.key.slice(1)] : !!(cbSf[m.key] && cbSf[m.key].length);
+    fs[i].classList.toggle('act', act);
+    fs[i].textContent = act ? '▼' : '▽';
+  }
+}
+function cbEnsureDrop(){
+  var d = document.getElementById('cbColDrop');
+  if(d) return d;
+  d = document.createElement('div'); d.id = 'cbColDrop';
+  d.innerHTML = '<div class="cfd-h"><span id="cfdTitle"></span><span class="cfd-x" onclick="cbCloseColDrop()">✕</span></div><div id="cfdBody"></div>';
+  document.body.appendChild(d);
+  return d;
+}
+function cbCloseColDrop(){ var d = document.getElementById('cbColDrop'); if(d) d.style.display = 'none'; }
+document.addEventListener('click', function(e){
+  if(e.target.closest && !e.target.closest('#cbColDrop') && !e.target.closest('.cb-funnel')) cbCloseColDrop();
+});
+window.addEventListener('scroll', cbCloseColDrop, true);
+window.addEventListener('resize', cbCloseColDrop);
+function cbOpenColFilter(ev, col){
+  var m = cbColMap[col]; if(!m) return;
+  var d = cbEnsureDrop();
+  document.getElementById('cfdTitle').textContent = '筛选 · ' + m.label;
+  var body = document.getElementById('cfdBody');
+  if(m.mode === 'txt'){
+    var kk = m.key.slice(1);
+    body.innerHTML = '<input class="cfd-inp" id="cfdTxt" placeholder="输入包含关键字筛选">'
+      + '<div class="cfd-btns"><button class="cfd-b ok" id="cfdApply">应用</button>'
+      + '<button class="cfd-b" id="cfdClearT">清除</button></div>'
+      + '<div class="cfd-tip">模糊包含匹配，可与顶部搜索框叠加</div>';
+    var inp = document.getElementById('cfdTxt');
+    inp.value = cbTxtF[kk] || '';
+    inp.onkeydown = function(e){ if(e.key === 'Enter') document.getElementById('cfdApply').click(); };
+    inp.onclick = function(e){ e.stopPropagation(); };
+    document.getElementById('cfdApply').onclick = function(){
+      cbTxtF[kk] = inp.value.trim().toLowerCase();
+      cbSyncFunnels(); cbRenderRider(1); cbCloseColDrop();
+    };
+    document.getElementById('cfdClearT').onclick = function(){
+      inp.value = ''; cbTxtF[kk] = ''; cbSyncFunnels(); cbRenderRider(1);
+    };
+    setTimeout(function(){ try{ inp.focus(); }catch(e){} }, 0);
+  } else {
+    body.innerHTML = '<input class="cfd-inp" id="cfdSearch" placeholder="🔍 搜索本列取值...">'
+      + '<div class="cfd-btns"><button class="cfd-b" id="cfdAll">全选(不限)</button>'
+      + '<span class="cfd-stat" id="cfdStat"></span></div>'
+      + '<div class="cfd-list" id="cfdList"></div>'
+      + '<div class="cfd-tip">勾选即生效；提交时间/变更日期按「日」聚合</div>';
+    var opts = cbColOpts(col);
+    var key = m.key;
+    var renderList = function(kw){
+      kw = (kw || '').trim().toLowerCase();
+      var cur = cbSf[key] || [];
+      var shown = 0, h = '';
+      for (var i=0;i<opts.length;i++){
+        var o = opts[i];
+        if(kw && o.v.toLowerCase().indexOf(kw) < 0) continue;
+        shown++;
+        if(shown > 500){ h += '<div class="cfd-more">仅显示前 500 项，请继续输入缩小范围</div>'; break; }
+        h += '<label class="cfd-item"><input type="checkbox" data-v="'+o.v.replace(/"/g,'&quot;')+'"'
+          + (cur.indexOf(o.v) >= 0 ? ' checked' : '') + '>'
+          + '<span class="t">'+o.v+'</span><span class="n">'+o.n+'</span></label>';
+      }
+      if(!shown) h = '<div class="cfd-empty">无匹配取值</div>';
+      document.getElementById('cfdList').innerHTML = h;
+      document.getElementById('cfdStat').textContent = '已选 ' + cur.length + ' 项 / 共 ' + opts.length + ' 项';
+      var boxes = document.querySelectorAll('#cfdList input[type=checkbox]');
+      for (var j=0;j<boxes.length;j++){
+        boxes[j].onchange = (function(bx){
+          return function(){
+            var v = bx.getAttribute('data-v');
+            var a = cbSf[key], i2 = a.indexOf(v);
+            if(bx.checked && i2 < 0) a.push(v);
+            if(!bx.checked && i2 >= 0) a.splice(i2,1);
+            cbSyncFunnels(); cbRenderRider(1);
+            document.getElementById('cfdStat').textContent = '已选 ' + a.length + ' 项 / 共 ' + opts.length + ' 项';
+          };
+        })(boxes[j]);
+      }
+    };
+    renderList('');
+    var se = document.getElementById('cfdSearch');
+    se.oninput = function(){ renderList(se.value); };
+    se.onclick = function(e){ e.stopPropagation(); };
+    document.getElementById('cfdAll').onclick = function(){
+      cbSf[key] = [];
+      cbSyncFunnels(); cbRenderRider(1);
+      renderList(se.value);
+    };
+  }
+  var rect = ev.target.getBoundingClientRect();
+  d.style.display = 'block';
+  var left = Math.max(4, Math.min(rect.left - 40, window.innerWidth - 276));
+  d.style.left = left + 'px';
+  var top = rect.bottom + 4;
+  if(top + 380 > window.innerHeight) top = Math.max(4, rect.top - 380);
+  d.style.top = top + 'px';
+}
+function cbInjectColFilterCss(){
+  if(document.getElementById('cbColFilterCss')) return;
+  var st = document.createElement('style'); st.id = 'cbColFilterCss';
+  st.textContent =
+    '#cbColDrop{position:fixed;z-index:99999;background:#fff;border:1px solid #cfd8dc;border-radius:8px;'
+  + 'box-shadow:0 8px 24px rgba(0,0,0,.18);width:268px;padding:8px;display:none;font-size:12px;color:#37474f}'
+  + '#cbColDrop .cfd-h{display:flex;justify-content:space-between;align-items:center;font-weight:700;color:#0B4F8A;margin-bottom:6px}'
+  + '#cbColDrop .cfd-x{cursor:pointer;color:#90a4ae;padding:0 4px;font-size:13px}'
+  + '#cbColDrop .cfd-x:hover{color:#e53935}'
+  + '.cfd-inp{width:100%;box-sizing:border-box;padding:5px 8px;border:1px solid #cfd8dc;border-radius:6px;margin-bottom:6px;font-size:12px;outline:none}'
+  + '.cfd-inp:focus{border-color:#42a5f5}'
+  + '.cfd-btns{display:flex;gap:6px;margin-bottom:6px;align-items:center}'
+  + '.cfd-b{padding:4px 8px;border:1px solid #cfd8dc;background:#f5f7f8;border-radius:6px;cursor:pointer;font-size:12px;white-space:nowrap}'
+  + '.cfd-b:hover{background:#e3f2fd;border-color:#90caf9}'
+  + '.cfd-b.ok{background:#0B4F8A;color:#fff;border-color:#0B4F8A}'
+  + '.cfd-stat{color:#607d8b;font-size:11px}'
+  + '.cfd-list{max-height:260px;overflow:auto;border:1px solid #eceff1;border-radius:6px}'
+  + '.cfd-item{display:flex;align-items:center;gap:6px;padding:4px 8px;cursor:pointer;border-bottom:1px solid #f7f7f7;margin:0}'
+  + '.cfd-item:hover{background:#f5f9fd}'
+  + '.cfd-item .t{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}'
+  + '.cfd-item .n{color:#90a4ae;font-size:11px}'
+  + '.cfd-more,.cfd-empty{padding:8px;color:#90a4ae;text-align:center}'
+  + '.cfd-tip{margin-top:6px;color:#90a4ae;font-size:11px}'
+  + '.cb-funnel{display:inline-block;margin-left:3px;cursor:pointer;color:#b0bec5;font-size:10px;vertical-align:middle;line-height:1;user-select:none}'
+  + '.cb-funnel:hover{color:#1976d2}'
+  + '.cb-funnel.act{color:#fff;background:#ff9800;border-radius:3px;padding:0 3px}';
+  document.head.appendChild(st);
 }
 
 /* ── 子Tab切换 ── */
@@ -2813,6 +3039,23 @@ function cbRiderRows(){
     if(cbSf.cbcst.length && cbSf.cbcst.indexOf(cs) < 0) continue;
     if(cbSf.cbwst.length && cbSf.cbwst.indexOf(ws) < 0) continue;
     if(cbSf.cbbpt.length && cbSf.cbbpt.indexOf(bs) < 0) continue;
+    /* ── 表头详细筛选（2026-09-16）：逐列取值过滤 ── */
+    if(!cbInF(r[6],'cbfsched')) continue;   // 排班状态
+    if(!cbInF(r[8],'cbfbps')) continue;     // 血压·审核状态
+    if(!cbInF(r[9],'cbfbptm')) continue;    // 血压·提交时间(按日)
+    if(!cbInF(r[10],'cbfvt')) continue;     // 载具类型
+    if(!cbInF(r[11],'cbfvs')) continue;     // 载具·审核状态
+    if(!cbInF(r[12],'cbfvd')) continue;     // 载具·变更日期(按日)
+    if(!cbInF(r[13],'cbfvr')) continue;     // 载具·驳回原因
+    if(!cbInF(r[15],'cbfcs')) continue;     // 充电·审核状态
+    if(!cbInF(r[16],'cbfctm')) continue;    // 充电·提交时间(按日)
+    if(!cbInF(r[17],'cbfcv')) continue;     // 电池电压
+    if(!cbInF(r[18],'cbfcb')) continue;     // 电池品牌
+    if(!cbInF(r[20],'cbfws')) continue;     // 换电·审核状态
+    if(!cbInF(r[21],'cbfwtm')) continue;    // 换电·提交时间(按日)
+    if(!cbInF(r[22],'cbfwb')) continue;     // 换电品牌
+    if(cbTxtF.rid && String(r[4]).toLowerCase().indexOf(cbTxtF.rid) < 0) continue;
+    if(cbTxtF.nm && String(r[5]).toLowerCase().indexOf(cbTxtF.nm) < 0) continue;
     if(q && (r[4]+' '+r[5]).toLowerCase().indexOf(q) < 0) continue;
     var siteNorm = cbNormSite(r[3]);
     var v = cbSiteVehicle[siteNorm] || {num:0, den:0, rate:0};
@@ -2905,6 +3148,7 @@ function cbRenderRider(p){
    + cbCard('充电已上传', chgN.toLocaleString(), '覆盖率 '+pc(chgN), '（低量渠道，作参考）');
   var cf = document.getElementById('cbCntRiderF'); if(cf) cf.textContent = '筛选后 '+all.length+' 人';
   var cr = document.getElementById('cbCntRider'); if(cr) cr.textContent = all.length.toLocaleString();
+  cbSyncFunnels();
 }
 
 function cbExportTbl() {
@@ -2921,6 +3165,7 @@ function cbInitOnce(){
   var e1 = document.getElementById('cbD1'), e2 = document.getElementById('cbD2');
   if(e1 && e2){ e1.min = cbMeta.dateMin; e1.max = cbMeta.dateMax; e2.min = cbMeta.dateMin; e2.max = cbMeta.dateMax; }
   var first = document.querySelector('.cb-rbtn'); if(first) first.classList.add('cur');
+  cbBuildFunnels();
   cbRebuildIndex(); cbApplyBoard(); cbRenderRider(1);
 }
 
