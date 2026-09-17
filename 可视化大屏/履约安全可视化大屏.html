@@ -24,9 +24,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#030a16;
 .hd .tag{font-size:12px;padding:3px 10px;border:1px solid rgba(0,229,255,.45);border-radius:12px;color:#7de3ff}
 .hd .clock{font-size:20px;font-weight:700;color:#eaf6ff;font-variant-numeric:tabular-nums;letter-spacing:1px}
 .hd .date{font-size:12px;color:#8fc4e8;margin-left:6px}
-.tbtn{cursor:pointer;margin-left:12px;font-family:inherit;font-size:12px;padding:5px 14px;border-radius:14px;
-  border:1px solid rgba(64,158,255,.4);background:rgba(16,58,104,.55);color:#8fe0ff;transition:.15s;white-space:nowrap}
-.tbtn:hover{background:rgba(16,58,104,.9);box-shadow:0 0 10px rgba(0,180,255,.3)}
 
 /* ── KPI 卡片行 ── */
 .kpis{display:grid;grid-template-columns:repeat(8,1fr);gap:10px;margin-bottom:12px}
@@ -83,42 +80,46 @@ html,body{width:100%;height:100%;overflow:hidden;background:#030a16;
 .foot{position:absolute;left:0;right:0;bottom:2px;text-align:center;font-size:11px;color:#4a7398}
 .badge{font-size:11px;color:#7fb3e0;border:1px solid rgba(64,158,255,.25);border-radius:10px;padding:1px 8px}
 
-/* ════════════════════════════════════════════════════
-   B 方案 · 极简晨白（默认不启用，点标题栏按钮切换）
-   ════════════════════════════════════════════════════ */
-body.light #stage{background:#d9e1ec}
-body.light #screen{background:linear-gradient(180deg,#f3f6fa 0%,#e9eef5 100%);color:#1c2b3a}
-body.light .hd{background:linear-gradient(90deg,rgba(37,99,235,.10),rgba(37,99,235,.04) 50%,rgba(37,99,235,.10));
-  border-color:rgba(37,99,235,.22)}
-body.light .hd h1{background:linear-gradient(180deg,#13233a,#2563eb);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}
-body.light .hd .side{color:#5a6b82}
-body.light .hd .tag{color:#2563eb;border-color:rgba(37,99,235,.4)}
-body.light .hd .clock{color:#13233a}
-body.light .hd .date{color:#5a6b82}
-body.light .tbtn{border-color:rgba(37,99,235,.4);background:rgba(37,99,235,.08);color:#2563eb}
-body.light .tbtn:hover{background:rgba(37,99,235,.16);box-shadow:0 0 10px rgba(37,99,235,.2)}
-body.light .kpi{background:#fff;border-color:#e6ebf2;box-shadow:0 2px 8px rgba(23,43,77,.06)}
-body.light .kpi .k{color:#7a8aa0}
-body.light .kpi .v{color:#13233a}
-body.light .kpi .v small{color:#7a8aa0}
-body.light .kpi .s{color:#9aa8ba}
-body.light .panel{background:#fff;border-color:#e6ebf2;box-shadow:0 2px 8px rgba(23,43,77,.06)}
-body.light .panel > h3{color:#13233a}
-body.light .panel > h3::before{background:linear-gradient(180deg,#2563eb,#0077ff)}
-body.light .panel > h3 .sub{color:#9aa8ba}
-body.light .ring{background:#fff;border-color:#e6ebf2;box-shadow:0 2px 8px rgba(23,43,77,.06)}
-body.light .ring .lb{color:#4b5c74}
-body.light .ring .lb b{color:#2563eb}
-body.light .tbl th{background:rgba(37,99,235,.10);color:#5a6b82;border-bottom-color:#e6ebf2}
-body.light .tbl td{color:#33475e;border-bottom-color:#f0f3f7}
-body.light .tbl tr:nth-child(even) td{background:rgba(23,43,77,.03)}
-body.light .tbl td.num{color:#7a8aa0}
-body.light .scroll::-webkit-scrollbar-thumb{background:rgba(37,99,235,.3)}
-body.light .sync-row{background:rgba(23,43,77,.03);color:#33475e}
-body.light .sync-row .n{color:#5a6b82}
-body.light .sync-row .t{color:#7a8aa0}
-body.light .foot{color:#8595a8}
-body.light .badge{color:#5a6b82;border-color:rgba(37,99,235,.22)}
+/* ── 主题切换按钮 ── */
+#themeBtn{cursor:pointer;font-size:12px;padding:4px 12px;margin-right:10px;border-radius:12px;
+  border:1px solid rgba(64,158,255,.45);background:rgba(0,150,255,.12);color:#7de3ff;font-family:inherit}
+#themeBtn:hover{background:rgba(0,150,255,.25)}
+
+/* ── 晨白主题（仅覆盖配色，布局零改动） ── */
+body.light{background:#eef3f8;color:#1f3347}
+body.light #stage{background:#eef3f8}
+body.light #screen{background:linear-gradient(180deg,#f7fafd 0%,#eef3f8 40%,#e9eff6 100%)}
+body.light .hd{background:linear-gradient(90deg,rgba(0,110,220,.06),rgba(0,110,220,.02) 50%,rgba(0,110,220,.06));
+  border-color:rgba(70,110,160,.25)}
+body.light .hd .side{color:#5a7186}
+body.light .hd h1{background:linear-gradient(180deg,#1a3a5c,#0a6ebd);-webkit-background-clip:text;background-clip:text;
+  text-shadow:none}
+body.light .hd .tag{color:#0a6ebd;border-color:rgba(10,110,189,.4)}
+body.light .hd .clock{color:#16283a}
+body.light .hd .date{color:#5a7186}
+body.light .kpi{background:#fff;border-color:rgba(70,110,160,.18);box-shadow:0 1px 4px rgba(30,60,100,.08)}
+body.light .kpi .k{color:#5a7186}
+body.light .kpi .v{color:#16283a}
+body.light .kpi .v small{color:#5a7186}
+body.light .kpi .s{color:#7a8ea3}
+body.light .panel{background:#fff;border-color:rgba(70,110,160,.18);box-shadow:0 1px 4px rgba(30,60,100,.08)}
+body.light .panel > h3{color:#0a6ebd}
+body.light .panel > h3 .sub{color:#7a8ea3}
+body.light .ring{background:#fff;border-color:rgba(70,110,160,.18);box-shadow:0 1px 4px rgba(30,60,100,.08)}
+body.light .ring .lb{color:#5a7186}
+body.light .ring .lb b{color:#0a6ebd}
+body.light .tbl th{background:rgba(10,110,189,.08);color:#0a6ebd;border-bottom-color:rgba(70,110,160,.2)}
+body.light .tbl td{color:#33475b;border-bottom-color:rgba(70,110,160,.12)}
+body.light .tbl td.rate{color:#b26a00}
+body.light .tbl td.num{color:#5a7186}
+body.light .scroll::-webkit-scrollbar-thumb{background:rgba(70,110,160,.35)}
+body.light .sync-row{color:#33475b;background:rgba(10,110,189,.05)}
+body.light .sync-row .n{color:#5a7186}
+body.light .sync-row .t{color:#5a7186}
+body.light .foot{color:#8a9aab}
+body.light .badge{color:#5a7186;border-color:rgba(70,110,160,.3)}
+body.light #themeBtn{border-color:rgba(10,110,189,.4);background:rgba(10,110,189,.08);color:#0a6ebd}
+body.light #themeBtn:hover{background:rgba(10,110,189,.15)}
 </style>
 </head>
 <body>
@@ -132,9 +133,9 @@ body.light .badge{color:#5a6b82;border-color:rgba(37,99,235,.22)}
       </div>
       <h1>兴 达 履 约 安 全 可 视 化 大 屏</h1>
       <div class="side r">
+        <button id="themeBtn" onclick="toggleTheme()">☀ 晨白</button>
         <span class="clock" id="clock">--:--:--</span>
         <span class="date" id="today"></span>
-        <button id="themeBtn" class="tbtn" type="button">☀ 浅色</button>
       </div>
     </div>
 
@@ -159,6 +160,7 @@ body.light .badge{color:#5a6b82;border-color:rgba(37,99,235,.22)}
           <h3>履约项目关键项 · 各大区达成</h3>
           <div class="chart" id="c_proj"></div>
         </div>
+      </div>
 
       <!-- 中列 -->
       <div class="col">
@@ -241,23 +243,38 @@ function mk(id, opt){
   var c = echarts.init(el, null, {renderer:'canvas'});
   c.setOption(opt); charts.push(c); return c;
 }
-
-/* ---------- 风格主题（A 深蓝 / B 极简晨白） ---------- */
-var THEMES = {
-  dark:  {axC:'rgba(120,180,230,.35)', lb:'#8fc4e8', sp:'rgba(120,180,230,.10)', lg:'#8fc4e8',
-          tipBg:'rgba(6,26,50,.92)', tipBd:'rgba(64,158,255,.4)', tipTx:'#dbe9f7',
-          ringTx:'#ffffff', gau:'rgba(120,180,230,.12)', barTx:'#cfe4f7'},
-  light: {axC:'#c2cdda', lb:'#5a6b82', sp:'rgba(23,43,77,.08)', lg:'#5a6b82',
-          tipBg:'rgba(255,255,255,.96)', tipBd:'rgba(37,99,235,.35)', tipTx:'#33475e',
-          ringTx:'#13233a', gau:'rgba(23,43,77,.12)', barTx:'#33475e'}
-};
-var curTheme = (function(){ try{ return localStorage.getItem('screen_theme')||'dark'; }catch(e){ return 'dark'; } })();
-function TH(){ return THEMES[curTheme]; }
-function AXIS(extra){ var t=TH(); return Object.assign({axisLine:{lineStyle:{color:t.axC}}, axisLabel:{color:t.lb,fontSize:11}, splitLine:{lineStyle:{color:t.sp}}}, extra||{}); }
-function GRID(){ return { left:8, right:12, top:26, bottom:4, containLabel:true }; }
-function TOOL(){ var t=TH(); return {trigger:'axis', backgroundColor:t.tipBg, borderColor:t.tipBd, textStyle:{color:t.tipTx}}; }
-function SHADOW(){ var t=TH(); return {trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:t.tipBg, borderColor:t.tipBd, textStyle:{color:t.tipTx}}; }
-function yval(extra){ var t=TH(); return Object.assign({type:'value', axisLabel:{color:t.lb,fontSize:11, formatter:(extra&&extra.fmt)||undefined}}, {splitLine:{lineStyle:{color:t.sp}}, axisLine:{show:false}}); }
+/* ---------- 主题（深蓝 / 晨白，仅配色切换，不动布局与数据） ---------- */
+var LIGHT = false;
+try{ LIGHT = localStorage.getItem('screen_light')==='1'; }catch(e){}
+var C = {};
+function themeColors(){
+  return LIGHT
+    ? {axis:'#5a7186', line:'rgba(90,113,134,.4)',   split:'rgba(90,113,134,.15)', label:'#3d5165',
+       tipBg:'rgba(255,255,255,.97)', tipTx:'#1f3347', ringTrack:'rgba(70,100,130,.16)'}
+    : {axis:'#8fc4e8', line:'rgba(120,180,230,.35)', split:'rgba(120,180,230,.10)', label:'#cfe4f7',
+       tipBg:'rgba(6,26,50,.92)', tipTx:'#dbe9f7', ringTrack:'rgba(120,180,230,.12)'};
+}
+function applyTheme(){
+  document.body.classList.toggle('light', LIGHT);
+  var b = document.getElementById('themeBtn');
+  if(b) b.textContent = LIGHT ? '🌙 深蓝' : '☀ 晨白';
+}
+function syncColors(){ C = themeColors(); }
+syncColors();
+var AXIS = { axisLine:{lineStyle:{color:C.line}}, axisLabel:{color:C.axis,fontSize:11},
+  splitLine:{lineStyle:{color:C.split}} };
+function toggleTheme(){
+  LIGHT = !LIGHT;
+  try{ localStorage.setItem('screen_light', LIGHT?'1':'0'); }catch(e){}
+  applyTheme(); syncColors();
+  AXIS.axisLine.lineStyle.color = C.line;
+  AXIS.axisLabel.color = C.axis;
+  AXIS.splitLine.lineStyle.color = C.split;
+  charts.forEach(function(c){ c.dispose(); });
+  charts.length = 0;
+  renderAll();
+}
+var GRID = { left:8, right:12, top:26, bottom:4, containLabel:true };
 
 /* ---------- 时钟 ---------- */
 setInterval(function(){
@@ -267,6 +284,7 @@ setInterval(function(){
   document.getElementById('today').textContent = d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());
 }, 1000);
 
+function renderAll(){
 /* ---------- 头部 ---------- */
 var meta = D.meta || {};
 document.getElementById('dataBadge').textContent = '数据日期 ' + (meta.data_date || '-') + ' ｜ 截至 ' + (meta.dates||[]).slice(-1)[0];
@@ -288,168 +306,162 @@ document.getElementById('kpis').innerHTML = cards.map(function(x){
   return '<div class="kpi '+x.c+'"><div class="k">'+x.k+'</div><div class="v">'+x.v+(x.u?'<small>'+x.u+'</small>':'')+'</div><div class="s">'+x.s+'</div></div>';
 }).join('');
 
-/* ---------- 图表（随主题重绘） ---------- */
-function buildCharts(){
-  charts.forEach(function(c){ try{ c.dispose(); }catch(e){} });
-  charts = []; window.__charts = charts;
-
-  var t = D.trend || {};
-  document.getElementById('trendSub').textContent = (t.dates||[]).length + ' 天 · 全司口径';
-  mk('c_trend', {
-    tooltip:TOOL(),
-    legend:{data:['戴盔率','超速率','闯红灯率','逆行率'], textStyle:{color:TH().lg,fontSize:11}, top:0, itemWidth:12, itemHeight:8},
-    grid:GRID(),
-    xAxis:AXIS({type:'category',data:t.dates||[], splitLine:{show:false}}),
-    yAxis:yval({fmt:'{value}%'}),
-    series:[
-      {name:'戴盔率', type:'line', smooth:true, data:t.helmet, itemStyle:{color:'#00d68f'}, lineStyle:{width:2}, showSymbol:false},
-      {name:'超速率', type:'line', smooth:true, data:t.speed, itemStyle:{color:'#ffb020'}, lineStyle:{width:2}, showSymbol:false},
-      {name:'闯红灯率', type:'line', smooth:true, data:t.redlight, itemStyle:{color:'#ff5b5b'}, lineStyle:{width:2}, showSymbol:false},
-      {name:'逆行率', type:'line', smooth:true, data:t.reverse, itemStyle:{color:'#a78bfa'}, lineStyle:{width:2}, showSymbol:false}
-    ]
-  });
-
-  var rg = D.regions || [];
-  mk('c_region', {
-    tooltip:SHADOW(),
-    legend:{data:['戴盔率','超速率','闯红灯率','逆行率'], textStyle:{color:TH().lg,fontSize:11}, top:0, itemWidth:12, itemHeight:8},
-    grid:GRID(),
-    xAxis:AXIS({type:'category',data:rg.map(function(x){return x.name;}), splitLine:{show:false}}),
-    yAxis:yval({fmt:'{value}%'}),
-    series:[
-      {name:'戴盔率', type:'bar', data:rg.map(function(x){return x.helmet;}), itemStyle:{color:'#00d68f'}, barMaxWidth:16},
-      {name:'超速率', type:'bar', data:rg.map(function(x){return x.speed;}), itemStyle:{color:'#ffb020'}, barMaxWidth:16},
-      {name:'闯红灯率', type:'bar', data:rg.map(function(x){return x.redlight;}), itemStyle:{color:'#ff5b5b'}, barMaxWidth:16},
-      {name:'逆行率', type:'bar', data:rg.map(function(x){return x.reverse;}), itemStyle:{color:'#a78bfa'}, barMaxWidth:16}
-    ]
-  });
-
-  var cr = D.clothingRegion || [];
-  mk('c_cloth', {
-    tooltip:TOOL(),
-    legend:{data:['日美团工装率','月订单视觉覆盖率'], textStyle:{color:TH().lg,fontSize:11}, top:0, itemWidth:12, itemHeight:8},
-    grid:GRID(),
-    xAxis:AXIS({type:'category',data:cr.map(function(x){return x.name;}), splitLine:{show:false}}),
-    yAxis:yval({fmt:'{value}%'}),
-    series:[
-      {name:'日美团工装率', type:'bar', data:cr.map(function(x){return x.day;}), itemStyle:{color:'#00d2ff'}, barMaxWidth:22,
-        markLine:{silent:true, symbol:'none', data:[{yAxis:92, label:{formatter:'目标92%',color:TH().lb,fontSize:10}, lineStyle:{color:'#ffb020',type:'dashed'}}]}},
-      {name:'月订单视觉覆盖率', type:'line', smooth:true, data:cr.map(function(x){return x.month;}), itemStyle:{color:'#ff9500'}, lineStyle:{width:2}, symbolSize:6}
-    ]
-  });
-
-  var pr = D.projectRegion || { metrics:[], rows:[] };
-  var PM_COLORS = ['#00d2ff', '#00d68f', '#ffb020', '#a78bfa'];
-  mk('c_proj', {
-    tooltip:SHADOW(),
-    legend:{data:pr.metrics, textStyle:{color:TH().lg,fontSize:11}, top:0, itemWidth:12, itemHeight:8},
-    grid:GRID(),
-    xAxis:AXIS({type:'category',data:(pr.rows||[]).map(function(x){return x.name;}), splitLine:{show:false}}),
-    yAxis:yval({fmt:'{value}%'}),
-    series:pr.metrics.map(function(m,i){
-      return {name:m, type:'bar', barMaxWidth:14, data:(pr.rows||[]).map(function(x){return x[m];}),
-        itemStyle:{color:PM_COLORS[i % PM_COLORS.length]}};
-    })
-  });
-
-  function ring(id, value, color){
-    var v = (value==null?0:value);
-    var opt = {
-      series:[
-        {type:'pie', radius:['62%','80%'], center:['50%','45%'], silent:true, label:{show:false},
-          data:[{value:v, itemStyle:{color:color}}, {value:Math.max(0,100-v), itemStyle:{color:TH().gau}}]},
-        {type:'gauge', radius:'0%', center:['50%','45%'], startAngle:90, endAngle:-270, min:0, max:100,
-          axisLine:{show:false}, splitLine:{show:false}, axisTick:{show:false}, axisLabel:{show:false}, pointer:{show:false},
-          detail:{show:false}, title:{show:false}, data:[{value:v}]}
-      ],
-      graphic:[{type:'text', left:'center', top:'36%', style:{text:(v==null?'-':v.toFixed(2)+'%'), fill:TH().ringTx, fontSize:26, fontWeight:800}}]
-    };
-    mk(id, opt);
-  }
-  ring('r_helmet', k.helmet&&k.helmet.rate, '#00d68f');
-  ring('r_speed',  k.speed&&k.speed.rate,   '#ffb020');
-  ring('r_red',    k.redlight&&k.redlight.rate, '#ff5b5b');
-  ring('r_rev',    k.reverse&&k.reverse.rate,   '#a78bfa');
-
-  function tbl(id, rows){
-    var html = '<thead><tr><th>#</th><th>站点</th><th>大区</th><th style="text-align:right">比率</th><th style="text-align:right">分子/分母</th></tr></thead><tbody>';
-    (rows||[]).forEach(function(r,i){
-      html += '<tr><td>'+(i+1)+'</td><td class="nm" title="'+r.name+'">'+r.name+'</td><td>'+(r.region||'-')+'</td>'+
-        '<td class="rate">'+(r.rate==null?'-':r.rate.toFixed(2)+'%')+'</td><td class="num">'+fmt(r.num)+' / '+fmt(r.den)+'</td></tr>';
-    });
-    document.getElementById(id).innerHTML = html + '</tbody>';
-  }
-  tbl('t_speed', D.topSpeed);
-  tbl('t_red',   D.topRedlight);
-
-  var sc = (D.siteCity||[]).slice(0,12);
-  mk('c_city', {
-    tooltip:SHADOW(),
-    grid:{left:8,right:26,top:10,bottom:4,containLabel:true},
-    xAxis:Object.assign({type:'value'}, {splitLine:{lineStyle:{color:TH().sp}}, axisLine:{show:false}, axisLabel:{color:TH().lb,fontSize:11}}),
-    yAxis:AXIS({type:'category',data:sc.map(function(x){return x.city;}).reverse(), splitLine:{show:false}}),
-    series:[{type:'bar', data:sc.map(function(x){return x.n;}).reverse(), barMaxWidth:12,
-      itemStyle:{color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:'#0077ff'},{offset:1,color:'#00e5ff'}]), borderRadius:[0,3,3,0]},
-      label:{show:true,position:'right',color:TH().barTx,fontSize:11}}]
-  });
-
-  var ie = (D.insTopEst||[]).slice(0,10);
-  mk('c_ins', {
-    tooltip:SHADOW(),
-    grid:{left:8,right:40,top:10,bottom:4,containLabel:true},
-    xAxis:Object.assign({type:'value', axisLabel:{color:TH().lb,fontSize:11,formatter:function(v){return (v/1000)+'k';}}}, {splitLine:{lineStyle:{color:TH().sp}}, axisLine:{show:false}}),
-    yAxis:AXIS({type:'category',data:ie.map(function(x){return x.city;}).reverse(), splitLine:{show:false}}),
-    series:[{type:'bar', data:ie.map(function(x){return x.est;}).reverse(), barMaxWidth:12,
-      itemStyle:{color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:'#ff5b5b'},{offset:1,color:'#ffb020'}]), borderRadius:[0,3,3,0]},
-      label:{show:true,position:'right',color:TH().barTx,fontSize:11,formatter:function(p){return (p.value/1000).toFixed(1)+'k';}}}]
-  });
-
-  var ip = (D.insTopPrem||[]).slice(0,10);
-  document.getElementById('insSub').textContent = (meta.prem_month||'') + ' 保费 · ' + (meta.bi_month||'') + ' 赔付';
-  mk('c_prem', {
-    tooltip:TOOL(),
-    legend:{data:['当月保费','已报预估赔付'], textStyle:{color:TH().lg,fontSize:11}, top:0, itemWidth:12, itemHeight:8},
-    grid:GRID(),
-    xAxis:Object.assign({type:'category',data:ip.map(function(x){return x.city;}), axisLabel:{color:TH().lb,fontSize:11,interval:0,rotate:32}}, {splitLine:{show:false}}),
-    yAxis:Object.assign({type:'value', axisLabel:{color:TH().lb,fontSize:11,formatter:function(v){return (v/1000)+'k';}}}, {splitLine:{lineStyle:{color:TH().sp}}, axisLine:{show:false}}),
-    series:[
-      {name:'当月保费', type:'bar', data:ip.map(function(x){return x.premium;}), itemStyle:{color:'#00d2ff'}, barMaxWidth:20},
-      {name:'已报预估赔付', type:'line', smooth:true, data:ip.map(function(x){ var m={}; (D.insTopEst||[]).forEach(function(y){m[y.city]=y.est;}); return m[x.city]||0; }),
-        itemStyle:{color:'#ffb020'}, lineStyle:{width:2}, symbolSize:6}
-    ]
-  });
-
-  var ct = (D.claimTop||[]).slice(0,10);
-  mk('c_claim', {
-    tooltip:SHADOW(),
-    grid:{left:8,right:30,top:10,bottom:4,containLabel:true},
-    xAxis:Object.assign({type:'category',data:ct.map(function(x){return x.city;}), axisLabel:{color:TH().lb,fontSize:11,interval:0,rotate:32}}, {splitLine:{show:false}}),
-    yAxis:Object.assign({type:'value'}, {splitLine:{lineStyle:{color:TH().sp}}, axisLine:{show:false}, axisLabel:{color:TH().lb,fontSize:11}}),
-    series:[{type:'bar', data:ct.map(function(x){return x.cases;}), barMaxWidth:18,
-      itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#a78bfa'},{offset:1,color:'#5b6bff'}]), borderRadius:[3,3,0,0]}}]
-  });
-
-  document.getElementById('syncList').innerHTML = (D.sync||[]).map(function(s){
-    return '<div class="sync-row '+(s.all_synced?'ok':'bad')+'"><span class="dot"></span>'+s.title+
-      '<span class="n">已同步 '+s.synced+(s.missing?(' · 缺 '+s.missing):'')+'</span><span class="t">'+s.mtime+'</span></div>';
-  }).join('');
-
-  if(window.__charts) window.__charts.forEach(function(c){ c.resize(); });
-}
-
-/* ---------- 风格切换 ---------- */
-function applyTheme(name){
-  curTheme = name;
-  document.body.classList.toggle('light', name==='light');
-  var btn = document.getElementById('themeBtn');
-  btn.textContent = (name==='light') ? '🌙 深色' : '☀ 浅色';
-  try{ localStorage.setItem('screen_theme', name); }catch(e){}
-  buildCharts();
-}
-document.getElementById('themeBtn').addEventListener('click', function(){
-  applyTheme(curTheme==='light' ? 'dark' : 'light');
+/* ---------- 1. 四项趋势 ---------- */
+var t = D.trend || {};
+document.getElementById('trendSub').textContent = (t.dates||[]).length + ' 天 · 全司口径';
+mk('c_trend', {
+  tooltip:{trigger:'axis', backgroundColor:C.tipBg, borderColor:'rgba(64,158,255,.4)', textStyle:{color:C.tipTx}},
+  legend:{data:['戴盔率','超速率','闯红灯率','逆行率'], textStyle:{color:C.axis,fontSize:11}, top:0, itemWidth:12, itemHeight:8},
+  grid:GRID,
+  xAxis:Object.assign({type:'category',data:t.dates||[]}, AXIS, {splitLine:{show:false}}),
+  yAxis:Object.assign({type:'value', axisLabel:{color:C.axis,fontSize:11,formatter:'{value}%'}}, {splitLine:{lineStyle:{color:C.split}}, axisLine:{show:false}}),
+  series:[
+    {name:'戴盔率', type:'line', smooth:true, data:t.helmet, itemStyle:{color:'#00d68f'}, lineStyle:{width:2}, showSymbol:false},
+    {name:'超速率', type:'line', smooth:true, data:t.speed, itemStyle:{color:'#ffb020'}, lineStyle:{width:2}, showSymbol:false},
+    {name:'闯红灯率', type:'line', smooth:true, data:t.redlight, itemStyle:{color:'#ff5b5b'}, lineStyle:{width:2}, showSymbol:false},
+    {name:'逆行率', type:'line', smooth:true, data:t.reverse, itemStyle:{color:'#a78bfa'}, lineStyle:{width:2}, showSymbol:false}
+  ]
 });
-applyTheme(curTheme);
+
+/* ---------- 2. 大区对比 ---------- */
+var rg = D.regions || [];
+mk('c_region', {
+  tooltip:{trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:C.tipBg, borderColor:'rgba(64,158,255,.4)', textStyle:{color:C.tipTx}},
+  legend:{data:['戴盔率','超速率','闯红灯率','逆行率'], textStyle:{color:C.axis,fontSize:11}, top:0, itemWidth:12, itemHeight:8},
+  grid:GRID,
+  xAxis:Object.assign({type:'category',data:rg.map(function(x){return x.name;})}, AXIS, {splitLine:{show:false}}),
+  yAxis:Object.assign({type:'value', axisLabel:{color:C.axis,fontSize:11,formatter:'{value}%'}}, {splitLine:{lineStyle:{color:C.split}}, axisLine:{show:false}}),
+  series:[
+    {name:'戴盔率', type:'bar', data:rg.map(function(x){return x.helmet;}), itemStyle:{color:'#00d68f'}, barMaxWidth:16},
+    {name:'超速率', type:'bar', data:rg.map(function(x){return x.speed;}), itemStyle:{color:'#ffb020'}, barMaxWidth:16},
+    {name:'闯红灯率', type:'bar', data:rg.map(function(x){return x.redlight;}), itemStyle:{color:'#ff5b5b'}, barMaxWidth:16},
+    {name:'逆行率', type:'bar', data:rg.map(function(x){return x.reverse;}), itemStyle:{color:'#a78bfa'}, barMaxWidth:16}
+  ]
+});
+
+/* ---------- 3. 服装标准化 ---------- */
+var cr = D.clothingRegion || [];
+mk('c_cloth', {
+  tooltip:{trigger:'axis', backgroundColor:C.tipBg, borderColor:'rgba(64,158,255,.4)', textStyle:{color:C.tipTx}},
+  legend:{data:['日美团工装率','月订单视觉覆盖率'], textStyle:{color:C.axis,fontSize:11}, top:0, itemWidth:12, itemHeight:8},
+  grid:GRID,
+  xAxis:Object.assign({type:'category',data:cr.map(function(x){return x.name;})}, AXIS, {splitLine:{show:false}}),
+  yAxis:Object.assign({type:'value',max:100,axisLabel:{color:C.axis,fontSize:11,formatter:'{value}%'}}, {splitLine:{lineStyle:{color:C.split}}, axisLine:{show:false}}),
+  series:[
+    {name:'日美团工装率', type:'bar', data:cr.map(function(x){return x.day;}), itemStyle:{color:'#00d2ff'}, barMaxWidth:22,
+      markLine:{silent:true, symbol:'none', data:[{yAxis:92, label:{formatter:'目标92%',color:'#ffb020',fontSize:10}, lineStyle:{color:'#ffb020',type:'dashed'}}]}},
+    {name:'月订单视觉覆盖率', type:'line', smooth:true, data:cr.map(function(x){return x.month;}), itemStyle:{color:'#ff9500'}, lineStyle:{width:2}, symbolSize:6}
+  ]
+});
+
+/* ---------- 4. 履约项目（各大区） ---------- */
+var pr = D.projectRegion || { metrics:[], rows:[] };
+var PM_COLORS = ['#00d2ff', '#00d68f', '#ffb020', '#a78bfa'];
+mk('c_proj', {
+  tooltip:{trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:C.tipBg, borderColor:'rgba(64,158,255,.4)', textStyle:{color:C.tipTx},
+    valueFormatter:function(v){ return v + '%'; }},
+  legend:{data:pr.metrics, textStyle:{color:C.axis,fontSize:11}, top:0, itemWidth:12, itemHeight:8},
+  grid:GRID,
+  xAxis:Object.assign({type:'category',data:(pr.rows||[]).map(function(x){return x.name;})}, AXIS, {splitLine:{show:false}}),
+  yAxis:Object.assign({type:'value',max:100,axisLabel:{color:C.axis,fontSize:11,formatter:'{value}%'}}, {splitLine:{lineStyle:{color:C.split}}, axisLine:{show:false}}),
+  series:pr.metrics.map(function(m,i){
+    return {name:m, type:'bar', barMaxWidth:14, data:(pr.rows||[]).map(function(x){return x[m];}),
+      itemStyle:{color:PM_COLORS[i % PM_COLORS.length]}};
+  })
+});
+
+/* ---------- 5. 中部四个环形 ---------- */
+function ring(id, value, color){
+  var v = (value==null?0:value);
+  var opt = {
+    series:[
+      {type:'pie', radius:['62%','80%'], center:['50%','45%'], silent:true, label:{show:false},
+        data:[{value:v, itemStyle:{color:color}}, {value:Math.max(0,100-v), itemStyle:{color:C.ringTrack}}]},
+      {type:'gauge', radius:'0%', center:['50%','45%'], startAngle:90, endAngle:-270, min:0, max:100,
+        axisLine:{show:false}, splitLine:{show:false}, axisTick:{show:false}, axisLabel:{show:false}, pointer:{show:false},
+        detail:{show:false}, title:{show:false}, data:[{value:v}]}
+    ],
+    graphic:[{type:'text', left:'center', top:'36%', style:{text:(v==null?'-':v.toFixed(2)+'%'), fill:C.tipTx, fontSize:26, fontWeight:800}}]
+  };
+  mk(id, opt);
+}
+ring('r_helmet', k.helmet&&k.helmet.rate, '#00d68f');
+ring('r_speed',  k.speed&&k.speed.rate,   '#ffb020');
+ring('r_red',    k.redlight&&k.redlight.rate, '#ff5b5b');
+ring('r_rev',    k.reverse&&k.reverse.rate,   '#a78bfa');
+
+/* ---------- 6. 风险站点表格 ---------- */
+function tbl(id, rows, unit){
+  var html = '<thead><tr><th>#</th><th>站点</th><th>大区</th><th style="text-align:right">比率</th><th style="text-align:right">分子/分母</th></tr></thead><tbody>';
+  (rows||[]).forEach(function(r,i){
+    html += '<tr><td>'+(i+1)+'</td><td class="nm" title="'+r.name+'">'+r.name+'</td><td>'+(r.region||'-')+'</td>'+
+      '<td class="rate">'+(r.rate==null?'-':r.rate.toFixed(2)+'%')+'</td><td class="num">'+fmt(r.num)+' / '+fmt(r.den)+'</td></tr>';
+  });
+  document.getElementById(id).innerHTML = html + '</tbody>';
+}
+tbl('t_speed', D.topSpeed, '%');
+tbl('t_red',   D.topRedlight, '%');
+
+/* ---------- 7. 城市点位 & 保险赔付 ---------- */
+var sc = (D.siteCity||[]).slice(0,12);
+mk('c_city', {
+  tooltip:{trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:C.tipBg, borderColor:'rgba(64,158,255,.4)', textStyle:{color:C.tipTx}},
+  grid:{left:8,right:26,top:10,bottom:4,containLabel:true},
+  xAxis:Object.assign({type:'value'}, {splitLine:{lineStyle:{color:C.split}}, axisLine:{show:false}, axisLabel:{color:C.axis,fontSize:11}}),
+  yAxis:Object.assign({type:'category',data:sc.map(function(x){return x.city;}).reverse()}, AXIS, {splitLine:{show:false}}),
+  series:[{type:'bar', data:sc.map(function(x){return x.n;}).reverse(), barMaxWidth:12,
+    itemStyle:{color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:'#0077ff'},{offset:1,color:'#00e5ff'}]), borderRadius:[0,3,3,0]},
+    label:{show:true,position:'right',color:C.label,fontSize:11}}]
+});
+
+var ie = (D.insTopEst||[]).slice(0,10);
+mk('c_ins', {
+  tooltip:{trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:C.tipBg, borderColor:'rgba(64,158,255,.4)', textStyle:{color:C.tipTx}},
+  grid:{left:8,right:40,top:10,bottom:4,containLabel:true},
+  xAxis:Object.assign({type:'value', axisLabel:{color:C.axis,fontSize:11,formatter:function(v){return (v/1000)+'k';}}}, {splitLine:{lineStyle:{color:C.split}}, axisLine:{show:false}}),
+  yAxis:Object.assign({type:'category',data:ie.map(function(x){return x.city;}).reverse()}, AXIS, {splitLine:{show:false}}),
+  series:[{type:'bar', data:ie.map(function(x){return x.est;}).reverse(), barMaxWidth:12,
+    itemStyle:{color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:'#ff5b5b'},{offset:1,color:'#ffb020'}]), borderRadius:[0,3,3,0]},
+    label:{show:true,position:'right',color:C.label,fontSize:11,formatter:function(p){return (p.value/1000).toFixed(1)+'k';}}}]
+});
+
+/* ---------- 8. 保费 & 赔付（柱+线） ---------- */
+var ip = (D.insTopPrem||[]).slice(0,10);
+document.getElementById('insSub').textContent = (meta.prem_month||'') + ' 保费 · ' + (meta.bi_month||'') + ' 赔付';
+mk('c_prem', {
+  tooltip:{trigger:'axis', backgroundColor:C.tipBg, borderColor:'rgba(64,158,255,.4)', textStyle:{color:C.tipTx}},
+  legend:{data:['当月保费','已报预估赔付'], textStyle:{color:C.axis,fontSize:11}, top:0, itemWidth:12, itemHeight:8},
+  grid:GRID,
+  xAxis:Object.assign({type:'category',data:ip.map(function(x){return x.city;}), axisLabel:{color:C.axis,fontSize:11,interval:0,rotate:32}}, {splitLine:{show:false}}),
+  yAxis:Object.assign({type:'value', axisLabel:{color:C.axis,fontSize:11,formatter:function(v){return (v/1000)+'k';}}}, {splitLine:{lineStyle:{color:C.split}}, axisLine:{show:false}}),
+  series:[
+    {name:'当月保费', type:'bar', data:ip.map(function(x){return x.premium;}), itemStyle:{color:'#00d2ff'}, barMaxWidth:20},
+    {name:'已报预估赔付', type:'line', smooth:true, data:ip.map(function(x){ var m={}; (D.insTopEst||[]).forEach(function(y){m[y.city]=y.est;}); return m[x.city]||0; }),
+      itemStyle:{color:'#ffb020'}, lineStyle:{width:2}, symbolSize:6}
+  ]
+});
+
+/* ---------- 9. 理赔案件 ---------- */
+var ct = (D.claimTop||[]).slice(0,10);
+mk('c_claim', {
+  tooltip:{trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:C.tipBg, borderColor:'rgba(64,158,255,.4)', textStyle:{color:C.tipTx},
+    formatter:function(ps){ var c=(D.claimTop||[]).find(function(x){return x.city===ps[0].name;}); return ps[0].name+'<br/>案件 '+ps[0].value+' 起'; }},
+  grid:{left:8,right:30,top:10,bottom:4,containLabel:true},
+  xAxis:Object.assign({type:'category',data:ct.map(function(x){return x.city;}), axisLabel:{color:C.axis,fontSize:11,interval:0,rotate:32}}, {splitLine:{show:false}}),
+  yAxis:Object.assign({type:'value'}, {splitLine:{lineStyle:{color:C.split}}, axisLine:{show:false}, axisLabel:{color:C.axis,fontSize:11}}),
+  series:[{type:'bar', data:ct.map(function(x){return x.cases;}), barMaxWidth:18,
+    itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#a78bfa'},{offset:1,color:'#5b6bff'}]), borderRadius:[3,3,0,0]}}]
+});
+
+/* ---------- 10. 源数据同步 ---------- */
+document.getElementById('syncList').innerHTML = (D.sync||[]).map(function(s){
+  return '<div class="sync-row '+(s.all_synced?'ok':'bad')+'"><span class="dot"></span>'+s.title+
+    '<span class="n">已同步 '+s.synced+(s.missing?(' · 缺 '+s.missing):'')+'</span><span class="t">'+s.mtime+'</span></div>';
+  }).join('');
+}
+
+applyTheme();
+renderAll();
 </script>
 </body>
 </html>
