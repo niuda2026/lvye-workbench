@@ -1,7 +1,7 @@
 // ============================================================
 // 全国站点地图 - 点位数据
 // 数据来源：美团配送后台「标准站点信息」接口抓取（站点合作状态=合作）
-// 抓取时间：2026-09-18 | 站点总数：162（含骑手宿舍 93）
+// 抓取时间：2026-09-19 | 站点总数：162（含骑手宿舍 93）
 //
 // 字段说明：
 //   name     : 点位名称（美团标准站点名称）
@@ -191,6 +191,7 @@ window.SITE_DATA = [
   { name: "兴必达【洛阳】盛唐站宿舍1", xian: "洛龙区", city: "洛阳", province: "河南省", address: "3号楼102", category: "dorm", level: "A", lng: 112.458884, lat: 34.621067, stationName: "兴必达【洛阳】盛唐站", stationId: "2090191", roomNum: 4, roomSize: "142.98", rentStart: "2026-06-01", rentEnd: "2027-05-31" },
   { name: "兴必达【洛阳】太康路站宿舍1", xian: "洛龙区", city: "洛阳", province: "河南省", address: "3号楼102", category: "dorm", level: "A", lng: 112.458884, lat: 34.621067, stationName: "兴必达【洛阳】太康路站", stationId: "2090192", roomNum: 4, roomSize: "142.98", rentStart: "2026-06-01", rentEnd: "2027-05-31" },
   { name: "兴必达【西安】鱼化寨站宿舍1", xian: "雁塔区", city: "西安", province: "陕西省", address: "西安市雁塔区福鱼路45号风度天城6号楼1单元107室", category: "dorm", level: "A", lng: 108.869579, lat: 34.238088, stationName: "兴必达【西安】鱼化寨站", stationId: "2090131", roomNum: 4, roomSize: "122.42", rentStart: "2026-07-01", rentEnd: "2027-06-30" },
+  { name: "兴必达【西安】东关二站宿舍1", xian: "新城区", city: "西安", province: "陕西省", address: "西安市新城区韩森路东段139号新东尚6幢2单元101室", category: "dorm", level: "A", lng: 109.020325, lat: 34.259397, stationName: "兴必达【西安】东关二站", stationId: "2090195", roomNum: 4, roomSize: "150.26", rentStart: "2026-06-01", rentEnd: "2027-05-31" },
   { name: "兴必达【上海】隆昌站宿舍1", xian: "杨浦区", city: "上海", province: "上海市", address: "内江路365-1号", category: "dorm", level: "A", lng: 121.545187, lat: 31.281844, stationName: "兴必达【上海】隆昌站", stationId: "2089815", roomNum: 1, roomSize: "34", rentStart: "2026-05-19", rentEnd: "2027-05-18" },
   { name: "兴必达【上海】隆昌站宿舍2", xian: "杨浦区", city: "上海", province: "上海市", address: "内江路365-1号", category: "dorm", level: "A", lng: 121.545242, lat: 31.281841, stationName: "兴必达【上海】隆昌站", stationId: "2089815", roomNum: 1, roomSize: "34", rentStart: "2026-05-19", rentEnd: "2027-05-18" },
   { name: "兴必达【洛阳】新都汇站宿舍1", xian: "西工区", city: "洛阳", province: "河南省", address: "融祥花园四号楼102", category: "dorm", level: "A", lng: 112.415118, lat: 34.679992, stationName: "兴必达【洛阳】新都汇站", stationId: "2089371", roomNum: 4, roomSize: "135.68", rentStart: "2026-06-01", rentEnd: "2027-05-31" },
@@ -252,7 +253,6 @@ window.SITE_DATA = [
   { name: "兴必达【秦皇岛】乐购站宿舍1", xian: "海港区", city: "秦皇岛", province: "河北省", address: "秦皇岛市秦皇小区85栋1单元1号", category: "dorm", level: "A", lng: 119.571607, lat: 39.920218, stationName: "兴必达【秦皇岛】乐购站", stationId: "2015408", roomNum: 3, roomSize: "98", rentStart: "2026-01-01", rentEnd: "2026-12-31" },
   { name: "兴必达【秦皇岛】东方明珠城站宿舍1", xian: "海港区", city: "秦皇岛", province: "河北省", address: "建兴里小区付2东3单元6号", category: "dorm", level: "A", lng: 119.613727, lat: 39.948171, stationName: "兴必达【秦皇岛】东方明珠城站", stationId: "2363", roomNum: 3, roomSize: "84", rentStart: "2026-01-01", rentEnd: "2026-12-31" },
   { name: "兴必达【秦皇岛】孟营站宿舍1", xian: "海港区", city: "秦皇岛", province: "河北省", address: "海港区海关宿舍4单元5号", category: "dorm", level: "A", lng: 119.572088, lat: 39.920162, stationName: "兴必达【秦皇岛】孟营站", stationId: "2347", roomNum: 4, roomSize: "108", rentStart: "2026-03-01", rentEnd: "2027-02-28" },
-  { name: "兴必达【天津】海光寺站宿舍1", xian: "南开区", city: "天津", province: "天津市", address: "天津市南开区三潭路飞云东里3号楼4单元403", category: "dorm", level: "A", lng: 117.157353, lat: 39.12244, stationName: "兴必达【天津】海光寺站", stationId: "9241", roomNum: 3, roomSize: "75.54", rentStart: "2025-12-05", rentEnd: "2026-12-04" },
   { name: "兴必达【西安】南稍门站宿舍1", xian: "碑林区", city: "西安", province: "陕西省", address: "建东街151号1幢106", category: "dorm", level: "A", lng: 108.967789, lat: 34.24668, stationName: "兴必达【西安】南稍门站", stationId: "2038707", roomNum: 3, roomSize: "143", rentStart: "2026-06-20", rentEnd: "2027-06-19" },
   { name: "兴必达【西安】庆安站宿舍1", xian: "莲湖区", city: "西安", province: "陕西省", address: "陕西省西安市雅卓花园雅盛2#-26-A1", category: "dorm", level: "A", lng: 108.867857, lat: 34.277017, stationName: "兴必达【西安】庆安站", stationId: "2037396", roomNum: 3, roomSize: "112.45", rentStart: "2026-03-22", rentEnd: "2027-03-21" },
   { name: "兴必达【西安】等驾坡站宿舍1", xian: "雁塔区", city: "西安", province: "陕西省", address: "陕西省西安市雁塔区陆荣花园东区4号楼1单元1803室", category: "dorm", level: "A", lng: 109.006272, lat: 34.220872, stationName: "兴必达【西安】等驾坡站", stationId: "2038280", roomNum: 4, roomSize: "115", rentStart: "2026-03-20", rentEnd: "2027-03-19" },

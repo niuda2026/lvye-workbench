@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-19 07:12:06",
+  "updated_at": "2026-09-19 07:13:00",
   "action_summary": {
     "total": 14,
     "ok": 12,
@@ -263,7 +263,7 @@ window.DATA_CENTER = {
             "latest": "充换电血压_data.js",
             "mtime": "2026-09-19 07:03:25",
             "max_age_hours": 13,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
@@ -554,7 +554,7 @@ window.DATA_CENTER = {
             "latest": "premium_latest.json",
             "mtime": "2026-09-18 12:51:56",
             "max_age_hours": 26,
-            "age_hours": 18.3,
+            "age_hours": 18.4,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -567,7 +567,7 @@ window.DATA_CENTER = {
             "latest": "v3_data.js",
             "mtime": "2026-09-19 07:10:00",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -580,7 +580,7 @@ window.DATA_CENTER = {
             "latest": "insurance_data.js",
             "mtime": "2026-09-18 15:21:58",
             "max_age_hours": 72,
-            "age_hours": 15.8,
+            "age_hours": 15.9,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -656,7 +656,7 @@ window.DATA_CENTER = {
             "latest": "110工单看板.html",
             "mtime": "2026-09-13 19:09:23",
             "max_age_hours": 168,
-            "age_hours": 132.0,
+            "age_hours": 132.1,
             "ok": true,
             "note": "更新频率待确认，先按 7 天",
             "fail_hits": [],
@@ -692,7 +692,7 @@ window.DATA_CENTER = {
         "data_files": [
           "全国站点地图\\data.js"
         ],
-        "data_mtime": "2026-09-18 07:26:54",
+        "data_mtime": "2026-09-19 07:13:00",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -701,7 +701,7 @@ window.DATA_CENTER = {
           {
             "type": "美团站点快照",
             "latest": "meituan_stations_snapshot.json",
-            "mtime": "2026-09-18 07:26:52",
+            "mtime": "2026-09-19 07:12:58",
             "synced": true
           }
         ],
@@ -710,7 +710,7 @@ window.DATA_CENTER = {
             "label": "美团站点快照更新",
             "path": "全国站点地图\\update_stations.log",
             "latest": "update_stations.log",
-            "mtime": "2026-09-19 07:11:59",
+            "mtime": "2026-09-19 07:13:00",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -827,7 +827,7 @@ window.DATA_CENTER = {
             "latest": "monthly_summary.js",
             "mtime": "2026-09-19 07:10:00",
             "max_age_hours": 72,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
