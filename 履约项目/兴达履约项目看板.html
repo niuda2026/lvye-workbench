@@ -353,6 +353,24 @@ tr.cb-row-noup:hover td{background:#ffefef}
       <tbody id="tbody-safety"></tbody>
     </table>
   </div>
+  <div id="insp-types-block" style="margin-top:14px;display:none;">
+    <div style="font-size:14px;font-weight:700;color:#1f3a5f;margin-bottom:8px;">检核类型汇总（当月，对齐 BI「检核类型」维度，暂无数据的类型同样展示）</div>
+    <div class="table-wrap" style="max-height:260px;border:1px solid #e3eaf3;border-radius:6px;">
+      <table class="dt" id="tbl-insp-types">
+        <thead id="thead-insp-types"></thead>
+        <tbody id="tbody-insp-types"></tbody>
+      </table>
+    </div>
+  </div>
+  <div id="insp-roles-block" style="margin-top:14px;display:none;">
+    <div style="font-size:14px;font-weight:700;color:#1f3a5f;margin-bottom:8px;">提交人岗位汇总（当月，对齐 BI「提交人员」维度）</div>
+    <div class="table-wrap" style="max-height:260px;border:1px solid #e3eaf3;border-radius:6px;">
+      <table class="dt" id="tbl-insp-roles">
+        <thead id="thead-insp-roles"></thead>
+        <tbody id="tbody-insp-roles"></tbody>
+      </table>
+    </div>
+  </div>
   <div id="insp-items-block" style="margin-top:14px;display:none;">
     <div style="font-size:14px;font-weight:700;color:#1f3a5f;margin-bottom:8px;">检核子项不合格排行（当月，仅列有不合格的子项）</div>
     <div class="table-wrap" style="max-height:320px;border:1px solid #e3eaf3;border-radius:6px;">
@@ -1453,6 +1471,8 @@ function renderSafetyCheckTab() {
     return;
   }
   renderStandardTab('safety', 'INSP_DATA', columns, null);
+  renderInspTypes();
+  renderInspRoles();
   renderInspItems();
   // 需整改=0 时「整改完成率」显示 "-"（避免误导性的红色 0.0%）
   (function(){
@@ -1480,7 +1500,8 @@ function inspSummaryCards(visibleRows, totals) {
     '<div class="card"><div class="c-label">子项合格率</div><div class="c-value">' + rate.toFixed(2) + '%</div></div>' +
     '<div class="card"><div class="c-label">需整改工单</div><div class="c-value" style="color:' + (totals.need_fix > 0 ? '#e6892e' : '#2e9e5b') + '">' + fr(totals.need_fix) + '</div></div>' +
     '<div class="card"><div class="c-label">整改完成率</div><div class="c-value">' + fixRate.toFixed(2) + '%</div></div>' +
-    '<div class="card"><div class="c-label">巡检类型</div><div class="c-value" style="font-size:14px">' + escHtml((meta.check_types || []).join('、') || '-') + '</div></div>';
+    '<div class="card"><div class="c-label">检核类型</div><div class="c-value" style="font-size:14px">' + escHtml((meta.check_types || []).join('、') || '-') +
+    '<div style="font-size:11px;color:#8aa2b8;margin-top:2px;">共 ' + ((meta.all_types || meta.check_types || []).length) + ' 类，' + ((meta.check_types || []).length) + ' 类有数据</div></div></div>';
 }
 
 // 检核子项不合格排行（只列有不合格的子项，全合格时显示前 15）
@@ -1508,6 +1529,45 @@ function renderInspItems() {
   }
   document.getElementById('thead-insp-items').innerHTML = head;
   document.getElementById('tbody-insp-items').innerHTML = body;
+}
+
+// 检核类型 / 提交人岗位 维度汇总（2026-09-18 对齐 BI 251935 图表结构）
+function renderInspDimTable(blockId, tblId, keyName, rows) {
+  var box = document.getElementById(blockId);
+  if (!box) return;
+  if (!rows || !rows.length) { box.style.display = 'none'; return; }
+  box.style.display = '';
+  var dimLabel = keyName === 'type' ? '检核类型' : '提交人岗位';
+  var head = '<tr>' +
+    '<th style="min-width:130px;">' + dimLabel + '</th>' +
+    '<th>巡检工单数</th><th>子项检核数</th><th>不合格子项数</th><th>子项合格率</th>' +
+    '<th>最终检核不合格工单</th><th>需整改工单</th><th>整改通过工单</th><th>整改完成率</th></tr>';
+  var body = '';
+  for (var i = 0; i < rows.length; i++) {
+    var x = rows[i];
+    var irate = x.items > 0 ? x.rate.toFixed(2) + '%' : '-';
+    var frate = x.need_fix > 0 ? x.fix_rate.toFixed(2) + '%' : '-';
+    body += '<tr>' +
+      '<td style="font-weight:600;">' + escHtml(x[keyName]) + (x.items === 0 ? '<span style="color:#9aa7b8;font-weight:400;">（暂无数据）</span>' : '') + '</td>' +
+      '<td>' + fr(x.orders) + '</td>' +
+      '<td>' + fr(x.items) + '</td>' +
+      '<td' + (x.reject > 0 ? ' class="safety-hl"' : '') + '>' + fr(x.reject) + '</td>' +
+      '<td>' + irate + '</td>' +
+      '<td' + (x.final_reject > 0 ? ' class="safety-hl"' : '') + '>' + fr(x.final_reject) + '</td>' +
+      '<td>' + fr(x.need_fix) + '</td>' +
+      '<td>' + fr(x.fix_pass) + '</td>' +
+      '<td>' + frate + '</td></tr>';
+  }
+  document.getElementById('thead-' + tblId).innerHTML = head;
+  document.getElementById('tbody-' + tblId).innerHTML = body;
+}
+function renderInspTypes() {
+  if (typeof INSP_TYPES === 'undefined') return;
+  renderInspDimTable('insp-types-block', 'insp-types', 'type', INSP_TYPES);
+}
+function renderInspRoles() {
+  if (typeof INSP_ROLES === 'undefined') return;
+  renderInspDimTable('insp-roles-block', 'insp-roles', 'role', INSP_ROLES);
 }
 
 // ─── Tab 3: 骑手装备标准化率 ─────────────────────────────────
