@@ -336,7 +336,6 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
     <span class="sub-tab-sep"></span>
     <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-    <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
   </div>
 <div class="filter-bar" id="filter-bar-safety">
     <label>大区</label><div class="ms-wrap" id="ms-region-safety"><div class="ms-btn" onclick="toggleMs('region-safety')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
@@ -354,7 +353,16 @@ tr.cb-row-noup:hover td{background:#ffefef}
       <tbody id="tbody-safety"></tbody>
     </table>
   </div>
-  
+  <div id="insp-items-block" style="margin-top:14px;display:none;">
+    <div style="font-size:14px;font-weight:700;color:#1f3a5f;margin-bottom:8px;">检核子项不合格排行（当月，仅列有不合格的子项）</div>
+    <div class="table-wrap" style="max-height:320px;border:1px solid #e3eaf3;border-radius:6px;">
+      <table class="dt" id="tbl-insp-items">
+        <thead id="thead-insp-items"></thead>
+        <tbody id="tbody-insp-items"></tbody>
+      </table>
+    </div>
+  </div>
+
 </div>
 <!-- Tab: equip -->
 <div class="panel" id="panel-equip">
@@ -750,6 +758,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
 <script src="充换电血压_data.js"></script>
 <script src="knife_rider_data.js"></script>
 <script src="box_rider_data.js"></script>
+<script src="inspection_data.js"></script>
 <!-- 截图库 -->
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js" crossorigin="anonymous"></script>
 <script>
@@ -1365,6 +1374,7 @@ function renderStandardTab(tabId, dataVar, columns, extra, headerGroups) {
   } else {
     document.getElementById('summary-cards-'+tabId).innerHTML = cardHtml;
     if (tabId === 'knife' && typeof knSiteCards === 'function') knSiteCards(visibleRows);
+    if (tabId === 'safety' && typeof inspSummaryCards === 'function' && columns[0] && columns[0].key === 'orders') inspSummaryCards(visibleRows, totals);
   }
 }
 
@@ -1417,14 +1427,87 @@ function renderMorningTab() {
   renderStandardTab('morning', 'MORNING_TAB_DATA', columns, null, headerGroups);
 }
 
-// ─── Tab 2: 履约安全检查 ─────────────────────────────────────
+// ─── Tab 2: 履约安全检查（2026-09-18 改造：接入 BI 251935 巡检平台子项检核明细） ──
 function renderSafetyCheckTab() {
-  var columns = [
-    {key:'self_month', label:'履约月驳回数', isPct:false, isSumRatio:false},
-    {key:'self_week', label:'履约本周驳回数', isPct:false, isSumRatio:false},
-    {key:'supervisor', label:'督导驳回数', isPct:false, isSumRatio:false}
-  ];
-  renderStandardTab('safety', 'SAFETY_CHECK_DATA', columns, null);
+  var hasInsp = (typeof INSP_DATA !== 'undefined') && INSP_DATA;
+  var columns;
+  if (hasInsp) {
+    columns = [
+      {key:'orders', label:'巡检工单数'},
+      {key:'items', label:'子项检核数'},
+      {key:'reject_items', label:'不合格子项数', isSafetyHl:true},
+      {key:'item_rate', label:'子项合格率', isPct:true, isSumRatio:true},
+      {key:'final_reject', label:'最终检核不合格工单', isSafetyHl:true},
+      {key:'need_fix', label:'需整改工单', isSafetyHl:true},
+      {key:'fix_pass', label:'整改通过工单'},
+      {key:'fix_rate', label:'整改完成率', isPct:true, isSumRatio:true}
+    ];
+  } else {
+    // 兼容回退：无巡检数据时沿用旧三列
+    columns = [
+      {key:'self_month', label:'履约月驳回数', isPct:false, isSumRatio:false},
+      {key:'self_week', label:'履约本周驳回数', isPct:false, isSumRatio:false},
+      {key:'supervisor', label:'督导驳回数', isPct:false, isSumRatio:false}
+    ];
+    renderStandardTab('safety', 'SAFETY_CHECK_DATA', columns, null);
+    return;
+  }
+  renderStandardTab('safety', 'INSP_DATA', columns, null);
+  renderInspItems();
+  // 需整改=0 时「整改完成率」显示 "-"（避免误导性的红色 0.0%）
+  (function(){
+    var tb = document.getElementById('tbody-safety'); if(!tb) return;
+    tb.querySelectorAll('tr').forEach(function(tr){
+      var tds = tr.querySelectorAll('td'); if (tds.length < 12) return;
+      if (tds[9] && tds[9].textContent.trim() === '0' && tds[11]) { tds[11].textContent = '-'; tds[11].className = 'rn'; }
+    });
+  })();
+}
+
+// 巡检 KPI 汇总卡片（renderStandardTab 内挂点调用）
+function inspSummaryCards(visibleRows, totals) {
+  var el = document.getElementById('summary-cards-safety');
+  if (!el) return;
+  var meta = (typeof INSP_META !== 'undefined') ? INSP_META : {};
+  var dr = meta.date_range || {};
+  var rate = totals.item_rate_den > 0 ? (totals.item_rate_num / totals.item_rate_den * 100) : 0;
+  var fixRate = totals.fix_rate_den > 0 ? (totals.fix_rate_num / totals.fix_rate_den * 100) : 0;
+  el.innerHTML =
+    '<div class="card"><div class="c-label">数据范围</div><div class="c-value" style="font-size:15px">' + escHtml(String(dr.min||'') + ' ~ ' + String(dr.max||'')) + '</div></div>' +
+    '<div class="card"><div class="c-label">巡检工单</div><div class="c-value">' + fr(totals.orders) + '</div></div>' +
+    '<div class="card"><div class="c-label">子项检核</div><div class="c-value">' + fr(totals.items) + '</div></div>' +
+    '<div class="card"><div class="c-label">不合格子项</div><div class="c-value" style="color:' + (totals.reject_items > 0 ? '#e64545' : '#2e9e5b') + '">' + fr(totals.reject_items) + '</div></div>' +
+    '<div class="card"><div class="c-label">子项合格率</div><div class="c-value">' + rate.toFixed(2) + '%</div></div>' +
+    '<div class="card"><div class="c-label">需整改工单</div><div class="c-value" style="color:' + (totals.need_fix > 0 ? '#e6892e' : '#2e9e5b') + '">' + fr(totals.need_fix) + '</div></div>' +
+    '<div class="card"><div class="c-label">整改完成率</div><div class="c-value">' + fixRate.toFixed(2) + '%</div></div>' +
+    '<div class="card"><div class="c-label">巡检类型</div><div class="c-value" style="font-size:14px">' + escHtml((meta.check_types || []).join('、') || '-') + '</div></div>';
+}
+
+// 检核子项不合格排行（只列有不合格的子项，全合格时显示前 15）
+function renderInspItems() {
+  var box = document.getElementById('insp-items-block');
+  if (!box) return;
+  if (typeof INSP_ITEMS === 'undefined') { box.style.display = 'none'; return; }
+  box.style.display = '';
+  var head = '<tr>' +
+    '<th style="min-width:60px;">排名</th>' +
+    '<th style="min-width:220px;">检核子项</th>' +
+    '<th>检核次数</th><th>不合格次数</th><th>不合格率</th></tr>';
+  var items = INSP_ITEMS.filter(function(x){ return x.reject > 0; });
+  var list = items.length ? items : INSP_ITEMS.slice(0, 15);
+  var body = '';
+  for (var i = 0; i < list.length; i++) {
+    var x = list[i];
+    var rr = x.checks > 0 ? (x.reject / x.checks * 100) : 0;
+    body += '<tr>' +
+      '<td>' + (i + 1) + '</td>' +
+      '<td>' + escHtml(x.item) + '</td>' +
+      '<td>' + fr(x.checks) + '</td>' +
+      '<td' + (x.reject > 0 ? ' class="safety-hl"' : '') + '>' + fr(x.reject) + '</td>' +
+      '<td>' + rr.toFixed(2) + '%</td></tr>';
+  }
+  document.getElementById('thead-insp-items').innerHTML = head;
+  document.getElementById('tbody-insp-items').innerHTML = body;
 }
 
 // ─── Tab 3: 骑手装备标准化率 ─────────────────────────────────
