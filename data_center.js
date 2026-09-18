@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-19 07:13:00",
+  "updated_at": "2026-09-19 07:15:41",
   "action_summary": {
     "total": 14,
     "ok": 12,
@@ -109,7 +109,7 @@ window.DATA_CENTER = {
             "latest": "update_log.txt",
             "mtime": "2026-09-19 07:11:59",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -207,11 +207,11 @@ window.DATA_CENTER = {
         "data_files": [
           "履约项目\\充换电血压_data.js"
         ],
-        "data_mtime": "2026-09-19 07:03:25",
+        "data_mtime": "2026-09-19 07:13:05",
         "all_synced": false,
-        "synced_count": 3,
+        "synced_count": 4,
         "missing_count": 2,
-        "unsynced_count": 2,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
@@ -247,7 +247,7 @@ window.DATA_CENTER = {
             "type": "表单列表",
             "latest": "表单列表_49896033_20260919_070448.xlsx",
             "mtime": "2026-09-19 07:06:37",
-            "synced": false
+            "synced": true
           },
           {
             "type": "载具审核-骑手明细(BI)",
@@ -261,9 +261,9 @@ window.DATA_CENTER = {
             "label": "充换电血压数据构建",
             "path": "履约项目\\充换电血压_data.js",
             "latest": "充换电血压_data.js",
-            "mtime": "2026-09-19 07:03:25",
+            "mtime": "2026-09-19 07:13:05",
             "max_age_hours": 13,
-            "age_hours": 0.2,
+            "age_hours": 0.0,
             "ok": true,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
@@ -276,7 +276,7 @@ window.DATA_CENTER = {
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-09-17 07:04:41",
             "max_age_hours": 30,
-            "age_hours": 48.1,
+            "age_hours": 48.2,
             "ok": false,
             "note": "早间自动化抓取",
             "fail_hits": [],
@@ -287,21 +287,19 @@ window.DATA_CENTER = {
             "label": "每日刷新·抓取成败",
             "path": "daily_refresh_log.txt",
             "latest": "daily_refresh_log.txt",
-            "mtime": "2026-09-19 07:08:25",
+            "mtime": "2026-09-19 07:14:08",
             "max_age_hours": 13,
-            "age_hours": 0.1,
+            "age_hours": 0.0,
             "ok": false,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
             "fail_hits": [
               "登录态失效",
-              "退出码1",
-              "退出码2"
+              "退出码1"
             ],
             "fail_lines": [
-              "第0步 载具审核(骑手维度)BI抓取: 全部方案失败 · S1-headless自起→退出码2(数据未更新(generated_at=2026-09-16 23:04:41)) / S2-自起CDP离屏窗口→退出码1(数据未更新(generated_at=2026-09-16 23:04:41))；疑登录态失效，需人工",
-              "第1步 烽火台当月充电/换电/血压: 全部方案失败 · S1-headless自起→退出码1(未生成 list_20260919.json) / S1b-headless重试→退出码1(未生成 list_20260919.json) / S2-自起CDP窗口→异常(浏览器启动失败: CDP 端口未就绪 |  )"
+              "第0步 载具审核(骑手维度)BI抓取: 全部方案失败 · S1-headless自起→退出码1(数据未更新(generated_at=2026-09-16 23:04:41)) / S1b-headless重试→退出码1(数据未更新(generated_at=2026-09-16 23:04:41)) / S2-自起C"
             ],
-            "block_time": "2026-09-19 07:08:25"
+            "block_time": "2026-09-19 07:14:08"
           }
         ],
         "action_stats": {
@@ -377,7 +375,7 @@ window.DATA_CENTER = {
             "latest": "update_log.txt",
             "mtime": "2026-09-19 07:12:05",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -748,7 +746,7 @@ window.DATA_CENTER = {
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-09-19 07:07:37",
+        "data_mtime": "2026-09-19 07:14:00",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -759,9 +757,9 @@ window.DATA_CENTER = {
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-09-19 07:07:37",
+            "mtime": "2026-09-19 07:14:00",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
