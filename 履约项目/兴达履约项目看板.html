@@ -2639,7 +2639,10 @@ function cbNormSite(s){
   s = String(s == null ? '' : s).replace(/\u3000/g,' ').replace(/\xa0/g,' ');
   var o = '';
   for (var i=0;i<s.length;i++){ var c = s.charCodeAt(i); o += (c>=0xFF01 && c<=0xFF5E) ? String.fromCharCode(c-0xFEE0) : s.charAt(i); }
-  return o.trim().replace(/^V(?=兴必达|【)/,'');
+  // 2026-09-18 修复：V / 【联盟签约】前缀是真实不同站点（如 "V兴必达【洛阳】洛拖站" 与
+  // "兴必达【洛阳】洛拖站" 各有 46/17 名骑手），此前这里剥 V 前缀导致两站数据被合并计入 V 站。
+  // 只做空格/全角归一，一律不剥前缀。
+  return o.trim();
 }
 function cbUniq(a){ var s={},o=[]; (a||[]).forEach(function(x){ if(x && !s[x]){ s[x]=1; o.push(x); } }); return o.sort(); }
 
@@ -2986,7 +2989,8 @@ function cbApplyBoard(){
     });
   });
   var rate = function(n,d){ return d ? Math.round(n/d*10000)/100 : 0; };
-  // 同一站点可能有多个 key（带/不带 V 前缀），只填第一个，避免汇总时双计
+  // 防御：若归一化后出现真正同名 key 只填第一个，避免汇总双计。
+  // 注意 V / 【联盟签约】前缀是真实不同站点，cbNormSite 不剥前缀，不会在此误合并。
   var firstKey = {};
   Object.keys(CHARGEBP_DATA).forEach(function(k){
     var n = cbNormSite(k);
@@ -3007,7 +3011,7 @@ function cbApplyBoard(){
     // 载具审核是昨日单日时点快照，不随日期范围变化；保留 data.js 写入的真实值，不再覆盖成 0
     row.vehicle_not = (Number(row.vehicle_den)||0) - (Number(row.vehicle_num)||0);
   });
-  // 给骑手维度建站点->载具快照映射（优先用和站点维度一致的 firstKey，避免 V 前缀重复站点双计）
+  // 给骑手维度建站点->载具快照映射（与站点维度一致的 firstKey 防御重复 key；V 前缀是真实站点，不归并）
   cbSiteVehicle = {};
   Object.keys(firstKey).forEach(function(n){
     var d = CHARGEBP_DATA[firstKey[n]] || {};
