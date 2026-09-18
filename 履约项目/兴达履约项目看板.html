@@ -777,6 +777,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
 <script src="knife_rider_data.js"></script>
 <script src="box_rider_data.js"></script>
 <script src="inspection_data.js"></script>
+<script src="morning_review_data.js"></script>
 <!-- 截图库 -->
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js" crossorigin="anonymous"></script>
 <script>
@@ -1443,6 +1444,220 @@ function renderMorningTab() {
     {label:'虚假', colspan:2, bgColor:'#fca5a5', textColor:'#7f1d1d'}
   ];
   renderStandardTab('morning', 'MORNING_TAB_DATA', columns, null, headerGroups);
+  // 本函数即「早会处罚统计」视图：复位子视图高亮
+  (function(){
+    var pi = document.querySelector('[data-subtab="penalty"]');
+    if (pi && !pi.classList.contains('active')) {
+      document.querySelectorAll('[data-subtab]').forEach(function(b){ b.classList.remove('active'); });
+      pi.classList.add('active');
+    }
+    document.getElementById('summary-cards-morning').innerHTML = '';
+    var lg = document.getElementById('mr-legend');
+    if (lg) lg.remove();
+  })();
+}
+
+// ─── Tab 1 子视图: 早会审核管理（日更新） · 近三天提交/审核状态矩阵 ───
+function mrChip(cell) {
+  var st = cell.status || 'none';
+  var map = {
+    'pass':           ['已通过',   '#e7f7ed', '#15803d'],
+    'pending':        ['待审核',   '#fef3c7', '#b45309'],
+    'rejected':       ['待申诉',   '#fee2e2', '#b91c1c'],
+    'extra_pass':     ['加场·通过','#f0fdf4', '#16a34a'],
+    'extra_pending':  ['加场·待审','#fffbeb', '#d97706'],
+    'extra_rejected': ['加场·驳回','#fee2e2', '#b91c1c'],
+    'missing':        ['未提交',   '#dc2626', '#ffffff'],
+    'due':            ['今日待提交','#dbeafe', '#1d4ed8'],
+    'none':           ['—',       '',        '#94a3b8']
+  };
+  var m = map[st] || map['none'];
+  var tip = '';
+  if (cell.submit) {
+    tip = '提交时间: ' + cell.submit;
+    if (cell.should) tip += ' · 出勤 ' + cell.actual + '/' + cell.should + ' (' + cell.rate + '%)';
+    if (cell.times > 1) tip += ' · 当日' + cell.times + '场';
+  }
+  if (cell.content) tip += (tip ? ' · ' : '') + '内容: ' + cell.content;
+  var style = m[1] ? ('background:' + m[1] + ';color:' + m[2] + ';') : '';
+  return '<span style="display:inline-block;padding:2px 10px;border-radius:10px;font-size:12px;font-weight:600;white-space:nowrap;' + style + '"'
+    + (tip ? ' title="' + escHtml(tip) + '"' : '') + '>' + m[0] + '</span>';
+}
+
+function mrAggCell(exp, sub) {
+  if (!exp) return '<td style="text-align:center"><span style="color:#94a3b8">-</span></td>';
+  var cls, txt = sub + '/' + exp;
+  if (sub >= exp) cls = 'background:#e7f7ed;color:#15803d;';
+  else if (sub > 0) cls = 'background:#fef3c7;color:#b45309;';
+  else cls = 'background:#fee2e2;color:#b91c1c;';
+  return '<td style="text-align:center"><span style="display:inline-block;padding:2px 10px;border-radius:10px;font-size:12px;font-weight:600;' + cls + '">' + txt + '</span></td>';
+}
+
+function renderAuditView() {
+  var hasMR = (typeof MR_DATA !== 'undefined') && MR_DATA && (typeof MR_META !== 'undefined') && MR_META;
+  if (!hasMR) { renderMorningTab(); return; }
+  var data = MR_DATA;
+  var meta = MR_META;
+  var days = meta.days || [];
+  var tot = meta.totals || {};
+
+  // ── KPI 卡片 ──
+  var todayDue = meta.today_due || 0, todaySub = meta.today_submitted || 0;
+  var todayMiss = Math.max(todayDue - todaySub, 0);
+  var subRate = tot.expected > 0 ? ((tot.expected - tot.missing - tot.due) / tot.expected * 100) : 0;
+  var genShort = String(meta.generated_at || '').slice(5, 16);
+  var dayLabel = days.map(function(d){ return d.date + (d.is_today ? '(今天)' : ''); }).join(' / ');
+  document.getElementById('summary-cards-morning').innerHTML =
+    '<div class="card"><div class="c-label">数据更新</div><div class="c-value" style="font-size:15px">' + escHtml(genShort) + '</div><div style="font-size:11px;color:#64748b">' + escHtml(dayLabel) + '</div></div>' +
+    '<div class="card"><div class="c-label">今日应提交</div><div class="c-value">' + todayDue + ' 站</div></div>' +
+    '<div class="card"><div class="c-label">今日已提交</div><div class="c-value" style="color:#15803d">' + todaySub + ' 站</div></div>' +
+    '<div class="card"><div class="c-label">今日未提交</div><div class="c-value" style="color:' + (todayMiss > 0 ? '#e64545' : '#2e9e5b') + '">' + todayMiss + ' 站</div></div>' +
+    '<div class="card"><div class="c-label">近3天 待审核</div><div class="c-value" style="color:' + ((tot.pending || 0) > 0 ? '#b45309' : '#2e9e5b') + '">' + fr(tot.pending || 0) + '</div></div>' +
+    '<div class="card"><div class="c-label">近3天 待申诉(驳回)</div><div class="c-value" style="color:' + ((tot.rejected || 0) > 0 ? '#e64545' : '#2e9e5b') + '">' + fr(tot.rejected || 0) + '</div></div>' +
+    '<div class="card"><div class="c-label">近3天 已通过</div><div class="c-value" style="color:#15803d">' + fr(tot.pass || 0) + '</div></div>' +
+    '<div class="card"><div class="c-label">近3天 按时提交率</div><div class="c-value">' + subRate.toFixed(1) + '%</div></div>';
+
+  // ── 筛选器（与处罚统计共用 morning 的 sfState）──
+  var sites = Object.keys(data);
+  var sorted = sortSites(sites);
+  var allRegions = [], allCities = [], allSiteNames = [];
+  var regionSet = {}, citySet = {};
+  for (var i = 0; i < sorted.length; i++) {
+    if (!regionSet[sorted[i].region]) { regionSet[sorted[i].region] = true; allRegions.push(sorted[i].region); }
+    if (!citySet[sorted[i].city]) { citySet[sorted[i].city] = true; allCities.push(sorted[i].city); }
+    allSiteNames.push(sorted[i].site);
+  }
+  allRegions.sort(function(a,b){var ia=REGION_ORDER.indexOf(a),ib=REGION_ORDER.indexOf(b);if(ia<0)ia=99;if(ib<0)ib=99;return ia-ib;}); allCities.sort();
+  if (typeof sfState['region-morning'] === 'undefined') sfState['region-morning'] = [];
+  if (typeof sfState['city-morning'] === 'undefined') sfState['city-morning'] = [];
+  if (typeof sfState['site-morning'] === 'undefined') sfState['site-morning'] = [];
+  initMsFilter('region-morning', allRegions, []);
+  initMsFilter('city-morning', getCityOptions('morning'), []);
+  initMsFilter('site-morning', getSiteOptions('morning'), []);
+
+  // ── thead ──
+  var thead = '<tr>';
+  thead += '<th class="sticky-col" style="left:0;min-width:80px">大区</th>';
+  thead += '<th class="sticky-col" style="left:80px;min-width:80px">区域</th>';
+  thead += '<th class="sticky-col" style="left:160px;min-width:70px">城市</th>';
+  thead += '<th class="sticky-col sticky-last" style="left:230px;min-width:150px">站点名称</th>';
+  for (var d = 0; d < days.length; d++) {
+    thead += '<th style="text-align:center;background:#0B4F8A;color:#fff">' + escHtml(days[d].date + ' 周' + days[d].weekday + (days[d].is_today ? ' ·今天' : '')) + '</th>';
+  }
+  thead += '<th>应提交</th><th>已提交</th><th>未提交</th><th>已通过</th><th>待审核</th><th>待申诉</th><th>最近提交</th>';
+  thead += '</tr>';
+  document.getElementById('thead-morning').innerHTML = thead;
+
+  // ── 聚合 ──
+  function newAgg() {
+    var a = { expected:0, submitted:0, missing:0, due:0, pass:0, pending:0, rejected:0, last:'' };
+    for (var d = 0; d < days.length; d++) { a['exp_' + d] = 0; a['sub_' + d] = 0; }
+    return a;
+  }
+  function acc(a, v) {
+    ['expected','submitted','missing','due','pass','pending','rejected'].forEach(function(k){ a[k] += rc(v[k]); });
+    for (var d = 0; d < days.length; d++) {
+      var cell = v.days[days[d].full] || {};
+      a['exp_' + d] += cell.expected ? 1 : 0;
+      a['sub_' + d] += (cell.status && cell.status !== 'missing' && cell.status !== 'due' && cell.status !== 'none') ? 1 : 0;
+    }
+    if (v.last_submit && v.last_submit > a.last) a.last = v.last_submit;
+  }
+
+  var totals = newAgg();
+  var regionAgg = {}, merchantAgg = {};
+  var visibleRows = [];
+  for (var i = 0; i < sorted.length; i++) {
+    var s = sorted[i];
+    if (isFiltered(s.site, 'morning')) continue;
+    var v = data[s.site];
+    if (!v) continue;
+    visibleRows.push(s);
+    var rk = s.subr, mk = s.subr + '||' + s.city;
+    if (!regionAgg[rk]) regionAgg[rk] = newAgg();
+    if (!merchantAgg[mk]) merchantAgg[mk] = newAgg();
+    acc(totals, v); acc(regionAgg[rk], v); acc(merchantAgg[mk], v);
+  }
+
+  function aggCells(a) {
+    var html = '';
+    for (var d = 0; d < days.length; d++) html += mrAggCell(a['exp_' + d], a['sub_' + d]);
+    html += '<td>' + fr(a.expected) + '</td><td>' + fr(a.submitted) + '</td>';
+    html += '<td style="color:' + (a.missing > 0 ? '#e64545' : '#334155') + ';font-weight:' + (a.missing > 0 ? 700 : 400) + '">' + fr(a.missing) + '</td>';
+    html += '<td style="color:#15803d">' + fr(a.pass) + '</td>';
+    html += '<td style="color:' + (a.pending > 0 ? '#b45309' : '#334155') + '">' + fr(a.pending) + '</td>';
+    html += '<td style="color:' + (a.rejected > 0 ? '#e64545;font-weight:700' : '#334155') + '">' + fr(a.rejected) + '</td>';
+    html += '<td style="font-size:12px;color:#64748b">' + escHtml(a.last || '-') + '</td>';
+    return html;
+  }
+
+  // ── 行 ──
+  var rows = '';
+  rows += '<tr class="lv-total">' +
+    '<td class="sticky-col" style="left:0;min-width:80px">-</td>' +
+    '<td class="sticky-col" style="left:80px;min-width:80px">-</td>' +
+    '<td class="sticky-col" style="left:160px;min-width:70px">-</td>' +
+    '<td class="sticky-col name-cell" style="left:230px;min-width:150px">总计</td>' +
+    aggCells(totals) + '</tr>';
+
+  var prevRegion = '', prevCity = '';
+  for (var i = 0; i < visibleRows.length; i++) {
+    var s = visibleRows[i];
+    var v = data[s.site];
+    var rk = s.subr, mk = s.subr + '||' + s.city;
+    if (s.subr !== prevRegion) {
+      rows += '<tr class="lv-subregion">' +
+        '<td class="sticky-col" style="left:0;min-width:80px">' + escHtml(s.region) + '</td>' +
+        '<td class="sticky-col" style="left:80px;min-width:80px">' + escHtml(s.subr) + '</td>' +
+        '<td class="sticky-col" style="left:160px;min-width:70px">-</td>' +
+        '<td class="sticky-col name-cell" style="left:230px;min-width:150px">' + escHtml(s.subr) + '</td>' +
+        aggCells(regionAgg[rk]) + '</tr>';
+      prevRegion = s.subr; prevCity = '';
+    }
+    if (s.city !== prevCity) {
+      rows += '<tr class="lv-merchant">' +
+        '<td class="sticky-col" style="left:0;min-width:80px">' + escHtml(s.region) + '</td>' +
+        '<td class="sticky-col" style="left:80px;min-width:80px">' + escHtml(s.subr) + '</td>' +
+        '<td class="sticky-col" style="left:160px;min-width:70px">' + escHtml(s.city) + '</td>' +
+        '<td class="sticky-col name-cell" style="left:230px;min-width:150px">' + escHtml(s.city) + '</td>' +
+        aggCells(merchantAgg[mk]) + '</tr>';
+      prevCity = s.city;
+    }
+    var siteCells = '';
+    for (var d = 0; d < days.length; d++) {
+      var cell = v.days[days[d].full] || { status: 'none' };
+      siteCells += '<td style="text-align:center">' + mrChip(cell) + '</td>';
+    }
+    rows += '<tr class="lv-site">' + siteInfoCols(s.site) +
+      siteCells +
+      '<td>' + fr(v.expected) + '</td><td>' + fr(v.submitted) + '</td>' +
+      '<td style="color:' + (v.missing > 0 ? '#e64545' : '#334155') + ';font-weight:' + (v.missing > 0 ? 700 : 400) + '">' + fr(v.missing) + '</td>' +
+      '<td style="color:#15803d">' + fr(v.pass) + '</td>' +
+      '<td style="color:' + (v.pending > 0 ? '#b45309' : '#334155') + '">' + fr(v.pending) + '</td>' +
+      '<td style="color:' + (v.rejected > 0 ? '#e64545;font-weight:700' : '#334155') + '">' + fr(v.rejected) + '</td>' +
+      '<td style="font-size:12px;color:#64748b">' + escHtml(v.last_submit || '-') + '</td>' +
+      '</tr>';
+  }
+  document.getElementById('tbody-morning').innerHTML = rows;
+
+  // 图例（追加到筛选条后）
+  var legend =
+    '<div style="margin:6px 0 2px;font-size:12px;color:#475569">' +
+    '状态图例：' +
+    '<span style="background:#e7f7ed;color:#15803d;padding:1px 8px;border-radius:8px;margin:0 3px">已通过</span>' +
+    '<span style="background:#fef3c7;color:#b45309;padding:1px 8px;border-radius:8px;margin:0 3px">待审核</span>' +
+    '<span style="background:#fee2e2;color:#b91c1c;padding:1px 8px;border-radius:8px;margin:0 3px">待申诉(驳回)</span>' +
+    '<span style="background:#dc2626;color:#fff;padding:1px 8px;border-radius:8px;margin:0 3px">未提交</span>' +
+    '<span style="background:#dbeafe;color:#1d4ed8;padding:1px 8px;border-radius:8px;margin:0 3px">今日待提交(未到20:00)</span>' +
+    '<span style="color:#94a3b8;margin:0 3px">— = 非任务日</span>' +
+    '<span style="background:#f0fdf4;color:#16a34a;padding:1px 8px;border-radius:8px;margin:0 3px">加场 = 非任务日提交</span>' +
+    '</div>';
+  var wrap = document.querySelector('#panel-morning .table-wrap');
+  if (wrap && !document.getElementById('mr-legend')) {
+    wrap.insertAdjacentHTML('beforebegin', '<div id="mr-legend">' + legend + '</div>');
+  } else if (document.getElementById('mr-legend')) {
+    document.getElementById('mr-legend').innerHTML = legend;
+  }
 }
 
 // ─── Tab 2: 履约安全检查（2026-09-18 改造：接入 BI 251935 巡检平台子项检核明细） ──
@@ -3878,11 +4093,17 @@ function switchTab(tab) {
 
 // ══════════════════════════════════════════════════════════
 function switchSubTab(sub) {
-  // 早会审核管理（日更新）与早会处罚统计共用同一看板，仅切换按钮高亮
+  // 早会审核管理（日更新）与早会处罚统计共用同一看板，切换时重渲染对应视图
   var items = document.querySelectorAll('.sub-tab-item, [data-subtab]');
   for (var i=0;i<items.length;i++) items[i].classList.remove('active');
   var item = document.querySelector('[data-subtab="'+sub+'"]');
   if (item) item.classList.add('active');
+  if (sub === 'audit') {
+    renderAuditView();
+  } else {
+    renderMorningTab();
+  }
+  setTimeout(function(){ applyViewModeToTable('morning'); }, 50);
 }
 
 
