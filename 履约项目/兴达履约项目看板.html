@@ -307,6 +307,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <label>区域</label><div class="ms-wrap" id="ms-subregion-morning"><div class="ms-btn" onclick="toggleMs('subregion-morning')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
     <label>城市</label><div class="ms-wrap" id="ms-city-morning"><div class="ms-btn" onclick="toggleMs('city-morning')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
     <label>站点</label><div class="ms-wrap" id="ms-site-morning"><div class="ms-btn" onclick="toggleMs('site-morning')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label id="sf-label-status-morning" style="display:none">审核状态</label><div class="ms-wrap" id="ms-status-morning" style="display:none"><div class="ms-btn" onclick="toggleMs('status-morning')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
     <button class="btn btn-secondary" onclick="clearFilter('morning')">清除筛选</button>
     <button class="btn btn-export" onclick="exportTable('morning')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
     <button class="btn btn-screenshot" onclick="screenshotPanel('morning')" title="截取当前看板">&#128247; 截图</button>
@@ -929,7 +930,7 @@ function onMsCheck(id, val, label) {
 }
 function clearFilter(tabId) {
   // Clear all filter states for this tab
-  var prefixes = ['region-'+tabId,'subregion-'+tabId,'city-'+tabId,'site-'+tabId,'date-'+tabId];
+  var prefixes = ['region-'+tabId,'subregion-'+tabId,'city-'+tabId,'site-'+tabId,'date-'+tabId,'status-'+tabId];
   for (var p=0;p<prefixes.length;p++) {
     if (sfState[prefixes[p]]) sfState[prefixes[p]] = [];
     var wrap = document.getElementById('ms-'+prefixes[p]);
@@ -1454,10 +1455,27 @@ function renderMorningTab() {
     document.getElementById('summary-cards-morning').innerHTML = '';
     var lg = document.getElementById('mr-legend');
     if (lg) lg.remove();
+    var stWrap = document.getElementById('ms-status-morning');
+    if (stWrap) stWrap.style.display = 'none';
+    var stLabel = document.getElementById('sf-label-status-morning');
+    if (stLabel) stLabel.style.display = 'none';
   })();
 }
 
 // ─── Tab 1 子视图: 早会审核管理（日更新） · 近三天提交/审核状态矩阵 ───
+// 审核状态筛选：extra_*（加场）归入对应基础状态参与筛选
+var MR_STATUS_MAP = { pass:'已通过', pending:'待审核', rejected:'待申诉', missing:'未提交', due:'今日待提交' };
+var MR_STATUS_LABELS = ['已通过','待审核','待申诉','未提交','今日待提交'];
+function mrBaseStatus(st) { return String(st || '').replace('extra_', ''); }
+function mrStatusHit(v, days, labels) {
+  if (!v || !v.days) return false;
+  for (var d = 0; d < days.length; d++) {
+    var c = v.days[days[d].full] || {};
+    var bs = mrBaseStatus(c.status);
+    if (bs && labels.indexOf(MR_STATUS_MAP[bs]) >= 0) return true;
+  }
+  return false;
+}
 function mrChip(cell) {
   var st = cell.status || 'none';
   var map = {
@@ -1534,6 +1552,13 @@ function renderAuditView() {
   initMsFilter('region-morning', allRegions, []);
   initMsFilter('city-morning', getCityOptions('morning'), []);
   initMsFilter('site-morning', getSiteOptions('morning'), []);
+  // 审核状态筛选（仅审核管理视图显示）
+  if (typeof sfState['status-morning'] === 'undefined') sfState['status-morning'] = [];
+  initMsFilter('status-morning', MR_STATUS_LABELS, sfState['status-morning'] || []);
+  var stWrap = document.getElementById('ms-status-morning');
+  if (stWrap) stWrap.style.display = '';
+  var stLabel = document.getElementById('sf-label-status-morning');
+  if (stLabel) stLabel.style.display = '';
 
   // ── thead ──
   var thead = '<tr>';
@@ -1567,11 +1592,14 @@ function renderAuditView() {
   var totals = newAgg();
   var regionAgg = {}, merchantAgg = {};
   var visibleRows = [];
+  var stF = sfState['status-morning'] || [];
   for (var i = 0; i < sorted.length; i++) {
     var s = sorted[i];
     if (isFiltered(s.site, 'morning')) continue;
     var v = data[s.site];
     if (!v) continue;
+    // 审核状态筛选：近3天任一天命中所选状态才显示
+    if (stF.length > 0 && !mrStatusHit(v, days, stF)) continue;
     visibleRows.push(s);
     var rk = s.subr, mk = s.subr + '||' + s.city;
     if (!regionAgg[rk]) regionAgg[rk] = newAgg();
@@ -4070,7 +4098,7 @@ function switchTab(tab) {
   syncViewBtns();
 
   // Render
-  if (tab === 'morning') { renderMorningTab(); }
+  if (tab === 'morning') { if (typeof mrCurSub !== 'undefined' && mrCurSub === 'audit') { renderAuditView(); } else { renderMorningTab(); } }
   else if (tab === 'safety') { renderSafetyCheckTab(); }
   else if (tab === 'equip') { METRIC_CFG.clothing.rows = (typeof CLOTHING_ROWS !== 'undefined') ? CLOTHING_ROWS : []; METRIC_CFG.clothing.target = 95; renderEquipTab(); switchEquipView('main'); }
   else if (tab === 'box') { renderBoxTab(); }
@@ -4092,8 +4120,10 @@ function switchTab(tab) {
 
 
 // ══════════════════════════════════════════════════════════
+var mrCurSub = 'penalty';
 function switchSubTab(sub) {
   // 早会审核管理（日更新）与早会处罚统计共用同一看板，切换时重渲染对应视图
+  mrCurSub = sub;
   var items = document.querySelectorAll('.sub-tab-item, [data-subtab]');
   for (var i=0;i<items.length;i++) items[i].classList.remove('active');
   var item = document.querySelector('[data-subtab="'+sub+'"]');
@@ -4208,7 +4238,7 @@ function rerenderCurrentTab() {
   var activeTabItem = document.querySelector('.tab-item.active');
   if (!activeTabItem) return;
   var tab = activeTabItem.getAttribute('data-tab');
-  if (tab === 'morning') { renderMorningTab(); }
+  if (tab === 'morning') { if (typeof mrCurSub !== 'undefined' && mrCurSub === 'audit') { renderAuditView(); } else { renderMorningTab(); } }
   else if (tab === 'safety') { renderSafetyCheckTab(); }
   else if (tab === 'equip') { METRIC_CFG.clothing.rows = (typeof CLOTHING_ROWS !== 'undefined') ? CLOTHING_ROWS : []; METRIC_CFG.clothing.target = 95; renderEquipTab(); switchEquipView('main'); }
   else if (tab === 'box') { renderBoxTab(); }
@@ -4220,7 +4250,7 @@ function rerenderCurrentTab() {
   // Initialize subregion filter for this tab
   if (tab !== 'rider') {
     var srOpts = getSubregionOptions(tab);
-    initMsFilter('subregion-'+tab, srOpts, []);
+    initMsFilter('subregion-'+tab, srOpts, sfState['subregion-'+tab] || []);
   }
 
   // Apply view mode after render

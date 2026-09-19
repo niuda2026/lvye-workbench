@@ -166,10 +166,10 @@ body.light #themeBtn:hover{background:rgba(10,110,189,.15)}
       <!-- 中列 -->
       <div class="col">
         <div class="rings">
-          <div class="ring" id="r_helmet"><div class="lb">戴盔率<b>安全底线 98%</b></div></div>
-          <div class="ring" id="r_speed"><div class="lb">超速率<b>目标 ≤ 2%</b></div></div>
-          <div class="ring" id="r_red"><div class="lb">闯红灯率<b>目标 ≤ 15%</b></div></div>
-          <div class="ring" id="r_rev"><div class="lb">里程逆行率<b>目标 ≤ 2.5%</b></div></div>
+          <div class="ring" id="r_helmet"><div class="lb">戴盔系带率<b>目标 ≥ 99%</b></div></div>
+          <div class="ring" id="r_speed"><div class="lb">超速率<b>目标 ≤ 2.58%</b></div></div>
+          <div class="ring" id="r_red"><div class="lb">闯红灯率<b>目标 ≤ 16.23%</b></div></div>
+          <div class="ring" id="r_rev"><div class="lb">里程逆行率<b>目标 ≤ 2.45%</b></div></div>
         </div>
 
         <div class="panel" style="flex:1.1">
@@ -187,7 +187,7 @@ body.light #themeBtn:hover{background:rgba(10,110,189,.15)}
         </div>
 
         <div class="panel" style="flex:1">
-          <h3>站点分布 & 保险风险<span class="sub">左：城市点位数 TOP12 ｜ 右：城市已报预估赔付金额 TOP10</span></h3>
+          <h3>站点分布 & 保险风险<span class="sub">左：城市点位数 TOP12 ｜ 右：城市测算补贴金额 TOP10</span></h3>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0">
             <div class="chart" id="c_city"></div>
             <div class="chart" id="c_ins"></div>
@@ -197,17 +197,13 @@ body.light #themeBtn:hover{background:rgba(10,110,189,.15)}
 
       <!-- 右列 -->
       <div class="col">
-        <div class="panel" style="flex:1">
+        <div class="panel" style="flex:1.15">
           <h3>保险概览 · 保费与赔付<span class="sub" id="insSub"></span></h3>
           <div class="chart" id="c_prem"></div>
         </div>
-        <div class="panel" style="flex:.9">
+        <div class="panel" style="flex:1">
           <h3>美团保险理赔案件 TOP10<span class="sub">按城市案件数</span></h3>
           <div class="chart" id="c_claim"></div>
-        </div>
-        <div class="panel" style="flex:1">
-          <h3>源数据同步状态<span class="sub">来自数据中心</span></h3>
-          <div class="sync-list" id="syncList"></div>
         </div>
       </div>
     </div>
@@ -296,12 +292,12 @@ var k = D.kpi || {};
 var cards = [
   {c:'',    k:'在职骑手',   v:fmt(k.riders),            s:'排班在册 '+fmt(k.escort_riders)+' 人' },
   {c:'g',   k:'站点 / 宿舍', v:fmt(k.sites)+' / '+fmt(k.dorms), s:'覆盖 '+fmt(k.cities)+' 个城市' },
-  {c:'g',   k:'戴盔率',     v:(k.helmet&&k.helmet.rate!=null?k.helmet.rate:'-'), u:'%', s:'近9天累计 '+fmt(k.helmet&&k.helmet.den)+' 单' },
-  {c:'o',   k:'超速率',     v:(k.speed&&k.speed.rate!=null?k.speed.rate:'-'),   u:'%', s:'目标 ≤ 2%' },
-  {c:'r',   k:'闯红灯率',   v:(k.redlight&&k.redlight.rate!=null?k.redlight.rate:'-'), u:'%', s:'目标 ≤ 15%' },
-  {c:'r',   k:'里程逆行率', v:(k.reverse&&k.reverse.rate!=null?k.reverse.rate:'-'), u:'%', s:'目标 ≤ 2.5%' },
-  {c:'p',   k:'当月保费',   v:money1(k.premium_total), s:'2026-09 · '+fmt(k.premium_cities)+' 城' },
-  {c:'p',   k:'已报预估赔付', v:money1(k.bi_est),      s:'已报 '+fmt(k.bi_reported)+' 起 / 已决 '+fmt(k.bi_resolved)+' 起' }
+  {c:'g',   k:'戴盔系带率',  v:(k.helmet&&k.helmet.rate!=null?Number(k.helmet.rate).toFixed(2):'-'), u:'%', s:'目标 ≥ 99%' },
+  {c:'o',   k:'超速率',     v:(k.speed&&k.speed.rate!=null?Number(k.speed.rate).toFixed(2):'-'),   u:'%', s:'目标 ≤ 2.58%' },
+  {c:'r',   k:'闯红灯率',   v:(k.redlight&&k.redlight.rate!=null?Number(k.redlight.rate).toFixed(2):'-'), u:'%', s:'目标 ≤ 16.23%' },
+  {c:'r',   k:'里程逆行率', v:(k.reverse&&k.reverse.rate!=null?Number(k.reverse.rate).toFixed(2):'-'), u:'%', s:'目标 ≤ 2.45%' },
+  {c:'p',   k:'当月保费',   v:money1(k.premium_total), s:'2026-09 · '+fmt(k.premium_cities)+' 城 ｜ 月累计赔付率 <b style="font-size:15px">'+(k.ins_rate_est!=null?Number(k.ins_rate_est).toFixed(2)+'%':'-')+'</b>' },
+  {c:'p',   k:'测算补贴金额', v:money1(k.bi_subsidy),  s:'综合得分率 '+Math.round(k.bi_subsidy/k.premium_total*1000)/10+'% ｜ 含税保费 '+money1(k.premium_total) }
 ];
 document.getElementById('kpis').innerHTML = cards.map(function(x){
   return '<div class="kpi '+x.c+'"><div class="k">'+x.k+'</div><div class="v">'+x.v+(x.u?'<small>'+x.u+'</small>':'')+'</div><div class="s">'+x.s+'</div></div>';
@@ -312,12 +308,12 @@ var t = D.trend || {};
 document.getElementById('trendSub').textContent = (t.dates||[]).length + ' 天 · 全司口径';
 mk('c_trend', {
   tooltip:{trigger:'axis', backgroundColor:C.tipBg, borderColor:'rgba(64,158,255,.4)', textStyle:{color:C.tipTx}},
-  legend:{data:['戴盔率','超速率','闯红灯率','逆行率'], textStyle:{color:C.axis,fontSize:11}, top:0, itemWidth:12, itemHeight:8},
+  legend:{data:['戴盔系带率','超速率','闯红灯率','逆行率'], textStyle:{color:C.axis,fontSize:11}, top:0, itemWidth:12, itemHeight:8},
   grid:GRID,
   xAxis:Object.assign({type:'category',data:t.dates||[]}, AXIS, {splitLine:{show:false}}),
   yAxis:Object.assign({type:'value', axisLabel:{color:C.axis,fontSize:11,formatter:'{value}%'}}, {splitLine:{lineStyle:{color:C.split}}, axisLine:{show:false}}),
   series:[
-    {name:'戴盔率', type:'line', smooth:true, data:t.helmet, itemStyle:{color:'#00d68f'}, lineStyle:{width:2}, showSymbol:false},
+    {name:'戴盔系带率', type:'line', smooth:true, data:t.helmet, itemStyle:{color:'#00d68f'}, lineStyle:{width:2}, showSymbol:false},
     {name:'超速率', type:'line', smooth:true, data:t.speed, itemStyle:{color:'#ffb020'}, lineStyle:{width:2}, showSymbol:false},
     {name:'闯红灯率', type:'line', smooth:true, data:t.redlight, itemStyle:{color:'#ff5b5b'}, lineStyle:{width:2}, showSymbol:false},
     {name:'逆行率', type:'line', smooth:true, data:t.reverse, itemStyle:{color:'#a78bfa'}, lineStyle:{width:2}, showSymbol:false}
@@ -328,12 +324,12 @@ mk('c_trend', {
 var rg = D.regions || [];
 mk('c_region', {
   tooltip:{trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:C.tipBg, borderColor:'rgba(64,158,255,.4)', textStyle:{color:C.tipTx}},
-  legend:{data:['戴盔率','超速率','闯红灯率','逆行率'], textStyle:{color:C.axis,fontSize:11}, top:0, itemWidth:12, itemHeight:8},
+  legend:{data:['戴盔系带率','超速率','闯红灯率','逆行率'], textStyle:{color:C.axis,fontSize:11}, top:0, itemWidth:12, itemHeight:8},
   grid:GRID,
   xAxis:Object.assign({type:'category',data:rg.map(function(x){return x.name;})}, AXIS, {splitLine:{show:false}}),
   yAxis:Object.assign({type:'value', axisLabel:{color:C.axis,fontSize:11,formatter:'{value}%'}}, {splitLine:{lineStyle:{color:C.split}}, axisLine:{show:false}}),
   series:[
-    {name:'戴盔率', type:'bar', data:rg.map(function(x){return x.helmet;}), itemStyle:{color:'#00d68f'}, barMaxWidth:16},
+    {name:'戴盔系带率', type:'bar', data:rg.map(function(x){return x.helmet;}), itemStyle:{color:'#00d68f'}, barMaxWidth:16},
     {name:'超速率', type:'bar', data:rg.map(function(x){return x.speed;}), itemStyle:{color:'#ffb020'}, barMaxWidth:16},
     {name:'闯红灯率', type:'bar', data:rg.map(function(x){return x.redlight;}), itemStyle:{color:'#ff5b5b'}, barMaxWidth:16},
     {name:'逆行率', type:'bar', data:rg.map(function(x){return x.reverse;}), itemStyle:{color:'#a78bfa'}, barMaxWidth:16}
@@ -415,13 +411,13 @@ mk('c_city', {
     label:{show:true,position:'right',color:C.label,fontSize:11}}]
 });
 
-var ie = (D.insTopEst||[]).slice(0,10);
+var ie = (D.insTopSubsidy||[]).slice(0,10);
 mk('c_ins', {
   tooltip:{trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:C.tipBg, borderColor:'rgba(64,158,255,.4)', textStyle:{color:C.tipTx}},
   grid:{left:8,right:40,top:10,bottom:4,containLabel:true},
   xAxis:Object.assign({type:'value', axisLabel:{color:C.axis,fontSize:11,formatter:function(v){return (v/1000)+'k';}}}, {splitLine:{lineStyle:{color:C.split}}, axisLine:{show:false}}),
   yAxis:Object.assign({type:'category',data:ie.map(function(x){return x.city;}).reverse()}, AXIS, {splitLine:{show:false}}),
-  series:[{type:'bar', data:ie.map(function(x){return x.est;}).reverse(), barMaxWidth:12,
+  series:[{type:'bar', data:ie.map(function(x){return x.sub;}).reverse(), barMaxWidth:12,
     itemStyle:{color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:'#ff5b5b'},{offset:1,color:'#ffb020'}]), borderRadius:[0,3,3,0]},
     label:{show:true,position:'right',color:C.label,fontSize:11,formatter:function(p){return (p.value/1000).toFixed(1)+'k';}}}]
 });
@@ -431,13 +427,13 @@ var ip = (D.insTopPrem||[]).slice(0,10);
 document.getElementById('insSub').textContent = (meta.prem_month||'') + ' 保费 · ' + (meta.bi_month||'') + ' 赔付';
 mk('c_prem', {
   tooltip:{trigger:'axis', backgroundColor:C.tipBg, borderColor:'rgba(64,158,255,.4)', textStyle:{color:C.tipTx}},
-  legend:{data:['当月保费','已报预估赔付'], textStyle:{color:C.axis,fontSize:11}, top:0, itemWidth:12, itemHeight:8},
+  legend:{data:['当月保费','测算补贴金额'], textStyle:{color:C.axis,fontSize:11}, top:0, itemWidth:12, itemHeight:8},
   grid:GRID,
   xAxis:Object.assign({type:'category',data:ip.map(function(x){return x.city;}), axisLabel:{color:C.axis,fontSize:11,interval:0,rotate:32}}, {splitLine:{show:false}}),
   yAxis:Object.assign({type:'value', axisLabel:{color:C.axis,fontSize:11,formatter:function(v){return (v/1000)+'k';}}}, {splitLine:{lineStyle:{color:C.split}}, axisLine:{show:false}}),
   series:[
     {name:'当月保费', type:'bar', data:ip.map(function(x){return x.premium;}), itemStyle:{color:'#00d2ff'}, barMaxWidth:20},
-    {name:'已报预估赔付', type:'line', smooth:true, data:ip.map(function(x){ var m={}; (D.insTopEst||[]).forEach(function(y){m[y.city]=y.est;}); return m[x.city]||0; }),
+    {name:'测算补贴金额', type:'line', smooth:true, data:ip.map(function(x){ var m={}; (D.insTopSubsidy||[]).forEach(function(y){m[y.city]=y.sub;}); return m[x.city]||0; }),
       itemStyle:{color:'#ffb020'}, lineStyle:{width:2}, symbolSize:6}
   ]
 });
@@ -453,12 +449,6 @@ mk('c_claim', {
   series:[{type:'bar', data:ct.map(function(x){return x.cases;}), barMaxWidth:18,
     itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#a78bfa'},{offset:1,color:'#5b6bff'}]), borderRadius:[3,3,0,0]}}]
 });
-
-/* ---------- 10. 源数据同步 ---------- */
-document.getElementById('syncList').innerHTML = (D.sync||[]).map(function(s){
-  return '<div class="sync-row '+(s.all_synced?'ok':'bad')+'"><span class="dot"></span>'+s.title+
-    '<span class="n">已同步 '+s.synced+(s.missing?(' · 缺 '+s.missing):'')+'</span><span class="t">'+s.mtime+'</span></div>';
-  }).join('');
 }
 
 applyTheme();
