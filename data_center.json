@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-20 07:30:56",
+  "updated_at": "2026-09-20 07:42:46",
   "action_summary": {
     "total": 14,
     "ok": 14,
@@ -16,58 +16,58 @@
           "交通安全行为看板\\data.js"
         ],
         "data_mtime": "2026-09-20 07:25:12",
-        "all_synced": true,
-        "synced_count": 13,
+        "all_synced": false,
+        "synced_count": 5,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 8,
         "sources": [
           {
             "type": "站点-戴盔",
-            "latest": "戴盔_2026-09-15-2026-09-19(统计日期)_1789774286448.xlsx",
-            "mtime": "2026-09-19 07:35:03",
-            "synced": true
+            "latest": "戴盔_2026-09-15-2026-09-20(统计日期)_1789860797765.xlsx",
+            "mtime": "2026-09-20 07:37:17",
+            "synced": false
           },
           {
             "type": "站点-速度",
-            "latest": "速度_2026-09-15-2026-09-19(统计日期)_1789774342070.xlsx",
-            "mtime": "2026-09-19 07:35:53",
-            "synced": true
+            "latest": "速度_2026-09-15-2026-09-20(统计日期)_1789860858684.xlsx",
+            "mtime": "2026-09-20 07:38:21",
+            "synced": false
           },
           {
             "type": "站点-闯红灯",
-            "latest": "闯红灯_2026-09-15-2026-09-19(统计日期)_1789774415227.xlsx",
-            "mtime": "2026-09-19 07:36:16",
-            "synced": true
+            "latest": "闯红灯_2026-09-15-2026-09-20(统计日期)_1789860930400.xlsx",
+            "mtime": "2026-09-20 07:38:50",
+            "synced": false
           },
           {
             "type": "站点-逆行",
-            "latest": "逆行_2026-09-15-2026-09-19(统计日期)_1789774501684.xlsx",
-            "mtime": "2026-09-19 07:36:44",
-            "synced": true
+            "latest": "逆行_2026-09-15-2026-09-20(统计日期)_1789861035700.xlsx",
+            "mtime": "2026-09-20 07:39:25",
+            "synced": false
           },
           {
             "type": "骑手维度-戴盔",
-            "latest": "戴盔-骑手维度_2026-09-15-2026-09-19(统计日期)_1789774286586.xlsx",
-            "mtime": "2026-09-19 07:35:53",
-            "synced": true
+            "latest": "戴盔-骑手维度_2026-09-15-2026-09-20(统计日期)_1789860797911.xlsx",
+            "mtime": "2026-09-20 07:38:20",
+            "synced": false
           },
           {
             "type": "骑手维度-速度",
-            "latest": "速度-骑手维度_2026-09-15-2026-09-19(统计日期)_1789774342123.xlsx",
-            "mtime": "2026-09-19 07:36:16",
-            "synced": true
+            "latest": "速度-骑手维度_2026-09-15-2026-09-20(统计日期)_1789860858763.xlsx",
+            "mtime": "2026-09-20 07:38:50",
+            "synced": false
           },
           {
             "type": "骑手维度-闯红灯",
-            "latest": "闯红灯-骑手维度_2026-09-15-2026-09-19(统计日期)_1789774415372.xlsx",
-            "mtime": "2026-09-19 07:36:43",
-            "synced": true
+            "latest": "闯红灯-骑手维度_2026-09-15-2026-09-20(统计日期)_1789860930482.xlsx",
+            "mtime": "2026-09-20 07:39:24",
+            "synced": false
           },
           {
             "type": "骑手维度-逆行",
-            "latest": "逆行-骑手维度_2026-09-15-2026-09-19(统计日期)_1789774501731.xlsx",
-            "mtime": "2026-09-19 07:37:00",
-            "synced": true
+            "latest": "逆行-骑手维度_2026-09-15-2026-09-20(统计日期)_1789861035760.xlsx",
+            "mtime": "2026-09-20 07:39:46",
+            "synced": false
           },
           {
             "type": "安全指标监控(骑手)",
@@ -105,9 +105,9 @@
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-09-20 07:25:14",
+            "mtime": "2026-09-20 07:42:09",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -122,7 +122,7 @@
           "total": 1,
           "all_ok": true
         },
-        "all_healthy": true
+        "all_healthy": false
       },
       "boards": [
         {
@@ -261,7 +261,7 @@
             "latest": "充换电血压_data.js",
             "mtime": "2026-09-20 07:19:03",
             "max_age_hours": 13,
-            "age_hours": 0.2,
+            "age_hours": 0.4,
             "ok": true,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
@@ -274,7 +274,7 @@
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-09-20 07:12:42",
             "max_age_hours": 30,
-            "age_hours": 0.3,
+            "age_hours": 0.5,
             "ok": true,
             "note": "早间自动化抓取",
             "fail_hits": [],
@@ -287,7 +287,7 @@
             "latest": "daily_refresh_log.txt",
             "mtime": "2026-09-20 07:20:10",
             "max_age_hours": 13,
-            "age_hours": 0.2,
+            "age_hours": 0.4,
             "ok": true,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
             "fail_hits": [],
@@ -368,7 +368,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-09-20 07:27:44",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.3,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -441,7 +441,7 @@
             "latest": "_crawl_service.log",
             "mtime": "2026-09-19 06:54:43",
             "max_age_hours": 26,
-            "age_hours": 24.6,
+            "age_hours": 24.8,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -532,7 +532,7 @@
             "latest": "latest.json",
             "mtime": "2026-09-19 13:42:11",
             "max_age_hours": 26,
-            "age_hours": 17.8,
+            "age_hours": 18.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -545,7 +545,7 @@
             "latest": "premium_latest.json",
             "mtime": "2026-09-19 13:45:13",
             "max_age_hours": 26,
-            "age_hours": 17.8,
+            "age_hours": 18.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -558,7 +558,7 @@
             "latest": "v3_data.js",
             "mtime": "2026-09-20 07:27:48",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -571,7 +571,7 @@
             "latest": "insurance_data.js",
             "mtime": "2026-09-19 16:38:46",
             "max_age_hours": 72,
-            "age_hours": 14.9,
+            "age_hours": 15.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -647,7 +647,7 @@
             "latest": "110工单看板.html",
             "mtime": "2026-09-13 19:09:23",
             "max_age_hours": 168,
-            "age_hours": 156.4,
+            "age_hours": 156.6,
             "ok": true,
             "note": "更新频率待确认，先按 7 天",
             "fail_hits": [],
@@ -703,7 +703,7 @@
             "latest": "update_stations.log",
             "mtime": "2026-09-19 07:28:57",
             "max_age_hours": 26,
-            "age_hours": 24.0,
+            "age_hours": 24.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -752,7 +752,7 @@
             "latest": "_大屏数据.js",
             "mtime": "2026-09-20 07:25:14",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.3,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -818,7 +818,7 @@
             "latest": "monthly_summary.js",
             "mtime": "2026-09-20 07:27:48",
             "max_age_hours": 72,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
