@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-20 07:12:40",
+  "updated_at": "2026-09-20 07:13:32",
   "action_summary": {
     "total": 14,
     "ok": 14,
@@ -105,7 +105,7 @@
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-09-20 07:10:05",
+            "mtime": "2026-09-20 07:13:06",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -250,7 +250,7 @@
           {
             "type": "载具审核-骑手明细(BI)",
             "latest": "vehicle_audit_rider.json",
-            "mtime": "2026-09-20 07:03:02",
+            "mtime": "2026-09-20 07:12:42",
             "synced": true
           }
         ],
@@ -272,9 +272,9 @@
             "label": "载具审核-骑手明细(BI)",
             "path": "vehicle_audit\\vehicle_audit_rider.json",
             "latest": "vehicle_audit_rider.json",
-            "mtime": "2026-09-20 07:03:02",
+            "mtime": "2026-09-20 07:12:42",
             "max_age_hours": 30,
-            "age_hours": 0.2,
+            "age_hours": 0.0,
             "ok": true,
             "note": "早间自动化抓取",
             "fail_hits": [],
@@ -368,7 +368,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-09-20 07:09:59",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -558,7 +558,7 @@
             "latest": "v3_data.js",
             "mtime": "2026-09-20 07:10:04",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -818,7 +818,7 @@
             "latest": "monthly_summary.js",
             "mtime": "2026-09-20 07:10:03",
             "max_age_hours": 72,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
