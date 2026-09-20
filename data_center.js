@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-21 07:43:53",
+  "updated_at": "2026-09-21 07:45:01",
   "action_summary": {
     "total": 14,
     "ok": 9,
@@ -351,7 +351,7 @@ window.DATA_CENTER = {
           "护航服装\\data.js",
           "护航服装\\data_excluded.js"
         ],
-        "data_mtime": "2026-09-21 07:43:44",
+        "data_mtime": "2026-09-21 07:44:53",
         "all_synced": true,
         "synced_count": 2,
         "missing_count": 0,
@@ -375,7 +375,7 @@ window.DATA_CENTER = {
             "label": "服装标准化数据更新",
             "path": "护航服装\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-09-21 07:43:52",
+            "mtime": "2026-09-21 07:44:59",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -541,7 +541,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-09-20 10:11:52",
             "max_age_hours": 26,
-            "age_hours": 21.5,
+            "age_hours": 21.6,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -712,7 +712,7 @@ window.DATA_CENTER = {
             "latest": "update_stations.log",
             "mtime": "2026-09-19 07:28:57",
             "max_age_hours": 26,
-            "age_hours": 48.2,
+            "age_hours": 48.3,
             "ok": false,
             "note": "",
             "fail_hits": [],
