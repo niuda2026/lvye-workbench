@@ -34432,7 +34432,7 @@ var SITE_INFO = {
   }
 };
 
-var LATEST_DATE = "09-20";
+var LATEST_DATE = "09-21";
 
 var REGION_ORDER = ["华北一区", "华北二区", "华北三区", "华东大区", "中南大区"];
 
