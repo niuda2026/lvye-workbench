@@ -1,7 +1,7 @@
 // ============================================================
 // 全国站点地图 - 点位数据
 // 数据来源：美团配送后台「标准站点信息」接口抓取（站点合作状态=合作）
-// 抓取时间：2026-09-22 | 站点总数：161（含骑手宿舍 93）
+// 抓取时间：2026-09-22 | 站点总数：161（含骑手宿舍 90）
 //
 // 字段说明：
 //   name     : 点位名称（美团标准站点名称）
@@ -234,9 +234,6 @@ window.SITE_DATA = [
   { name: "兴必达【上海】金桥站宿舍1", xian: "浦东新区", city: "上海", province: "上海市", address: "上海市浦东新区浦东大道2516号C区8212室8201室", category: "dorm", level: "A", lng: 121.559145, lat: 31.256741, stationName: "兴必达【上海】金桥站", stationId: "2024746", roomNum: 2, roomSize: "80", rentStart: "2025-07-15", rentEnd: "2028-07-14" },
   { name: "兴必达【秦皇岛】大学二站宿舍1", xian: "海港区", city: "秦皇岛", province: "河北省", address: "河北省秦皇岛市海关宿舍4-5", category: "dorm", level: "A", lng: 119.571925, lat: 39.920107, stationName: "兴必达【秦皇岛】大学二站", stationId: "2036810", roomNum: 5, roomSize: "108", rentStart: "2026-03-01", rentEnd: "2027-02-28" },
   { name: "兴必达【秦皇岛】杜庄站宿舍1", xian: "海港区", city: "秦皇岛", province: "河北省", address: "1单元102", category: "dorm", level: "A", lng: 119.576304, lat: 39.957468, stationName: "兴必达【秦皇岛】杜庄站", stationId: "2032575", roomNum: 3, roomSize: "117", rentStart: "2026-07-10", rentEnd: "2027-07-09" },
-  { name: "兴必达【南京】上元大街站宿舍1", xian: "江宁区", city: "南京", province: "江苏省", address: "新宁之家206号宿舍", category: "dorm", level: "A", lng: 118.840994, lat: 31.942037, stationName: "兴必达【南京】上元大街站", stationId: "2016500", roomNum: 1, roomSize: "31", rentStart: "2026-03-24", rentEnd: "2027-03-23" },
-  { name: "兴必达【南京】上元大街站宿舍2", xian: "江宁区", city: "南京", province: "江苏省", address: "新宁之家208号宿舍", category: "dorm", level: "A", lng: 118.841066, lat: 31.94207, stationName: "兴必达【南京】上元大街站", stationId: "2016500", roomNum: 1, roomSize: "31", rentStart: "2026-03-24", rentEnd: "2027-03-23" },
-  { name: "兴必达【南京】上元大街站宿舍3", xian: "江宁区", city: "南京", province: "江苏省", address: "新宁之家214号宿舍", category: "dorm", level: "A", lng: 118.841113, lat: 31.942043, stationName: "兴必达【南京】上元大街站", stationId: "2016500", roomNum: 1, roomSize: "35", rentStart: "2026-04-14", rentEnd: "2027-04-13" },
   { name: "兴必达【秦皇岛】北戴河站宿舍1", xian: "北戴河区", city: "秦皇岛", province: "河北省", address: "河北省秦皇岛市海港区海关宿舍4单元5号", category: "dorm", level: "A", lng: 119.489331, lat: 39.833945, stationName: "兴必达【秦皇岛】北戴河站", stationId: "10765", roomNum: 4, roomSize: "108", rentStart: "2026-03-01", rentEnd: "2027-02-28" },
   { name: "兴必达【秦皇岛】大学站宿舍1", xian: "海港区", city: "秦皇岛", province: "河北省", address: "河北省秦皇岛市海关宿舍4-5", category: "dorm", level: "A", lng: 119.571925, lat: 39.920107, stationName: "兴必达【秦皇岛】大学站", stationId: "1227", roomNum: 5, roomSize: "108", rentStart: "2026-03-01", rentEnd: "2027-02-28" },
   { name: "兴必达【秦皇岛】环岛站宿舍1", xian: "海港区", city: "秦皇岛", province: "河北省", address: "和美小区11栋1单元102号", category: "dorm", level: "A", lng: 119.578775, lat: 39.972805, stationName: "兴必达【秦皇岛】环岛站", stationId: "351", roomNum: 3, roomSize: "117", rentStart: "2026-07-10", rentEnd: "2027-07-09" },
