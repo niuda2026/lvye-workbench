@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>履约驾驶舱 · 兴达履约工作台</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:100%;height:100%;overflow:hidden;background:#020208;
+    font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;color:#dce8f7}
+  /* ============ 深空背景 ============ */
+  .nebula{position:fixed;inset:0;pointer-events:none}
+  .nebula i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;mix-blend-mode:screen}
+  .nebula .n1{width:55vw;height:45vh;left:-10vw;top:-12vh;background:radial-gradient(circle,#5b2bb8 0%,transparent 65%);opacity:.65}
+  .nebula .n2{width:60vw;height:50vh;right:-15vw;top:5vh;background:radial-gradient(circle,#1a4ecf 0%,transparent 65%);opacity:.6}
+  .nebula .n3{width:50vw;height:40vh;left:20vw;bottom:-18vh;background:radial-gradient(circle,#a1288a 0%,transparent 65%);opacity:.5}
+  .nebula .n4{width:36vw;height:30vh;right:8vw;bottom:-8vh;background:radial-gradient(circle,#0d6a8a 0%,transparent 65%);opacity:.55}
+  #stars{position:fixed;inset:0;pointer-events:none}
+  /* 银河盘面 */
+  .galaxy{position:fixed;left:50%;top:50%;pointer-events:none;perspective:900px}
+  .disc{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotateX(66deg);
+    border-radius:50%;filter:blur(2px);
+    background:
+      radial-gradient(ellipse at center,
+        rgba(255,244,224,.95) 0%, rgba(255,214,170,.75) 5%, rgba(180,140,255,.42) 16%,
+        rgba(120,80,220,.28) 30%, rgba(70,40,160,.16) 46%, rgba(40,20,100,.07) 62%, transparent 74%);
+  }
+  .disc::before{content:"";position:absolute;inset:0;border-radius:50%;
+    background:repeating-conic-gradient(from 0deg,
+      rgba(255,255,255,.10) 0deg 12deg, transparent 12deg 34deg,
+      rgba(140,110,255,.12) 34deg 46deg, transparent 46deg 72deg);
+    filter:blur(6px);animation:spin 160s linear infinite}
+  .disc::after{content:"";position:absolute;inset:0;border-radius:50%;
+    background:
+      radial-gradient(ellipse 30% 12% at 28% 55%, rgba(255,120,220,.20), transparent 70%),
+      radial-gradient(ellipse 26% 11% at 74% 42%, rgba(90,170,255,.22), transparent 70%);
+    filter:blur(4px)}
+  .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:130px;height:130px;border-radius:50%;
+    background:radial-gradient(circle,#fff 0%,#fff4d6 22%,#ffd9a0 40%,rgba(255,190,120,.45) 62%,transparent 75%);
+    filter:blur(1px);animation:pulse 5s ease-in-out infinite}
+  .core::after{content:"";position:absolute;inset:-60px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,225,180,.35) 0%,transparent 65%);filter:blur(8px)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.12)}}
+  /* ============ 星空舞台（可平移） ============ */
+  #space{position:fixed;inset:0;transition:transform .9s cubic-bezier(.22,.8,.3,1)}
+  svg#orbits{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .planet{position:absolute;border-radius:50%;cursor:pointer;transform:translate(-50%,-50%);
+    transition:filter .25s}
+  .planet .ball{width:100%;height:100%;border-radius:50%;position:relative;
+    box-shadow:inset -6px -6px 14px rgba(0,0,10,.75), inset 3px 3px 8px rgba(255,255,255,.28)}
+  .planet .ring{position:absolute;left:50%;top:50%;width:190%;height:56%;
+    border:solid 1px rgba(255,255,255,.32);border-radius:50%;
+    transform:translate(-50%,-50%) rotate(-18deg);pointer-events:none}
+  .planet .plabel{position:absolute;top:calc(100% + 7px);left:50%;transform:translateX(-50%);
+    white-space:nowrap;font-size:11px;color:#c9d8f0;letter-spacing:1px;
+    text-shadow:0 1px 4px #000,0 0 8px rgba(0,0,0,.9);pointer-events:none}
+  .planet .plabel .pn{font-size:10px;opacity:.65;display:block;text-align:center;margin-top:1px}
+  .planet:hover{filter:brightness(1.45)}
+  .planet.dim{opacity:.16;pointer-events:none}
+  .planet.hit .plabel{color:#ffe08a}
+  .planet.hit .ball{box-shadow:0 0 18px 4px rgba(255,215,130,.5), inset -6px -6px 14px rgba(0,0,10,.75)}
+  .planet.locked{z-index:50}
+  .planet.locked .ball{box-shadow:0 0 30px 8px rgba(120,200,255,.55), inset -6px -6px 14px rgba(0,0,10,.6)}
+  .lockring{position:absolute;left:50%;top:50%;width:170%;height:170%;
+    border:1.5px dashed #7fd0ff;border-radius:50%;opacity:0;pointer-events:none;
+    transform:translate(-50%,-50%)}
+  .planet.locked .lockring{opacity:.95;animation:spin 9s linear infinite}
+  .newmark{position:absolute;top:-6px;right:-6px;background:#06d6a0;color:#04241a;font-size:9px;
+    font-weight:700;padding:1px 5px;border-radius:8px;display:none;z-index:5}
+  .planet.isnew .newmark{display:block}
+  /* ============ HUD 通用 ============ */
+  .hud{position:fixed;z-index:100;width:240px;background:rgba(8,12,26,.78);
+    border:1px solid rgba(110,160,255,.22);border-radius:12px;backdrop-filter:blur(8px);
+    padding:14px;font-size:12px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+  .hud h3{font-size:11px;letter-spacing:2px;color:#9fc2ff;margin-bottom:10px;font-weight:600}
+  .hud .row{display:flex;justify-content:space-between;padding:3px 0;color:#c6d4ee}
+  .hud .row b{color:#fff}
+  .hud .sub{color:#7f93b5;font-size:10px;margin-top:6px;line-height:1.5}
+  #hud-left{left:18px;top:74px}
+  #detail{right:18px;top:74px;width:280px;max-height:calc(100vh - 190px);overflow:auto;display:none}
+  /* 分类列表 */
+  .glist{margin-top:8px}
+  .gitem{display:flex;align-items:center;gap:8px;padding:4px 6px;border-radius:7px;cursor:pointer;transition:.15s}
+  .gitem:hover{background:rgba(110,160,255,.12)}
+  .gitem.active{background:rgba(110,160,255,.2)}
+  .gdot{width:9px;height:9px;border-radius:50%;flex:none}
+  .gname{flex:1;color:#c6d4ee}
+  .gcnt{color:#8fa5c8;font-size:11px}
+  /* 健康度仪表 */
+  .gauge{display:flex;align-items:center;gap:12px;margin:10px 0 4px}
+  .gauge .g-circle{width:64px;height:64px;border-radius:50%;flex:none;position:relative;
+    background:conic-gradient(#06d6a0 var(--p,0%), rgba(255,255,255,.08) 0)}
+  .gauge .g-circle::before{content:"";position:absolute;inset:7px;border-radius:50%;background:#0a1024}
+  .gauge .g-circle span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-size:15px;font-weight:700;color:#06d6a0;z-index:1}
+  /* 右侧补给参考面板 */
+  #detail h3{color:#ffd98a}
+  #detail .dname{font-size:14px;font-weight:600;line-height:1.5;color:#fff;margin-bottom:8px}
+  #detail .dmeta{display:flex;flex-wrap:wrap;gap:8px;color:#8fa5c8;font-size:11px;margin-bottom:10px}
+  #detail .badge{font-size:10px;padding:2px 8px;border-radius:6px}
+  #detail .snip{border:1px solid rgba(110,160,255,.18);border-radius:9px;background:rgba(10,16,36,.7);
+    padding:8px 10px;font-size:12px;line-height:1.65;color:#c9d8f0;margin-bottom:8px}
+  #detail .snip mark{background:rgba(255,209,102,.4);color:#fff;padding:0 2px;border-radius:2px}
+  #detail .snip .pg{color:#6d84a8;font-size:10px}
+  #detail .openbtn{display:inline-block;background:#2f7dff;color:#fff;text-decoration:none;
+    font-size:12px;padding:8px 16px;border-radius:8px;font-weight:600}
+  #detail .openbtn:hover{background:#4b90ff}
+  #detail .pubtip{display:none;color:#ffd166;font-size:11px;line-height:1.6}
+  #detail .listlink{color:#7fd0ff;font-size:11px;cursor:pointer;margin-left:12px;text-decoration:none}
+  #detail .closex{position:absolute;right:10px;top:8px;color:#7f93b5;cursor:pointer;font-size:16px}
+  #detail .closex:hover{color:#fff}
+  /* ============ 顶部标题 ============ */
+  #title{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:100;text-align:center;pointer-events:none}
+  #title h1{font-size:22px;letter-spacing:8px;font-weight:700;
+    background:linear-gradient(90deg,#9fd0ff,#fff,#c7a6ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  #title .st{font-size:10px;letter-spacing:5px;color:#7f93b5;margin-top:4px}
+  /* ============ 底部搜索台 ============ */
+  #dock{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:110;width:min(680px,86vw);text-align:center}
+  #chips{margin-bottom:9px}
+  #chips span{display:inline-block;background:rgba(14,22,46,.85);border:1px solid rgba(110,160,255,.28);
+    border-radius:16px;padding:4px 13px;margin:0 4px 6px;font-size:12px;color:#aebbe0;cursor:pointer;transition:.15s}
+  #chips span:hover{border-color:#7fd0ff;color:#fff}
+  .searchrow{display:flex;gap:9px;background:rgba(8,12,26,.85);border:1px solid rgba(110,160,255,.3);
+    border-radius:26px;padding:7px 8px 7px 20px;backdrop-filter:blur(10px);box-shadow:0 6px 30px rgba(0,0,0,.55)}
+  .searchrow .mic{align-self:center;color:#5f7194;font-size:13px}
+  .searchrow input{flex:1;background:transparent;border:none;outline:none;color:#eaf2ff;font-size:14px}
+  .searchrow input::placeholder{color:#5f7194}
+  .searchrow button{background:linear-gradient(135deg,#2f7dff,#7b3ff2);border:none;color:#fff;
+    padding:9px 24px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer}
+  .searchrow button:active{transform:scale(.96)}
+  #status{margin-top:8px;font-size:11px;color:#7f93b5;min-height:16px;text-shadow:0 1px 3px #000}
+  #status b{color:#ffd98a}
+  /* 底部视图切换 */
+  #views{position:fixed;bottom:26px;left:26px;z-index:110;display:flex;gap:6px}
+  #views a{background:rgba(8,12,26,.8);border:1px solid rgba(110,160,255,.25);color:#aebbe0;
+    font-size:11px;padding:6px 14px;border-radius:8px;text-decoration:none;letter-spacing:1px}
+  #views a.on{background:rgba(47,125,255,.25);color:#fff;border-color:#2f7dff}
+  /* toast */
+  #toast{position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:200;
+    background:rgba(10,16,36,.92);border:1px solid rgba(255,209,102,.4);color:#ffd98a;
+    font-size:12px;padding:8px 18px;border-radius:20px;display:none}
+  @media (max-width:1100px){#hud-left{display:none}}
+</style>
+</head>
+<body>
+<div class="nebula"><i class="n1"></i><i class="n2"></i><i class="n3"></i><i class="n4"></i></div>
+<canvas id="stars"></canvas>
+<div class="galaxy"><div class="disc" id="disc"></div><div class="core"></div></div>
+
+<div id="space">
+  <svg id="orbits"></svg>
+  <!-- 行星由 JS 生成 -->
+</div>
+
+<div id="title">
+  <h1>履 约 驾 驶 舱</h1>
+  <div class="st">PERFORMANCE COCKPIT · YOUR COMPLIANCE UNIVERSE</div>
+</div>
+
+<!-- 左 HUD：星系总览 -->
+<div class="hud" id="hud-left">
+  <h3>★ 星系总览 GALAXY OVERVIEW</h3>
+  <div class="row"><span>🪐 行星 · 考核文件</span><b id="st-files">-</b></div>
+  <div class="row"><span>🌌 轨道 · 分类</span><b id="st-groups">-</b></div>
+  <div class="row"><span>✦ 可全文检索</span><b id="st-idx">-</b></div>
+  <div class="row"><span>🗓 最近更新</span><b id="st-date">-</b></div>
+  <div class="gauge">
+    <div class="g-circle" id="gauge"><span id="gauge-num">0%</span></div>
+    <div class="sub" id="gauge-txt">知识数字化程度<br>（正文可检索占比）</div>
+  </div>
+  <h3 style="margin-top:12px">◈ 分类轨道 ORBITS</h3>
+  <div class="glist" id="glist"></div>
+  <div class="sub" style="margin-top:10px">每月新考核文件放入 D:/MT/奖惩类 后说「扫一下」→ 新行星自动亮起 NEW 光环，并识别版本变更点。</div>
+</div>
+
+<!-- 右 HUD：补给参考（锁定行星后显示） -->
+<div class="hud" id="detail">
+  <span class="closex" onclick="unlock()">✕</span>
+  <h3>◆ 补给参考 REFERENCE</h3>
+  <div id="detail-body"></div>
+</div>
+
+<!-- 底部对话搜索台 -->
+<div id="dock">
+  <div id="chips">
+    <span onclick="quick('头盔考核标准')">🪖 头盔考核</span>
+    <span onclick="quick('站点星级怎么评')">⭐ 站点星级</span>
+    <span onclick="quick('宿舍管理要求')">🏠 宿舍管理</span>
+    <span onclick="quick('违规扣款标准')">⚠️ 违规扣款</span>
+    <span onclick="quick('保障补贴方案')">🛡 保障补贴</span>
+    <span onclick="quick('载具换电管理')">🔋 载具换电</span>
+  </div>
+  <div class="searchrow">
+    <span class="mic">⌕</span>
+    <input id="q" placeholder="像对话一样提问：头盔扣多少分 / 站点怎么建 / 补贴怎么考核…" onkeydown="if(event.key==='Enter')ask()">
+    <button onclick="ask()">检索星域</button>
+  </div>
+  <div id="status"></div>
+</div>
+
+<div id="views">
+  <a class="on" href="javascript:void(0)">◉ 星系</a>
+  <a href="考核文件库.html">☰ 列表</a>
+</div>
+
+<div id="toast"></div>
+
+<script src="checkup_files_data.js"></script>
+<script src="checkup_search_index.js"></script>
+<script src="change_log.js"></script>
+<script>
+/* ================= 基础数据 ================= */
+var GROUPS = [
+  {key:'safety', title:'安全管理',   color:'#ff6b81'},
+  {key:'equip',  title:'装备与载具', color:'#ffb84d'},
+  {key:'site',   title:'站点标准化', color:'#5aa9ff'},
+  {key:'insure', title:'保险与保障', color:'#06d6a0'},
+  {key:'assess', title:'考核与风控', color:'#c792ea'},
+  {key:'sop',    title:'SOP与培训',  color:'#8a9bff'},
+  {key:'uncls',  title:'待分类',     color:'#9aa0a6'}
+];
+var GMAP={}; GROUPS.forEach(function(g){GMAP[g.key]=g;});
+var FILES  = window.CHECKUP_FILES  || [];
+var INDEX  = window.CHECKUP_INDEX  || [];
+var CHANGES= window.CHECKUP_CHANGES|| [];
+var IDX={}; INDEX.forEach(function(x){IDX[x.id]=x;});
+var IS_PUB = location.protocol !== 'file:';
+
+/* 同义词（复用考核文件库引擎） */
+var SYN = {
+  '头盔':['智能头盔','头盔城市','头盔试点','头盔'],
+  '扣款':['扣罚','处罚','罚款','扣减','扣除','扣款'],
+  '扣分':['扣罚','评分','评级','扣分'],
+  '血压':['测压','血压仪','智能化血压','血压'],
+  '站点':['站点建设','站点管理','站点星级','基础建设','站点'],
+  '星级':['站点星级','星级考核','评星','星级'],
+  '宿舍':['站外宿舍','宿舍管理','住宿','值日','宿舍'],
+  '装备':['合规装备','装备款式','穿戴','载具','车辆','装备'],
+  '载具':['车辆','车电','换电','骑手载具','装备','载具'],
+  '保险':['保障补贴','赔付','保障','补贴','保险'],
+  '补贴':['保障补贴','保障','补贴'],
+  '标准化':['标准化检查','检查管理','检查办法','标准化'],
+  '违规':['非公','异常剔除','违规方案','违规'],
+  '申诉':['交通申诉','申诉'],
+  '薪酬':['薪资','薪酬保障','工资','薪酬'],
+  '风控':['风险','风控管理','风控'],
+  '诉讼':['案件','诉讼','纠纷'],
+  '早会':['早交流会','早会消毒','消毒','宣导','早会'],
+  '安全':['安全管控','安全管理','安全管理办法','安全'],
+  '带刀':['刀具','带刀检核','检核','带刀'],
+  '畅休':['畅休卡','休息','休假','畅休'],
+  '权益':['权益','福利'],
+  '车辆':['车辆','载具','车电','换电','车辆管理']
+};
+function expand(q){
+  var terms=[];
+  if(q.length>=2) terms.push(q);
+  Object.keys(SYN).forEach(function(k){
+    if(q.indexOf(k)>=0){ SYN[k].forEach(function(s){ if(terms.indexOf(s)<0)terms.push(s); }); }
+  });
+  q.split(/[\s，。、；;？?！!：:,]+/).forEach(function(t){ if(t.length>=2&&terms.indexOf(t)<0)terms.push(t); });
+  return terms.filter(function(t){return t.length>=2;});
+}
+function byId(id){ for(var i=0;i<FILES.length;i++) if(FILES[i].id===id)return FILES[i]; return null; }
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function hl(text,q){
+  var out=esc(text);
+  expand(q).filter(function(t){return t.length>=2;}).forEach(function(k){
+    try{ var re=new RegExp('('+k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','g');
+      out=out.replace(re,'<mark>$1</mark>'); }catch(e){}
+  });
+  return out;
+}
+function search(q){
+  var terms=expand(q); if(!terms.length) return [];
+  var res=[];
+  FILES.forEach(function(f){
+    var nameHit=false;
+    terms.forEach(function(t){ if(f.name.indexOf(t)>=0||f.topic.indexOf(t)>=0) nameHit=true; });
+    var snips=[];
+    var entry=IDX[f.id];
+    if(entry){ entry.chunks.forEach(function(c){
+      var hit=false; terms.forEach(function(t){ if(c.t.indexOf(t)>=0) hit=true; });
+      if(hit) snips.push(c); }); }
+    var score=snips.length*2+(nameHit?5:0);
+    if(score>0) res.push({f:f,score:score,snips:snips.slice(0,3),nameHit:nameHit});
+  });
+  res.sort(function(a,b){return b.score-a.score;});
+  return res.slice(0,12);
+}
+
+/* ================= 左 HUD 统计 ================= */
+(function(){
+  var nIdx=FILES.filter(function(f){return f.indexed;}).length;
+  document.getElementById('st-files').textContent=FILES.length;
+  var gs={}; FILES.forEach(function(f){gs[f.group]=1;});
+  document.getElementById('st-groups').textContent=Object.keys(gs).length;
+  document.getElementById('st-idx').textContent=nIdx;
+  var md=''; FILES.forEach(function(f){ if(f.date>md)md=f.date; });
+  document.getElementById('st-date').textContent=md||'-';
+  var pct=FILES.length?Math.round(nIdx/FILES.length*100):0;
+  var g=document.getElementById('gauge');
+  g.style.setProperty('--p',pct+'%');
+  document.getElementById('gauge-num').textContent=pct+'%';
+  document.getElementById('gauge-txt').innerHTML='知识数字化程度<br>'+nIdx+' / '+FILES.length+' 份文件可全文检索';
+  /* 分类列表 */
+  var html='';
+  GROUPS.forEach(function(g){
+    var c=FILES.filter(function(f){return f.group===g.key;}).length;
+    if(!c)return;
+    html+='<div class="gitem" data-g="'+g.key+'" onclick="focusGroup(\''+g.key+'\')">'+
+      '<span class="gdot" style="background:'+g.color+';box-shadow:0 0 6px '+g.color+'"></span>'+
+      '<span class="gname">'+g.title+'</span><span class="gcnt">'+c+' 颗</span></div>';
+  });
+  document.getElementById('glist').innerHTML=html;
+})();
+
+/* ================= 星空 canvas ================= */
+var starCv=document.getElementById('stars'), starCtx=starCv.getContext('2d'), STARS=[];
+function initStars(){
+  starCv.width=innerWidth; starCv.height=innerHeight;
+  STARS=[];
+  for(var i=0;i<260;i++){
+    STARS.push({x:Math.random()*starCv.width,y:Math.random()*starCv.height,
+      r:Math.random()*1.3+.3,ph:Math.random()*6.28,sp:.5+Math.random()*1.5,
+      c:Math.random()<.85?'255,255,255':(Math.random()<.5?'170,200,255':'255,210,170')});
+  }
+}
+function drawStars(t){
+  starCtx.clearRect(0,0,starCv.width,starCv.height);
+  STARS.forEach(function(s){
+    var a=.25+.55*Math.abs(Math.sin(t/1000*s.sp+s.ph));
+    starCtx.fillStyle='rgba('+s.c+','+a+')';
+    starCtx.beginPath(); starCtx.arc(s.x,s.y,s.r,0,6.29); starCtx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+initStars(); requestAnimationFrame(drawStars);
+
+/* ================= 银河盘面尺寸 ================= */
+function sizeGalaxy(){
+  var d=document.getElementById('disc');
+  var w=Math.min(innerWidth*0.86,1150), h=w*0.40;
+  d.style.width=w+'px'; d.style.height=h+'px';
+}
+sizeGalaxy();
+
+/* ================= 行星系统 ================= */
+var space=document.getElementById('space');
+var orbits=document.getElementById('orbits');
+var planets=[];   // {f, el, gi, a,b, angle, speed, size}
+var focusedGroup=null, lockedId=null, paused=false;
+
+function shade(hex,p){ /* p>0 变亮 p<0 变暗 */
+  var n=parseInt(hex.slice(1),16),r=n>>16,g=(n>>8)&255,b=n&255;
+  r=Math.max(0,Math.min(255,Math.round(r+(p>0?(255-r)*p:r*p))));
+  g=Math.max(0,Math.min(255,Math.round(g+(p>0?(255-g)*p:g*p))));
+  b=Math.max(0,Math.min(255,Math.round(b+(p>0?(255-b)*p:b*p))));
+  return 'rgb('+r+','+g+','+b+')';
+}
+function hexA(hex,a){
+  var n=parseInt(hex.slice(1),16);
+  return 'rgba('+(n>>16)+','+((n>>8)&255)+','+(n&255)+','+a+')';
+}
+
+/* 新增/升级标记（来自变更日志） */
+var NEWS={}; CHANGES.forEach(function(c){
+  if(c.type==='新增'||c.type==='升级') NEWS[c.name]=c.type;
+});
+
+function buildPlanets(){
+  /* 6 条轨道按分组分配（含文件的组），由内到外 */
+  var act=GROUPS.filter(function(g){return FILES.some(function(f){return f.group===g.key;});});
+  orbits.setAttribute('viewBox','0 0 '+innerWidth+' '+innerHeight);
+  var cx=innerWidth/2, cy=innerHeight*0.52;
+  var baseR=Math.min(innerWidth,innerHeight)*0.24;
+  var step=Math.min(innerWidth,innerHeight)*0.085;
+  var svg='';
+  act.forEach(function(g,i){
+    g._rx=baseR+i*step; g._ry=g._rx*0.40; g._cx=cx; g._cy=cy;
+    svg+='<ellipse id="orb-'+g.key+'" cx="'+cx+'" cy="'+cy+'" rx="'+g._rx+'" ry="'+g._ry+'" '+
+      'fill="none" stroke="'+hexA(g.color,.20)+'" stroke-width="1" stroke-dasharray="3 6"/>';
+  });
+  orbits.innerHTML=svg;
+
+  act.forEach(function(g,gi){
+    var list=FILES.filter(function(f){return f.group===g.key;});
+    list.forEach(function(f,fi){
+      var size=16+Math.min(f.pages||0,60)/60*26;
+      var el=document.createElement('div');
+      el.className='planet'+(NEWS[f.name]?' isnew':'');
+      el.style.width=size+'px'; el.style.height=size+'px';
+      var ring=(f.pages||0)>=40?'<div class="ring" style="border-color:'+hexA(g.color,.45)+'"></div>':'';
+      el.innerHTML='<div class="ball" style="background:radial-gradient(circle at 32% 28%,'+
+        shade(g.color,.55)+' 0%,'+g.color+' 42%,'+shade(g.color,-.55)+' 88%);'+
+        'box-shadow:0 0 '+Math.round(size/2.2)+'px '+hexA(g.color,.5)+', inset -6px -6px 14px rgba(0,0,10,.75), inset 3px 3px 8px rgba(255,255,255,.25)">'+
+        '</div>'+ring+
+        '<div class="lockring" style="border-color:'+hexA('#7fd0ff',.9)+'"></div>'+
+        '<span class="newmark">NEW</span>'+
+        '<div class="plabel">'+esc(f.topic)+'<span class="pn">'+(f.pages?f.pages+'页':'扫描版')+'</span></div>';
+      el.addEventListener('click',function(ev){ ev.stopPropagation(); lockPlanet(f.id); });
+      space.appendChild(el);
+      planets.push({f:f,el:el,gi:gi,g:g,size:size,
+        angle:(fi/list.length)*6.283+gi*1.1, speed:(.05+ (gi%3)*.02)+(fi%5)*.006});
+    });
+  });
+}
+function tick(ts){
+  if(!paused){
+    planets.forEach(function(p){
+      p.angle+=p.speed*0.016;
+      var x=p.g._cx+Math.cos(p.angle)*p.g._rx;
+      var y=p.g._cy+Math.sin(p.angle)*p.g._ry;
+      p.x=x; p.y=y;
+      p.el.style.left=x+'px'; p.el.style.top=y+'px';
+      /* 近大远小（椭圆下半段更近） */
+      var depth=Math.sin(p.angle); // -1上 1下
+      var sc=.82+ .3*((depth+1)/2);
+      p.el.style.transform='translate(-50%,-50%) scale('+sc.toFixed(3)+')';
+      p.el.style.zIndex=Math.round(10+depth*5);
+    });
+  }
+  requestAnimationFrame(tick);
+}
+buildPlanets();
+requestAnimationFrame(tick);
+
+/* ================= 分组聚焦 / 锁定 ================= */
+function focusGroup(key){
+  focusedGroup=(focusedGroup===key)?null:key;
+  document.querySelectorAll('.gitem').forEach(function(e){
+    e.classList.toggle('active',e.getAttribute('data-g')===focusedGroup);
+  });
+  applyDim();
+}
+function applyDim(){
+  planets.forEach(function(p){
+    if(focusedGroup && p.f.group!==focusedGroup) p.el.classList.add('dim');
+    else p.el.classList.remove('dim');
+  });
+}
+function unlock(){
+  lockedId=null; paused=false;
+  document.getElementById('detail').style.display='none';
+  space.style.transform='';
+  planets.forEach(function(p){p.el.classList.remove('locked','hit');});
+  document.getElementById('status').innerHTML='';
+}
+space.addEventListener('click',function(){ unlock(); });
+
+function lockPlanet(id){
+  var p=null; planets.forEach(function(x){ if(x.f.id===id)p=x; });
+  if(!p)return;
+  lockedId=id; paused=true;
+  planets.forEach(function(x){ x.el.classList.remove('locked'); if(lockedId&&x.f.id!==lockedId)x.el.classList.remove('hit'); });
+  p.el.classList.add('locked');
+  /* 平移相机：行星移到屏幕中心偏左（右面板留位） */
+  var tx=innerWidth*0.44-p.x, ty=innerHeight*0.5-p.y;
+  space.style.transform='translate('+tx.toFixed(1)+'px,'+ty.toFixed(1)+'px)';
+  renderDetail(p.f,'');
+  document.getElementById('detail').style.display='block';
+}
+
+/* ================= 右侧补给参考 ================= */
+var LASTQ='';
+function renderDetail(f,q){
+  var g=GMAP[f.group]||{title:f.group,color:'#888'};
+  var fmt=(f.ext||'').replace('.','').toUpperCase();
+  var html='<div class="dname">'+esc(f.name)+'</div>'+
+    '<div class="dmeta"><span class="badge" style="background:'+hexA(g.color,.18)+';color:'+g.color+'">'+g.title+'</span>'+
+    '<span>'+esc(f.topic)+'</span><span>🗓 '+f.date+'</span><span>'+fmt+' · '+f.size_mb+'MB</span>'+
+    (f.pages?('<span>'+f.pages+'页</span>'):'')+'</div>';
+  var entry=IDX[f.id], snips=[];
+  if(entry){
+    entry.chunks.forEach(function(c){
+      if(!q){return;}
+      var hit=false; expand(q).forEach(function(t){ if(c.t.indexOf(t)>=0)hit=true; });
+      if(hit)snips.push(c);
+    });
+    if(!snips.length && q){ /* 无命中片段时给文件头部片段 */ snips=entry.chunks.slice(0,3); }
+    if(!q) snips=entry.chunks.slice(0,3);
+  }
+  if(q && !snips.length && entry) snips=entry.chunks.slice(0,3);
+  if(snips.length){
+    html+=snips.slice(0,4).map(function(s){
+      return '<div class="snip">'+hl(s.t,q||'')+' <span class="pg">[P'+s.p+']</span></div>';
+    }).join('');
+  }else{
+    html+='<div class="snip" style="color:#ffd166">该文件为图片扫描版，暂无正文片段（待 OCR 升级）。请打开原件查看全文。</div>';
+  }
+  if(!IS_PUB){
+    html+='<a class="openbtn" href="'+f.url+'" target="_blank">打开原件 →</a>';
+  }else{
+    html+='<div class="pubtip">公网环境无法打开本地原件，请在本地工作台查看。</div>';
+  }
+  html+='<a class="listlink" href="考核文件库.html">在列表视图中查看</a>';
+  document.getElementById('detail-body').innerHTML=html;
+}
+
+/* ================= 对话检索 → 锁定行星 ================= */
+function toast(msg){
+  var t=document.getElementById('toast');
+  t.innerHTML=msg; t.style.display='block';
+  clearTimeout(t._h); t._h=setTimeout(function(){t.style.display='none';},3500);
+}
+function quick(q){ document.getElementById('q').value=q; ask(); }
+function ask(){
+  var q=document.getElementById('q').value.trim();
+  if(!q)return;
+  LASTQ=q;
+  var res=search(q);
+  var st=document.getElementById('status');
+  if(!res.length){
+    st.innerHTML='未检索到相关考核内容，试试「头盔」「站点星级」「宿舍」「补贴」「违规」「装备」等关键词';
+    toast('🛰 未在星域中找到匹配的考核文件，换个说法试试');
+    return;
+  }
+  /* 命中标灯 */
+  planets.forEach(function(p){ p.el.classList.remove('hit'); });
+  res.forEach(function(r){
+    planets.forEach(function(p){ if(p.f.id===r.f.id)p.el.classList.add('hit'); });
+  });
+  /* 锁定最相关行星 */
+  lockPlanet(res[0].f.id);
+  /* 锁定后重新标注 hit（lockPlanet 会清掉非锁定 hit，需要恢复其余命中） */
+  res.slice(1).forEach(function(r){
+    planets.forEach(function(p){ if(p.f.id===r.f.id)p.el.classList.add('hit'); });
+  });
+  st.innerHTML='已锁定行星 <b>'+esc(res[0].f.topic)+'</b> · 星域内共命中 <b>'+res.length+'</b> 个考核文件（光晕标记），点击可切换';
+  renderDetail(res[0].f,q);
+}
+document.getElementById('q').addEventListener('input',function(){
+  if(!this.value.trim()) { planets.forEach(function(p){p.el.classList.remove('hit');});
+    document.getElementById('status').innerHTML=''; }
+});
+
+/* ================= resize ================= */
+addEventListener('resize',function(){
+  initStars(); sizeGalaxy();
+  /* 重建轨道与行星位置 */
+  planets.forEach(function(p){p.el.remove();});
+  planets=[]; orbits.innerHTML='';
+  focusedGroup=null; lockedId=null; paused=false;
+  space.style.transform='';
+  document.getElementById('detail').style.display='none';
+  buildPlanets();
+});
+</script>
+</body>
+</html>
