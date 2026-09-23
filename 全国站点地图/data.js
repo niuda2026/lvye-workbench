@@ -1,7 +1,7 @@
 // ============================================================
 // 全国站点地图 - 点位数据
 // 数据来源：美团配送后台「标准站点信息」接口抓取（站点合作状态=合作）
-// 抓取时间：2026-09-23 | 站点总数：161（含骑手宿舍 93）
+// 抓取时间：2026-09-24 | 站点总数：161（含骑手宿舍 93）
 //
 // 字段说明：
 //   name     : 点位名称（美团标准站点名称）
@@ -42,7 +42,7 @@ window.SITE_DATA = [
   { name: "兴必达【唐山】银丰站", xian: "丰南区", city: "唐山", province: "河北省", address: "唐山市丰南区朝阳大街银城花园312栋2门101室", category: "meituan", level: "A", lng: 118.104407, lat: 39.525262, stationId: "2089180", franchisee: "兴必达（江苏）网络科技有限公司【唐山】", region: "加盟津冀区域", district: "华北大区--加盟", roomSize: 85, rentProperty: "居民小区内（非门面房）", rentStart: "2026-04-08", rentEnd: "2028-04-07", doorTypeName: "无门头", mainOrg: "" },
   { name: "兴必达【合肥】大唐国际", xian: "蜀山区", city: "合肥", province: "安徽省", address: "望江西路199号1幢附103美团站点", category: "meituan", level: "B", lng: 117.23788, lat: 31.830846, stationId: "2088705", franchisee: "兴必达（江苏）网络科技有限公司【合肥】", region: "加盟安徽区域", district: "中南大区--加盟", roomSize: 105, rentProperty: "门面房（包含小区内）", rentStart: "2026-04-16", rentEnd: "2027-04-15", doorTypeName: "标准门头", mainOrg: "兴必达【合肥】港汇广场站" },
   { name: "兴必达【合肥】港汇广场站", xian: "蜀山区", city: "合肥", province: "安徽省", address: "望江西路199号1幢附103美团站点", category: "meituan", level: "A", lng: 117.23788, lat: 31.830846, stationId: "2088685", franchisee: "兴必达（江苏）网络科技有限公司【合肥】", region: "加盟安徽区域", district: "中南大区--加盟", roomSize: 105, rentProperty: "门面房（包含小区内）", rentStart: "2026-04-16", rentEnd: "2027-04-15", doorTypeName: "标准门头", mainOrg: "" },
-  { name: "兴必达【西安】枫林华府站", xian: "雁塔区", city: "西安", province: "陕西省", address: "西安市莲湖区大寨路1号华府新桃园6号楼3单元105室", category: "meituan", level: "A", lng: 108.884771, lat: 34.221562, stationId: "2089109", franchisee: "兴必达（江苏）网络科技有限公司【西安】", region: "加盟中西区域", district: "华北大区--加盟", roomSize: 117, rentProperty: "居民小区内（非门面房）", rentStart: "2025-08-01", rentEnd: "2026-07-31", doorTypeName: "无门头", mainOrg: "" },
+  { name: "兴必达【西安】枫林华府站", xian: "雁塔区", city: "西安", province: "陕西省", address: "西安市莲湖区大寨路1号华府新桃园6号楼3单元105室", category: "meituan", level: "A", lng: 108.884771, lat: 34.221562, stationId: "2089109", franchisee: "兴必达（江苏）网络科技有限公司【西安】", region: "加盟中西区域", district: "华北大区--加盟", roomSize: 117, rentProperty: "居民小区内（非门面房）", rentStart: "2026-08-01", rentEnd: "2027-07-31", doorTypeName: "无门头", mainOrg: "" },
   { name: "兴必达【青岛】城阳国货站", xian: "城阳区", city: "青岛", province: "山东省", address: "城阳区海信正阳中心500-15门头", category: "meituan", level: "A", lng: 120.377842, lat: 36.303658, stationId: "2088669", franchisee: "兴必达（江苏）网络科技有限公司【青岛】", region: "加盟山东区域", district: "中南大区--加盟", roomSize: 85.5, rentProperty: "门面房（包含小区内）", rentStart: "2026-06-26", rentEnd: "2027-06-25", doorTypeName: "标准门头", mainOrg: "" },
   { name: "兴必达【青岛】墨河公园站", xian: "即墨区", city: "青岛", province: "山东省", address: "流浩河二路122-1号", category: "meituan", level: "A", lng: 120.450492, lat: 36.403409, stationId: "2088664", franchisee: "兴必达（江苏）网络科技有限公司【青岛】", region: "加盟山东区域", district: "中南大区--加盟", roomSize: 85.88, rentProperty: "门面房（包含小区内）", rentStart: "2026-04-15", rentEnd: "2027-04-14", doorTypeName: "标准门头", mainOrg: "" },
   { name: "兴必达【青岛】水悦城站", xian: "城阳区", city: "青岛", province: "山东省", address: "山东省青岛市城阳区明阳路118号32号楼1单元002", category: "meituan", level: "A", lng: 120.419548, lat: 36.306993, stationId: "2088668", franchisee: "兴必达（江苏）网络科技有限公司【青岛】", region: "加盟山东区域", district: "中南大区--加盟", roomSize: 89.96, rentProperty: "门面房（包含小区内）", rentStart: "2026-07-07", rentEnd: "2027-07-06", doorTypeName: "标准门头", mainOrg: "" },
