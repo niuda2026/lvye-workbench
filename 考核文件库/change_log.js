@@ -1,0 +1,1 @@
+window.CHECKUP_CHANGES = [];

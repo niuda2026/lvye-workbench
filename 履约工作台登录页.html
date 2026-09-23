@@ -189,6 +189,7 @@ body{
 .card-3{right:4.5%;top:26%}
 .card-4{left:12%;bottom:13%}
 .card-5{right:12%;bottom:13%}
+.card-6{left:50%;bottom:9%;transform:translateX(-50%)}
 
 /* 加载遮罩 */
 #loader{
@@ -204,6 +205,7 @@ body{
 @media (max-width:1500px){
   .card{width:178px}
   .card-0{left:2.5%;top:30%}.card-1{left:12%;top:13%}.card-2{right:12%;top:13%}.card-3{right:2.5%;top:30%}
+  .card-6{left:50%;top:82%;transform:translateX(-50%)}
 }
 @media (max-width:1180px){
   .card{display:none}
@@ -368,7 +370,9 @@ var GROUPS = [
   { icon:'shield', title:'保险', en:'INSURANCE', dur:'6.9s', delay:'-2s',
     items:['美团保险','保险赔付补贴监控','保险赔付率解读'] },
   { icon:'corp', title:'公司风险管理系统', en:'RISK SYSTEM', dur:'6.3s', delay:'-1.2s',
-    items:['110工单'] }
+    items:['110工单'] },
+  { icon:'doc', title:'考核文件库', en:'ASSESS LIB', dur:'6.5s', delay:'-2.4s',
+    items:['考核文件库'] }
 ];
 
 /* =====================================================================
@@ -380,7 +384,8 @@ var ICONS = {
   uniform:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3l5 2.5L17 3l3 4-3.2 2-1 12H8.2l-1-12L4 7z"/><path d="M8.5 15h7"/></svg>',
   rider:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="2.5"/><circle cx="18.5" cy="17.5" r="2.5"/><path d="M8 17.5h8M14 17.5l-1.5-6H5l1.8 3M12.5 11.5l1 2.5h3.4l1.6-3-2.5-.5"/><path d="M14 5.5h3.5l1.5 3"/></svg>',
   shield:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l7.5 3v6c0 4.6-3.2 8.4-7.5 10-4.3-1.6-7.5-5.4-7.5-10v-6z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></svg>',
-  corp:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-4.5L19 8v13"/><path d="M9 21v-4h6v4M9 10h.01M15 10h.01M9 14h.01M15 14h.01"/></svg>'
+  corp:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-4.5L19 8v13"/><path d="M9 21v-4h6v4M9 10h.01M15 10h.01M9 14h.01M15 14h.01"/></svg>',
+  doc:'<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg>'
 };
 
 /* =====================================================================
