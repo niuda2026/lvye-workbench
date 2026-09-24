@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-25 07:21:58",
+  "updated_at": "2026-09-25 07:23:00",
   "action_summary": {
     "total": 14,
     "ok": 11,
@@ -20,9 +20,9 @@
         ],
         "data_mtime": "2026-09-25 07:17:09",
         "all_synced": false,
-        "synced_count": 8,
+        "synced_count": 6,
         "missing_count": 0,
-        "unsynced_count": 5,
+        "unsynced_count": 7,
         "sources": [
           {
             "type": "站点-戴盔",
@@ -56,15 +56,15 @@
           },
           {
             "type": "骑手维度-速度",
-            "latest": "速度-骑手维度_2026-09-22-2026-09-24(统计日期)_1790207007478.xlsx",
-            "mtime": "2026-09-24 07:46:06",
-            "synced": true
+            "latest": "速度-骑手维度_2026-09-24-2026-09-24(统计日期)_1790292061453(1).xlsx",
+            "mtime": "2026-09-25 07:22:51",
+            "synced": false
           },
           {
             "type": "骑手维度-闯红灯",
-            "latest": "闯红灯-骑手维度_2026-09-22-2026-09-24(统计日期)_1790207071450.xlsx",
-            "mtime": "2026-09-24 07:46:11",
-            "synced": true
+            "latest": "_闯红灯-骑手维度_2026-09-24-2026-09-24(统计日期)_1790292148473.xlsx",
+            "mtime": "2026-09-25 07:22:32",
+            "synced": false
           },
           {
             "type": "骑手维度-逆行",
@@ -108,7 +108,7 @@
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-09-25 07:20:55",
+            "mtime": "2026-09-25 07:22:39",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -351,7 +351,7 @@
           "护航服装\\data.js",
           "护航服装\\data_excluded.js"
         ],
-        "data_mtime": "2026-09-25 07:21:56",
+        "data_mtime": "2026-09-25 07:22:59",
         "all_synced": true,
         "synced_count": 2,
         "missing_count": 0,
@@ -375,7 +375,7 @@
             "label": "服装标准化数据更新",
             "path": "护航服装\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-09-25 07:21:56",
+            "mtime": "2026-09-25 07:22:59",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
