@@ -1,12 +1,11 @@
 {
-  "updated_at": "2026-09-25 10:28:22",
+  "updated_at": "2026-09-25 16:41:32",
   "action_summary": {
     "total": 14,
-    "ok": 8,
-    "alert": 6,
+    "ok": 11,
+    "alert": 3,
     "missing": 0,
     "alert_groups": [
-      "履约项目",
       "骑手管理",
       "保险",
       "站点地图"
@@ -112,7 +111,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-09-25 10:28:21",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 6.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -266,7 +265,7 @@
             "latest": "充换电血压_data.js",
             "mtime": "2026-09-25 08:09:18",
             "max_age_hours": 13,
-            "age_hours": 2.3,
+            "age_hours": 8.5,
             "ok": true,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
@@ -279,7 +278,7 @@
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-09-25 07:24:25",
             "max_age_hours": 30,
-            "age_hours": 3.1,
+            "age_hours": 9.3,
             "ok": true,
             "note": "早间自动化抓取",
             "fail_hits": [],
@@ -290,28 +289,22 @@
             "label": "每日刷新·抓取成败",
             "path": "daily_refresh_log.txt",
             "latest": "daily_refresh_log.txt",
-            "mtime": "2026-09-25 10:22:26",
+            "mtime": "2026-09-25 12:25:28",
             "max_age_hours": 13,
-            "age_hours": 0.1,
-            "ok": false,
+            "age_hours": 4.3,
+            "ok": true,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
-            "fail_hits": [
-              "退出码1",
-              "失败(退出"
-            ],
-            "fail_lines": [
-              "第0步 载具审核(骑手维度)BI抓取: 全部方案失败 · S1-headless自起→退出码1(数据未更新(generated_at=2026-09-24 23:24:25)) / S1b-headless重试→退出码1(数据未更新(generated_at=2026-09-24 23:24:25)) / S2-自起C",
-              "第1.5步 美团保险理赔抓取: 抓取失败(退出码 1)   26/28 马鞍山  orgId=2088539 案件  12条 详情成功12 ⏎       ⚠ 郑州 cookie orgId=2068877 ≠ 目标 2090747，仍按页面上下文继续 ⏎   27/28 郑州   orgId=2090747 案件  "
-            ],
-            "block_time": "2026-09-25 08:11:55"
+            "fail_hits": [],
+            "fail_lines": [],
+            "block_time": null
           }
         ],
         "action_stats": {
-          "ok_count": 2,
-          "alert_count": 1,
+          "ok_count": 3,
+          "alert_count": 0,
           "missing_count": 0,
           "total": 3,
-          "all_ok": false
+          "all_ok": true
         },
         "all_healthy": false
       },
@@ -379,7 +372,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-09-25 07:26:17",
             "max_age_hours": 26,
-            "age_hours": 3.0,
+            "age_hours": 9.3,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -452,7 +445,7 @@
             "latest": "_crawl_service.log",
             "mtime": "2026-09-22 10:54:40",
             "max_age_hours": 26,
-            "age_hours": 71.6,
+            "age_hours": 77.8,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -505,23 +498,23 @@
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-09-25 10:28:19",
+        "data_mtime": "2026-09-25 10:57:10",
         "all_synced": false,
-        "synced_count": 1,
+        "synced_count": 3,
         "missing_count": 0,
-        "unsynced_count": 3,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "BI赔付率快照",
             "latest": "latest.json",
-            "mtime": "2026-09-24 08:15:49",
-            "synced": false
+            "mtime": "2026-09-25 10:50:11",
+            "synced": true
           },
           {
             "type": "含税保费快照",
             "latest": "premium_latest.json",
-            "mtime": "2026-09-24 08:18:23",
-            "synced": false
+            "mtime": "2026-09-25 10:57:10",
+            "synced": true
           },
           {
             "type": "V3内联数据",
@@ -541,10 +534,10 @@
             "label": "BI赔付率快照",
             "path": "骑手保障补贴\\bi_data\\latest.json",
             "latest": "latest.json",
-            "mtime": "2026-09-24 08:15:49",
+            "mtime": "2026-09-25 10:50:11",
             "max_age_hours": 26,
-            "age_hours": 26.2,
-            "ok": false,
+            "age_hours": 5.9,
+            "ok": true,
             "note": "",
             "fail_hits": [],
             "fail_lines": [],
@@ -554,10 +547,10 @@
             "label": "含税保费快照",
             "path": "bi_insurance\\premium_latest.json",
             "latest": "premium_latest.json",
-            "mtime": "2026-09-24 08:18:23",
+            "mtime": "2026-09-25 10:57:10",
             "max_age_hours": 26,
-            "age_hours": 26.2,
-            "ok": false,
+            "age_hours": 5.7,
+            "ok": true,
             "note": "",
             "fail_hits": [],
             "fail_lines": [],
@@ -569,7 +562,7 @@
             "latest": "v3_data.js",
             "mtime": "2026-09-25 10:28:19",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 6.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -582,7 +575,7 @@
             "latest": "insurance_data.js",
             "mtime": "2026-09-22 07:24:23",
             "max_age_hours": 72,
-            "age_hours": 75.1,
+            "age_hours": 81.3,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -591,8 +584,8 @@
           }
         ],
         "action_stats": {
-          "ok_count": 1,
-          "alert_count": 3,
+          "ok_count": 3,
+          "alert_count": 1,
           "missing_count": 0,
           "total": 4,
           "all_ok": false
@@ -658,7 +651,7 @@
             "latest": "110工单看板.html",
             "mtime": "2026-09-23 11:38:46",
             "max_age_hours": 168,
-            "age_hours": 46.8,
+            "age_hours": 53.0,
             "ok": true,
             "note": "更新频率待确认，先按 7 天",
             "fail_hits": [],
@@ -714,7 +707,7 @@
             "latest": "update_stations.log",
             "mtime": "2026-09-24 07:27:01",
             "max_age_hours": 26,
-            "age_hours": 27.0,
+            "age_hours": 33.2,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -763,7 +756,7 @@
             "latest": "_大屏数据.js",
             "mtime": "2026-09-25 10:28:21",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 6.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -829,7 +822,7 @@
             "latest": "monthly_summary.js",
             "mtime": "2026-09-25 07:26:21",
             "max_age_hours": 72,
-            "age_hours": 3.0,
+            "age_hours": 9.3,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
