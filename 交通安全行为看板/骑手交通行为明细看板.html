@@ -2704,15 +2704,8 @@ function weekAvgOf(r,key,w){
     if(v&&v.length>=2&&v[1]>0){sn+=v[0];sd+=v[1];}
   });
   if(sd>0)return Math.round(sn/sd*10000)/100;
-  // 兜底：dayNumDen 缺失时退回日比率均值，避免空值
-  var vals=[];
-  w.days.forEach(function(d){
-    var v=r[key+'_daily']?r[key+'_daily'][d]:null;
-    if(v!==null&&v!==undefined&&!isNaN(v))vals.push(v);
-  });
-  if(!vals.length)return null;
-  var sum=0;vals.forEach(function(v){sum+=v;});
-  return Math.round(sum/vals.length*100)/100;
+  // 红线：周/月维度一律 Σ分子/Σ分母；dayNumDen 缺失时绝不退回日比率均值，返回 null 由前端显示“-”
+  return null;
 }
 var SPARK_URI={};
 function sparkline(vals,color){

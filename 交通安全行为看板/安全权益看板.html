@@ -531,7 +531,7 @@ function resetLvBtns(tab){
 }
 
 // ══════════════════════════════════════════════════════════
-// 安全权益：周维度 / 日维度 工具（自然周、周均值、趋势折线）
+// 安全权益：周维度 / 日维度 工具（自然周、周累计Σnum/Σ分母、趋势折线）
 // ══════════════════════════════════════════════════════════
 var EG_CN=['一','二','三','四','五','六'];
 function egPad(n){return (n<10?'0':'')+n;}
@@ -573,15 +573,8 @@ function weekAvgOf(r,key,w){
     if(v&&v.length>=2&&v[1]>0){sn+=v[0];sd+=v[1];}
   });
   if(sd>0)return Math.round(sn/sd*10000)/100;
-  // 兜底：dayNumDen 缺失时退回日比率均值，避免空值
-  var vals=[];
-  w.days.forEach(function(d){
-    var v=r[key+'_daily']?r[key+'_daily'][d]:null;
-    if(v!==null&&v!==undefined&&!isNaN(v))vals.push(v);
-  });
-  if(!vals.length)return null;
-  var sum=0;vals.forEach(function(v){sum+=v;});
-  return Math.round(sum/vals.length*100)/100;
+  // 红线：周/月维度一律 Σ分子/Σ分母；dayNumDen 缺失时绝不退回日比率均值，返回 null 由前端显示“-”
+  return null;
 }
 // 趋势折线：渲染为 data-URI 位图 <img>（带内容级缓存）
 // 原因：原先每行 4 个内联 SVG × 225 行 = 900 个 SVG、3150 个子节点，横向滚动时
@@ -729,11 +722,11 @@ function renderStation(tab){
       var wkValsS=egWeeks.map(function(w){return weekAvgOf(r,m2.key,w);});
       var dayValsH=dayAsc.map(function(d){return (r[m1.key+'_daily']&&r[m1.key+'_daily'][d]!==undefined)?r[m1.key+'_daily'][d]:null;});
       var dayValsS=dayAsc.map(function(d){return (r[m2.key+'_daily']&&r[m2.key+'_daily'][d]!==undefined)?r[m2.key+'_daily'][d]:null;});
-      var wkCellsH=egWeeks.map(function(w,i){var v=wkValsH[i];return '<td class="'+rc(v,m1.target,m1.goodHigh,m1.redAt)+'"'+(v!==null?' title="'+w.range+' 均值（'+w.days.length+'天）"':'')+'>'+fr(v)+'</td>';}).join('');
+      var wkCellsH=egWeeks.map(function(w,i){var v=wkValsH[i];return '<td class="'+rc(v,m1.target,m1.goodHigh,m1.redAt)+'"'+(v!==null?' title="'+w.range+' Σ分子/Σ分母（'+w.days.length+'天）"':'')+'>'+fr(v)+'</td>';}).join('');
       if(!egWeeks.length)wkCellsH='<td class="rn">-</td>';
       var ddCellsH=egDays.map(function(d){var v=(r[m1.key+'_daily']&&r[m1.key+'_daily'][d]!==undefined)?r[m1.key+'_daily'][d]:null;return '<td class="'+rc(v,m1.target,m1.goodHigh,m1.redAt)+'">'+fr(v)+'</td>';}).join('');
       if(!egDays.length)ddCellsH='<td class="rn">-</td>';
-      var wkCellsS=egWeeks.map(function(w,i){var v=wkValsS[i];return '<td class="'+rc(v,m2.target,m2.goodHigh,m2.redAt)+'"'+(v!==null?' title="'+w.range+' 均值（'+w.days.length+'天）"':'')+'>'+fr(v)+'</td>';}).join('');
+      var wkCellsS=egWeeks.map(function(w,i){var v=wkValsS[i];return '<td class="'+rc(v,m2.target,m2.goodHigh,m2.redAt)+'"'+(v!==null?' title="'+w.range+' Σ分子/Σ分母（'+w.days.length+'天）"':'')+'>'+fr(v)+'</td>';}).join('');
       if(!egWeeks.length)wkCellsS='<td class="rn">-</td>';
       var ddCellsS=egDays.map(function(d){var v=(r[m2.key+'_daily']&&r[m2.key+'_daily'][d]!==undefined)?r[m2.key+'_daily'][d]:null;return '<td class="'+rc(v,m2.target,m2.goodHigh,m2.redAt)+'">'+fr(v)+'</td>';}).join('');
       if(!egDays.length)ddCellsS='<td class="rn">-</td>';
