@@ -2750,7 +2750,7 @@ function buildFourRows(){
   if(METRIC_CFG.four.rows)return METRIC_CFG.four.rows;
   var map={};
   (typeof TAB2_ROWS!=='undefined'?TAB2_ROWS:[]).forEach(function(r){map[r.level+'|'+(r.name||'')+'|'+(r.city||'')]=r;});
-  var RK=['redlight_num','redlight_den','redlight_rate','redlight_daily','reverse_num','reverse_den','reverse_rate','reverse_daily'];
+  var RK=['redlight_num','redlight_den','redlight_rate','redlight_daily','redlight_dayNumDen','reverse_num','reverse_den','reverse_rate','reverse_daily','reverse_dayNumDen'];
   METRIC_CFG.four.rows=(TAB1_ROWS||[]).map(function(r){
     var m=map[r.level+'|'+(r.name||'')+'|'+(r.city||'')];
     if(m)RK.forEach(function(k){if(m[k]!==undefined)r[k]=m[k];});

@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-26 07:15:56",
+  "updated_at": "2026-09-26 07:17:16",
   "action_summary": {
     "total": 14,
     "ok": 11,
@@ -109,7 +109,7 @@ window.DATA_CENTER = {
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-09-26 07:13:21",
+            "mtime": "2026-09-26 07:17:05",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -541,7 +541,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-09-25 10:50:11",
             "max_age_hours": 26,
-            "age_hours": 20.4,
+            "age_hours": 20.5,
             "ok": true,
             "note": "",
             "fail_hits": [],
