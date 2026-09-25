@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-25 10:26:47",
+  "updated_at": "2026-09-25 10:28:22",
   "action_summary": {
     "total": 14,
     "ok": 8,
@@ -20,7 +20,7 @@ window.DATA_CENTER = {
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-25 10:26:44",
+        "data_mtime": "2026-09-25 10:28:19",
         "all_synced": false,
         "synced_count": 8,
         "missing_count": 5,
@@ -110,7 +110,7 @@ window.DATA_CENTER = {
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-09-25 10:26:46",
+            "mtime": "2026-09-25 10:28:21",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -279,7 +279,7 @@ window.DATA_CENTER = {
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-09-25 07:24:25",
             "max_age_hours": 30,
-            "age_hours": 3.0,
+            "age_hours": 3.1,
             "ok": true,
             "note": "早间自动化抓取",
             "fail_hits": [],
@@ -432,7 +432,7 @@ window.DATA_CENTER = {
           "在职骑手详情\\在职骑手详情.html",
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-25 10:26:44",
+        "data_mtime": "2026-09-25 10:28:19",
         "all_synced": false,
         "synced_count": 0,
         "missing_count": 1,
@@ -452,7 +452,7 @@ window.DATA_CENTER = {
             "latest": "_crawl_service.log",
             "mtime": "2026-09-22 10:54:40",
             "max_age_hours": 26,
-            "age_hours": 71.5,
+            "age_hours": 71.6,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -505,7 +505,7 @@ window.DATA_CENTER = {
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-09-25 10:26:45",
+        "data_mtime": "2026-09-25 10:28:19",
         "all_synced": false,
         "synced_count": 1,
         "missing_count": 0,
@@ -526,7 +526,7 @@ window.DATA_CENTER = {
           {
             "type": "V3内联数据",
             "latest": "v3_data.js",
-            "mtime": "2026-09-25 10:26:45",
+            "mtime": "2026-09-25 10:28:19",
             "synced": true
           },
           {
@@ -556,7 +556,7 @@ window.DATA_CENTER = {
             "latest": "premium_latest.json",
             "mtime": "2026-09-24 08:18:23",
             "max_age_hours": 26,
-            "age_hours": 26.1,
+            "age_hours": 26.2,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -567,7 +567,7 @@ window.DATA_CENTER = {
             "label": "V3内联数据",
             "path": "骑手保障补贴\\v3_data.js",
             "latest": "v3_data.js",
-            "mtime": "2026-09-25 10:26:45",
+            "mtime": "2026-09-25 10:28:19",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -582,7 +582,7 @@ window.DATA_CENTER = {
             "latest": "insurance_data.js",
             "mtime": "2026-09-22 07:24:23",
             "max_age_hours": 72,
-            "age_hours": 75.0,
+            "age_hours": 75.1,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -750,7 +750,7 @@ window.DATA_CENTER = {
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-09-25 10:26:46",
+        "data_mtime": "2026-09-25 10:28:21",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -761,7 +761,7 @@ window.DATA_CENTER = {
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-09-25 10:26:46",
+            "mtime": "2026-09-25 10:28:21",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -818,7 +818,7 @@ window.DATA_CENTER = {
           {
             "type": "交通安全data.js（归档源）",
             "latest": "data.js",
-            "mtime": "2026-09-25 10:26:44",
+            "mtime": "2026-09-25 10:28:19",
             "synced": true
           }
         ],
