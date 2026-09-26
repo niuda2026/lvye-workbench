@@ -3240,8 +3240,38 @@ async function loadData() {
             } catch(e) {}
         }));
 
+        // ★ 自动数据（build_weekly_auto.js 每日从工作台数据生成）：本地/公网均优先生效，失败回退原逻辑
+        let autoData = null;
+        try {
+            autoData = await new Promise((resolve) => {
+                let done = false;
+                const fin = (v) => { if (!done) { done = true; resolve(v || null); } };
+                const sc = document.createElement('script');
+                sc.src = 'data/auto_data.js?t=' + Date.now();
+                sc.onload = () => fin(window.XD_WEEKLY_AUTO);
+                sc.onerror = () => fin(null);
+                document.head.appendChild(sc);
+                setTimeout(() => fin(window.XD_WEEKLY_AUTO), 5000);
+            });
+        } catch(e) { autoData = null; }
+        const autoOK = !!(autoData && Array.isArray(autoData.safety) && autoData.safety.length > 0 &&
+                          Array.isArray(autoData.rating) && autoData.rating.length > 0);
+        if (autoOK) {
+            store.safety = autoData.safety;
+            store.rating = autoData.rating;
+            if (autoData.detail) {
+                ['redlight', 'reverse'].forEach(k => {
+                    if (Array.isArray(autoData.detail[k]) && autoData.detail[k].length > 1) store.detailData[k] = autoData.detail[k];
+                });
+            }
+            toast('已加载工作台自动数据 (' + (autoData.latest || '') + ')', 'success');
+        }
+
         // 优先从本地 JSON 文件加载最新数据（保证 data/ 下修正后的数据生效）
-        const files = {
+        const files = autoOK ? {
+            compliance: 'data/compliance.json',
+            accident: 'data/accident.json'
+        } : {
             safety: 'data/safety_rights.json',
             rating: 'data/station_rating.json',
             compliance: 'data/compliance.json',
@@ -3265,11 +3295,11 @@ async function loadData() {
             console.warn('磁盘 JSON 加载失败，回退到本地缓存:', e);
         }
 
-        // 仅当磁盘 JSON 加载失败时，才回退到 localStorage 旧数据
+        // 仅当磁盘 JSON 加载失败时，才回退到 localStorage 旧数据（自动数据已就位时保留 safety/rating）
         if (!diskLoaded && savedData) {
             const parsed = JSON.parse(savedData);
-            store.safety = parsed.safety || [];
-            store.rating = parsed.rating || [];
+            if (!autoOK) store.safety = parsed.safety || [];
+            if (!autoOK) store.rating = parsed.rating || [];
             store.compliance = parsed.compliance || [];
             store.accident = parsed.accident || [];
             // 兼容旧缓存：确保 safety 每行得分字段存在（缺失或无效时按源表公式实时补算）
