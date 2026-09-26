@@ -144,8 +144,8 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
 </style>
 <script src="../_libs/html2canvas-1.4.1.min.js"></script>
 
-<script src="data.js?09-25-25a5071f"></script>
-<script src="../护航服装/data_excluded.js?20260926"></script>
+<script src="data.js?09-25-e6291084"></script>
+<script src="../护航服装/data_excluded.js?20260927"></script>
 </head>
 <body>
 
@@ -327,7 +327,7 @@ function isProtectedSite(siteName){
   if(siteName.indexOf('瑞晨')>=0&&siteName.indexOf('南郊')>=0)return true;
   return false;
 }
-// 美团工服率得分（评分规则）：工装检核率<80%直接-5；≥80%按美团工装率(vn/vv)分段扣分
+// 美团工服率得分（评分规则）：工装检核率<80%直接-5；≥80%按美团工服率(vis_rate=Σvc/Σto)分段扣分
 function scoreVisRule(clothRate,visRate){
   if(clothRate===null||clothRate===undefined||isNaN(clothRate))return null;
   if(visRate===null||visRate===undefined||isNaN(visRate))return null;
@@ -957,11 +957,11 @@ function renderStation(tab){
       (tab==='clothing'
         ? '<td '+stdc(base,rc(r[m1.key+'_rate'],m1.target,m1.goodHigh,m1.redAt))+'>'+fr(r[m1.key+'_rate'])+'</td>'+
           '<td '+stdc(base+1,rc(r[m2.key+'_rate'],m2.target,m2.goodHigh))+'>'+fr(r[m2.key+'_rate'])+'</td>'+
-          '<td '+stdc(base+2)+'>'+scCell(scoreVisRule(r[m1.key+'_rate'],r.vis_rule_rate))+'</td>'
+          '<td '+stdc(base+2)+'>'+scCell(scoreVisRule(r[m1.key+'_rate'],r[m2.key+'_rate']))+'</td>'
         : tab==='rating'
         ? (function(){
             var cRow=(r.level==='total')?clothTotal:(clothMap?clothMap[(r.level||'')+'|'+(r.region||'')+'|'+(r.subregion||'')+'|'+(r.name||'')]:null);
-            var cScore=cRow?scoreVisRule(cRow.cloth_rate,cRow.vis_rule_rate):null;
+            var cScore=cRow?scoreVisRule(cRow.cloth_rate,cRow.vis_rate):null;
             var rlScore=scoreRedlight(r[m1.key+'_rate']);
             var rvScore=scoreReverse(r[m2.key+'_rate']);
             var totScore=(cScore===null&&rlScore===null&&rvScore===null)?null:((cScore||0)+(rlScore||0)+(rvScore||0));
@@ -974,7 +974,7 @@ function renderStation(tab){
             var clothCells=
               '<td class="'+rc(cRow?cRow.cloth_rate:null,80,true)+'">'+fr(cRow?cRow.cloth_rate:null)+'</td>'+
               '<td class="'+rc(cRow?cRow.vis_rate:null,92,true)+'">'+fr(cRow?cRow.vis_rate:null)+'</td>'+
-              '<td>'+scCell(cRow?scoreVisRule(cRow.cloth_rate,cRow.vis_rule_rate):null)+'</td>';
+              '<td>'+scCell(cRow?scoreVisRule(cRow.cloth_rate,cRow.vis_rate):null)+'</td>';
             return totalCell+clothCells+
               '<td class="'+rc(r[m1.key+'_rate'],m1.target,m1.goodHigh,m1.redAt)+'" style="min-width:90px">'+fr(r[m1.key+'_rate'])+'</td>'+
               '<td style="min-width:90px">'+scCell(scoreRedlight(r[m1.key+'_rate']))+'</td>'+

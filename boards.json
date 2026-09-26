@@ -149,6 +149,17 @@
           "file": "考核文件库/履约驾驶舱.html"
         }
       ]
+    },
+    {
+      "title": "安全周报",
+      "short": "周报",
+      "items": [
+        {
+          "key": "safety_weekly",
+          "label": "安全数据周报",
+          "file": "http://127.0.0.1:8421/index.html"
+        }
+      ]
     }
   ]
 }
