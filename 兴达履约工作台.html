@@ -284,7 +284,7 @@ const MENU = [
     group: '安全周报',
     icon: '<path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>',
     items: [
-      {key:'safety_weekly', label:'安全数据周报看板', file:'./安全周报看板/安全数据周报看板.html'}
+      {key:'safety_weekly', label:'安全数据周报看板', file:'https://xingda-safety-weekly-06391.app.workbuddy.host/', localFile:'./安全周报看板/安全数据周报看板.html', external:true}
     ]
   }
 ];
@@ -318,6 +318,23 @@ function loadBoard(key){
   const found = findItem(key);
   if (!found) return;
   const {group, item} = found;
+
+  // 独立公网站点：本地(file://)内嵌相对路径副本，公网(http)跳转到独立地址(新标签)，不与工作台网址合并
+  if (item.external) {
+    const isLocal = location.protocol === 'file:' || location.hostname === '';
+    document.getElementById('bcGroup').innerHTML = '<a href="#" onclick="showWelcome();return false;">首页</a> <span class="sep">/</span> ' + group + ' <span class="sep">/</span> ' + item.label;
+    document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
+    const active = document.querySelector('.menu-item[data-key="' + key + '"]');
+    if (active) active.classList.add('active');
+    if (isLocal) {
+      document.getElementById('welcome').classList.remove('show');
+      document.getElementById('mainFrame').style.display = 'block';
+      document.getElementById('mainFrame').src = item.localFile || item.file;
+    } else {
+      window.open(item.file, '_blank');
+    }
+    return;
+  }
 
   document.getElementById('welcome').classList.remove('show');
   document.getElementById('mainFrame').style.display = 'block';
