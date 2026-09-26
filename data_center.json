@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-26 09:32:27",
+  "updated_at": "2026-09-26 09:32:35",
   "action_summary": {
     "total": 14,
     "ok": 12,
@@ -18,7 +18,7 @@
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-26 09:32:24",
+        "data_mtime": "2026-09-26 09:32:32",
         "all_synced": true,
         "synced_count": 13,
         "missing_count": 0,
@@ -108,7 +108,7 @@
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-09-26 09:32:26",
+            "mtime": "2026-09-26 09:32:34",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -424,7 +424,7 @@
           "在职骑手详情\\在职骑手详情.html",
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-26 09:32:24",
+        "data_mtime": "2026-09-26 09:32:32",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -497,7 +497,7 @@
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-09-26 09:32:24",
+        "data_mtime": "2026-09-26 09:32:33",
         "all_synced": false,
         "synced_count": 3,
         "missing_count": 0,
@@ -518,7 +518,7 @@
           {
             "type": "V3内联数据",
             "latest": "v3_data.js",
-            "mtime": "2026-09-26 09:32:24",
+            "mtime": "2026-09-26 09:32:33",
             "synced": true
           },
           {
@@ -559,7 +559,7 @@
             "label": "V3内联数据",
             "path": "骑手保障补贴\\v3_data.js",
             "latest": "v3_data.js",
-            "mtime": "2026-09-26 09:32:24",
+            "mtime": "2026-09-26 09:32:33",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -742,7 +742,7 @@
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-09-26 09:32:26",
+        "data_mtime": "2026-09-26 09:32:34",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -753,7 +753,7 @@
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-09-26 09:32:26",
+            "mtime": "2026-09-26 09:32:34",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -810,7 +810,7 @@
           {
             "type": "交通安全data.js（归档源）",
             "latest": "data.js",
-            "mtime": "2026-09-26 09:32:24",
+            "mtime": "2026-09-26 09:32:32",
             "synced": true
           }
         ],
