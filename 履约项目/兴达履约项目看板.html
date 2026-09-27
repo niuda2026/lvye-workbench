@@ -181,6 +181,28 @@ table.dt thead{background:transparent}
 .btn-rules{padding:4px 14px;border-radius:4px;border:1.5px solid #0B4F8A;background:transparent;color:#0B4F8A;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .2s;margin-left:auto}
 .btn-rules:hover{background:#EAF2F9}
 .btn-rules + .btn-rules{margin-left:8px}
+.cft{display:inline-block;margin-left:4px;font-size:9px;color:#5a7a99;opacity:.55;cursor:pointer;vertical-align:middle;line-height:1;user-select:none}
+.cft:hover{opacity:1}
+.cft.on{color:#C00000;opacity:1;font-weight:700}
+.penalty-col-dd{position:fixed;z-index:99999;background:#ffffff;border:1px solid #d4dde6;border-radius:10px;box-shadow:0 10px 32px rgba(15,40,80,.22);padding:0;min-width:230px;max-width:300px;font-size:12px;color:#333;overflow:hidden}
+.penalty-col-dd .pdd-title{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px 8px;font-weight:700;font-size:13px;color:#1f2d3d}
+.penalty-col-dd .pdd-close{cursor:pointer;color:#8a97a6;font-size:16px;line-height:1;padding:1px 5px;border-radius:4px;font-weight:400}
+.penalty-col-dd .pdd-close:hover{color:#C00000;background:#f5f5f5}
+.penalty-col-dd .pdd-search{margin:0 12px 8px;display:flex;align-items:center;gap:6px;border:1px solid #d4dde6;border-radius:8px;padding:6px 10px;background:#fafbfc}
+.penalty-col-dd .pdd-search:focus-within{border-color:#4a90d9;background:#fff}
+.penalty-col-dd .pdd-search .pdd-ico{color:#4a90d9;font-size:12px}
+.penalty-col-dd .pdd-search input{border:none;outline:none;background:transparent;font-size:12px;flex:1;color:#333}
+.penalty-col-dd .pdd-search input::placeholder{color:#a5b3c2}
+.penalty-col-dd .pdd-bar{display:flex;justify-content:space-between;align-items:center;padding:0 12px 8px;gap:8px}
+.penalty-col-dd .pdd-all{cursor:pointer;border:1px solid #d4dde6;border-radius:6px;background:#f5f7fa;padding:3px 10px;font-size:12px;color:#333;white-space:nowrap}
+.penalty-col-dd .pdd-all:hover{background:#e8eef4;border-color:#b9c9d8}
+.penalty-col-dd .pdd-count{color:#8a97a6;font-size:11px;white-space:nowrap}
+.penalty-col-dd .pdd-list{max-height:240px;overflow-y:auto;border-top:1px solid #eef2f6}
+.penalty-col-dd .pdd-list label{display:flex;align-items:center;gap:8px;padding:7px 14px;cursor:pointer;white-space:nowrap}
+.penalty-col-dd .pdd-list label:hover{background:#f2f7fb}
+.penalty-col-dd .pdd-list .pdd-num{margin-left:auto;color:#8a97a6;font-size:11px;padding-left:12px}
+.penalty-col-dd .pdd-empty{color:#999;padding:10px 14px}
+.penalty-col-dd .pdd-foot{padding:7px 14px;border-top:1px solid #eef2f6;color:#8a97a6;font-size:11px;background:#fafbfc}
 
 
 /* ─── 服装标准化率 / 抽检不合格明细 ─── */
@@ -269,6 +291,23 @@ tr.cb-row-noup:hover td{background:#ffefef}
 .tc-actions .btn-save{background:#0B4F8A;color:#fff}
 .tc-actions .btn-save:hover{background:#0A3D6B}
 .tc-note{font-size:11px;color:#4F6E87;margin-top:10px;line-height:1.5}
+
+/* ===== 周度罚款/驳回数值点击明细（2026-09-27 新增，纯增量） ===== */
+.pw-link{cursor:pointer;border-bottom:1px dashed rgba(220,38,38,.5);padding-bottom:1px}
+.pw-link:hover{background:#fff3c4;border-bottom-style:solid}
+#pwDetailOverlay{position:fixed;inset:0;background:rgba(15,40,80,.45);display:none;align-items:flex-start;justify-content:center;z-index:999999;padding:34px 14px;font-family:inherit}
+.pwd-modal{background:#fff;border-radius:10px;max-width:1180px;width:100%;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(15,40,80,.35);overflow:hidden}
+.pwd-head{display:flex;justify-content:space-between;align-items:center;padding:11px 18px;background:#0B4F8A;color:#fff;font-weight:700;font-size:14px;flex:none}
+.pwd-close{cursor:pointer;font-size:20px;line-height:1;padding:0 6px;font-weight:400}
+.pwd-close:hover{color:#ffd966}
+.pwd-body{overflow:auto;padding:14px 16px}
+.pwd-body table{width:100%;border-collapse:collapse;font-size:12px}
+.pwd-body th{background:#EAF2F9;color:#0A3D6B;padding:6px 10px;border:1px solid #d4dde6;white-space:nowrap;position:sticky;top:0;z-index:2}
+.pwd-body td{padding:5px 10px;border:1px solid #e3edf7;white-space:nowrap;color:#1a2e45}
+.pwd-body tr:hover td{background:#f0f7ff}
+.pwd-empty{padding:28px;text-align:center;color:#8aa2b8}
+.pwd-sum{background:#f8fafc;font-weight:700}
+.pwd-sum td{color:#dc2626 !important}
 
 </style>
 </head>
@@ -2017,6 +2056,7 @@ function penaltyGetRows(kind) {
   if (!PENALTY_CACHE[kind]) {
     var filled = penaltyFill(penaltyGetRaw(kind));
     filled.sort(penaltyRowCmp);
+    for (var pi=0; pi<filled.length; pi++) filled[pi].__rid = pi;  // 行标识：供周度明细弹窗定位行
     PENALTY_CACHE[kind] = filled;
   }
   return PENALTY_CACHE[kind];
@@ -2129,6 +2169,7 @@ function penaltyMsCheck(kind, dim, val) {
   renderPenaltyTab(kind);
 }
 function penaltyClearFilter(kind) {
+  PENALTY_COL_FILTER[kind] = {};
   ['region','subregion','city','site'].forEach(function(d){
     var k = d + '-penalty-' + kind;
     if (sfState[k]) sfState[k] = [];
@@ -2142,7 +2183,7 @@ function penaltyClearFilter(kind) {
   renderPenaltyTab(kind);
 }
 
-function penaltyCell(r, col) {
+function penaltyCell(r, col, kind) {
   var v = r[col.key];
   if (col.pct) {
     if (v === '' || v === null || v === undefined || v === '-') return '<td class="rn">-</td>';
@@ -2152,11 +2193,33 @@ function penaltyCell(r, col) {
   }
   if (v === '' || v === null || v === undefined || v === '-') return '<td class="rn">-</td>';
   var n = parseFloat(v);
-  if (col.hl) {
-    if (n > 0) return '<td class="safety-hl">' + fr(n) + '</td>';
-    return '<td>' + fr(n) + '</td>';
-  }
-  return '<td>' + fr(n) + '</td>';
+  var cls = (col.hl && n > 0) ? 'safety-hl' : '';
+  var inner = fr(n);
+  var span = pwDetailSpan(kind, r, col, inner);
+  return (cls ? '<td class="' + cls + '">' : '<td>') + span + '</td>';
+}
+
+// ════════════════════════════════════════════════════════════════
+// ★ 周度罚款/驳回数值 → 点击弹出源数据明细（2026-09-27 新增，纯增量）
+//   对齐周报看板老明细表的 penaltyLink/showDetail 行为：
+//   明细源 = 周报看板 data/*.json（meeting_reject / inspection_detail /
+//   disinfect_data / equipment_detail / health_violation），本页按
+//   「/data/ → 同目录 data/ → http://127.0.0.1:8421/data/」顺序兜底拉取。
+//   仅周度(kind==='week')启用；月度/比率列/无值单元格不包链接，其余渲染一律不变。
+// ════════════════════════════════════════════════════════════════
+var PW_DETAIL_TYPE = {
+  '上周预计总罚款': 'total',
+  '上周驳回数': 'meeting', '上周罚款': 'meeting',
+  '上周自检驳回': 'inspection_self', '上周自检罚款': 'inspection_self',
+  '上周督导履约驳回': 'inspection_supervise', '上周督导履约罚款': 'inspection_supervise',
+  '标准化率不达标违约金额': 'disinfect', '虚假消毒数': 'disinfect', '虚假消毒罚款': 'disinfect',
+  '装备不合格数': 'equipment', '装备罚款': 'equipment',
+  '健康证处罚金额': 'health'
+};
+function pwDetailSpan(kind, r, col, inner) {
+  if (kind !== 'week' || !r || r.__rid === undefined) return inner;
+  if (!PW_DETAIL_TYPE[col.key]) return inner;
+  return '<span class="pw-link" title="点击查看源数据明细" onclick="pwShowDetail(event,\'' + kind + '\',' + r.__rid + ',\'' + col.key + '\')">' + inner + '</span>';
 }
 function penaltyCard(label, v, isPct, hl) {
   var txt;
@@ -2205,6 +2268,128 @@ function penaltySummaryRow(kind) {
   return res;
 }
 
+// ===== 列筛选（表头小三角）：PENALTY_COL_FILTER[kind][colKey] = 选中的显示值数组 =====
+var PENALTY_COL_FILTER = { week: {}, month: {} };
+function penaltyColDef(key) {
+  for (var i=0;i<PENALTY_COLS.length;i++) if (PENALTY_COLS[i].key === key) return PENALTY_COLS[i];
+  return null;
+}
+function penaltyColDisp(key, v) {
+  if (v === '' || v === null || v === undefined || v === '-') return '-';
+  var col = penaltyColDef(key);
+  if (col && col.pct) return (parseFloat(v) * 100).toFixed(2) + '%';
+  return String(fr(parseFloat(v)));
+}
+function penaltyColSortNum(disp) {
+  if (disp === '-' || disp === '' || disp === null || disp === undefined) return -Infinity;
+  var n = parseFloat(String(disp).replace(/,/g, ''));
+  return isNaN(n) ? -Infinity : n;
+}
+function penaltyColFilterClick(ev, kind, key) {
+  if (ev) ev.stopPropagation();
+  var old = document.getElementById('penaltyColDD');
+  if (old) {
+    var same = (old.dataset.key === key && old.dataset.kind === kind);
+    old.remove();
+    if (same) return;
+  }
+  var rows = penaltyGetRows(kind).filter(function(r){ return r.__level !== 'company'; });
+  var cntMap = {};
+  rows.forEach(function(r){
+    var d = penaltyColDisp(key, r[key]);
+    cntMap[d] = (cntMap[d] || 0) + 1;
+  });
+  var list = Object.keys(cntMap);
+  list.sort(function(a,b){
+    var na = penaltyColSortNum(a), nb = penaltyColSortNum(b);
+    if (na === nb) return 0;
+    if (na === -Infinity) return 1;
+    if (nb === -Infinity) return -1;
+    return nb - na;
+  });
+  var fm = PENALTY_COL_FILTER[kind] || {};
+  var sel = fm[key] || [];
+  var col = penaltyColDef(key);
+  var title = col ? col.label : key;
+  var html = '<div class="pdd-title"><span>筛选 · ' + escHtml(title) + '</span><span class="pdd-close" title="关闭" onclick="closePenaltyColDd()">×</span></div>' +
+    '<div class="pdd-search"><span class="pdd-ico">🔍</span><input type="text" placeholder="搜索本列取值..." oninput="penaltyColDdSearch(this.value)"></div>' +
+    '<div class="pdd-bar"><span class="pdd-all" onclick="penaltyColDdAll(event,\'' + kind + '\',\'' + key + '\')">全选(不限)</span>' +
+    '<span class="pdd-count" id="pddCount"></span></div><div class="pdd-list">';
+  list.forEach(function(d){
+    html += '<label data-v="' + escHtml(d) + '"><input type="checkbox" ' + (sel.indexOf(d) >= 0 ? 'checked' : '') +
+      ' onchange="penaltyColDdChange(\'' + kind + '\',\'' + key + '\',\'' + d + '\',this.checked)"> ' + escHtml(d) +
+      '<span class="pdd-num">' + cntMap[d] + '</span></label>';
+  });
+  if (!list.length) html += '<div class="pdd-empty">无可筛选项</div>';
+  html += '</div><div class="pdd-foot">勾选即生效；点「全选(不限)」清除本列筛选</div>';
+  var dd = document.createElement('div');
+  dd.id = 'penaltyColDD';
+  dd.className = 'penalty-col-dd';
+  dd.dataset.key = key; dd.dataset.kind = kind;
+  dd.innerHTML = html;
+  dd.onclick = function(e){ e.stopPropagation(); };
+  document.body.appendChild(dd);
+  penaltyColDdUpdateCount(kind, key);
+  var rect = (ev.currentTarget || ev.target).getBoundingClientRect();
+  var left = rect.left - 40;
+  if (left < 8) left = 8;
+  if (left + 260 > window.innerWidth) left = window.innerWidth - 268;
+  dd.style.left = left + 'px';
+  var top = rect.bottom + 4;
+  if (top + dd.offsetHeight > window.innerHeight - 8) top = Math.max(8, rect.top - dd.offsetHeight - 4);
+  dd.style.top = top + 'px';
+  var inp = dd.querySelector('.pdd-search input');
+  if (inp) inp.focus();
+}
+function penaltyColDdUpdateCount(kind, key) {
+  var el = document.getElementById('pddCount');
+  if (!el) return;
+  var dd = document.getElementById('penaltyColDD');
+  var total = dd ? dd.querySelectorAll('.pdd-list label').length : 0;
+  var st = (PENALTY_COL_FILTER[kind] || {})[key] || [];
+  el.textContent = '已选 ' + st.length + ' 项 / 共 ' + total + ' 项';
+}
+function penaltyColDdSearch(q) {
+  var dd = document.getElementById('penaltyColDD');
+  if (!dd) return;
+  q = String(q || '').trim().toLowerCase();
+  var labels = dd.querySelectorAll('.pdd-list label');
+  var visible = 0;
+  labels.forEach(function(lb){
+    var hit = !q || lb.textContent.toLowerCase().indexOf(q) >= 0;
+    lb.style.display = hit ? '' : 'none';
+    if (hit) visible++;
+  });
+  var empty = dd.querySelector('.pdd-empty');
+  if (empty) empty.style.display = visible ? 'none' : '';
+}
+function penaltyColDdAll(ev, kind, key) {
+  if (ev) ev.stopPropagation();
+  if (PENALTY_COL_FILTER[kind]) PENALTY_COL_FILTER[kind][key] = [];
+  var dd = document.getElementById('penaltyColDD');
+  if (dd) dd.querySelectorAll('.pdd-list input[type=checkbox]').forEach(function(c){ c.checked = false; });
+  penaltyColDdUpdateCount(kind, key);
+  renderPenaltyTab(kind);
+}
+function penaltyColDdChange(kind, key, val, checked) {
+  if (!PENALTY_COL_FILTER[kind]) PENALTY_COL_FILTER[kind] = {};
+  var st = PENALTY_COL_FILTER[kind][key];
+  if (!st) st = PENALTY_COL_FILTER[kind][key] = [];
+  var i = st.indexOf(val);
+  if (checked && i < 0) st.push(val);
+  if (!checked && i >= 0) st.splice(i,1);
+  penaltyColDdUpdateCount(kind, key);
+  renderPenaltyTab(kind);
+}
+function penaltyColDdClear(ev, kind, key) {
+  if (ev) ev.stopPropagation();
+  if (PENALTY_COL_FILTER[kind]) PENALTY_COL_FILTER[kind][key] = [];
+  closePenaltyColDd();
+  renderPenaltyTab(kind);
+}
+function closePenaltyColDd() { var dd = document.getElementById('penaltyColDD'); if (dd) dd.remove(); }
+document.addEventListener('click', function(){ closePenaltyColDd(); });
+
 function renderPenaltyTab(kind) {
   var rowsAll = penaltyGetRows(kind);
   var tbodyId = 'tbody-penalty-' + kind;
@@ -2222,17 +2407,29 @@ function renderPenaltyTab(kind) {
   var subState = sfState['subregion-penalty-' + kind] || [];
   var cityState = sfState['city-penalty-' + kind] || [];
   var siteState = sfState['site-penalty-' + kind] || [];
+  var colF = PENALTY_COL_FILTER[kind] || {};
   function passFilter(r) {
     // 大区/分区 筛选作用于所有行（含汇总行）
     if (regionState.length && regionState.indexOf(r.大区) < 0) return false;
     if (subState.length && subState.indexOf(r.分区) < 0) return false;
-    // 城市/站点 筛选：总公司/分区汇总行始终展示（便于看层级合计），仅过滤城市/站点行
-    if (r.__level === 'company' || r.__level === 'area') return true;
+    // 总公司行始终展示；列筛选作用于 分区/城市/站点 行
+    if (r.__level === 'company') return true;
+    for (var ck in colF) {
+      var selCk = colF[ck];
+      if (selCk && selCk.length && selCk.indexOf(penaltyColDisp(ck, r[ck])) < 0) return false;
+    }
+    // 城市/站点 筛选：分区汇总行始终展示（便于看层级合计），仅过滤城市/站点行
+    if (r.__level === 'area') return true;
     if (cityState.length && cityState.indexOf(r.__城市) < 0) return false;
     if (siteState.length && siteState.indexOf(r.__站点) < 0) return false;
     return true;
   }
   var groups = penaltyGroups(kind);
+  function tri(key) {
+    var f = (PENALTY_COL_FILTER[kind] || {})[key];
+    var on = f && f.length;
+    return '<span class="cft' + (on ? ' on' : '') + '" title="点击筛选该列数值" onclick="penaltyColFilterClick(event,\'' + kind + '\',\'' + key + '\')">▼</span>';
+  }
   // 每个大项的小项表头沿用同一颜色
   var colColors = [];
   for (var g=0; g<groups.length; g++) for (var s=0; s<groups[g].span; s++) colColors.push(groups[g].color);
@@ -2241,7 +2438,7 @@ function renderPenaltyTab(kind) {
     '<th class="sticky-col" rowspan="2" style="left:80px;min-width:80px">区域</th>' +
     '<th class="sticky-col" rowspan="2" style="left:160px;min-width:70px">城市</th>' +
     '<th class="sticky-col sticky-last" rowspan="2" style="left:230px;min-width:150px">站点名称</th>' +
-    '<th rowspan="2" style="background:#8FB8DE;color:#333333;font-weight:700;white-space:nowrap">上周预计总罚款</th>';
+    '<th rowspan="2" style="background:#8FB8DE;color:#333333;font-weight:700;white-space:nowrap">上周预计总罚款' + tri('上周预计总罚款') + '</th>';
   for (var g=0;g<groups.length;g++) {
     var grpHtml = groups[g].label;
     if (groups[g].dateKey) {
@@ -2250,7 +2447,7 @@ function renderPenaltyTab(kind) {
     thead += '<th colspan="' + groups[g].span + '" style="background:' + groups[g].color + ';color:#333333;font-weight:700;white-space:nowrap">' + grpHtml + '</th>';
   }
   thead += '</tr><tr>';
-  for (var c=0;c<PENALTY_COLS.length;c++) thead += '<th style="background:' + colColors[c] + ';color:#333333">' + PENALTY_COLS[c].label + '</th>';
+  for (var c=0;c<PENALTY_COLS.length;c++) thead += '<th style="background:' + colColors[c] + ';color:#333333">' + PENALTY_COLS[c].label + tri(PENALTY_COLS[c].key) + '</th>';
   thead += '</tr>';
   document.getElementById(theadId).innerHTML = thead;
 
@@ -2270,8 +2467,8 @@ function renderPenaltyTab(kind) {
     rowsHtml += '<td class="sticky-col" style="left:80px;min-width:80px">' + escHtml(r.分区 || '') + '</td>';
     rowsHtml += '<td class="sticky-col" style="left:160px;min-width:70px">' + escHtml(r.__城市 || '') + '</td>';
     rowsHtml += '<td class="sticky-col name-cell" style="left:230px;min-width:150px">' + nameCell + '</td>';
-    rowsHtml += penaltyCell(r, {key:'上周预计总罚款', money:true, hl:true});
-    for (var c=0;c<PENALTY_COLS.length;c++) rowsHtml += penaltyCell(r, PENALTY_COLS[c]);
+    rowsHtml += penaltyCell(r, {key:'上周预计总罚款', money:true, hl:true}, kind);
+    for (var c=0;c<PENALTY_COLS.length;c++) rowsHtml += penaltyCell(r, PENALTY_COLS[c], kind);
     rowsHtml += '</tr>';
   }
   document.getElementById(tbodyId).innerHTML = rowsHtml;
@@ -5339,6 +5536,10 @@ function closeCheckRulesModal() {
 </div>
 </details>
 
+<div style="font-weight:700;color:#c0392b;margin:8px 0 3px;">三、例外考核（暂不计入处罚考核）</div>
+<div style="margin:0 0 6px;padding-left:8px;color:#c0392b;font-size:12px;">
+<span class="highlight" style="background:#fdecea;">【联盟签约】站点</span> 与 <span class="highlight" style="background:#fdecea;">蓝海站</span> 暂不计入餐箱消毒处罚考核：其标准化率不达标违约金额、虚假消毒罚款、不安全违禁物违约金额均不纳入周度/月度总罚款统计（其他考核项仍正常计入）。
+</div>
 <div style="margin-top:10px;padding-top:8px;border-top:1px dashed #ccc;font-size:12px;color:#666;">
 <b>说明：</b>以上内容来自餐箱消毒看板考核说明与违约金说明，具体执行以最新合作商管理办法为准。
 </div>
@@ -5534,7 +5735,7 @@ function closeCheckRulesModal() {
 <div style="font-weight:700;color:#0B4F8A;margin:6px 0 4px;">三、自检机制违约说明</div>
 <ul style="margin:0 0 8px;padding-left:20px;">
 <li><b>基础检核（日常提交）：</b>未按要求有效提交即1日提交不合规，<span class="highlight">300元/天</span>。</li>
-<li><b>质量检核/自检整改不合格：</b>存在1项错误即1项次不合规，<span class="highlight">100元/项/次</span>。</li>
+<li><b>质量检核/自检整改不合格：</b>按驳回项数量计罚，存在1项错误即1项次不合规，<span class="highlight">100元/项/次</span>；若<span class="highlight">整改审核结果为整改不通过/整改驳回</span>，双倍处罚，即 <span class="highlight">200元/项/次</span>。（⚠️ 例外：质检原因=<b>健康证回执单过期/证件不符</b> 的驳回，自检与督导均按第一条「健康证」标准 <span class="highlight">N元/人次</span> 按人数分档计罚）</li>
 <li><b>虚假行为（虚假检核/整改/报备/建站）：</b><span class="highlight">2000元/站/次</span>。</li>
 <li><b>延期建站：</b>未按规定时间完成标准化建设并提交审核，<span class="highlight">5000元/月/站</span>。</li>
 </ul>
@@ -5650,5 +5851,171 @@ function closeCheckRulesModal() {
     </div>
   </div>
 </div>
+<script>
+// ════════════════════════════════════════════════════════════════
+// ★ 周度罚款/驳回数值 → 点击弹出源数据明细（2026-09-27 新增，纯增量模块）
+//   行为对齐周报看板老明细表 showDetail/totalFineLink；源数据 = 周报看板 data/*.json
+//   （meeting_reject / inspection_detail / disinfect_data / equipment_detail / health_violation）。
+//   取数路径依次兜底：/data/<f>（嵌入 8421 时同源直连）→ data/<f> → http://127.0.0.1:8421/data/<f>。
+//   只读取，不改动任何看板既有渲染/筛选/导出逻辑。
+// ════════════════════════════════════════════════════════════════
+var PW_DETAIL_DATA = null;
+var PW_DETAIL_FILES = {
+  meeting: 'meeting_reject.json',
+  inspection: 'inspection_detail.json',
+  disinfect: 'disinfect_data.json',
+  equipmentDetail: 'equipment_detail.json',
+  health: 'health_violation.json'
+};
+function pwS(v) { return String(v == null ? '' : v).trim(); }
+function pwEq(a, b) { a = pwS(a); b = pwS(b); return !!a && !!b && (a === b || a.indexOf(b) !== -1 || b.indexOf(a) !== -1); }
+function pwEsc(s) { return escHtml(s); }
+function pwMoney(v) { var n = parseFloat(v); return '¥' + (isNaN(n) ? 0 : n).toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function pwNum(v) { var n = parseFloat(v); return isNaN(n) ? '-' : n.toLocaleString('zh-CN'); }
+function pwPct(v) { var n = parseFloat(v); return isNaN(n) ? '-' : (n * 100).toFixed(2) + '%'; }
+
+function pwFetchFirst(urls, cb) {
+  var i = 0;
+  (function next() {
+    if (i >= urls.length) { cb(null); return; }
+    var u = urls[i++];
+    try {
+      fetch(u, { cache: 'no-store' }).then(function(r) {
+        if (!r.ok) throw new Error('http ' + r.status);
+        return r.json();
+      }).then(function(j) { cb(Object.prototype.toString.call(j) === '[object Array]' ? j : null); })
+        .catch(function() { next(); });
+    } catch (e) { next(); }
+  })();
+}
+function pwEnsureDetail(cb) {
+  if (PW_DETAIL_DATA) { cb(PW_DETAIL_DATA); return; }
+  var out = {}, keys = Object.keys(PW_DETAIL_FILES), left = keys.length;
+  keys.forEach(function(k) {
+    var f = PW_DETAIL_FILES[k];
+    pwFetchFirst(['/data/' + f, 'data/' + f, 'http://127.0.0.1:8421/data/' + f], function(rows) {
+      out[k] = rows || [];
+      if (--left === 0) { PW_DETAIL_DATA = out; cb(out); }
+    });
+  });
+}
+function pwDetailOverlay() {
+  var ov = document.getElementById('pwDetailOverlay');
+  if (!ov) {
+    ov = document.createElement('div');
+    ov.id = 'pwDetailOverlay';
+    ov.innerHTML = '<div class="pwd-modal"><div class="pwd-head"><span id="pwdTitle">明细数据</span><span class="pwd-close" title="关闭" onclick="pwCloseDetail()">×</span></div><div class="pwd-body" id="pwdBody"></div></div>';
+    ov.onclick = function(e) { if (e.target === ov) pwCloseDetail(); };
+    document.body.appendChild(ov);
+  }
+  return ov;
+}
+function pwCloseDetail() { var ov = document.getElementById('pwDetailOverlay'); if (ov) ov.style.display = 'none'; }
+function pwShowDetail(ev, kind, rid, colKey) {
+  if (ev) { if (ev.stopPropagation) ev.stopPropagation(); if (ev.preventDefault) ev.preventDefault(); }
+  var row = penaltyGetRows(kind)[rid];
+  if (!row) return;
+  var type = PW_DETAIL_TYPE[colKey] || 'total';
+  var ov = pwDetailOverlay();
+  var bodyEl = document.getElementById('pwdBody');
+  document.getElementById('pwdTitle').textContent = '源数据明细加载中…';
+  bodyEl.innerHTML = '<div class="pwd-empty">明细数据加载中…</div>';
+  ov.style.display = 'flex';
+  var areaKey = pwS(row.区域);
+  var level = row.__level === 'site' ? 'station' : row.__level;   // company/city/area 原样
+  if (type === 'total') { pwRenderTotal(row); return; }
+  pwEnsureDetail(function(D) {
+    try { pwRenderTyped(type, level, areaKey, D); }
+    catch (e) {
+      document.getElementById('pwdBody').innerHTML = '<div class="pwd-empty">明细渲染出错：' + pwEsc(e && e.message) + '</div>';
+    }
+  });
+}
+function pwMatchRow(r, i, level, areaKey, fields) {
+  if (i === 0) return false;
+  if (level === 'company') return true;   // 总商行：展示全部源明细
+  var vals = {};
+  for (var k in fields) vals[k] = pwS(r[fields[k]]);
+  var hit;
+  if (level === 'station') hit = pwEq(vals.station, areaKey);
+  else if (level === 'city') hit = pwEq(vals.city, areaKey);
+  else if (level === 'area') hit = pwEq(vals.region, areaKey);
+  else hit = pwEq(vals.station, areaKey) || pwEq(vals.region, areaKey) || pwEq(vals.city, areaKey);
+  return hit;
+}
+function pwTable(headers, rowsHtml) {
+  return '<table><thead><tr>' + headers.map(function(h) { return '<th>' + h + '</th>'; }).join('') + '</tr></thead><tbody>' + rowsHtml + '</tbody></table>';
+}
+function pwNoRec(msg) { return '<div class="pwd-empty">' + msg + '</div>'; }
+function pwRenderTyped(type, level, areaKey, D) {
+  var titleMap = {
+    meeting: '早会驳回明细', inspection_self: '自检驳回明细', inspection_supervise: '督导驳回明细',
+    disinfect: '餐箱消毒违约明细', equipment: '装备违规明细', health: '健康证违规报表（T-1月）'
+  };
+  document.getElementById('pwdTitle').textContent = titleMap[type] + ' · ' + (areaKey || '全部');
+  var html = '';
+  if (type === 'meeting') {
+    var rows = (D.meeting || []).filter(function(r, i) { return pwMatchRow(r, i, level, areaKey, { station: 7, region: 11, city: 12 }); });
+    html = rows.length
+      ? pwTable(['站点', '城市', '区域', '早会时间', '不通过项目', '不通过标签', '罚款', '出勤率'],
+          rows.map(function(r) { return '<tr><td>' + pwEsc(r[7]) + '</td><td>' + pwEsc(r[12]) + '</td><td>' + pwEsc(r[11]) + '</td><td>' + pwEsc(r[4]) + '</td><td>' + pwEsc(r[17]) + '</td><td>' + pwEsc(r[18]) + '</td><td>' + pwMoney(r[0]) + '</td><td>' + pwEsc(r[20]) + '</td></tr>'; }).join(''))
+      : pwNoRec('该区域暂无早会驳回记录');
+  } else if (type === 'inspection_self' || type === 'inspection_supervise') {
+    var rows2 = (D.inspection || []).filter(function(r, i) {
+      if (i === 0) return false;
+      var base = pwMatchRow(r, i, level, areaKey, { station: 7, region: 2, city: 4 });
+      if (!base) return false;
+      var role = pwS(r[10]), result = pwS(r[12]);
+      if (type === 'inspection_self') return role === '站长' && result === '驳回';
+      return (role === '区域督导' || role === '总部员工') && result === '驳回';
+    });
+    html = rows2.length
+      ? pwTable(['站点', '城市', '区域', '岗位', '检核子项', '结果', '质检原因', '罚款'],
+          rows2.map(function(r) { return '<tr><td>' + pwEsc(r[7]) + '</td><td>' + pwEsc(r[4]) + '</td><td>' + pwEsc(r[2]) + '</td><td>' + pwEsc(r[10]) + '</td><td>' + pwEsc(r[11]) + '</td><td>' + pwEsc(r[12]) + '</td><td>' + pwEsc(r[20]) + (r[21] ? '（' + pwEsc(r[21]) + '）' : '') + '</td><td>' + pwMoney(type === 'inspection_self' ? r[24] : r[25]) + '</td></tr>'; }).join(''))
+      : pwNoRec('该区域暂无' + (type === 'inspection_self' ? '自检' : '督导') + '驳回记录');
+  } else if (type === 'disinfect') {
+    // 源文件 12 列：0站点 2城市 3区域 5不达标挡位 7不安全违禁物违约金额 8标准化率 9标准化率不达标违约金额 10虚假消毒数 11不安全违禁物数
+    var rows3 = (D.disinfect || []).filter(function(r, i) { return pwMatchRow(r, i, level, areaKey, { station: 0, region: 3, city: 2 }); });
+    html = rows3.length
+      ? pwTable(['站点', '城市', '区域', '标准化率', '不达标档位', '不达标罚款', '虚假消毒数', '不安全违禁物违约金额'],
+          rows3.map(function(r) { return '<tr><td>' + pwEsc(r[0]) + '</td><td>' + pwEsc(r[2]) + '</td><td>' + pwEsc(r[3]) + '</td><td>' + pwPct(r[8]) + '</td><td>' + pwEsc(r[5]) + '</td><td>' + pwMoney(r[9]) + '</td><td>' + pwNum(r[10]) + '</td><td>' + pwMoney(r[7]) + '</td></tr>'; }).join(''))
+      : pwNoRec('该区域暂无餐箱消毒违约记录');
+  } else if (type === 'equipment') {
+    var rows4 = (D.equipmentDetail || []).filter(function(r, i) { return pwMatchRow(r, i, level, areaKey, { station: 12, region: 3, city: 7 }); });
+    html = rows4.length
+      ? pwTable(['天', '安全大区', '虚拟大区', '虚拟区域', '总加盟商', '加盟商', '配送城市id', '配送城市', '运力线id', '运力线', '配送组', '站点id', '站点名称', '骑手id', '骑手', '服装检查', '服装标签', '头盔标签', '餐箱标签', '服装合格', '头盔合格', '餐箱合格', '申诉通过', '标准化率', '罚款'],
+          rows4.map(function(r) { return '<tr>' + r.slice(0, 24).map(function(c) { return '<td>' + pwEsc(c) + '</td>'; }).join('') + '<td>' + pwMoney(r[24]) + '</td></tr>'; }).join(''))
+      : pwNoRec('该区域暂无装备不合规明细记录');
+  } else if (type === 'health') {
+    var rows5 = (D.health || []).filter(function(r, i) { return pwMatchRow(r, i, level, areaKey, { station: 4, region: 2, city: 2 }); });
+    html = rows5.length
+      ? pwTable(['日期', '区域名称', '站点名称', '骑手姓名', '违规类型', '处罚金额'],
+          rows5.map(function(r) { return '<tr><td>' + pwEsc(r[0]) + '</td><td>' + pwEsc(r[2]) + '</td><td>' + pwEsc(r[4]) + '</td><td>' + pwEsc(r[6]) + '</td><td>' + pwEsc(r[8]) + '</td><td>' + pwMoney(r[10]) + '</td></tr>'; }).join(''))
+      : pwNoRec('该区域暂无健康证违规记录');
+  }
+  document.getElementById('pwdBody').innerHTML = html;
+}
+function pwRenderTotal(row) {
+  document.getElementById('pwdTitle').textContent = '上周预计总罚款明细 · ' + pwS(row.区域);
+  var items = [
+    { label: '早会罚款', val: row['上周罚款'] },
+    { label: '自检罚款', val: row['上周自检罚款'] },
+    { label: '督导罚款', val: row['上周督导履约罚款'] },
+    { label: '标准化不达标罚款', val: row['标准化率不达标违约金额'] },
+    { label: '虚假消毒罚款', val: row['虚假消毒罚款'] },
+    { label: '装备罚款', val: row['装备罚款'] },
+    { label: '健康证处罚金额', val: row['健康证处罚金额'] }
+  ];
+  var total = 0, rowsHtml = '';
+  items.forEach(function(it) {
+    var n = parseFloat(it.val) || 0;
+    total += n;
+    var color = n > 0 ? (n >= 2000 ? '#dc2626' : n >= 500 ? '#d97706' : '#059669') : '#94a3b8';
+    rowsHtml += '<tr><td>' + it.label + '</td><td style="text-align:right;font-weight:600;color:' + color + '">' + (n > 0 ? pwMoney(n) : '-') + '</td></tr>';
+  });
+  rowsHtml += '<tr class="pwd-sum"><td>合计</td><td style="text-align:right">' + pwMoney(total) + '</td></tr>';
+  document.getElementById('pwdBody').innerHTML = pwTable(['罚款项目', '金额'], rowsHtml);
+}
+</script>
 </body>
 </html>
