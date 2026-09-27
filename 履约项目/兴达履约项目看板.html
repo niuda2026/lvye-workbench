@@ -180,6 +180,7 @@ table.dt thead{background:transparent}
 /* 审核规则按钮 */
 .btn-rules{padding:4px 14px;border-radius:4px;border:1.5px solid #0B4F8A;background:transparent;color:#0B4F8A;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .2s;margin-left:auto}
 .btn-rules:hover{background:#EAF2F9}
+.btn-rules + .btn-rules{margin-left:8px}
 
 
 /* ─── 服装标准化率 / 抽检不合格明细 ─── */
@@ -411,6 +412,10 @@ tr.cb-row-noup:hover td{background:#ffefef}
       <button class="lv-btn active" id="lv-btn-site-pw" onclick="togglePenaltyView('site','week')">站点行</button>
       <span class="sub-tab-sep"></span>
       <button class="lv-btn-reset" onclick="resetPenaltyView('week')">全部显示</button>
+      <button class="btn-rules" onclick="openRulesModal()">早会审核规则</button>
+      <button class="btn-rules" onclick="openBoxRulesModal()">餐箱消毒规则</button>
+      <button class="btn-rules" onclick="openEquipRulesModal()">骑手装备处罚规则</button>
+      <button class="btn-rules" onclick="openCheckRulesModal()">站点检查管理规则</button>
     </div>
     <div class="filter-bar" id="filter-bar-penalty-week">
       <label>大区</label><div class="ms-wrap" id="ms-region-penalty-week"><div class="ms-btn" onclick="toggleMs('region-penalty-week')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
@@ -5088,6 +5093,12 @@ function openEquipRulesModal() {
 function closeEquipRulesModal() {
   document.getElementById('equipRulesModal').classList.remove('show');
 }
+function openCheckRulesModal() {
+  document.getElementById('checkRulesModal').classList.add('show');
+}
+function closeCheckRulesModal() {
+  document.getElementById('checkRulesModal').classList.remove('show');
+}
 </script>
 
 <!-- ─── 早会审核规则弹窗 ─── -->
@@ -5492,6 +5503,89 @@ function closeEquipRulesModal() {
 <li><b>虚假申诉：</b>当月同一站点发生1次虚假申诉，按 <span class="highlight">1500元/项/次</span> 承担违约金；超过2次（含），按 <span class="highlight">2000元/项/次</span> 承担。</li>
 </ul>
 <div style="margin-top:8px;padding-top:8px;border-top:1px dashed #e0e0e0;"><b>总结：</b>请务必确保骑手装备合规，特别是头盔、工服和餐箱。SKA品牌的处罚标准更高，需重点关注。</div>
+</div>
+</div>
+</div>
+<!-- ─── 站点检查管理规则弹窗（合作商标准化检查管理办法-2025年1月） ─── -->
+<div class="modal-overlay" id="checkRulesModal" onclick="if(event.target===this)closeCheckRulesModal()">
+<div class="modal-content">
+<div class="modal-header">
+<span class="modal-title">合作商站点检查管理规则（2025年1月）</span>
+<button class="modal-close" onclick="closeCheckRulesModal()">&times;</button>
+</div>
+<div class="modal-body" style="max-height:70vh;overflow-y:auto;">
+<div style="font-weight:700;color:#0B4F8A;margin:6px 0 4px;">一、线下站点检核处罚（整改期4天，整改不达标承担双倍违约金）</div>
+<ul style="margin:0 0 8px;padding-left:20px;">
+<li><b>健康证：</b>证件不符 <span class="highlight">N元/人/次</span>（人数≤4时 N=300；4＜人数≤9时 N=400；人数＞9时 N=500）；<b>证件虚假</b>：人数=1时 <span class="highlight">500元/人/次</span>，人数≥2时 <span class="highlight">1000元/人/次</span>。</li>
+<li><b>200元/项/次：</b>标准站建设、视频监控、流媒体、站点环境、门头/灯箱、看板海报、充电区信息标识、宿舍信息标识、形象装备、内容交流。</li>
+<li><b>300元/项/次：</b>站点用电、安全通道、充电区选址、充电区悬挂式灭火器、宿舍毒面具。</li>
+<li><b>500元/项/次：</b>手提式灭火器、站点烟感。</li>
+<li><b>1000元/项/次：</b>大功率电器、高危火源。</li>
+<li><b>2000元/项/次：</b>易燃易爆物品、电瓶/充电（非充电区存放电池/私拉线路充电）。</li>
+<li><b>安全台账：</b>300元/项/次；虚假行为 <span class="highlight">2000元/项/次</span>。</li>
+<li><b>管制刀具：</b>按《合作商安全管理规范》单独问责。</li>
+</ul>
+<div style="font-weight:700;color:#0B4F8A;margin:6px 0 4px;">二、线上视频检核处罚（整改期2天）</div>
+<ul style="margin:0 0 8px;padding-left:20px;">
+<li><b>200元/项/次：</b>账号绑定、视频在线、覆盖范围（可视区域达80%）、站点经营。</li>
+<li><b>故意调整/遮挡监控行为：</b><span class="highlight">1000元/次</span>；<b>站点消防：</b><span class="highlight">1000元/项/次</span>；<b>电池充电：</b><span class="highlight">2000元/人/次</span>。</li>
+<li>视频不在线需第一时间排查恢复；因停电断网致不在线，可走异常报备予顶预备。</li>
+</ul>
+<div style="font-weight:700;color:#0B4F8A;margin:6px 0 4px;">三、自检机制违约说明</div>
+<ul style="margin:0 0 8px;padding-left:20px;">
+<li><b>基础检核（日常提交）：</b>未按要求有效提交即1日提交不合规，<span class="highlight">300元/天</span>。</li>
+<li><b>质量检核/自检整改不合格：</b>存在1项错误即1项次不合规，<span class="highlight">100元/项/次</span>。</li>
+<li><b>虚假行为（虚假检核/整改/报备/建站）：</b><span class="highlight">2000元/站/次</span>。</li>
+<li><b>延期建站：</b>未按规定时间完成标准化建设并提交审核，<span class="highlight">5000元/月/站</span>。</li>
+</ul>
+<div style="font-weight:700;color:#0B4F8A;margin:6px 0 4px;">四、物防设备管理违规（烟感/监控绑定，违约金累计计算）</div>
+<ul style="margin:0 0 8px;padding-left:20px;">
+<li><b>烟感绑定不规范：</b><span class="highlight">500元/次</span> × 当月出现次数。</li>
+<li><b>烟感紧急联系人异常：</b><span class="highlight">500元/次</span> × 异常站点出现次数。</li>
+<li><b>视频监控绑定不规范：</b><span class="highlight">500元/次</span> × 当月出现次数。</li>
+<li><b>虚假隐瞒/虚假谎报/隐瞒真实灾情：</b><span class="highlight">2000元/次</span>；情节严重的美团有权终止合作并扣除该站点全部保证金。</li>
+</ul>
+<div style="font-weight:700;color:#0B4F8A;margin:6px 0 4px;">五、站点线上早会管控</div>
+<ul style="margin:0 0 8px;padding-left:20px;">
+<li><b>日常早会审核不通过：</b>出勤率或仪容仪表鞋子被驳回 <span class="highlight">100元/次/项</span>；其余小项 <span class="highlight">50元/次/项</span>（加盟站点：同一天累计出勤率低于35%；驻点站点：出勤率低于50%）。</li>
+<li><b>报备早会未通过：</b><span class="highlight">500元/站/天</span>。</li>
+<li><b>未召开早会：</b><span class="highlight">1000元/站/天</span>。</li>
+<li><b>虚假早会（举证造假/虚假视频/多站报同一早会等）：</b>当月同一城市商第1次 <span class="highlight">1500元/站/天</span>；超3次 <span class="highlight">2000元/站/天</span>；超5次 <span class="highlight">2500元/站/天</span>；超10次 <span class="highlight">3000元/站/天</span>，并回溯前3个月数据追加管控。</li>
+</ul>
+<div style="font-weight:700;color:#0B4F8A;margin:6px 0 4px;">六、骑手餐箱消毒管控（按消毒标准化率5档承担）</div>
+<ul style="margin:0 0 8px;padding-left:20px;">
+<li>场景1 标准化率≥80%：不承担违约责任。</li>
+<li>场景2 [70%,80%)：<span class="highlight">1000元/站/月</span>。</li>
+<li>场景3 [60%,70%)：<span class="highlight">1500元/站/月</span>。</li>
+<li>场景4 [50%,60%)：<span class="highlight">2000元/站/月</span>。</li>
+<li>场景5 ＜50%：<span class="highlight">2500元/站/月</span>。</li>
+<li><b>虚假消毒：</b>累计1起在该站标准化率基础上降一档；超5起（含）降三档。<b>无消毒记录骑手：</b>1名降一档；超5名（含）降三档。降至最低档仍无法满足，直接按场景5的2倍承担；各项违约责任互不影响、累计计算。</li>
+</ul>
+<div style="font-weight:700;color:#0B4F8A;margin:6px 0 4px;">七、骑手装备检核（详见「骑手装备处罚规则」）</div>
+<ul style="margin:0 0 8px;padding-left:20px;">
+<li>非SKA：头盔200元、服装100元（其他平台150元）、餐箱100元（其他平台150元）、内存非配送商品100元/人/次。</li>
+<li>SKA品牌：头盔200元、服装200元（其他平台300元）、餐箱200元（其他平台300元）。</li>
+<li><b>虚假举证申诉：</b>当月同一站点1次 <span class="highlight">1500元/项/次</span>；超2次（含）<span class="highlight">2000元/项/次</span>。</li>
+<li><b>区域商服装标准化率＜90%不达标：</b>当月按实际违约金额核算；近3个月出现2次不达标按2倍核算；3次按3倍核算（单个区域商检核样本不足10人次则计为达标）。</li>
+</ul>
+<div style="font-weight:700;color:#0B4F8A;margin:6px 0 4px;">八、重大安全隐患与消极协同</div>
+<ul style="margin:0 0 8px;padding-left:20px;">
+<li><b>重大安全隐患：</b><span class="highlight">5000元/次</span>（含易燃易爆、管制刀具、非充电区充电或超3块电池、大功率电器、灭火器烟感50%功能性问题、电池摆放混乱、三合一站点未安全隔离、雨天露天充电等）。</li>
+<li><b>拒绝配合检查（阻拦/规避/不让检查）：</b><span class="highlight">5000元/次</span>。</li>
+<li><b>辱骂殴打、恐吓威胁、阻碍检查人员离开：</b><span class="highlight">10000元/次</span>。</li>
+<li><b>抢夺手机、暴力抗检、聚众围堵、媒体曝光等：</b><span class="highlight">20000元/次</span>；情节严重终止合作并扣除全部保证金。</li>
+<li>同月多次触发按单项总额累计翻倍核算（例：第1次5000元、第2次5000×2、第3次(5000+5000×2)×2=45000元）。</li>
+</ul>
+<div style="font-weight:700;color:#0B4F8A;margin:6px 0 4px;">九、标准化管控升级（尾部站提升）</div>
+<ul style="margin:0 0 8px;padding-left:20px;">
+<li><b>站点标准化率＜90%进尾部：</b>当月首次进入通知警告；第2次进入在当月核算基础上再加收 <span class="highlight">2000元</span>；第3次加收 <span class="highlight">5000元</span>。</li>
+<li><b>早会标准化率＜90%（含加盟+驻点）：</b>当月进入尾部通知警告；近三个月命中尾部2次加收 <span class="highlight">2000元</span>；3次加收 <span class="highlight">5000元</span>。</li>
+</ul>
+<div style="font-weight:700;color:#0B4F8A;margin:6px 0 4px;">十、站点诚信经营守则（禁止对检查人员行贿）</div>
+<ul style="margin:0 0 8px;padding-left:20px;">
+<li>涉及金额 (0,1000]元：<span class="highlight">10000元/次</span>；(1000,2000]元：<span class="highlight">20000元/次</span>；(2000,5000]元：<span class="highlight">50000元/次</span>；(5000,+∞)元：<span class="highlight">80000元/次</span>。</li>
+</ul>
+<div style="margin-top:8px;padding-top:8px;border-top:1px dashed #e0e0e0;"><b>说明：</b>内容来自《合作商标准化检查管理办法-2025年1月》（2025年1月1日生效）；新开站点保护期7天（首单日期起，保护期内检核数据剔除，不含装备数据）；站点被检核2次及以上按累计求和方式计算违约金；具体执行以最新合作商管理办法为准。</div>
 </div>
 </div>
 </div>
