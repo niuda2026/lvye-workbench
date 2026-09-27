@@ -48,6 +48,14 @@ body{background:#F0F6FC;color:#1a2e45;font-family:'Segoe UI','Microsoft YaHei','
 #summary-cards-training .card .c-sub,#summary-cards-training-rider .card .c-sub{white-space:normal;line-height:1.3}
 .card .c-label{font-size:11px;color:#4F6E87;margin-bottom:4px;letter-spacing:.3px}
 .card .c-value{font-size:22px;font-weight:700;color:#0B4F8A;font-variant-numeric:tabular-nums;letter-spacing:.2px}
+/* 处罚 tab：KPI 卡片单行紧凑排布 */
+#summary-cards-penalty-week,#summary-cards-penalty-month{flex-wrap:nowrap;overflow-x:auto}
+#summary-cards-penalty-week .card,#summary-cards-penalty-month .card{min-width:0;max-width:none;flex:1 1 0;padding:8px 6px;text-align:center}
+#summary-cards-penalty-week .card .c-label,#summary-cards-penalty-month .card .c-label{white-space:normal;font-size:10px;line-height:1.25;min-height:26px;display:flex;align-items:center;justify-content:center;margin-bottom:2px}
+#summary-cards-penalty-week .card .c-value,#summary-cards-penalty-month .card .c-value{font-size:16px}
+.grp-date{cursor:pointer;font-weight:400;text-decoration:underline dotted rgba(51,51,51,.55);text-underline-offset:3px;margin-left:2px}
+.grp-date:hover{color:#0B4F8A;background:rgba(255,255,255,.45);border-radius:3px}
+.penalty-date-input{border:1px solid #4F6E87;border-radius:3px;padding:1px 4px;font-size:12px;width:110px;outline:none;font-family:inherit}
 .card .c-sub{font-size:11px;color:#90a4ae;margin-top:3px}
 .card.green .c-value{color:#2e7d32}
 .card.yellow .c-value{color:#e65100}
@@ -327,8 +335,18 @@ tr.cb-row-noup:hover td{background:#ffefef}
   </div>
   
 </div>
-<!-- Tab: safety -->
+<!-- Tab: safety（履约安全检查） → 3 个子标签：巡检平台 / 履约达成处罚-周度 / 履约达成处罚-月度 -->
 <div class="panel" id="panel-safety">
+  <!-- 内容子标签 -->
+  <div class="sub-tab-bar" style="margin-bottom:10px;border-bottom:2px solid #cfe;padding-bottom:6px;">
+    <span class="sub-tab-label">履约安全检查：</span>
+    <button class="lv-btn active" data-csub="insp" onclick="switchSafetySub('insp')">巡检平台</button>
+    <button class="lv-btn" data-csub="penalty-week" onclick="switchSafetySub('penalty-week')">履约达成处罚-周度</button>
+    <button class="lv-btn" data-csub="penalty-month" onclick="switchSafetySub('penalty-month')">履约达成处罚-月度</button>
+  </div>
+
+  <!-- 子面板：巡检平台（原履约安全检查内容） -->
+  <div class="sub-panel active" id="sub-insp">
   <div class="summary-row" id="summary-cards-safety"></div>
     <div class="sub-tab-bar">
     <span class="sub-tab-label">显示层级：</span>
@@ -378,6 +396,65 @@ tr.cb-row-noup:hover td{background:#ffefef}
       <table class="dt" id="tbl-insp-items">
         <thead id="thead-insp-items"></thead>
         <tbody id="tbody-insp-items"></tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+
+  <!-- 子面板：履约达成处罚-周度 -->
+  <div class="sub-panel" id="sub-penalty-week">
+    <div class="summary-row" id="summary-cards-penalty-week"></div>
+    <div class="sub-tab-bar">
+      <span class="sub-tab-label">显示层级：</span>
+      <button class="lv-btn active" id="lv-btn-subregion-pw" onclick="togglePenaltyView('subregion','week')">区域行</button>
+      <button class="lv-btn active" id="lv-btn-merchant-pw" onclick="togglePenaltyView('merchant','week')">城市行</button>
+      <button class="lv-btn active" id="lv-btn-site-pw" onclick="togglePenaltyView('site','week')">站点行</button>
+      <span class="sub-tab-sep"></span>
+      <button class="lv-btn-reset" onclick="resetPenaltyView('week')">全部显示</button>
+    </div>
+    <div class="filter-bar" id="filter-bar-penalty-week">
+      <label>大区</label><div class="ms-wrap" id="ms-region-penalty-week"><div class="ms-btn" onclick="toggleMs('region-penalty-week')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>区域</label><div class="ms-wrap" id="ms-subregion-penalty-week"><div class="ms-btn" onclick="toggleMs('subregion-penalty-week')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>城市</label><div class="ms-wrap" id="ms-city-penalty-week"><div class="ms-btn" onclick="toggleMs('city-penalty-week')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>站点</label><div class="ms-wrap" id="ms-site-penalty-week"><div class="ms-btn" onclick="toggleMs('site-penalty-week')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <button class="btn btn-secondary" onclick="penaltyClearFilter('week')">清除筛选</button>
+      <button class="btn btn-export" onclick="exportTable('penalty-week')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
+      <button class="btn btn-screenshot" onclick="screenshotPanel('sub-penalty-week')" title="截取当前看板">&#128247; 截图</button>
+      <span class="filter-count" id="filter-count-penalty-week"></span>
+    </div>
+    <div class="table-wrap table-wrap-station">
+      <table class="dt" id="tbl-penalty-week">
+        <thead id="thead-penalty-week"></thead>
+        <tbody id="tbody-penalty-week"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 子面板：履约达成处罚-月度 -->
+  <div class="sub-panel" id="sub-penalty-month">
+    <div class="summary-row" id="summary-cards-penalty-month"></div>
+    <div class="sub-tab-bar">
+      <span class="sub-tab-label">显示层级：</span>
+      <button class="lv-btn active" id="lv-btn-subregion-pm" onclick="togglePenaltyView('subregion','month')">区域行</button>
+      <button class="lv-btn active" id="lv-btn-merchant-pm" onclick="togglePenaltyView('merchant','month')">城市行</button>
+      <button class="lv-btn active" id="lv-btn-site-pm" onclick="togglePenaltyView('site','month')">站点行</button>
+      <span class="sub-tab-sep"></span>
+      <button class="lv-btn-reset" onclick="resetPenaltyView('month')">全部显示</button>
+    </div>
+    <div class="filter-bar" id="filter-bar-penalty-month">
+      <label>大区</label><div class="ms-wrap" id="ms-region-penalty-month"><div class="ms-btn" onclick="toggleMs('region-penalty-month')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>区域</label><div class="ms-wrap" id="ms-subregion-penalty-month"><div class="ms-btn" onclick="toggleMs('subregion-penalty-month')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>城市</label><div class="ms-wrap" id="ms-city-penalty-month"><div class="ms-btn" onclick="toggleMs('city-penalty-month')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <label>站点</label><div class="ms-wrap" id="ms-site-penalty-month"><div class="ms-btn" onclick="toggleMs('site-penalty-month')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+      <button class="btn btn-secondary" onclick="penaltyClearFilter('month')">清除筛选</button>
+      <button class="btn btn-export" onclick="exportTable('penalty-month')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
+      <button class="btn btn-screenshot" onclick="screenshotPanel('sub-penalty-month')" title="截取当前看板">&#128247; 截图</button>
+      <span class="filter-count" id="filter-count-penalty-month"></span>
+    </div>
+    <div class="table-wrap table-wrap-station">
+      <table class="dt" id="tbl-penalty-month">
+        <thead id="thead-penalty-month"></thead>
+        <tbody id="tbody-penalty-month"></tbody>
       </table>
     </div>
   </div>
@@ -778,6 +855,8 @@ tr.cb-row-noup:hover td{background:#ffefef}
 <script src="knife_rider_data.js"></script>
 <script src="box_rider_data.js"></script>
 <script src="inspection_data.js"></script>
+<script src="penalty_weekly.js"></script>
+<script src="penalty_monthly.js"></script>
 <script src="morning_review_data.js"></script>
 <!-- 截图库 -->
 <script src="../_libs/html2canvas-1.4.1.min.js"></script>
@@ -1689,7 +1768,14 @@ function renderAuditView() {
 }
 
 // ─── Tab 2: 履约安全检查（2026-09-18 改造：接入 BI 251935 巡检平台子项检核明细） ──
+var curSafetySub = 'insp';
 function renderSafetyCheckTab() {
+  var sub = curSafetySub || 'insp';
+  if (sub === 'insp') { renderInspectionSub(); return; }
+  if (sub === 'penalty-week') { renderPenaltyTab('week'); return; }
+  if (sub === 'penalty-month') { renderPenaltyTab('month'); return; }
+}
+function renderInspectionSub() {
   var hasInsp = (typeof INSP_DATA !== 'undefined') && INSP_DATA;
   var columns;
   if (hasInsp) {
@@ -1811,6 +1897,447 @@ function renderInspTypes() {
 function renderInspRoles() {
   if (typeof INSP_ROLES === 'undefined') return;
   renderInspDimTable('insp-roles-block', 'insp-roles', 'role', INSP_ROLES);
+}
+
+// ══════════════════════════════════════════════════════════
+// ★ 履约达成处罚（周度 / 月度）子标签渲染
+//   数据：PENALTY_WEEKLY_ROWS / PENALTY_MONTHLY_ROWS（_gen_penalty.py 生成）
+//   组织层级忠实保留 Excel「区域」列混排（总公司→分区→城市→站点），
+//   与「周报看板-履约数据」层级口径一致；本期不用 renderStandardTab（会重算汇总，丢原值）
+// ══════════════════════════════════════════════════════════
+var PENALTY_VIEW = {week:'all', month:'all'};
+var PENALTY_CACHE = {};  // kind -> 已填充层级的行
+
+var PENALTY_COLS = [
+  {key:'上周驳回数', label:'上周驳回数', hl:true},
+  {key:'上周罚款', label:'上周罚款', money:true, hl:true},
+  {key:'上周自检驳回', label:'上周自检驳回', hl:true},
+  {key:'上周自检罚款', label:'上周自检罚款', money:true, hl:true},
+  {key:'上周督导履约驳回', label:'上周督导履约驳回', hl:true},
+  {key:'上周督导履约罚款', label:'上周督导履约罚款', money:true, hl:true},
+  {key:'标准化率', label:'标准化率', pct:true},
+  {key:'标准化率不达标违约金额', label:'标准化不达标违约金额', money:true, hl:true},
+  {key:'虚假消毒数', label:'虚假消毒数', hl:true},
+  {key:'虚假消毒罚款', label:'虚假消毒罚款', money:true, hl:true},
+  {key:'装备不合格数', label:'装备不合格数', hl:true},
+  {key:'装备罚款', label:'装备罚款', money:true, hl:true},
+  {key:'装备标准化合规率', label:'装备标准化合规率', pct:true},
+  {key:'健康证处罚金额', label:'健康证处罚金额（含虚假和P图）', money:true, hl:true}
+];
+
+// 一级分组表头（对应源 Excel 合并单元格，带分类底色）
+function penaltyGetDates(kind) {
+  var def = (kind === 'week') ? {box:'36周31日~6日', eq:'9月W4周', hc:'9月'} : {box:'月度', eq:'月度', hc:'月度'};
+  try {
+    var saved = JSON.parse(localStorage.getItem('penaltyGroupDates_' + kind) || '{}');
+    for (var k in def) if (!(k in saved)) saved[k] = def[k];
+    return saved;
+  } catch(e) { return def; }
+}
+function penaltySaveDate(kind, key, val) {
+  var d = penaltyGetDates(kind);
+  d[key] = val;
+  try { localStorage.setItem('penaltyGroupDates_' + kind, JSON.stringify(d)); } catch(e) {}
+  renderPenaltyTab(kind);
+}
+var _penaltyDateEditing = false;
+function penaltyEditDate(kind, key, el) {
+  if (_penaltyDateEditing) return;
+  _penaltyDateEditing = true;
+  var cur = el.getAttribute('data-val') || '';
+  var input = document.createElement('input');
+  input.type = 'text';
+  input.value = cur;
+  input.className = 'penalty-date-input';
+  el.innerHTML = '';
+  el.appendChild(input);
+  input.focus();
+  input.select();
+  var done = function(save) {
+    _penaltyDateEditing = false;
+    if (save) {
+      var v = input.value.trim();
+      penaltySaveDate(kind, key, v || cur);
+    } else {
+      renderPenaltyTab(kind);
+    }
+  };
+  input.onblur = function(){ done(true); };
+  input.onkeydown = function(e){
+    e.stopPropagation();
+    if (e.key === 'Enter') { input.onblur = null; done(true); }
+    else if (e.key === 'Escape') { input.onblur = null; done(false); }
+  };
+}
+function penaltyGroups(kind) {
+  var d = penaltyGetDates(kind);
+  // 柔和暗色，大项与小项统一同色；文字为深色，保证对比清晰；dateKey 标注可点击编辑的括号日期
+  return [
+    {label:'早会类', color:'#F4B183', span:2},
+    {label:'履约自检类', color:'#A9D08E', span:4},
+    {label:'餐箱消毒', color:'#FFD966', span:4, dateKey:'box', date:d.box},
+    {label:'装备类', color:'#9DC3E6', span:3, dateKey:'eq', date:d.eq},
+    {label:'健康证', color:'#F2AEC0', span:1, dateKey:'hc', date:d.hc}
+  ];
+}
+
+function penaltyGetRaw(kind) {
+  if (kind === 'week') return (typeof PENALTY_WEEKLY_ROWS !== 'undefined') ? PENALTY_WEEKLY_ROWS : [];
+  return (typeof PENALTY_MONTHLY_ROWS !== 'undefined') ? PENALTY_MONTHLY_ROWS : [];
+}
+
+// 前向填充 大区/分区；推导 城市/站点/层级；忠实保留 Excel 原始数值（不重算汇总）
+function penaltyFill(rows) {
+  var prev = {大区:'', 分区:''};
+  var out = [];
+  for (var i=0;i<rows.length;i++) {
+    var r = {}; for (var k in rows[i]) r[k] = rows[i][k];
+    if (r.大区) prev.大区 = r.大区; else r.大区 = prev.大区;
+    if (r.分区) prev.分区 = r.分区; else r.分区 = prev.分区;
+    var area = r.区域;
+    var lvl;
+    if (area === '兴必达（江苏）网络科技有限公司') lvl = 'company';
+    else if (/【/.test(area) || area.indexOf('站') >= 0 || area.indexOf('集约配送') >= 0 || area.indexOf('联盟签约') >= 0) lvl = 'site';
+    else if (r.分区 && area === r.分区) lvl = 'area';
+    else lvl = 'city';
+    r.__level = lvl;
+    if (lvl === 'site') { var m = area.match(/【(.+?)】/); r.__城市 = m ? m[1] : ''; r.__站点 = area; }
+    else if (lvl === 'city') { r.__城市 = area; r.__站点 = ''; }
+    else { r.__城市 = ''; r.__站点 = ''; }
+    out.push(r);
+  }
+  return out;
+}
+function penaltyGetRows(kind) {
+  if (!PENALTY_CACHE[kind]) {
+    var filled = penaltyFill(penaltyGetRaw(kind));
+    filled.sort(penaltyRowCmp);
+    PENALTY_CACHE[kind] = filled;
+  }
+  return PENALTY_CACHE[kind];
+}
+
+// 明细行排序：与看板其他 tab 口径一致（REGION_ORDER → SUBREGION_ORDER → 城市 → 层级 → 站点名）
+function penaltyRowCmp(a, b) {
+  if (a.__level === 'company') return -1;
+  if (b.__level === 'company') return 1;
+  var ra = REGION_ORDER.indexOf(a.大区); if (ra < 0) ra = 99;
+  var rb = REGION_ORDER.indexOf(b.大区); if (rb < 0) rb = 99;
+  if (ra !== rb) return ra - rb;
+  var sa = subregionSortKey(a.大区, a.分区), sb = subregionSortKey(b.大区, b.分区);
+  if (sa !== sb) return sa - sb;
+  var cc = (a.__城市 || '').localeCompare(b.__城市 || '', 'zh');
+  if (cc !== 0) return cc;
+  var pa = a.__level === 'area' ? 0 : (a.__level === 'city' ? 1 : 2);
+  var pb = b.__level === 'area' ? 0 : (b.__level === 'city' ? 1 : 2);
+  if (pa !== pb) return pa - pb;
+  return (a.区域 || '').localeCompare(b.区域 || '', 'zh');
+}
+
+// 各维度选项（按已选维度级联过滤）
+function penaltyOptions(kind, dim) {
+  var rows = penaltyGetRows(kind);
+  var regionState = sfState['region-penalty-'+kind] || [];
+  var subState = sfState['subregion-penalty-'+kind] || [];
+  var cityState = sfState['city-penalty-'+kind] || [];
+  var set = {};
+  for (var i=0;i<rows.length;i++) {
+    var r = rows[i];
+    // 各维度只受「上层」维度已选影响，不受自身已选影响 → 保证可多选
+    if (dim === 'region') {
+      // 顶层：始终展示全部大区
+    } else if (dim === 'subregion') {
+      if (regionState.length && regionState.indexOf(r.大区) < 0) continue;
+    } else if (dim === 'city') {
+      if (regionState.length && regionState.indexOf(r.大区) < 0) continue;
+      if (subState.length && subState.indexOf(r.分区) < 0) continue;
+    } else if (dim === 'site') {
+      if (regionState.length && regionState.indexOf(r.大区) < 0) continue;
+      if (subState.length && subState.indexOf(r.分区) < 0) continue;
+      if (cityState.length && cityState.indexOf(r.__城市) < 0) continue;
+    }
+    if (dim === 'region') { if (r.大区) set[r.大区] = true; }
+    else if (dim === 'subregion') { if (r.分区) set[r.分区] = true; }
+    else if (dim === 'city') { if (r.__城市) set[r.__城市] = true; }
+    else if (dim === 'site') { if (r.__站点) set[r.__站点] = true; }
+  }
+  // 选项排序与看板口径一致：大区按 REGION_ORDER，分区按 SUBREGION_ORDER 全局顺序，城市/站点按拼音
+  var keys = Object.keys(set);
+  if (dim === 'region') {
+    keys.sort(function(a,b){var ia=REGION_ORDER.indexOf(a),ib=REGION_ORDER.indexOf(b);if(ia<0)ia=99;if(ib<0)ib=99;return ia-ib;});
+  } else if (dim === 'subregion') {
+    var rank = {}, gi = 0;
+    for (var ri=0; ri<REGION_ORDER.length; ri++) {
+      var lst = (typeof SUBREGION_ORDER !== 'undefined' && SUBREGION_ORDER[REGION_ORDER[ri]]) || [];
+      for (var qi=0; qi<lst.length; qi++) rank[lst[qi]] = gi++;
+    }
+    keys.sort(function(a,b){
+      var ia = rank.hasOwnProperty(a) ? rank[a] : 999, ib = rank.hasOwnProperty(b) ? rank[b] : 999;
+      if (ia !== ib) return ia - ib;
+      return a.localeCompare(b, 'zh');
+    });
+  } else {
+    keys.sort(function(a,b){return a.localeCompare(b,'zh');});
+  }
+  return keys;
+}
+
+function penaltyBuildDrop(key, options, state, kind, dim) {
+  var wrap = document.getElementById('ms-'+key);
+  if (!wrap) return;
+  var drop = wrap.querySelector('.ms-drop');
+  drop.innerHTML = '';
+  for (var i=0;i<options.length;i++) {
+    var opt = options[i];
+    var checked = state.indexOf(opt) >= 0;
+    var cls = checked ? ' ms-item checked' : ' ms-item';
+    drop.innerHTML += '<div class="'+cls+'" onclick="event.stopPropagation();penaltyMsItemClick(this,\''+kind+'\',\''+dim+'\',\''+escHtml(opt)+'\')"><input type="checkbox" value="'+escHtml(opt)+'"'+(checked?' checked':'')+' onchange="penaltyMsCheck(\''+kind+'\',\''+dim+'\',\''+escHtml(opt)+'\')">'+escHtml(opt)+'</div>';
+  }
+  var lbl = wrap.querySelector('.ms-label');
+  if (state.length === 0) lbl.textContent = '全部';
+  else if (state.length <= 2) lbl.textContent = state.join(',');
+  else lbl.textContent = state.length + '项';
+}
+function penaltyInitFilters(kind) {
+  penaltyBuildDrop('region-penalty-'+kind, penaltyOptions(kind,'region'), sfState['region-penalty-'+kind] || [], kind, 'region');
+  penaltyBuildDrop('subregion-penalty-'+kind, penaltyOptions(kind,'subregion'), sfState['subregion-penalty-'+kind] || [], kind, 'subregion');
+  penaltyBuildDrop('city-penalty-'+kind, penaltyOptions(kind,'city'), sfState['city-penalty-'+kind] || [], kind, 'city');
+  penaltyBuildDrop('site-penalty-'+kind, penaltyOptions(kind,'site'), sfState['site-penalty-'+kind] || [], kind, 'site');
+}
+function penaltyMsItemClick(item, kind, dim, val) {
+  if (event && event.target && event.target.tagName === 'INPUT') return;
+  penaltyMsCheck(kind, dim, val);
+}
+function penaltyMsCheck(kind, dim, val) {
+  var key = dim + '-penalty-' + kind;
+  if (!sfState[key]) sfState[key] = [];
+  var st = sfState[key];
+  var idx = st.indexOf(val);
+  if (idx >= 0) st.splice(idx,1); else st.push(val);
+  // 级联：剔除在最新选项集中已无效的已选值，再重建下拉
+  ['region','subregion','city','site'].forEach(function(d){
+    var k2 = d + '-penalty-' + kind;
+    if (!sfState[k2]) return;
+    sfState[k2] = sfState[k2].filter(function(v){ return penaltyOptions(kind, d).indexOf(v) >= 0; });
+  });
+  penaltyInitFilters(kind);
+  renderPenaltyTab(kind);
+}
+function penaltyClearFilter(kind) {
+  ['region','subregion','city','site'].forEach(function(d){
+    var k = d + '-penalty-' + kind;
+    if (sfState[k]) sfState[k] = [];
+    var wrap = document.getElementById('ms-'+k);
+    if (wrap) {
+      wrap.querySelector('.ms-label').textContent = '全部';
+      var items = wrap.querySelectorAll('.ms-item');
+      for (var i=0;i<items.length;i++) { items[i].classList.remove('checked'); items[i].querySelector('input').checked = false; }
+    }
+  });
+  renderPenaltyTab(kind);
+}
+
+function penaltyCell(r, col) {
+  var v = r[col.key];
+  if (col.pct) {
+    if (v === '' || v === null || v === undefined || v === '-') return '<td class="rn">-</td>';
+    var pct = parseFloat(v) * 100;
+    var rr = frate(pct);
+    return '<td class="' + rr.cls + '">' + pct.toFixed(2) + '%</td>';
+  }
+  if (v === '' || v === null || v === undefined || v === '-') return '<td class="rn">-</td>';
+  var n = parseFloat(v);
+  if (col.hl) {
+    if (n > 0) return '<td class="safety-hl">' + fr(n) + '</td>';
+    return '<td>' + fr(n) + '</td>';
+  }
+  return '<td>' + fr(n) + '</td>';
+}
+function penaltyCard(label, v, isPct, hl) {
+  var txt;
+  if (v === '' || v === null || v === undefined || v === '-') txt = '-';
+  else if (isPct) txt = (parseFloat(v) * 100).toFixed(2) + '%';
+  else txt = fr(parseFloat(v));
+  var cls = 'card';
+  if (hl && txt !== '-' && parseFloat(v) > 0) cls += ' red';
+  return '<div class="' + cls + '"><div class="c-label">' + label + '</div><div class="c-value">' + txt + '</div></div>';
+}
+
+// 卡片数据源随筛选联动：根据当前 sfState 选取对应层级汇总行（忠实 Excel 源值）
+// 优先级：选站点→站点行；选城市→城市行；选区域/分区→区域行；选大区→该大区区域行；无筛选→总公司行
+// 单选=那一行源值；多选=同级源值求和（金额/计数），比率类取平均
+function penaltySummaryRow(kind) {
+  var rs = sfState['region-penalty-' + kind] || [];
+  var ss = sfState['subregion-penalty-' + kind] || [];
+  var cs = sfState['city-penalty-' + kind] || [];
+  var sts = sfState['site-penalty-' + kind] || [];
+  var rows = penaltyGetRows(kind);
+  var targets;
+  if (sts.length) targets = rows.filter(function(r){ return r.__level === 'site' && sts.indexOf(r.__站点) >= 0; });
+  else if (cs.length) targets = rows.filter(function(r){ return r.__level === 'city' && cs.indexOf(r.__城市) >= 0; });
+  else if (ss.length) targets = rows.filter(function(r){ return r.__level === 'area' && ss.indexOf(r.分区) >= 0; });
+  else if (rs.length) targets = rows.filter(function(r){ return r.__level === 'area' && rs.indexOf(r.大区) >= 0; });
+  else targets = rows.filter(function(r){ return r.__level === 'company'; });
+  if (!targets.length) targets = rows.filter(function(r){ return r.__level === 'company'; });
+  var agg = {}, pctList = {}, totalFines = 0;
+  targets.forEach(function(r){
+    var tf = r['上周预计总罚款'];
+    if (tf !== '' && tf !== null && tf !== undefined) totalFines += parseFloat(tf) || 0;
+    PENALTY_COLS.forEach(function(col){
+      var v = r[col.key];
+      if (v === '' || v === null || v === undefined) v = 0; else v = parseFloat(v) || 0;
+      if (col.pct) { if (!pctList[col.key]) pctList[col.key] = []; pctList[col.key].push(v); }
+      else agg[col.key] = (agg[col.key] || 0) + v;
+    });
+  });
+  var res = { '上周预计总罚款': totalFines };
+  PENALTY_COLS.forEach(function(col){
+    if (col.pct) {
+      var arr = pctList[col.key] || [];
+      res[col.key] = arr.length ? arr.reduce(function(a,b){ return a + b; }, 0) / arr.length : 0;
+    } else res[col.key] = agg[col.key] || 0;
+  });
+  return res;
+}
+
+function renderPenaltyTab(kind) {
+  var rowsAll = penaltyGetRows(kind);
+  var tbodyId = 'tbody-penalty-' + kind;
+  var theadId = 'thead-penalty-' + kind;
+  if (!document.getElementById(tbodyId)) return;
+  // 空数据
+  if (!rowsAll.length) {
+    document.getElementById(theadId).innerHTML = '';
+    document.getElementById(tbodyId).innerHTML = '<tr><td colspan="19" style="text-align:center;padding:40px;color:#8aa2b8">暂无数据：待录入' + (kind==='week'?'周度':'月度') + '源文件后运行 _gen_penalty.py 重新生成</td></tr>';
+    document.getElementById('summary-cards-penalty-' + kind).innerHTML = '';
+    var fc = document.getElementById('filter-count-penalty-' + kind); if (fc) fc.textContent = '';
+    return;
+  }
+  var regionState = sfState['region-penalty-' + kind] || [];
+  var subState = sfState['subregion-penalty-' + kind] || [];
+  var cityState = sfState['city-penalty-' + kind] || [];
+  var siteState = sfState['site-penalty-' + kind] || [];
+  function passFilter(r) {
+    // 大区/分区 筛选作用于所有行（含汇总行）
+    if (regionState.length && regionState.indexOf(r.大区) < 0) return false;
+    if (subState.length && subState.indexOf(r.分区) < 0) return false;
+    // 城市/站点 筛选：总公司/分区汇总行始终展示（便于看层级合计），仅过滤城市/站点行
+    if (r.__level === 'company' || r.__level === 'area') return true;
+    if (cityState.length && cityState.indexOf(r.__城市) < 0) return false;
+    if (siteState.length && siteState.indexOf(r.__站点) < 0) return false;
+    return true;
+  }
+  var groups = penaltyGroups(kind);
+  // 每个大项的小项表头沿用同一颜色
+  var colColors = [];
+  for (var g=0; g<groups.length; g++) for (var s=0; s<groups[g].span; s++) colColors.push(groups[g].color);
+  var thead = '<tr>' +
+    '<th class="sticky-col" rowspan="2" style="left:0;min-width:80px">大区</th>' +
+    '<th class="sticky-col" rowspan="2" style="left:80px;min-width:80px">区域</th>' +
+    '<th class="sticky-col" rowspan="2" style="left:160px;min-width:70px">城市</th>' +
+    '<th class="sticky-col sticky-last" rowspan="2" style="left:230px;min-width:150px">站点名称</th>' +
+    '<th rowspan="2" style="background:#8FB8DE;color:#333333;font-weight:700;white-space:nowrap">上周预计总罚款</th>';
+  for (var g=0;g<groups.length;g++) {
+    var grpHtml = groups[g].label;
+    if (groups[g].dateKey) {
+      grpHtml += '<span class="grp-date" title="点击编辑日期（回车保存，Esc 取消）" data-val="' + escHtml(groups[g].date) + '" onclick="penaltyEditDate(\'' + kind + '\',\'' + groups[g].dateKey + '\',this)">（' + escHtml(groups[g].date) + '）</span>';
+    }
+    thead += '<th colspan="' + groups[g].span + '" style="background:' + groups[g].color + ';color:#333333;font-weight:700;white-space:nowrap">' + grpHtml + '</th>';
+  }
+  thead += '</tr><tr>';
+  for (var c=0;c<PENALTY_COLS.length;c++) thead += '<th style="background:' + colColors[c] + ';color:#333333">' + PENALTY_COLS[c].label + '</th>';
+  thead += '</tr>';
+  document.getElementById(theadId).innerHTML = thead;
+
+  var rowsHtml = '';
+  var siteCount = 0;
+  for (var i=0;i<rowsAll.length;i++) {
+    var r = rowsAll[i];
+    if (!passFilter(r)) continue;
+    var cls;
+    if (r.__level === 'company') cls = 'lv-total';
+    else if (r.__level === 'area') cls = 'lv-subregion';
+    else if (r.__level === 'city') cls = 'lv-merchant';
+    else { cls = 'lv-site'; siteCount++; }
+    var nameCell = (r.__level === 'company') ? '总商汇总' : escHtml(r.区域);
+    rowsHtml += '<tr class="' + cls + '">';
+    rowsHtml += '<td class="sticky-col" style="left:0;min-width:80px">' + escHtml(r.大区 || '') + '</td>';
+    rowsHtml += '<td class="sticky-col" style="left:80px;min-width:80px">' + escHtml(r.分区 || '') + '</td>';
+    rowsHtml += '<td class="sticky-col" style="left:160px;min-width:70px">' + escHtml(r.__城市 || '') + '</td>';
+    rowsHtml += '<td class="sticky-col name-cell" style="left:230px;min-width:150px">' + nameCell + '</td>';
+    rowsHtml += penaltyCell(r, {key:'上周预计总罚款', money:true, hl:true});
+    for (var c=0;c<PENALTY_COLS.length;c++) rowsHtml += penaltyCell(r, PENALTY_COLS[c]);
+    rowsHtml += '</tr>';
+  }
+  document.getElementById(tbodyId).innerHTML = rowsHtml;
+
+  applyPenaltyViewMode(kind);
+
+  // KPI 卡片：一行放全明细表所有数据列，随筛选联动（取对应层级汇总行源值）
+  var comp = penaltySummaryRow(kind);
+  var cards = penaltyCard('上周预计总罚款', comp['上周预计总罚款'], false, true);
+  for (var pc=0;pc<PENALTY_COLS.length;pc++) {
+    var col = PENALTY_COLS[pc];
+    cards += penaltyCard(col.label, comp[col.key], col.pct, col.hl);
+  }
+  document.getElementById('summary-cards-penalty-' + kind).innerHTML = cards;
+
+  penaltyInitFilters(kind);
+  var vis = document.getElementById(tbodyId).querySelectorAll('tr').length;
+  var fc = document.getElementById('filter-count-penalty-' + kind);
+  if (fc) fc.textContent = '共 ' + vis + ' 行（站点 ' + siteCount + ' 个）';
+}
+
+function applyPenaltyViewMode(kind) {
+  var mode = PENALTY_VIEW[kind] || 'all';
+  var tbody = document.getElementById('tbody-penalty-' + kind);
+  if (!tbody) return;
+  var trs = tbody.querySelectorAll('tr');
+  trs.forEach(function(tr){
+    if (mode === 'all') { tr.style.display = ''; return; }  // 全部显示：所有层级行都出
+    if (tr.classList.contains('lv-total')) tr.style.display = '';
+    else if (tr.classList.contains('lv-subregion')) tr.style.display = (mode === 'subregion') ? '' : 'none';
+    else if (tr.classList.contains('lv-merchant')) tr.style.display = (mode === 'merchant') ? '' : 'none';
+    else if (tr.classList.contains('lv-site')) tr.style.display = (mode === 'site') ? '' : 'none';
+  });
+  var map = (kind === 'month')
+    ? {subregion:'lv-btn-subregion-pm', merchant:'lv-btn-merchant-pm', site:'lv-btn-site-pm'}
+    : {subregion:'lv-btn-subregion-pw', merchant:'lv-btn-merchant-pw', site:'lv-btn-site-pw'};
+  ['subregion','merchant','site'].forEach(function(k){
+    var b = document.getElementById(map[k]);
+    if (b) b.classList.toggle('active', mode === 'all' || mode === k);
+  });
+  var rb = document.querySelector('#sub-penalty-' + kind + ' .lv-btn-reset');
+  if (rb) rb.style.display = (mode === 'all') ? 'none' : 'inline-block';
+  var vis = 0, sc = 0;
+  trs.forEach(function(tr){ if (tr.style.display !== 'none') { vis++; if (tr.classList.contains('lv-site')) sc++; } });
+  var cnt = document.getElementById('filter-count-penalty-' + kind);
+  if (cnt) cnt.textContent = '共 ' + vis + ' 行（站点 ' + sc + ' 个）';
+}
+function togglePenaltyView(mode, kind) {
+  if (PENALTY_VIEW[kind] === mode) { resetPenaltyView(kind); return; }
+  PENALTY_VIEW[kind] = mode;
+  applyPenaltyViewMode(kind);
+}
+function resetPenaltyView(kind) {
+  PENALTY_VIEW[kind] = 'all';
+  applyPenaltyViewMode(kind);
+}
+
+function switchSafetySub(sub) {
+  curSafetySub = sub;
+  var items = document.querySelectorAll('#panel-safety [data-csub]');
+  for (var i=0;i<items.length;i++) items[i].classList.remove('active');
+  var it = document.querySelector('#panel-safety [data-csub="' + sub + '"]');
+  if (it) it.classList.add('active');
+  var panels = {'insp':'sub-insp', 'penalty-week':'sub-penalty-week', 'penalty-month':'sub-penalty-month'};
+  for (var k in panels) {
+    var p = document.getElementById(panels[k]);
+    if (p) p.classList.toggle('active', k === sub);  // 本看板 .sub-panel 靠 active 类显示（.sub-panel{display:none}/.sub-panel.active{display:block}），不能用内联 style
+  }
+  if (sub === 'insp') renderInspectionSub();
+  else if (sub === 'penalty-week') renderPenaltyTab('week');
+  else if (sub === 'penalty-month') renderPenaltyTab('month');
 }
 
 // ─── Tab 3: 骑手装备标准化率 ─────────────────────────────────
@@ -4438,7 +4965,8 @@ function exportTable(tabId) {
   var tabNames = {
     'morning': '站点早会', 'safety': '履约安全检查', 'equip': '骑手装备标准化率',
     'box': '餐箱消毒看板', 'knife': '带刀巡检看板', 'chargebp': '充换电血压看板',
-    'training': '线上线下考培', 'rider': '骑手维度执行'
+    'training': '线上线下考培', 'rider': '骑手维度执行',
+    'penalty-week': '履约达成处罚-周度', 'penalty-month': '履约达成处罚-月度'
   };
   var expName = (tabNames[tabId] || tabId);
   if (tabId === 'equip' && currentEquipView === 'clothing') expName = '骑手服装标准化率';
@@ -4457,6 +4985,7 @@ function screenshotPanel(tabId) {
     return;
   }
   var panelEl = document.getElementById('panel-'+tabId);
+  if (!panelEl) panelEl = document.getElementById(tabId);  // 兼容履约达成处罚子面板 id=sub-penalty-*
   if (!panelEl) { alert('未找到面板'); return; }
   
   var savedStyles = [];
