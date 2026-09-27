@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-28 05:42:02",
+  "updated_at": "2026-09-28 05:44:39",
   "action_summary": {
     "total": 22,
     "ok": 17,
@@ -538,7 +538,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-09-27 10:34:39",
             "max_age_hours": 26,
-            "age_hours": 19.1,
+            "age_hours": 19.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -898,7 +898,7 @@ window.DATA_CENTER = {
             "latest": "checkup_files_data.js",
             "mtime": "2026-09-23 14:51:37",
             "max_age_hours": 168,
-            "age_hours": 110.8,
+            "age_hours": 110.9,
             "ok": true,
             "note": "scan_checkup.py 手动扫描（用户按需触发），按 7 天兜底",
             "fail_hits": [],
@@ -936,7 +936,7 @@ window.DATA_CENTER = {
           "C:\\Users\\牛艳朝\\WorkBuddy\\2026-09-04-04-42-17\\safety-weekly-dashboard\\data\\accident.json",
           "C:\\Users\\牛艳朝\\WorkBuddy\\2026-09-04-04-42-17\\safety-weekly-dashboard\\data\\equity_slim_data.js"
         ],
-        "data_mtime": "2026-09-28 05:37:48",
+        "data_mtime": "2026-09-28 05:42:47",
         "all_synced": false,
         "synced_count": 7,
         "missing_count": 0,
@@ -951,7 +951,7 @@ window.DATA_CENTER = {
           {
             "type": "站长评级·slim(自动重建)",
             "latest": "equity_slim_data.js",
-            "mtime": "2026-09-28 05:37:48",
+            "mtime": "2026-09-28 05:42:47",
             "synced": true
           },
           {
@@ -996,9 +996,9 @@ window.DATA_CENTER = {
             "label": "站长评级slim自动重建",
             "path": "C:\\Users\\牛艳朝\\WorkBuddy\\2026-09-04-04-42-17\\safety-weekly-dashboard\\data\\equity_slim_data.js",
             "latest": "equity_slim_data.js",
-            "mtime": "2026-09-28 05:37:48",
+            "mtime": "2026-09-28 05:42:47",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.0,
             "ok": true,
             "note": "8421 按工作台源 mtime 自动重建",
             "fail_hits": [],
@@ -1024,7 +1024,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-09-27 10:34:39",
             "max_age_hours": 26,
-            "age_hours": 19.1,
+            "age_hours": 19.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1076,7 +1076,7 @@ window.DATA_CENTER = {
             "latest": "insurance_rate_analysis.html",
             "mtime": "2026-09-06 11:04:24",
             "max_age_hours": 216,
-            "age_hours": 522.6,
+            "age_hours": 522.7,
             "ok": false,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
