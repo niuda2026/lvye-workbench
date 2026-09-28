@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-29 07:23:53",
+  "updated_at": "2026-09-29 07:24:23",
   "action_summary": {
     "total": 22,
     "ok": 18,
@@ -279,7 +279,7 @@ window.DATA_CENTER = {
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-09-29 06:45:21",
             "max_age_hours": 30,
-            "age_hours": 0.6,
+            "age_hours": 0.7,
             "ok": true,
             "note": "早间自动化抓取",
             "fail_hits": [],
@@ -719,7 +719,7 @@ window.DATA_CENTER = {
             "latest": "update_stations.log",
             "mtime": "2026-09-24 07:27:01",
             "max_age_hours": 26,
-            "age_hours": 119.9,
+            "age_hours": 120.0,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -834,7 +834,7 @@ window.DATA_CENTER = {
             "latest": "monthly_summary.js",
             "mtime": "2026-09-29 07:20:54",
             "max_age_hours": 72,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
