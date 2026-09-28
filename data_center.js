@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-29 06:49:54",
+  "updated_at": "2026-09-29 06:52:33",
   "action_summary": {
     "total": 22,
     "ok": 18,
@@ -110,9 +110,9 @@ window.DATA_CENTER = {
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-09-29 06:40:11",
+            "mtime": "2026-09-29 06:50:35",
             "max_age_hours": 26,
-            "age_hours": 0.2,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -266,7 +266,7 @@ window.DATA_CENTER = {
             "latest": "充换电血压_data.js",
             "mtime": "2026-09-29 06:48:28",
             "max_age_hours": 13,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
@@ -290,14 +290,19 @@ window.DATA_CENTER = {
             "label": "每日刷新·抓取成败",
             "path": "daily_refresh_log.txt",
             "latest": "daily_refresh_log.txt",
-            "mtime": "2026-09-28 16:33:49",
+            "mtime": "2026-09-29 06:50:25",
             "max_age_hours": 13,
-            "age_hours": 14.3,
+            "age_hours": 0.0,
             "ok": false,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
-            "fail_hits": [],
-            "fail_lines": [],
-            "block_time": "2026-09-28 15:31:54"
+            "fail_hits": [
+              "退出码1",
+              "退出码2"
+            ],
+            "fail_lines": [
+              "第1步 烽火台当月充电/换电/血压: 全部方案失败 · S1-headless自起→退出码2(未生成 list_20260929.json) / S2-自起CDP离屏窗口→退出码1(未生成 list_20260929.json)"
+            ],
+            "block_time": "2026-09-29 06:50:25"
           }
         ],
         "action_stats": {
@@ -446,7 +451,7 @@ window.DATA_CENTER = {
             "latest": "_crawl_service.log",
             "mtime": "2026-09-26 06:12:09",
             "max_age_hours": 26,
-            "age_hours": 72.6,
+            "age_hours": 72.7,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -537,7 +542,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-09-28 09:43:17",
             "max_age_hours": 26,
-            "age_hours": 21.1,
+            "age_hours": 21.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -763,7 +768,7 @@ window.DATA_CENTER = {
             "latest": "_大屏数据.js",
             "mtime": "2026-09-29 06:49:23",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1023,7 +1028,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-09-28 09:43:17",
             "max_age_hours": 26,
-            "age_hours": 21.1,
+            "age_hours": 21.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
