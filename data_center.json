@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-29 06:52:33",
+  "updated_at": "2026-09-29 06:53:24",
   "action_summary": {
     "total": 22,
     "ok": 18,
@@ -110,7 +110,7 @@
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-09-29 06:50:35",
+            "mtime": "2026-09-29 06:53:06",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -378,7 +378,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-09-29 06:49:53",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
