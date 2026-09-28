@@ -72,6 +72,15 @@ body{display:flex;flex-direction:column}
 .notify-close{width:22px;height:22px;border-radius:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s}
 .notify-close:hover{background:rgba(245,127,23,.12)}
 .notify-close svg{width:14px;height:14px;fill:var(--notify-text)}
+/* 轮播跑马灯（2026-09-28）：只换内容滚动方式，条高(--notify-h:38px)/背景/字号一律不变 */
+.notify-items.mq-on{display:flex;flex:1;min-width:0;overflow:hidden;align-items:center}
+.mq-track{display:inline-flex;align-items:center;white-space:nowrap;flex-shrink:0;will-change:transform;animation:mqScroll 60s linear infinite}
+.notify-items.mq-on:hover .mq-track{animation-play-state:paused}
+.mq-half{display:inline-flex;align-items:center;white-space:nowrap;gap:56px;padding-right:64px}
+.mq-item{cursor:pointer;color:var(--notify-text)}
+.mq-item:hover{text-decoration:underline}
+.mq-item.late{color:#d93025;font-weight:600}
+@keyframes mqScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* Body */
 .body-wrap{flex:1;display:flex;overflow:hidden;position:relative}
@@ -170,6 +179,7 @@ body{display:flex;flex-direction:column}
   .overlay.show{display:block}
 }
 </style>
+<script src="data_center.js"></script>
 </head>
 <body>
 
@@ -619,8 +629,76 @@ function escAttr(s){
   return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
+// ===== 公告栏轮播：各看板今日数据更新时间（2026-09-28）=====
+// 数据源：data_center.js（window.DATA_CENTER，scan_data_center.py 随 M 盘落地/同步自动再生）。
+// 仅替换 .notify-items 内容为无缝轮播，条高/背景/字号不动；window.DATA_CENTER 缺失时保持原静态公告。
+var NOTIFY_LEGACY = [
+  { t: '【数据更新】每日 07:00 / 07:20 / 07:40 自动刷新保险赔付、BI 赔付率与骑手明细数据', k: 'data_center' },
+  { t: '【口径说明】看板分母＝在职名册/在册骑手，分子＝名册内已上报（与手动导出口径不同）', k: 'project' },
+  { t: '【带刀巡检】当月覆盖率 ≥50% 视为合格，站点行已按绿/红标色', k: 'project' }
+];
+function openGroupByName(title){
+  for (var gi = 0; gi < navGroups.length; gi++){
+    if (navGroups[gi].title === title && navGroups[gi].items.length){ selectItem(gi, 0); return; }
+  }
+}
+function buildNotifyMarquee(){
+  try{
+    var dc = window.DATA_CENTER;
+    var ni = document.getElementById('notifyItems');
+    if (!ni || !dc || !dc.groups || !dc.groups.length) return; // 无数据 → 保留原静态公告
+    var d = new Date();
+    function pad(n){ return n < 10 ? '0' + n : '' + n; }
+    var tkey = d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate());
+    var items = [];
+    dc.groups.forEach(function(g){
+      var m = g.monitor || {};
+      var mt = m.data_mtime || '';
+      if (!mt || mt === '--') return;
+      var datePart = mt.substring(0, 10);
+      var timePart = mt.length >= 16 ? mt.substring(11, 16) : '';
+      var isToday = datePart === tkey;
+      items.push({
+        cls: isToday ? 'mq-item' : 'mq-item late',
+        text: isToday
+          ? '【' + g.title + '】今日数据已更新 ' + timePart
+          : '【' + g.title + '】今日未更新（上次 ' + datePart + ' ' + timePart + '）',
+        tip: '点击打开「' + g.title + '」分组看板',
+        act: 'group', key: g.title
+      });
+    });
+    if (!items.length) return;
+    NOTIFY_LEGACY.forEach(function(x){
+      items.push({ cls: 'mq-item', text: x.t, tip: '点击查看详情', act: 'board', key: x.k });
+    });
+    var halfHtml = items.map(function(it){
+      return '<span class="' + it.cls + '" data-act="' + it.act + '" data-key="' + escAttr(it.key) + '" title="' + escAttr(it.tip) + '">' + escHtml(it.text) + '</span>';
+    }).join('');
+    ni.classList.add('mq-on');
+    ni.innerHTML = '<div class="mq-track" id="mqTrack"><span class="mq-half">' + halfHtml + '</span><span class="mq-half">' + halfHtml + '</span></div>';
+    var track = document.getElementById('mqTrack');
+    // 事件委托挂在 track 上（克隆份的条目也能点）
+    track.addEventListener('click', function(e){
+      var el = e.target && e.target.closest ? e.target.closest('.mq-item') : null;
+      if (!el) return;
+      if (el.getAttribute('data-act') === 'group') openGroupByName(el.getAttribute('data-key'));
+      else loadBoard(el.getAttribute('data-key'));
+    });
+    // 时长按内容宽度自适应（约 45px/秒），限 25~150 秒
+    requestAnimationFrame(function(){
+      try{
+        var half = track.querySelector('.mq-half');
+        var w = half.getBoundingClientRect().width || 800;
+        var dur = Math.max(25, Math.min(150, Math.round(w / 45)));
+        track.style.animationDuration = dur + 's';
+      }catch(e){}
+    });
+  }catch(e){ /* 出错保持原静态公告 */ }
+}
+
 // 初始化
 loadBoardConfig();
+buildNotifyMarquee();
 </script>
 </body>
 </html>

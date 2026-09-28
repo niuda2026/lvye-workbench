@@ -3,7 +3,7 @@ window.MONTHLY_SUMMARY = {
   "2026-08",
   "2026-09"
  ],
- "updated": "2026-09-28 07:06:26",
+ "updated": "2026-09-28 07:26:43",
  "sites": [
   {
    "level": "total",
@@ -9732,8 +9732,8 @@ window.MONTHLY_SUMMARY = {
    "2026-09": {
     "helmet": {
      "num": 25,
-     "den": 25,
-     "rate": 100.0
+     "den": 26.38888888888889,
+     "rate": 94.74
     },
     "speed": {
      "num": 62,
