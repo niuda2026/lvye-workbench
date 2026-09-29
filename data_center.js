@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-29 15:42:18",
+  "updated_at": "2026-09-29 15:42:32",
   "action_summary": {
     "total": 22,
     "ok": 18,
@@ -278,7 +278,7 @@ window.DATA_CENTER = {
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-09-29 06:45:21",
             "max_age_hours": 30,
-            "age_hours": 8.9,
+            "age_hours": 9.0,
             "ok": true,
             "note": "早间自动化抓取",
             "fail_hits": [],
@@ -996,7 +996,7 @@ window.DATA_CENTER = {
             "latest": "equity_slim_data.js",
             "mtime": "2026-09-28 12:27:26",
             "max_age_hours": 26,
-            "age_hours": 27.2,
+            "age_hours": 27.3,
             "ok": false,
             "note": "8421 按工作台源 mtime 自动重建",
             "fail_hits": [],
