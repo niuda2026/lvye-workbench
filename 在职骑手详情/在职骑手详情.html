@@ -39,7 +39,24 @@ body{font-family:'Microsoft YaHei',Arial,sans-serif;background:#e8f4fd;color:#1a
 .filter-bar{display:flex;gap:8px;padding:10px 16px;flex-wrap:wrap;align-items:center;background:#f5f9ff;border-bottom:1px solid #90caf9}
 .filter-bar select,.filter-bar input{padding:6px 9px;border:1px solid #90caf9;border-radius:4px;font-size:13px;background:#fff;color:#1a2e45;outline:none}
 .filter-bar select:focus,.filter-bar input:focus{border-color:#1565c0}
-.filter-bar input{flex:1;min-width:170px}
+#fQ{flex:1;min-width:170px}
+.chk input,.ms-item input{flex:0 0 auto;min-width:0;width:15px;height:15px;accent-color:#1565c0;cursor:pointer;margin:0}
+/* 多选级联下拉（2026-09-29） */
+.msel{position:relative;user-select:none}
+.ms-btn{padding:6px 9px;border:1px solid #90caf9;border-radius:4px;font-size:13px;background:#fff;color:#1a2e45;cursor:pointer;min-width:110px;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:6px}
+.ms-btn:hover,.msel.open .ms-btn{border-color:#1565c0}
+.ms-btn.on{background:#e3f2fd;border-color:#1565c0;font-weight:600}
+.ms-btn .ms-caret{font-size:10px;color:#5c7a9e}
+.ms-panel{display:none;position:absolute;top:calc(100% + 3px);left:0;z-index:60;background:#fff;border:1px solid #90caf9;border-radius:8px;box-shadow:0 8px 24px rgba(13,71,161,.18);min-width:220px;max-width:340px;overflow:hidden}
+.msel.open .ms-panel{display:block}
+.ms-ops{display:flex;gap:14px;align-items:center;padding:7px 12px;border-bottom:1px solid #e3f2fd;font-size:12px;background:#f5f9ff}
+.ms-ops a{color:#1565c0;cursor:pointer;text-decoration:none;font-weight:600}
+.ms-ops a:hover{text-decoration:underline}
+.ms-list{max-height:300px;overflow-y:auto;padding:4px 0}
+.ms-item{display:flex;align-items:center;gap:8px;padding:5px 12px;font-size:13px;color:#1a2e45;cursor:pointer;white-space:nowrap;line-height:1.4}
+.ms-item:hover{background:#e3f2fd}
+.ms-item .ms-lb{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.ms-count{color:#7890a8;font-size:11px;margin-left:auto;padding-left:14px;font-variant-numeric:tabular-nums}
 .row-count{font-size:12px;color:#5c7a9e;font-weight:600}
 .chk{display:flex;align-items:center;gap:4px;font-size:12px;color:#5c7a9e;cursor:pointer;white-space:nowrap}
 .btn-exp{padding:6px 12px;background:#1565c0;color:#fff;border:none;border-radius:4px;font-size:12px;cursor:pointer}
@@ -101,10 +118,10 @@ tr:hover td{background:#f0f7ff}
 <div class="stats" id="stats"></div>
 
 <div class="filter-bar">
-  <select id="fBig"><option value="">全部大区</option></select>
-  <select id="fReg"><option value="">全部区域</option></select>
-  <select id="fCity"><option value="">全部城市</option></select>
-  <select id="fSite"><option value="">全部站点</option></select>
+  <div class="msel" id="msBig"></div>
+  <div class="msel" id="msReg"></div>
+  <div class="msel" id="msCity"></div>
+  <div class="msel" id="msSite"></div>
   <select id="fSt">
     <option value="">全部处置状态</option>
     <option value="none">双无（立即停用）</option>
@@ -125,7 +142,7 @@ tr:hover td{background:#f0f7ff}
     <option value="9999">入职 &gt;1 年</option>
   </select>
   <input id="fQ" placeholder="搜索姓名 / 骑手ID / 站点">
-  <label class="chk"><input type="checkbox" id="fPre"> 含预离职已通过</label>
+  <label class="chk"><input type="checkbox" id="fPre" checked> 含预离职已通过</label>
   <button class="btn-exp" id="btnExp">导出督办名单</button>
   <span class="row-count" id="rowCount"></span>
 </div>
@@ -135,6 +152,7 @@ tr:hover td{background:#f0f7ff}
 <div id="tc">
   <table>
     <thead><tr>
+      <th data-sort="b">大区</th>
       <th data-sort="g">区域</th>
       <th data-sort="c">城市</th>
       <th data-sort="s">站点</th>
@@ -195,7 +213,7 @@ function statusOf(o){
   return 'rnew';
 }
 
-var st={big:'',reg:'',city:'',site:'',stt:'',hire:'',q:'',pre:false,key:'hd2',dir:1,page:1,size:100};
+var st={stt:'',hire:'',q:'',pre:true,key:'b',dir:1,page:1,size:100};
 var view=[];
 
 /* 顶部元信息 */
@@ -205,29 +223,120 @@ var view=[];
     '在职基数：排班明细 ' + esc(m.sched_date||'-') + '　|　证件状态：烽火台健康证监控 T-1 ' + esc(m.hc_date||'-')
     + '　|　生成 ' + esc(m.gen||'-') + '　|　剩余天数按今日 ' + TODAY + ' 实时计算';
   document.getElementById('noteLine').textContent =
-    '口径说明：在职名单以当日排班明细为准（实名），证件状态由 T-1 健康证监控表按骑手ID左连接；默认排除「预离职已通过」人员，勾选后可查看。';
+    '口径说明：在职名单以当日排班明细为准（实名），在职骑手数=排班明细全量人数；证件状态由 T-1 健康证监控表按骑手ID左连接；大区按全看板统一口径（区域名称关键词→城市兜底）映射五大区：华北一区/华北二区/华北三区/华东大区/中南大区；表格默认按大区排序；如需剔除「预离职已通过」人员，取消勾选即可。';
 })();
 
-/* 筛选下拉：级联填充 */
-function fillSel(id, arr, cur){
-  var el=document.getElementById(id); var keep=el.value;
-  var vals=arr.filter(function(v,i,a){return v&&a.indexOf(v)===i;}).sort(function(a,b){return a.localeCompare(b,'zh-Hans-CN');});
-  el.innerHTML='<option value="">'+cur+'</option>'+vals.map(function(v){return '<option value="'+esc(v)+'">'+esc(v)+'</option>';}).join('');
-  if(vals.indexOf(keep)>=0) el.value=keep;
+/* 筛选下拉：多选 + 级联联动（2026-09-29） */
+var REGION_ORDER=['华北一区','华北二区','华北三区','华东大区','中南大区'];
+var SELS={
+  big :{el:'msBig', label:'全部大区', field:'b', order:REGION_ORDER,       parents:[]},
+  reg :{el:'msReg',  label:'全部区域', field:'g', order:null,              parents:['big']},
+  city:{el:'msCity', label:'全部城市', field:'c', order:null,              parents:['big','reg']},
+  site:{el:'msSite', label:'全部站点', field:'s', order:null,              parents:['big','reg','city']}
+};
+var SEL_KEYS=['big','reg','city','site'];
+var sel={big:[],reg:[],city:[],site:[]};   /* 各级已选值 */
+var OPTS={big:[],reg:[],city:[],site:[]};  /* 各级当前可选值（级联收窄后） */
+
+/* 按祖先级选中收窄数据池 */
+function poolFor(key){
+  var arr=DATA;
+  for(var i=0;i<SELS[key].parents.length;i++){
+    var p=SELS[key].parents[i];
+    if(sel[p].length){
+      var m={}; sel[p].forEach(function(v){m[v]=1;});
+      var f=SELS[p].field, out=[];
+      for(var j=0;j<arr.length;j++){ if(m[arr[j][f]]) out.push(arr[j]); }
+      arr=out;
+    }
+  }
+  return arr;
 }
-var allBig=[],allReg=[],allCity=[],allSite=[];
-DATA.forEach(function(o){ allBig.push(o.b); allReg.push(o.g); allCity.push(o.c); allSite.push(o.s); });
-fillSel('fBig',allBig,'全部大区'); fillSel('fReg',allReg,'全部区域');
-fillSel('fCity',allCity,'全部城市'); fillSel('fSite',allSite,'全部站点');
+function rebuildOpts(key){
+  var f=SELS[key].field, arr=poolFor(key), seen={}, vals=[];
+  for(var i=0;i<arr.length;i++){ var v=arr[i][f]; if(v&&!seen[v]){seen[v]=1;vals.push(v);} }
+  var order=SELS[key].order;
+  vals.sort(function(a,b){
+    if(order){ var ia=order.indexOf(a),ib=order.indexOf(b);
+      if(ia!==-1&&ib!==-1) return ia-ib;
+      if(ia!==-1) return -1; if(ib!==-1) return 1; }
+    return a.localeCompare(b,'zh-Hans-CN');
+  });
+  OPTS[key]=vals;
+  /* 祖先变化后，本级已选值若不在可选池内则剔除 */
+  sel[key]=sel[key].filter(function(v){return vals.indexOf(v)>=0;});
+}
+/* 各级选项计数（供勾选时参考） */
+function cntFor(key){
+  var f=SELS[key].field, arr=poolFor(key), m={};
+  for(var i=0;i<arr.length;i++){ var v=arr[i][f]; if(v){ m[v]=(m[v]||0)+1; } }
+  return m;
+}
+function renderMsel(key){
+  var cfg=SELS[key], box=document.getElementById(cfg.el), chosen=sel[key];
+  var cnt=cntFor(key);
+  var txt = chosen.length===0 ? cfg.label
+          : chosen.length===1 ? chosen[0]
+          : cfg.label.replace('全部','')+'（'+chosen.length+'）';
+  box.innerHTML =
+    '<button type="button" class="ms-btn'+(chosen.length?' on':'')+'"><span>'+esc(txt)+'</span><span class="ms-caret">▼</span></button>'
+    +'<div class="ms-panel">'
+    +  '<div class="ms-ops"><a data-act="all">全选</a><a data-act="none">清空</a><span style="margin-left:auto;color:#5c7a9e">可多选</span></div>'
+    +  '<div class="ms-list">'+OPTS[key].map(function(v){
+        return '<label class="ms-item"><input type="checkbox" value="'+esc(v)+'"'+(chosen.indexOf(v)>=0?' checked':'')+'>'
+          +'<span class="ms-lb">'+esc(v)+'</span><span class="ms-count">'+(cnt[v]||0)+'</span></label>';
+      }).join('')+'</div></div>';
+  box.querySelector('.ms-btn').onclick=function(ev){
+    ev.stopPropagation();
+    var willOpen=!box.classList.contains('open');
+    closeAllMsel();
+    if(willOpen) box.classList.add('open');
+  };
+  box.querySelector('.ms-panel').onclick=function(ev){ ev.stopPropagation(); };
+  Array.prototype.forEach.call(box.querySelectorAll('.ms-ops a'),function(a){
+    a.onclick=function(){
+      var act=a.getAttribute('data-act');
+      sel[key]= act==='all' ? OPTS[key].slice() : [];
+      applyCascade(key);
+    };
+  });
+  Array.prototype.forEach.call(box.querySelectorAll('.ms-list input'),function(cb){
+    cb.onchange=function(){
+      var set={}; sel[key].forEach(function(v){set[v]=1;});
+      if(cb.checked) set[cb.value]=1; else delete set[cb.value];
+      sel[key]=OPTS[key].filter(function(v){return set[v];});
+      applyCascade(key);
+    };
+  });
+}
+/* 某级选择变化后：重建后代选项（剔除越界选中）并重渲染 + 刷新数据 */
+function applyCascade(key){
+  var i=SEL_KEYS.indexOf(key);
+  for(var j=i;j<SEL_KEYS.length;j++) rebuildOpts(SEL_KEYS[j]);
+  for(var k=i;k<SEL_KEYS.length;k++) renderMsel(SEL_KEYS[k]);
+  filter();
+}
+function closeAllMsel(){
+  Array.prototype.forEach.call(document.querySelectorAll('.msel.open'),function(b){b.classList.remove('open');});
+}
+document.addEventListener('click',closeAllMsel);
+
+SEL_KEYS.forEach(rebuildOpts);
+SEL_KEYS.forEach(renderMsel);
 
 function filter(){
   var q=st.q;
+  /* 多选级联：命中任意选中值即通过（级为空=不限） */
+  function hit(key,field){
+    var a=sel[key]; if(!a.length) return true;
+    return a.indexOf(field)>=0;
+  }
   view=DATA.filter(function(o){
     if(!st.pre && o.p===1) return false;
-    if(st.big && o.b!==st.big) return false;
-    if(st.reg && o.g!==st.reg) return false;
-    if(st.city && o.c!==st.city) return false;
-    if(st.site && o.s!==st.site) return false;
+    if(!hit('big',o.b)) return false;
+    if(!hit('reg',o.g)) return false;
+    if(!hit('city',o.c)) return false;
+    if(!hit('site',o.s)) return false;
     if(st.stt && o.st!==st.stt) return false;
     if(st.hire){
       var hd=o.hd; if(hd===null) return false;
@@ -246,6 +355,18 @@ function filter(){
 function sort(){
   var k=st.key,d=st.dir;
   view.sort(function(a,b){
+    /* 大区按业务顺序：华北一区→二区→三区→华东→中南（非拼音序） */
+    if(k==='b'){
+      var ia=REGION_ORDER.indexOf(a.b), ib=REGION_ORDER.indexOf(b.b);
+      if(ia<0) ia=REGION_ORDER.length; if(ib<0) ib=REGION_ORDER.length;
+      if(ia!==ib) return (ia-ib)*d;
+      /* 同大区内按 区域→城市→站点→姓名 */
+      var t=(a.g||'').localeCompare(b.g||'','zh-Hans-CN');
+      if(t) return t*d;
+      t=(a.c||'').localeCompare(b.c||'','zh-Hans-CN'); if(t) return t*d;
+      t=(a.s||'').localeCompare(b.s||'','zh-Hans-CN'); if(t) return t*d;
+      return (a.n||'').localeCompare(b.n||'','zh-Hans-CN')*d;
+    }
     var va=a[k],vb=b[k];
     if(k==='hd2'||k==='rd'||k==='hd'||k==='r'){
       var na=(va===null||va==='')?-999999:Number(va), nb=(vb===null||vb==='')?-999999:Number(vb);
@@ -263,14 +384,14 @@ function render(){
   for(var i=0;i<slice.length;i++){
     var o=slice[i];
     html.push('<tr>'
-      +'<td>'+esc(o.g)+'</td><td>'+esc(o.c)+'</td><td>'+esc(o.s)+'</td>'
+      +'<td>'+esc(o.b)+'</td><td>'+esc(o.g)+'</td><td>'+esc(o.c)+'</td><td>'+esc(o.s)+'</td>'
       +'<td>'+esc(o.r)+'</td><td>'+esc(o.n)+'</td>'
       +'<td>'+fmtD(o.h)+'</td><td class="num">'+(o.hd===null?'—':o.hd)+'</td>'
       +'<td>'+fmtD(o.e)+'</td><td class="num">'+fmtN(o.hd2)+'</td>'
       +'<td>'+fmtD(o.x)+'</td><td class="num">'+fmtN(o.rd)+'</td>'
       +'<td><span class="badge '+(ST_CLS[o.st]||'b-pre')+'">'+(ST_LABEL[o.st]||o.st)+'</span></td></tr>');
   }
-  document.getElementById('tb').innerHTML=html.join('')||'<tr><td colspan="12" class="empty">没有符合条件的骑手</td></tr>';
+  document.getElementById('tb').innerHTML=html.join('')||'<tr><td colspan="13" class="empty">没有符合条件的骑手</td></tr>';
   document.getElementById('rowCount').textContent='筛选 '+total+' 人';
   var end=Math.min(start+st.size,total);
   var pg=document.getElementById('pager');
@@ -345,15 +466,17 @@ function renderRank(){
       +'<div class="rval">'+x[1]+'</div></div>';
   }).join('');
   Array.prototype.forEach.call(box.querySelectorAll('.rname'),function(el){
-    el.onclick=function(){ st.site=el.getAttribute('data-site'); document.getElementById('fSite').value=st.site; filter(); };
+    el.onclick=function(){
+      /* 点排行站点：清空组织筛选并只选该站点 */
+      sel.big=[];sel.reg=[];sel.city=[];sel.site=[el.getAttribute('data-site')];
+      SEL_KEYS.forEach(rebuildOpts); SEL_KEYS.forEach(renderMsel); filter();
+    };
   });
 }
 
-/* 事件 */
-['fBig','fReg','fCity','fSite','fSt','fHire'].forEach(function(id){
+/* 事件（组织维度已改多选组件，这里只留单选维度） */
+['fSt','fHire'].forEach(function(id){
   document.getElementById(id).addEventListener('change',function(){
-    st.big=document.getElementById('fBig').value; st.reg=document.getElementById('fReg').value;
-    st.city=document.getElementById('fCity').value; st.site=document.getElementById('fSite').value;
     st.stt=document.getElementById('fSt').value; st.hire=document.getElementById('fHire').value;
     filter();
   });
@@ -362,7 +485,7 @@ document.getElementById('fQ').addEventListener('input',function(){ st.q=this.val
 document.getElementById('fPre').addEventListener('change',function(){ st.pre=this.checked; filter(); });
 document.getElementById('btnHelp').addEventListener('click',function(){
   alert('数据来源：M:\\下载 下最新「骑手排班明细数据_*.xlsx」+ 最新「_健康证到期监控_*.xlsx」。\n\n'
-    +'更新方式：双击本目录的「导入健康证监控表.bat」，脚本会自动找最新两份表并重建数据，然后刷新本页面。');
+    +'更新方式：全自动。M盘监控服务（每60秒扫描）发现新表落地后，会自动重建本看板数据，无需任何手动操作；本页面刷新即可看到最新数据。');
 });
 document.getElementById('btnExp').addEventListener('click',function(){
   var head=['大区','区域','城市','站点','骑手ID','姓名','入职日期','健康证到期','剩余天数','回执单到期','回执单剩余','处置'];

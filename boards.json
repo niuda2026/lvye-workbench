@@ -59,7 +59,7 @@
       "items": [
         {
           "key": "rider_detail",
-          "label": "在职骑手详情",
+          "label": "骑手健康证监控",
           "file": "在职骑手详情/在职骑手详情.html"
         },
         {

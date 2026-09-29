@@ -1,11 +1,12 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-09-29 15:42:32",
+  "updated_at": "2026-09-30 07:01:07",
   "action_summary": {
     "total": 22,
     "ok": 18,
     "alert": 4,
     "missing": 0,
     "alert_groups": [
+      "履约项目",
       "骑手管理",
       "站点地图",
       "安全周报"
@@ -19,7 +20,7 @@ window.DATA_CENTER = {
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-29 07:46:05",
+        "data_mtime": "2026-09-30 07:01:04",
         "all_synced": true,
         "synced_count": 13,
         "missing_count": 0,
@@ -27,14 +28,14 @@ window.DATA_CENTER = {
         "sources": [
           {
             "type": "站点-戴盔",
-            "latest": "戴盔_2026-09-28-2026-09-28(统计日期)_1790636519033.xlsx",
-            "mtime": "2026-09-29 07:02:04",
+            "latest": "戴盔_2026-09-29-2026-09-29(统计日期)_1790722773765.xlsx",
+            "mtime": "2026-09-30 06:59:38",
             "synced": true
           },
           {
             "type": "站点-速度",
-            "latest": "速度_2026-09-28-2026-09-28(统计日期)_1790636554251.xlsx",
-            "mtime": "2026-09-29 07:02:39",
+            "latest": "速度_2026-09-29-2026-09-29(统计日期)_1790722801794.xlsx",
+            "mtime": "2026-09-30 07:00:05",
             "synced": true
           },
           {
@@ -45,20 +46,20 @@ window.DATA_CENTER = {
           },
           {
             "type": "站点-逆行",
-            "latest": "_逆行_2026-09-28-2026-09-28(统计日期)_1790636587746.xlsx",
-            "mtime": "2026-09-29 07:03:18",
+            "latest": "_逆行_2026-09-29-2026-09-29(统计日期)_1790722830127.xlsx",
+            "mtime": "2026-09-30 07:00:34",
             "synced": true
           },
           {
             "type": "骑手维度-戴盔",
-            "latest": "戴盔-骑手维度_2026-09-28-2026-09-28(统计日期)_1790636529299.xlsx",
-            "mtime": "2026-09-29 07:02:19",
+            "latest": "戴盔-骑手维度_2026-09-29-2026-09-29(统计日期)_1790722784583.xlsx",
+            "mtime": "2026-09-30 06:59:50",
             "synced": true
           },
           {
             "type": "骑手维度-速度",
-            "latest": "速度-骑手维度_2026-09-08-2026-09-14(统计日期)_1790638419000.xlsx",
-            "mtime": "2026-09-29 07:39:55",
+            "latest": "速度-骑手维度_2026-09-29-2026-09-29(统计日期)_1790722811203.xlsx",
+            "mtime": "2026-09-30 07:00:18",
             "synced": true
           },
           {
@@ -75,14 +76,14 @@ window.DATA_CENTER = {
           },
           {
             "type": "安全指标监控(骑手)",
-            "latest": "安全指标监控_骑手维度_20260928-20260928(日期)_1790634726313.xlsx",
-            "mtime": "2026-09-29 06:32:10",
+            "latest": "安全指标监控_骑手维度_20260929-20260929(日期)_1790722323589.xlsx",
+            "mtime": "2026-09-30 06:52:07",
             "synced": true
           },
           {
             "type": "站维度",
-            "latest": "站维度_20260928-20260928(日期)_1790634690248.xlsx",
-            "mtime": "2026-09-29 06:31:33",
+            "latest": "站维度_20260929-20260929(日期)_1790722313655.xlsx",
+            "mtime": "2026-09-30 06:51:57",
             "synced": true
           },
           {
@@ -99,8 +100,8 @@ window.DATA_CENTER = {
           },
           {
             "type": "未剔除恶劣天气(单量)",
-            "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260928-20260928(天)_1790635035226.xlsx",
-            "mtime": "2026-09-29 06:37:50",
+            "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260929-20260929(天)_1790722384648.xlsx",
+            "mtime": "2026-09-30 06:53:15",
             "synced": true
           }
         ],
@@ -109,9 +110,9 @@ window.DATA_CENTER = {
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-09-29 07:56:41",
+            "mtime": "2026-09-30 07:01:06",
             "max_age_hours": 26,
-            "age_hours": 7.8,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -241,15 +242,15 @@ window.DATA_CENTER = {
           },
           {
             "type": "骑手排班明细数据",
-            "latest": "骑手排班明细数据_49896033_20260929_064157.xlsx",
-            "mtime": "2026-09-29 06:42:17",
-            "synced": true
+            "latest": "骑手排班明细数据_49896033_20260930_065810.xlsx",
+            "mtime": "2026-09-30 06:58:49",
+            "synced": false
           },
           {
             "type": "表单列表",
-            "latest": "表单列表_49896033_20260929_153450.xlsx",
-            "mtime": "2026-09-29 15:38:05",
-            "synced": false
+            "latest": "表单列表_49896033_20260929_064446.xlsx",
+            "mtime": "2026-09-29 06:45:04",
+            "synced": true
           },
           {
             "type": "载具审核-骑手明细(BI)",
@@ -265,8 +266,8 @@ window.DATA_CENTER = {
             "latest": "充换电血压_data.js",
             "mtime": "2026-09-29 07:37:28",
             "max_age_hours": 13,
-            "age_hours": 8.1,
-            "ok": true,
+            "age_hours": 23.4,
+            "ok": false,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
             "fail_lines": [],
@@ -278,7 +279,7 @@ window.DATA_CENTER = {
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-09-29 06:45:21",
             "max_age_hours": 30,
-            "age_hours": 9.0,
+            "age_hours": 24.3,
             "ok": true,
             "note": "早间自动化抓取",
             "fail_hits": [],
@@ -289,22 +290,22 @@ window.DATA_CENTER = {
             "label": "每日刷新·抓取成败",
             "path": "daily_refresh_log.txt",
             "latest": "daily_refresh_log.txt",
-            "mtime": "2026-09-29 15:34:45",
+            "mtime": "2026-09-30 06:50:47",
             "max_age_hours": 13,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
             "fail_hits": [],
             "fail_lines": [],
-            "block_time": "2026-09-26 06:12:09"
+            "block_time": "2026-09-30 06:50:40"
           }
         ],
         "action_stats": {
-          "ok_count": 3,
-          "alert_count": 0,
+          "ok_count": 2,
+          "alert_count": 1,
           "missing_count": 0,
           "total": 3,
-          "all_ok": true
+          "all_ok": false
         },
         "all_healthy": false
       },
@@ -346,7 +347,7 @@ window.DATA_CENTER = {
           "护航服装\\data.js",
           "护航服装\\data_excluded.js"
         ],
-        "data_mtime": "2026-09-29 07:20:40",
+        "data_mtime": "2026-09-30 07:00:21",
         "all_synced": true,
         "synced_count": 2,
         "missing_count": 0,
@@ -354,14 +355,14 @@ window.DATA_CENTER = {
         "sources": [
           {
             "type": "已剔除恶劣天气",
-            "latest": "已剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260928-20260928(天)_1790634923274.xlsx",
-            "mtime": "2026-09-29 06:35:41",
+            "latest": "已剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260929-20260929(天)_1790722413224.xlsx",
+            "mtime": "2026-09-30 06:55:40",
             "synced": true
           },
           {
             "type": "未剔除恶劣天气",
-            "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260928-20260928(天)_1790635035226.xlsx",
-            "mtime": "2026-09-29 06:37:50",
+            "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20260929-20260929(天)_1790722384648.xlsx",
+            "mtime": "2026-09-30 06:53:15",
             "synced": true
           }
         ],
@@ -370,9 +371,9 @@ window.DATA_CENTER = {
             "label": "服装标准化数据更新",
             "path": "护航服装\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-09-29 07:20:48",
+            "mtime": "2026-09-30 07:00:29",
             "max_age_hours": 26,
-            "age_hours": 8.4,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -425,7 +426,7 @@ window.DATA_CENTER = {
           "在职骑手详情\\在职骑手详情.html",
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-09-29 07:46:05",
+        "data_mtime": "2026-09-30 07:01:04",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -433,8 +434,8 @@ window.DATA_CENTER = {
         "sources": [
           {
             "type": "骑手排班明细数据",
-            "latest": "骑手排班明细数据_49896033_20260929_064157.xlsx",
-            "mtime": "2026-09-29 06:42:17",
+            "latest": "骑手排班明细数据_49896033_20260930_065810.xlsx",
+            "mtime": "2026-09-30 06:58:49",
             "synced": true
           }
         ],
@@ -445,7 +446,7 @@ window.DATA_CENTER = {
             "latest": "_crawl_service.log",
             "mtime": "2026-09-26 06:12:09",
             "max_age_hours": 26,
-            "age_hours": 81.5,
+            "age_hours": 96.8,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -465,7 +466,7 @@ window.DATA_CENTER = {
       "boards": [
         {
           "key": "rider_detail",
-          "label": "在职骑手详情",
+          "label": "骑手健康证监控",
           "file": "D:/兴达数据库/在职骑手详情/在职骑手详情.html",
           "tabs": [],
           "tab_keys": [],
@@ -498,7 +499,7 @@ window.DATA_CENTER = {
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-09-29 07:46:05",
+        "data_mtime": "2026-09-30 07:01:04",
         "all_synced": true,
         "synced_count": 4,
         "missing_count": 0,
@@ -519,7 +520,7 @@ window.DATA_CENTER = {
           {
             "type": "V3内联数据",
             "latest": "v3_data.js",
-            "mtime": "2026-09-29 07:46:05",
+            "mtime": "2026-09-30 07:01:04",
             "synced": true
           },
           {
@@ -536,7 +537,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-09-29 07:32:00",
             "max_age_hours": 26,
-            "age_hours": 8.2,
+            "age_hours": 23.5,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -549,7 +550,7 @@ window.DATA_CENTER = {
             "latest": "premium_latest.json",
             "mtime": "2026-09-29 07:35:30",
             "max_age_hours": 26,
-            "age_hours": 8.1,
+            "age_hours": 23.4,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -560,9 +561,9 @@ window.DATA_CENTER = {
             "label": "V3内联数据",
             "path": "骑手保障补贴\\v3_data.js",
             "latest": "v3_data.js",
-            "mtime": "2026-09-29 07:46:05",
+            "mtime": "2026-09-30 07:01:04",
             "max_age_hours": 26,
-            "age_hours": 7.9,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -575,7 +576,7 @@ window.DATA_CENTER = {
             "latest": "insurance_data.js",
             "mtime": "2026-09-28 09:40:20",
             "max_age_hours": 72,
-            "age_hours": 30.0,
+            "age_hours": 45.3,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -651,7 +652,7 @@ window.DATA_CENTER = {
             "latest": "110工单看板.html",
             "mtime": "2026-09-23 11:38:46",
             "max_age_hours": 168,
-            "age_hours": 148.1,
+            "age_hours": 163.4,
             "ok": true,
             "note": "更新频率待确认，先按 7 天",
             "fail_hits": [],
@@ -713,7 +714,7 @@ window.DATA_CENTER = {
             "latest": "update_stations.log",
             "mtime": "2026-09-24 07:27:01",
             "max_age_hours": 26,
-            "age_hours": 128.3,
+            "age_hours": 143.6,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -749,7 +750,7 @@ window.DATA_CENTER = {
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-09-29 07:46:07",
+        "data_mtime": "2026-09-30 07:01:06",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -760,9 +761,9 @@ window.DATA_CENTER = {
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-09-29 07:46:07",
+            "mtime": "2026-09-30 07:01:06",
             "max_age_hours": 26,
-            "age_hours": 7.9,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -808,7 +809,7 @@ window.DATA_CENTER = {
         "data_files": [
           "交通安全行为看板\\monthly_summary.js"
         ],
-        "data_mtime": "2026-09-29 07:20:54",
+        "data_mtime": "2026-09-30 07:00:33",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -817,7 +818,7 @@ window.DATA_CENTER = {
           {
             "type": "交通安全data.js（归档源）",
             "latest": "data.js",
-            "mtime": "2026-09-29 07:46:05",
+            "mtime": "2026-09-30 07:01:04",
             "synced": true
           }
         ],
@@ -826,9 +827,9 @@ window.DATA_CENTER = {
             "label": "月度累计归档",
             "path": "交通安全行为看板\\monthly_summary.js",
             "latest": "monthly_summary.js",
-            "mtime": "2026-09-29 07:20:54",
+            "mtime": "2026-09-30 07:00:33",
             "max_age_hours": 72,
-            "age_hours": 8.4,
+            "age_hours": 0.0,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
@@ -896,7 +897,7 @@ window.DATA_CENTER = {
             "latest": "checkup_files_data.js",
             "mtime": "2026-09-23 14:51:37",
             "max_age_hours": 168,
-            "age_hours": 144.8,
+            "age_hours": 160.2,
             "ok": true,
             "note": "scan_checkup.py 手动扫描（用户按需触发），按 7 天兜底",
             "fail_hits": [],
@@ -934,23 +935,23 @@ window.DATA_CENTER = {
           "C:\\Users\\牛艳朝\\WorkBuddy\\2026-09-04-04-42-17\\safety-weekly-dashboard\\data\\accident.json",
           "C:\\Users\\牛艳朝\\WorkBuddy\\2026-09-04-04-42-17\\safety-weekly-dashboard\\data\\equity_slim_data.js"
         ],
-        "data_mtime": "2026-09-28 12:27:26",
+        "data_mtime": "2026-09-29 17:13:47",
         "all_synced": false,
-        "synced_count": 6,
+        "synced_count": 7,
         "missing_count": 0,
-        "unsynced_count": 2,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "安全权益·工作台源(iframe实时)",
             "latest": "data.js",
-            "mtime": "2026-09-29 07:46:05",
+            "mtime": "2026-09-30 07:01:04",
             "synced": true
           },
           {
             "type": "站长评级·slim(自动重建)",
             "latest": "equity_slim_data.js",
-            "mtime": "2026-09-28 12:27:26",
-            "synced": false
+            "mtime": "2026-09-29 17:13:47",
+            "synced": true
           },
           {
             "type": "履约数据(手工周更)",
@@ -967,7 +968,7 @@ window.DATA_CENTER = {
           {
             "type": "保险·V3内联数据(实时)",
             "latest": "v3_data.js",
-            "mtime": "2026-09-29 07:46:05",
+            "mtime": "2026-09-30 07:01:04",
             "synced": true
           },
           {
@@ -994,10 +995,10 @@ window.DATA_CENTER = {
             "label": "站长评级slim自动重建",
             "path": "C:\\Users\\牛艳朝\\WorkBuddy\\2026-09-04-04-42-17\\safety-weekly-dashboard\\data\\equity_slim_data.js",
             "latest": "equity_slim_data.js",
-            "mtime": "2026-09-28 12:27:26",
+            "mtime": "2026-09-29 17:13:47",
             "max_age_hours": 26,
-            "age_hours": 27.3,
-            "ok": false,
+            "age_hours": 13.8,
+            "ok": true,
             "note": "8421 按工作台源 mtime 自动重建",
             "fail_hits": [],
             "fail_lines": [],
@@ -1007,9 +1008,9 @@ window.DATA_CENTER = {
             "label": "保险赔付补贴监控·V3数据",
             "path": "骑手保障补贴\\v3_data.js",
             "latest": "v3_data.js",
-            "mtime": "2026-09-29 07:46:05",
+            "mtime": "2026-09-30 07:01:04",
             "max_age_hours": 26,
-            "age_hours": 7.9,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1022,7 +1023,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-09-29 07:32:00",
             "max_age_hours": 26,
-            "age_hours": 8.2,
+            "age_hours": 23.5,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1035,7 +1036,7 @@ window.DATA_CENTER = {
             "latest": "premium_latest.json",
             "mtime": "2026-09-29 07:35:30",
             "max_age_hours": 26,
-            "age_hours": 8.1,
+            "age_hours": 23.4,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1048,7 +1049,7 @@ window.DATA_CENTER = {
             "latest": "compliance.json",
             "mtime": "2026-09-28 05:46:42",
             "max_age_hours": 216,
-            "age_hours": 33.9,
+            "age_hours": 49.2,
             "ok": true,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
@@ -1061,7 +1062,7 @@ window.DATA_CENTER = {
             "latest": "accident.json",
             "mtime": "2026-09-28 05:46:42",
             "max_age_hours": 216,
-            "age_hours": 33.9,
+            "age_hours": 49.2,
             "ok": true,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
@@ -1074,7 +1075,7 @@ window.DATA_CENTER = {
             "latest": "insurance_rate_analysis.html",
             "mtime": "2026-09-06 11:04:24",
             "max_age_hours": 216,
-            "age_hours": 556.6,
+            "age_hours": 571.9,
             "ok": false,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
@@ -1083,8 +1084,8 @@ window.DATA_CENTER = {
           }
         ],
         "action_stats": {
-          "ok_count": 5,
-          "alert_count": 2,
+          "ok_count": 6,
+          "alert_count": 1,
           "missing_count": 0,
           "total": 7,
           "all_ok": false
