@@ -75,16 +75,17 @@ tr.lv-site:hover td{background:#f0f7ff}
 .note{font-size:11px;color:#78909c;padding:6px 16px;background:#fff;border-bottom:1px solid #d6e4f0;line-height:1.6}
 </style>
 <script src="monthly_summary.js"></script>
+<script src="monthly_extra.js"></script>
 </head>
 <body>
 
 <div class="header">
   <div>
     <div class="header-title">📊 月度累计看板</div>
-    <div class="header-sub">站点维度月度累计 · 高速骑手 / 护航服装 / 安全权益 / 站长安全评级（跨月对比）</div>
+    <div class="header-sub">站点维度月度累计 · 安全权益 / 站长评级 / 高速骑手 / 护航服装 / 保险赔付 / 110工单 / 充换电血压 / 骑手健康（跨月对比）</div>
   </div>
   <div class="header-right">
-    <div id="dataRange">数据文件: monthly_summary.js</div>
+    <div id="dataRange">数据文件: monthly_summary.js + monthly_extra.js</div>
     <div>戴盔系带率 ≥ 97% &nbsp;|&nbsp; 路口超速率 ≤ 4% &nbsp;|&nbsp; 闯红灯率 ≤ 23% &nbsp;|&nbsp; 里程逆行率 ≤ 3% &nbsp;|&nbsp; 工装检核率 ≥ 80% &nbsp;|&nbsp; 美团工服率 ≥ 92%</div>
   </div>
 </div>
@@ -117,6 +118,10 @@ tr.lv-site:hover td{background:#f0f7ff}
   <div class="tab-item" data-tab="rating" onclick="switchTab('rating')">🏅 站长安全评级</div>
   <div class="tab-item" data-tab="highway" onclick="switchTab('highway')">⚡ 高速骑手</div>
   <div class="tab-item" data-tab="clothing" onclick="switchTab('clothing')">👕 护航服装</div>
+  <div class="tab-item" data-tab="insurance" onclick="switchTab('insurance')">💰 保险赔付</div>
+  <div class="tab-item" data-tab="tickets" onclick="switchTab('tickets')">🎫 110工单</div>
+  <div class="tab-item" data-tab="chargebp" onclick="switchTab('chargebp')">🔋 充换电血压</div>
+  <div class="tab-item" data-tab="health" onclick="switchTab('health')">🩺 骑手健康</div>
 </div>
 <div class="note" id="noteLine"></div>
 
@@ -132,6 +137,18 @@ tr.lv-site:hover td{background:#f0f7ff}
 <div class="panel" id="panel-clothing">
   <div class="table-wrap"><table class="dt" id="tbl-clothing"><thead></thead><tbody></tbody></table></div>
 </div>
+<div class="panel" id="panel-insurance">
+  <div class="table-wrap"><table class="dt" id="tbl-insurance"><thead></thead><tbody></tbody></table></div>
+</div>
+<div class="panel" id="panel-tickets">
+  <div class="table-wrap"><table class="dt" id="tbl-tickets"><thead></thead><tbody></tbody></table></div>
+</div>
+<div class="panel" id="panel-chargebp">
+  <div class="table-wrap"><table class="dt" id="tbl-chargebp"><thead></thead><tbody></tbody></table></div>
+</div>
+<div class="panel" id="panel-health">
+  <div class="table-wrap"><table class="dt" id="tbl-health"><thead></thead><tbody></tbody></table></div>
+</div>
 
 <script src="../_libs/xlsx-0.18.5.full.min.js"></script>
 <script>
@@ -145,6 +162,9 @@ tr.lv-site:hover td{background:#f0f7ff}
 // 跨月对比: 选中月份 cur；若存在上一归档月 prev 则附「上月值 + 环比」列
 // ══════════════════════════════════════════════════════════
 var MONTHLY = window.MONTHLY_SUMMARY || {months: [], sites: []};
+var EXTRA = window.MONTHLY_EXTRA || {months: [], insurance:null, tickets:null, chargebp:null, health:null};
+var EXTRA_TABS = ['insurance','tickets','chargebp','health'];
+function isExtraTab(t){ return EXTRA_TABS.indexOf(t)>=0; }
 
 // 四板块配置（与安全权益看板 METRIC_CFG 口径一致）
 var PANELS = {
@@ -176,7 +196,86 @@ var PANELS = {
       {key:'clothing', sub:'cloth', label:'工装检核率', target:80, goodHigh:true},
       {key:'clothing', sub:'vis', label:'美团工服率', target:92, goodHigh:true}
     ]
+  },
+  insurance: {
+    title: '保险赔付',
+    note: '保险赔付率 = 预估赔付(Σ当日赔付金额) ÷ (K×Σ当日保费)，K='+(EXTRA.insurance&&EXTRA.insurance.meta?EXTRA.insurance.meta.k:0.9434)+'（V3 看板同口径）。仅到城市级（无站点级明细）。',
+    metrics: [
+      {key:'rate', label:'赔付率', fmt:'pct2', target:155, goodHigh:false, redAt:250},
+      {key:'est', label:'预估赔付', fmt:'money'},
+      {key:'premium', label:'保费', fmt:'money'},
+      {key:'accidents', label:'事故单数', fmt:'int'},
+      {key:'resolved', label:'已决单数', fmt:'int'}
+    ]
+  },
+  tickets: {
+    title: '110工单',
+    note: '110 工单月度累计：cnt 工单总数 = accident 事故工单 + other 其他工单；done 完成数，done_rate 完成率 = done/cnt×100。数据源 EMBEDDED_DATA.records。',
+    metrics: [
+      {key:'cnt', label:'工单总数', fmt:'int'},
+      {key:'accident', label:'事故工单', fmt:'int'},
+      {key:'other', label:'其他工单', fmt:'int'},
+      {key:'done', label:'完成数', fmt:'int'},
+      {key:'done_rate', label:'完成率', fmt:'pct2', target:80, goodHigh:true, redAt:50}
+    ]
+  },
+  chargebp: {
+    title: '充换电血压',
+    note: '充换电血压月度累计：sched 排班人次，battery 换电上报、bp 血压上报；pass 审核通过 / fail 审核不通过，pass_rate 审核通过率 = pass/(pass+fail)×100。数据源 CB_REC/CB_ROSTER。',
+    metrics: [
+      {key:'sched', label:'排班', fmt:'int'},
+      {key:'battery', label:'换电上报', fmt:'int'},
+      {key:'bp', label:'血压上报', fmt:'int'},
+      {key:'pass', label:'审核通过', fmt:'int'},
+      {key:'fail', label:'审核不通过', fmt:'int'},
+      {key:'pass_rate', label:'通过率', fmt:'pct2', target:85, goodHigh:true, redAt:70}
+    ]
+  },
+  health: {
+    title: '骑手健康',
+    note: '骑手健康证月度累计：registered 在册，preleave 预离职，month_expired 当月到期，expired 已过期，in30/in60/in90 分别为 30/60/90 天内到期，no_cert 无证件。数据源 HC_DATA/HC_META。',
+    metrics: [
+      {key:'registered', label:'在册', fmt:'int'},
+      {key:'preleave', label:'预离职', fmt:'int'},
+      {key:'month_expired', label:'当月到期', fmt:'int'},
+      {key:'expired', label:'已过期', fmt:'int'},
+      {key:'in30', label:'30天内', fmt:'int'},
+      {key:'in60', label:'60天内', fmt:'int'},
+      {key:'in90', label:'90天内', fmt:'int'},
+      {key:'no_cert', label:'无证件', fmt:'int'}
+    ]
   }
+};
+// 扩展维度汇总卡片配置（公司级 total 行取数）
+var EXTRA_CARD_DEFS = {
+  insurance: [
+    {key:'rate', label:'赔付率（累计）', fmt:'pct2', target:155, goodHigh:false, redAt:250, sub:'目标 ≤155%'},
+    {key:'est', label:'预估赔付(元)', fmt:'money'},
+    {key:'premium', label:'保费(元)', fmt:'money'},
+    {key:'accidents', label:'事故单数', fmt:'int'},
+    {key:'resolved', label:'已决单数', fmt:'int'}
+  ],
+  tickets: [
+    {key:'cnt', label:'110工单总数', fmt:'int'},
+    {key:'accident', label:'事故工单', fmt:'int'},
+    {key:'done', label:'完成数', fmt:'int'},
+    {key:'done_rate', label:'完成率', fmt:'pct2', target:80, goodHigh:true, redAt:50, sub:'目标 ≥80%'}
+  ],
+  chargebp: [
+    {key:'pass_rate', label:'审核通过率', fmt:'pct2', target:85, goodHigh:true, redAt:70, sub:'目标 ≥85%'},
+    {key:'pass', label:'审核通过', fmt:'int'},
+    {key:'fail', label:'审核不通过', fmt:'int'},
+    {key:'battery', label:'换电上报', fmt:'int'},
+    {key:'bp', label:'血压上报', fmt:'int'}
+  ],
+  health: [
+    {key:'registered', label:'在册骑手', fmt:'int'},
+    {key:'preleave', label:'预离职', fmt:'int'},
+    {key:'month_expired', label:'当月到期', fmt:'int'},
+    {key:'expired', label:'已过期', fmt:'int'},
+    {key:'in30', label:'30天内到期', fmt:'int'},
+    {key:'no_cert', label:'无证件', fmt:'int'}
+  ]
 };
 var LEVEL_TITLE = {total:'公司', subregion:'区域', merchant:'城市', site:'站点'};
 var REGION_ORDER = ['华北一区','华北二区','华北三区','华东大区','中南大区'];
@@ -223,6 +322,26 @@ function deltaHtml(cur, prev, m){
   return '<span class="'+cls+'">'+(d>0?'+':'')+d.toFixed(2)+'</span>';
 }
 
+// ── 扩展维度（MONTHLY_EXTRA）辅助 ──
+function fmtVal(v, fmt){
+  if(v==null || v==='' || isNaN(v)) return '<span class="rn">-</span>';
+  if(fmt==='money') return '¥'+Math.round(v).toLocaleString('zh-CN');
+  if(fmt==='int') return Math.round(v).toLocaleString('zh-CN');
+  if(fmt==='pct' || fmt==='pct2') return Number(v).toFixed(2)+'%';
+  return String(v);
+}
+function cellColor(v, m){
+  if(v==null || isNaN(v) || !m || m.target==null) return '';
+  if(m.goodHigh) return v>=m.target?'rg':(v>=(m.redAt!==undefined?m.redAt:m.target-5)?'ry':'rr');
+  return v<=m.target?'rg':(v<=(m.redAt!==undefined?m.redAt:m.target+5)?'ry':'rr');
+}
+function extraCurMonth(tab){
+  var dim = EXTRA[tab];
+  if(!dim || !dim.months || !dim.months.length) return null;
+  if(dim.months.indexOf(curMonth)>=0) return curMonth;
+  return dim.months[dim.months.length-1];
+}
+
 // ── 月份选择器 ──
 function initMonthSel(){
   var sel = document.getElementById('monthSel');
@@ -231,6 +350,7 @@ function initMonthSel(){
   months.forEach(function(m){ html += '<option value="'+m+'">'+m+'</option>'; });
   sel.innerHTML = html;
   if(months.length) curMonth = months[months.length-1];
+  if(curMonth) sel.value = curMonth;   // 修复：下拉显示需与 curMonth 同步
 }
 function syncHint(){
   var months = MONTHLY.months || [];
@@ -246,6 +366,7 @@ function syncHint(){
 
 // ── 汇总卡片 ──
 function totalCards(){
+  if(isExtraTab(curTab)){ extraCards(curTab); return; }
   var row = document.getElementById('summaryRow');
   var totalSite = null;
   MONTHLY.sites.forEach(function(s){ if(s.level==='total') totalSite = s; });
@@ -278,6 +399,29 @@ function totalCards(){
     if(s.level==='site')siteN++; else if(s.level==='subregion')subN++; else if(s.level==='merchant')cityN++;
   });
   cards.push('<div class="card"><div class="c-label">层级规模</div><div class="c-value" style="font-size:17px">'+subN+' / '+cityN+' / '+siteN+'</div><div class="c-sub">区域 / 城市 / 站点（含 '+curMonth+' 数据）</div></div>');
+  row.innerHTML = cards.join('');
+}
+
+// ── 扩展维度汇总卡片（公司级 total 行） ──
+function extraCards(tab){
+  var row = document.getElementById('summaryRow');
+  var dim = EXTRA[tab];
+  if(!dim){ row.innerHTML=''; return; }
+  var month = extraCurMonth(tab);
+  var tot = null;
+  dim.rows.forEach(function(r){ if(r.level==='total') tot=r; });
+  if(!tot){ row.innerHTML=''; return; }
+  var defs = EXTRA_CARD_DEFS[tab] || [];
+  var cards = [];
+  defs.forEach(function(d){
+    var v = tot[d.key];
+    var css = '';
+    if(d.target!=null && v!=null && !isNaN(v)){
+      if(d.goodHigh) css = v>=d.target?' green':(v>=(d.redAt!==undefined?d.redAt:d.target-5)?' yellow':' red');
+      else css = v<=d.target?' green':(v<=(d.redAt!==undefined?d.redAt:d.target+5)?' yellow':' red');
+    }
+    cards.push('<div class="card'+css+'"><div class="c-label">'+d.label+'</div><div class="c-value">'+fmtVal(v,d.fmt)+'</div><div class="c-sub">'+(month||'')+(d.sub?(' · '+d.sub):'')+'</div></div>');
+  });
   row.innerHTML = cards.join('');
 }
 
@@ -355,9 +499,8 @@ function initMsfOptions(){
   fillMsf('city',filtCities);
   fillMsf('site',filtSites);
 }
-function getFilteredSites(){
+function getFiltered(rows){
   var fs=msfState;
-  var rows=MONTHLY.sites;
   return rows.filter(function(r){
     var lv=r.level;
     if(fs.region.length&&r.region&&fs.region.indexOf(r.region)<0)return false;
@@ -384,6 +527,9 @@ function getFilteredSites(){
     }
     return true;
   });
+}
+function getFilteredSites(){
+  return getFiltered(MONTHLY.sites);
 }
 function clearMsFilter(){
   msfState={region:[],subregion:[],city:[],site:[]};
@@ -477,6 +623,66 @@ function renderTable(tab, metrics){
     (prevMonth ? ' 当前对比：'+curMonth+' 与 '+prevMonth+'。' : ' 当前仅 '+curMonth+' 单月，展示单月值。');
 }
 
+// ── 渲染扩展维度单面板（MONTHLY_EXTRA 平铺行，无跨月对比） ──
+function renderExtraTable(tab){
+  var table = document.getElementById('tbl-'+tab);
+  if(!table) return;
+  var thead = table.querySelector('thead');
+  var tbody = table.querySelector('tbody');
+  var dim = EXTRA[tab];
+  var month = extraCurMonth(tab);
+  var metrics = PANELS[tab].metrics;
+  if(!dim || !month || dim.months.indexOf(month)<0){
+    thead.innerHTML = '<tr><th class="sticky-col" style="left:0px">提示</th></tr>';
+    tbody.innerHTML = '<tr><td class="sticky-col">该月份（'+esc(curMonth)+'）暂无「'+esc(PANELS[tab].title)+'」数据。扩展维度当前归档月：'+(EXTRA.months?EXTRA.months.join(', '):'无')+'</td></tr>';
+    document.getElementById('noteLine').textContent = '口径：'+(PANELS[tab].note||'');
+    return;
+  }
+  var head = '<tr>';
+  head += '<th style="min-width:70px;left:0px" class="sticky-col">大区</th>';
+  head += '<th style="min-width:80px;left:80px" class="sticky-col">区域</th>';
+  head += '<th style="min-width:70px;left:150px" class="sticky-col">城市</th>';
+  head += '<th style="min-width:220px;left:230px;text-align:left" class="sticky-col sticky-last">名称</th>';
+  metrics.forEach(function(m){
+    head += '<th>'+esc(m.label)+'<br><small style="color:#B3D0E8">'+(month||'')+(m.target!=null?' · 目标'+(m.goodHigh?'≥':'≤')+m.target:'')+'</small></th>';
+  });
+  head += '</tr>';
+  thead.innerHTML = head;
+
+  var rows = getFiltered(dim.rows).slice();
+  rows.sort(function(a,b){
+    var order={total:0,subregion:1,merchant:2,site:3};
+    var lo=order[a.level]!=null?order[a.level]:9, lb=order[b.level]!=null?order[b.level]:9;
+    if(lo!==lb) return lo-lb;
+    var ri=REGION_ORDER.indexOf(a.region), rj=REGION_ORDER.indexOf(b.region);
+    if(ri===-1)ri=99; if(rj===-1)rj=99;
+    if(ri!==rj) return ri-rj;
+    return (a.name||'').localeCompare(b.name||'','zh');
+  });
+  var trs = [];
+  rows.forEach(function(s){
+    var lv = s.level || 'site';
+    var tr = '<tr class="lv-'+lv+'">';
+    tr += '<td class="sticky-col" style="left:0px">'+(lv==='total'?'':esc(s.region||''))+'</td>';
+    tr += '<td class="sticky-col" style="left:80px">'+(lv==='total'||lv==='subregion'?'':esc(s.subregion||''))+'</td>';
+    tr += '<td class="sticky-col" style="left:150px">'+(lv==='site'?esc(s.city||''):'')+'</td>';
+    tr += '<td class="sticky-col sticky-last l" style="left:230px">'+esc(s.name||'')+'</td>';
+    metrics.forEach(function(m){
+      var v = s[m.key];
+      var cls = cellColor(v, m);
+      tr += '<td class="'+(cls?cls:'')+'">'+fmtVal(v, m.fmt)+'</td>';
+    });
+    tr += '</tr>';
+    trs.push(tr);
+  });
+  tbody.innerHTML = trs.join('');
+  var metaNote = '';
+  if(dim.meta){
+    metaNote = Object.keys(dim.meta).map(function(k){ return k+': '+dim.meta[k]; }).join(' · ');
+  }
+  document.getElementById('noteLine').textContent = '口径：'+(PANELS[tab].note||'')+'　数据元信息：'+metaNote+'　当前月：'+(month||'');
+}
+
 function renderAll(){
   if(!curMonth){
     var months = MONTHLY.months||[];
@@ -490,6 +696,7 @@ function renderAll(){
   renderTable('rating', PANELS.rating.metrics);
   renderTable('highway', PANELS.highway.metrics);
   renderTable('clothing', PANELS.clothing.metrics);
+  EXTRA_TABS.forEach(function(t){ renderExtraTable(t); });
 }
 
 // ── 导出 Excel ──
