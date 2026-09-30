@@ -12,6 +12,7 @@ body{font-family:'Microsoft YaHei',Arial,sans-serif;background:#e8f4fd;color:#1a
 .header p{font-size:12px;color:#bbdefb;margin-top:3px;line-height:1.6}
 .hbtn{padding:6px 14px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4);border-radius:4px;font-size:12px;cursor:pointer;white-space:nowrap}
 .hbtn:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.7)}
+.hbtns{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 
 .stats{display:flex;gap:10px;padding:12px 16px;flex-wrap:wrap;background:#f0f7ff}
 .sc{background:linear-gradient(135deg,#fff,#e3f2fd);border:1px solid #90caf9;border-radius:10px;padding:12px 16px;min-width:140px;flex:1 1 170px;max-width:250px;box-shadow:0 3px 12px rgba(21,101,192,.1);text-align:center;transition:transform .15s}
@@ -110,7 +111,10 @@ tr:hover td{background:#f0f7ff}
     <h1>在职骑手详情 · 健康证到期监控</h1>
     <p id="metaLine">加载中...</p>
   </div>
-  <button class="hbtn" id="btnHelp" title="数据来自 M:\下载 最新排班表 + 最新健康证监控表">更新数据</button>
+  <div class="hbtns">
+    <button class="hbtn" id="btnShot" title="将当前看板整版截图保存为 PNG">📷 截图</button>
+    <button class="hbtn" id="btnHelp" title="数据来自 M:\下载 最新排班表 + 最新健康证监控表">更新数据</button>
+  </div>
 </div>
 
 <div class="todo" id="todoBar"></div>
@@ -172,6 +176,7 @@ tr:hover td{background:#f0f7ff}
 <div class="pager" id="pager"></div>
 <div class="note" id="noteLine"></div>
 
+<script src="../_libs/html2canvas-1.4.1.min.js"></script>
 <script src="health_cert_data.js"></script>
 <script>
 (function(){
@@ -500,6 +505,39 @@ document.getElementById('btnExp').addEventListener('click',function(){
   a.href=URL.createObjectURL(blob);
   a.download='健康证督办名单_'+TODAY+'_'+view.length+'人.csv';
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
+});
+document.getElementById('btnShot').addEventListener('click',function(){
+  if(!window.html2canvas){ alert('截图库未加载（_libs/html2canvas），请联网后重试'); return; }
+  var btn=this, old=btn.textContent;
+  btn.disabled=true; btn.textContent='截图中…';
+  var oldSize=st.size, oldPage=st.page;
+  /* 行数过多时不能全展开：展开后画布高度超浏览器上限会导致 toDataURL 返回空图 */
+  var expanded=false;
+  if(view.length<=1500){ st.size=view.length; st.page=1; render(); expanded=true; }  // 展开全部行整版截图
+  else { st.page=1; render(); alert('当前共 '+view.length+' 行，超出整版截图上限，本次截取当前页；请先按大区/站点筛选后再截图可截全量。'); }
+  /* 关键：解除表格容器 max-height/overflow 滚动裁剪，否则 html2canvas 只截到可视区（隐藏行） */
+  var tc=document.getElementById('tc');
+  var oldMH=tc.style.maxHeight, oldOF=tc.style.overflow;
+  tc.style.maxHeight='none'; tc.style.overflow='visible';
+  /* 动态 scale：不超过浏览器画布上限（单边65535px、总面积2.68亿px），上限2倍清晰度 */
+  var w=document.body.scrollWidth, h=document.body.scrollHeight;
+  var scale=Math.max(0.5, Math.min(2, 268435456/(w*h), 65535/h));
+  setTimeout(function(){
+    html2canvas(document.body,{backgroundColor:'#fff',scale:scale,useCORS:true,windowWidth:w})
+      .then(function(canvas){
+        var a=document.createElement('a');
+        a.href=canvas.toDataURL('image/png');
+        a.download='健康证监控看板_'+TODAY+'.png';
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      })
+      .catch(function(e){ alert('截图失败：'+e.message); })
+      .then(function(){
+        tc.style.maxHeight=oldMH; tc.style.overflow=oldOF;   // 恢复滚动容器
+        if(expanded){ st.size=oldSize; st.page=oldPage; }
+        render();
+        btn.disabled=false; btn.textContent=old;
+      });
+  }, 300);
 });
 Array.prototype.forEach.call(document.querySelectorAll('th[data-sort]'),function(th){
   th.addEventListener('click',function(){
