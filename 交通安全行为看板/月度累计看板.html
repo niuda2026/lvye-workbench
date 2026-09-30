@@ -701,6 +701,7 @@ function renderAll(){
 
 // ── 导出 Excel ──
 function exportTable(){
+  if(isExtraTab(curTab)) return exportExtra(curTab);
   var metrics = PANELS[curTab].metrics;
   var months = MONTHLY.months||[];
   var idx = curMonth?months.indexOf(curMonth):-1;
@@ -738,12 +739,39 @@ function exportTable(){
   }
 }
 
+// 扩展维度导出
+function exportExtra(tab){
+  var dim = EXTRA[tab];
+  if(!dim) return;
+  var month = extraCurMonth(tab);
+  var metrics = PANELS[tab].metrics;
+  var rows = [['大区','区域','城市','名称','层级']];
+  metrics.forEach(function(m){ rows[0].push(m.label+'('+(month||'')+')'); });
+  getFiltered(dim.rows).forEach(function(s){
+    var row = [s.region||'', s.subregion||'', s.city||'', s.name||'', LEVEL_TITLE[s.level]||s.level];
+    metrics.forEach(function(m){ var v=s[m.key]; row.push(v==null?'':v); });
+    rows.push(row);
+  });
+  if(typeof XLSX!=='undefined'){
+    var ws = XLSX.utils.aoa_to_sheet(rows);
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, tab);
+    XLSX.writeFile(wb, '月度累计看板_'+tab+'_'+(month||curMonth)+'.xlsx');
+  } else {
+    alert('Excel 导出库未加载，请联网后重试');
+  }
+}
+
 // init
 (function(){
   if(!MONTHLY.months || !MONTHLY.months.length){
     document.getElementById('monthSel').innerHTML = '<option>暂无数据</option>';
     document.getElementById('summaryRow').innerHTML = '<div class="card"><div class="c-label">提示</div><div class="c-value" style="font-size:15px">monthly_summary.js 暂无归档月份</div><div class="c-sub">请先运行 monthly_archive.py 归档</div></div>';
     return;
+  }
+  var dr = document.getElementById('dataRange');
+  if(dr){
+    dr.textContent = '安全归档: monthly_summary.js（'+(MONTHLY.months.join(', '))+'） | 扩展维度: monthly_extra.js（'+(EXTRA.months&&EXTRA.months.length?EXTRA.months.join(', '):'无')+'）';
   }
   initMonthSel();
   renderAll();
