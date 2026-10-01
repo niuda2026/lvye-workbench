@@ -144,7 +144,7 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
 </style>
 <script src="../_libs/html2canvas-1.4.1.min.js"></script>
 
-<script src="data.js?09-30-dc03a133"></script>
+<script src="data.js?09-30-4e681c83"></script>
 <script src="../护航服装/data_excluded.js?20261001"></script>
 </head>
 <body>
@@ -1846,38 +1846,8 @@ function captureScreenshot(panelId) {
       w.style.overflow = 'visible';
     });
   }
-  // 列裁剪仅保留给仍使用"日期双列"结构的 clothing 视图
-  if (panelId === 'clothing') {
-    var theadId = 'clothing-thead';
-    var tableId = 'clothing-table';
-    var thRow = clone.querySelector('#' + theadId + ' tr');
-    if (thRow) {
-      var ths = Array.prototype.slice.call(thRow.children);
-      var dateThs = ths.filter(function(th){ return /^\d{2}-\d{2}/.test((th.textContent||'').replace(/\s/g,'').slice(0,5)); });
-      var keepCount = Math.min(dateThs.length, 7);
-      var removeCount = dateThs.length - keepCount;
-      var firstDateIdx = ths.indexOf(dateThs[0]);
-      if (removeCount > 0 && firstDateIdx >= 0) {
-        var delStart = firstDateIdx + keepCount;
-        for (var ri = 0; ri < removeCount; ri++) {
-          var th = thRow.children[delStart];
-          if (th) thRow.removeChild(th);
-        }
-        clone.querySelectorAll('#' + tableId + ' tbody tr').forEach(function(tr){
-          for (var cj = 0; cj < removeCount * 2; cj++) {
-            var td = tr.children[delStart];
-            if (td) tr.removeChild(td);
-          }
-        });
-      }
-      // 同步头部数据范围显示为截图保留的最近 7 天
-      var drEl = clone.querySelector('#dataRange');
-      if (drEl && dateThs.length) {
-        var kept = dateThs.slice(0, keepCount).map(function(th){ return (th.textContent||'').replace(/\s/g,'').slice(0,5); });
-        drEl.textContent = '数据范围: ' + kept[kept.length-1] + ' ~ ' + kept[0];
-      }
-    }
-  }
+  // clothing（护航服装工服率剔除恶劣天气）：截图保留整月全部日期列（30天×检核率/工服率双列），与页面显示一致，
+  // 不再做旧版"只保留7天"的列裁剪——旧裁剪与现行两级表头(eg-grp/eg-sub)结构不匹配，会导致子表头残留、正文右侧大片空白。
 
   // Fix sticky cells → static (both inline and CSS-class origin)
   clone.querySelectorAll('th').forEach(function(el) { el.style.position = 'static'; });
@@ -1904,8 +1874,13 @@ function captureScreenshot(panelId) {
 
   document.body.appendChild(clone);
 
+  // 整月全量表可能很宽/很高：按浏览器画布上限（单边65535px、总面积2^28px）动态计算scale，防止toDataURL静默出空白图
+  var _cw = clone.scrollWidth || 1, _ch = clone.scrollHeight || 1;
+  var _scale = Math.min(2, 268435456 / (_cw * _ch), 65535 / _ch, 65535 / _cw);
+  _scale = Math.max(_scale, 0.5);
+
   html2canvas(clone, {
-    scale: 2,
+    scale: _scale,
     useCORS: true,
     allowTaint: true,
     backgroundColor: '#ffffff',
