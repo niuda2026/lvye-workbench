@@ -1,10 +1,10 @@
 {
  "month": "202610",
  "insuranceType": "81",
- "fetched_at": "2026-10-01 08:51:34",
+ "fetched_at": "2026-10-02 08:56:11",
  "source": "peisong.meituan.com → jchunuo.com 骑手投保统计",
  "city_count": 28,
- "premium_total": 0,
+ "premium_total": 27365,
  "cities": [
   {
    "orgId": "2068853",
@@ -12,12 +12,44 @@
    "orgName": "兴必达（江苏）网络科技有限公司【枣庄】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 4,
+   "policy_total": 284,
+   "premium_total": 710,
+   "companies": [
+    "紫金财产保险股份有限公司",
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "紫金财产保险股份有限公司",
+     "count": 165,
+     "amount": 412.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 38,
+     "amount": 95
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 39,
+     "amount": 97.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 42,
+     "amount": 105
+    }
+   ],
    "err": null
   },
   {
@@ -26,12 +58,44 @@
    "orgName": "兴必达（江苏）网络科技有限公司【青岛】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 4,
+   "policy_total": 712,
+   "premium_total": 1780,
+   "companies": [
+    "紫金财产保险股份有限公司",
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "紫金财产保险股份有限公司",
+     "count": 394,
+     "amount": 985
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 87,
+     "amount": 217.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 89,
+     "amount": 222.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 142,
+     "amount": 355
+    }
+   ],
    "err": null
   },
   {
@@ -40,12 +104,37 @@
    "orgName": "兴必达（江苏）网络科技有限公司【上海】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 3,
+   "policy_total": 919,
+   "premium_total": 2297.5,
+   "companies": [
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 283,
+     "amount": 707.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 274,
+     "amount": 685
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 362,
+     "amount": 905
+    }
+   ],
    "err": null
   },
   {
@@ -54,12 +143,37 @@
    "orgName": "兴必达（江苏）网络科技有限公司【北京】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 3,
+   "policy_total": 350,
+   "premium_total": 875,
+   "companies": [
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司北京市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 117,
+     "amount": 292.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 96,
+     "amount": 240
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司北京市分公司",
+     "count": 137,
+     "amount": 342.5
+    }
+   ],
    "err": null
   },
   {
@@ -68,12 +182,37 @@
    "orgName": "兴必达（江苏）网络科技有限公司【通辽】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 3,
+   "policy_total": 112,
+   "premium_total": 280,
+   "companies": [
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 45,
+     "amount": 112.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 29,
+     "amount": 72.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 38,
+     "amount": 95
+    }
+   ],
    "err": null
   },
   {
@@ -82,12 +221,44 @@
    "orgName": "兴必达（江苏）网络科技有限公司【张家口】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 4,
+   "policy_total": 544,
+   "premium_total": 1360,
+   "companies": [
+    "大家财产保险有限责任公司深圳分公司",
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司北京市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "大家财产保险有限责任公司深圳分公司",
+     "count": 57,
+     "amount": 142.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 189,
+     "amount": 472.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 70,
+     "amount": 175
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司北京市分公司",
+     "count": 228,
+     "amount": 570
+    }
+   ],
    "err": null
   },
   {
@@ -96,12 +267,51 @@
    "orgName": "兴必达（江苏）网络科技有限公司【洛阳】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 5,
+   "policy_total": 600,
+   "premium_total": 1500,
+   "companies": [
+    "申能财产保险股份有限公司重庆分公司",
+    "大家财产保险有限责任公司深圳分公司",
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "申能财产保险股份有限公司重庆分公司",
+     "count": 129,
+     "amount": 322.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "大家财产保险有限责任公司深圳分公司",
+     "count": 182,
+     "amount": 455
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 90,
+     "amount": 225
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 74,
+     "amount": 185
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 125,
+     "amount": 312.5
+    }
+   ],
    "err": null
   },
   {
@@ -110,12 +320,37 @@
    "orgName": "兴必达（江苏）网络科技有限公司【长春】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 3,
+   "policy_total": 221,
+   "premium_total": 552.5,
+   "companies": [
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 60,
+     "amount": 150
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 64,
+     "amount": 160
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 97,
+     "amount": 242.5
+    }
+   ],
    "err": null
   },
   {
@@ -124,12 +359,37 @@
    "orgName": "兴必达（江苏）网络科技有限公司【黄山】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 3,
+   "policy_total": 102,
+   "premium_total": 255,
+   "companies": [
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 39,
+     "amount": 97.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 21,
+     "amount": 52.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 42,
+     "amount": 105
+    }
+   ],
    "err": null
   },
   {
@@ -138,12 +398,44 @@
    "orgName": "兴必达（江苏）网络科技有限公司【临沂】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 4,
+   "policy_total": 280,
+   "premium_total": 700,
+   "companies": [
+    "紫金财产保险股份有限公司",
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "紫金财产保险股份有限公司",
+     "count": 154,
+     "amount": 385
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 54,
+     "amount": 135
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 31,
+     "amount": 77.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 41,
+     "amount": 102.5
+    }
+   ],
    "err": null
   },
   {
@@ -152,12 +444,37 @@
    "orgName": "兴必达（江苏）网络科技有限公司【阜阳】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 3,
+   "policy_total": 339,
+   "premium_total": 847.5,
+   "companies": [
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 111,
+     "amount": 277.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 82,
+     "amount": 205
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 146,
+     "amount": 365
+    }
+   ],
    "err": null
   },
   {
@@ -166,12 +483,44 @@
    "orgName": "兴必达（江苏）网络科技有限公司【西安】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 4,
+   "policy_total": 1494,
+   "premium_total": 3735,
+   "companies": [
+    "大家财产保险有限责任公司深圳分公司",
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "大家财产保险有限责任公司深圳分公司",
+     "count": 182,
+     "amount": 455
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 483,
+     "amount": 1207.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 239,
+     "amount": 597.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 590,
+     "amount": 1475
+    }
+   ],
    "err": null
   },
   {
@@ -180,12 +529,44 @@
    "orgName": "兴必达（江苏）网络科技有限公司【秦皇岛】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 4,
+   "policy_total": 1310,
+   "premium_total": 3275,
+   "companies": [
+    "大家财产保险有限责任公司深圳分公司",
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司北京市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "大家财产保险有限责任公司深圳分公司",
+     "count": 148,
+     "amount": 370
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 435,
+     "amount": 1087.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 222,
+     "amount": 555
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司北京市分公司",
+     "count": 505,
+     "amount": 1262.5
+    }
+   ],
    "err": null
   },
   {
@@ -194,12 +575,51 @@
    "orgName": "兴必达（江苏）网络科技有限公司【运城】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 5,
+   "policy_total": 32,
+   "premium_total": 80,
+   "companies": [
+    "申能财产保险股份有限公司重庆分公司",
+    "大家财产保险有限责任公司深圳分公司",
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "申能财产保险股份有限公司重庆分公司",
+     "count": 15,
+     "amount": 37.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "大家财产保险有限责任公司深圳分公司",
+     "count": 4,
+     "amount": 10
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 7,
+     "amount": 17.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 4,
+     "amount": 10
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 2,
+     "amount": 5
+    }
+   ],
    "err": null
   },
   {
@@ -208,12 +628,37 @@
    "orgName": "【专区】兴必达（江苏）网络科技有限公司【天津】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 3,
+   "policy_total": 608,
+   "premium_total": 1520,
+   "companies": [
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司北京市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 190,
+     "amount": 475
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 161,
+     "amount": 402.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司北京市分公司",
+     "count": 257,
+     "amount": 642.5
+    }
+   ],
    "err": null
   },
   {
@@ -222,12 +667,51 @@
    "orgName": "兴必达（江苏）网络科技有限公司【商丘】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 5,
+   "policy_total": 77,
+   "premium_total": 192.5,
+   "companies": [
+    "申能财产保险股份有限公司重庆分公司",
+    "大家财产保险有限责任公司深圳分公司",
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "申能财产保险股份有限公司重庆分公司",
+     "count": 12,
+     "amount": 30
+    },
+    {
+     "date": "2026-10-01",
+     "company": "大家财产保险有限责任公司深圳分公司",
+     "count": 24,
+     "amount": 60
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 18,
+     "amount": 45
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 9,
+     "amount": 22.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 14,
+     "amount": 35
+    }
+   ],
    "err": null
   },
   {
@@ -236,12 +720,37 @@
    "orgName": "兴必达（江苏）网络科技有限公司【滁州】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 3,
+   "policy_total": 119,
+   "premium_total": 297.5,
+   "companies": [
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 46,
+     "amount": 115
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 27,
+     "amount": 67.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 46,
+     "amount": 115
+    }
+   ],
    "err": null
   },
   {
@@ -250,12 +759,37 @@
    "orgName": "兴必达（江苏）网络科技有限公司【合肥】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 3,
+   "policy_total": 487,
+   "premium_total": 1217.5,
+   "companies": [
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 151,
+     "amount": 377.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 147,
+     "amount": 367.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 189,
+     "amount": 472.5
+    }
+   ],
    "err": null
   },
   {
@@ -264,12 +798,23 @@
    "orgName": "兴必达（江苏）网络科技有限公司【南京】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 1,
+   "policy_total": 210,
+   "premium_total": 525,
+   "companies": [
+    "中国太平洋财产保险股份有限公司成都中心支公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 210,
+     "amount": 525
+    }
+   ],
    "err": null
   },
   {
@@ -278,12 +823,44 @@
    "orgName": "兴必达（江苏）网络科技有限公司【唐山】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 4,
+   "policy_total": 435,
+   "premium_total": 1087.5,
+   "companies": [
+    "大家财产保险有限责任公司深圳分公司",
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司北京市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "大家财产保险有限责任公司深圳分公司",
+     "count": 51,
+     "amount": 127.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 133,
+     "amount": 332.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 71,
+     "amount": 177.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司北京市分公司",
+     "count": 180,
+     "amount": 450
+    }
+   ],
    "err": null
   },
   {
@@ -292,12 +869,51 @@
    "orgName": "【专区】兴必达（江苏）网络科技有限公司【太原】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 5,
+   "policy_total": 92,
+   "premium_total": 230,
+   "companies": [
+    "申能财产保险股份有限公司重庆分公司",
+    "大家财产保险有限责任公司深圳分公司",
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "申能财产保险股份有限公司重庆分公司",
+     "count": 34,
+     "amount": 85
+    },
+    {
+     "date": "2026-10-01",
+     "company": "大家财产保险有限责任公司深圳分公司",
+     "count": 15,
+     "amount": 37.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 17,
+     "amount": 42.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 2,
+     "amount": 5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 24,
+     "amount": 60
+    }
+   ],
    "err": null
   },
   {
@@ -306,12 +922,37 @@
    "orgName": "兴必达（江苏）网络科技有限公司【锦州】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 3,
+   "policy_total": 568,
+   "premium_total": 1420,
+   "companies": [
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 198,
+     "amount": 495
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 140,
+     "amount": 350
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 230,
+     "amount": 575
+    }
+   ],
    "err": null
   },
   {
@@ -320,12 +961,37 @@
    "orgName": "兴必达（江苏）网络科技有限公司【阜新】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 3,
+   "policy_total": 214,
+   "premium_total": 535,
+   "companies": [
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 70,
+     "amount": 175
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 47,
+     "amount": 117.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 97,
+     "amount": 242.5
+    }
+   ],
    "err": null
   },
   {
@@ -334,12 +1000,37 @@
    "orgName": "兴必达（江苏）网络科技有限公司【铜陵】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 3,
+   "policy_total": 148,
+   "premium_total": 370,
+   "companies": [
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 58,
+     "amount": 145
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 35,
+     "amount": 87.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 55,
+     "amount": 137.5
+    }
+   ],
    "err": null
   },
   {
@@ -348,12 +1039,37 @@
    "orgName": "兴必达（江苏）网络科技有限公司【蚌埠】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 3,
+   "policy_total": 176,
+   "premium_total": 440,
+   "companies": [
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 56,
+     "amount": 140
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 38,
+     "amount": 95
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 82,
+     "amount": 205
+    }
+   ],
    "err": null
   },
   {
@@ -362,12 +1078,37 @@
    "orgName": "兴必达（江苏）网络科技有限公司【马鞍山】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 3,
+   "policy_total": 167,
+   "premium_total": 417.5,
+   "companies": [
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 58,
+     "amount": 145
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 49,
+     "amount": 122.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 60,
+     "amount": 150
+    }
+   ],
    "err": null
   },
   {
@@ -376,12 +1117,51 @@
    "orgName": "兴必达（江苏）网络科技有限公司【郑州】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 5,
+   "policy_total": 215,
+   "premium_total": 537.5,
+   "companies": [
+    "申能财产保险股份有限公司重庆分公司",
+    "大家财产保险有限责任公司深圳分公司",
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "申能财产保险股份有限公司重庆分公司",
+     "count": 38,
+     "amount": 95
+    },
+    {
+     "date": "2026-10-01",
+     "company": "大家财产保险有限责任公司深圳分公司",
+     "count": 79,
+     "amount": 197.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 28,
+     "amount": 70
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 30,
+     "amount": 75
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 40,
+     "amount": 100
+    }
+   ],
    "err": null
   },
   {
@@ -390,12 +1170,51 @@
    "orgName": "兴必达（江苏）网络科技有限公司【信阳】",
    "status": "合作",
    "month": "202610",
-   "records": 0,
-   "policy_total": 0,
-   "premium_total": 0,
-   "companies": [],
-   "days": [],
-   "detail": [],
+   "records": 5,
+   "policy_total": 131,
+   "premium_total": 327.5,
+   "companies": [
+    "申能财产保险股份有限公司重庆分公司",
+    "大家财产保险有限责任公司深圳分公司",
+    "中国平安财产保险股份有限公司",
+    "中国太平洋财产保险股份有限公司成都中心支公司",
+    "中国人民财产保险股份有限公司深圳市分公司"
+   ],
+   "days": [
+    "2026-10-01"
+   ],
+   "detail": [
+    {
+     "date": "2026-10-01",
+     "company": "申能财产保险股份有限公司重庆分公司",
+     "count": 26,
+     "amount": 65
+    },
+    {
+     "date": "2026-10-01",
+     "company": "大家财产保险有限责任公司深圳分公司",
+     "count": 43,
+     "amount": 107.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国平安财产保险股份有限公司",
+     "count": 19,
+     "amount": 47.5
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国太平洋财产保险股份有限公司成都中心支公司",
+     "count": 18,
+     "amount": 45
+    },
+    {
+     "date": "2026-10-01",
+     "company": "中国人民财产保险股份有限公司深圳市分公司",
+     "count": 25,
+     "amount": 62.5
+    }
+   ],
    "err": null
   }
  ]

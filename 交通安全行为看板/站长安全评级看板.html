@@ -144,7 +144,10 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
 </style>
 <script src="../_libs/html2canvas-1.4.1.min.js"></script>
 
-<script src="data.js?10-01-49f24fdf"></script>
+<script src="data.js?10-01-75c295c2"></script>
+<!-- 未剔除全量数据（骨架源）：先于 data_excluded.js 加载并捕获，用于补齐"被当天恶劣天气整段剔除"的站点 -->
+<script src="../护航服装/data.js?20261002"></script>
+<script>window.__ESCORT_ALL=(window.ESCORT_DATA||null);</script>
 <script src="../护航服装/data_excluded.js?20261002"></script>
 </head>
 <body>
@@ -445,8 +448,22 @@ var _lvShow={equity:{subregion:true,merchant:true,site:true}, rating:{subregion:
 var TAB_CLOTHING_ROWS=null;
 function buildClothingRows(){
   if(!window.ESCORT_DATA||!ESCORT_DATA.riders){TAB_CLOTHING_ROWS=null;return;}
-  var riders=ESCORT_DATA.riders.map(function(r){return {d:r[0],region:r[1],subr:r[2],city:r[3],site:r[4],rid:r[5],rider:r[6],cn:r[7],on:r[8],vn:r[9],vv:r[10],vr:r[11],vc:r[12],to:r[13],vcr:r[14]};});
-  var dates=ESCORT_DATA.dates||[];
+  var exDates=ESCORT_DATA.dates||[];
+  var exRiders=ESCORT_DATA.riders.map(function(r){return {d:r[0],region:r[1],subr:r[2],city:r[3],site:r[4],rid:r[5],rider:r[6],cn:r[7],on:r[8],vn:r[9],vv:r[10],vr:r[11],vc:r[12],to:r[13],vcr:r[14]};});
+  // 骨架补全：从未剔除全量数据(__ESCORT_ALL)补回"被当天恶劣天气整段剔除"的站点，
+  // 指标置 0（cloth_rate/vis_rate 因分母0 → null，渲染为"-"；日维度单元格仍按 excl 显示"剔除"）。
+  var skel=[];
+  if(window.__ESCORT_ALL&&window.__ESCORT_ALL.riders){
+    var exSet={}; exRiders.forEach(function(r){exSet[r.d+'|'+r.site]=1;});
+    window.__ESCORT_ALL.riders.forEach(function(raw){
+      if(exDates.indexOf(raw[0])<0)return;            // 仅补已剔除数据集里存在的日期
+      if(exSet[raw[0]+'|'+raw[4]])return;             // 该站当天已有剔除后数据则跳过
+      skel.push({d:raw[0],region:raw[1],subr:raw[2],city:raw[3],site:raw[4],rid:raw[5],rider:raw[6],
+                 cn:0,on:0,vn:0,vv:0,vr:0,vc:0,to:0,vcr:0,sk:1});
+    });
+  }
+  var riders=exRiders.concat(skel);
+  var dates=exDates;
   function calcCR(cn,on){return on>0?Math.round(cn/on*10000)/100:null;}
   function calcVR(vc,to){return to>0?Math.round(vc/to*10000)/100:null;}
   function calcVR2(vn,vv){return vv>0?Math.round(vn/vv*10000)/100:null;}
@@ -458,25 +475,29 @@ function buildClothingRows(){
     if(!siteMap[sk])siteMap[sk]={name:r.site,region:r.region,subr:r.subr,city:r.city||'',cn:0,on:0,vn:0,vv:0,vc:0,to:0,daily:{}};
     var s=siteMap[sk];
     s.cn+=cn;s.on+=on;s.vn+=vn;s.vv+=vv;s.vc+=vc;s.to+=to;
-    if(!s.daily[r.d])s.daily[r.d]={cn:0,on:0,vc:0,to:0};
+    if(!s.daily[r.d])s.daily[r.d]={cn:0,on:0,vc:0,to:0,realCn:0};
     s.daily[r.d].cn+=cn;s.daily[r.d].on+=on;s.daily[r.d].vc+=vc;s.daily[r.d].to+=to;
+    if(r.sk)s.daily[r.d].skelExcl=true; else s.daily[r.d].realCn+=cn;
     var srk=r.region+'__'+r.subr;
     if(!subregionMap[srk])subregionMap[srk]={name:r.subr,region:r.region,cn:0,on:0,vn:0,vv:0,vc:0,to:0,daily:{}};
     var sr=subregionMap[srk];
     sr.cn+=cn;sr.on+=on;sr.vn+=vn;sr.vv+=vv;sr.vc+=vc;sr.to+=to;
-    if(!sr.daily[r.d])sr.daily[r.d]={cn:0,on:0,vc:0,to:0};
+    if(!sr.daily[r.d])sr.daily[r.d]={cn:0,on:0,vc:0,to:0,realCn:0};
     sr.daily[r.d].cn+=cn;sr.daily[r.d].on+=on;sr.daily[r.d].vc+=vc;sr.daily[r.d].to+=to;
+    if(r.sk)sr.daily[r.d].skelExcl=true; else sr.daily[r.d].realCn+=cn;
     var ck=r.region+'__'+r.subr+'__'+(r.city||'');
     if(!cityMap[ck])cityMap[ck]={name:r.city||'',region:r.region,subr:r.subr,cn:0,on:0,vn:0,vv:0,vc:0,to:0,daily:{}};
     var cm=cityMap[ck];
     cm.cn+=cn;cm.on+=on;cm.vn+=vn;cm.vv+=vv;cm.vc+=vc;cm.to+=to;
-    if(!cm.daily[r.d])cm.daily[r.d]={cn:0,on:0,vc:0,to:0};
+    if(!cm.daily[r.d])cm.daily[r.d]={cn:0,on:0,vc:0,to:0,realCn:0};
     cm.daily[r.d].cn+=cn;cm.daily[r.d].on+=on;cm.daily[r.d].vc+=vc;cm.daily[r.d].to+=to;
+    if(r.sk)cm.daily[r.d].skelExcl=true; else cm.daily[r.d].realCn+=cn;
     if(!regionMap[r.region])regionMap[r.region]={name:r.region,cn:0,on:0,vn:0,vv:0,vc:0,to:0,daily:{}};
     var reg=regionMap[r.region];
     reg.cn+=cn;reg.on+=on;reg.vn+=vn;reg.vv+=vv;reg.vc+=vc;reg.to+=to;
-    if(!reg.daily[r.d])reg.daily[r.d]={cn:0,on:0,vc:0,to:0};
+    if(!reg.daily[r.d])reg.daily[r.d]={cn:0,on:0,vc:0,to:0,realCn:0};
     reg.daily[r.d].cn+=cn;reg.daily[r.d].on+=on;reg.daily[r.d].vc+=vc;reg.daily[r.d].to+=to;
+    if(r.sk)reg.daily[r.d].skelExcl=true; else reg.daily[r.d].realCn+=cn;
     totalAgg.cn+=cn;totalAgg.on+=on;totalAgg.vn+=vn;totalAgg.vv+=vv;totalAgg.vc+=vc;totalAgg.to+=to;
     if(!totalAgg.daily[r.d])totalAgg.daily[r.d]={cn:0,on:0,vc:0,to:0};
     totalAgg.daily[r.d].cn+=cn;totalAgg.daily[r.d].on+=on;totalAgg.daily[r.d].vc+=vc;totalAgg.daily[r.d].to+=to;
@@ -507,7 +528,10 @@ function buildClothingRows(){
     var daily={};
     dates.forEach(function(d){
       var dd=agg.daily[d];
-      if(dd){daily[d]={cloth:calcCR(dd.cn,dd.on),vis:calcVR(dd.vc,dd.to)};}
+      if(dd){
+        if(dd.skelExcl && (dd.realCn||0)===0){daily[d]={excl:true};}
+        else{daily[d]={cloth:calcCR(dd.cn,dd.on),vis:calcVR(dd.vc,dd.to)};}
+      }
       else{daily[d]={excl:true};}
     });
     return daily;
@@ -516,7 +540,10 @@ function buildClothingRows(){
     var daily={};
     dates.forEach(function(d){
       var dd=s.daily[d];
-      if(dd){daily[d]={cloth:calcCR(dd.cn,dd.on),vis:calcVR(dd.vc,dd.to)};}
+      if(dd){
+        if(dd.skelExcl && (dd.realCn||0)===0){daily[d]={excl:true};}
+        else{daily[d]={cloth:calcCR(dd.cn,dd.on),vis:calcVR(dd.vc,dd.to)};}
+      }
       else{daily[d]={excl:true};}
     });
     return daily;
@@ -1002,15 +1029,18 @@ function renderSummaryCards(tab,rows){
   var el=document.getElementById('summary-cards-'+tab);
   if(!el)return;
   var totalRow=rows.find(function(r){return r.level==='total';});
+  var isCloth=(tab==='clothing');
   var siteRows=rows.filter(function(r){return r.level==='site';});
-  var evalSiteRows=(tab==='equity')?siteRows:siteRows.filter(function(r){return !isProtectedSite(r.name);});
+  // 仅统计"有真实检核/视觉数据"的站点（骨架零值行不计入参与评价，避免计数虚高）
+  var dataSiteRows= isCloth ? siteRows.filter(function(r){return (r.cloth_num||0)>0 || (r.vis_num||0)>0;}) : siteRows;
+  var evalSiteRows=(tab==='equity')?siteRows:dataSiteRows.filter(function(r){return !isProtectedSite(r.name);});
   var subRows=rows.filter(function(r){return r.level==='subregion';});
   var m1Total=totalRow?totalRow[m1.key+'_rate']:null;
   var m2Total=totalRow?totalRow[m2.key+'_rate']:null;
   var regionCnt=[...new Set(subRows.map(function(r){return r.region;}))].filter(Boolean).length;
-  var subregionCnt=subRows.length;
+  var subregionCnt= isCloth ? subRows.filter(function(r){return (r.cloth_num||0)>0||(r.vis_num||0)>0;}).length : subRows.length;
   var merchantRows=rows.filter(function(r){return r.level==='merchant';});
-  var cityCnt=merchantRows.length;
+  var cityCnt= isCloth ? merchantRows.filter(function(r){return (r.cloth_num||0)>0||(r.vis_num||0)>0;}).length : merchantRows.length;
   function cc(v,t,goodHigh,bd){
     if(v===null)return '';
     if(goodHigh)return v>=t?'green':v>=(bd!==undefined?bd:t-5)?'yellow':'red';
