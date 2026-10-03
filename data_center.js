@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-10-04 06:41:44",
+  "updated_at": "2026-10-04 06:46:59",
   "action_summary": {
     "total": 22,
     "ok": 17,
@@ -112,7 +112,7 @@ window.DATA_CENTER = {
             "latest": "update_log.txt",
             "mtime": "2026-10-04 06:36:40",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -211,10 +211,10 @@ window.DATA_CENTER = {
           "履约项目\\充换电血压_data.js"
         ],
         "data_mtime": "2026-10-04 06:41:43",
-        "all_synced": true,
-        "synced_count": 7,
+        "all_synced": false,
+        "synced_count": 4,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 3,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
@@ -224,9 +224,9 @@ window.DATA_CENTER = {
           },
           {
             "type": "巡检工单列表",
-            "latest": "巡检工单列表_1790981889492.xls",
-            "mtime": "2026-10-03 06:58:26",
-            "synced": true
+            "latest": "巡检工单列表_1791067317518.xls",
+            "mtime": "2026-10-04 06:42:14",
+            "synced": false
           },
           {
             "type": "巡检平台站点检核",
@@ -236,9 +236,9 @@ window.DATA_CENTER = {
           },
           {
             "type": "考培-学习明细记录",
-            "latest": "_考培-学习明细记录_1790982091219.xlsx",
-            "mtime": "2026-10-03 07:01:43",
-            "synced": true
+            "latest": "_考培-学习明细记录_1791067590705.xlsx",
+            "mtime": "2026-10-04 06:46:51",
+            "synced": false
           },
           {
             "type": "骑手排班明细数据",
@@ -248,14 +248,14 @@ window.DATA_CENTER = {
           },
           {
             "type": "表单列表",
-            "latest": "表单列表_49896033_20261003_065925.xlsx",
-            "mtime": "2026-10-03 07:00:00",
-            "synced": true
+            "latest": "表单列表_49896033_20261004_064315.xlsx",
+            "mtime": "2026-10-04 06:44:12",
+            "synced": false
           },
           {
             "type": "载具审核-骑手明细(BI)",
             "latest": "vehicle_audit_rider.json",
-            "mtime": "2026-10-03 07:06:34",
+            "mtime": "2026-10-04 06:45:24",
             "synced": true
           }
         ],
@@ -266,7 +266,7 @@ window.DATA_CENTER = {
             "latest": "充换电血压_data.js",
             "mtime": "2026-10-04 06:41:43",
             "max_age_hours": 13,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
@@ -277,9 +277,9 @@ window.DATA_CENTER = {
             "label": "载具审核-骑手明细(BI)",
             "path": "vehicle_audit\\vehicle_audit_rider.json",
             "latest": "vehicle_audit_rider.json",
-            "mtime": "2026-10-03 07:06:34",
+            "mtime": "2026-10-04 06:45:24",
             "max_age_hours": 30,
-            "age_hours": 23.6,
+            "age_hours": 0.0,
             "ok": true,
             "note": "早间自动化抓取",
             "fail_hits": [],
@@ -290,14 +290,14 @@ window.DATA_CENTER = {
             "label": "每日刷新·抓取成败",
             "path": "daily_refresh_log.txt",
             "latest": "daily_refresh_log.txt",
-            "mtime": "2026-10-04 06:36:29",
+            "mtime": "2026-10-04 06:46:14",
             "max_age_hours": 13,
-            "age_hours": 0.1,
+            "age_hours": 0.0,
             "ok": true,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
             "fail_hits": [],
             "fail_lines": [],
-            "block_time": "2026-10-04 06:36:29"
+            "block_time": "2026-10-04 06:46:14"
           }
         ],
         "action_stats": {
@@ -307,7 +307,7 @@ window.DATA_CENTER = {
           "total": 3,
           "all_ok": true
         },
-        "all_healthy": true
+        "all_healthy": false
       },
       "boards": [
         {
@@ -373,7 +373,7 @@ window.DATA_CENTER = {
             "latest": "update_log.txt",
             "mtime": "2026-10-04 06:40:55",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -446,7 +446,7 @@ window.DATA_CENTER = {
             "latest": "_crawl_service.log",
             "mtime": "2026-10-02 06:53:33",
             "max_age_hours": 26,
-            "age_hours": 47.8,
+            "age_hours": 47.9,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -537,7 +537,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-10-03 08:33:29",
             "max_age_hours": 26,
-            "age_hours": 22.1,
+            "age_hours": 22.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -550,7 +550,7 @@ window.DATA_CENTER = {
             "latest": "premium_latest.json",
             "mtime": "2026-10-03 07:39:21",
             "max_age_hours": 26,
-            "age_hours": 23.0,
+            "age_hours": 23.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -563,7 +563,7 @@ window.DATA_CENTER = {
             "latest": "v3_data.js",
             "mtime": "2026-10-04 06:37:55",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -652,7 +652,7 @@ window.DATA_CENTER = {
             "latest": "110工单看板.html",
             "mtime": "2026-09-23 11:38:46",
             "max_age_hours": 168,
-            "age_hours": 259.0,
+            "age_hours": 259.1,
             "ok": false,
             "note": "更新频率待确认，先按 7 天",
             "fail_hits": [],
@@ -714,7 +714,7 @@ window.DATA_CENTER = {
             "latest": "update_stations.log",
             "mtime": "2026-10-04 06:41:43",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -750,7 +750,7 @@ window.DATA_CENTER = {
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-10-03 07:28:18",
+        "data_mtime": "2026-10-04 06:46:00",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -761,9 +761,9 @@ window.DATA_CENTER = {
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-10-03 07:28:18",
+            "mtime": "2026-10-04 06:46:00",
             "max_age_hours": 26,
-            "age_hours": 23.2,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -829,7 +829,7 @@ window.DATA_CENTER = {
             "latest": "monthly_summary.js",
             "mtime": "2026-10-04 06:37:55",
             "max_age_hours": 72,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
@@ -897,7 +897,7 @@ window.DATA_CENTER = {
             "latest": "checkup_files_data.js",
             "mtime": "2026-09-23 14:51:37",
             "max_age_hours": 168,
-            "age_hours": 255.8,
+            "age_hours": 255.9,
             "ok": false,
             "note": "scan_checkup.py 手动扫描（用户按需触发），按 7 天兜底",
             "fail_hits": [],
@@ -1010,7 +1010,7 @@ window.DATA_CENTER = {
             "latest": "v3_data.js",
             "mtime": "2026-10-04 06:37:55",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1023,7 +1023,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-10-03 08:33:29",
             "max_age_hours": 26,
-            "age_hours": 22.1,
+            "age_hours": 22.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1036,7 +1036,7 @@ window.DATA_CENTER = {
             "latest": "premium_latest.json",
             "mtime": "2026-10-03 07:39:21",
             "max_age_hours": 26,
-            "age_hours": 23.0,
+            "age_hours": 23.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1049,7 +1049,7 @@ window.DATA_CENTER = {
             "latest": "compliance.json",
             "mtime": "2026-09-28 05:46:42",
             "max_age_hours": 216,
-            "age_hours": 144.9,
+            "age_hours": 145.0,
             "ok": true,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
@@ -1062,7 +1062,7 @@ window.DATA_CENTER = {
             "latest": "accident.json",
             "mtime": "2026-09-28 05:46:42",
             "max_age_hours": 216,
-            "age_hours": 144.9,
+            "age_hours": 145.0,
             "ok": true,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
@@ -1075,7 +1075,7 @@ window.DATA_CENTER = {
             "latest": "insurance_rate_analysis.html",
             "mtime": "2026-09-06 11:04:24",
             "max_age_hours": 216,
-            "age_hours": 667.6,
+            "age_hours": 667.7,
             "ok": false,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
