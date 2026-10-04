@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-05 07:16:42",
+  "updated_at": "2026-10-05 07:17:16",
   "action_summary": {
     "total": 22,
     "ok": 16,
@@ -584,7 +584,7 @@
             "latest": "insurance_data.js",
             "mtime": "2026-10-02 07:08:01",
             "max_age_hours": 72,
-            "age_hours": 72.1,
+            "age_hours": 72.2,
             "ok": false,
             "note": "",
             "fail_hits": [],
