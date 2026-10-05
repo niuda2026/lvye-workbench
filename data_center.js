@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-10-06 07:00:28",
+  "updated_at": "2026-10-06 07:03:31",
   "action_summary": {
     "total": 22,
     "ok": 18,
@@ -266,7 +266,7 @@ window.DATA_CENTER = {
             "latest": "充换电血压_data.js",
             "mtime": "2026-10-06 06:59:46",
             "max_age_hours": 13,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
@@ -279,7 +279,7 @@ window.DATA_CENTER = {
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-10-06 06:58:41",
             "max_age_hours": 30,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "早间自动化抓取",
             "fail_hits": [],
@@ -290,22 +290,18 @@ window.DATA_CENTER = {
             "label": "每日刷新·抓取成败",
             "path": "daily_refresh_log.txt",
             "latest": "daily_refresh_log.txt",
-            "mtime": "2026-10-06 06:59:45",
+            "mtime": "2026-10-06 07:02:04",
             "max_age_hours": 13,
             "age_hours": 0.0,
             "ok": false,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
             "fail_hits": [
-              "登录态失效",
-              "退出码1",
-              "失败(退出"
+              "退出码1"
             ],
             "fail_lines": [
-              "第0步 载具审核(骑手维度)BI抓取: 全部方案失败 · S1-headless自起→退出码1(数据未更新(generated_at=2026-10-04 23:19:54)) / S1b-headless重试→退出码1(数据未更新(generated_at=2026-10-04 23:19:54)) / S2-自起C",
-              "第1步 烽火台当月充电/换电/血压: 全部方案失败 · S1-headless自起→退出码1(未生成 list_20261006.json) / S1b-headless重试→退出码1(未生成 list_20261006.json) / S2-自起CDP窗口→异常(浏览器启动失败: CDP 端口未就绪 |  )",
-              "第1.5步 美团保险理赔抓取: 抓取失败(退出码 1) \u001b[2m  - [pid=13688] <process did exit: exitCode=4294967295, signal=null>\u001b[22m ⏎ \u001b[2m  - [pid=13688] starting temporary directories c"
+              "第1步 烽火台当月充电/换电/血压: 全部方案失败 · S1-headless自起→退出码1(未生成 list_20261006.json) / S1b-headless重试→退出码1(未生成 list_20261006.json) / S2-自起CDP窗口→异常(浏览器启动失败: CDP 端口未就绪 |  )"
             ],
-            "block_time": "2026-10-06 06:59:45"
+            "block_time": "2026-10-06 07:02:04"
           }
         ],
         "action_stats": {
@@ -355,23 +351,23 @@ window.DATA_CENTER = {
           "护航服装\\data.js",
           "护航服装\\data_excluded.js"
         ],
-        "data_mtime": "2026-10-06 06:54:11",
-        "all_synced": false,
-        "synced_count": 0,
+        "data_mtime": "2026-10-06 07:03:28",
+        "all_synced": true,
+        "synced_count": 2,
         "missing_count": 0,
-        "unsynced_count": 2,
+        "unsynced_count": 0,
         "sources": [
           {
             "type": "已剔除恶劣天气",
             "latest": "已剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20261005-20261005(天)_1791241187489.xlsx",
             "mtime": "2026-10-06 06:59:53",
-            "synced": false
+            "synced": true
           },
           {
             "type": "未剔除恶劣天气",
             "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20261005-20261005(天)_1791241154024.xlsx",
             "mtime": "2026-10-06 06:59:20",
-            "synced": false
+            "synced": true
           }
         ],
         "actions": [
@@ -379,9 +375,9 @@ window.DATA_CENTER = {
             "label": "服装标准化数据更新",
             "path": "护航服装\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-10-06 06:54:12",
+            "mtime": "2026-10-06 07:03:29",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -396,7 +392,7 @@ window.DATA_CENTER = {
           "total": 1,
           "all_ok": true
         },
-        "all_healthy": false
+        "all_healthy": true
       },
       "boards": [
         {
@@ -545,7 +541,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-10-05 07:34:29",
             "max_age_hours": 26,
-            "age_hours": 23.4,
+            "age_hours": 23.5,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -558,7 +554,7 @@ window.DATA_CENTER = {
             "latest": "premium_latest.json",
             "mtime": "2026-10-05 08:00:08",
             "max_age_hours": 26,
-            "age_hours": 23.0,
+            "age_hours": 23.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -584,7 +580,7 @@ window.DATA_CENTER = {
             "latest": "insurance_data.js",
             "mtime": "2026-10-05 07:18:27",
             "max_age_hours": 72,
-            "age_hours": 23.7,
+            "age_hours": 23.8,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -722,7 +718,7 @@ window.DATA_CENTER = {
             "latest": "update_stations.log",
             "mtime": "2026-10-05 06:58:34",
             "max_age_hours": 26,
-            "age_hours": 24.0,
+            "age_hours": 24.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -758,7 +754,7 @@ window.DATA_CENTER = {
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-10-06 07:00:13",
+        "data_mtime": "2026-10-06 07:00:58",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -769,7 +765,7 @@ window.DATA_CENTER = {
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-10-06 07:00:13",
+            "mtime": "2026-10-06 07:00:58",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -837,7 +833,7 @@ window.DATA_CENTER = {
             "latest": "monthly_summary.js",
             "mtime": "2026-10-06 06:54:15",
             "max_age_hours": 72,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
@@ -905,7 +901,7 @@ window.DATA_CENTER = {
             "latest": "checkup_files_data.js",
             "mtime": "2026-09-23 14:51:37",
             "max_age_hours": 168,
-            "age_hours": 304.1,
+            "age_hours": 304.2,
             "ok": false,
             "note": "scan_checkup.py 手动扫描（用户按需触发），按 7 天兜底",
             "fail_hits": [],
@@ -1005,7 +1001,7 @@ window.DATA_CENTER = {
             "latest": "equity_slim_data.js",
             "mtime": "2026-10-06 06:53:15",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": "8421 按工作台源 mtime 自动重建",
             "fail_hits": [],
@@ -1031,7 +1027,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-10-05 07:34:29",
             "max_age_hours": 26,
-            "age_hours": 23.4,
+            "age_hours": 23.5,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1044,7 +1040,7 @@ window.DATA_CENTER = {
             "latest": "premium_latest.json",
             "mtime": "2026-10-05 08:00:08",
             "max_age_hours": 26,
-            "age_hours": 23.0,
+            "age_hours": 23.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1057,7 +1053,7 @@ window.DATA_CENTER = {
             "latest": "compliance.json",
             "mtime": "2026-09-28 05:46:42",
             "max_age_hours": 216,
-            "age_hours": 193.2,
+            "age_hours": 193.3,
             "ok": true,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
@@ -1070,7 +1066,7 @@ window.DATA_CENTER = {
             "latest": "accident.json",
             "mtime": "2026-09-28 05:46:42",
             "max_age_hours": 216,
-            "age_hours": 193.2,
+            "age_hours": 193.3,
             "ok": true,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
@@ -1083,7 +1079,7 @@ window.DATA_CENTER = {
             "latest": "insurance_rate_analysis.html",
             "mtime": "2026-09-06 11:04:24",
             "max_age_hours": 216,
-            "age_hours": 715.9,
+            "age_hours": 716.0,
             "ok": false,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
