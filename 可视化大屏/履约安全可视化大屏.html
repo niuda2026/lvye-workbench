@@ -479,14 +479,14 @@ document.getElementById('genTime').textContent = '汇总生成 ' + (meta.generat
 var k = D.kpi || {};
 /* 章节 01 · 安全总览 */
 paintKpis('kpis', [
-  {c:'',  k:'在职骑手',    v:fmt(k.riders), s:'排班在册 '+fmt(k.escort_riders)+' 人' },
+  {c:'',  k:'在职骑手',    v:fmt(k.riders), s:'含预离职 '+fmt((D.hc||{}).preleave||0)+' 人 ｜ 在职 '+fmt((D.hc||{}).active||0)+' 人' },
   {c:'g', k:'站点 / 宿舍',  v:fmt(k.sites)+' / '+fmt(k.dorms), s:'覆盖 '+fmt(k.cities)+' 个城市' },
   {c:'g', k:'戴盔系带率',   v:(k.helmet&&k.helmet.rate!=null?Number(k.helmet.rate).toFixed(2):'-'), u:'%', s:'目标 ≥ 99%' },
   {c:'o', k:'超速率',      v:(k.speed&&k.speed.rate!=null?Number(k.speed.rate).toFixed(2):'-'),   u:'%', s:'目标 ≤ 2.58%' },
   {c:'r', k:'闯红灯率',    v:(k.redlight&&k.redlight.rate!=null?Number(k.redlight.rate).toFixed(2):'-'), u:'%', s:'目标 ≤ 16.23%' },
   {c:'r', k:'里程逆行率',  v:(k.reverse&&k.reverse.rate!=null?Number(k.reverse.rate).toFixed(2):'-'), u:'%', s:'目标 ≤ 2.45%' }
 ]);
-sub('sec1Desc', '全司 ' + fmt(k.riders) + ' 名骑手 · ' + fmt(k.sites) + ' 站 / ' + fmt(k.dorms) + ' 宿舍 · 覆盖 ' + fmt(k.cities) + ' 城');
+sub('sec1Desc', '全司排班 ' + fmt(k.riders) + ' 名骑手（含预离职已通过 ' + fmt((D.hc||{}).preleave||0) + ' 人 · 在职 ' + fmt((D.hc||{}).active||0) + ' 人）· ' + fmt(k.sites) + ' 站 / ' + fmt(k.dorms) + ' 宿舍 · 覆盖 ' + fmt(k.cities) + ' 城');
 
 /* 章节 02 · 保险与补贴 */
 paintKpis('kpis2', [
@@ -741,21 +741,21 @@ sub('sec3Desc', (PN.period ? '统计周 ' + PN.period + ' ｜ ' : '') + (PN.site
 
 /* 章节 04 · 骑手管理 */
 paintKpis('kpis4', [
-  {c:'r', k:'健康证风险', v:fmt((H.expired||0)+(H.d7||0)), u:'人', s:'已过期 '+(H.expired||0)+' ｜ 7日内 '+(H.d7||0)+' ｜ 30日内 '+(H.d30||0)},
-  {c:'o', k:'血压上报',    v:fmt(CB.blood), u:'条', s:'在册 ' + fmt(CB.bloodRoster) + ' 人 ｜ 覆盖率 ' + pctTxt(CB.roster?Math.round(CB.bloodRoster*100000)/CB.roster:null)},
-  {c:'o', k:'换电上报',    v:fmt(CB.swap), u:'条', s:'在册 ' + fmt(CB.swapRoster) + ' 人 ｜ 覆盖 ' + pctTxt(CB.roster?Math.round(CB.swapRoster*100000)/CB.roster:null) + ' ｜ 充电 ' + fmt(CB.charge)},
+  {c:'r', k:'健康证风险', v:fmt((H.expired||0)+(H.d7||0)), u:'人', s:'在职 '+fmt(H.active)+' 人 ｜ 已过期 '+(H.expired||0)+' ｜ 7日内 '+(H.d7||0)+' ｜ 30日内 '+(H.d30||0)},
+  {c:'o', k:'血压上报',    v:fmt(CB.blood), u:'条', s:'已报 ' + fmt(CB.bloodRoster) + ' 人 ｜ 占排班 ' + pctTxt(CB.roster?Math.round(CB.bloodRoster*10000/CB.roster)/100:null)},
+  {c:'o', k:'换电上报',    v:fmt(CB.swap), u:'条', s:'已报 ' + fmt(CB.swapRoster) + ' 人 ｜ 占排班 ' + pctTxt(CB.roster?Math.round(CB.swapRoster*10000/CB.roster)/100:null) + ' ｜ 充电 ' + fmt(CB.charge)},
   {c:'r', k:'110 工单',    v:fmt(C1.total), u:'单', s:'待处理 ' + fmt(C1.pending) + ' ｜ 处理中 ' + fmt(C1.processing) + ' ｜ ' + (C1.date||'')}
 ]);
-sub('sec4Desc', '健康证在册 ' + fmt(H.total) + ' 人 ｜ 血压/换电覆盖 ' + fmt(CB.siteN) + ' 站 ｜ 110 工单数据 ' + (C1.date||'-'));
+sub('sec4Desc', '健康证在职 ' + fmt(H.active) + ' 人（排班全量 ' + fmt(H.total) + ' · 预离职已通过 ' + fmt(H.preleave) + '）｜ 血压/换电覆盖 ' + fmt(CB.siteN) + ' 站 ｜ 110 工单数据 ' + (C1.date||'-'));
 
 /* ---- 1. 健康证到期结构 ---- */
-sub('hcSub', '在册 ' + fmt(H.total) + ' 人 · 预离职 ' + fmt(H.preleave) + ' 人' + (H.date ? ' · 数据 ' + H.date : ''));
+sub('hcSub', '在职 ' + fmt(H.active) + ' 人（已剔除预离职已通过 ' + fmt(H.preleave) + ' 人 / 排班全量 ' + fmt(H.total) + '）' + (H.date ? ' · 数据 ' + H.date : ''));
 ringChart('c2_hc_ring', [
   {name:'已过期',   value:H.expired||0, itemStyle:{color:'#ff5b5b'}},
   {name:'7日内',    value:H.d7||0,      itemStyle:{color:'#ff9500'}},
   {name:'30日内',   value:H.d30||0,     itemStyle:{color:'#ffb020'}},
   {name:'30天以上', value:H.far||0,     itemStyle:{color:'#00d68f'}}
-], pctTxt(H.total ? Math.round(((H.expired||0)+(H.d7||0)) * 1000000 / H.total) / 10000 : null));
+], pctTxt(H.active ? Math.round(((H.expired||0)+(H.d7||0)) * 1000000 / H.active) / 10000 : null));
 
 /* ---- 2. 健康证风险 大区/城市 ---- */
 hbar('c2_hc_region', (H.byRegion||[]).filter(function(x){return x.risk>0;}), 'name', 'risk', '#ff9500', ' 人');
