@@ -135,6 +135,8 @@ body.light #themeBtn:hover{background:rgba(10,110,189,.15)}
       <h1>兴 达 履 约 安 全 可 视 化 大 屏</h1>
       <div class="side r">
         <button id="themeBtn" onclick="toggleTheme()">☀ 晨白</button>
+        <button id="shotBtn" onclick="shotScreen()" style="cursor:pointer;font-size:12px;padding:4px 12px;margin-right:10px;border-radius:12px;
+          border:1px solid rgba(64,158,255,.45);background:rgba(0,150,255,.12);color:#7de3ff;font-family:inherit">📷 截图</button>
         <span class="clock" id="clock">--:--:--</span>
         <span class="date" id="today"></span>
       </div>
@@ -202,7 +204,7 @@ body.light #themeBtn:hover{background:rgba(10,110,189,.15)}
           <div class="chart" id="c_prem"></div>
         </div>
         <div class="panel" style="flex:1">
-          <h3>美团保险理赔案件 TOP10<span class="sub">按城市案件数</span></h3>
+          <h3>美团保险理赔案件 TOP10<span class="sub" id="claimSub">按城市案件数</span></h3>
           <div class="chart" id="c_claim"></div>
         </div>
       </div>
@@ -214,6 +216,7 @@ body.light #themeBtn:hover{background:rgba(10,110,189,.15)}
 
 <script src="_大屏数据.js"></script>
 <script src="../_libs/echarts-5.4.3.min.js"></script>
+<script src="../_libs/html2canvas-1.4.1.min.js"></script>
 <script>
 if (typeof echarts === 'undefined') {
   document.write('<script src="../_libs/echarts-5.4.3.min.js"><\/script>');
@@ -439,6 +442,7 @@ mk('c_prem', {
 });
 
 /* ---------- 9. 理赔案件 ---------- */
+document.getElementById('claimSub').textContent = '按城市案件数' + (meta.claim_date ? ' · 数据 ' + meta.claim_date : '');
 var ct = (D.claimTop||[]).slice(0,10);
 mk('c_claim', {
   tooltip:{trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:C.tipBg, borderColor:'rgba(64,158,255,.4)', textStyle:{color:C.tipTx},
@@ -453,6 +457,66 @@ mk('c_claim', {
 
 applyTheme();
 renderAll();
+
+/* ---------- 一键截图（右上角 📷 按钮，1920×1080 原尺寸输出 PNG） ---------- */
+function shotScreen(){
+  var btn = document.getElementById('shotBtn');
+  var el = document.getElementById('screen');
+  var h1 = document.querySelector('.hd h1');
+  var oldT = el.style.transform, oldL = el.style.left, oldTp = el.style.top;
+  var h1Bg = h1.style.background, h1Clip = h1.style.webkitBackgroundClip, h1Color = h1.style.color;
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ 截图中…'; }
+  el.style.transform = 'none'; el.style.left = '0px'; el.style.top = '0px';
+  /* html2canvas 不支持 background-clip:text 渐变字 → 截图瞬间切实色，截完恢复 */
+  h1.style.background = 'none'; h1.style.webkitBackgroundClip = 'initial'; h1.style.backgroundClip = 'initial';
+  h1.style.color = LIGHT ? '#0a6ebd' : '#63d7ff';
+  function restore(){
+    el.style.transform = oldT; el.style.left = oldL; el.style.top = oldTp;
+    h1.style.background = h1Bg; h1.style.webkitBackgroundClip = h1Clip; h1.style.color = h1Color;
+    if (btn) { btn.disabled = false; btn.textContent = '📷 截图'; }
+  }
+  if (typeof html2canvas === 'undefined') {
+    restore(); alert('html2canvas 库未加载，截图失败'); return;
+  }
+  html2canvas(el, {backgroundColor: LIGHT ? '#eef3f8' : '#030a16', useCORS: true, logging: false,
+    width: 1920, height: 1080, windowWidth: 1920, windowHeight: 1080, scale: 2}).then(function(cv){
+    restore();
+    var d = new Date(), p = function(x){ return x<10 ? '0'+x : ''+x; };
+    var a = document.createElement('a');
+    a.download = '履约安全大屏_' + d.getFullYear()+p(d.getMonth()+1)+p(d.getDate()) + '_' + p(d.getHours())+p(d.getMinutes())+p(d.getSeconds()) + '.png';
+    a.href = cv.toDataURL('image/png');
+    a.click();
+  }).catch(function(e){ restore(); alert('截图失败: ' + e); });
+}
+
+/* ---------- 数据自动刷新（实时化） ----------
+   每 60s 拉一次 _大屏数据.js（带时间戳防缓存），内容有变化 → 平滑重渲染（主题/时钟不丢）；
+   fetch 不可用（file:// 打开）→ 每 10 分钟整页刷新兜底。 */
+(function(){
+  var curRaw = null, FETCH_OK = null;
+  setInterval(function(){
+    fetch('_大屏数据.js?t=' + Date.now(), {cache: 'no-store'}).then(function(r){
+      if (!r.ok) throw new Error(r.status);
+      FETCH_OK = true;
+      return r.text();
+    }).then(function(txt){
+      if (curRaw === null) { curRaw = txt; return; }        // 首轮记录基线，不渲染
+      if (txt === curRaw) return;                            // 无变化
+      curRaw = txt;
+      try {
+        new Function(txt)();                                 // 更新 window.SCREEN_DATA
+        D = window.SCREEN_DATA || {};
+        charts.forEach(function(c){ c.dispose(); });
+        charts.length = 0;
+        renderAll();
+      } catch(e) { console.warn('大屏数据热更新失败', e); }
+    }).catch(function(){
+      if (FETCH_OK === false) return;
+      FETCH_OK = false;                                      // file:// 等 fetch 不可用 → 整页刷新兜底
+      setInterval(function(){ location.reload(); }, 10 * 60 * 1000);
+    });
+  }, 60 * 1000);
+})();
 </script>
 </body>
 </html>
