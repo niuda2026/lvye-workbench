@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-10-07 06:54:25",
+  "updated_at": "2026-10-07 06:55:10",
   "action_summary": {
     "total": 22,
     "ok": 14,
@@ -23,9 +23,9 @@ window.DATA_CENTER = {
         ],
         "data_mtime": "2026-10-06 07:12:59",
         "all_synced": false,
-        "synced_count": 12,
+        "synced_count": 11,
         "missing_count": 0,
-        "unsynced_count": 1,
+        "unsynced_count": 2,
         "sources": [
           {
             "type": "站点-戴盔",
@@ -77,9 +77,9 @@ window.DATA_CENTER = {
           },
           {
             "type": "安全指标监控(骑手)",
-            "latest": "安全指标监控_骑手维度_20261005-20261005(日期)_1791240583976.xlsx",
-            "mtime": "2026-10-06 06:49:47",
-            "synced": true
+            "latest": "安全指标监控_骑手维度_20261006-20261006(日期)_1791327303760.xlsx",
+            "mtime": "2026-10-07 06:55:10",
+            "synced": false
           },
           {
             "type": "站维度",
@@ -111,7 +111,7 @@ window.DATA_CENTER = {
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-10-07 06:54:25",
+            "mtime": "2026-10-07 06:55:10",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -293,7 +293,7 @@ window.DATA_CENTER = {
             "latest": "daily_refresh_log.txt",
             "mtime": "2026-10-06 11:03:38",
             "max_age_hours": 13,
-            "age_hours": 19.8,
+            "age_hours": 19.9,
             "ok": false,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
             "fail_hits": [],
@@ -764,7 +764,7 @@ window.DATA_CENTER = {
             "latest": "_大屏数据.js",
             "mtime": "2026-10-06 11:39:48",
             "max_age_hours": 26,
-            "age_hours": 19.2,
+            "age_hours": 19.3,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -898,7 +898,7 @@ window.DATA_CENTER = {
             "latest": "checkup_files_data.js",
             "mtime": "2026-09-23 14:51:37",
             "max_age_hours": 168,
-            "age_hours": 328.0,
+            "age_hours": 328.1,
             "ok": false,
             "note": "scan_checkup.py 手动扫描（用户按需触发），按 7 天兜底",
             "fail_hits": [],
