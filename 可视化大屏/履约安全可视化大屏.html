@@ -6,12 +6,13 @@
 <title>兴达履约安全可视化大屏</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:100%;height:100%;overflow:hidden;background:#030a16;
+html,body{width:100%;min-height:100%;overflow-x:hidden;overflow-y:auto;background:#030a16;
   font-family:'Segoe UI','Microsoft YaHei','PingFang SC',Arial,sans-serif;color:#dbe9f7}
-#stage{position:fixed;inset:0;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,#0b2447 0%,#030a16 70%)}
-#screen{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:top left;
+body.light{background:#eef3f8}
+#stage{position:relative;width:100%;min-height:100vh;overflow:visible;background:radial-gradient(ellipse at 50% 0%,#0b2447 0%,#030a16 70%)}
+#screen,#screen2{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:top left;
   background:linear-gradient(180deg,#04122a 0%,#061a33 40%,#030d1e 100%);
-  padding:18px 26px 22px;display:flex;flex-direction:column}
+  padding:18px 26px 22px;display:flex;flex-direction:column;margin-bottom:14px}
 
 /* ── 顶部标题栏 ── */
 .hd{height:72px;flex-shrink:0;display:flex;align-items:center;position:relative;
@@ -81,15 +82,16 @@ html,body{width:100%;height:100%;overflow:hidden;background:#030a16;
 .foot{position:absolute;left:0;right:0;bottom:5px;text-align:center;font-size:11px;color:#4a7398}
 .badge{font-size:11px;color:#7fb3e0;border:1px solid rgba(64,158,255,.25);border-radius:10px;padding:1px 8px}
 
-/* ── 主题切换按钮 ── */
-#themeBtn{cursor:pointer;font-size:12px;padding:4px 12px;margin-right:10px;border-radius:12px;
+/* ── 主题切换 / 截图 按钮 ── */
+#themeBtn,#shotBtn,#themeBtn2,#shotBtn2{cursor:pointer;font-size:12px;padding:4px 12px;margin-right:10px;border-radius:12px;
   border:1px solid rgba(64,158,255,.45);background:rgba(0,150,255,.12);color:#7de3ff;font-family:inherit}
-#themeBtn:hover{background:rgba(0,150,255,.25)}
+#themeBtn:hover,#shotBtn:hover,#themeBtn2:hover,#shotBtn2:hover{background:rgba(0,150,255,.25)}
+#shotBtn:disabled,#shotBtn2:disabled{opacity:.6;cursor:wait}
 
 /* ── 晨白主题（仅覆盖配色，布局零改动） ── */
 body.light{background:#eef3f8;color:#1f3347}
 body.light #stage{background:#eef3f8}
-body.light #screen{background:linear-gradient(180deg,#f7fafd 0%,#eef3f8 40%,#e9eff6 100%)}
+body.light #screen,body.light #screen2{background:linear-gradient(180deg,#f7fafd 0%,#eef3f8 40%,#e9eff6 100%)}
 body.light .hd{background:linear-gradient(90deg,rgba(0,110,220,.06),rgba(0,110,220,.02) 50%,rgba(0,110,220,.06));
   border-color:rgba(70,110,160,.25)}
 body.light .hd .side{color:#5a7186}
@@ -119,8 +121,8 @@ body.light .sync-row .n{color:#5a7186}
 body.light .sync-row .t{color:#5a7186}
 body.light .foot{color:#8a9aab}
 body.light .badge{color:#5a7186;border-color:rgba(70,110,160,.3)}
-body.light #themeBtn{border-color:rgba(10,110,189,.4);background:rgba(10,110,189,.08);color:#0a6ebd}
-body.light #themeBtn:hover{background:rgba(10,110,189,.15)}
+body.light #themeBtn,body.light #shotBtn,body.light #themeBtn2,body.light #shotBtn2{border-color:rgba(10,110,189,.4);background:rgba(10,110,189,.08);color:#0a6ebd}
+body.light #themeBtn:hover,body.light #shotBtn:hover,body.light #themeBtn2:hover,body.light #shotBtn2:hover{background:rgba(10,110,189,.15)}
 </style>
 </head>
 <body>
@@ -135,8 +137,7 @@ body.light #themeBtn:hover{background:rgba(10,110,189,.15)}
       <h1>兴 达 履 约 安 全 可 视 化 大 屏</h1>
       <div class="side r">
         <button id="themeBtn" onclick="toggleTheme()">☀ 晨白</button>
-        <button id="shotBtn" onclick="shotScreen()" style="cursor:pointer;font-size:12px;padding:4px 12px;margin-right:10px;border-radius:12px;
-          border:1px solid rgba(64,158,255,.45);background:rgba(0,150,255,.12);color:#7de3ff;font-family:inherit">📷 截图</button>
+        <button id="shotBtn" onclick="shotScreen('screen')">📷 截图</button>
         <span class="clock" id="clock">--:--:--</span>
         <span class="date" id="today"></span>
       </div>
@@ -212,6 +213,105 @@ body.light #themeBtn:hover{background:rgba(10,110,189,.15)}
 
     <div class="foot">数据来源：交通安全行为看板 · 履约项目 · 护航服装 · 全国站点地图 · 美团保险 · BI 赔付 · 保费（只读汇总，未改动任何源数据）</div>
   </div>
+
+  <!-- ══════════ 第二屏：项目总览（工作台其余项目）══════════ -->
+  <div id="screen2">
+    <div class="hd">
+      <div class="side">
+        <span class="badge" id="dataBadge2">数据日期 —</span>
+        <span id="genTime2"></span>
+      </div>
+      <h1>项 目 总 览 · 骑 手 管 理 / 履 约 深 入 / 企 业 风 险</h1>
+      <div class="side r">
+        <button id="themeBtn2" onclick="toggleTheme()">☀ 晨白</button>
+        <button id="shotBtn2" onclick="shotScreen('screen2')">📷 截图</button>
+        <span class="clock" id="clock2">--:--:--</span>
+        <span class="date" id="today2"></span>
+      </div>
+    </div>
+
+    <div class="kpis" id="kpis2"></div>
+
+    <div class="body">
+      <!-- 左列 -->
+      <div class="col">
+        <div class="panel" style="flex:.85">
+          <h3>骑手健康证 · 到期结构<span class="sub" id="hcSub"></span></h3>
+          <div class="chart" id="c2_hc_ring"></div>
+        </div>
+        <div class="panel" style="flex:1.1">
+          <h3>健康证风险站点 · 大区 / 城市 TOP10<span class="sub">已过期 + 7 日内到期</span></h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0">
+            <div class="chart" id="c2_hc_region"></div>
+            <div class="chart" id="c2_hc_city"></div>
+          </div>
+        </div>
+        <div class="panel" style="flex:1.05">
+          <h3>早会审核 · 大区提交率 / 站点驳回缺交 TOP10<span class="sub" id="mrSub"></span></h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0">
+            <div class="chart" id="c2_mr_region"></div>
+            <div class="chart" id="c2_mr_top"></div>
+          </div>
+        </div>
+        <div class="panel" style="flex:.9" id="p_cloth">
+          <h3>服装标准化率 · 大区达成<span class="sub">美团工装率口径</span></h3>
+          <div class="chart" id="c2_cloth"></div>
+        </div>
+      </div>
+
+      <!-- 中列 -->
+      <div class="col">
+        <div class="panel" style="flex:1">
+          <h3>充换电与血压上报 · 城市 TOP10<span class="sub" id="cbpSub"></span></h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0">
+            <div class="chart" id="c2_cbp_blood"></div>
+            <div class="chart" id="c2_cbp_swap"></div>
+          </div>
+        </div>
+        <div class="panel" style="flex:1">
+          <h3>餐箱消毒 · 大区合格率 / 站点不合格 TOP10<span class="sub" id="boxSub"></span></h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0">
+            <div class="chart" id="c2_box_region"></div>
+            <div class="chart" id="c2_box_top"></div>
+          </div>
+        </div>
+        <div class="panel" style="flex:1">
+          <h3>带刀巡检 · 大区合格率 / 站点不合格 TOP10<span class="sub" id="knifeSub"></span></h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0">
+            <div class="chart" id="c2_knife_region"></div>
+            <div class="chart" id="c2_knife_top"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右列 -->
+      <div class="col">
+        <div class="panel" style="flex:1">
+          <h3>110 工单 · 近 30 天趋势 / 类型 TOP10<span class="sub" id="c110Sub"></span></h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0">
+            <div class="chart" id="c2_110_trend"></div>
+            <div class="chart" id="c2_110_type"></div>
+          </div>
+        </div>
+        <div class="panel" style="flex:1">
+          <h3>履约处罚 · 罚款构成 / 站点罚款 TOP10<span class="sub" id="penSub"></span></h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0">
+            <div class="chart" id="c2_pen_type"></div>
+            <div class="chart" id="c2_pen_top"></div>
+          </div>
+        </div>
+        <div class="panel" style="flex:1">
+          <h3>考核文件库 / 源数据同步状态<span class="sub" id="ckSub"></span></h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0">
+            <div class="chart" id="c2_ck"></div>
+            <div class="scroll sync-list" id="c2_sync"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">数据来源：在职骑手详情(健康证) · 履约项目(充换电血压/餐箱消毒/带刀巡检/早会审核/处罚) · 110工单 · 考核文件库 · 交通安全(服装标准化率) · data_center（只读汇总）</div>
+  </div>
 </div>
 
 <script src="_大屏数据.js"></script>
@@ -223,13 +323,22 @@ if (typeof echarts === 'undefined') {
 }
 </script>
 <script>
-/* ---------- 自适应缩放（1920×1080 等比铺满） ---------- */
+/* ---------- 自适应缩放（1920×1080 等比铺满，页面纵向可滚动） ---------- */
+var SCREENS = ['screen', 'screen2'];
 function fit(){
-  var s = Math.min(window.innerWidth/1920, window.innerHeight/1080);
-  var el = document.getElementById('screen');
-  el.style.transform = 'scale('+s+')';
-  el.style.left = Math.max(0, (window.innerWidth  - 1920*s)/2) + 'px';
-  el.style.top  = Math.max(0, (window.innerHeight - 1080*s)/2) + 'px';
+  var vw = window.innerWidth, vh = window.innerHeight;
+  var s = Math.min(vw/1920, vh/1080);
+  if (s > 1) s = 1;                       // 不放大，避免模糊
+  var left = Math.max(0, (vw - 1920*s)/2), top = 0;
+  SCREENS.forEach(function(id){
+    var el = document.getElementById(id); if(!el) return;
+    el.style.transform = 'scale('+s+')';
+    el.style.left = left + 'px';
+    el.style.top  = top + 'px';
+    top += 1080*s + 14;
+  });
+  var stage = document.getElementById('stage');
+  if (stage) stage.style.height = (top + 10) + 'px';
 }
 window.addEventListener('resize', function(){ fit(); if(window.__charts) window.__charts.forEach(function(c){c.resize();}); });
 fit();
@@ -256,8 +365,10 @@ function themeColors(){
 }
 function applyTheme(){
   document.body.classList.toggle('light', LIGHT);
-  var b = document.getElementById('themeBtn');
-  if(b) b.textContent = LIGHT ? '🌙 深蓝' : '☀ 晨白';
+  var b = document.getElementById('themeBtn'), b2 = document.getElementById('themeBtn2');
+  var txt = LIGHT ? '🌙 深蓝' : '☀ 晨白';
+  if(b) b.textContent = txt;
+  if(b2) b2.textContent = txt;
 }
 function syncColors(){ C = themeColors(); }
 syncColors();
@@ -276,15 +387,21 @@ function toggleTheme(){
 }
 var GRID = { left:8, right:12, top:30, bottom:8, containLabel:true };
 
-/* ---------- 时钟 ---------- */
+/* ---------- 时钟（两屏同步） ---------- */
 setInterval(function(){
   var d = new Date();
   var p = function(x){ return x<10?'0'+x:''+x; };
-  document.getElementById('clock').textContent = p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds());
-  document.getElementById('today').textContent = d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());
+  var t = p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds());
+  var dt = d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate());
+  var c1 = document.getElementById('clock'); if(c1) c1.textContent = t;
+  var c2 = document.getElementById('clock2'); if(c2) c2.textContent = t;
+  var d1 = document.getElementById('today');  if(d1) d1.textContent = dt;
+  var d2 = document.getElementById('today2'); if(d2) d2.textContent = dt;
 }, 1000);
 
-function renderAll(){
+function renderAll(){ renderScreen1(); renderScreen2(); }
+
+function renderScreen1(){
 /* ---------- 头部 ---------- */
 var meta = D.meta || {};
 document.getElementById('dataBadge').textContent = '数据日期 ' + (meta.data_date || '-') + ' ｜ 截至 ' + (meta.dates||[]).slice(-1)[0];
@@ -455,14 +572,180 @@ mk('c_claim', {
 });
 }
 
+/* ================= 第二屏渲染：项目总览 ================= */
+function ringChart(id, parts, center){
+  mk(id, {
+    tooltip:{trigger:'item', backgroundColor:C.tipBg, borderColor:'rgba(64,158,255,.4)', textStyle:{color:C.tipTx}},
+    legend:{bottom:0, itemWidth:11, itemHeight:8, textStyle:{color:C.axis,fontSize:11}},
+    series:[{
+      type:'pie', radius:['52%','72%'], center:['50%','44%'],
+      label:{show:true, color:C.label, fontSize:11, formatter:'{b}\n{c} · {d}%'},
+      labelLine:{length:8, length2:8, lineStyle:{color:C.line}},
+      data: parts
+    }],
+    graphic:[{type:'text', left:'center', top:'34%', style:{text:center, fill:C.tipTx, fontSize:20, fontWeight:800}}]
+  });
+}
+/* 横向条形（站点名长，横向更易读） */
+function hbar(id, rows, nameKey, valKey, color, unit){
+  nameKey = nameKey || 'short';
+  var d = (rows||[]).slice(0, 10);
+  mk(id, {
+    tooltip:{trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:C.tipBg, borderColor:'rgba(64,158,255,.4)',
+      textStyle:{color:C.tipTx}, valueFormatter: function(v){ return fmt(v) + (unit||''); }},
+    grid:{left:6, right:46, top:6, bottom:4, containLabel:true},
+    xAxis:Object.assign({type:'value'}, {splitLine:{lineStyle:{color:C.split}}, axisLine:{show:false}, axisLabel:{color:C.axis,fontSize:10}}),
+    yAxis:Object.assign({type:'category', data:d.map(function(x){ return x[nameKey]; }).reverse(),
+      axisLabel:{color:C.axis,fontSize:10, width:92, overflow:'truncate', ellipsis:'…', lineHeight:13}}, {splitLine:{show:false}, axisLine:{lineStyle:{color:C.line}}}),
+    series:[{type:'bar', data:d.map(function(x){ return x[valKey]; }).reverse(), barMaxWidth:12,
+      itemStyle:{color:color, borderRadius:[0,3,3,0]},
+      label:{show:true, position:'right', color:C.label, fontSize:10,
+        formatter:function(p){ return (p.value==null?'-':fmt(p.value)) + (unit||''); }}}]
+  });
+}
+/* 纵向柱（分类少、系列多） */
+function vbar(id, cats, series, opts){
+  opts = opts || {};
+  mk(id, {
+    tooltip:{trigger:'axis', axisPointer:{type:'shadow'}, backgroundColor:C.tipBg, borderColor:'rgba(64,158,255,.4)',
+      textStyle:{color:C.tipTx}, valueFormatter: opts.valueFormatter},
+    legend: opts.legend === false ? undefined : {data:series.map(function(s){return s.name;}), textStyle:{color:C.axis,fontSize:10}, top:0, itemWidth:10, itemHeight:7},
+    grid:{left:6, right:10, top:opts.legend===false?14:24, bottom:4, containLabel:true},
+    xAxis:Object.assign({type:'category', data:cats, axisLabel:{color:C.axis,fontSize:10, interval:0, rotate:opts.rotate||0}}, {splitLine:{show:false}}),
+    yAxis:Object.assign({type:'value', max:opts.max, axisLabel:{color:C.axis,fontSize:10, formatter:opts.yFormatter||'{value}'}},
+      {splitLine:{lineStyle:{color:C.split}}, axisLine:{show:false}}),
+    series:series
+  });
+}
+function sub(id, txt){ var e = document.getElementById(id); if(e) e.textContent = txt; }
+
+function renderScreen2(){
+var meta2 = D.meta || {};
+sub('dataBadge2', '数据日期 ' + (meta2.data_date || '-') + ' ｜ 截至 ' + (meta2.dates||[]).slice(-1)[0]);
+sub('genTime2', '汇总生成 ' + (meta2.generated_at || '-'));
+var H = D.hc || {}, CB = D.cbp || {}, BX = D.box || {}, KN = D.knife || {}, MR = D.mr || {},
+    PN = D.pen || {}, C1 = D.c110 || {}, CK = D.ck || {}, CS = D.clothStd;
+var pctTxt = function(v){ return v==null ? '-' : Number(v).toFixed(2)+'%'; };
+
+/* ---- KPI 行 ---- */
+var cards2 = [
+  {c:'r', k:'健康证风险', v:fmt((H.expired||0)+(H.d7||0)), u:'人', s:'已过期 '+(H.expired||0)+' ｜ 7日内 '+(H.d7||0)+' ｜ 30日内 '+(H.d30||0)},
+  {c:'o', k:'血压上报',    v:fmt(CB.blood), u:'条', s:'在册 ' + fmt(CB.bloodRoster) + ' 人 ｜ 覆盖率 ' + pctTxt(CB.roster?Math.round(CB.bloodRoster*100000)/CB.roster:null)},
+  {c:'o', k:'换电上报',    v:fmt(CB.swap), u:'条', s:'在册 ' + fmt(CB.swapRoster) + ' 人 ｜ 覆盖 ' + pctTxt(CB.roster?Math.round(CB.swapRoster*100000)/CB.roster:null) + ' ｜ 充电 ' + fmt(CB.charge)},
+  {c:'g', k:'餐箱消毒合格率', v:pctTxt(BX.rate), s:fmt(BX.sites)+' 站 ｜ 不合格 ' + fmt(BX.bad) + ' 箱'},
+  {c:'g', k:'带刀巡检合格率', v:pctTxt(KN.rate), s:'已检 ' + fmt(KN.checked) + ' ｜ 名册 ' + fmt(KN.roster)},
+  {c:'p', k:'早会审核提交率', v:pctTxt(MR.rate), s:'驳回 ' + fmt(MR.rejected) + ' ｜ 缺交 ' + fmt(MR.missing) + ' ｜ ' + fmt(MR.sites) + ' 站'},
+  {c:'r', k:'110 工单',    v:fmt(C1.total), u:'单', s:'待处理 ' + fmt(C1.pending) + ' ｜ 处理中 ' + fmt(C1.processing) + ' ｜ ' + (C1.date||'')},
+  {c:'p', k:'上周预计总罚款', v:'¥' + fmt(PN.totalFine), s:'涉及 ' + fmt(PN.sites) + ' 站 ｜ 驳回 ' + fmt(PN.rejects) + ' 次'}
+];
+var kp2 = document.getElementById('kpis2');
+if(kp2) kp2.innerHTML = cards2.map(function(x){
+  return '<div class="kpi '+x.c+'"><div class="k">'+x.k+'</div><div class="v">'+x.v+(x.u?'<small>'+x.u+'</small>':'')+'</div><div class="s">'+x.s+'</div></div>';
+}).join('');
+
+/* ---- 1. 健康证到期结构 ---- */
+sub('hcSub', '在册 ' + fmt(H.total) + ' 人 · 预离职 ' + fmt(H.preleave) + ' 人' + (H.date ? ' · 数据 ' + H.date : ''));
+ringChart('c2_hc_ring', [
+  {name:'已过期',   value:H.expired||0, itemStyle:{color:'#ff5b5b'}},
+  {name:'7日内',    value:H.d7||0,      itemStyle:{color:'#ff9500'}},
+  {name:'30日内',   value:H.d30||0,     itemStyle:{color:'#ffb020'}},
+  {name:'30天以上', value:H.far||0,     itemStyle:{color:'#00d68f'}}
+], pctTxt(H.total ? Math.round(((H.expired||0)+(H.d7||0)) * 1000000 / H.total) / 10000 : null));
+
+/* ---- 2. 健康证风险 大区/城市 ---- */
+hbar('c2_hc_region', (H.byRegion||[]).filter(function(x){return x.risk>0;}), 'name', 'risk', '#ff9500', ' 人');
+hbar('c2_hc_city',   (H.byCity||[]).filter(function(x){return x.risk>0;}), 'city', 'risk', '#ff5b5b', ' 人');
+
+/* ---- 3. 早会审核 ---- */
+sub('mrSub', '应交 ' + fmt(MR.expected) + ' · 已交 ' + fmt(MR.submitted) + ' ｜ ' + (MR.gen||'').slice(5,16));
+vbar('c2_mr_region', (MR.byRegion||[]).map(function(x){return x.name;}),
+  [{name:'提交率', type:'bar', data:(MR.byRegion||[]).map(function(x){return x.rate;}), barMaxWidth:20, itemStyle:{color:'#00d2ff'}}],
+  {max:100, yFormatter:'{value}%', valueFormatter:function(v){return v+'%';}});
+hbar('c2_mr_top', (MR.top||[]).filter(function(x){return x.rejected>0 || x.missing>0;}), 'short', 'rejected', '#ff9500', ' 次');
+
+/* ---- 3b. 服装标准化率（无源数据时整块隐藏，不占位） ---- */
+var pCloth = document.getElementById('p_cloth');
+if(CS && CS.den>0){
+  if(pCloth) pCloth.style.display = '';
+  vbar('c2_cloth', (CS.byRegion||[]).map(function(x){return x.name;}), [
+    {name:'工装率', type:'bar', data:(CS.byRegion||[]).map(function(x){return x.rate;}), barMaxWidth:22,
+      itemStyle:{color:'#00d2ff', borderRadius:[3,3,0,0]},
+      markLine:{silent:true, symbol:'none', data:[{yAxis:92, label:{formatter:'目标92%',color:'#ffb020',fontSize:10}, lineStyle:{color:'#ffb020',type:'dashed'}}]}}
+  ], {max:100, yFormatter:'{value}%', valueFormatter:function(v){return v+'%';}});
+} else if(pCloth) {
+  pCloth.style.display = 'none';
+}
+
+/* ---- 4. 充换电与血压 ---- */
+sub('cbpSub', '统计至 ' + (CB.dateMax||'-') + ' ｜ ' + fmt(CB.siteN) + ' 站');
+var cbCity = CB.byCity || [];
+vbar('c2_cbp_blood', cbCity.map(function(x){return x.city;}),
+  [{name:'血压', type:'bar', data:cbCity.map(function(x){return x.blood;}), barMaxWidth:14, itemStyle:{color:'#ff5b5b'}}],
+  {legend:false, rotate:32});
+vbar('c2_cbp_swap', cbCity.map(function(x){return x.city;}),
+  [{name:'换电', type:'bar', data:cbCity.map(function(x){return x.swap;}), barMaxWidth:14, itemStyle:{color:'#00d2ff'}}],
+  {legend:false, rotate:32});
+
+/* ---- 5. 餐箱消毒 ---- */
+sub('boxSub', '应消毒 ' + fmt(BX.den) + ' 箱 · 合格 ' + fmt(BX.ok) + ' ｜ 生成 ' + (BX.gen||'').slice(5,16));
+vbar('c2_box_region', (BX.byRegion||[]).map(function(x){return x.name;}),
+  [{name:'合格率', type:'bar', data:(BX.byRegion||[]).map(function(x){return x.rate;}), barMaxWidth:20,
+    itemStyle:{color:'#00d68f'},
+    markLine:{silent:true, symbol:'none', data:[{yAxis:92, label:{formatter:'目标92%',color:'#ffb020',fontSize:10}, lineStyle:{color:'#ffb020',type:'dashed'}}]}}],
+  {max:100, yFormatter:'{value}%', valueFormatter:function(v){return v+'%';}});
+hbar('c2_box_top', (BX.top||[]).filter(function(x){return x.bad>0;}), 'short', 'bad', '#ff9500', ' 箱');
+
+/* ---- 6. 带刀巡检 ---- */
+sub('knifeSub', '已检 ' + fmt(KN.checked) + ' ｜ 合格 ' + fmt(KN.ok) + ' ｜ 覆盖率 ' + pctTxt(KN.cover));
+vbar('c2_knife_region', (KN.byRegion||[]).map(function(x){return x.name;}),
+  [{name:'合格率', type:'bar', data:(KN.byRegion||[]).map(function(x){return x.rate;}), barMaxWidth:20, itemStyle:{color:'#00d2ff'}}],
+  {max:100, yFormatter:'{value}%', valueFormatter:function(v){return v+'%';}});
+hbar('c2_knife_top', (KN.top||[]).filter(function(x){return x.bad>0;}), 'short', 'bad', '#a78bfa', ' 人次');
+
+/* ---- 7. 110 工单 ---- */
+sub('c110Sub', '完成 ' + fmt(C1.done) + ' ｜ 覆盖 ' + fmt(C1.cityCount) + ' 城 / ' + fmt(C1.stationCount) + ' 站 · 数据 ' + (C1.date||''));
+vbar('c2_110_trend', (C1.trend||[]).map(function(x){return (x.date||'').slice(5);}),
+  [{name:'工单量', type:'line', smooth:true, showSymbol:false, data:(C1.trend||[]).map(function(x){return x.count;}),
+    lineStyle:{width:2, color:'#00d2ff'}, areaStyle:{color:'rgba(0,210,255,.15)'}}],
+  {legend:false, rotate:40});
+vbar('c2_110_type', (C1.typeDist||[]).map(function(x){return x.name;}),
+  [{name:'案件数', type:'bar', data:(C1.typeDist||[]).map(function(x){return x.value;}), barMaxWidth:16, itemStyle:{color:'#5b6bff'}}],
+  {legend:false, rotate:40});
+
+/* ---- 8. 履约处罚 ---- */
+sub('penSub', PN.period ? ('统计周 ' + PN.period) : '周度汇总');
+vbar('c2_pen_type', (PN.byType||[]).map(function(x){return x.name;}),
+  [{name:'罚款', type:'bar', data:(PN.byType||[]).map(function(x){return x.value;}), barMaxWidth:20,
+    itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#ff5b5b'},{offset:1,color:'#ff9500'}])}}],
+  {legend:false, rotate:30, valueFormatter:function(v){return '¥'+fmt(v);}});
+hbar('c2_pen_top', PN.top||[], 'short', 'fine', '#ff5b5b', ' 元');
+
+/* ---- 9. 考核文件库 + 源数据同步 ---- */
+sub('ckSub', '共 ' + fmt(CK.total) + ' 份 ｜ 已索引 ' + fmt(CK.indexed) + ' ｜ 最新 ' + (CK.latest||'-'));
+vbar('c2_ck', (CK.byGroup||[]).map(function(x){return x.name;}),
+  [{name:'文件数', type:'bar', data:(CK.byGroup||[]).map(function(x){return x.value;}), barMaxWidth:22,
+    itemStyle:{color:'#a78bfa', borderRadius:[3,3,0,0]},
+    label:{show:true,position:'top',color:C.label,fontSize:10}}],
+  {legend:false, rotate:18});
+var sy = document.getElementById('c2_sync');
+if(sy){
+  sy.innerHTML = (D.sync||[]).map(function(g){
+    return '<div class="sync-row '+(g.all_synced?'ok':'bad')+'"><span class="dot"></span>' +
+      '<span class="t">' + (g.title||'-') + '</span>' +
+      '<span class="n">' + (g.all_synced ? '已同步' : ('缺 ' + fmt(g.missing) + ' / 异 ' + fmt(g.unsynced))) + '</span></div>';
+  }).join('') || '<div class="sync-row"><span class="dot" style="background:#6f9fc4"></span><span class="t">暂无同步状态</span></div>';
+}
+}
+
 applyTheme();
 renderAll();
 
 /* ---------- 一键截图（右上角 📷 按钮，1920×1080 原尺寸输出 PNG） ---------- */
-function shotScreen(){
-  var btn = document.getElementById('shotBtn');
-  var el = document.getElementById('screen');
-  var h1 = document.querySelector('.hd h1');
+function shotScreen(screenId){
+  screenId = screenId || 'screen';
+  var btn = document.getElementById(screenId === 'screen' ? 'shotBtn' : 'shotBtn2');
+  var el = document.getElementById(screenId);
+  var h1 = el.querySelector('.hd h1');
   var oldT = el.style.transform, oldL = el.style.left, oldTp = el.style.top;
   var h1Bg = h1.style.background, h1Clip = h1.style.webkitBackgroundClip, h1Color = h1.style.color;
   if (btn) { btn.disabled = true; btn.textContent = '⏳ 截图中…'; }
@@ -483,7 +766,8 @@ function shotScreen(){
     restore();
     var d = new Date(), p = function(x){ return x<10 ? '0'+x : ''+x; };
     var a = document.createElement('a');
-    a.download = '履约安全大屏_' + d.getFullYear()+p(d.getMonth()+1)+p(d.getDate()) + '_' + p(d.getHours())+p(d.getMinutes())+p(d.getSeconds()) + '.png';
+    a.download = (screenId === 'screen' ? '履约安全大屏_主屏_' : '履约安全大屏_项目总览_')
+      + d.getFullYear()+p(d.getMonth()+1)+p(d.getDate()) + '_' + p(d.getHours())+p(d.getMinutes())+p(d.getSeconds()) + '.png';
     a.href = cv.toDataURL('image/png');
     a.click();
   }).catch(function(e){ restore(); alert('截图失败: ' + e); });
