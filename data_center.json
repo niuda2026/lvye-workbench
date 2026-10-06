@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-07 07:13:44",
+  "updated_at": "2026-10-07 07:14:49",
   "action_summary": {
     "total": 22,
     "ok": 16,
@@ -550,7 +550,7 @@
             "latest": "premium_latest.json",
             "mtime": "2026-10-06 08:04:49",
             "max_age_hours": 26,
-            "age_hours": 23.1,
+            "age_hours": 23.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -750,7 +750,7 @@
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-10-07 07:12:44",
+        "data_mtime": "2026-10-07 07:14:48",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -761,7 +761,7 @@
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-10-07 07:12:44",
+            "mtime": "2026-10-07 07:14:48",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -1036,7 +1036,7 @@
             "latest": "premium_latest.json",
             "mtime": "2026-10-06 08:04:49",
             "max_age_hours": 26,
-            "age_hours": 23.1,
+            "age_hours": 23.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
