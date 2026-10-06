@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-07 07:14:49",
+  "updated_at": "2026-10-07 07:17:13",
   "action_summary": {
     "total": 22,
     "ok": 16,
@@ -112,7 +112,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-10-07 07:11:51",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -210,11 +210,11 @@
         "data_files": [
           "履约项目\\充换电血压_data.js"
         ],
-        "data_mtime": "2026-10-07 07:08:03",
-        "all_synced": false,
-        "synced_count": 6,
+        "data_mtime": "2026-10-07 07:14:51",
+        "all_synced": true,
+        "synced_count": 7,
         "missing_count": 0,
-        "unsynced_count": 1,
+        "unsynced_count": 0,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
@@ -238,7 +238,7 @@
             "type": "考培-学习明细记录",
             "latest": "_考培-学习明细记录_1791328120244.xlsx",
             "mtime": "2026-10-07 07:08:50",
-            "synced": false
+            "synced": true
           },
           {
             "type": "骑手排班明细数据",
@@ -255,7 +255,7 @@
           {
             "type": "载具审核-骑手明细(BI)",
             "latest": "vehicle_audit_rider.json",
-            "mtime": "2026-10-07 07:08:51",
+            "mtime": "2026-10-07 07:16:35",
             "synced": true
           }
         ],
@@ -264,9 +264,9 @@
             "label": "充换电血压数据构建",
             "path": "履约项目\\充换电血压_data.js",
             "latest": "充换电血压_data.js",
-            "mtime": "2026-10-07 07:08:03",
+            "mtime": "2026-10-07 07:14:51",
             "max_age_hours": 13,
-            "age_hours": 0.1,
+            "age_hours": 0.0,
             "ok": true,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
@@ -277,9 +277,9 @@
             "label": "载具审核-骑手明细(BI)",
             "path": "vehicle_audit\\vehicle_audit_rider.json",
             "latest": "vehicle_audit_rider.json",
-            "mtime": "2026-10-07 07:08:51",
+            "mtime": "2026-10-07 07:16:35",
             "max_age_hours": 30,
-            "age_hours": 0.1,
+            "age_hours": 0.0,
             "ok": true,
             "note": "早间自动化抓取",
             "fail_hits": [],
@@ -290,14 +290,14 @@
             "label": "每日刷新·抓取成败",
             "path": "daily_refresh_log.txt",
             "latest": "daily_refresh_log.txt",
-            "mtime": "2026-10-07 07:10:27",
+            "mtime": "2026-10-07 07:16:04",
             "max_age_hours": 13,
-            "age_hours": 0.1,
+            "age_hours": 0.0,
             "ok": true,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
             "fail_hits": [],
             "fail_lines": [],
-            "block_time": "2026-10-07 07:10:27"
+            "block_time": "2026-10-07 07:16:04"
           }
         ],
         "action_stats": {
@@ -307,7 +307,7 @@
           "total": 3,
           "all_ok": true
         },
-        "all_healthy": false
+        "all_healthy": true
       },
       "boards": [
         {
@@ -373,7 +373,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-10-07 07:12:13",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -563,7 +563,7 @@
             "latest": "v3_data.js",
             "mtime": "2026-10-07 07:12:16",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -576,7 +576,7 @@
             "latest": "insurance_data.js",
             "mtime": "2026-10-05 07:18:27",
             "max_age_hours": 72,
-            "age_hours": 47.9,
+            "age_hours": 48.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -750,7 +750,7 @@
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-10-07 07:14:48",
+        "data_mtime": "2026-10-07 07:15:50",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -761,7 +761,7 @@
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-10-07 07:14:48",
+            "mtime": "2026-10-07 07:15:50",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -829,7 +829,7 @@
             "latest": "monthly_summary.js",
             "mtime": "2026-10-07 07:12:16",
             "max_age_hours": 72,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
@@ -997,7 +997,7 @@
             "latest": "equity_slim_data.js",
             "mtime": "2026-10-06 08:19:19",
             "max_age_hours": 26,
-            "age_hours": 22.9,
+            "age_hours": 23.0,
             "ok": true,
             "note": "8421 按工作台源 mtime 自动重建",
             "fail_hits": [],
@@ -1010,7 +1010,7 @@
             "latest": "v3_data.js",
             "mtime": "2026-10-07 07:12:16",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
