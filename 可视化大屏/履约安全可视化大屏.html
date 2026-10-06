@@ -63,12 +63,18 @@ body.light{background:#eef3f8}
 .panel > h3 .sub{margin-left:auto;font-size:11px;font-weight:400;color:#6f9fc4}
 .chart{flex:1;min-height:0}
 
-/* ── 中部环形指标 ── */
+/* ── 中部环形指标（2026-10-06 加达成说明：环内副注 + 卡底目标/分子分母） ── */
 .rings{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px;flex-shrink:0}
-.ring{height:168px;background:linear-gradient(180deg,rgba(16,58,104,.5),rgba(9,32,62,.5));
-  border:1px solid rgba(64,158,255,.22);border-radius:6px;padding:6px;position:relative}
-.ring .lb{position:absolute;left:0;right:0;bottom:8px;text-align:center;font-size:13px;color:#9fd0f0}
-.ring .lb b{display:block;font-size:14px;color:#8fe0ff;letter-spacing:1px;margin-top:1px}
+.ring{height:206px;background:linear-gradient(180deg,rgba(16,58,104,.5),rgba(9,32,62,.5));
+  border:1px solid rgba(64,158,255,.22);border-radius:6px;padding:6px 9px 9px;display:flex;flex-direction:column}
+.ring .rb{height:126px;flex-shrink:0}
+.ring .lb{flex:1;display:flex;flex-direction:column;justify-content:center;gap:3px}
+.ring .lb .rn{font-size:13px;color:#9fd0f0;display:flex;align-items:center;gap:6px}
+.ring .lb .rn .bd{font-size:10px;line-height:15px;padding:0 6px;border-radius:8px;border:1px solid;font-weight:600}
+.ring .lb .rn .bd.ok{color:#00d68f;border-color:rgba(0,214,143,.55);background:rgba(0,214,143,.12)}
+.ring .lb .rn .bd.bad{color:#ff7a7a;border-color:rgba(255,91,91,.55);background:rgba(255,91,91,.12)}
+.ring .lb .rt{font-size:11.5px;color:#8fe0ff;letter-spacing:.3px}
+.ring .lb .rf{font-size:11px;color:#6f9fc4;font-variant-numeric:tabular-nums}
 
 /* ── 风险站点表格 ── */
 .tbl{width:100%;border-collapse:collapse;font-size:12px}
@@ -122,8 +128,9 @@ body.light .panel{background:#fff;border-color:rgba(70,110,160,.18);box-shadow:0
 body.light .panel > h3{color:#0a6ebd}
 body.light .panel > h3 .sub{color:#7a8ea3}
 body.light .ring{background:#fff;border-color:rgba(70,110,160,.18);box-shadow:0 1px 4px rgba(30,60,100,.08)}
-body.light .ring .lb{color:#5a7186}
-body.light .ring .lb b{color:#0a6ebd}
+body.light .ring .lb .rn{color:#5a7186}
+body.light .ring .lb .rt{color:#0a6ebd}
+body.light .ring .lb .rf{color:#7d93a8}
 body.light .tbl th{background:rgba(10,110,189,.08);color:#0a6ebd;border-bottom-color:rgba(70,110,160,.2)}
 body.light .tbl td{color:#33475b;border-bottom-color:rgba(70,110,160,.12)}
 body.light .tbl td.rate{color:#b26a00}
@@ -158,7 +165,7 @@ body.light #themeBtn:hover,body.light #shotBtn:hover,body.light #themeBtn2:hover
       <h1>兴 达 履 约 安 全 可 视 化 大 屏</h1>
       <div class="side r">
         <button id="themeBtn" onclick="toggleTheme()">☀ 晨白</button>
-        <button class="shot" onclick="shotPage()">📷 整屏</button>
+        <button class="shot" onclick="shotPage(this)">📷 整屏</button>
         <span class="clock" id="clock">--:--:--</span>
         <span class="date" id="today"></span>
       </div>
@@ -170,16 +177,16 @@ body.light #themeBtn:hover,body.light #shotBtn:hover,body.light #themeBtn2:hover
         <span class="no">01</span><span class="tt">安全总览 · 交通安全四项</span>
         <span class="desc" id="sec1Desc"></span>
         <span class="ln"></span>
-        <button class="shot" onclick="shotSec('sec1','安全总览')">📷 截图</button>
+        <button class="shot" onclick="shotSec('sec1','安全总览',this)">📷 截图</button>
       </div>
 
       <div class="kpis" id="kpis"></div>
 
       <div class="rings">
-        <div class="ring" id="r_helmet"><div class="lb">戴盔系带率<b>目标 ≥ 99%</b></div></div>
-        <div class="ring" id="r_speed"><div class="lb">超速率<b>目标 ≤ 2.58%</b></div></div>
-        <div class="ring" id="r_red"><div class="lb">闯红灯率<b>目标 ≤ 16.23%</b></div></div>
-        <div class="ring" id="r_rev"><div class="lb">里程逆行率<b>目标 ≤ 2.45%</b></div></div>
+        <div class="ring" id="r_helmet"></div>
+        <div class="ring" id="r_speed"></div>
+        <div class="ring" id="r_red"></div>
+        <div class="ring" id="r_rev"></div>
       </div>
 
       <div class="body c2" style="height:466px">
@@ -217,7 +224,7 @@ body.light #themeBtn:hover,body.light #shotBtn:hover,body.light #themeBtn2:hover
         <span class="no">02</span><span class="tt">保险与补贴 · 保费 / 赔付 / 理赔</span>
         <span class="desc" id="sec2Desc"></span>
         <span class="ln"></span>
-        <button class="shot" onclick="shotSec('sec2','保险与补贴')">📷 截图</button>
+        <button class="shot" onclick="shotSec('sec2','保险与补贴',this)">📷 截图</button>
       </div>
 
       <div class="kpis" id="kpis2"></div>
@@ -253,7 +260,7 @@ body.light #themeBtn:hover,body.light #shotBtn:hover,body.light #themeBtn2:hover
         <span class="no">03</span><span class="tt">履约项目 · 处罚 / 早会 / 消毒 / 装备 / 服装</span>
         <span class="desc" id="sec3Desc"></span>
         <span class="ln"></span>
-        <button class="shot" onclick="shotSec('sec3','履约项目')">📷 截图</button>
+        <button class="shot" onclick="shotSec('sec3','履约项目',this)">📷 截图</button>
       </div>
 
       <div class="kpis" id="kpis3"></div>
@@ -314,7 +321,7 @@ body.light #themeBtn:hover,body.light #shotBtn:hover,body.light #themeBtn2:hover
         <span class="no">04</span><span class="tt">骑手管理 · 健康证 / 充换电血压 / 110工单 / 数据治理</span>
         <span class="desc" id="sec4Desc"></span>
         <span class="ln"></span>
-        <button class="shot" onclick="shotSec('sec4','骑手管理')">📷 截图</button>
+        <button class="shot" onclick="shotSec('sec4','骑手管理',this)">📷 截图</button>
       </div>
 
       <div class="kpis" id="kpis4"></div>
@@ -392,8 +399,9 @@ var D = window.SCREEN_DATA || {};
 var fmt = function(n){ return (n==null||isNaN(n)) ? '-' : Number(n).toLocaleString('zh-CN'); };
 var money1 = function(n){ return '¥' + fmt(Math.round(n)); };
 var charts = []; window.__charts = charts;
-function mk(id, opt){
-  var el = document.getElementById(id); if(!el || typeof echarts==='undefined') return null;
+function mk(ref, opt){
+  var el = (typeof ref === 'string') ? document.getElementById(ref) : ref;   /* 兼容 id 与 DOM 元素 */
+  if(!el || typeof echarts==='undefined') return null;
   var c = echarts.init(el, null, {renderer:'canvas'});
   c.setOption(opt); charts.push(c); return c;
 }
@@ -543,26 +551,48 @@ mk('c_proj', {
   })
 });
 
-/* ---------- 5. 中部四个环形 ---------- */
-function ring(id, value, color){
-  var v = (value==null?0:value);
-  var opt = {
-    series:[
-      {type:'pie', radius:['62%','80%'], center:['50%','45%'], silent:true, label:{show:false},
-        data:[{value:v, itemStyle:{color:color}}, {value:Math.max(0,100-v), itemStyle:{color:C.ringTrack}}]},
-      {type:'gauge', radius:'0%', center:['50%','45%'], startAngle:90, endAngle:-270, min:0, max:100,
-        axisLine:{show:false}, splitLine:{show:false}, axisTick:{show:false}, axisLabel:{show:false}, pointer:{show:false},
-        detail:{show:false}, title:{show:false}, data:[{value:v}]}
-    ],
-    graphic:[{type:'text', left:'center', top:'36%', style:{text:(v==null?'-':v.toFixed(2)+'%'), fill:C.tipTx, fontSize:26, fontWeight:800}}]
-  };
-  mk(id, opt);
+/* ---------- 5. 中部四个环形（2026-10-06 加达成说明：环内副注 + 卡底目标/分子分母） ---------- */
+function ppDelta(v, goal){          /* 与目标的差值，正数=高于目标（便于一眼看出差多少） */
+  if (v == null) return '-';
+  var d = Number(v) - goal;
+  return (d >= 0 ? '+' : '') + d.toFixed(2) + 'pp';
 }
-ring('r_helmet', k.helmet&&k.helmet.rate, '#00d68f');
-ring('r_speed',  k.speed&&k.speed.rate,   '#ffb020');
-ring('r_red',    k.redlight&&k.redlight.rate, '#ff5b5b');
-ring('r_rev',    k.reverse&&k.reverse.rate,   '#a78bfa');
-
+function ring(id, value, color, info){
+  info = info || {};
+  var el = document.getElementById(id);
+  if (!el) return;
+  var v = (value == null ? null : Number(value));
+  var ok = !!info.ok;
+  el.innerHTML =
+    '<div class="rb"></div>' +
+    '<div class="lb">' +
+      '<div class="rn">' + (info.name || '') + '<span class="bd ' + (ok ? 'ok' : 'bad') + '">' + (ok ? '达标' : '未达标') + '</span></div>' +
+      '<div class="rt">目标 ' + (info.goal || '-') + ' ｜ ' + (info.desc || '') + '</div>' +
+      '<div class="rf">' + (info.detail || '') + '</div>' +
+    '</div>';
+  mk(el.querySelector('.rb'), {
+    series:[
+      {type:'pie', radius:['64%','84%'], center:['50%','50%'], silent:true, label:{show:false},
+        data:[{value:(v==null?0:v), itemStyle:{color:color}}, {value:Math.max(0,100-(v==null?0:v)), itemStyle:{color:C.ringTrack}}]},
+      {type:'gauge', radius:'0%', center:['50%','50%'], startAngle:90, endAngle:-270, min:0, max:100,
+        axisLine:{show:false}, splitLine:{show:false}, axisTick:{show:false}, axisLabel:{show:false}, pointer:{show:false},
+        detail:{show:false}, title:{show:false}, data:[{value:(v==null?0:v)}]}
+    ],
+    graphic:[
+      {type:'text', left:'center', top:'35%', style:{text:(v==null?'-':v.toFixed(2)+'%'), fill:C.tipTx, fontSize:25, fontWeight:800}},
+      {type:'text', left:'center', top:'58%', style:{text:(info.note || ''), fill:C.axis, fontSize:11.5}}
+    ]
+  });
+}
+var _hk = k.helmet||{}, _sp = k.speed||{}, _rl = k.redlight||{}, _rv = k.reverse||{};
+ring('r_helmet', _hk.rate, '#00d68f', {name:'戴盔系带率', goal:'≥ 99%', desc:'越高越好', ok:(_hk.rate != null && _hk.rate >= 99),
+  note:'较目标 ' + ppDelta(_hk.rate, 99), detail:'分子 ' + fmt(_hk.num) + ' / 分母 ' + fmt(_hk.den)});
+ring('r_speed',  _sp.rate, '#ffb020', {name:'超速率', goal:'≤ 2.58%', desc:'越低越好', ok:(_sp.rate != null && _sp.rate <= 2.58),
+  note:'较目标 ' + ppDelta(_sp.rate, 2.58), detail:'分子 ' + fmt(_sp.num) + ' / 分母 ' + fmt(_sp.den)});
+ring('r_red',    _rl.rate, '#ff5b5b', {name:'闯红灯率', goal:'≤ 16.23%', desc:'越低越好', ok:(_rl.rate != null && _rl.rate <= 16.23),
+  note:'较目标 ' + ppDelta(_rl.rate, 16.23), detail:'分子 ' + fmt(_rl.num) + ' / 分母 ' + fmt(_rl.den)});
+ring('r_rev',    _rv.rate, '#a78bfa', {name:'里程逆行率', goal:'≤ 2.45%', desc:'越低越好', ok:(_rv.rate != null && _rv.rate <= 2.45),
+  note:'较目标 ' + ppDelta(_rv.rate, 2.45), detail:'分子 ' + fmt(_rv.num) + ' / 分母 ' + fmt(_rv.den)});
 /* ---------- 6. 风险站点表格 ---------- */
 function tbl(id, rows, unit){
   var html = '<thead><tr><th>#</th><th>站点</th><th>大区</th><th style="text-align:right">比率</th><th style="text-align:right">分子/分母</th></tr></thead><tbody>';
@@ -799,47 +829,107 @@ if(sy){
 applyTheme();
 renderAll();
 
-/* ---------- 一键截图（页头「整屏」+ 各章节「截图」，PNG 2 倍采样） ---------- */
-function shotEl(el, name){
+/* ---------- 一键截图（页头「整屏」+ 各章节「截图」，PNG 高清） ----------
+   稳定性加固（2026-10-06，修「每次截图都报 createPattern … width or height of 0」）：
+   ① 截图前把区域内 echarts <canvas> 换成同尺寸 <img> 快照 → html2canvas 只面对普通图片
+   ② 克隆阶段清掉所有 canvas 与 0 尺寸元素、去掉自适应缩放
+   ③ 渐变字（background-clip:text）切实色；高清失败自动降级为 1 倍重试 */
+function _pp(x){ return x < 10 ? '0' + x : '' + x; }
+
+function shotEl(el, name, btn, scale){
   if (!el) return;
   if (typeof html2canvas === 'undefined') { alert('html2canvas 库未加载，截图失败'); return; }
-  var btn = (document.activeElement && document.activeElement.tagName === 'BUTTON') ? document.activeElement : null;
+  scale = scale || 2;
   var oldTxt = btn ? btn.textContent : '';
   if (btn) { btn.disabled = true; btn.textContent = '⏳ 截图中…'; }
 
+  /* ① 还原真实 1920 布局（去掉自适应缩放）再截；el 可能就是 page，此时不要重复处理 */
   var page = document.getElementById('page');
-  var pT = page.style.transform, pL = page.style.left;
-  page.style.transform = 'none'; page.style.left = '0px';       // 还原真实 1920 布局再截
-  var eT = el.style.transform, eL = el.style.left;
-  el.style.transform = 'none'; el.style.left = '0px';
+  var isPage = (el === page);
+  var pT = page.style.transform, pL = page.style.left, pTp = page.style.top;
+  page.style.transform = 'none'; page.style.left = '0px'; page.style.top = '0px';
+  var eT = null, eL = null, eTp = null;
+  if (!isPage) {
+    eT = el.style.transform; eL = el.style.left; eTp = el.style.top;
+    el.style.transform = 'none'; el.style.left = '0px'; el.style.top = '0px';
+  }
 
-  var h1 = el.querySelector('h1'), h1Bg, h1Clip, h1Color;
-  if (h1) {
-    h1Bg = h1.style.background; h1Clip = h1.style.webkitBackgroundClip; h1Color = h1.style.color;
-    /* html2canvas 不支持 background-clip:text 渐变字 → 截图瞬间切实色，截完恢复 */
-    h1.style.background = 'none'; h1.style.webkitBackgroundClip = 'initial'; h1.style.backgroundClip = 'initial';
-    h1.style.color = LIGHT ? '#0a6ebd' : '#63d7ff';
-  }
-  function restore(){
-    page.style.transform = pT; page.style.left = pL;
-    el.style.transform = eT; el.style.left = eL;
-    if (h1) { h1.style.background = h1Bg; h1.style.webkitBackgroundClip = h1Clip; h1.style.color = h1Color; }
-    if (btn) { btn.disabled = false; btn.textContent = oldTxt || '📷 截图'; }
-  }
+  /* ② 渐变字切实色（html2canvas 不支持 background-clip:text） */
+  var grads = [];
+  document.querySelectorAll('h1, .sec-hd .tt').forEach(function(g){
+    var cs = getComputedStyle(g);
+    if (cs.webkitBackgroundClip === 'text' || cs.backgroundClip === 'text') {
+      grads.push({ el:g, bg:g.style.background, c1:g.style.webkitBackgroundClip, c2:g.style.backgroundClip, col:g.style.color });
+      g.style.background = 'none';
+      g.style.webkitBackgroundClip = 'initial'; g.style.backgroundClip = 'initial';
+      g.style.color = LIGHT ? '#0a6ebd' : '#63d7ff';
+    }
+  });
+
+  /* ③ echarts 画布 → 同尺寸 <img> 快照（canvas 是 html2canvas 最易崩的一环） */
+  var snaps = [];
+  el.querySelectorAll('canvas').forEach(function(c){
+    var ow = c.offsetWidth, oh = c.offsetHeight, disp = c.style.display, img = null;
+    try {
+      if (c.width && c.height && ow && oh) {
+        img = document.createElement('img');
+        img.src = c.toDataURL('image/png');
+        img.style.cssText = c.style.cssText;
+        img.style.width = ow + 'px'; img.style.height = oh + 'px';
+        img.style.display = (disp === 'none') ? 'none' : 'block';
+      }
+    } catch (e) { img = null; }
+    if (img) c.parentNode.insertBefore(img, c);
+    c.style.display = 'none';                 /* 0 尺寸或异常画布：直接藏掉，杜绝崩溃 */
+    snaps.push({ c:c, img:img, disp:disp });
+  });
+
   var w = el.offsetWidth, h = el.offsetHeight;
-  html2canvas(el, {backgroundColor: LIGHT ? '#eef3f8' : '#030a16', useCORS: true, logging: false,
-    width: w, height: h, windowWidth: w, windowHeight: h, scale: 2}).then(function(cv){
-    restore();
-    var d = new Date(), p = function(x){ return x<10 ? '0'+x : ''+x; };
-    var a = document.createElement('a');
-    a.download = '履约安全大屏_' + name + '_'
-      + d.getFullYear()+p(d.getMonth()+1)+p(d.getDate()) + '_' + p(d.getHours())+p(d.getMinutes())+p(d.getSeconds()) + '.png';
-    a.href = cv.toDataURL('image/png');
-    a.click();
-  }).catch(function(e){ restore(); alert('截图失败: ' + e); });
+
+  function restore(){
+    page.style.transform = pT; page.style.left = pL; page.style.top = pTp;
+    if (!isPage) { el.style.transform = eT; el.style.left = eL; el.style.top = eTp; }
+    grads.forEach(function(g){ g.el.style.background = g.bg; g.el.style.webkitBackgroundClip = g.c1;
+      g.el.style.backgroundClip = g.c2; g.el.style.color = g.col; });
+    snaps.forEach(function(s){
+      if (s.img && s.img.parentNode) s.img.parentNode.removeChild(s.img);
+      s.c.style.display = s.disp;
+    });
+    if (btn) { btn.disabled = false; btn.textContent = oldTxt || '📷 截图'; }
+    if (typeof fit === 'function') { try { fit(); } catch (e) {} }   /* 兜底：重算自适应缩放 */
+  }
+
+  function shoot(sc){
+    return html2canvas(el, {
+      backgroundColor: LIGHT ? '#eef3f8' : '#030a16', useCORS: true, logging: false, scale: sc,
+      width: w, height: h, windowWidth: w, windowHeight: h,
+      ignoreElements: function(n){ return n.tagName === 'CANVAS'; },
+      onclone: function(doc){
+        doc.querySelectorAll('canvas').forEach(function(n){ if (n.parentNode) n.parentNode.removeChild(n); });
+        var p = doc.getElementById('page');
+        if (p) { p.style.transform = 'none'; p.style.left = '0px'; p.style.top = '0px'; }
+      }
+    });
+  }
+
+  /* 快照图片解码完成后再截，避免图片未就绪导致空白 */
+  Promise.all(snaps.filter(function(s){ return s.img && s.img.decode; })
+      .map(function(s){ return s.img.decode().catch(function(){}); }))
+    .then(function(){ return shoot(scale).catch(function(){ return shoot(1); }); })
+    .then(function(cv){
+      restore();
+      var d = new Date();
+      var a = document.createElement('a');
+      a.download = '履约安全大屏_' + name + '_'
+        + d.getFullYear() + _pp(d.getMonth()+1) + _pp(d.getDate()) + '_'
+        + _pp(d.getHours()) + _pp(d.getMinutes()) + _pp(d.getSeconds()) + '.png';
+      a.href = cv.toDataURL('image/png');
+      a.click();
+    })
+    .catch(function(e){ restore(); alert('截图失败：' + e + '\n\n请按 Ctrl+F5 刷新页面后重试。'); });
 }
-function shotSec(id, name){ shotEl(document.getElementById(id), name || id); }
-function shotPage(){ shotEl(document.getElementById('page'), '全屏'); }
+function shotSec(id, name, btn){ shotEl(document.getElementById(id), name || id, btn, 2); }
+function shotPage(btn){ shotEl(document.getElementById('page'), '整屏', btn, 1.5); }
 
 /* ---------- 数据自动刷新（实时化） ----------
    每 60s 拉一次 _大屏数据.js（带时间戳防缓存），内容有变化 → 平滑重渲染（主题/时钟不丢）；
