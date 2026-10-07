@@ -1,8 +1,8 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-10-08 07:25:54",
+  "updated_at": "2026-10-08 07:27:11",
   "action_summary": {
-    "total": 22,
-    "ok": 14,
+    "total": 23,
+    "ok": 15,
     "alert": 8,
     "missing": 0,
     "alert_groups": [
@@ -267,9 +267,22 @@ window.DATA_CENTER = {
             "latest": "充换电血压_data.js",
             "mtime": "2026-10-08 07:23:05",
             "max_age_hours": 13,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "每日 07:30/15:00 两次",
+            "fail_hits": [],
+            "fail_lines": [],
+            "block_time": null
+          },
+          {
+            "label": "带刀巡检数据构建",
+            "path": "履约项目\\knife_rider_data.js",
+            "latest": "knife_rider_data.js",
+            "mtime": "2026-10-08 07:21:04",
+            "max_age_hours": 13,
+            "age_hours": 0.1,
+            "ok": true,
+            "note": "每日 07:30/15:00 两次(随总控第2.5步)",
             "fail_hits": [],
             "fail_lines": [],
             "block_time": null
@@ -291,9 +304,9 @@ window.DATA_CENTER = {
             "label": "每日刷新·抓取成败",
             "path": "daily_refresh_log.txt",
             "latest": "daily_refresh_log.txt",
-            "mtime": "2026-10-08 06:53:12",
+            "mtime": "2026-10-08 07:27:11",
             "max_age_hours": 13,
-            "age_hours": 0.5,
+            "age_hours": 0.0,
             "ok": true,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
             "fail_hits": [],
@@ -302,10 +315,10 @@ window.DATA_CENTER = {
           }
         ],
         "action_stats": {
-          "ok_count": 3,
+          "ok_count": 4,
           "alert_count": 0,
           "missing_count": 0,
-          "total": 3,
+          "total": 4,
           "all_ok": true
         },
         "all_healthy": true
