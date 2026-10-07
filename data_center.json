@@ -1,11 +1,12 @@
 {
-  "updated_at": "2026-10-07 07:17:13",
+  "updated_at": "2026-10-07 12:32:28",
   "action_summary": {
     "total": 22,
-    "ok": 16,
-    "alert": 6,
+    "ok": 14,
+    "alert": 8,
     "missing": 0,
     "alert_groups": [
+      "骑手管理",
       "公司风险管理系统",
       "站点地图",
       "履约驾驶舱",
@@ -112,7 +113,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-10-07 07:11:51",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 5.3,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -210,7 +211,7 @@
         "data_files": [
           "履约项目\\充换电血压_data.js"
         ],
-        "data_mtime": "2026-10-07 07:14:51",
+        "data_mtime": "2026-10-07 07:20:41",
         "all_synced": true,
         "synced_count": 7,
         "missing_count": 0,
@@ -264,9 +265,9 @@
             "label": "充换电血压数据构建",
             "path": "履约项目\\充换电血压_data.js",
             "latest": "充换电血压_data.js",
-            "mtime": "2026-10-07 07:14:51",
+            "mtime": "2026-10-07 07:20:41",
             "max_age_hours": 13,
-            "age_hours": 0.0,
+            "age_hours": 5.2,
             "ok": true,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
@@ -279,7 +280,7 @@
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-10-07 07:16:35",
             "max_age_hours": 30,
-            "age_hours": 0.0,
+            "age_hours": 5.3,
             "ok": true,
             "note": "早间自动化抓取",
             "fail_hits": [],
@@ -290,14 +291,14 @@
             "label": "每日刷新·抓取成败",
             "path": "daily_refresh_log.txt",
             "latest": "daily_refresh_log.txt",
-            "mtime": "2026-10-07 07:16:04",
+            "mtime": "2026-10-07 11:31:09",
             "max_age_hours": 13,
-            "age_hours": 0.0,
+            "age_hours": 1.0,
             "ok": true,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
             "fail_hits": [],
             "fail_lines": [],
-            "block_time": "2026-10-07 07:16:04"
+            "block_time": "2026-10-07 11:30:51"
           }
         ],
         "action_stats": {
@@ -373,7 +374,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-10-07 07:12:13",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 5.3,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -446,8 +447,8 @@
             "latest": "_crawl_service.log",
             "mtime": "2026-10-06 06:51:13",
             "max_age_hours": 26,
-            "age_hours": 24.4,
-            "ok": true,
+            "age_hours": 29.7,
+            "ok": false,
             "note": "",
             "fail_hits": [],
             "fail_lines": [],
@@ -455,13 +456,13 @@
           }
         ],
         "action_stats": {
-          "ok_count": 1,
-          "alert_count": 0,
+          "ok_count": 0,
+          "alert_count": 1,
           "missing_count": 0,
           "total": 1,
-          "all_ok": true
+          "all_ok": false
         },
-        "all_healthy": true
+        "all_healthy": false
       },
       "boards": [
         {
@@ -499,7 +500,7 @@
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-10-07 07:12:16",
+        "data_mtime": "2026-10-07 07:51:50",
         "all_synced": true,
         "synced_count": 4,
         "missing_count": 0,
@@ -514,7 +515,7 @@
           {
             "type": "含税保费快照",
             "latest": "premium_latest.json",
-            "mtime": "2026-10-06 08:04:49",
+            "mtime": "2026-10-07 07:51:50",
             "synced": true
           },
           {
@@ -537,7 +538,7 @@
             "latest": "latest.json",
             "mtime": "2026-10-07 07:02:25",
             "max_age_hours": 26,
-            "age_hours": 0.2,
+            "age_hours": 5.5,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -548,9 +549,9 @@
             "label": "含税保费快照",
             "path": "bi_insurance\\premium_latest.json",
             "latest": "premium_latest.json",
-            "mtime": "2026-10-06 08:04:49",
+            "mtime": "2026-10-07 07:51:50",
             "max_age_hours": 26,
-            "age_hours": 23.2,
+            "age_hours": 4.7,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -563,7 +564,7 @@
             "latest": "v3_data.js",
             "mtime": "2026-10-07 07:12:16",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 5.3,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -576,7 +577,7 @@
             "latest": "insurance_data.js",
             "mtime": "2026-10-05 07:18:27",
             "max_age_hours": 72,
-            "age_hours": 48.0,
+            "age_hours": 53.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -652,7 +653,7 @@
             "latest": "110工单看板.html",
             "mtime": "2026-09-23 11:38:46",
             "max_age_hours": 168,
-            "age_hours": 331.6,
+            "age_hours": 336.9,
             "ok": false,
             "note": "更新频率待确认，先按 7 天",
             "fail_hits": [],
@@ -714,7 +715,7 @@
             "latest": "update_stations.log",
             "mtime": "2026-10-05 06:58:34",
             "max_age_hours": 26,
-            "age_hours": 48.3,
+            "age_hours": 53.6,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -750,7 +751,7 @@
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-10-07 07:15:50",
+        "data_mtime": "2026-10-07 11:31:19",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -761,9 +762,9 @@
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-10-07 07:15:50",
+            "mtime": "2026-10-07 11:31:19",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 1.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -829,7 +830,7 @@
             "latest": "monthly_summary.js",
             "mtime": "2026-10-07 07:12:16",
             "max_age_hours": 72,
-            "age_hours": 0.1,
+            "age_hours": 5.3,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
@@ -897,7 +898,7 @@
             "latest": "checkup_files_data.js",
             "mtime": "2026-09-23 14:51:37",
             "max_age_hours": 168,
-            "age_hours": 328.4,
+            "age_hours": 333.7,
             "ok": false,
             "note": "scan_checkup.py 手动扫描（用户按需触发），按 7 天兜底",
             "fail_hits": [],
@@ -937,9 +938,9 @@
         ],
         "data_mtime": "2026-10-06 08:19:19",
         "all_synced": false,
-        "synced_count": 5,
+        "synced_count": 4,
         "missing_count": 0,
-        "unsynced_count": 3,
+        "unsynced_count": 4,
         "sources": [
           {
             "type": "安全权益·工作台源(iframe实时)",
@@ -951,7 +952,7 @@
             "type": "站长评级·slim(自动重建)",
             "latest": "equity_slim_data.js",
             "mtime": "2026-10-06 08:19:19",
-            "synced": true
+            "synced": false
           },
           {
             "type": "履约数据(手工周更)",
@@ -980,7 +981,7 @@
           {
             "type": "保险·含税保费快照(实时)",
             "latest": "premium_latest.json",
-            "mtime": "2026-10-06 08:04:49",
+            "mtime": "2026-10-07 07:51:50",
             "synced": true
           },
           {
@@ -997,8 +998,8 @@
             "latest": "equity_slim_data.js",
             "mtime": "2026-10-06 08:19:19",
             "max_age_hours": 26,
-            "age_hours": 23.0,
-            "ok": true,
+            "age_hours": 28.2,
+            "ok": false,
             "note": "8421 按工作台源 mtime 自动重建",
             "fail_hits": [],
             "fail_lines": [],
@@ -1010,7 +1011,7 @@
             "latest": "v3_data.js",
             "mtime": "2026-10-07 07:12:16",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 5.3,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1023,7 +1024,7 @@
             "latest": "latest.json",
             "mtime": "2026-10-07 07:02:25",
             "max_age_hours": 26,
-            "age_hours": 0.2,
+            "age_hours": 5.5,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1034,9 +1035,9 @@
             "label": "保险赔付补贴监控·保费快照",
             "path": "bi_insurance\\premium_latest.json",
             "latest": "premium_latest.json",
-            "mtime": "2026-10-06 08:04:49",
+            "mtime": "2026-10-07 07:51:50",
             "max_age_hours": 26,
-            "age_hours": 23.2,
+            "age_hours": 4.7,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1049,7 +1050,7 @@
             "latest": "compliance.json",
             "mtime": "2026-09-28 05:46:42",
             "max_age_hours": 216,
-            "age_hours": 217.5,
+            "age_hours": 222.8,
             "ok": false,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
@@ -1062,7 +1063,7 @@
             "latest": "accident.json",
             "mtime": "2026-09-28 05:46:42",
             "max_age_hours": 216,
-            "age_hours": 217.5,
+            "age_hours": 222.8,
             "ok": false,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
@@ -1075,7 +1076,7 @@
             "latest": "insurance_rate_analysis.html",
             "mtime": "2026-09-06 11:04:24",
             "max_age_hours": 216,
-            "age_hours": 740.2,
+            "age_hours": 745.5,
             "ok": false,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
@@ -1084,8 +1085,8 @@
           }
         ],
         "action_stats": {
-          "ok_count": 4,
-          "alert_count": 3,
+          "ok_count": 3,
+          "alert_count": 4,
           "missing_count": 0,
           "total": 7,
           "all_ok": false
