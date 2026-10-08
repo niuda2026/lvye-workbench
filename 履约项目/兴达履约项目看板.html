@@ -394,29 +394,116 @@ tr.cb-row-noup:hover td{background:#ffefef}
     #sub-insp .insp-win-tag{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:9px;background:#eaf4ff;color:#1d6ec4;font-size:12px;}
     #sub-insp .insp-miss-group{display:inline-block;margin:0 10px 4px 0;}
     #sub-insp .insp-miss-group b{color:#b3452f;}
+    #sub-insp details.insp-fold{margin-top:16px;border:1px solid #e3eaf3;border-radius:6px;background:#fff;}
+    #sub-insp details.insp-fold>summary{cursor:pointer;padding:9px 12px;font-size:14px;font-weight:700;color:#1f3a5f;list-style:none;display:flex;align-items:center;gap:8px;user-select:none;}
+    #sub-insp details.insp-fold>summary::-webkit-details-marker{display:none;}
+    #sub-insp details.insp-fold>summary:before{content:'▸';color:#7d90a5;font-size:12px;}
+    #sub-insp details.insp-fold[open]>summary:before{content:'▾';}
+    #sub-insp details.insp-fold .insp-fold-body{padding:0 12px 12px;}
+    #sub-insp .insp-deduct-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    @media (max-width:1100px){#sub-insp .insp-deduct-grid{grid-template-columns:1fr;}}
+    #sub-insp .insp-deduct-hint{font-size:12px;color:#8a5a13;padding:10px 12px;background:#fdf8ee;border:1px dashed #e8d5a8;border-radius:6px;line-height:1.7;}
+    #sub-insp .insp-drank-row{cursor:pointer;}
+    #sub-insp .insp-drank-row:hover td{background:#eef6ff;}
+    #sub-insp .insp-drank-sel td{background:#e3effc !important;}
   </style>
 
   <!-- 数据源横幅（登录态失效/抓取过期时显示） -->
   <div id="insp-banner" style="display:none;margin-bottom:8px;padding:6px 10px;border-radius:6px;font-size:12px;"></div>
 
-  <!-- 控制条：日期窗口 + 巡检对象 -->
+  <!-- 控制条：日期窗口 + 只看有扣分 -->
   <div class="sub-tab-bar" style="margin-bottom:8px;">
     <span class="sub-tab-label">日期窗口：</span>
     <button class="lv-btn" id="insp-win-today" onclick="inspSetWindow('today')">今日</button>
     <button class="lv-btn" id="insp-win-yest" onclick="inspSetWindow('yest')">昨日</button>
-    <button class="lv-btn active" id="insp-win-7" onclick="inspSetWindow('7')">近7日</button>
+    <button class="lv-btn" id="insp-win-month" onclick="inspSetWindow('month')">本月</button>
+    <button class="lv-btn" id="insp-win-lastmonth" onclick="inspSetWindow('lastmonth')">上月整月</button>
+    <button class="lv-btn" id="insp-win-7" onclick="inspSetWindow('7')">近7日</button>
     <button class="lv-btn" id="insp-win-30" onclick="inspSetWindow('30')">近30日</button>
     <span class="sub-tab-sep"></span>
     <input type="date" class="insp-date" id="insp-from" onchange="inspSetWindow('custom')">
     <span style="margin:0 4px;color:#8aa2b8;">~</span>
     <input type="date" class="insp-date" id="insp-to" onchange="inspSetWindow('custom')">
     <span class="sub-tab-sep"></span>
+    <button class="lv-btn" id="insp-only-deduct" onclick="inspToggleDeduct()" title="层级表只显示窗口内有扣分记录的站点">只看有扣分</button>
     <span class="insp-win-tag" id="insp-win-tag">-</span>
   </div>
 
   <div class="summary-row" id="summary-cards-safety"></div>
 
-  <div class="sub-tab-bar">
+  <!-- ① 扣分透视区（v2 新增：扣分原因来自工单详情，不含照片/视频） -->
+  <div id="insp-deduct-block" style="margin-top:16px;">
+    <div class="insp-h">扣分透视区<span class="insp-h-sub" id="insp-deduct-sub"></span></div>
+    <div class="insp-deduct-grid">
+      <div>
+        <div class="insp-h" style="font-size:13px;">扣分项 TOP 榜（按检查标准）</div>
+        <div class="table-wrap" style="max-height:240px;border:1px solid #e3eaf3;border-radius:6px;">
+          <table class="dt" id="tbl-insp-dtop">
+            <thead id="thead-insp-dtop"></thead>
+            <tbody id="tbody-insp-dtop"></tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="insp-h" style="font-size:13px;">扣分站点排行<span class="insp-h-sub">点击行可筛选下方明细</span></div>
+        <div class="table-wrap" style="max-height:240px;border:1px solid #e3eaf3;border-radius:6px;">
+          <table class="dt" id="tbl-insp-drank">
+            <thead id="thead-insp-drank"></thead>
+            <tbody id="tbody-insp-drank"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="insp-h" style="margin-top:12px;">扣分明细<span class="insp-h-sub" id="insp-ddetail-sub"></span></div>
+    <div id="insp-ddetail-hint" class="insp-deduct-hint" style="display:none;"></div>
+    <div class="table-wrap" style="max-height:340px;border:1px solid #e3eaf3;border-radius:6px;">
+      <table class="dt" id="tbl-insp-ddetail">
+        <thead id="thead-insp-ddetail"></thead>
+        <tbody id="tbody-insp-ddetail"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ② 岗位巡检情况（默认折叠） -->
+  <details class="insp-fold" id="insp-roles-fold" ontoggle="inspFoldToggle('roles')">
+    <summary>岗位巡检情况（按提交人岗位）<span class="insp-h-sub" id="insp-roles-sub" style="font-weight:400;"></span></summary>
+    <div class="insp-fold-body">
+      <div class="table-wrap" style="max-height:300px;border:1px solid #e3eaf3;border-radius:6px;">
+        <table class="dt" id="tbl-insp-roles">
+          <thead id="thead-insp-roles"></thead>
+          <tbody id="tbody-insp-roles"></tbody>
+        </table>
+      </div>
+      <div id="insp-role-chart" style="height:290px;margin-top:10px;border:1px solid #e3eaf3;border-radius:6px;background:#fff;"></div>
+    </div>
+  </details>
+
+  <!-- ③ 检查方式维度（默认折叠） -->
+  <details class="insp-fold" id="insp-types-fold" ontoggle="inspFoldToggle('types')">
+    <summary>检查方式维度<span class="insp-h-sub" id="insp-types-sub" style="font-weight:400;"></span></summary>
+    <div class="insp-fold-body">
+      <div class="table-wrap" style="max-height:280px;border:1px solid #e3eaf3;border-radius:6px;">
+        <table class="dt" id="tbl-insp-types">
+          <thead id="thead-insp-types"></thead>
+          <tbody id="tbody-insp-types"></tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <!-- ④ 异常跟进清单 -->
+  <div id="insp-alert-block" style="margin-top:16px;">
+    <div class="insp-h">待整改 / 超时未整改 / 整改驳回 清单<span class="insp-h-sub" id="insp-alert-sub"></span></div>
+    <div class="table-wrap" style="max-height:340px;border:1px solid #e3eaf3;border-radius:6px;">
+      <table class="dt" id="tbl-insp-alerts">
+        <thead id="thead-insp-alerts"></thead>
+        <tbody id="tbody-insp-alerts"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ⑤ 组织层级表 -->
+  <div class="sub-tab-bar" style="margin-top:16px;">
     <span class="sub-tab-label">显示层级：</span>
     <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleViewBtn('subregion')">区域行</button>
     <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleViewBtn('merchant')">城市行</button>
@@ -441,51 +528,16 @@ tr.cb-row-noup:hover td{background:#ffefef}
     </table>
   </div>
 
-  <!-- 岗位巡检情况（本期核心） -->
-  <div id="insp-roles-block" style="margin-top:16px;">
-    <div class="insp-h">岗位巡检情况（按提交人岗位）<span class="insp-h-sub" id="insp-roles-sub"></span></div>
-    <div class="table-wrap" style="max-height:300px;border:1px solid #e3eaf3;border-radius:6px;">
-      <table class="dt" id="tbl-insp-roles">
-        <thead id="thead-insp-roles"></thead>
-        <tbody id="tbody-insp-roles"></tbody>
-      </table>
-    </div>
-    <div id="insp-role-chart" style="height:290px;margin-top:10px;border:1px solid #e3eaf3;border-radius:6px;background:#fff;"></div>
-  </div>
 
-  <!-- 检查方式维度 -->
-  <div id="insp-types-block" style="margin-top:16px;">
-    <div class="insp-h">检查方式维度<span class="insp-h-sub" id="insp-types-sub"></span></div>
-    <div class="table-wrap" style="max-height:280px;border:1px solid #e3eaf3;border-radius:6px;">
-      <table class="dt" id="tbl-insp-types">
-        <thead id="thead-insp-types"></thead>
-        <tbody id="tbody-insp-types"></tbody>
-      </table>
-    </div>
-  </div>
 
-  <!-- 日趋势（近30日，跟随巡检对象切换） -->
-  <div id="insp-trend-block" style="margin-top:16px;">
-    <div class="insp-h">日趋势（近 30 日）<span class="insp-h-sub">柱=巡检单数 · 线=合规率</span></div>
-    <div id="insp-trend-chart" style="height:310px;border:1px solid #e3eaf3;border-radius:6px;background:#fff;"></div>
-  </div>
 
-  <!-- 本期未巡检站点 -->
+
+  <!-- ⑥ 本期未巡检站点 -->
   <div id="insp-miss-block" style="margin-top:16px;">
     <div class="insp-h">本期未巡检站点<span class="insp-h-sub" id="insp-miss-sub"></span></div>
     <div id="insp-miss-list" style="font-size:12px;line-height:1.9;color:#33485c;border:1px solid #e3eaf3;border-radius:6px;padding:10px 12px;background:#fbfdff;"></div>
   </div>
 
-  <!-- 异常跟进清单 -->
-  <div id="insp-alert-block" style="margin-top:16px;">
-    <div class="insp-h">待整改 / 超时未整改 / 整改驳回 清单<span class="insp-h-sub" id="insp-alert-sub"></span></div>
-    <div class="table-wrap" style="max-height:340px;border:1px solid #e3eaf3;border-radius:6px;">
-      <table class="dt" id="tbl-insp-alerts">
-        <thead id="thead-insp-alerts"></thead>
-        <tbody id="tbody-insp-alerts"></tbody>
-      </table>
-    </div>
-  </div>
   </div>
 
   <!-- 子面板：履约达成处罚-周度 -->
@@ -1867,10 +1919,12 @@ function renderAuditView() {
 //      数据文件 = inspection_daily_data.js（INSP2_*，inspection/build_inspection_v2.py 生成）
 //      组织层级 = 沿用 data.js 的 SITE_INFO（大区/区域/城市），与其它看板完全同源
 var curSafetySub = 'insp';
-var INSP_OBJ = 3;                                    // 巡检对象：3=加盟商站点 7=加盟骑手
-var INSP_WIN = { mode: '7', from: null, to: null };  // 日期窗口
+var INSP_OBJ = 3;                                    // 巡检对象：仅加盟商站点（平台无骑手巡检维度）
+var INSP_WIN = { mode: 'month', from: null, to: null };  // 日期窗口（默认本月）
+var INSP_ONLY_DEDUCT = false;                        // 只看有扣分的站点
+var _inspDeductSite = null;                          // 扣分明细当前筛选站点
 var INSP_ROSTER_TOTAL = 160;                         // 名册需巡检站点分母（运行时按 SITE_INFO 重算）
-var _inspRoleChart = null, _inspTrendChart = null;
+var _inspRoleChart = null;
 
 function inspMeta() { return (typeof INSP2_META !== 'undefined') ? INSP2_META : null; }
 function inspTodayStr() {
@@ -1909,6 +1963,11 @@ function inspWithUnmapped(fn) {
 }
 
 // ── 日期窗口 ────────────────────────────────────────────────────────────
+function inspLastMonth(ym) {           // '2026-10' → '2026-09'
+  var y = parseInt(ym.slice(0, 4), 10), m = parseInt(ym.slice(5, 7), 10);
+  m--; if (m === 0) { m = 12; y--; }
+  return y + '-' + String(m).padStart(2, '0');
+}
 function inspWindowDays() {
   var M = inspMeta(); if (!M || !M.days || !M.days.length) return [];
   var all = M.days;
@@ -1919,6 +1978,14 @@ function inspWindowDays() {
   if (ti < 0) ti = all.length - 1;
   if (INSP_WIN.mode === 'today') return [all[ti]];
   if (INSP_WIN.mode === 'yest') return all.slice(Math.max(0, ti - 1), ti);   // 取今天之前那天
+  if (INSP_WIN.mode === 'month') {                                           // 本月（日历月）
+    var ym = all[ti].slice(0, 7);
+    return all.filter(function (d) { return d.slice(0, 7) === ym; });
+  }
+  if (INSP_WIN.mode === 'lastmonth') {                                       // 上月整月
+    if (!INSP_WIN.refMonth) INSP_WIN.refMonth = inspLastMonth(all[ti].slice(0, 7));
+    return all.filter(function (d) { return d.slice(0, 7) === INSP_WIN.refMonth; });
+  }
   if (INSP_WIN.mode === '7') return all.slice(Math.max(0, ti - 6), ti + 1);
   if (INSP_WIN.mode === '30') return all.slice(Math.max(0, ti - 29), ti + 1);
   return all.slice();
@@ -1939,10 +2006,10 @@ function inspWalk(days, cb) {
 function inspAggBySite(days) {
   var res = {};
   inspWalk(days, function (r) {
-    var site = r[1], st = r[4], o = r[5], it = r[6], ps = r[7];
+    var site = r[1], st = r[4], o = r[5], it = r[6], ps = r[7], dc = r[8] || 0;
     var a = res[site];
-    if (!a) a = res[site] = { orders: 0, items: 0, pass: 0, need_fix: 0, overdue: 0, reject: 0, fix_pass: 0, no_need: 0 };
-    a.orders += o; a.items += it; a.pass += ps;
+    if (!a) a = res[site] = { orders: 0, items: 0, pass: 0, deduct: 0, need_fix: 0, overdue: 0, reject: 0, fix_pass: 0, no_need: 0 };
+    a.orders += o; a.items += it; a.pass += ps; a.deduct += dc;
     if (st === 70) a.need_fix += o;
     else if (st === 90) a.overdue += o;
     else if (st === 110) a.reject += o;
@@ -1951,10 +2018,10 @@ function inspAggBySite(days) {
   });
   return res;
 }
-function inspBlank() { return { orders: 0, items: 0, pass: 0, need_fix: 0, overdue: 0, reject: 0, fix_pass: 0, no_need: 0 }; }
+function inspBlank() { return { orders: 0, items: 0, pass: 0, deduct: 0, need_fix: 0, overdue: 0, reject: 0, fix_pass: 0, no_need: 0 }; }
 function inspAccum(a, r, site) {
-  var o = r[5], it = r[6], ps = r[7], st = r[4];
-  a.orders += o; a.items += it; a.pass += ps;
+  var o = r[5], it = r[6], ps = r[7], st = r[4], dc = r[8] || 0;
+  a.orders += o; a.items += it; a.pass += ps; a.deduct += dc;
   if (site) a.sites[site] = 1;
   if (st === 70) a.need_fix += o;
   else if (st === 90) a.overdue += o;
@@ -1983,15 +2050,6 @@ function inspAggByCheck(days) {
   });
   return res;
 }
-function inspAggByDay(days) {
-  var M = inspMeta(), res = {};
-  days.forEach(function (d) { res[d] = inspBlank(); });
-  inspWalk(days, function (r) {
-    if (isFiltered(r[1], 'safety')) return;
-    inspAccum(res[M.days[r[0]]], r);
-  });
-  return res;
-}
 // 骑手维度：窗口内去重骑手数（全局 + 按站点）
 function inspRiderCover(days) {
   var M = inspMeta(), ids = window.INSP2_RIDER_IDS || [], mask = inspDayMask(days);
@@ -2014,6 +2072,7 @@ function inspColumns() {
     { key: 'items', label: '检查项数' },
     { key: 'pass', label: '合规项数' },
     { key: 'pass_rate', label: '合规率', isPct: true, isSumRatio: true },
+    { key: 'deduct', label: '扣分单数', isSafetyHl: true },
     { key: 'need_fix', label: '待整改', isSafetyHl: true },
     { key: 'overdue', label: '超时未整改', isSafetyHl: true },
     { key: 'reject', label: '整改驳回', isSafetyHl: true },
@@ -2032,9 +2091,10 @@ function inspBuildData(days) {
   var data = {};
   Object.keys(names).forEach(function (n) {
     var a = agg[n] || inspBlank();
+    if (INSP_ONLY_DEDUCT && !(a.deduct > 0)) return;   // 只看有扣分
     var fixDen = a.need_fix + a.overdue + a.reject + a.fix_pass;
     var o = {
-      orders: a.orders, items: a.items, pass: a.pass,
+      orders: a.orders, items: a.items, pass: a.pass, deduct: a.deduct,
       pass_rate: inspRate(a.pass, a.items), pass_rate_num: a.pass, pass_rate_den: a.items,
       need_fix: a.need_fix, overdue: a.overdue, reject: a.reject, fix_pass: a.fix_pass,
       fix_rate: inspRate(a.fix_pass, fixDen), fix_rate_num: a.fix_pass, fix_rate_den: fixDen
@@ -2059,16 +2119,32 @@ function inspSetWindow(mode) {
   renderInspectionSub();
 }
 function inspSetObject(o) { if (INSP_OBJ === o) return; INSP_OBJ = o; renderInspectionSub(); }
+function inspToggleDeduct() {
+  INSP_ONLY_DEDUCT = !INSP_ONLY_DEDUCT;
+  var b = document.getElementById('insp-only-deduct');
+  if (b) b.classList.toggle('active', INSP_ONLY_DEDUCT);
+  renderInspectionSub();
+}
+// 折叠块展开时才渲染（岗位图在隐藏容器里初始化会 0 尺寸）
+function inspFoldToggle(kind) {
+  if (kind === 'roles') {
+    var open = document.getElementById('insp-roles-fold');
+    if (open && open.open && window._inspCurDays) inspRenderRoles(window._inspCurDays);
+  }
+  if (kind === 'types') {
+    var dt = document.getElementById('insp-types-fold');
+    if (dt && dt.open && window._inspCurDays) inspRenderCheckTypes(window._inspCurDays);
+  }
+}
 
 function inspSyncControls(days) {
   var M = inspMeta();
-  ['today', 'yest', '7', '30'].forEach(function (k) {
+  ['today', 'yest', 'month', 'lastmonth', '7', '30'].forEach(function (k) {
     var b = document.getElementById('insp-win-' + k);
     if (b) b.classList.toggle('active', INSP_WIN.mode === k);
   });
-  var o3 = document.getElementById('insp-obj-3'), o7 = document.getElementById('insp-obj-7');
-  if (o3) o3.classList.toggle('active', INSP_OBJ === 3);
-  if (o7) o7.classList.toggle('active', INSP_OBJ === 7);
+  var od = document.getElementById('insp-only-deduct');
+  if (od) od.classList.toggle('active', INSP_ONLY_DEDUCT);
   var f = document.getElementById('insp-from'), t = document.getElementById('insp-to');
   if (f) { f.min = M.dateFrom; f.max = M.dateTo; if (days.length) f.value = days[0]; }
   if (t) { t.min = M.dateFrom; t.max = M.dateTo; if (days.length) t.value = days[days.length - 1]; }
@@ -2081,8 +2157,9 @@ function inspSyncControls(days) {
     banner.style.background = stale ? '#fdf3e3' : '#eef6ff';
     banner.style.color = stale ? '#8a5a13' : '#2b5c8c';
     banner.style.border = '1px solid ' + (stale ? '#f0d7a8' : '#d6e7fa');
-    banner.innerHTML = '数据源：烽火巡检平台（加盟商站点 + 加盟骑手）· 抓取于 <b>' + escHtml(M.fetchedAt || '-') + '</b> · 覆盖 '
-      + escHtml(M.dateFrom) + ' ~ ' + escHtml(M.dateTo) + ' · 原始单据 ' + fr(M.rowCount) + ' 条'
+    banner.innerHTML = '数据源：烽火巡检平台（加盟商站点）· 抓取于 <b>' + escHtml(M.fetchedAt || '-') + '</b> · 覆盖 '
+      + escHtml(M.dateFrom) + ' ~ ' + escHtml(M.dateTo) + ' · 合并单据 ' + fr(M.rowCount) + ' 条'
+      + ((M.monthSources && M.monthSources.length) ? ' · 月度档案 ' + escHtml(M.monthSources.join('、')) : '')
       + (stale ? ' &nbsp;⚠ 平台数据未覆盖到今日，请检查抓取（履约项目/inspection/fetch_insp_tickets.js）' : '');
   }
 }
@@ -2097,6 +2174,7 @@ function renderSafetyCheckTab() {
 function renderInspectionSub() {
   if (!inspMeta()) { renderInspectionLegacy(); return; }
   var days = inspWindowDays();
+  window._inspCurDays = days;
   INSP_ROSTER_TOTAL = inspRosterNames().length || 160;
   window.INSP2_DATA = inspBuildData(days);
   window.INSP2_COLS = inspColumns();
@@ -2104,9 +2182,9 @@ function renderInspectionSub() {
   inspWithUnmapped(function () {
     renderStandardTab('safety', 'INSP2_DATA', window.INSP2_COLS, null);
   });
-  inspRenderRoles(days);
-  inspRenderCheckTypes(days);
-  inspRenderTrend();
+  inspRenderDeduct(days);
+  if (document.getElementById('insp-roles-fold') && document.getElementById('insp-roles-fold').open) inspRenderRoles(days);
+  if (document.getElementById('insp-types-fold') && document.getElementById('insp-types-fold').open) inspRenderCheckTypes(days);
   inspRenderMiss(days);
   inspRenderAlerts(days);
   inspFixZeroRate(days);
@@ -2163,7 +2241,7 @@ function inspSummaryCards(visibleRows, totals) {
       sitesRoster++;
       if (a && a.orders > 0) coveredRoster++;
     }
-    if (a) { t.orders += a.orders; t.items += a.items; t.pass += a.pass; t.need_fix += a.need_fix; t.overdue += a.overdue; t.reject += a.reject; t.fix_pass += a.fix_pass; }
+    if (a) { t.orders += a.orders; t.items += a.items; t.pass += a.pass; t.deduct += a.deduct; t.need_fix += a.need_fix; t.overdue += a.overdue; t.reject += a.reject; t.fix_pass += a.fix_pass; }
     riders += (window.INSP2_DATA[n] || {}).riders || 0;
   });
   var passRate = inspRate(t.pass, t.items);
@@ -2185,6 +2263,7 @@ function inspSummaryCards(visibleRows, totals) {
   html += box('检查项数', fr(t.items), '合规项 ' + fr(t.pass), null);
   html += box('合规率', (passRate == null ? '-' : passRate.toFixed(2) + '%'), 'Σ合规项 / Σ检查项',
     passRate == null ? null : (passRate >= 99 ? '#2e9e5b' : (passRate >= 97 ? '#d99b16' : '#e64545')));
+  html += box('扣分单数', fr(t.deduct), '窗口内有扣分项的工单', (t.deduct > 0) ? '#e64545' : '#2e9e5b');
   html += box('待整改', fr(t.need_fix), '在整改时限内', (t.need_fix > 0) ? '#e6892e' : '#2e9e5b');
   html += box('超时未整改', fr(t.overdue), '已逾期', (t.overdue > 0) ? '#e64545' : '#2e9e5b');
   html += box('整改完成率', (fixRate == null ? '-' : fixRate.toFixed(1) + '%'), '通过 ' + fr(t.fix_pass) + ' / 需整改 ' + fixDen,
@@ -2245,6 +2324,8 @@ function inspChartGuard(id) {
   return ins;
 }
 function inspRenderRoleChart(days, list, roles) {
+  var el = document.getElementById('insp-role-chart');
+  if (!el || el.offsetWidth === 0) return;   // 折叠未展开时容器 0 尺寸，跳过（展开时由 inspFoldToggle 重渲染）
   var ch = inspChartGuard('insp-role-chart'); if (!ch) return;
   if (!days.length || !list.length) { ch.clear(); return; }
   var M = inspMeta();
@@ -2316,28 +2397,6 @@ function inspRenderCheckTypes(days) {
   var sub = document.getElementById('insp-types-sub');
   if (sub) sub.textContent = '共 ' + dict.length + ' 类（平台字典，无单同样展示）';
 }
-function inspRenderTrend() {
-  var ch = inspChartGuard('insp-trend-chart'); if (!ch) return;
-  var M = inspMeta(), days = M.days.slice(-30);
-  var agg = inspAggByDay(days);
-  var orders = days.map(function (d) { return agg[d].orders; });
-  var rate = days.map(function (d) { var a = agg[d]; var r = inspRate(a.pass, a.items); return r == null ? null : +r.toFixed(2); });
-  ch.setOption({
-    tooltip: { trigger: 'axis' },
-    legend: { top: 6, data: ['巡检单数', '合规率'], textStyle: { fontSize: 11 } },
-    grid: { left: 52, right: 56, top: 42, bottom: 30 },
-    xAxis: { type: 'category', data: days.map(function (d) { return d.slice(5); }), axisLabel: { fontSize: 11 } },
-    yAxis: [
-      { type: 'value', name: '巡检单数', nameTextStyle: { fontSize: 11 } },
-      { type: 'value', name: '合规率(%)', min: 80, max: 100, nameTextStyle: { fontSize: 11 }, axisLabel: { formatter: '{value}%' } }
-    ],
-    series: [
-      { name: '巡检单数', type: 'bar', barMaxWidth: 22, itemStyle: { color: '#2f7ed8' }, data: orders },
-      { name: '合规率', type: 'line', yAxisIndex: 1, smooth: true, connectNulls: true, symbolSize: 5, itemStyle: { color: '#e6a23c' }, data: rate }
-    ]
-  }, true);
-  ch.resize();
-}
 function inspRenderMiss(days) {
   var el = document.getElementById('insp-miss-list'); if (!el) return;
   var agg = inspAggBySite(days), roster = inspRosterNames();
@@ -2389,12 +2448,13 @@ function inspRenderAlerts(days) {
       + '<td>' + fmtT(a[7]) + '</td>'
       + '<td>' + (a[8] ? fmtT(a[8]) : '-') + '</td>'
       + '<td' + (left != null && left < 0 ? ' class="safety-hl"' : '') + '>' + leftTxt + '</td>'
+      + '<td>' + escHtml(inspDeductReason(a[6])) + '</td>'
       + '</tr>';
   });
-  if (!body) body = '<tr><td colspan="8" class="empty">本窗口无未闭环单据 ✓</td></tr>';
+  if (!body) body = '<tr><td colspan="9" class="empty">本窗口无未闭环单据 ✓</td></tr>';
   document.getElementById('thead-insp-alerts').innerHTML = '<tr><th style="min-width:96px;">状态</th><th style="min-width:170px;">站点</th>'
     + '<th style="min-width:130px;">提交人岗位</th><th style="min-width:120px;">检查方式</th><th>单据号</th>'
-    + '<th style="min-width:130px;">提交时间</th><th style="min-width:130px;">整改截止</th><th>剩余时限</th></tr>';
+    + '<th style="min-width:130px;">提交时间</th><th style="min-width:130px;">整改截止</th><th>剩余时限</th><th style="min-width:160px;">扣分原因（详情原文）</th></tr>';
   tb.innerHTML = body;
   var sub = document.getElementById('insp-alert-sub');
   if (sub) sub.textContent = '共 ' + rows.length + ' 单未闭环（待整改 / 超时未整改 / 整改驳回）';
@@ -2403,6 +2463,123 @@ function inspCheckName(code) {
   var M = inspMeta(), dict = (M.checkTypes && M.checkTypes[String(INSP_OBJ)]) || [];
   for (var i = 0; i < dict.length; i++) if (dict[i][0] === code) return dict[i][1];
   return String(code);
+}
+
+// ── 扣分透视区（v2 新增）───────────────────────────────────────────────
+//    数据 = INSP2_DEDUCT：[dayIdx, 站点, 表单ID, 状态, 扣分项数, 检查方式code, 提交ts]
+//    扣分原因原文 = INSP2_REASON（P2 工单详情抓取接入后由构建器注入），照片/视频不落
+function inspDeductStatus(st) {
+  return ({ 70: '待整改', 90: '超时未整改', 110: '整改驳回', 100: '整改通过', 80: '无需整改' })[st] || String(st);
+}
+function inspDeductCls(st) {
+  return ({ 70: 'ry', 90: 'rr', 110: 'rr', 100: 'rg' })[st] || '';
+}
+function inspDeductReason(formId) {
+  var R = window.INSP2_REASON;
+  return (R && R[String(formId)]) ? R[String(formId)] : '—';
+}
+function inspAggDeduct(days) {
+  var M = inspMeta(), mask = inspDayMask(days), res = {};
+  var rows = window.INSP2_DEDUCT || [];
+  for (var i = 0; i < rows.length; i++) {
+    var x = rows[i];
+    if (!mask[x[0]]) continue;
+    if (isFiltered(x[1], 'safety')) continue;
+    var a = res[x[1]];
+    if (!a) a = res[x[1]] = { orders: 0, items: 0, open: 0 };
+    a.orders++; a.items += x[4];
+    if (x[3] === 70 || x[3] === 90 || x[3] === 110) a.open++;
+  }
+  return res;
+}
+function inspSelectDeductSite(name) {
+  _inspDeductSite = (_inspDeductSite === name) ? null : name;
+  inspRenderDeduct(window._inspCurDays || inspWindowDays());
+}
+function inspRenderDeduct(days) {
+  var M = inspMeta();
+  var topTb = document.getElementById('tbody-insp-dtop');
+  var rankTb = document.getElementById('tbody-insp-drank');
+  var detTb = document.getElementById('tbody-insp-ddetail');
+  if (!topTb || !rankTb || !detTb) return;
+  var ready = !!(M.deduct && M.deduct.detailReady);
+
+  var agg = inspAggDeduct(days);
+  var list = Object.keys(agg).map(function (n) { return { n: n, a: agg[n] }; });
+  list.sort(function (x, y) { return y.a.items - x.a.items || y.a.orders - x.a.orders; });
+  var tOrders = 0, tItems = 0, tOpen = 0;
+  list.forEach(function (x) { tOrders += x.a.orders; tItems += x.a.items; tOpen += x.a.open; });
+  var sub = document.getElementById('insp-deduct-sub');
+  if (sub) sub.textContent = '窗口内扣分单 ' + tOrders + ' 张 · 扣分项 ' + tItems + ' 个 · 涉及站点 ' + list.length + ' 个（原因原文来自工单详情，不含照片/视频）';
+
+  // 左：扣分项 TOP 榜（按检查标准聚合，需详情数据；未接入前给空态说明）
+  var topHead = '<tr><th style="min-width:150px;">一级 / 二级分类 · 检查标准</th><th>扣分次数</th><th>涉及站点</th></tr>';
+  var topBody = '';
+  if (ready && window.INSP2_DEDUCT_STDS && window.INSP2_DEDUCT_STDS.length) {
+    var stds = window.INSP2_DEDUCT_STDS.filter(function (s) {
+      return !(INSP_ONLY_DEDUCT && !agg[s[0]]);   // 占位：聚合表按站点名首列过滤由 P2 完整实现
+    });
+    stds.sort(function (a, b) { return b[3] - a[3]; });
+    stds.slice(0, 15).forEach(function (s) {
+      topBody += '<tr><td>' + escHtml(s[0]) + ' / ' + escHtml(s[1]) + ' · ' + escHtml(s[2]) + '</td>'
+        + '<td class="rr">' + fr(s[3]) + '</td><td>' + fr(s[4]) + '</td></tr>';
+    });
+  } else if (!tItems) {
+    topBody = '<tr><td colspan="3" class="empty">本窗口无扣分记录 ✓</td></tr>';
+  } else {
+    topBody = '<tr><td colspan="3" style="padding:12px;color:#8a5a13;font-size:12px;line-height:1.8;">'
+      + '扣分项按「一级分类 / 二级分类 / 检查标准」聚合，需要工单详情数据（含每项扣分原因）。<br>'
+      + '详情抓取（fetch_insp_detail.js）尚未接入，本表暂为空态——层级与单据级扣分在右侧排行和下方明细中已可用。</td></tr>';
+  }
+  document.getElementById('thead-insp-dtop').innerHTML = topHead;
+  topTb.innerHTML = topBody;
+
+  // 右：扣分站点排行
+  var rankBody = '';
+  list.slice(0, 15).forEach(function (x) {
+    var sel = (_inspDeductSite === x.n) ? ' insp-drank-sel' : '';
+    rankBody += '<tr class="insp-drank-row' + sel + '" onclick="inspSelectDeductSite(' + JSON.stringify(x.n).replace(/"/g, '&quot;') + ')">'
+      + '<td>' + escHtml(x.n) + '</td>'
+      + '<td class="rr">' + fr(x.a.orders) + '</td>'
+      + '<td class="rr">' + fr(x.a.items) + '</td>'
+      + '<td' + (x.a.open > 0 ? ' class="safety-hl"' : '') + '>' + fr(x.a.open) + '</td></tr>';
+  });
+  if (!rankBody) rankBody = '<tr><td colspan="4" class="empty">本窗口无扣分站点 ✓</td></tr>';
+  document.getElementById('thead-insp-drank').innerHTML = '<tr><th style="min-width:150px;">站点</th><th>扣分单数</th><th>扣分项数</th><th>未闭环</th></tr>';
+  rankTb.innerHTML = rankBody;
+
+  // 下：扣分明细（单据级；扣分原因 P2 前显示 —）
+  var mask = inspDayMask(days);
+  var rows = (window.INSP2_DEDUCT || []).filter(function (x) {
+    return mask[x[0]] && !isFiltered(x[1], 'safety') && (!_inspDeductSite || x[1] === _inspDeductSite);
+  });
+  rows.sort(function (a, b) { return b[6] - a[6]; });
+  var fmtD = function (ts) {
+    var d = new Date(ts * 1000);
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  };
+  var detBody = '';
+  rows.forEach(function (x) {
+    detBody += '<tr>'
+      + '<td>' + escHtml(M.days[x[0]] || '-') + '</td>'
+      + '<td>' + escHtml(x[1]) + '</td>'
+      + '<td>' + escHtml(String(x[2])) + '</td>'
+      + '<td>' + escHtml(inspCheckName(x[5])) + '</td>'
+      + '<td class="rr">' + fr(x[4]) + '</td>'
+      + '<td class="' + inspDeductCls(x[3]) + '" style="font-weight:600;">' + inspDeductStatus(x[3]) + '</td>'
+      + '<td>' + escHtml(inspDeductReason(x[2])) + '</td>'
+      + '</tr>';
+  });
+  if (!detBody) detBody = '<tr><td colspan="7" class="empty">' + (_inspDeductSite ? '「' + escHtml(_inspDeductSite) + '」在本窗口无扣分记录（再次点击排行可取消筛选）' : '本窗口无扣分单据 ✓') + '</td></tr>';
+  document.getElementById('thead-insp-ddetail').innerHTML = '<tr><th>日期</th><th style="min-width:150px;">站点</th><th>单据号</th>'
+    + '<th style="min-width:110px;">检查方式</th><th>扣分项数</th><th>状态</th><th style="min-width:180px;">扣分原因（详情原文）</th></tr>';
+  detTb.innerHTML = detBody;
+  var dsub = document.getElementById('insp-ddetail-sub');
+  if (dsub) dsub.textContent = (rows.length ? '共 ' + rows.length + ' 张扣分单' : '')
+    + (_inspDeductSite ? ' · 已筛选站点「' + _inspDeductSite + '」' : '')
+    + (ready ? '' : ' · 扣分原因待工单详情抓取接入后显示');
+  var hint = document.getElementById('insp-ddetail-hint');
+  if (hint) hint.style.display = 'none';
 }
 
 // ══════════════════════════════════════════════════════════
@@ -6270,20 +6447,17 @@ function closeCheckRulesModal() {
       var el=els[i];
       if(el.offsetHeight>0&&getComputedStyle(el).position==='sticky'){bar=el;break;}
     }
-    var d=0;
-    if(bar){
-      var b=bar.getBoundingClientRect().bottom;
-      var ws=document.querySelectorAll('.table-wrap');
-      for(var j=0;j<ws.length;j++){
-        var w=ws[j];
-        if(w.clientHeight>0){
-          var t=w.getBoundingClientRect().top;
-          if(b-t>d)d=b-t;
-        }
-      }
+    var b=bar?bar.getBoundingClientRect().bottom:0;
+    // 每个 .table-wrap 独立计算吸顶补偿：只有当它自己的顶边被页签栏盖住时才偏移，
+    // 避免长页面里多张堆叠表格把全局值撑大导致表头错位（2026-10-08 修复）
+    var ws=document.querySelectorAll('.table-wrap');
+    for(var j=0;j<ws.length;j++){
+      var w=ws[j];
+      if(!(w.clientHeight>0)){w.style.removeProperty('--hdfix');continue;}
+      var d=b-w.getBoundingClientRect().top;
+      if(d>0.5)w.style.setProperty('--hdfix',d.toFixed(1)+'px');
+      else w.style.removeProperty('--hdfix');
     }
-    var rs=document.documentElement.style;
-    if(d>0.5)rs.setProperty('--hdfix',d.toFixed(1)+'px');else rs.removeProperty('--hdfix');
   }
   function onS(){if(!raf)raf=requestAnimationFrame(pgfix);}
   window.addEventListener('scroll',onS,{passive:true});
