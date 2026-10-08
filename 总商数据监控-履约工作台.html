@@ -563,7 +563,11 @@ function selectItem(gi, ii){
   var file = relativePath(item.file);
   file = withArea(file);
   var sep = file.indexOf('?') >= 0 ? '&' : '?';
-  document.getElementById('mainFrame').src = file + sep + 't=' + Date.now();
+  /* 2026-10-08 提速：版本号跟随数据刷新周期（data_center.js 再生成时才变化），
+     同一周期内重复打开同一看板命中浏览器缓存，不再每次 Date.now() 强制全量重读；
+     文件本身变化时 file:// 按 mtime 仍会自动失效缓存，数据不会变旧 */
+  var dcVer = (window.DATA_CENTER && window.DATA_CENTER.updated_at) ? String(window.DATA_CENTER.updated_at).replace(/[^0-9]/g, '') : '';
+  document.getElementById('mainFrame').src = file + sep + 't=' + (dcVer || Date.now());
 
   document.getElementById('bcGroup').innerHTML = '<a onclick="showWelcome();return false;">首页</a> <span class="sep">/</span> ' + escHtml(group.title) + ' <span class="sep">/</span> ' + escHtml(item.label);
 }
