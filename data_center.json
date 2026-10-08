@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-10-09 06:59:52",
+  "updated_at": "2026-10-09 07:03:06",
   "action_summary": {
     "total": 23,
-    "ok": 17,
-    "alert": 6,
+    "ok": 16,
+    "alert": 7,
     "missing": 0,
     "alert_groups": [
       "履约项目",
@@ -112,7 +112,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-10-09 06:52:48",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -212,9 +212,9 @@
         ],
         "data_mtime": "2026-10-09 06:52:10",
         "all_synced": false,
-        "synced_count": 4,
+        "synced_count": 3,
         "missing_count": 0,
-        "unsynced_count": 3,
+        "unsynced_count": 4,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
@@ -236,9 +236,9 @@
           },
           {
             "type": "考培-学习明细记录",
-            "latest": "_考培-学习明细记录_1791413434378.xlsx",
-            "mtime": "2026-10-08 06:50:44",
-            "synced": true
+            "latest": "_考培-学习明细记录_1791500417061.xlsx",
+            "mtime": "2026-10-09 07:00:38",
+            "synced": false
           },
           {
             "type": "骑手排班明细数据",
@@ -266,7 +266,7 @@
             "latest": "充换电血压_data.js",
             "mtime": "2026-10-09 06:52:10",
             "max_age_hours": 13,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
@@ -303,19 +303,27 @@
             "label": "每日刷新·抓取成败",
             "path": "daily_refresh_log.txt",
             "latest": "daily_refresh_log.txt",
-            "mtime": "2026-10-09 06:40:00",
+            "mtime": "2026-10-09 07:00:03",
             "max_age_hours": 13,
-            "age_hours": 0.3,
-            "ok": true,
+            "age_hours": 0.1,
+            "ok": false,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
-            "fail_hits": [],
-            "fail_lines": [],
-            "block_time": "2026-10-09 06:39:50"
+            "fail_hits": [
+              "退出码1",
+              "退出码2",
+              "失败(退出"
+            ],
+            "fail_lines": [
+              "第1步 烽火台当月充电/换电/血压: 全部方案失败 · S1-headless自起→退出码1(未生成 list_20261009.json) / S1b-headless重试→退出码2(未生成 list_20261009.json) / S2-自起CDP离屏窗口→退出码1(未生成 list_20261009.json)",
+              "第2.5步 带刀巡检构建: 失败(退出码 0) · 分母2026-10-01 站点161 明细2735",
+              "第2.6步 餐箱消毒构建: 失败(退出码 1) · 站点179 名册10990"
+            ],
+            "block_time": "2026-10-09 07:00:03"
           }
         ],
         "action_stats": {
-          "ok_count": 3,
-          "alert_count": 1,
+          "ok_count": 2,
+          "alert_count": 2,
           "missing_count": 0,
           "total": 4,
           "all_ok": false
@@ -550,7 +558,7 @@
             "latest": "latest.json",
             "mtime": "2026-10-09 06:58:59",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -727,7 +735,7 @@
             "latest": "update_stations.log",
             "mtime": "2026-10-09 06:57:29",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -763,7 +771,7 @@
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-10-09 06:58:13",
+        "data_mtime": "2026-10-09 07:00:07",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -774,7 +782,7 @@
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-10-09 06:58:13",
+            "mtime": "2026-10-09 07:00:07",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -910,7 +918,7 @@
             "latest": "checkup_files_data.js",
             "mtime": "2026-09-23 14:51:37",
             "max_age_hours": 168,
-            "age_hours": 376.1,
+            "age_hours": 376.2,
             "ok": false,
             "note": "scan_checkup.py 手动扫描（用户按需触发），按 7 天兜底",
             "fail_hits": [],
@@ -1010,7 +1018,7 @@
             "latest": "equity_slim_data.js",
             "mtime": "2026-10-08 16:09:23",
             "max_age_hours": 26,
-            "age_hours": 14.8,
+            "age_hours": 14.9,
             "ok": true,
             "note": "8421 按工作台源 mtime 自动重建",
             "fail_hits": [],
@@ -1036,7 +1044,7 @@
             "latest": "latest.json",
             "mtime": "2026-10-09 06:58:59",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1062,7 +1070,7 @@
             "latest": "compliance.json",
             "mtime": "2026-09-28 05:46:42",
             "max_age_hours": 216,
-            "age_hours": 265.2,
+            "age_hours": 265.3,
             "ok": false,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
@@ -1075,7 +1083,7 @@
             "latest": "accident.json",
             "mtime": "2026-09-28 05:46:42",
             "max_age_hours": 216,
-            "age_hours": 265.2,
+            "age_hours": 265.3,
             "ok": false,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
@@ -1088,7 +1096,7 @@
             "latest": "insurance_rate_analysis.html",
             "mtime": "2026-09-06 11:04:24",
             "max_age_hours": 216,
-            "age_hours": 787.9,
+            "age_hours": 788.0,
             "ok": false,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
