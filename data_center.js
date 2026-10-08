@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-10-09 06:55:43",
+  "updated_at": "2026-10-09 06:57:29",
   "action_summary": {
     "total": 23,
     "ok": 17,
@@ -112,7 +112,7 @@ window.DATA_CENTER = {
             "latest": "update_log.txt",
             "mtime": "2026-10-09 06:52:48",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -211,10 +211,10 @@ window.DATA_CENTER = {
           "履约项目\\充换电血压_data.js"
         ],
         "data_mtime": "2026-10-09 06:52:10",
-        "all_synced": true,
-        "synced_count": 7,
+        "all_synced": false,
+        "synced_count": 5,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 2,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
@@ -224,9 +224,9 @@ window.DATA_CENTER = {
           },
           {
             "type": "巡检工单列表",
-            "latest": "巡检工单列表_1791425388744.xls",
-            "mtime": "2026-10-08 10:09:59",
-            "synced": true
+            "latest": "巡检工单列表_1791500190690.xls",
+            "mtime": "2026-10-09 06:57:01",
+            "synced": false
           },
           {
             "type": "巡检平台站点检核",
@@ -242,9 +242,9 @@ window.DATA_CENTER = {
           },
           {
             "type": "骑手排班明细数据",
-            "latest": "骑手排班明细数据_49896033_20261008_064618.xlsx",
-            "mtime": "2026-10-08 06:46:34",
-            "synced": true
+            "latest": "骑手排班明细数据_49896033_20261009_065538.xlsx",
+            "mtime": "2026-10-09 06:55:58",
+            "synced": false
           },
           {
             "type": "表单列表",
@@ -440,16 +440,16 @@ window.DATA_CENTER = {
           "交通安全行为看板\\data.js"
         ],
         "data_mtime": "2026-10-09 06:52:46",
-        "all_synced": true,
-        "synced_count": 1,
+        "all_synced": false,
+        "synced_count": 0,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "骑手排班明细数据",
-            "latest": "骑手排班明细数据_49896033_20261008_064618.xlsx",
-            "mtime": "2026-10-08 06:46:34",
-            "synced": true
+            "latest": "骑手排班明细数据_49896033_20261009_065538.xlsx",
+            "mtime": "2026-10-09 06:55:58",
+            "synced": false
           }
         ],
         "actions": [
@@ -665,7 +665,7 @@ window.DATA_CENTER = {
             "latest": "110_data.js",
             "mtime": "2026-10-08 17:30:24",
             "max_age_hours": 30,
-            "age_hours": 13.4,
+            "age_hours": 13.5,
             "ok": true,
             "note": "盘中守护 11:30/17:30 两次（看板外壳html长期不变，改盯数据文件）",
             "fail_hits": [],
@@ -707,7 +707,7 @@ window.DATA_CENTER = {
         "data_files": [
           "全国站点地图\\data.js"
         ],
-        "data_mtime": "2026-10-09 06:47:04",
+        "data_mtime": "2026-10-09 06:57:29",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -716,7 +716,7 @@ window.DATA_CENTER = {
           {
             "type": "美团站点快照",
             "latest": "meituan_stations_snapshot.json",
-            "mtime": "2026-10-09 06:47:02",
+            "mtime": "2026-10-09 06:57:27",
             "synced": true
           }
         ],
@@ -725,9 +725,9 @@ window.DATA_CENTER = {
             "label": "美团站点快照更新",
             "path": "全国站点地图\\update_stations.log",
             "latest": "update_stations.log",
-            "mtime": "2026-10-09 06:47:04",
+            "mtime": "2026-10-09 06:57:29",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -763,7 +763,7 @@ window.DATA_CENTER = {
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-10-09 06:55:06",
+        "data_mtime": "2026-10-09 06:56:08",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -774,7 +774,7 @@ window.DATA_CENTER = {
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-10-09 06:55:06",
+            "mtime": "2026-10-09 06:56:08",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
