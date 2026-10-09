@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-10-10 07:09:36",
+  "updated_at": "2026-10-10 07:10:23",
   "action_summary": {
     "total": 23,
     "ok": 16,
@@ -21,16 +21,16 @@ window.DATA_CENTER = {
           "交通安全行为看板\\data.js"
         ],
         "data_mtime": "2026-10-10 06:59:57",
-        "all_synced": true,
-        "synced_count": 13,
+        "all_synced": false,
+        "synced_count": 12,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "站点-戴盔",
-            "latest": "戴盔_2026-10-08-2026-10-08(统计日期)_1791500790455.xlsx",
-            "mtime": "2026-10-09 07:06:34",
-            "synced": true
+            "latest": "戴盔_2026-10-09-2026-10-09(统计日期)_1791587411691.xlsx",
+            "mtime": "2026-10-10 07:10:16",
+            "synced": false
           },
           {
             "type": "站点-速度",
@@ -110,9 +110,9 @@ window.DATA_CENTER = {
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-10-10 06:59:59",
+            "mtime": "2026-10-10 07:10:05",
             "max_age_hours": 26,
-            "age_hours": 0.2,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -127,7 +127,7 @@ window.DATA_CENTER = {
           "total": 1,
           "all_ok": true
         },
-        "all_healthy": true
+        "all_healthy": false
       },
       "boards": [
         {
@@ -277,9 +277,9 @@ window.DATA_CENTER = {
             "label": "带刀巡检数据构建",
             "path": "履约项目\\knife_rider_data.js",
             "latest": "knife_rider_data.js",
-            "mtime": "2026-10-10 07:02:28",
+            "mtime": "2026-10-10 07:09:38",
             "max_age_hours": 13,
-            "age_hours": 0.1,
+            "age_hours": 0.0,
             "ok": true,
             "note": "每日 07:30/15:00 两次(随总控第2.5步)",
             "fail_hits": [],
@@ -593,7 +593,7 @@ window.DATA_CENTER = {
             "latest": "insurance_data.js",
             "mtime": "2026-10-08 07:30:51",
             "max_age_hours": 72,
-            "age_hours": 47.6,
+            "age_hours": 47.7,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -767,7 +767,7 @@ window.DATA_CENTER = {
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-10-10 07:06:34",
+        "data_mtime": "2026-10-10 07:09:38",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -778,9 +778,9 @@ window.DATA_CENTER = {
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-10-10 07:06:34",
+            "mtime": "2026-10-10 07:09:38",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -846,7 +846,7 @@ window.DATA_CENTER = {
             "latest": "monthly_summary.js",
             "mtime": "2026-10-10 06:55:16",
             "max_age_hours": 72,
-            "age_hours": 0.2,
+            "age_hours": 0.3,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
