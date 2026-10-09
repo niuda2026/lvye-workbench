@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-10-10 06:50:29",
+  "updated_at": "2026-10-10 06:51:33",
   "action_summary": {
     "total": 23,
     "ok": 15,
@@ -110,7 +110,7 @@ window.DATA_CENTER = {
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-10-10 06:50:29",
+            "mtime": "2026-10-10 06:51:33",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -665,7 +665,7 @@ window.DATA_CENTER = {
             "latest": "110_data.js",
             "mtime": "2026-10-09 17:30:24",
             "max_age_hours": 30,
-            "age_hours": 13.3,
+            "age_hours": 13.4,
             "ok": true,
             "note": "盘中守护 11:30/17:30 两次（看板外壳html长期不变，改盯数据文件）",
             "fail_hits": [],
@@ -727,7 +727,7 @@ window.DATA_CENTER = {
             "latest": "update_stations.log",
             "mtime": "2026-10-10 06:47:48",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -763,7 +763,7 @@ window.DATA_CENTER = {
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-10-10 06:49:30",
+        "data_mtime": "2026-10-10 06:51:30",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -774,7 +774,7 @@ window.DATA_CENTER = {
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-10-10 06:49:30",
+            "mtime": "2026-10-10 06:51:30",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
