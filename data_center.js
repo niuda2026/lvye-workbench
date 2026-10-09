@@ -1,12 +1,11 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-10-10 07:12:04",
+  "updated_at": "2026-10-10 07:12:49",
   "action_summary": {
     "total": 23,
-    "ok": 16,
-    "alert": 7,
+    "ok": 17,
+    "alert": 6,
     "missing": 0,
     "alert_groups": [
-      "履约项目",
       "骑手管理",
       "履约驾驶舱",
       "安全周报"
@@ -110,7 +109,7 @@ window.DATA_CENTER = {
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-10-10 07:12:04",
+            "mtime": "2026-10-10 07:12:49",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -266,7 +265,7 @@ window.DATA_CENTER = {
             "latest": "充换电血压_data.js",
             "mtime": "2026-10-10 07:09:28",
             "max_age_hours": 13,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
@@ -279,7 +278,7 @@ window.DATA_CENTER = {
             "latest": "knife_rider_data.js",
             "mtime": "2026-10-10 07:09:38",
             "max_age_hours": 13,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "每日 07:30/15:00 两次(随总控第2.5步)",
             "fail_hits": [],
@@ -303,28 +302,24 @@ window.DATA_CENTER = {
             "label": "每日刷新·抓取成败",
             "path": "daily_refresh_log.txt",
             "latest": "daily_refresh_log.txt",
-            "mtime": "2026-10-10 07:05:50",
+            "mtime": "2026-10-10 07:12:18",
             "max_age_hours": 13,
-            "age_hours": 0.1,
-            "ok": false,
+            "age_hours": 0.0,
+            "ok": true,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
-            "fail_hits": [
-              "退出码1"
-            ],
-            "fail_lines": [
-              "第1步 烽火台当月充电/换电/血压: 全部方案失败 · S1-headless自起→退出码1(数据未更新(fetchTime=2026-10-09T22:49:22.279Z)) / S1b-headless重试→退出码1(数据未更新(fetchTime=2026-10-09T22:49:22.279Z)) / S2-"
-            ],
-            "block_time": "2026-10-10 07:05:50"
+            "fail_hits": [],
+            "fail_lines": [],
+            "block_time": "2026-10-10 07:12:18"
           }
         ],
         "action_stats": {
-          "ok_count": 3,
-          "alert_count": 1,
+          "ok_count": 4,
+          "alert_count": 0,
           "missing_count": 0,
           "total": 4,
-          "all_ok": false
+          "all_ok": true
         },
-        "all_healthy": false
+        "all_healthy": true
       },
       "boards": [
         {
@@ -731,7 +726,7 @@ window.DATA_CENTER = {
             "latest": "update_stations.log",
             "mtime": "2026-10-10 06:57:42",
             "max_age_hours": 26,
-            "age_hours": 0.2,
+            "age_hours": 0.3,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -767,7 +762,7 @@ window.DATA_CENTER = {
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-10-10 07:10:26",
+        "data_mtime": "2026-10-10 07:12:36",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -778,7 +773,7 @@ window.DATA_CENTER = {
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-10-10 07:10:26",
+            "mtime": "2026-10-10 07:12:36",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -914,7 +909,7 @@ window.DATA_CENTER = {
             "latest": "checkup_files_data.js",
             "mtime": "2026-09-23 14:51:37",
             "max_age_hours": 168,
-            "age_hours": 400.3,
+            "age_hours": 400.4,
             "ok": false,
             "note": "scan_checkup.py 手动扫描（用户按需触发），按 7 天兜底",
             "fail_hits": [],
@@ -1014,7 +1009,7 @@ window.DATA_CENTER = {
             "latest": "equity_slim_data.js",
             "mtime": "2026-10-08 16:09:23",
             "max_age_hours": 26,
-            "age_hours": 39.0,
+            "age_hours": 39.1,
             "ok": false,
             "note": "8421 按工作台源 mtime 自动重建",
             "fail_hits": [],
