@@ -1495,6 +1495,9 @@ function renderStandardTab(tabId, dataVar, columns, extra, headerGroups) {
     } else if (columns[k].isBad) {
       var b = fbad(totals[key], totals[badDenKey(key)]);
       rows += '<td class="'+b.cls+'" title="'+b.title+'">'+b.text+'</td>';
+    } else if (columns[k].isSafetyHl) {
+      var nhv = rc(totals[key]);
+      rows += nhv > 0 ? '<td class="safety-hl">'+nhv+'</td>' : '<td>'+fr(totals[key])+'</td>';
     } else {
       rows += '<td>'+fr(totals[key])+'</td>';
     }
@@ -1534,6 +1537,9 @@ function renderStandardTab(tabId, dataVar, columns, extra, headerGroups) {
         } else if (columns[k].isBad) {
           var b = fbad(ra[key], ra[badDenKey(key)]);
           rows += '<td class="'+b.cls+'" title="'+b.title+'">'+b.text+'</td>';
+        } else if (columns[k].isSafetyHl) {
+          var nhv = rc(ra[key]);
+          rows += nhv > 0 ? '<td class="safety-hl">'+nhv+'</td>' : '<td>'+fr(ra[key])+'</td>';
         } else {
           rows += '<td>'+fr(ra[key])+'</td>';
         }
@@ -1569,6 +1575,9 @@ function renderStandardTab(tabId, dataVar, columns, extra, headerGroups) {
         } else if (columns[k].isBad) {
           var b = fbad(ma[key], ma[badDenKey(key)]);
           rows += '<td class="'+b.cls+'" title="'+b.title+'">'+b.text+'</td>';
+        } else if (columns[k].isSafetyHl) {
+          var nhv = rc(ma[key]);
+          rows += nhv > 0 ? '<td class="safety-hl">'+nhv+'</td>' : '<td>'+fr(ma[key])+'</td>';
         } else {
           rows += '<td>'+fr(ma[key])+'</td>';
         }
@@ -3742,14 +3751,14 @@ function renderBoxTab() {
     // 有单骑手达成（黄色组）
     {key:'yx_den', label:'有单骑手数', isPct:false, isSumRatio:false},
     {key:'q_yx', label:'已消毒', isPct:false, isSumRatio:false},
-    {key:'rej_yx', label:'驳回数', isPct:false, isSumRatio:false},
+    {key:'rej_yx', label:'驳回数', isPct:false, isSumRatio:false, isSafetyHl:true},
     {key:'pend_yx', label:'审核中', isPct:false, isSumRatio:false},
     {key:'cov_yx', label:'覆盖率', isPct:true, isSumRatio:true},
     {key:'comp_yx', label:'合规率', isPct:true, isSumRatio:true},
     // 有效骑手达成（蓝色组）
     {key:'eff_den', label:'有效骑手数', isPct:false, isSumRatio:false},
     {key:'q_eff', label:'已消毒', isPct:false, isSumRatio:false},
-    {key:'rej_eff', label:'驳回数', isPct:false, isSumRatio:false},
+    {key:'rej_eff', label:'驳回数', isPct:false, isSumRatio:false, isSafetyHl:true},
     {key:'pend_eff', label:'审核中', isPct:false, isSumRatio:false},
     {key:'cov_eff', label:'覆盖率', isPct:true, isSumRatio:true},
     {key:'comp_eff', label:'合规率', isPct:true, isSumRatio:true},
