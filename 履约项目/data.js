@@ -32608,7 +32608,7 @@ var SITE_INFO = {
   }
 };
 
-var LATEST_DATE = "10-11";
+var LATEST_DATE = "10-12";
 
 var REGION_ORDER = ["华北一区", "华北二区", "华北三区", "华东大区", "中南大区"];
 
