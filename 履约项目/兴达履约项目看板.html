@@ -996,17 +996,17 @@ tr.cb-row-noup:hover td{background:#ffefef}
   <div class="pagination" id="pagination-rider"></div>
 </div>
 
-<script src="D:/兴达数据库/交通安全行为看板/data.js"></script>
-<script src="D:/兴达数据库/履约项目/data.js"></script>
-<script src="D:/兴达数据库/履约项目/充换电血压_data.js"></script>
-<script src="D:/兴达数据库/履约项目/knife_rider_data.js"></script>
-<script src="D:/兴达数据库/履约项目/box_rider_data.js"></script>
-<script src="D:/兴达数据库/履约项目/inspection_data.js"></script>
+<script src="../交通安全行为看板/data.js"></script>
+<script src="data.js"></script>
+<script src="充换电血压_data.js"></script>
+<script src="knife_rider_data.js"></script>
+<script src="box_rider_data.js"></script>
+<script src="inspection_data.js"></script>
 <!-- 巡检平台 · 日维度实时数据（烽火巡检平台抓取聚合，inspection/build_inspection_v2.py 生成） -->
-<script src="D:/兴达数据库/履约项目/inspection_daily_data.js"></script>
-<script src="D:/兴达数据库/履约项目/penalty_weekly.js"></script>
-<script src="D:/兴达数据库/履约项目/penalty_monthly.js"></script>
-<script src="D:/兴达数据库/履约项目/morning_review_data.js"></script>
+<script src="inspection_daily_data.js"></script>
+<script src="penalty_weekly.js"></script>
+<script src="penalty_monthly.js"></script>
+<script src="morning_review_data.js"></script>
 <!-- 截图库 -->
 <script src="../_libs/echarts-5.5.0.min.js"></script>
 <script src="../_libs/html2canvas-1.4.1.min.js"></script>
@@ -1084,6 +1084,11 @@ function fbad(nv, dv) {
 // ─── 维度信息 ──────────────────────────────────────────────
 function getSiteInfo(siteName) {
   if (typeof SITE_INFO !== 'undefined' && SITE_INFO[siteName]) return SITE_INFO[siteName];
+  // SITE_INFO 未收录的新组织（如新开的集约配送站）：回退用 MR_DATA 里 BI 行自带的大区/区域/城市
+  if (typeof MR_DATA !== 'undefined' && MR_DATA && MR_DATA[siteName]) {
+    var m = MR_DATA[siteName];
+    if (m && (m.region || m.city)) return {大区: m.region || '', 区域: m.subr || '', 城市: m.city || ''};
+  }
   return {大区:'',区域:'',城市:''};
 }
 function siteInfoCols(siteName) {
