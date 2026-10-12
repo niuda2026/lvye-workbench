@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-13 06:55:04",
+  "updated_at": "2026-10-13 06:55:09",
   "action_summary": {
     "total": 23,
     "ok": 15,
@@ -23,9 +23,9 @@
         ],
         "data_mtime": "2026-10-13 06:54:35",
         "all_synced": false,
-        "synced_count": 12,
+        "synced_count": 11,
         "missing_count": 0,
-        "unsynced_count": 1,
+        "unsynced_count": 2,
         "sources": [
           {
             "type": "站点-戴盔",
@@ -65,9 +65,9 @@
           },
           {
             "type": "骑手维度-闯红灯",
-            "latest": "_闯红灯-骑手维度_2026-10-11-2026-10-11(统计日期)_1791759619930.xlsx",
-            "mtime": "2026-10-12 07:02:27",
-            "synced": true
+            "latest": "_闯红灯-骑手维度_2026-10-12-2026-10-12(统计日期)_1791845690491.xlsx",
+            "mtime": "2026-10-13 06:55:06",
+            "synced": false
           },
           {
             "type": "骑手维度-逆行",
