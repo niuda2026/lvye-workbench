@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-13 06:54:39",
+  "updated_at": "2026-10-13 06:55:04",
   "action_summary": {
     "total": 23,
     "ok": 15,
@@ -22,10 +22,10 @@
           "交通安全行为看板\\data.js"
         ],
         "data_mtime": "2026-10-13 06:54:35",
-        "all_synced": true,
-        "synced_count": 13,
+        "all_synced": false,
+        "synced_count": 12,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "站点-戴盔",
@@ -41,9 +41,9 @@
           },
           {
             "type": "站点-闯红灯",
-            "latest": "_闯红灯_2026-10-11-2026-10-11(统计日期)_1791759610083.xlsx",
-            "mtime": "2026-10-12 07:00:14",
-            "synced": true
+            "latest": "_闯红灯_2026-10-12-2026-10-12(统计日期)_1791845680120.xlsx",
+            "mtime": "2026-10-13 06:54:43",
+            "synced": false
           },
           {
             "type": "站点-逆行",
@@ -128,7 +128,7 @@
           "total": 1,
           "all_ok": true
         },
-        "all_healthy": true
+        "all_healthy": false
       },
       "boards": [
         {
@@ -267,7 +267,7 @@
             "latest": "充换电血压_data.js",
             "mtime": "2026-10-12 15:03:54",
             "max_age_hours": 13,
-            "age_hours": 15.8,
+            "age_hours": 15.9,
             "ok": false,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
@@ -280,7 +280,7 @@
             "latest": "knife_rider_data.js",
             "mtime": "2026-10-12 15:04:03",
             "max_age_hours": 13,
-            "age_hours": 15.8,
+            "age_hours": 15.9,
             "ok": false,
             "note": "每日 07:30/15:00 两次(随总控第2.5步)",
             "fail_hits": [],
@@ -387,7 +387,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-10-13 06:51:59",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -843,7 +843,7 @@
             "latest": "monthly_summary.js",
             "mtime": "2026-10-13 06:52:02",
             "max_age_hours": 72,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
