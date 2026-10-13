@@ -7,7 +7,7 @@
       "mobile": "9024",
       "code": "",
       "role": "安全专员",
-      "area": "中南大区/安徽区域/马鞍山",
+      "area": "中南大区/安徽区域/合肥/马鞍山",
       "boards": [
         "safe_equity",
         "safe_station",
@@ -120,7 +120,7 @@
       "mobile": "2720",
       "code": "",
       "role": "安全专员",
-      "area": "中南大区/山东区域",
+      "area": "中南大区/山东区域/枣庄/青岛/临沂",
       "boards": [
         "safe_equity",
         "safe_station",
@@ -141,7 +141,7 @@
       "mobile": "8818",
       "code": "",
       "role": "安全专员",
-      "area": "中南大区/安徽区域",
+      "area": "中南大区/安徽区域/黄山/滁州/蚌埠/铜陵/阜阳",
       "boards": [
         "safe_equity",
         "safe_station",
@@ -290,7 +290,7 @@
       "mobile": "7465",
       "code": "",
       "role": "安全专员",
-      "area": "华北一区/辽宁区域",
+      "area": "华北一区/辽宁区域/锦州/阜新",
       "boards": [
         "safe_equity",
         "safe_station",
@@ -312,7 +312,7 @@
       "mobile": "2895",
       "code": "",
       "role": "安全专员",
-      "area": "华北二区/河南区域",
+      "area": "华北二区/河南区域/郑州/商丘/信阳",
       "boards": [
         "safe_equity",
         "safe_station",
@@ -441,7 +441,7 @@
       "mobile": "1626",
       "code": "",
       "role": "安全专员",
-      "area": "兴达总部/华北三区/中西区域",
+      "area": "兴达总部/华北三区/中西区域/太原/运城",
       "admin": true
     },
     {
@@ -470,7 +470,7 @@
       "mobile": "0320",
       "code": "",
       "role": "安全专员",
-      "area": "华北一区/黑吉区域",
+      "area": "华北一区/黑吉区域/长春",
       "boards": [
         "safe_equity",
         "safe_station",
@@ -484,27 +484,6 @@
       ],
       "areas": [
         "华北一区"
-      ]
-    },
-    {
-      "name": "田发发",
-      "mobile": "2257",
-      "code": "",
-      "role": "安全专员",
-      "area": "中南大区/安徽区域/阜阳",
-      "boards": [
-        "safe_equity",
-        "safe_station",
-        "safe_rider",
-        "safe_highway",
-        "project",
-        "clothing_main",
-        "clothing_rate",
-        "rider_detail",
-        "rider_control"
-      ],
-      "areas": [
-        "中南大区"
       ]
     },
     {
