@@ -433,7 +433,18 @@ tr.cb-row-noup:hover td{background:#ffefef}
 
   <div class="summary-row" id="summary-cards-safety"></div>
 
-  <!-- ① 扣分透视区（v2 新增：扣分原因来自工单详情，不含照片/视频） -->
+  <!-- ① 巡检单据明细（当日提交检查：全量单据，含合规单，不再只有扣分） -->
+  <div id="insp-tickets-block" style="margin-top:16px;">
+    <div class="insp-h">巡检单据明细（当日提交检查）<span class="insp-h-sub" id="insp-tickets-sub"></span></div>
+    <div class="table-wrap" style="max-height:360px;border:1px solid #e3eaf3;border-radius:6px;">
+      <table class="dt" id="tbl-insp-tickets">
+        <thead id="thead-insp-tickets"></thead>
+        <tbody id="tbody-insp-tickets"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ② 扣分透视区（v2 新增：扣分原因来自工单详情，不含照片/视频） -->
   <div id="insp-deduct-block" style="margin-top:16px;">
     <div class="insp-h">扣分透视区<span class="insp-h-sub" id="insp-deduct-sub"></span></div>
     <div class="insp-deduct-grid">
@@ -996,17 +1007,17 @@ tr.cb-row-noup:hover td{background:#ffefef}
   <div class="pagination" id="pagination-rider"></div>
 </div>
 
-<script src="D:/兴达数据库/交通安全行为看板/data.js"></script>
-<script src="D:/兴达数据库/履约项目/data.js"></script>
-<script src="D:/兴达数据库/履约项目/充换电血压_data.js"></script>
-<script src="D:/兴达数据库/履约项目/knife_rider_data.js"></script>
-<script src="D:/兴达数据库/履约项目/box_rider_data.js"></script>
-<script src="D:/兴达数据库/履约项目/inspection_data.js"></script>
+<script src="../交通安全行为看板/data.js"></script>
+<script src="data.js"></script>
+<script src="充换电血压_data.js"></script>
+<script src="knife_rider_data.js"></script>
+<script src="box_rider_data.js"></script>
+<script src="inspection_data.js"></script>
 <!-- 巡检平台 · 日维度实时数据（烽火巡检平台抓取聚合，inspection/build_inspection_v2.py 生成） -->
-<script src="D:/兴达数据库/履约项目/inspection_daily_data.js"></script>
-<script src="D:/兴达数据库/履约项目/penalty_weekly.js"></script>
-<script src="D:/兴达数据库/履约项目/penalty_monthly.js"></script>
-<script src="D:/兴达数据库/履约项目/morning_review_data.js"></script>
+<script src="inspection_daily_data.js"></script>
+<script src="penalty_weekly.js"></script>
+<script src="penalty_monthly.js"></script>
+<script src="morning_review_data.js"></script>
 <!-- 截图库 -->
 <script src="../_libs/echarts-5.5.0.min.js"></script>
 <script src="../_libs/html2canvas-1.4.1.min.js"></script>
@@ -1740,9 +1751,11 @@ function mrChip(cell) {
     if (cell.times > 1) tip += ' · 当日' + cell.times + '场';
   }
   if (cell.content) tip += (tip ? ' · ' : '') + '内容: ' + cell.content;
+  if (cell.viol) tip += (tip ? ' · ' : '') + '⚠ 违反时限规则: ' + cell.viol;
   var style = m[1] ? ('background:' + m[1] + ';color:' + m[2] + ';') : '';
   return '<span style="display:inline-block;padding:2px 10px;border-radius:10px;font-size:12px;font-weight:600;white-space:nowrap;' + style + '"'
-    + (tip ? ' title="' + escHtml(tip) + '"' : '') + '>' + m[0] + '</span>';
+    + (tip ? ' title="' + escHtml(tip) + '"' : '') + '>' + m[0] + '</span>'
+    + (cell.viol ? ' <span style="color:#b91c1c;font-weight:700;font-size:11px;cursor:help" title="' + escHtml('违反提交时限: ' + cell.viol + '（不早于7:00 / 首次≤12:00 / 第二次≤20:00）') + '">⚠时限</span>' : '');
 }
 
 function mrAggCell(exp, sub) {
@@ -1775,6 +1788,7 @@ function renderAuditView() {
     '<div class="card"><div class="c-label">今日未提交</div><div class="c-value" style="color:' + (todayMiss > 0 ? '#e64545' : '#2e9e5b') + '">' + todayMiss + ' 站</div></div>' +
     '<div class="card"><div class="c-label">近3天 待审核</div><div class="c-value" style="color:' + ((tot.pending || 0) > 0 ? '#b45309' : '#2e9e5b') + '">' + fr(tot.pending || 0) + '</div></div>' +
     '<div class="card"><div class="c-label">近3天 待申诉(驳回)</div><div class="c-value" style="color:' + ((tot.rejected || 0) > 0 ? '#e64545' : '#2e9e5b') + '">' + fr(tot.rejected || 0) + '</div></div>' +
+    '<div class="card"><div class="c-label">近3天 时限违规</div><div class="c-value" style="color:' + ((tot.viol || 0) > 0 ? '#b91c1c' : '#2e9e5b') + '">' + ((tot.viol || 0) > 0 ? '⚠ ' : '') + fr(tot.viol || 0) + '</div><div style="font-size:11px;color:#64748b">首次≤12:00·二次≤20:00·≥7:00</div></div>' +
     '<div class="card"><div class="c-label">近3天 已通过</div><div class="c-value" style="color:#15803d">' + fr(tot.pass || 0) + '</div></div>' +
     '<div class="card"><div class="c-label">近3天 按时提交率</div><div class="c-value">' + subRate.toFixed(1) + '%</div></div>';
 
@@ -1812,18 +1826,18 @@ function renderAuditView() {
   for (var d = 0; d < days.length; d++) {
     thead += '<th style="text-align:center;background:#0B4F8A;color:#fff">' + escHtml(days[d].date + ' 周' + days[d].weekday + (days[d].is_today ? ' ·今天' : '')) + '</th>';
   }
-  thead += '<th>应提交</th><th>已提交</th><th>未提交</th><th>已通过</th><th>待审核</th><th>待申诉</th><th>最近提交</th>';
+  thead += '<th>应提交</th><th>已提交</th><th>未提交</th><th>已通过</th><th>待审核</th><th>待申诉</th><th>时限违规</th><th>最近提交</th>';
   thead += '</tr>';
   document.getElementById('thead-morning').innerHTML = thead;
 
   // ── 聚合 ──
   function newAgg() {
-    var a = { expected:0, submitted:0, missing:0, due:0, pass:0, pending:0, rejected:0, last:'' };
+    var a = { expected:0, submitted:0, missing:0, due:0, pass:0, pending:0, rejected:0, viol:0, last:'' };
     for (var d = 0; d < days.length; d++) { a['exp_' + d] = 0; a['sub_' + d] = 0; }
     return a;
   }
   function acc(a, v) {
-    ['expected','submitted','missing','due','pass','pending','rejected'].forEach(function(k){ a[k] += rc(v[k]); });
+    ['expected','submitted','missing','due','pass','pending','rejected','viol'].forEach(function(k){ a[k] += rc(v[k]); });
     for (var d = 0; d < days.length; d++) {
       var cell = v.days[days[d].full] || {};
       a['exp_' + d] += cell.expected ? 1 : 0;
@@ -1858,6 +1872,7 @@ function renderAuditView() {
     html += '<td style="color:#15803d">' + fr(a.pass) + '</td>';
     html += '<td style="color:' + (a.pending > 0 ? '#b45309' : '#334155') + '">' + fr(a.pending) + '</td>';
     html += '<td style="color:' + (a.rejected > 0 ? '#e64545;font-weight:700' : '#334155') + '">' + fr(a.rejected) + '</td>';
+    html += '<td style="color:' + (a.viol > 0 ? '#b91c1c;font-weight:700' : '#334155') + '">' + (a.viol > 0 ? '⚠ ' : '') + fr(a.viol) + '</td>';
     html += '<td style="font-size:12px;color:#64748b">' + escHtml(a.last || '-') + '</td>';
     return html;
   }
@@ -1906,6 +1921,7 @@ function renderAuditView() {
       '<td style="color:#15803d">' + fr(v.pass) + '</td>' +
       '<td style="color:' + (v.pending > 0 ? '#b45309' : '#334155') + '">' + fr(v.pending) + '</td>' +
       '<td style="color:' + (v.rejected > 0 ? '#e64545;font-weight:700' : '#334155') + '">' + fr(v.rejected) + '</td>' +
+      '<td style="color:' + ((v.viol || 0) > 0 ? '#b91c1c;font-weight:700' : '#334155') + '">' + ((v.viol || 0) > 0 ? '⚠ ' : '') + fr(v.viol || 0) + '</td>' +
       '<td style="font-size:12px;color:#64748b">' + escHtml(v.last_submit || '-') + '</td>' +
       '</tr>';
   }
@@ -1922,6 +1938,7 @@ function renderAuditView() {
     '<span style="background:#dbeafe;color:#1d4ed8;padding:1px 8px;border-radius:8px;margin:0 3px">今日待提交(未到20:00)</span>' +
     '<span style="color:#94a3b8;margin:0 3px">— = 非任务日</span>' +
     '<span style="background:#f0fdf4;color:#16a34a;padding:1px 8px;border-radius:8px;margin:0 3px">加场 = 非任务日提交</span>' +
+    '<span style="color:#b91c1c;font-weight:700;margin:0 3px">⚠时限 = 违反提交时限（不早于7:00 / 首次提交≤12:00 / 第二次早会≤20:00）</span>' +
     '</div>';
   var wrap = document.querySelector('#panel-morning .table-wrap');
   if (wrap && !document.getElementById('mr-legend')) {
@@ -2205,6 +2222,7 @@ function renderInspectionSub() {
   if (document.getElementById('insp-types-fold') && document.getElementById('insp-types-fold').open) inspRenderCheckTypes(days);
   inspRenderMiss(days);
   inspRenderAlerts(days);
+  inspRenderTickets(days);
   inspFixZeroRate(days);
 }
 // 兜底：INSP2 数据文件缺失时，退回旧的 BI 归档表
@@ -2476,6 +2494,44 @@ function inspRenderAlerts(days) {
   tb.innerHTML = body;
   var sub = document.getElementById('insp-alert-sub');
   if (sub) sub.textContent = '共 ' + rows.length + ' 单未闭环（待整改 / 超时未整改 / 整改驳回）';
+}
+function inspRenderTickets(days) {
+  var M = inspMeta(), tb = document.getElementById('tbody-insp-tickets');
+  if (!tb) return;
+  var mask = inspDayMask(days);
+  var rows = (window.INSP2_TICKETS || []).filter(function (x) {
+    return mask[x[0]] && !isFiltered(x[1], 'safety');
+  });
+  rows.sort(function (a, b) { return b[11] - a[11]; });
+  var fmtD = function (ts) {
+    var d = new Date(ts * 1000);
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0') + ' '
+      + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+  };
+  var body = '', nAll = rows.length, nDeduct = 0, nOpen = 0, nCompliant = 0;
+  rows.forEach(function (x) {
+    var deduct = x[6] < x[7];
+    if (deduct) nDeduct++; else nCompliant++;
+    if (x[4] === 70 || x[4] === 90 || x[4] === 110) nOpen++;
+    body += '<tr>'
+      + '<td>' + escHtml(M.days[x[0]] || '-') + '</td>'
+      + '<td>' + escHtml(x[1]) + '</td>'
+      + '<td>' + escHtml((M.roles || [])[x[3]] || '-') + '</td>'
+      + '<td>' + escHtml(x[9]) + '</td>'
+      + '<td class="' + inspDeductCls(x[4]) + '" style="font-weight:600;">' + inspDeductStatus(x[4]) + '</td>'
+      + '<td' + (deduct ? ' class="rr"' : ' class="rg"') + '>' + fr(x[6]) + ' / ' + fr(x[7]) + (deduct ? ' ⚠' : ' ✓') + '</td>'
+      + '<td>' + escHtml(String(x[2])) + '</td>'
+      + '<td>' + fmtD(x[11]) + '</td>'
+      + '</tr>';
+  });
+  if (!body) body = '<tr><td colspan="8" class="empty">本窗口无巡检单据</td></tr>';
+  document.getElementById('thead-insp-tickets').innerHTML = '<tr><th>日期</th><th style="min-width:160px;">站点</th>'
+    + '<th style="min-width:130px;">提交人岗位</th><th style="min-width:110px;">检查方式</th>'
+    + '<th>状态</th><th>合规项 / 检查项</th><th>单据号</th><th style="min-width:120px;">提交时间</th></tr>';
+  tb.innerHTML = body;
+  var sub = document.getElementById('insp-tickets-sub');
+  if (sub) sub.textContent = '本窗口提交 ' + nAll + ' 单 · 扣分 ' + nDeduct + ' 单 · 合规 ' + nCompliant
+    + ' 单 · 未闭环 ' + nOpen + ' 单（点「今日」按钮可只看当日提交）';
 }
 function inspCheckName(code) {
   var M = inspMeta(), dict = (M.checkTypes && M.checkTypes[String(INSP_OBJ)]) || [];
@@ -5986,7 +6042,7 @@ function closeCheckRulesModal() {
 </li>
 <li>
 <b>早会提交以系统签到时间为准：</b><br>
-不早于当日 <span class="highlight">7:00</span>，最晚不晚于 <span class="highlight">20:00</span>。<br>
+不早于当日 <span class="highlight">7:00</span>；<span class="highlight">首次提交（当日第一次早会）需在中午 12:00 前</span>；<span class="highlight">第二次早会最晚不晚于 20:00</span>。<br>
 未在规定时间内提交早会，视为<span class="highlight">"未召开早会"</span>，按 <span class="highlight">1000元/站/天</span>承担违约责任。
 </li>
 <li>
