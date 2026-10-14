@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-10-15 07:17:43",
+  "updated_at": "2026-10-15 07:18:21",
   "action_summary": {
     "total": 23,
     "ok": 16,
@@ -292,7 +292,7 @@ window.DATA_CENTER = {
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-10-15 07:03:10",
             "max_age_hours": 30,
-            "age_hours": 0.2,
+            "age_hours": 0.3,
             "ok": true,
             "note": "早间自动化重建(暂停BI抓取，改从M盘_审核明细_*.xlsx)",
             "fail_hits": [],
@@ -303,18 +303,21 @@ window.DATA_CENTER = {
             "label": "每日刷新·抓取成败",
             "path": "daily_refresh_log.txt",
             "latest": "daily_refresh_log.txt",
-            "mtime": "2026-10-15 06:59:49",
+            "mtime": "2026-10-15 07:18:00",
             "max_age_hours": 13,
-            "age_hours": 0.3,
+            "age_hours": 0.0,
             "ok": false,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
             "fail_hits": [
-              "失败(退出"
+              "退出码1",
+              "登录态失效"
             ],
             "fail_lines": [
-              "第2.6步 餐箱消毒构建: 失败(退出码 1) · 站点176 名册10749"
+              "第1步 烽火台当月充电/换电/血压: 全部方案失败 · S1-headless自起→退出码1(数据未更新(fetchTime=2026-10-14T22:46:34.006Z)) / S1b-headless重试→退出码1(数据未更新(fetchTime=2026-10-14T22:46:34.006Z)) / S2-",
+              "第1.5步 美团保险理赔抓取: h5guard 风控拦截或全城失败，保留旧数据     at UtilityScript.evaluate (<anonymous>:313:16) ⏎     at UtilityScript.<anonymous> (<anonymous>:1:44)] ⏎ [3/3] 落盘… ⏎ ",
+              "第2.8步 巡检平台日维度构建: 登录态失效(退出码3)·沿用上次巡检数据（原始文件未更新）"
             ],
-            "block_time": "2026-10-15 06:59:49"
+            "block_time": "2026-10-15 07:18:00"
           }
         ],
         "action_stats": {
@@ -390,7 +393,7 @@ window.DATA_CENTER = {
             "latest": "update_log.txt",
             "mtime": "2026-10-15 07:15:02",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -767,7 +770,7 @@ window.DATA_CENTER = {
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-10-15 07:16:13",
+        "data_mtime": "2026-10-15 07:18:12",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -778,7 +781,7 @@ window.DATA_CENTER = {
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-10-15 07:16:13",
+            "mtime": "2026-10-15 07:18:12",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -846,7 +849,7 @@ window.DATA_CENTER = {
             "latest": "monthly_summary.js",
             "mtime": "2026-10-15 07:15:06",
             "max_age_hours": 72,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
