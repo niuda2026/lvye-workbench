@@ -2644,10 +2644,16 @@ function inspCheckName(code) {
 //    数据 = INSP2_DEDUCT：[dayIdx, 站点, 表单ID, 状态, 扣分项数, 检查方式code, 提交ts]
 //    扣分原因原文 = INSP2_REASON（P2 工单详情抓取接入后由构建器注入），照片/视频不落
 function inspDeductStatus(st) {
-  return ({ 70: '待整改', 90: '超时未整改', 110: '整改驳回', 100: '整改通过', 80: '无需整改' })[st] || String(st);
+  // 优先用平台状态字典（INSP2_META.statuses，fetch 时抓取），兜底本地全量映射
+  var M = inspMeta();
+  if (M && M.statuses && M.statuses.length) {
+    for (var i = 0; i < M.statuses.length; i++) if (M.statuses[i][0] === st) return M.statuses[i][1];
+  }
+  return ({ 10:'已提交', 20:'待复核', 30:'待质检', 40:'待申诉', 50:'申诉待审核', 60:'整改待审核',
+    70:'待整改', 80:'无需整改', 90:'超时未整改', 100:'整改通过', 110:'整改驳回' })[st] || String(st);
 }
 function inspDeductCls(st) {
-  return ({ 70: 'ry', 90: 'rr', 110: 'rr', 100: 'rg' })[st] || '';
+  return ({ 40:'ry', 50:'ry', 60:'ry', 70:'ry', 90:'rr', 110:'rr', 100:'rg' })[st] || '';
 }
 function inspDeductReason(formId) {
   var R = window.INSP2_REASON;
