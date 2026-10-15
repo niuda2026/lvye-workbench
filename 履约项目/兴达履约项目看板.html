@@ -376,7 +376,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
       <span style="font-size:14px;font-weight:700;color:#1f3a5f;">早会驳回明细</span>
       <span id="mr-rej-sub" style="font-size:12px;color:#7d90a5;">（驳回记录 · 数据范围加载中…）</span>
       <span style="margin-left:12px;font-size:12px;color:#475569;">日期窗口：</span>
-      <button class="lv-btn" id="mr-rej-w1" onclick="mrRejSetWin(1)">昨日</button>
+      <button class="lv-btn" id="mr-rej-w3" onclick="mrRejSetWin(3)">近3日</button>
       <button class="lv-btn" id="mr-rej-w7" onclick="mrRejSetWin(7)">近7日</button>
       <button class="lv-btn" id="mr-rej-w14" onclick="mrRejSetWin(14)">近14日</button>
       <button class="lv-btn active" id="mr-rej-w0" onclick="mrRejSetWin(0)">本月全部</button>
@@ -1980,7 +1980,7 @@ function renderAuditView() {
 // ─── 早会驳回窗口 + 明细 ───
 // MR_REJ 数据源（2026-10-15 改）：M盘 Excel 驳回清单（morning_rej_m.js 覆盖 BI 版），
 // 用户每日放「截止昨日」清单 → watch_m_drive 触发 _build_meeting_m.py 重建
-var MR_REJ_WIN = 0;   // 0=本月全部；1=昨日；7/14=近N日
+var MR_REJ_WIN = 0;   // 0=本月全部；3/7/14=近N日(含今日，与下方早会提交明细近3天列对齐)
 function mrRejSetWin(n) {
   MR_REJ_WIN = n;
   renderMrRejBlock();
@@ -1997,14 +1997,13 @@ function renderMrRejBlock() {
   var meta = (typeof MR_META !== 'undefined') ? MR_META : null;
   var list = (typeof MR_REJ !== 'undefined' && MR_REJ) ? MR_REJ : [];
   var fromFull = meta && meta.rej_from ? meta.rej_from : null;
-  // 窗口上下限：0=本月全部(数据起点起)；1=昨日单日；7/14=近N日(含今日)
+  // 窗口下限：0=本月全部(数据起点起)；N=近N日(含今日，前天~今天)
   var winFrom = null, winTo = null;
-  if (MR_REJ_WIN === 1) { winFrom = mrRejIsoShift(1); winTo = winFrom; }
-  else if (MR_REJ_WIN > 1) { winFrom = mrRejIsoShift(MR_REJ_WIN - 1); }
+  if (MR_REJ_WIN > 0) { winFrom = mrRejIsoShift(MR_REJ_WIN - 1); }
   if (winFrom && fromFull && winFrom < fromFull) winFrom = fromFull;
 
   // 窗口按钮高亮
-  [1, 7, 14, 0].forEach(function (n) {
+  [3, 7, 14, 0].forEach(function (n) {
     var b = document.getElementById('mr-rej-w' + (n || '0'));
     if (b) b.classList[n === MR_REJ_WIN ? 'add' : 'remove']('active');
   });
@@ -2032,8 +2031,7 @@ function renderMrRejBlock() {
   if (!statusOk) shown = [];
 
   if (tagEl) {
-    var rangeTxt = (MR_REJ_WIN === 1) ? (winFrom || '-')
-      : (winFrom || (fromFull || '-')) + ' ~ ' + (meta && meta.rej_to ? meta.rej_to : mrRejIsoShift(0));
+    var rangeTxt = (winFrom || (fromFull || '-')) + ' ~ ' + (meta && meta.rej_to ? meta.rej_to : mrRejIsoShift(0));
     tagEl.textContent = '共 ' + shown.length + ' 条 · ' + rangeTxt + (fromFull ? ' · 数据自 ' + fromFull : '');
   }
 
