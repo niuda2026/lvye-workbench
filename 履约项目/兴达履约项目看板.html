@@ -401,11 +401,13 @@ tr.cb-row-noup:hover td{background:#ffefef}
 <!-- Tab: safety（履约安全检查） → 3 个子标签：巡检平台 / 履约达成处罚-周度 / 履约达成处罚-月度 -->
 <div class="panel" id="panel-safety">
   <!-- 内容子标签 -->
-  <div class="sub-tab-bar" style="margin-bottom:10px;border-bottom:2px solid #cfe;padding-bottom:6px;">
+  <div class="sub-tab-bar" style="margin-bottom:10px;border-bottom:2px solid #cfe;padding-bottom:6px;display:flex;align-items:center;flex-wrap:wrap;gap:6px;">
     <span class="sub-tab-label">履约安全检查：</span>
     <button class="lv-btn active" data-csub="insp" onclick="switchSafetySub('insp')">巡检平台</button>
     <button class="lv-btn" data-csub="penalty-week" onclick="switchSafetySub('penalty-week')">履约达成处罚-周度</button>
     <button class="lv-btn" data-csub="penalty-month" onclick="switchSafetySub('penalty-month')">履约达成处罚-月度</button>
+    <!-- 数据源横幅（并入 tab 行尾，仅巡检平台子页显示；登录态失效/抓取过期时变色提醒） -->
+    <div id="insp-banner" style="display:none;margin-left:auto;padding:3px 10px;border-radius:6px;font-size:12px;"></div>
   </div>
 
   <!-- 子面板：巡检平台（2026-10-07 重做：接入烽火巡检平台日维度实时数据） -->
@@ -425,9 +427,6 @@ tr.cb-row-noup:hover td{background:#ffefef}
     #sub-insp details.insp-fold .insp-fold-body{padding:0 12px 12px;}
     #sub-insp .insp-deduct-hint{font-size:12px;color:#8a5a13;padding:10px 12px;background:#fdf8ee;border:1px dashed #e8d5a8;border-radius:6px;line-height:1.7;}
   </style>
-
-  <!-- 数据源横幅（登录态失效/抓取过期时显示） -->
-  <div id="insp-banner" style="display:none;margin-bottom:8px;padding:6px 10px;border-radius:6px;font-size:12px;"></div>
 
   <!-- 层级筛选 + 地理筛选（2026-10-15 上移：筛选在最上，联动下方所有模块与明细统计表） -->
   <div class="sub-tab-bar" style="margin-bottom:8px;">
@@ -3312,6 +3311,9 @@ function switchSafetySub(sub) {
   if (sub === 'insp') renderInspectionSub();
   else if (sub === 'penalty-week') renderPenaltyTab('week');
   else if (sub === 'penalty-month') renderPenaltyTab('month');
+  // 数据源横幅在 tab 行尾（2026-10-15 移入），内容为巡检专属：非巡检子页隐藏
+  var ib = document.getElementById('insp-banner');
+  if (ib && sub !== 'insp') ib.style.display = 'none';
 }
 
 // ─── Tab 3: 骑手装备标准化率 ─────────────────────────────────
