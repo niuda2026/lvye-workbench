@@ -657,16 +657,9 @@ tr.cb-row-noup:hover td{background:#ffefef}
       <tbody id="tbody-equip"></tbody>
     </table>
   </div>
-  <!-- 服装标准化率视图 -->
-  <div class="table-wrap table-wrap-station" id="clothing-table-wrap" style="display:none">
-    <table class="dt" id="clothing-table">
-      <thead id="clothing-thead"></thead>
-      <tbody id="clothing-tbody"></tbody>
-    </table>
-  </div>
-  <!-- 抽检不合格骑手明细（2026-10-15 合并到服装标准化率视图下方，与筛选联动） -->
+  <!-- 抽检不合格骑手明细（2026-10-15 合并到服装标准化率视图，置于明细表上方，与筛选联动） -->
   <div id="checkfail-section" style="display:none">
-    <div class="cf-section-title" style="margin:14px 2px 6px;font-weight:700;color:#0B4F8A;font-size:14px;">抽检不合格骑手明细<span style="font-weight:400;color:#4F6E87;font-size:12px;margin-left:10px;">与上方筛选条件联动</span></div>
+    <div class="cf-section-title" style="margin:2px 2px 6px;font-weight:700;color:#0B4F8A;font-size:14px;">抽检不合格骑手明细<span style="font-weight:400;color:#4F6E87;font-size:12px;margin-left:10px;">与上方筛选条件联动</span></div>
     <div class="table-wrap table-wrap-station" id="checkfail-table-wrap">
       <table id="checkFailTable">
         <thead>
@@ -681,6 +674,13 @@ tr.cb-row-noup:hover td{background:#ffefef}
         <tbody></tbody>
       </table>
     </div>
+  </div>
+  <!-- 服装标准化率视图 -->
+  <div class="table-wrap table-wrap-station" id="clothing-table-wrap" style="display:none;margin-top:14px;">
+    <table class="dt" id="clothing-table">
+      <thead id="clothing-thead"></thead>
+      <tbody id="clothing-tbody"></tbody>
+    </table>
   </div>
   
 </div>
