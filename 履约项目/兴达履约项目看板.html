@@ -381,10 +381,10 @@ tr.cb-row-noup:hover td{background:#ffefef}
       <span style="font-size:14px;font-weight:700;color:#1f3a5f;">早会驳回明细</span>
       <span id="mr-rej-sub" style="font-size:12px;color:#7d90a5;">（驳回记录 · 数据范围加载中…）</span>
       <span style="margin-left:12px;font-size:12px;color:#475569;">日期窗口：</span>
-      <button class="lv-btn" id="mr-rej-w3" onclick="mrRejSetWin(3)">近3日</button>
+      <button class="lv-btn active" id="mr-rej-w3" onclick="mrRejSetWin(3)">近3日</button>
       <button class="lv-btn" id="mr-rej-w7" onclick="mrRejSetWin(7)">近7日</button>
       <button class="lv-btn" id="mr-rej-w14" onclick="mrRejSetWin(14)">近14日</button>
-      <button class="lv-btn active" id="mr-rej-w0" onclick="mrRejSetWin(0)">本月全部</button>
+      <button class="lv-btn" id="mr-rej-w0" onclick="mrRejSetWin(0)">本月全部</button>
       <span id="mr-rej-tag" style="display:inline-block;margin-left:6px;padding:1px 8px;border-radius:9px;background:#eaf4ff;color:#1d6ec4;font-size:12px;">-</span>
     </div>
     <div class="table-wrap" style="max-height:380px;border:1px solid #e3eaf3;border-radius:6px;">
@@ -1961,7 +1961,7 @@ function renderAuditView() {
 // ─── 早会驳回窗口 + 明细 ───
 // MR_REJ 数据源（2026-10-15 改）：M盘 Excel 驳回清单（morning_rej_m.js 覆盖 BI 版），
 // 用户每日放「截止昨日」清单 → watch_m_drive 触发 _build_meeting_m.py 重建
-var MR_REJ_WIN = 0;   // 0=本月全部；3/7/14=近N日(含今日，与下方早会提交明细近3天列对齐)
+var MR_REJ_WIN = 3;   // 0=本月全部；3/7/14=近N日(含今日，与下方早会提交明细近3天列对齐)；默认近3日
 function mrRejSetWin(n) {
   MR_REJ_WIN = n;
   renderMrRejBlock();
