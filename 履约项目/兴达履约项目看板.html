@@ -342,6 +342,12 @@ tr.cb-row-noup:hover td{background:#ffefef}
 
 <!-- Tab: morning -->
 <div class="panel active" id="panel-morning">
+  <!-- 数据视图切换按钮（2026-10-15 移到 KPI 卡上方，与履约安全检查布局一致） -->
+  <div class="clothing-view-bar">
+    <span class="view-label">数据视图：</span>
+    <button class="lv-btn active" data-subtab="penalty" onclick="switchSubTab(&#39;penalty&#39;)">早会处罚统计</button>
+    <button class="lv-btn" data-subtab="audit" onclick="switchSubTab(&#39;audit&#39;)">早会审核管理（日更新）</button>
+  </div>
   <div class="summary-row" id="summary-cards-morning"></div>
     <div class="sub-tab-bar">
     <span class="sub-tab-label">显示层级：</span>
@@ -363,19 +369,32 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <button class="btn btn-screenshot" onclick="screenshotPanel('morning')" title="截取当前看板">&#128247; 截图</button>
     <span class="filter-count" id="filter-count-morning"></span>
   </div>
-  <!-- 数据视图切换按钮 -->
-  <div class="clothing-view-bar">
-    <span class="view-label">数据视图：</span>
-    <button class="lv-btn active" data-subtab="penalty" onclick="switchSubTab(&#39;penalty&#39;)">早会处罚统计</button>
-    <button class="lv-btn" data-subtab="audit" onclick="switchSubTab(&#39;audit&#39;)">早会审核管理（日更新）</button>
-  </div>
   <div class="table-wrap table-wrap-station">
     <table class="dt" id="tbl-morning">
       <thead id="thead-morning"></thead>
       <tbody id="tbody-morning"></tbody>
     </table>
   </div>
-  
+
+  <!-- 早会驳回 · 日期窗口 + 明细（2026-10-15 新增，仅「早会审核管理（日更新）」视图显示；数据只覆盖当月） -->
+  <div id="mr-rej-block" style="display:none;margin-top:14px;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <span style="font-size:14px;font-weight:700;color:#1f3a5f;">早会驳回明细</span>
+      <span style="font-size:12px;color:#7d90a5;">（待申诉/驳回记录 · 只覆盖当月）</span>
+      <span style="margin-left:12px;font-size:12px;color:#475569;">日期窗口：</span>
+      <button class="lv-btn" id="mr-rej-w7" onclick="mrRejSetWin(7)">近7日</button>
+      <button class="lv-btn" id="mr-rej-w14" onclick="mrRejSetWin(14)">近14日</button>
+      <button class="lv-btn active" id="mr-rej-w0" onclick="mrRejSetWin(0)">本月全部</button>
+      <span id="mr-rej-tag" style="display:inline-block;margin-left:6px;padding:1px 8px;border-radius:9px;background:#eaf4ff;color:#1d6ec4;font-size:12px;">-</span>
+    </div>
+    <div class="table-wrap" style="max-height:380px;border:1px solid #e3eaf3;border-radius:6px;">
+      <table class="dt" id="tbl-mr-rej">
+        <thead id="thead-mr-rej"></thead>
+        <tbody id="tbody-mr-rej"></tbody>
+      </table>
+    </div>
+  </div>
+
 </div>
 <!-- Tab: safety（履约安全检查） → 3 个子标签：巡检平台 / 履约达成处罚-周度 / 履约达成处罚-月度 -->
 <div class="panel" id="panel-safety">
@@ -1709,6 +1728,8 @@ function renderMorningTab() {
     document.getElementById('summary-cards-morning').innerHTML = '';
     var lg = document.getElementById('mr-legend');
     if (lg) lg.remove();
+    var rejBlk = document.getElementById('mr-rej-block');
+    if (rejBlk) rejBlk.style.display = 'none';
     var stWrap = document.getElementById('ms-status-morning');
     if (stWrap) stWrap.style.display = 'none';
     var stLabel = document.getElementById('sf-label-status-morning');
@@ -1946,6 +1967,83 @@ function renderAuditView() {
   } else if (document.getElementById('mr-legend')) {
     document.getElementById('mr-legend').innerHTML = legend;
   }
+
+  // ── 早会驳回 · 日期窗口 + 明细（只覆盖当月）──
+  var blk = document.getElementById('mr-rej-block');
+  if (blk) { blk.style.display = ''; renderMrRejBlock(); }
+}
+
+// ─── 早会驳回窗口 + 明细（2026-10-15 新增）───
+// MR_REJ 由 build_meeting_review.py 生成：当月 1 日至今全部驳回(待申诉)早会记录
+var MR_REJ_WIN = 0;   // 0=本月全部；7/14=近N日
+function mrRejSetWin(n) {
+  MR_REJ_WIN = n;
+  renderMrRejBlock();
+}
+function mrRejIsoShift(n) {
+  var d = new Date(Date.now() - n * 86400000);
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+function renderMrRejBlock() {
+  var theadEl = document.getElementById('thead-mr-rej');
+  var tbodyEl = document.getElementById('tbody-mr-rej');
+  var tagEl = document.getElementById('mr-rej-tag');
+  if (!theadEl || !tbodyEl) return;
+  var meta = (typeof MR_META !== 'undefined') ? MR_META : null;
+  var list = (typeof MR_REJ !== 'undefined' && MR_REJ) ? MR_REJ : [];
+  var fromFull = meta && meta.rej_from ? meta.rej_from : null;
+  // 窗口下限：0=本月全部(数据起点即当月1日)；N=近N日(与当月起点取较晚者)
+  var winFrom = MR_REJ_WIN > 0 ? mrRejIsoShift(MR_REJ_WIN - 1) : null;
+  if (winFrom && fromFull && winFrom < fromFull) winFrom = fromFull;
+
+  // 窗口按钮高亮
+  [7, 14, 0].forEach(function (n) {
+    var b = document.getElementById('mr-rej-w' + (n || '0'));
+    if (b) b.classList[n === MR_REJ_WIN ? 'add' : 'remove']('active');
+  });
+
+  var shown = [];
+  for (var i = 0; i < list.length; i++) {
+    var r = list[i];
+    if (winFrom && r.full && r.full < winFrom) continue;
+    if (isFiltered(r.site, 'morning')) continue;
+    shown.push(r);
+  }
+
+  if (tagEl) {
+    var rangeTxt = (winFrom || (fromFull || '-')) + ' ~ ' + (meta && meta.rej_to ? meta.rej_to : mrRejIsoShift(0));
+    tagEl.textContent = '共 ' + shown.length + ' 条 · ' + rangeTxt + (fromFull ? ' · 数据自 ' + fromFull : '');
+  }
+
+  var thead = '<tr>';
+  thead += '<th class="sticky-col" style="left:0;min-width:80px">大区</th>';
+  thead += '<th class="sticky-col" style="left:80px;min-width:80px">区域</th>';
+  thead += '<th class="sticky-col" style="left:160px;min-width:70px">城市</th>';
+  thead += '<th class="sticky-col sticky-last" style="left:230px;min-width:150px">站点名称</th>';
+  thead += '<th style="text-align:center">日期</th><th style="text-align:center">提交时间</th><th>早会内容</th><th style="text-align:center">出勤</th><th style="text-align:center">状态</th>';
+  thead += '</tr>';
+  theadEl.innerHTML = thead;
+
+  var rows = '';
+  for (var j = 0; j < shown.length; j++) {
+    var t = shown[j];
+    var att = (t.should ? (t.actual + '/' + t.should + (t.rate !== '-' && t.rate != null ? ' (' + t.rate + '%)' : '')) : '-');
+    rows += '<tr>'
+      + '<td class="sticky-col" style="left:0;min-width:80px">' + escHtml(t.region || '-') + '</td>'
+      + '<td class="sticky-col" style="left:80px;min-width:80px">' + escHtml(t.subr || '-') + '</td>'
+      + '<td class="sticky-col" style="left:160px;min-width:70px">' + escHtml(t.city || '-') + '</td>'
+      + '<td class="sticky-col name-cell" style="left:230px;min-width:150px">' + escHtml(t.site) + '</td>'
+      + '<td style="text-align:center">' + escHtml(t.date + ' 周' + (t.weekday || '')) + '</td>'
+      + '<td style="text-align:center;font-size:12px">' + escHtml(t.submit || '-') + '</td>'
+      + '<td style="font-size:12px;color:#475569">' + escHtml(t.content || '-') + '</td>'
+      + '<td style="text-align:center;font-size:12px">' + escHtml(att) + '</td>'
+      + '<td style="text-align:center"><span style="display:inline-block;padding:2px 10px;border-radius:10px;font-size:12px;font-weight:600;background:#fee2e2;color:#b91c1c;white-space:nowrap;">待申诉(驳回)</span></td>'
+      + '</tr>';
+  }
+  if (!shown.length) {
+    rows = '<tr><td colspan="9" style="text-align:center;color:#2e9e5b;padding:18px 0;font-size:13px;">✓ 窗口内无驳回记录</td></tr>';
+  }
+  tbodyEl.innerHTML = rows;
 }
 
 // ─── Tab 2: 履约安全检查 ────────────────────────────────────────────────
