@@ -369,18 +369,12 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <button class="btn btn-screenshot" onclick="screenshotPanel('morning')" title="截取当前看板">&#128247; 截图</button>
     <span class="filter-count" id="filter-count-morning"></span>
   </div>
-  <div class="table-wrap table-wrap-station">
-    <table class="dt" id="tbl-morning">
-      <thead id="thead-morning"></thead>
-      <tbody id="tbody-morning"></tbody>
-    </table>
-  </div>
 
-  <!-- 早会驳回 · 日期窗口 + 明细（2026-10-15 新增，仅「早会审核管理（日更新）」视图显示；数据只覆盖当月） -->
-  <div id="mr-rej-block" style="display:none;margin-top:14px;">
+  <!-- 早会驳回 · 日期窗口 + 明细（2026-10-15 移至筛选条与明细统计表之间；仅「早会审核管理（日更新）」视图显示；数据只覆盖当月） -->
+  <div id="mr-rej-block" style="display:none;margin:10px 0 12px;">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
       <span style="font-size:14px;font-weight:700;color:#1f3a5f;">早会驳回明细</span>
-      <span style="font-size:12px;color:#7d90a5;">（待申诉/驳回记录 · 只覆盖当月）</span>
+      <span style="font-size:12px;color:#7d90a5;">（待申诉/驳回记录 · 只覆盖当月 · 跟随上方筛选联动）</span>
       <span style="margin-left:12px;font-size:12px;color:#475569;">日期窗口：</span>
       <button class="lv-btn" id="mr-rej-w7" onclick="mrRejSetWin(7)">近7日</button>
       <button class="lv-btn" id="mr-rej-w14" onclick="mrRejSetWin(14)">近14日</button>
@@ -393,6 +387,13 @@ tr.cb-row-noup:hover td{background:#ffefef}
         <tbody id="tbody-mr-rej"></tbody>
       </table>
     </div>
+  </div>
+
+  <div class="table-wrap table-wrap-station" id="table-wrap-morning">
+    <table class="dt" id="tbl-morning">
+      <thead id="thead-morning"></thead>
+      <tbody id="tbody-morning"></tbody>
+    </table>
   </div>
 
 </div>
@@ -1961,7 +1962,7 @@ function renderAuditView() {
     '<span style="background:#f0fdf4;color:#16a34a;padding:1px 8px;border-radius:8px;margin:0 3px">加场 = 非任务日提交</span>' +
     '<span style="color:#b91c1c;font-weight:700;margin:0 3px">⚠时限 = 违反提交时限（不早于7:00 / 首次提交≤12:00 / 第二次早会≤20:00）</span>' +
     '</div>';
-  var wrap = document.querySelector('#panel-morning .table-wrap');
+  var wrap = document.getElementById('table-wrap-morning');
   if (wrap && !document.getElementById('mr-legend')) {
     wrap.insertAdjacentHTML('beforebegin', '<div id="mr-legend">' + legend + '</div>');
   } else if (document.getElementById('mr-legend')) {
@@ -2003,12 +2004,16 @@ function renderMrRejBlock() {
   });
 
   var shown = [];
+  // 联动「审核状态」筛选：选了状态但不含「待申诉」时，驳回明细同步置空（2026-10-15）
+  var stF = (typeof sfState !== 'undefined') ? (sfState['status-morning'] || []) : [];
+  var statusOk = (stF.length === 0 || stF.indexOf('待申诉') >= 0);
   for (var i = 0; i < list.length; i++) {
     var r = list[i];
     if (winFrom && r.full && r.full < winFrom) continue;
     if (isFiltered(r.site, 'morning')) continue;
     shown.push(r);
   }
+  if (!statusOk) shown = [];
 
   if (tagEl) {
     var rangeTxt = (winFrom || (fromFull || '-')) + ' ~ ' + (meta && meta.rej_to ? meta.rej_to : mrRejIsoShift(0));
@@ -2041,7 +2046,8 @@ function renderMrRejBlock() {
       + '</tr>';
   }
   if (!shown.length) {
-    rows = '<tr><td colspan="9" style="text-align:center;color:#2e9e5b;padding:18px 0;font-size:13px;">✓ 窗口内无驳回记录</td></tr>';
+    var emptyMsg = statusOk ? '✓ 窗口内无驳回记录' : '当前「审核状态」筛选不含 待申诉(驳回)，无匹配记录';
+    rows = '<tr><td colspan="9" style="text-align:center;color:' + (statusOk ? '#2e9e5b' : '#94a3b8') + ';padding:18px 0;font-size:13px;">' + emptyMsg + '</td></tr>';
   }
   tbodyEl.innerHTML = rows;
 }
