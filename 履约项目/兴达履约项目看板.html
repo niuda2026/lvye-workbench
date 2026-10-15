@@ -1179,11 +1179,13 @@ function onMsCheck(id, val, label) {
   if (state.length === 0) lbl.textContent = '全部';
   else if (state.length <= 2) lbl.textContent = state.join(',');
   else lbl.textContent = state.length+'项';
-  // Update checkboxes
+  // Update checkboxes（同步 class 与 input.checked，大区下拉不会级联重建，必须在此处回勾）
   var items = wrap.querySelectorAll('.ms-item');
   for (var i=0;i<items.length;i++) {
     var cb = items[i].querySelector('input');
-    items[i].classList.toggle('checked', state.indexOf(cb.value)>=0);
+    var on = state.indexOf(cb.value)>=0;
+    items[i].classList.toggle('checked', on);
+    if (cb.checked !== on) cb.checked = on;
   }
   // Cascade: region → subregion → city → site
   var cTab = null;
