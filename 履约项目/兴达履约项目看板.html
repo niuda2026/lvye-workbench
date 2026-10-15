@@ -454,10 +454,10 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <span class="sub-tab-label">日期窗口：</span>
     <button class="lv-btn" id="insp-win-today" onclick="inspSetWindow('today')">今日</button>
     <button class="lv-btn" id="insp-win-yest" onclick="inspSetWindow('yest')">昨日</button>
+    <button class="lv-btn" id="insp-win-3" onclick="inspSetWindow('3')">近3日</button>
+    <button class="lv-btn" id="insp-win-7" onclick="inspSetWindow('7')">近7日</button>
     <button class="lv-btn" id="insp-win-month" onclick="inspSetWindow('month')">本月</button>
     <button class="lv-btn" id="insp-win-lastmonth" onclick="inspSetWindow('lastmonth')">上月整月</button>
-    <button class="lv-btn" id="insp-win-7" onclick="inspSetWindow('7')">近7日</button>
-    <button class="lv-btn" id="insp-win-30" onclick="inspSetWindow('30')">近30日</button>
     <span class="sub-tab-sep"></span>
     <input type="date" class="insp-date" id="insp-from" onchange="inspSetWindow('custom')">
     <span style="margin:0 4px;color:#8aa2b8;">~</span>
@@ -2118,8 +2118,8 @@ function inspWindowDays() {
     if (!INSP_WIN.refMonth) INSP_WIN.refMonth = inspLastMonth(all[ti].slice(0, 7));
     return all.filter(function (d) { return d.slice(0, 7) === INSP_WIN.refMonth; });
   }
+  if (INSP_WIN.mode === '3') return all.slice(Math.max(0, ti - 2), ti + 1);
   if (INSP_WIN.mode === '7') return all.slice(Math.max(0, ti - 6), ti + 1);
-  if (INSP_WIN.mode === '30') return all.slice(Math.max(0, ti - 29), ti + 1);
   return all.slice();
 }
 function inspDayMask(days) {
@@ -2271,7 +2271,7 @@ function inspFoldToggle(kind) {
 
 function inspSyncControls(days) {
   var M = inspMeta();
-  ['today', 'yest', 'month', 'lastmonth', '7', '30'].forEach(function (k) {
+  ['today', 'yest', '3', '7', 'month', 'lastmonth'].forEach(function (k) {
     var b = document.getElementById('insp-win-' + k);
     if (b) b.classList.toggle('active', INSP_WIN.mode === k);
   });
