@@ -1,4 +1,4 @@
-var DATA_GEN_TIME = "2026-10-15 15:16:13";
+var DATA_GEN_TIME = "2026-10-16 06:37:11";
 
 var EXEC_DATA = {
   "V兴必达【洛阳】洛拖站": {
@@ -11084,7 +11084,7 @@ var MORNING_DATA = {
     "monthlyFine": 0,
     "lastWeekFine": 0,
     "morningReject": 1,
-    "morningFine": 1,
+    "morningFine": 0,
     "selfCheckReject": 0,
     "selfCheckFine": 0,
     "supervisorReject": 0,
@@ -26773,6 +26773,8 @@ var TRAINING_DATA = {
   }
 };
 
+var TRAINING_PROJECTS = [{"id": "4284", "name": "华北新骑手安全专项培训"}, {"id": "5364", "name": "风险骑手安全培训(26年10月)"}, {"id": "4681", "name": "新骑手入门测试"}, {"id": "7950", "name": "2026年10月月度安全培训"}, {"id": "7942", "name": "远离虚假人单-10月"}, {"id": "M_AUTO_202610_VIOL", "name": "骑手十月重点违规事项-2026"}, {"id": "M_AUTO_202610_RULE", "name": "2026年10月重点规则测评"}];
+
 var EQUIP_DATA = {
   "V兴必达【洛阳】洛拖站": {
     "region": "华北二区",
@@ -32244,7 +32246,7 @@ var SITE_INFO = {
   }
 };
 
-var LATEST_DATE = "10-15";
+var LATEST_DATE = "10-16";
 
 var REGION_ORDER = ["华北一区", "华北二区", "华北三区", "华东大区", "中南大区"];
 

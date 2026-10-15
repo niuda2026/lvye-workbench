@@ -328,7 +328,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
   <div style="display:flex;align-items:center;gap:10px;">
     <div>
       <div class="header-title">兴达丨履约项目看板</div>
-      <div class="header-sub">站点早会 · 履约安全检查 · 骑手装备标准化率 · 餐箱消毒看板 · 带刀巡检看板 · 充换电血压看板 · 线上线下考培 · 骑手维度执行</div>
+      <div class="header-sub">站点早会 · 履约安全检查 · 骑手装备标准化率 · 餐箱消毒看板 · 带刀巡检看板 · 充换电血压看板 · 骑手APP考试和周度培训 · 骑手维度执行</div>
     </div>
   </div>
   <div class="header-right">
@@ -344,7 +344,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
   <div class="tab-item" data-tab="box" onclick="switchTab('box')">餐箱消毒看板</div>
   <div class="tab-item" data-tab="knife" onclick="switchTab('knife')">带刀巡检看板</div>
   <div class="tab-item" data-tab="chargebp" onclick="switchTab('chargebp')">充换电血压看板</div>
-  <div class="tab-item" data-tab="training" onclick="switchTab('training')">线上线下考培</div>
+  <div class="tab-item" data-tab="training" onclick="switchTab('training')">骑手APP考试和周度培训</div>
   <div class="tab-item" data-tab="rider" onclick="switchTab('rider')">骑手维度执行</div>
 </div>
 
@@ -1032,6 +1032,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
 
 <script src="../交通安全行为看板/data.js"></script>
 <script src="data.js"></script>
+<script src="training_projects_config.js"></script>
 <script src="充换电血压_data.js"></script>
 <script src="knife_rider_data.js"></script>
 <script src="box_rider_data.js"></script>
@@ -5200,7 +5201,7 @@ function cbInitOnce(){
   cbRebuildIndex(); cbApplyBoard(); cbRenderRider(1);
 }
 
-// ─── Tab 7: 线上线下考培 ─────────────────────────────────────
+// ─── Tab 7: 骑手APP考试和周度培训 ─────────────────────────────────────
 // 默认考试项目（用户可在此修改，或通过页面"配置考试项目"按钮维护）
 var DEFAULT_TRAINING_PROJECTS = [
   {id:'4284', name:'华北新骑手安全专项培训'},
@@ -5216,10 +5217,34 @@ function getTrainingProjects() {
     var s = localStorage.getItem('trainingProjects');
     if (s) return JSON.parse(s);
   } catch(e){}
+  // 无浏览器配置时（如群推送 headless 截图）：优先用导出的配置文件
+  // （配置考试项目弹窗 → 导出配置文件，与本页 localStorage 完全一致），
+  // 其次用数据文件输出的项目清单（随每月数据自动更新），
+  // 最后才用 HTML 内写死的 DEFAULT（会随月份过期，仅最终兜底）。
+  if (window.TRAINING_PROJECTS_CONFIG && window.TRAINING_PROJECTS_CONFIG.length) {
+    return window.TRAINING_PROJECTS_CONFIG.map(function(p){ return {id:String(p.id), name:p.name}; });
+  }
+  if (window.TRAINING_PROJECTS && window.TRAINING_PROJECTS.length) {
+    return window.TRAINING_PROJECTS.map(function(p){ return {id:String(p.id), name:p.name}; });
+  }
   return DEFAULT_TRAINING_PROJECTS.slice();
 }
 function saveTrainingProjects(cfg) {
   localStorage.setItem('trainingProjects', JSON.stringify(cfg));
+}
+// 导出当前项目配置为 training_projects_config.js（供群推送 headless 环境加载，
+// 使推送截图的项目列与本页 localStorage 配置一致）。下载后放到履约项目目录即可。
+function exportTrainingConfig() {
+  var cfg = getTrainingProjects();
+  var js = '// 考培项目配置（由看板「配置考试项目 → 导出配置文件」生成，改配置后请重新导出替换）\n'
+    + 'window.TRAINING_PROJECTS_CONFIG = ' + JSON.stringify(cfg, null, 1) + ';\n';
+  var blob = new Blob([js], {type: 'text/javascript'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'training_projects_config.js';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 800);
 }
 function flattenTrainingData(cfg) {
   var raw = window.TRAINING_DATA || {};
@@ -6066,7 +6091,7 @@ function exportTable(tabId) {
   var tabNames = {
     'morning': '站点早会', 'safety': '履约安全检查', 'equip': '骑手装备标准化率',
     'box': '餐箱消毒看板', 'knife': '带刀巡检看板', 'chargebp': '充换电血压看板',
-    'training': '线上线下考培', 'rider': '骑手维度执行',
+    'training': '骑手APP考试和周度培训', 'rider': '骑手维度执行',
     'penalty-week': '履约达成处罚-周度', 'penalty-month': '履约达成处罚-月度'
   };
   var expName = (tabNames[tabId] || tabId);
@@ -6109,7 +6134,7 @@ function screenshotPanel(tabId) {
     var tabNames = {
       'morning':'站点早会','safety':'履约安全检查','equip':'骑手装备标准化率',
       'box':'餐箱消毒看板','knife':'带刀巡检看板','chargebp':'充换电血压看板',
-      'training':'线上线下考培','rider':'骑手维度执行'
+      'training':'骑手APP考试和周度培训','rider':'骑手维度执行'
     };
     var name = (tabNames[tabId]||tabId)+'_'+ts+'.png';
     var a = document.createElement('a');
@@ -6153,7 +6178,7 @@ window.onload = function() {
   METRIC_CFG.clothing.target = 95;
   METRIC_CFG.rating = { rows: (typeof TAB2_ROWS !== 'undefined') ? TAB2_ROWS : [] };
   if (typeof DATES !== 'undefined') { initMsFilter('date-equip', DATES, []); }
-  // 骑手装备标准化率 / 线上线下考培：数据更新时间（来自 data.js 的 DATA_GEN_TIME）
+  // 骑手装备标准化率 / 骑手APP考试和周度培训：数据更新时间（来自 data.js 的 DATA_GEN_TIME）
   var genTime = (typeof DATA_GEN_TIME !== 'undefined' && DATA_GEN_TIME) ? DATA_GEN_TIME : '--';
   var updEquip = document.getElementById('data-updated-equip');
   var updTrain = document.getElementById('data-updated-training');
@@ -6743,8 +6768,9 @@ function closeCheckRulesModal() {
       <div class="tc-add-wrap">
         <button class="btn btn-secondary" onclick="addTrainingConfigRow()">+ 添加项目</button>
         <button class="btn btn-secondary" onclick="resetTrainingConfig()">恢复默认</button>
+        <button class="btn btn-secondary" onclick="exportTrainingConfig()" title="把当前项目配置导出为 training_projects_config.js，放到履约项目目录后，群推送截图即与此处配置一致">⬇ 导出配置文件</button>
       </div>
-      <div class="tc-note">提示：左侧填项目ID，右侧填显示名称。保存后立即生效；如需恢复本月默认项目，点击"恢复默认"。</div>
+      <div class="tc-note">提示：左侧填项目ID，右侧填显示名称。保存后立即生效；如需恢复本月默认项目，点击"恢复默认"。改完配置后请点「导出配置文件」，把下载的 training_projects_config.js 放到履约项目目录（），群推送截图的项目列才会与本页一致。</div>
       <div class="tc-actions">
         <button class="btn-cancel" onclick="closeTrainingConfigModal()">取消</button>
         <button class="btn-save" onclick="saveTrainingConfigFromModal()">保存并刷新</button>

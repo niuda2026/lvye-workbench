@@ -1,7 +1,7 @@
 // ============================================================
 // 全国站点地图 - 点位数据
 // 数据来源：美团配送后台「标准站点信息」接口抓取（站点合作状态=合作）
-// 抓取时间：2026-10-15 | 站点总数：160（含骑手宿舍 89）
+// 抓取时间：2026-10-16 | 站点总数：160（含骑手宿舍 89）
 //
 // 字段说明：
 //   name     : 点位名称（美团标准站点名称）
@@ -155,7 +155,7 @@ window.SITE_DATA = [
   { name: "兴必达【秦皇岛】孟营站", xian: "海港区", city: "秦皇岛", province: "河北省", address: "河北省秦皇岛市海港区万和郡4栋103", category: "meituan", level: "A", lng: 119.542542, lat: 39.925427, stationId: "2347", franchisee: "兴必达（江苏）网络科技有限公司【秦皇岛】", region: "加盟津冀区域", district: "华北大区--加盟", roomSize: 87.65, rentProperty: "门面房（包含小区内）", rentStart: "2026-08-19", rentEnd: "2027-08-18", doorTypeName: "标准门头", mainOrg: "" },
   { name: "兴必达【天津】海光寺站", xian: "南开区", city: "天津", province: "天津市", address: "天津市南开区苏堤路23号", category: "meituan", level: "A", lng: 117.150991, lat: 39.124347, stationId: "9241", franchisee: "【专区】兴必达（江苏）网络科技有限公司【天津】", region: "加盟津冀区域", district: "华北大区--加盟", roomSize: 90, rentProperty: "门面房（包含小区内）", rentStart: "2026-05-01", rentEnd: "2028-04-30", doorTypeName: "无门头", mainOrg: "" },
   { name: "兴必达【枣庄】美铭广场站", xian: "滕州市", city: "枣庄", province: "山东省", address: "山东省滕州市中央城C区11-03号门市", category: "meituan", level: "A", lng: 117.170367, lat: 35.092541, stationId: "2037639", franchisee: "兴必达（江苏）网络科技有限公司【枣庄】", region: "加盟山东区域", district: "中南大区--加盟", roomSize: 112.36, rentProperty: "门面房（包含小区内）", rentStart: "2026-04-20", rentEnd: "2027-04-20", doorTypeName: "标准门头", mainOrg: "" },
-  { name: "兴必达【西安】南稍门站", xian: "碑林区", city: "西安", province: "陕西省", address: "西安市碑林区建西街138号1幢1单元10102室", category: "meituan", level: "A", lng: 108.956792, lat: 34.245501, stationId: "2038707", franchisee: "兴必达（江苏）网络科技有限公司【西安】", region: "加盟中西区域", district: "华北大区--加盟", roomSize: 88.58, rentProperty: "居民小区内（非门面房）", rentStart: "2025-06-08", rentEnd: "2027-06-07", doorTypeName: "无门头", mainOrg: "" },
+  { name: "兴必达【西安】南稍门站", xian: "碑林区", city: "西安", province: "陕西省", address: "西安市碑林区建西街138号1幢1单元10102室", category: "meituan", level: "A", lng: 108.956792, lat: 34.245501, stationId: "2038707", franchisee: "兴必达（江苏）网络科技有限公司【西安】", region: "加盟中西区域", district: "华北大区--加盟", roomSize: 88.58, rentProperty: "居民小区内（非门面房）", rentStart: "2025-06-08", rentEnd: "2027-06-07", doorTypeName: "标准门头", mainOrg: "" },
   { name: "兴必达【西安】庆安站", xian: "未央区", city: "西安", province: "陕西省", address: "西咸新区沣东新城阿房一路以南西三环以东水利坊二期7号商住楼2单元1层20104室", category: "meituan", level: "A", lng: 108.849503, lat: 34.265012, stationId: "2037396", franchisee: "兴必达（江苏）网络科技有限公司【西安】", region: "加盟中西区域", district: "华北大区--加盟", roomSize: 154, rentProperty: "门面房（包含小区内）", rentStart: "2025-11-20", rentEnd: "2026-11-19", doorTypeName: "标准门头", mainOrg: "" },
   { name: "兴必达【西安】等驾坡站", xian: "雁塔区", city: "西安", province: "陕西省", address: "西安市雁塔区西影路766号20幢40115室", category: "meituan", level: "A", lng: 109.004468, lat: 34.232556, stationId: "2038280", franchisee: "兴必达（江苏）网络科技有限公司【西安】", region: "加盟中西区域", district: "华北大区--加盟", roomSize: 73, rentProperty: "门面房（包含小区内）", rentStart: "2026-01-01", rentEnd: "2026-12-31", doorTypeName: "标准门头", mainOrg: "" },
   { name: "兴必达【南京】南京南站", xian: "雨花台区", city: "南京", province: "江苏省", address: "江苏省南京市雨花台区金阳东街16号1112室", category: "meituan", level: "A", lng: 118.806638, lat: 31.971414, stationId: "2016504", franchisee: "兴必达（江苏）网络科技有限公司【南京】", region: "加盟苏北区域", district: "华东大区--加盟", roomSize: 45.45, rentProperty: "商务办公楼", rentStart: "2026-04-01", rentEnd: "2027-03-31", doorTypeName: "无门头", mainOrg: "" },

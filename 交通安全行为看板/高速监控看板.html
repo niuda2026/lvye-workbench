@@ -119,7 +119,7 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
 </style>
 <script src="../_libs/html2canvas-1.4.1.min.js"></script>
 
-<script src="data.js?10-14-9b352f58"></script>
+<script src="data.js?10-14-2aaa5e2b"></script>
 </head>
 <body>
 
@@ -1704,6 +1704,22 @@ window.onload=function(){
 };
 
 
+// 克隆预处理：sticky→static、隐藏列还原、表容器解除滚动/限高（否则只截到可视区）
+function prepShotClone(root) {
+  root.querySelectorAll('th').forEach(function(el) { el.style.position = 'static'; });
+  root.querySelectorAll('[style*="position:sticky"], [style*="position: sticky"]').forEach(function(el) { el.style.position = 'static'; });
+  root.querySelectorAll('.sticky-col').forEach(function(el) { el.style.position = 'static'; });
+  var hiddenCells = root.querySelectorAll('th[style*="display:none"], td[style*="display:none"], th[style*="display: none"], td[style*="display: none"]');
+  hiddenCells.forEach(function(cell) { cell.style.display = 'table-cell'; });
+  root.querySelectorAll('.table-wrap').forEach(function(w) {
+    w.style.overflow = 'visible';
+    w.style.maxWidth = 'none';
+    w.style.maxHeight = 'none';
+    w.style.width = 'auto';
+  });
+}
+
+
 function captureScreenshot(panelId) {
   if (typeof html2canvas === 'undefined') {
     alert('html2canvas 库未加载，请检查网络连接后刷新页面');
@@ -1736,32 +1752,62 @@ function captureScreenshot(panelId) {
 
   if (!targetEl) { alert('未找到截图目标元素'); return; }
 
-  // Clone target
-  var clone = targetEl.cloneNode(true);
+  // 高速监控看板（站/骑手）：截图需含顶部蓝色表头 + 页签栏，再拼当前面板内容
+  var SPEED_PANEL_MAP = { 'speed-site': 'panel-speed-site', 'speed-rider': 'panel-speed-rider' };
+  var speedPanelId = SPEED_PANEL_MAP[panelId];
+  var clone;
 
-  // Fix sticky cells → static (both inline and CSS-class origin)
-  clone.querySelectorAll('th').forEach(function(el) { el.style.position = 'static'; });
-  var stickyEls = clone.querySelectorAll('[style*="position:sticky"], [style*="position: sticky"]');
-  stickyEls.forEach(function(el) { el.style.position = 'static'; });
+  if (speedPanelId) {
+    var panelEl = document.getElementById(speedPanelId);
+    var composite = document.createElement('div');
+    composite.style.position = 'absolute';
+    composite.style.left = '-9999px';
+    composite.style.top = '0';
+    composite.style.width = 'auto';
+    composite.style.maxWidth = 'none';
+    composite.style.overflow = 'visible';
+    composite.style.display = 'block';
+    composite.style.visibility = 'visible';
+    composite.style.opacity = '1';
+    composite.style.backgroundColor = '#ffffff';
+    // 以面板（明细表）自然宽度为准，保证蓝色表头与明细表同宽
+    var naturalW = Math.max(panelEl ? panelEl.scrollWidth : 0, targetEl.scrollWidth, 800);
+    [document.querySelector('.header'), document.querySelector('.tab-bar'), panelEl].forEach(function(el) {
+      if (!el) { return; }
+      var c = el.cloneNode(true);
+      c.style.position = 'static';
+      c.style.left = '0';
+      c.style.top = '0';
+      c.style.margin = '0';
+      c.style.width = naturalW + 'px';
+      c.style.maxWidth = 'none';
+      c.style.visibility = 'visible';
+      c.style.opacity = '1';
+      if (el === panelEl) { c.style.display = 'block'; c.classList.add('active'); }
+      composite.appendChild(c);
+    });
+    document.body.appendChild(composite);
+    clone = composite;
+  } else {
+    // Clone target
+    clone = targetEl.cloneNode(true);
+    // Expand clone for full capture
+    clone.style.position = 'absolute';
+    clone.style.left = '-9999px';
+    clone.style.top = '0';
+    clone.style.width = 'auto';
+    clone.style.maxWidth = 'none';
+    clone.style.maxHeight = 'none';
+    clone.style.overflow = 'visible';
+    clone.style.display = 'block';
+    clone.style.visibility = 'visible';
+    clone.style.opacity = '1';
+    clone.style.backgroundColor = '#ffffff';
+    document.body.appendChild(clone);
+  }
 
-  // Unhide hidden columns (display:none → table-cell)
-  var hiddenCells = clone.querySelectorAll('th[style*="display:none"], td[style*="display:none"], th[style*="display: none"], td[style*="display: none"]');
-  hiddenCells.forEach(function(cell) { cell.style.display = 'table-cell'; });
-
-  // Expand clone for full capture
-  clone.style.position = 'absolute';
-  clone.style.left = '-9999px';
-  clone.style.top = '0';
-  clone.style.width = 'auto';
-  clone.style.maxWidth = 'none';
-  clone.style.maxHeight = 'none';
-  clone.style.overflow = 'visible';
-  clone.style.display = 'block';
-  clone.style.visibility = 'visible';
-  clone.style.opacity = '1';
-  clone.style.backgroundColor = '#ffffff';
-
-  document.body.appendChild(clone);
+  // Fix sticky cells → static / 隐藏列还原 / 表容器解除滚动限高
+  prepShotClone(clone);
 
   html2canvas(clone, {
     scale: 2,
@@ -1781,7 +1827,7 @@ function captureScreenshot(panelId) {
       String(now.getHours()).padStart(2, '0') +
       String(now.getMinutes()).padStart(2, '0') +
       String(now.getSeconds()).padStart(2, '0');
-    var names = { equity: '安全权益看板', rating: '站长安全评级看板', rider: '骑手交通安全行为四项看板', control: '中西管控名单' };
+    var names = { equity: '安全权益看板', rating: '站长安全评级看板', rider: '骑手交通安全行为四项看板', control: '中西管控名单', 'speed-site': '高速监控看板-站', 'speed-rider': '高速监控看板-骑手' };
     var label = names[panelId] || panelId;
     var link = document.createElement('a');
     link.download = label + '_' + ts + '.png';
