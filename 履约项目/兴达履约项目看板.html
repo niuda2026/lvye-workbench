@@ -2056,7 +2056,7 @@ function renderMrRejBlock() {
 //      组织层级 = 沿用 data.js 的 SITE_INFO（大区/区域/城市），与其它看板完全同源
 var curSafetySub = 'insp';
 var INSP_OBJ = 3;                                    // 巡检对象：仅加盟商站点（平台无骑手巡检维度）
-var INSP_WIN = { mode: 'month', from: null, to: null };  // 日期窗口（默认本月）
+var INSP_WIN = { mode: 'today', from: null, to: null };  // 日期窗口（默认今日）
 var INSP_ONLY_DEDUCT = false;                        // 只看有扣分的站点
 var _inspDeductSite = null;                          // 扣分明细当前筛选站点
 var INSP_ROSTER_TOTAL = 160;                         // 名册需巡检站点分母（运行时按 SITE_INFO 重算）
