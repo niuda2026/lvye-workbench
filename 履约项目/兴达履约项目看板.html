@@ -647,7 +647,6 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <span class="view-label">数据视图：</span>
     <button class="lv-btn active" id="view-btn-equip-main" onclick="switchEquipView('main')">装备标准不合规处罚</button>
     <button class="lv-btn" id="view-btn-equip-clothing" onclick="switchEquipView('clothing')">骑手服装标准化率</button>
-    <button class="lv-btn" id="view-btn-equip-checkfail" onclick="switchEquipView('checkfail')">抽检不合格骑手明细</button>
   </div>
   <!-- 服装汇总卡片 -->
   <div class="clothing-summary-card card green" id="clothing-summary-card" style="display:none"></div>
@@ -665,20 +664,23 @@ tr.cb-row-noup:hover td{background:#ffefef}
       <tbody id="clothing-tbody"></tbody>
     </table>
   </div>
-  <!-- 抽检不合格骑手明细视图 -->
-  <div class="table-wrap table-wrap-station" id="checkfail-table-wrap" style="display:none">
-    <table id="checkFailTable">
-      <thead>
-        <tr>
-          <th>大区</th><th>区域</th><th>城市</th><th>站点名称</th>
-          <th>抽检日期</th><th>骑手ID</th><th>骑手名称</th>
-          <th>安全服装标签名称</th><th>安全头盔标签名称</th><th>安全餐箱标签名称</th>
-          <th>安全骑手服装是否合格名称</th><th>安全骑手头盔是否合格名称</th><th>安全骑手餐箱是否合格名称</th>
-          <th>被检查照片</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+  <!-- 抽检不合格骑手明细（2026-10-15 合并到服装标准化率视图下方，与筛选联动） -->
+  <div id="checkfail-section" style="display:none">
+    <div class="cf-section-title" style="margin:14px 2px 6px;font-weight:700;color:#0B4F8A;font-size:14px;">抽检不合格骑手明细<span style="font-weight:400;color:#4F6E87;font-size:12px;margin-left:10px;">与上方筛选条件联动</span></div>
+    <div class="table-wrap table-wrap-station" id="checkfail-table-wrap">
+      <table id="checkFailTable">
+        <thead>
+          <tr>
+            <th>大区</th><th>区域</th><th>城市</th><th>站点名称</th>
+            <th>抽检日期</th><th>骑手ID</th><th>骑手名称</th>
+            <th>安全服装标签名称</th><th>安全头盔标签名称</th><th>安全餐箱标签名称</th>
+            <th>安全骑手服装是否合格名称</th><th>安全骑手头盔是否合格名称</th><th>安全骑手餐箱是否合格名称</th>
+            <th>被检查照片</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </div>
   
 </div>
@@ -1231,7 +1233,6 @@ function applyFilter() {
     METRIC_CFG.clothing.rows = (typeof CLOTHING_ROWS !== 'undefined') ? CLOTHING_ROWS : [];
     METRIC_CFG.clothing.target = 95;
     if (currentEquipView === 'clothing') { renderClothingTable(); updateClothingSummaryCard(); updateClothingRegionCards(); }
-    else if (currentEquipView === 'checkfail') { renderCheckFailTable(); updateClothingRegionCards(); }
     else { renderEquipTab(); }
   } else {
     // Rerender the current tab
@@ -1647,7 +1648,7 @@ function renderStandardTab(tabId, dataVar, columns, extra, headerGroups) {
 
   // Update filter count
   updateViewFilterCount(tabId);
-  if (tabId === 'equip' && (currentEquipView === 'clothing' || currentEquipView === 'checkfail')) {
+  if (tabId === 'equip' && currentEquipView === 'clothing') {
     updateClothingRegionCards();
   } else {
     document.getElementById('summary-cards-'+tabId).innerHTML = cardHtml;
@@ -3578,16 +3579,15 @@ function switchEquipView(view) {
   currentEquipView = view;
   document.getElementById('view-btn-equip-main').classList.toggle('active', view === 'main');
   document.getElementById('view-btn-equip-clothing').classList.toggle('active', view === 'clothing');
-  document.getElementById('view-btn-equip-checkfail').classList.toggle('active', view === 'checkfail');
   document.getElementById('equip-table-wrap').style.display = (view === 'main') ? '' : 'none';
   document.getElementById('clothing-table-wrap').style.display = (view === 'clothing') ? '' : 'none';
-  document.getElementById('checkfail-table-wrap').style.display = (view === 'checkfail') ? '' : 'none';
+  // 抽检不合格骑手明细已合并到服装标准化率视图下方，随其显隐并联动筛选
+  var cfSec = document.getElementById('checkfail-section');
+  if (cfSec) cfSec.style.display = (view === 'clothing') ? '' : 'none';
   if (view === 'main') {
     renderEquipTab();
-  } else if (view === 'checkfail') {
-    renderCheckFailTable();
   } else {
-    renderClothingTable();
+    renderClothingTable(); // 内部末尾会联动 renderCheckFailTable()
   }
   updateClothingSummaryCard();
   if (view !== 'main') { updateClothingRegionCards(); }
@@ -5943,8 +5943,6 @@ function exportTable(tabId) {
   var tableId = 'tbl-' + tabId;
   if (tabId === 'equip' && currentEquipView === 'clothing') {
     tableId = 'clothing-table';
-  } else if (tabId === 'equip' && currentEquipView === 'checkfail') {
-    tableId = 'checkFailTable';
   }
   var table = document.getElementById(tableId);
   if (!table) { alert('未找到表格'); return; }
@@ -5957,7 +5955,6 @@ function exportTable(tabId) {
   };
   var expName = (tabNames[tabId] || tabId);
   if (tabId === 'equip' && currentEquipView === 'clothing') expName = '骑手服装标准化率';
-  if (tabId === 'equip' && currentEquipView === 'checkfail') expName = '抽检不合格骑手明细';
   var now = new Date();
   var ts = now.getFullYear() + ('0' + (now.getMonth() + 1)).slice(-2) + ('0' + now.getDate()).slice(-2);
   exportTableWYSIWYG(table, expName, '履约项目看板_' + expName + '_' + ts + '.xls');
