@@ -227,6 +227,10 @@ table.dt thead{background:transparent}
 #checkFailTable th{background:#f57c00;color:#fff;padding:6px 8px;text-align:center;border:1px solid #e65100;white-space:nowrap;position:sticky;top:var(--hdfix,0px);z-index:4}
 #checkFailTable td{padding:5px 8px;border:1px solid #ffe0b2;text-align:center;white-space:nowrap;background:#fff}
 #checkFailTable tbody tr:hover td{background:#fff3e0}
+#checkAllTable{width:100%;border-collapse:collapse;font-size:12px}
+#checkAllTable th{background:#0288d1;color:#fff;padding:6px 8px;text-align:center;border:1px solid #01579b;white-space:nowrap;position:sticky;top:var(--hdfix,0px);z-index:4}
+#checkAllTable td{padding:5px 8px;border:1px solid #b3e5fc;text-align:center;white-space:nowrap;background:#fff}
+#checkAllTable tbody tr:hover td{background:#e1f5fe}
 #clothing-table-wrap .lv-total td{font-weight:700;color:#0A3D6B;font-size:13px}
 #clothing-table-wrap .lv-subregion td{font-weight:700;color:#0B4F8A;font-size:12px}
 #clothing-table-wrap .lv-merchant td{font-weight:500;color:#1E88E5;font-style:italic;font-size:12px}
@@ -675,6 +679,21 @@ tr.cb-row-noup:hover td{background:#ffefef}
       </table>
     </div>
   </div>
+  <!-- 抽检骑手明细（2026-10-15 新增：M盘抽检骑手照片表全量记录，置于不合格明细与标准化率表之间，与筛选联动） -->
+  <div id="checkall-section" style="display:none">
+    <div class="cf-section-title" style="margin:0 2px 6px;font-weight:700;color:#0B4F8A;font-size:14px;">抽检骑手明细<span style="font-weight:400;color:#4F6E87;font-size:12px;margin-left:10px;">全部抽检记录 · 与上方筛选条件联动</span></div>
+    <div class="table-wrap table-wrap-station" id="checkall-table-wrap">
+      <table id="checkAllTable">
+        <thead>
+          <tr>
+            <th>大区</th><th>区域</th><th>城市</th><th>站点名称</th>
+            <th>抽检日期</th><th>骑手ID</th><th>骑手姓名</th><th>被检查照片</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
   <!-- 服装标准化率视图 -->
   <div class="table-wrap table-wrap-station" id="clothing-table-wrap" style="display:none;margin-top:0;">
     <table class="dt" id="clothing-table">
@@ -1049,6 +1068,7 @@ var METRIC_CFG = { clothing: { rows: [], target: 95 } };
 
 var currentEquipView = 'main';
 var checkFailPage = 1;
+var checkAllPage = 1, checkAllPageSize = 20;
 var checkFailPageSize = 20;
 
 // ─── 工具函数 ──────────────────────────────────────────────
@@ -3581,13 +3601,15 @@ function switchEquipView(view) {
   document.getElementById('view-btn-equip-clothing').classList.toggle('active', view === 'clothing');
   document.getElementById('equip-table-wrap').style.display = (view === 'main') ? '' : 'none';
   document.getElementById('clothing-table-wrap').style.display = (view === 'clothing') ? '' : 'none';
-  // 抽检不合格骑手明细已合并到服装标准化率视图下方，随其显隐并联动筛选
+  // 抽检不合格骑手明细 + 抽检骑手明细已合并到服装标准化率视图，随其显隐并联动筛选
   var cfSec = document.getElementById('checkfail-section');
   if (cfSec) cfSec.style.display = (view === 'clothing') ? '' : 'none';
+  var caSec = document.getElementById('checkall-section');
+  if (caSec) caSec.style.display = (view === 'clothing') ? '' : 'none';
   if (view === 'main') {
     renderEquipTab();
   } else {
-    renderClothingTable(); // 内部末尾会联动 renderCheckFailTable()
+    renderClothingTable(); // 内部末尾会联动 renderCheckFailTable() + renderCheckAllTable()
   }
   updateClothingSummaryCard();
   if (view !== 'main') { updateClothingRegionCards(); }
@@ -3764,6 +3786,7 @@ function renderClothingTable() {
 
   document.getElementById('clothing-tbody').innerHTML = html || '<tr><td colspan="99" style="text-align:center;color:#4F6E87;padding:20px;">暂无数据</td></tr>';
   renderCheckFailTable();
+  renderCheckAllTable();
 }
 
 // ══════════════════════════════════════════════════════════
@@ -3869,6 +3892,97 @@ function renderCheckFailPagination(totalPages, totalRows) {
   }
   h += '<button onclick="checkFailPage++;renderCheckFailTable();" ' + (checkFailPage === totalPages ? 'disabled' : '') + '>下一页</button>';
   h += '<button onclick="checkFailPage=' + totalPages + ';renderCheckFailTable();" ' + (checkFailPage === totalPages ? 'disabled' : '') + '>末页</button>';
+  pg.innerHTML = h;
+}
+
+// ══════════════════════════════════════════════════════════
+// ★ 抽检骑手明细（M盘抽检骑手照片表全量记录，与同一套筛选联动）
+// ══════════════════════════════════════════════════════════
+function renderCheckAllTable() {
+  var tbody = document.querySelector('#checkAllTable tbody');
+  if (!tbody) return;
+  var regionF = sfState['region-equip'] || [];
+  var subregionF = sfState['subregion-equip'] || [];
+  var cityF = sfState['city-equip'] || [];
+  var siteF = sfState['site-equip'] || [];
+  var dateF = sfState['date-equip'] || [];
+
+  var rows = (typeof CHECK_ALL_ROWS !== 'undefined' ? CHECK_ALL_ROWS : []).filter(function(r) {
+    if (regionF.length && regionF.indexOf(r.region) < 0) return false;
+    if (subregionF.length && subregionF.indexOf(r.subregion) < 0) return false;
+    if (cityF.length && cityF.indexOf(r.city) < 0) return false;
+    if (siteF.length && siteF.indexOf(r.name) < 0) return false;
+    if (dateF.length) {
+      var dayVal = (r.day && r.day.length === 8) ? (r.day.slice(4, 6) + '-' + r.day.slice(6, 8)) : r.day;
+      if (dateF.indexOf(dayVal) < 0) return false;
+    }
+    return true;
+  });
+  if (!rows || rows.length === 0) { tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#999;">暂无抽检记录</td></tr>'; renderCheckAllPagination(0, 0); return; }
+  var totalPages = Math.ceil(rows.length / checkAllPageSize);
+  if (checkAllPage < 1) checkAllPage = 1;
+  if (checkAllPage > totalPages) checkAllPage = totalPages;
+  var start = (checkAllPage - 1) * checkAllPageSize;
+  var end = Math.min(start + checkAllPageSize, rows.length);
+  var html = '';
+  for (var i = start; i < end; i++) {
+    var r = rows[i];
+    var rid = String(r.rid || '').trim();
+    if (rid.indexOf('.') >= 0) { rid = rid.split('.')[0]; }
+    var photos = CHECK_PHOTO_MAP[rid] || [];
+    var photoLinks = '';
+    if (photos.length > 0) {
+      for (var p = 0; p < photos.length; p++) {
+        photoLinks += '<a href="javascript:void(0)" class="photo-link-ca" data-idx="' + p + '" data-photos="' + encodeURIComponent(JSON.stringify(photos)) + '" style="margin-right:6px;color:#1E88E5;text-decoration:underline;">照片' + (p + 1) + '</a>';
+      }
+    } else {
+      photoLinks = '<span style="color:#ccc;">无</span>';
+    }
+    html += '<tr>' +
+      '<td>' + (r.region || '') + '</td>' +
+      '<td>' + (r.subregion || '') + '</td>' +
+      '<td>' + (r.city || '') + '</td>' +
+      '<td>' + (r.name || '') + '</td>' +
+      '<td>' + ((r.day && r.day.length === 8) ? (r.day.slice(4, 6) + '-' + r.day.slice(6, 8)) : (r.day || '')) + '</td>' +
+      '<td>' + rid + '</td>' +
+      '<td>' + (r.rider_name || '-') + '</td>' +
+      '<td>' + photoLinks + '</td>' +
+      '</tr>';
+  }
+  tbody.innerHTML = html;
+  var links = tbody.querySelectorAll('.photo-link-ca');
+  for (var k = 0; k < links.length; k++) {
+    links[k].addEventListener('click', function(e) {
+      e.preventDefault();
+      var idx = parseInt(this.getAttribute('data-idx'));
+      var photos = JSON.parse(decodeURIComponent(this.getAttribute('data-photos')));
+      document.getElementById('photoModalImg').src = photos[idx];
+      document.getElementById('photoModal').style.display = 'block';
+    });
+  }
+  renderCheckAllPagination(totalPages, rows.length);
+}
+
+function renderCheckAllPagination(totalPages, totalRows) {
+  var wrap = document.getElementById('checkall-table-wrap');
+  if (!wrap) return;
+  var pg = document.getElementById('checkAllPagination');
+  if (!pg) {
+    pg = document.createElement('div');
+    pg.id = 'checkAllPagination';
+    pg.className = 'pagination';
+    wrap.appendChild(pg);
+  }
+  if (totalPages <= 1) { pg.innerHTML = ''; return; }
+  var h = '<span class="pg-info">第 ' + checkAllPage + ' / ' + totalPages + ' 页，共 ' + totalRows + ' 条</span>&nbsp;';
+  h += '<button onclick="checkAllPage=1;renderCheckAllTable();" ' + (checkAllPage === 1 ? 'disabled' : '') + '>首页</button>';
+  h += '<button onclick="checkAllPage--;renderCheckAllTable();" ' + (checkAllPage === 1 ? 'disabled' : '') + '>上一页</button>';
+  var s = Math.max(1, checkAllPage - 2), e = Math.min(totalPages, checkAllPage + 2);
+  for (var i = s; i <= e; i++) {
+    h += '<button class="' + (i === checkAllPage ? 'cur' : '') + '" onclick="checkAllPage=' + i + ';renderCheckAllTable();">' + i + '</button>';
+  }
+  h += '<button onclick="checkAllPage++;renderCheckAllTable();" ' + (checkAllPage === totalPages ? 'disabled' : '') + '>下一页</button>';
+  h += '<button onclick="checkAllPage=' + totalPages + ';renderCheckAllTable();" ' + (checkAllPage === totalPages ? 'disabled' : '') + '>末页</button>';
   pg.innerHTML = h;
 }
 
