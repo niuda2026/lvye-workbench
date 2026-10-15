@@ -370,12 +370,13 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <span class="filter-count" id="filter-count-morning"></span>
   </div>
 
-  <!-- 早会驳回 · 日期窗口 + 明细（2026-10-15 移至筛选条与明细统计表之间；仅「早会审核管理（日更新）」视图显示；数据只覆盖当月） -->
+  <!-- 早会驳回 · 日期窗口 + 明细（2026-10-15 移至筛选条与明细统计表之间；仅「早会审核管理（日更新）」视图显示；数据源=M盘驳回清单，范围见副标题） -->
   <div id="mr-rej-block" style="display:none;margin:10px 0 12px;">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
       <span style="font-size:14px;font-weight:700;color:#1f3a5f;">早会驳回明细</span>
-      <span style="font-size:12px;color:#7d90a5;">（待申诉/驳回记录 · 只覆盖当月 · 跟随上方筛选联动）</span>
+      <span id="mr-rej-sub" style="font-size:12px;color:#7d90a5;">（驳回记录 · 数据范围加载中…）</span>
       <span style="margin-left:12px;font-size:12px;color:#475569;">日期窗口：</span>
+      <button class="lv-btn" id="mr-rej-w1" onclick="mrRejSetWin(1)">昨日</button>
       <button class="lv-btn" id="mr-rej-w7" onclick="mrRejSetWin(7)">近7日</button>
       <button class="lv-btn" id="mr-rej-w14" onclick="mrRejSetWin(14)">近14日</button>
       <button class="lv-btn active" id="mr-rej-w0" onclick="mrRejSetWin(0)">本月全部</button>
@@ -1038,6 +1039,8 @@ tr.cb-row-noup:hover td{background:#ffefef}
 <script src="penalty_weekly.js"></script>
 <script src="penalty_monthly.js"></script>
 <script src="morning_review_data.js"></script>
+<script src="morning_rej_m.js"></script>
+<script src="morning_penalty_m.js"></script>
 <!-- 截图库 -->
 <script src="../_libs/echarts-5.5.0.min.js"></script>
 <script src="../_libs/html2canvas-1.4.1.min.js"></script>
@@ -1969,14 +1972,15 @@ function renderAuditView() {
     document.getElementById('mr-legend').innerHTML = legend;
   }
 
-  // ── 早会驳回 · 日期窗口 + 明细（只覆盖当月）──
+  // ── 早会驳回 · 日期窗口 + 明细（数据源=M盘驳回清单，范围随 MR_META.rej_from/rej_to）──
   var blk = document.getElementById('mr-rej-block');
   if (blk) { blk.style.display = ''; renderMrRejBlock(); }
 }
 
-// ─── 早会驳回窗口 + 明细（2026-10-15 新增）───
-// MR_REJ 由 build_meeting_review.py 生成：当月 1 日至今全部驳回(待申诉)早会记录
-var MR_REJ_WIN = 0;   // 0=本月全部；7/14=近N日
+// ─── 早会驳回窗口 + 明细 ───
+// MR_REJ 数据源（2026-10-15 改）：M盘 Excel 驳回清单（morning_rej_m.js 覆盖 BI 版），
+// 用户每日放「截止昨日」清单 → watch_m_drive 触发 _build_meeting_m.py 重建
+var MR_REJ_WIN = 0;   // 0=本月全部；1=昨日；7/14=近N日
 function mrRejSetWin(n) {
   MR_REJ_WIN = n;
   renderMrRejBlock();
@@ -1993,15 +1997,26 @@ function renderMrRejBlock() {
   var meta = (typeof MR_META !== 'undefined') ? MR_META : null;
   var list = (typeof MR_REJ !== 'undefined' && MR_REJ) ? MR_REJ : [];
   var fromFull = meta && meta.rej_from ? meta.rej_from : null;
-  // 窗口下限：0=本月全部(数据起点即当月1日)；N=近N日(与当月起点取较晚者)
-  var winFrom = MR_REJ_WIN > 0 ? mrRejIsoShift(MR_REJ_WIN - 1) : null;
+  // 窗口上下限：0=本月全部(数据起点起)；1=昨日单日；7/14=近N日(含今日)
+  var winFrom = null, winTo = null;
+  if (MR_REJ_WIN === 1) { winFrom = mrRejIsoShift(1); winTo = winFrom; }
+  else if (MR_REJ_WIN > 1) { winFrom = mrRejIsoShift(MR_REJ_WIN - 1); }
   if (winFrom && fromFull && winFrom < fromFull) winFrom = fromFull;
 
   // 窗口按钮高亮
-  [7, 14, 0].forEach(function (n) {
+  [1, 7, 14, 0].forEach(function (n) {
     var b = document.getElementById('mr-rej-w' + (n || '0'));
     if (b) b.classList[n === MR_REJ_WIN ? 'add' : 'remove']('active');
   });
+
+  // 副标题：跟随数据实际覆盖范围动态显示（不写死"只覆盖当月"）
+  var subEl = document.getElementById('mr-rej-sub');
+  if (subEl) {
+    var subFrom = fromFull || '-', subTo = meta && meta.rej_to ? meta.rej_to : (fulls ? fulls[fulls.length - 1] : '-');
+    subEl.textContent = '（驳回记录 · 数据 ' + subFrom + ' ~ ' + subTo
+      + (meta && meta.rej_source ? ' · ' + meta.rej_source : '')
+      + ' · 跟随上方筛选联动）';
+  }
 
   var shown = [];
   // 联动「审核状态」筛选：选了状态但不含「待申诉」时，驳回明细同步置空（2026-10-15）
@@ -2010,13 +2025,15 @@ function renderMrRejBlock() {
   for (var i = 0; i < list.length; i++) {
     var r = list[i];
     if (winFrom && r.full && r.full < winFrom) continue;
+    if (winTo && r.full && r.full > winTo) continue;
     if (isFiltered(r.site, 'morning')) continue;
     shown.push(r);
   }
   if (!statusOk) shown = [];
 
   if (tagEl) {
-    var rangeTxt = (winFrom || (fromFull || '-')) + ' ~ ' + (meta && meta.rej_to ? meta.rej_to : mrRejIsoShift(0));
+    var rangeTxt = (MR_REJ_WIN === 1) ? (winFrom || '-')
+      : (winFrom || (fromFull || '-')) + ' ~ ' + (meta && meta.rej_to ? meta.rej_to : mrRejIsoShift(0));
     tagEl.textContent = '共 ' + shown.length + ' 条 · ' + rangeTxt + (fromFull ? ' · 数据自 ' + fromFull : '');
   }
 
@@ -2032,7 +2049,8 @@ function renderMrRejBlock() {
   var rows = '';
   for (var j = 0; j < shown.length; j++) {
     var t = shown[j];
-    var att = (t.should ? (t.actual + '/' + t.should + (t.rate !== '-' && t.rate != null ? ' (' + t.rate + '%)' : '')) : '-');
+    var att = t.should ? (t.actual + '/' + t.should + (t.rate !== '-' && t.rate != null ? ' (' + t.rate + '%)' : ''))
+                       : (t.rate !== '-' && t.rate != null && t.rate !== '' ? t.rate + '%' : '-');
     rows += '<tr>'
       + '<td class="sticky-col" style="left:0;min-width:80px">' + escHtml(t.region || '-') + '</td>'
       + '<td class="sticky-col" style="left:80px;min-width:80px">' + escHtml(t.subr || '-') + '</td>'
