@@ -473,33 +473,6 @@ tr.cb-row-noup:hover td{background:#ffefef}
     </div>
   </div>
 
-  <!-- ② 岗位巡检情况（默认折叠） -->
-  <details class="insp-fold" id="insp-roles-fold" ontoggle="inspFoldToggle('roles')">
-    <summary>岗位巡检情况（按提交人岗位）<span class="insp-h-sub" id="insp-roles-sub" style="font-weight:400;"></span></summary>
-    <div class="insp-fold-body">
-      <div class="table-wrap" style="max-height:300px;border:1px solid #e3eaf3;border-radius:6px;">
-        <table class="dt" id="tbl-insp-roles">
-          <thead id="thead-insp-roles"></thead>
-          <tbody id="tbody-insp-roles"></tbody>
-        </table>
-      </div>
-      <div id="insp-role-chart" style="height:290px;margin-top:10px;border:1px solid #e3eaf3;border-radius:6px;background:#fff;"></div>
-    </div>
-  </details>
-
-  <!-- ③ 检查方式维度（默认折叠） -->
-  <details class="insp-fold" id="insp-types-fold" ontoggle="inspFoldToggle('types')">
-    <summary>检查方式维度<span class="insp-h-sub" id="insp-types-sub" style="font-weight:400;"></span></summary>
-    <div class="insp-fold-body">
-      <div class="table-wrap" style="max-height:280px;border:1px solid #e3eaf3;border-radius:6px;">
-        <table class="dt" id="tbl-insp-types">
-          <thead id="thead-insp-types"></thead>
-          <tbody id="tbody-insp-types"></tbody>
-        </table>
-      </div>
-    </div>
-  </details>
-
   <!-- ④ 异常跟进清单 -->
   <div id="insp-alert-block" style="margin-top:16px;">
     <div class="insp-h">待整改 / 超时未整改 / 整改驳回 清单<span class="insp-h-sub" id="insp-alert-sub"></span></div>
@@ -540,6 +513,33 @@ tr.cb-row-noup:hover td{background:#ffefef}
 
 
 
+
+  <!-- ④ 岗位巡检情况（默认折叠，2026-10-15 移至未巡检站点上方） -->
+  <details class="insp-fold" id="insp-roles-fold" ontoggle="inspFoldToggle('roles')">
+    <summary>岗位巡检情况（按提交人岗位）<span class="insp-h-sub" id="insp-roles-sub" style="font-weight:400;"></span></summary>
+    <div class="insp-fold-body">
+      <div class="table-wrap" style="max-height:300px;border:1px solid #e3eaf3;border-radius:6px;">
+        <table class="dt" id="tbl-insp-roles">
+          <thead id="thead-insp-roles"></thead>
+          <tbody id="tbody-insp-roles"></tbody>
+        </table>
+      </div>
+      <div id="insp-role-chart" style="height:290px;margin-top:10px;border:1px solid #e3eaf3;border-radius:6px;background:#fff;"></div>
+    </div>
+  </details>
+
+  <!-- ⑤ 检查方式维度（默认折叠） -->
+  <details class="insp-fold" id="insp-types-fold" ontoggle="inspFoldToggle('types')">
+    <summary>检查方式维度<span class="insp-h-sub" id="insp-types-sub" style="font-weight:400;"></span></summary>
+    <div class="insp-fold-body">
+      <div class="table-wrap" style="max-height:280px;border:1px solid #e3eaf3;border-radius:6px;">
+        <table class="dt" id="tbl-insp-types">
+          <thead id="thead-insp-types"></thead>
+          <tbody id="tbody-insp-types"></tbody>
+        </table>
+      </div>
+    </div>
+  </details>
 
   <!-- ⑥ 本期未巡检站点 -->
   <div id="insp-miss-block" style="margin-top:16px;">
