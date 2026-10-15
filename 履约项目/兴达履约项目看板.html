@@ -423,12 +423,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     #sub-insp details.insp-fold>summary:before{content:'▸';color:#7d90a5;font-size:12px;}
     #sub-insp details.insp-fold[open]>summary:before{content:'▾';}
     #sub-insp details.insp-fold .insp-fold-body{padding:0 12px 12px;}
-    #sub-insp .insp-deduct-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-    @media (max-width:1100px){#sub-insp .insp-deduct-grid{grid-template-columns:1fr;}}
     #sub-insp .insp-deduct-hint{font-size:12px;color:#8a5a13;padding:10px 12px;background:#fdf8ee;border:1px dashed #e8d5a8;border-radius:6px;line-height:1.7;}
-    #sub-insp .insp-drank-row{cursor:pointer;}
-    #sub-insp .insp-drank-row:hover td{background:#eef6ff;}
-    #sub-insp .insp-drank-sel td{background:#e3effc !important;}
   </style>
 
   <!-- 数据源横幅（登录态失效/抓取过期时显示） -->
@@ -465,29 +460,9 @@ tr.cb-row-noup:hover td{background:#ffefef}
     </div>
   </div>
 
-  <!-- ② 扣分透视区（v2 新增：扣分原因来自工单详情，不含照片/视频） -->
+  <!-- ② 扣分透视区（v2 新增：扣分原因来自工单详情，不含照片/视频；2026-10-15 移除 TOP榜/站点排行两模块） -->
   <div id="insp-deduct-block" style="margin-top:16px;">
     <div class="insp-h">扣分透视区<span class="insp-h-sub" id="insp-deduct-sub"></span></div>
-    <div class="insp-deduct-grid">
-      <div>
-        <div class="insp-h" style="font-size:13px;">扣分项 TOP 榜（按检查标准）</div>
-        <div class="table-wrap" style="max-height:240px;border:1px solid #e3eaf3;border-radius:6px;">
-          <table class="dt" id="tbl-insp-dtop">
-            <thead id="thead-insp-dtop"></thead>
-            <tbody id="tbody-insp-dtop"></tbody>
-          </table>
-        </div>
-      </div>
-      <div>
-        <div class="insp-h" style="font-size:13px;">扣分站点排行<span class="insp-h-sub">点击行可筛选下方明细</span></div>
-        <div class="table-wrap" style="max-height:240px;border:1px solid #e3eaf3;border-radius:6px;">
-          <table class="dt" id="tbl-insp-drank">
-            <thead id="thead-insp-drank"></thead>
-            <tbody id="tbody-insp-drank"></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
     <div class="insp-h" style="margin-top:12px;">扣分明细<span class="insp-h-sub" id="insp-ddetail-sub"></span></div>
     <div id="insp-ddetail-hint" class="insp-deduct-hint" style="display:none;"></div>
     <div class="table-wrap" style="max-height:340px;border:1px solid #e3eaf3;border-radius:6px;">
@@ -2692,10 +2667,8 @@ function inspSelectDeductSite(name) {
 }
 function inspRenderDeduct(days) {
   var M = inspMeta();
-  var topTb = document.getElementById('tbody-insp-dtop');
-  var rankTb = document.getElementById('tbody-insp-drank');
   var detTb = document.getElementById('tbody-insp-ddetail');
-  if (!topTb || !rankTb || !detTb) return;
+  if (!detTb) return;
   var ready = !!(M.deduct && M.deduct.detailReady);
 
   var agg = inspAggDeduct(days);
@@ -2706,43 +2679,7 @@ function inspRenderDeduct(days) {
   var sub = document.getElementById('insp-deduct-sub');
   if (sub) sub.textContent = '窗口内扣分单 ' + tOrders + ' 张 · 扣分项 ' + tItems + ' 个 · 涉及站点 ' + list.length + ' 个（原因原文来自工单详情，不含照片/视频）';
 
-  // 左：扣分项 TOP 榜（按检查标准聚合，需详情数据；未接入前给空态说明）
-  var topHead = '<tr><th style="min-width:150px;">一级 / 二级分类 · 检查标准</th><th>扣分次数</th><th>涉及站点</th></tr>';
-  var topBody = '';
-  if (ready && window.INSP2_DEDUCT_STDS && window.INSP2_DEDUCT_STDS.length) {
-    var stds = window.INSP2_DEDUCT_STDS.filter(function (s) {
-      return !(INSP_ONLY_DEDUCT && !agg[s[0]]);   // 占位：聚合表按站点名首列过滤由 P2 完整实现
-    });
-    stds.sort(function (a, b) { return b[3] - a[3]; });
-    stds.slice(0, 15).forEach(function (s) {
-      topBody += '<tr><td>' + escHtml(s[0]) + ' / ' + escHtml(s[1]) + ' · ' + escHtml(s[2]) + '</td>'
-        + '<td class="rr">' + fr(s[3]) + '</td><td>' + fr(s[4]) + '</td></tr>';
-    });
-  } else if (!tItems) {
-    topBody = '<tr><td colspan="3" class="empty">本窗口无扣分记录 ✓</td></tr>';
-  } else {
-    topBody = '<tr><td colspan="3" style="padding:12px;color:#8a5a13;font-size:12px;line-height:1.8;">'
-      + '扣分项按「一级分类 / 二级分类 / 检查标准」聚合，需要工单详情数据（含每项扣分原因）。<br>'
-      + '详情抓取（fetch_insp_detail.js）尚未接入，本表暂为空态——层级与单据级扣分在右侧排行和下方明细中已可用。</td></tr>';
-  }
-  document.getElementById('thead-insp-dtop').innerHTML = topHead;
-  topTb.innerHTML = topBody;
-
-  // 右：扣分站点排行
-  var rankBody = '';
-  list.slice(0, 15).forEach(function (x) {
-    var sel = (_inspDeductSite === x.n) ? ' insp-drank-sel' : '';
-    rankBody += '<tr class="insp-drank-row' + sel + '" onclick="inspSelectDeductSite(' + JSON.stringify(x.n).replace(/"/g, '&quot;') + ')">'
-      + '<td>' + escHtml(x.n) + '</td>'
-      + '<td class="rr">' + fr(x.a.orders) + '</td>'
-      + '<td class="rr">' + fr(x.a.items) + '</td>'
-      + '<td' + (x.a.open > 0 ? ' class="safety-hl"' : '') + '>' + fr(x.a.open) + '</td></tr>';
-  });
-  if (!rankBody) rankBody = '<tr><td colspan="4" class="empty">本窗口无扣分站点 ✓</td></tr>';
-  document.getElementById('thead-insp-drank').innerHTML = '<tr><th style="min-width:150px;">站点</th><th>扣分单数</th><th>扣分项数</th><th>未闭环</th></tr>';
-  rankTb.innerHTML = rankBody;
-
-  // 下：扣分明细（单据级；扣分原因 P2 前显示 —）
+  // 扣分明细（单据级；扣分原因 P2 前显示 —）
   var mask = inspDayMask(days);
   var rows = (window.INSP2_DEDUCT || []).filter(function (x) {
     return mask[x[0]] && !isFiltered(x[1], 'safety') && (!_inspDeductSite || x[1] === _inspDeductSite);
