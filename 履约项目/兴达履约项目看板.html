@@ -429,6 +429,26 @@ tr.cb-row-noup:hover td{background:#ffefef}
   <!-- 数据源横幅（登录态失效/抓取过期时显示） -->
   <div id="insp-banner" style="display:none;margin-bottom:8px;padding:6px 10px;border-radius:6px;font-size:12px;"></div>
 
+  <!-- 层级筛选 + 地理筛选（2026-10-15 上移：筛选在最上，联动下方所有模块与明细统计表） -->
+  <div class="sub-tab-bar" style="margin-bottom:8px;">
+    <span class="sub-tab-label">显示层级：</span>
+    <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleViewBtn('subregion')">区域行</button>
+    <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleViewBtn('merchant')">城市行</button>
+    <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
+    <span class="sub-tab-sep"></span>
+    <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
+  </div>
+  <div class="filter-bar" id="filter-bar-safety" style="margin-bottom:8px;">
+    <label>大区</label><div class="ms-wrap" id="ms-region-safety"><div class="ms-btn" onclick="toggleMs('region-safety')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>区域</label><div class="ms-wrap" id="ms-subregion-safety"><div class="ms-btn" onclick="toggleMs('subregion-safety')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>城市</label><div class="ms-wrap" id="ms-city-safety"><div class="ms-btn" onclick="toggleMs('city-safety')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <label>站点</label><div class="ms-wrap" id="ms-site-safety"><div class="ms-btn" onclick="toggleMs('site-safety')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
+    <button class="btn btn-secondary" onclick="clearFilter('safety')">清除筛选</button>
+    <button class="btn btn-export" onclick="exportTable('safety')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
+    <button class="btn btn-screenshot" onclick="screenshotPanel('safety')" title="截取当前看板">&#128247; 截图</button>
+    <span class="filter-count" id="filter-count-safety"></span>
+  </div>
+
   <!-- 控制条：日期窗口 + 只看有扣分 -->
   <div class="sub-tab-bar" style="margin-bottom:8px;">
     <span class="sub-tab-label">日期窗口：</span>
@@ -484,25 +504,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     </div>
   </div>
 
-  <!-- ⑤ 组织层级表 -->
-  <div class="sub-tab-bar" style="margin-top:16px;">
-    <span class="sub-tab-label">显示层级：</span>
-    <button class="lv-btn active" id="lv-btn-subregion" onclick="toggleViewBtn('subregion')">区域行</button>
-    <button class="lv-btn active" id="lv-btn-merchant" onclick="toggleViewBtn('merchant')">城市行</button>
-    <button class="lv-btn active" id="lv-btn-site" onclick="toggleViewBtn('site')">站点行</button>
-    <span class="sub-tab-sep"></span>
-    <button class="lv-btn-reset" id="lv-btn-reset" onclick="resetViewBtns()">全部显示</button>
-  </div>
-  <div class="filter-bar" id="filter-bar-safety">
-    <label>大区</label><div class="ms-wrap" id="ms-region-safety"><div class="ms-btn" onclick="toggleMs('region-safety')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
-    <label>区域</label><div class="ms-wrap" id="ms-subregion-safety"><div class="ms-btn" onclick="toggleMs('subregion-safety')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
-    <label>城市</label><div class="ms-wrap" id="ms-city-safety"><div class="ms-btn" onclick="toggleMs('city-safety')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
-    <label>站点</label><div class="ms-wrap" id="ms-site-safety"><div class="ms-btn" onclick="toggleMs('site-safety')"><span class="ms-label">全部</span><span class="ms-arrow">▼</span></div><div class="ms-drop"></div></div>
-    <button class="btn btn-secondary" onclick="clearFilter('safety')">清除筛选</button>
-    <button class="btn btn-export" onclick="exportTable('safety')" title="导出当前表格为Excel">&#128229; 导出Excel</button>
-    <button class="btn btn-screenshot" onclick="screenshotPanel('safety')" title="截取当前看板">&#128247; 截图</button>
-    <span class="filter-count" id="filter-count-safety"></span>
-  </div>
+  <!-- ⑤ 组织层级表（层级筛选已上移至日期窗口上方，2026-10-15） -->
   <div class="table-wrap table-wrap-station">
     <table class="dt" id="tbl-safety">
       <thead id="thead-safety"></thead>
