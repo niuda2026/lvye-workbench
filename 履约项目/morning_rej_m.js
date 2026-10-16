@@ -1,11 +1,11 @@
 /* 早会驳回明细 · M盘Excel口径（覆盖 BI 版 MR_REJ）
- * 由 morning_review/_build_meeting_m.py 生成 2026-10-16 06:42:04
- * 源: _报备和日常早会驳回清单_2026-10-09-2026-10-15(早会时间)_1792103992289.xlsx · 数据 2026-10-09 ~ 2026-10-12 · 5 条
+ * 由 morning_review/_build_meeting_m.py 生成 2026-10-17 06:22:17
+ * 源: _报备和日常早会驳回清单_2026-10-12-2026-10-16(早会时间)_1792189223067.xlsx · 数据 2026-10-12 ~ 2026-10-12 · 1 条
  */
-var MR_REJ = [{"site": "兴必达【上海】新天地站", "region": "华东大区", "subr": "上海区域", "city": "上海", "date": "10-12", "full": "2026-10-12", "weekday": "一", "submit": "10-12 10:03", "submit_ts": 1791770595.0, "content": "重点内容交流 · 【重点内容交流】视频拍摄不规范-无法听到交流内容", "should": 0, "actual": 0, "rate": 37.1}, {"site": "兴必达【合肥】时代天街站", "region": "中南大区", "subr": "安徽区域", "city": "合肥", "date": "10-10", "full": "2026-10-10", "weekday": "六", "submit": "10-10 11:08", "submit_ts": 1791601713.0, "content": "签到 · 【签到】签到-出勤率低于35%", "should": 0, "actual": 0, "rate": 32.9}, {"site": "兴必达【上海】新天地站", "region": "华东大区", "subr": "上海区域", "city": "上海", "date": "10-10", "full": "2026-10-10", "weekday": "六", "submit": "10-10 10:15", "submit_ts": 1791598510.0, "content": "仪容仪表 · 【仪容仪表】仪容仪表-未穿着合规服装", "should": 0, "actual": 0, "rate": 36.5}, {"site": "兴必达【上海】徐家汇站", "region": "华东大区", "subr": "上海区域", "city": "上海", "date": "10-10", "full": "2026-10-10", "weekday": "六", "submit": "10-10 09:52", "submit_ts": 1791597126.0, "content": "仪容仪表 · 【仪容仪表】仪容仪表-未穿着合规服装", "should": 0, "actual": 0, "rate": 36.3}, {"site": "兴必达【锦州】曼哈顿站", "region": "华北一区", "subr": "辽宁区域", "city": "锦州", "date": "10-09", "full": "2026-10-09", "weekday": "五", "submit": "10-09 10:31", "submit_ts": 1791513063.0, "content": "仪容仪表 · 【仪容仪表】仪容仪表-未穿着合规服装", "should": 0, "actual": 0, "rate": 39.6}];
+var MR_REJ = [{"site": "兴必达【上海】新天地站", "region": "华东大区", "subr": "上海区域", "city": "上海", "date": "10-12", "full": "2026-10-12", "weekday": "一", "submit": "10-12 10:03", "submit_ts": 1791770595.0, "content": "重点内容交流 · 【重点内容交流】视频拍摄不规范-无法听到交流内容", "should": 0, "actual": 0, "rate": 37.1}];
 if (typeof MR_META === 'object' && MR_META) {
-  MR_META.rej_from = "2026-10-09";
+  MR_META.rej_from = "2026-10-12";
   MR_META.rej_to = "2026-10-12";
-  MR_META.rej_count = 5;
+  MR_META.rej_count = 1;
   MR_META.rej_source = "M\u76d8\u9a73\u56de\u6e05\u5355";
 }
