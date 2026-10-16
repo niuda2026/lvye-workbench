@@ -34,6 +34,11 @@
           "key": "project",
           "label": "履约项目看板",
           "file": "履约项目/兴达履约项目看板.html"
+        },
+        {
+          "key": "ledger",
+          "label": "安全台账",
+          "file": "履约项目/ledger/安全台账看板.html"
         }
       ]
     },
