@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-17 07:18:10",
+  "updated_at": "2026-10-17 07:18:15",
   "action_summary": {
     "total": 23,
     "ok": 16,
@@ -20,11 +20,11 @@
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-10-17 07:13:02",
-        "all_synced": false,
-        "synced_count": 11,
+        "data_mtime": "2026-10-17 07:18:11",
+        "all_synced": true,
+        "synced_count": 13,
         "missing_count": 0,
-        "unsynced_count": 2,
+        "unsynced_count": 0,
         "sources": [
           {
             "type": "站点-戴盔",
@@ -42,7 +42,7 @@
             "type": "站点-闯红灯",
             "latest": "_闯红灯_2026-10-16-2026-10-16(统计日期)_1792192386183.xlsx",
             "mtime": "2026-10-17 07:13:12",
-            "synced": false
+            "synced": true
           },
           {
             "type": "站点-逆行",
@@ -66,7 +66,7 @@
             "type": "骑手维度-闯红灯",
             "latest": "_闯红灯-骑手维度_2026-10-16-2026-10-16(统计日期)_1792192395716.xlsx",
             "mtime": "2026-10-17 07:13:24",
-            "synced": false
+            "synced": true
           },
           {
             "type": "骑手维度-逆行",
@@ -110,7 +110,7 @@
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-10-17 07:18:10",
+            "mtime": "2026-10-17 07:18:15",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -127,7 +127,7 @@
           "total": 1,
           "all_ok": true
         },
-        "all_healthy": false
+        "all_healthy": true
       },
       "boards": [
         {
@@ -465,7 +465,7 @@
           "在职骑手详情\\在职骑手详情.html",
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-10-17 07:13:02",
+        "data_mtime": "2026-10-17 07:18:11",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -538,7 +538,7 @@
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-10-17 07:15:21",
+        "data_mtime": "2026-10-17 07:18:12",
         "all_synced": false,
         "synced_count": 3,
         "missing_count": 0,
@@ -559,7 +559,7 @@
           {
             "type": "V3内联数据",
             "latest": "v3_data.js",
-            "mtime": "2026-10-17 07:15:21",
+            "mtime": "2026-10-17 07:18:12",
             "synced": true
           },
           {
@@ -600,7 +600,7 @@
             "label": "V3内联数据",
             "path": "骑手保障补贴\\v3_data.js",
             "latest": "v3_data.js",
-            "mtime": "2026-10-17 07:15:21",
+            "mtime": "2026-10-17 07:18:12",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -789,7 +789,7 @@
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-10-17 07:18:00",
+        "data_mtime": "2026-10-17 07:18:15",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -800,7 +800,7 @@
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-10-17 07:18:00",
+            "mtime": "2026-10-17 07:18:15",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -857,7 +857,7 @@
           {
             "type": "交通安全data.js（归档源）",
             "latest": "data.js",
-            "mtime": "2026-10-17 07:13:02",
+            "mtime": "2026-10-17 07:18:11",
             "synced": true
           }
         ],
@@ -983,7 +983,7 @@
           {
             "type": "安全权益·工作台源(iframe实时)",
             "latest": "data.js",
-            "mtime": "2026-10-17 07:13:02",
+            "mtime": "2026-10-17 07:18:11",
             "synced": true
           },
           {
@@ -1007,7 +1007,7 @@
           {
             "type": "保险·V3内联数据(实时)",
             "latest": "v3_data.js",
-            "mtime": "2026-10-17 07:15:21",
+            "mtime": "2026-10-17 07:18:12",
             "synced": true
           },
           {
@@ -1047,7 +1047,7 @@
             "label": "保险赔付补贴监控·V3数据",
             "path": "骑手保障补贴\\v3_data.js",
             "latest": "v3_data.js",
-            "mtime": "2026-10-17 07:15:21",
+            "mtime": "2026-10-17 07:18:12",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
