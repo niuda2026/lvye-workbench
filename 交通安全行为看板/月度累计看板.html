@@ -133,7 +133,7 @@ tr.lv-site:hover td{background:#f0f7ff}
   <div class="table-wrap"><table class="dt" id="tbl-clothing"><thead></thead><tbody></tbody></table></div>
 </div>
 
-<script src="../_libs/xlsx-0.18.5.full.min.js"></script>
+<script src="../_libs/exceljs.min.js"></script>
 <script>
 // ══════════════════════════════════════════════════════════
 // 月度累计看板渲染
@@ -495,42 +495,235 @@ function renderAll(){
   renderTable('clothing', PANELS.clothing.metrics);
 }
 
-// ── 导出 Excel ──
-function exportTable(){
-  var metrics = PANELS[curTab].metrics;
-  var months = MONTHLY.months||[];
-  var idx = curMonth?months.indexOf(curMonth):-1;
-  var pv = idx>0?months[idx-1]:null;
-  var rows = [['大区','区域','城市','名称','层级']];
-  metrics.forEach(function(m){
-    rows[0].push(m.label+'('+curMonth+')');
-    if(pv){ rows[0].push(m.label+'('+pv+')'); rows[0].push('环比'); }
+// ── 导出 Excel（ExcelJS：完整支持样式/冻结/合并/筛选；一次导出 4 个 tab） ──
+// 每个 sheet 布局复刻看板：标题栏 → 汇总 KPI 卡片区 → 两级表头 → 层级数据行
+// 配色/阈值/口径与页面渲染完全同源（rcClass / rateVal / getFilteredSites / anyClothingHas）
+// 注：SheetJS(xlsx) 社区版写入不支持 cell.s 样式，故样式/冻结走 ExcelJS
+var XL_C = {
+  headBg:'FF0B4F8A', headSub:'FF1565C0', headBd:'FF1E88E5',
+  cardBg:'FFF0F6FC', cardBd:'FFD6E4F0', cardFg:'FF4F6E87',
+  goodBg:'FFE8F5E9', goodFg:'FF2E7D32',
+  warnBg:'FFFFF3E0', warnFg:'FFE65100',
+  badBg:'FFFFEBEE', badFg:'FFC62828',
+  lvTotBg:'FFDBEAFE', lvTotFg:'FF0A3D6B',
+  lvSubBg:'FFF0F6FC', lvSubFg:'FF0B4F8A',
+  lvMerBg:'FFF8FAFE', lvMerFg:'FF1E88E5',
+  zebra:'FFF8FAFC', cellBd:'FFE3EDF7',
+  mute:'FF90A4AE', text:'FF1A2E45', white:'FFFFFFFF', headSubFg:'FFB3D0E8'
+};
+function xlBd(c){ var b={style:'thin', color:{argb:c}}; return {top:b, bottom:b, left:b, right:b}; }
+function xlFill(c){ return {type:'pattern', pattern:'solid', fgColor:{argb:c}}; }
+function xlFont(o){ return Object.assign({name:'Microsoft YaHei'}, o); }
+function xlSet(ws, r, c, val, st){
+  var cell = ws.getCell(r, c);
+  if(val!==undefined && val!==null) cell.value = val;
+  if(st){
+    if(st.fill) cell.fill = st.fill;
+    if(st.font) cell.font = xlFont(st.font);
+    if(st.alignment) cell.alignment = st.alignment;
+    if(st.border) cell.border = st.border;
+    if(st.numFmt) cell.numFmt = st.numFmt;
+  }
+  return cell;
+}
+function xlKpiCss(v, d){
+  if(v==null || d.target==null) return null;
+  if(d.goodHigh) return v>=d.target?'green':(v>=(d.redAt!==undefined?d.redAt:d.target-5)?'yellow':'red');
+  return v<=d.target?'green':(v<=(d.redAt!==undefined?d.redAt:d.target+5)?'yellow':'red');
+}
+async function buildPanelSheet(wb, tab, metrics, cur, pv, totalSite, lvN){
+  var ws = wb.addWorksheet(PANELS[tab].title, {
+    views:[{state:'frozen', xSplit:4, ySplit:8, topLeftCell:'E9', activePane:'bottomRight'}],
+    pageSetup:{paperSize:9, orientation:'landscape', fitToPage:true, fitToWidth:1, fitToHeight:0}
   });
-  var filterClothing = (curTab==='clothing');
-  getFilteredSites().forEach(function(s){
-    if(filterClothing){
-      var has = anyClothingHas(s,curMonth) || anyClothingHas(s,pv);
-      if(!has) return;
+  var NC = 16;                                    // KPI 卡片区总宽（8 卡 × 2 列）
+  var span = pv?3:1;                              // 每指标列数（当月/上月/环比）
+  var lastCol = Math.max(NC, 4 + metrics.length*span);
+  // 列宽
+  [12,14,12,36].forEach(function(w,i){ ws.getColumn(i+1).width = w; });
+  for(var c=5;c<=lastCol;c++) ws.getColumn(c).width = (c-4)%span===0 ? 16 : ((c-4)%span===2 ? 11 : 16);
+  // 行高
+  ws.getRow(1).height = 30; ws.getRow(2).height = 8;
+  ws.getRow(3).height = 22; ws.getRow(4).height = 30; ws.getRow(5).height = 18;
+  ws.getRow(6).height = 8;  ws.getRow(7).height = 34; ws.getRow(8).height = 24;
+
+  // ── 行1：标题栏（深蓝底白字，复刻页面 header） ──
+  xlSet(ws, 1, 1, '📊 月度累计看板 · ' + PANELS[tab].title,
+    {fill:xlFill(XL_C.headBg), font:{bold:true, size:14, color:{argb:XL_C.white}},
+     alignment:{horizontal:'left', vertical:'middle', indent:1}, border:xlBd(XL_C.headBd)});
+  for(var c2=2;c2<=lastCol;c2++)
+    xlSet(ws, 1, c2, null, {fill:xlFill(XL_C.headBg), border:xlBd(XL_C.headBd)});
+  ws.mergeCells(1, 1, 1, 4);
+  xlSet(ws, 1, 5, '数据: monthly_summary.js · 更新 ' + (MONTHLY.updated||'—') +
+    (pv ? ' · 对比：' + cur + ' vs ' + pv + '（环比 = 当前月 − 上月，百分点）' : ' · 单月：' + cur),
+    {fill:xlFill(XL_C.headBg), font:{size:10, color:{argb:XL_C.headSubFg}},
+     alignment:{horizontal:'right', vertical:'middle'}, border:xlBd(XL_C.headBd)});
+  for(var c3=6;c3<=lastCol;c3++)
+    xlSet(ws, 1, c3, null, {fill:xlFill(XL_C.headBg), border:xlBd(XL_C.headBd)});
+  ws.mergeCells(1, 5, 1, lastCol);
+
+  // ── 行3-5：汇总 KPI 卡片区（口径与页面 summary-row 一致） ──
+  var kpiDefs = [
+    {label:'戴盔系带率（累计）', key:'helmet', sub:'目标 ≥ 99%', target:99, goodHigh:true, redAt:97},
+    {label:'路口超速率（累计）', key:'speed', sub:'目标 ≤ 2.58%', target:2.58, goodHigh:false, redAt:4.21},
+    {label:'闯红灯率（累计）', key:'redlight', sub:'目标 ≤ 16.23%', target:16.23, goodHigh:false, redAt:27.89},
+    {label:'里程逆行率（累计）', key:'reverse', sub:'目标 ≤ 2.45%', target:2.45, goodHigh:false, redAt:4.6},
+    {label:'工装检核率（累计）', key:'clothing', subKey:'cloth', sub:'目标 ≥ 80%', target:80, goodHigh:true},
+    {label:'美团工服率（累计）', key:'clothing', subKey:'vis', sub:'目标 ≥ 92%', target:92, goodHigh:true},
+    {label:'高速超速占比（月均日占比）', key:'high_speed', sub:'站点维度', target:null, goodHigh:false}
+  ];
+  var mv = totalSite ? (totalSite[cur] || {}) : {};
+  for(var k=0;k<8;k++){
+    var kc = k*2+1, isScale = (k>=kpiDefs.length);
+    var lbl = isScale ? '层级规模' : kpiDefs[k].label;
+    var val = null, css = null, sub = '';
+    if(isScale){ val = lvN.subN+' / '+lvN.cityN+' / '+lvN.siteN; sub = '区域 / 城市 / 站点'; }
+    else {
+      var d = kpiDefs[k], o = mv[d.key] || {};
+      var oo = d.subKey ? (o[d.subKey]||{}) : o;
+      var v = d.key==='high_speed' ? oo.pct : oo.rate;
+      val = v==null ? '-' : v;
+      css = xlKpiCss(v, d);
+      sub = cur + (d.sub?' · '+d.sub:'');
     }
-    var row = [s.region||'', s.subregion||'', s.city||'', s.name||'', LEVEL_TITLE[s.level]||s.level];
-    metrics.forEach(function(m){
-      var c = rateVal(s,curMonth,m);
-      row.push(c.v==null?'':c.v);
+    var bg = css==='green'?XL_C.goodBg : css==='yellow'?XL_C.warnBg : css==='red'?XL_C.badBg : XL_C.cardBg;
+    var fg = css==='green'?XL_C.goodFg : css==='yellow'?XL_C.warnFg : css==='red'?XL_C.badFg : XL_C.headBg;
+    xlSet(ws, 3, kc, lbl, {fill:xlFill(XL_C.cardBg), font:{size:10, color:{argb:XL_C.cardFg}},
+      alignment:{horizontal:'center', vertical:'middle', wrapText:true}, border:xlBd(XL_C.cardBd)});
+    xlSet(ws, 3, kc+1, null, {fill:xlFill(XL_C.cardBg), border:xlBd(XL_C.cardBd)});
+    xlSet(ws, 4, kc, val, {fill:xlFill(bg), font:{bold:true, size:16, color:{argb:fg}},
+      alignment:{horizontal:'center', vertical:'middle'}, border:xlBd(XL_C.cardBd),
+      numFmt: isScale ? undefined : '0.00"%"'});
+    xlSet(ws, 4, kc+1, null, {fill:xlFill(bg), border:xlBd(XL_C.cardBd)});
+    xlSet(ws, 5, kc, sub, {fill:xlFill(XL_C.white), font:{size:9, color:{argb:XL_C.mute}},
+      alignment:{horizontal:'center', vertical:'middle'}, border:xlBd(XL_C.cardBd)});
+    xlSet(ws, 5, kc+1, null, {fill:xlFill(XL_C.white), border:xlBd(XL_C.cardBd)});
+    ws.mergeCells(3, kc, 3, kc+1); ws.mergeCells(4, kc, 4, kc+1); ws.mergeCells(5, kc, 5, kc+1);
+  }
+
+  // ── 行7-8：两级表头（深蓝底白字；前 4 列纵向合并，各指标横向合并） ──
+  var h1 = ['大区','区域','城市','名称'], h2 = ['','','',''];
+  metrics.forEach(function(m){
+    h1.push(m.label + '（' + cur + (m.target!=null?' · 目标'+(m.goodHigh?'≥':'≤')+m.target:'') + '）');
+    h2.push(cur);
+    if(pv){ h1.push(m.label+'（'+pv+'）', '环比'); h2.push(pv, '百分点'); }
+  });
+  for(var hc=0;hc<lastCol;hc++){
+    xlSet(ws, 7, hc+1, h1[hc]||null, {fill:xlFill(XL_C.headBg),
+      font:{bold:true, size:12, color:{argb:XL_C.white}},
+      alignment:{horizontal:'center', vertical:'middle', wrapText:true}, border:xlBd(XL_C.headBd)});
+    xlSet(ws, 8, hc+1, h2[hc]||null, {fill:xlFill(XL_C.headSub),
+      font:{size:10, color:{argb:XL_C.headSubFg}},
+      alignment:{horizontal:'center', vertical:'middle', wrapText:true}, border:xlBd(XL_C.headBd)});
+  }
+  for(var fc=0;fc<4;fc++){
+    ws.mergeCells(7, fc+1, 8, fc+1);
+    ws.getCell(7, fc+1).alignment = {horizontal: fc===3?'left':'center', vertical:'middle', indent: fc===3?1:0};
+  }
+  for(var mi=0;mi<metrics.length;mi++){
+    var mc = 4 + mi*span + 1;
+    if(pv) ws.mergeCells(7, mc, 7, mc+2);
+  }
+
+  // ── 行9+：数据行（层级配色 + 斑马纹 + 阈值三色，与页面 CSS 同源） ──
+  var validRows = [];
+  getFilteredSites().forEach(function(s){
+    if(tab==='clothing' && !(anyClothingHas(s,cur) || anyClothingHas(s,pv))) return;
+    s._zi = validRows.length;
+    validRows.push(s);
+  });
+  for(var ri=0;ri<validRows.length;ri++){
+    var s = validRows[ri], row = 9 + ri;
+    var lv = s.level || 'site';
+    var zebra = (lv==='site') && (s._zi % 2 === 1);
+    var base = {alignment:{horizontal:'center', vertical:'middle'}, border:xlBd(XL_C.cellBd),
+                font:{size:11, color:{argb:XL_C.text}}};
+    if(lv==='total'){ base.fill = xlFill(XL_C.lvTotBg); base.font = {size:12, bold:true, color:{argb:XL_C.lvTotFg}}; }
+    else if(lv==='subregion'){ base.fill = xlFill(XL_C.lvSubBg); base.font = {size:11, bold:true, color:{argb:XL_C.lvSubFg}}; }
+    else if(lv==='merchant'){ base.fill = xlFill(XL_C.lvMerBg); base.font = {size:11, italic:true, color:{argb:XL_C.lvMerFg}}; }
+    else if(zebra){ base.fill = xlFill(XL_C.zebra); }
+    // 前置 4 列
+    xlSet(ws, row, 1, lv==='total'?'':(s.region||''), base);
+    xlSet(ws, row, 2, (lv==='site'||lv==='merchant')?(s.subregion||''):'', base);
+    xlSet(ws, row, 3, lv==='site'?(s.city||''):'', base);
+    var nameSt = JSON.parse(JSON.stringify(base));
+    nameSt.alignment = {horizontal:'left', vertical:'middle', indent:1};
+    xlSet(ws, row, 4, s.name||'', nameSt);
+    // 指标列
+    metrics.forEach(function(m, mIdx){
+      var mc0 = 4 + mIdx*span;   // 0-based 列偏移
+      var c = rateVal(s, cur, m);
+      var st = JSON.parse(JSON.stringify(base));
+      st.numFmt = '0.00"%"';
+      if(lv==='site'){
+        var cls = rcClass(c.v, m);
+        if(cls==='rg'){ st.fill = xlFill(XL_C.goodBg); st.font = {size:11, bold:true, color:{argb:XL_C.goodFg}}; }
+        else if(cls==='ry'){ st.fill = xlFill(XL_C.warnBg); st.font = {size:11, bold:true, color:{argb:XL_C.warnFg}}; }
+        else if(cls==='rr'){ st.fill = xlFill(XL_C.badBg); st.font = {size:11, bold:true, color:{argb:XL_C.badFg}}; }
+      }
+      xlSet(ws, row, mc0+1, c.v==null?null:c.v, st);
       if(pv){
-        var p = rateVal(s,pv,m);
-        row.push(p.v==null?'':p.v);
-        row.push((c.v!=null&&p.v!=null)?Math.round((c.v-p.v)*100)/100:'');
+        var p = rateVal(s, pv, m);
+        var st2 = JSON.parse(JSON.stringify(base));
+        st2.numFmt = '0.00"%"';
+        if(lv==='site'){
+          var cls2 = rcClass(p.v, m);
+          if(cls2==='rg'){ st2.fill = xlFill(XL_C.goodBg); st2.font = {size:11, bold:true, color:{argb:XL_C.goodFg}}; }
+          else if(cls2==='ry'){ st2.fill = xlFill(XL_C.warnBg); st2.font = {size:11, bold:true, color:{argb:XL_C.warnFg}}; }
+          else if(cls2==='rr'){ st2.fill = xlFill(XL_C.badBg); st2.font = {size:11, bold:true, color:{argb:XL_C.badFg}}; }
+        }
+        xlSet(ws, row, mc0+2, p.v==null?null:p.v, st2);
+        // 环比：涨绿跌红（goodHigh 指标反色），零灰
+        var dv = (c.v!=null && p.v!=null) ? Math.round((c.v-p.v)*100)/100 : null;
+        var st3 = JSON.parse(JSON.stringify(base));
+        st3.numFmt = '+0.00;-0.00;0.00';
+        if(dv!=null){
+          var good = m.goodHigh ? dv>0 : dv<0;
+          if(Math.abs(dv)<0.005) st3.font = {size:11, color:{argb:XL_C.mute}};
+          else st3.font = {size:11, bold:true, color:{argb: good?XL_C.goodFg:XL_C.badFg}};
+        }
+        xlSet(ws, row, mc0+3, dv, st3);
       }
     });
-    rows.push(row);
+  }
+  // 自动筛选挂表头第二行
+  if(validRows.length) ws.autoFilter = {from:{row:8, column:1}, to:{row:8+validRows.length, column:lastCol}};
+  return ws;
+}
+async function exportTable(){
+  if(typeof ExcelJS==='undefined'){ alert('Excel 导出库未加载，请刷新页面后重试'); return; }
+  var months = MONTHLY.months||[];
+  if(!curMonth) curMonth = months.length?months[months.length-1]:null;
+  if(!curMonth){ alert('暂无归档数据可导出'); return; }
+  var idx = months.indexOf(curMonth);
+  var pv = idx>0?months[idx-1]:null;
+  var totalSite=null, siteN=0, subN=0, cityN=0;
+  MONTHLY.sites.forEach(function(s){
+    if(s.level==='total') totalSite=s;
+    else if(s.level==='subregion') subN++;
+    else if(s.level==='merchant') cityN++;
+    else if(s.level==='site') siteN++;
   });
-  if(typeof XLSX!=='undefined'){
-    var ws = XLSX.utils.aoa_to_sheet(rows);
-    var wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, curTab);
-    XLSX.writeFile(wb, '月度累计看板_'+curTab+'_'+curMonth+'.xlsx');
-  } else {
-    alert('Excel 导出库未加载，请联网后重试');
+  var tabOrder = [curTab];   // 当前 tab 的 sheet 排最前（打开文件默认停在该 sheet）
+  Object.keys(PANELS).forEach(function(k){ if(k!==curTab) tabOrder.push(k); });
+  try{
+    var wb = new ExcelJS.Workbook();
+    wb.creator = '兴达履约工作台';
+    wb.created = new Date();
+    for(var i=0;i<tabOrder.length;i++){
+      await buildPanelSheet(wb, tabOrder[i], PANELS[tabOrder[i]].metrics, curMonth, pv, totalSite,
+        {subN:subN, cityN:cityN, siteN:siteN});
+    }
+    var buf = await wb.xlsx.writeBuffer();
+    var blob = new Blob([buf], {type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = '月度累计看板_'+curMonth+'.xlsx';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+  }catch(e){
+    alert('导出失败：' + (e && e.message ? e.message : e));
   }
 }
 
