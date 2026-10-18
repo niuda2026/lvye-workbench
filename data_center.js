@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-10-19 06:57:18",
+  "updated_at": "2026-10-19 06:58:00",
   "action_summary": {
     "total": 23,
     "ok": 16,
@@ -293,7 +293,7 @@ window.DATA_CENTER = {
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-10-19 06:42:49",
             "max_age_hours": 30,
-            "age_hours": 0.2,
+            "age_hours": 0.3,
             "ok": true,
             "note": "早间自动化重建(暂停BI抓取，改从M盘_审核明细_*.xlsx)",
             "fail_hits": [],
@@ -758,7 +758,7 @@ window.DATA_CENTER = {
             "latest": "update_stations.log",
             "mtime": "2026-10-17 08:48:38",
             "max_age_hours": 26,
-            "age_hours": 46.1,
+            "age_hours": 46.2,
             "ok": false,
             "note": "",
             "fail_hits": [],
