@@ -1,4 +1,4 @@
-var DATA_GEN_TIME = "2026-10-19 07:16:43";
+var DATA_GEN_TIME = "2026-10-20 06:35:15";
 
 var EXEC_DATA = {
   "V兴必达【洛阳】洛拖站": {
@@ -32246,7 +32246,7 @@ var SITE_INFO = {
   }
 };
 
-var LATEST_DATE = "10-19";
+var LATEST_DATE = "10-20";
 
 var REGION_ORDER = ["华北一区", "华北二区", "华北三区", "华东大区", "中南大区"];
 
