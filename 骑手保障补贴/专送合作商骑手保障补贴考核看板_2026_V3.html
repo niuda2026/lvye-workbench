@@ -121,6 +121,13 @@ td .city{color:#999;font-size:11px;font-weight:400}
 .goalbox table{font-size:12px}
 .goalbox td,.goalbox th{padding:7px 8px}
 
+/* 交通安全四项维度：内嵌工作台真身看板（数据同源实时同步） */
+#traffic4Panel{display:none;margin-top:14px}
+body.four-mode #traffic4Panel{display:block}
+body.four-mode .goalbox,body.four-mode .cards,body.four-mode .panel,
+body.four-mode .subsidy,body.four-mode .foot{display:none!important}
+#traffic4Panel iframe{width:100%;height:calc(100vh - 130px);min-height:640px;border:none;border-radius:10px;background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+
 .foot{text-align:center;padding:18px;font-size:11px;color:#9aa0ac}
 @media(max-width:760px){.toolbar{gap:10px}}
 
@@ -169,6 +176,7 @@ td .city{color:#999;font-size:11px;font-weight:400}
       <button data-lvl="bigregion">大区(5)</button>
       <button data-lvl="subregion">区域(10)</button>
       <button data-lvl="merchant">城市(28)</button>
+      <button data-lvl="traffic4" title="内嵌工作台·交通安全四项站维度看板（数据同源同步）">交通安全四项</button>
     </div>
   </div>
   <div class="grp">
@@ -240,6 +248,11 @@ td .city{color:#999;font-size:11px;font-weight:400}
 </div>
 
 <!-- goal reference 已移至考核维度筛选行下方 -->
+
+<!-- ══ 交通安全四项（站维度 · 内嵌工作台真身看板，数据同源实时同步）═══ -->
+<div id="traffic4Panel">
+  <iframe id="fourFrame" title="交通安全四项-站维度看板"></iframe>
+</div>
 
 <div class="foot">
   <div>安全过程指标数据来源：美团交通·商数据监控（总商/区域/城市 月维度达成）| 更新：<span id="footUpdated"></span></div>
@@ -1581,22 +1594,44 @@ function renderAll(){
   renderSubsidy();   // 先算补贴汇总，供"测算补贴金额"卡片读取
   renderCards(rows);
   var _pt=document.getElementById("periodTag"); if(_pt) _pt.textContent="2026.09.01 - 2027.08.31 · 结算季度 "+D.quarter;
-  var _mt=document.getElementById("metaTag"); if(_mt) _mt.textContent=(state.lvl==="subregion"?"区域维度":(state.lvl==="bigregion"?"大区维度":(state.lvl==="merchant"?"城市维度":"总商维度")))+" | "+state.month+" 月 | 数据更新 "+D.updated;
+  var _mt=document.getElementById("metaTag"); if(_mt) _mt.textContent=(state.lvl==="subregion"?"区域维度":(state.lvl==="bigregion"?"大区维度":(state.lvl==="merchant"?"城市维度":(state.lvl==="traffic4"?"交通安全四项（站维度）":"总商维度"))))+" | "+state.month+" 月 | 数据更新 "+D.updated;
   var _fu=document.getElementById("footUpdated"); if(_fu) _fu.textContent=D.updated;
 }
+
+/* ===== 交通安全四项维度：内嵌工作台真身看板（同源 data.js，数据随工作台看板同步更新） ===== */
+function fourFrameSrc(){
+  if(location.protocol==="file:") return "file:///../交通安全行为看板/骑手交通行为明细看板.html";
+  return "/four-board/" + encodeURIComponent("骑手交通行为明细看板.html");
+}
+function fourPostFilter(){
+  var f=document.getElementById("fourFrame"); if(!f||!f.contentWindow) return;
+  var msg={type:"xd-four-filter",region:[],subregion:[],city:[]};
+  if(state.big) msg.region=[state.big];
+  if(state.region){ if(state.lvl==="subregion") msg.subregion=[state.region]; else msg.city=[state.region]; }
+  try{ f.contentWindow.postMessage(msg,"*"); }catch(e){}
+}
+function enterFourMode(){
+  document.body.classList.add("four-mode");
+  var fr=document.getElementById("fourFrame");
+  if(fr && !fr.getAttribute("src")) fr.src=fourFrameSrc();
+  /* 看板加载 18MB data.js 需要几秒，多时点补发筛选（看板内脚本会自行校验有效性） */
+  [400,1200,2500,4000].forEach(function(t){ setTimeout(fourPostFilter,t); });
+}
+function leaveFourMode(){ document.body.classList.remove("four-mode"); }
 
 /* 维度切换 */
 document.querySelectorAll("#dimSeg button").forEach(function(b){
   b.onclick=function(){
     document.querySelectorAll("#dimSeg button").forEach(function(x){x.classList.remove("active")});
     b.classList.add("active"); state.lvl=b.dataset.lvl; state.region="";
-    renderAll();
+    if(state.lvl==="traffic4"){ enterFourMode(); renderRegionFilter(); }
+    else { leaveFourMode(); renderAll(); }
   };
 });
-document.getElementById("regionFilter").onchange=function(){ state.region=this.value; renderAll(); };
+document.getElementById("regionFilter").onchange=function(){ state.region=this.value; renderAll(); fourPostFilter(); };
 document.getElementById("bigFilter").onchange=function(){ state.big=this.value; state.region="";
   var rf=document.getElementById("regionFilter"); if(rf) rf.value=""; /* 父级范围变化 → 重置二级筛选 */
-  renderAll(); };
+  renderAll(); fourPostFilter(); };
 
 /* ===== 截图：先截本页内容，再上报父页拼合全页（含壳页表头与左侧导航） ===== */
 function ensureH2c(cb){
@@ -1613,6 +1648,10 @@ function saveShot(dataUrl,name){
   a.download=name; a.href=dataUrl; a.click();
 }
 function doCapture(){
+  if(document.body.classList.contains("four-mode")){
+    alert("「交通安全四项」维度为内嵌工作台看板，整页截图不含其内容；如需截图请直接在看板内操作。");
+    return;
+  }
   ensureH2c(function(){
     var box=document.querySelector(".page");
     // 整页截图时 sticky 元素（考核维度筛选行/表头）会停在滚动到的位置，
