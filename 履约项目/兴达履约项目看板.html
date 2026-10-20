@@ -379,7 +379,7 @@ tr.cb-row-noup:hover td{background:#ffefef}
     <span class="filter-count" id="filter-count-morning"></span>
   </div>
 
-  <!-- 早会驳回 · 日期窗口 + 明细（2026-10-15 移至筛选条与明细统计表之间；仅「早会审核管理（日更新）」视图显示；数据源=M盘驳回清单，范围见副标题） -->
+  <!-- 早会驳回 · 日期窗口 + 明细（2026-10-15 移至筛选条与明细统计表之间；仅「早会审核管理（日更新）」视图显示；数据源=BI 抓取 ∪ M盘驳回清单，合并去重，范围见副标题） -->
   <div id="mr-rej-block" style="display:none;margin:10px 0 12px;">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
       <span style="font-size:14px;font-weight:700;color:#1f3a5f;">早会驳回明细</span>
@@ -1983,8 +1983,9 @@ function renderAuditView() {
 }
 
 // ─── 早会驳回窗口 + 明细 ───
-// MR_REJ 数据源（2026-10-15 改）：M盘 Excel 驳回清单（morning_rej_m.js 覆盖 BI 版），
-// 用户每日放「截止昨日」清单 → watch_m_drive 触发 _build_meeting_m.py 重建
+// MR_REJ 数据源（2026-10-20 改）：BI 实时抓取(morning_review_data.js) 与
+// M盘 Excel 驳回清单(morning_rej_m.js → MR_REJ_M) **合并**，见 mrRejMerge()。
+// 2026-10-15 版是 M盘直接覆盖 MR_REJ，M盘一滞后明细整批消失（统计有、明细无），已废弃。
 var MR_REJ_WIN = 3;   // 0=本月全部；3/7/14=近N日(含今日，与下方早会提交明细近3天列对齐)；默认近3日
 function mrRejSetWin(n) {
   MR_REJ_WIN = n;
@@ -1994,13 +1995,45 @@ function mrRejIsoShift(n) {
   var d = new Date(Date.now() - n * 86400000);
   return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 }
+// 合并两个驳回数据源，键 = (站点, 日期)：
+//   MR_REJ_M（morning_rej_m.js · M盘Excel驳回清单）→ 带「审核不通过项目/标签明细」，优先
+//   MR_REJ  （morning_review_data.js · BI 实时抓取）→ 补 M盘滞后漏掉的记录（只补出勤字段）
+// 2026-10-20 改：此前是 M盘文件直接覆盖 MR_REJ，M盘一滞后明细就整批消失（统计有、明细无）。
+function mrRejMerge() {
+  var mList = (typeof MR_REJ_M !== 'undefined' && MR_REJ_M) ? MR_REJ_M : [];
+  var biList = (typeof MR_REJ !== 'undefined' && MR_REJ) ? MR_REJ : [];
+  var byKey = {}, out = [];
+  function keyOf(r) { return (r.site || '') + '|' + (r.full || r.date || ''); }
+  var i, r, k;
+  for (i = 0; i < mList.length; i++) {
+    r = mList[i]; k = keyOf(r);
+    if (byKey[k]) continue;
+    r.src = 'M';
+    byKey[k] = r; out.push(r);
+  }
+  for (i = 0; i < biList.length; i++) {
+    r = biList[i]; k = keyOf(r);
+    if (byKey[k]) {
+      var m = byKey[k];
+      if (!m.should && r.should) { m.should = r.should; m.actual = r.actual; m.rate = r.rate; }
+      continue;
+    }
+    var nb = {};
+    for (var f in r) nb[f] = r[f];
+    nb.src = 'BI';
+    byKey[k] = nb; out.push(nb);
+  }
+  out.sort(function (x, y) { return (y.submit_ts || 0) - (x.submit_ts || 0); });
+  return out;
+}
+
 function renderMrRejBlock() {
   var theadEl = document.getElementById('thead-mr-rej');
   var tbodyEl = document.getElementById('tbody-mr-rej');
   var tagEl = document.getElementById('mr-rej-tag');
   if (!theadEl || !tbodyEl) return;
   var meta = (typeof MR_META !== 'undefined') ? MR_META : null;
-  var list = (typeof MR_REJ !== 'undefined' && MR_REJ) ? MR_REJ : [];
+  var list = mrRejMerge();
   var fromFull = meta && meta.rej_from ? meta.rej_from : null;
   // 窗口下限：0=本月全部(数据起点起)；N=近N日(含今日，前天~今天)
   var winFrom = null, winTo = null;
@@ -2013,16 +2046,20 @@ function renderMrRejBlock() {
     if (b) b.classList[n === MR_REJ_WIN ? 'add' : 'remove']('active');
   });
 
-  // 副标题：跟随数据实际覆盖范围动态显示（不写死"只覆盖当月"）
+  // 副标题：数据来源构成（M盘 + BI 合并去重，任一源滞后都不会丢记录）
   var subEl = document.getElementById('mr-rej-sub');
+  var mCnt = (typeof MR_REJ_M !== 'undefined' && MR_REJ_M) ? MR_REJ_M.length : 0;
+  var biCnt = (typeof MR_REJ !== 'undefined' && MR_REJ) ? MR_REJ.length : 0;
+  var mMeta = (typeof MR_REJ_M_META !== 'undefined') ? MR_REJ_M_META : null;
   if (subEl) {
-    var subFrom = fromFull || '-', subTo = meta && meta.rej_to ? meta.rej_to : (fulls ? fulls[fulls.length - 1] : '-');
-    subEl.textContent = '（驳回记录 · 数据 ' + subFrom + ' ~ ' + subTo
-      + (meta && meta.rej_source ? ' · ' + meta.rej_source : '')
+    var subFrom = fromFull || '-', subTo = meta && meta.rej_to ? meta.rej_to : (list.length ? list[0].full : '-');
+    var srcTxt = 'M盘 ' + mCnt + ' 条 + BI ' + biCnt + ' 条 → 合并去重 ' + list.length + ' 条';
+    subEl.textContent = '（驳回记录 · 数据 ' + subFrom + ' ~ ' + subTo + ' · ' + srcTxt
+      + (mMeta && mMeta.generated_at ? ' · M盘清单 ' + mMeta.generated_at : '')
       + ' · 跟随上方筛选联动）';
   }
 
-  var shown = [];
+  var inWin = [], shown = [];
   // 联动「审核状态」筛选：选了状态但不含「待申诉」时，驳回明细同步置空（2026-10-15）
   var stF = (typeof sfState !== 'undefined') ? (sfState['status-morning'] || []) : [];
   var statusOk = (stF.length === 0 || stF.indexOf('待申诉') >= 0);
@@ -2030,6 +2067,7 @@ function renderMrRejBlock() {
     var r = list[i];
     if (winFrom && r.full && r.full < winFrom) continue;
     if (winTo && r.full && r.full > winTo) continue;
+    inWin.push(r);
     if (isFiltered(r.site, 'morning')) continue;
     shown.push(r);
   }
@@ -2038,6 +2076,14 @@ function renderMrRejBlock() {
   if (tagEl) {
     var rangeTxt = (winFrom || (fromFull || '-')) + ' ~ ' + (meta && meta.rej_to ? meta.rej_to : mrRejIsoShift(0));
     tagEl.textContent = '共 ' + shown.length + ' 条 · ' + rangeTxt + (fromFull ? ' · 数据自 ' + fromFull : '');
+    // 近3日窗口与统计卡「近3天 待申诉(驳回)」对账：不一致才提示，不静默修正
+    var totRej = (meta && meta.totals) ? (meta.totals.rejected || 0) : null;
+    if (MR_REJ_WIN === 3 && totRej !== null && inWin.length !== totRej) {
+      tagEl.textContent += ' · ⚠ 统计卡记 ' + totRej + ' 条';
+      tagEl.style.background = '#fff3e0'; tagEl.style.color = '#b45309';
+    } else {
+      tagEl.style.background = '#eaf4ff'; tagEl.style.color = '#1d6ec4';
+    }
   }
 
   var thead = '<tr>';
@@ -2061,9 +2107,11 @@ function renderMrRejBlock() {
       + '<td class="sticky-col name-cell" style="left:230px;min-width:150px">' + escHtml(t.site) + '</td>'
       + '<td style="text-align:center">' + escHtml(t.date + ' 周' + (t.weekday || '')) + '</td>'
       + '<td style="text-align:center;font-size:12px">' + escHtml(t.submit || '-') + '</td>'
-      + '<td style="font-size:12px;color:#475569">' + escHtml(t.content || '-') + '</td>'
+      + '<td style="font-size:12px;color:#475569">' + escHtml(t.content || '-') + (t.src === 'BI' ? '<span style="color:#94a3b8;font-size:11px">（早会内容）</span>' : '') + '</td>'
       + '<td style="text-align:center;font-size:12px">' + escHtml(att) + '</td>'
-      + '<td style="text-align:center"><span style="display:inline-block;padding:2px 10px;border-radius:10px;font-size:12px;font-weight:600;background:#fee2e2;color:#b91c1c;white-space:nowrap;">待申诉(驳回)</span></td>'
+      + '<td style="text-align:center"><span style="display:inline-block;padding:2px 10px;border-radius:10px;font-size:12px;font-weight:600;background:#fee2e2;color:#b91c1c;white-space:nowrap;">待申诉(驳回)</span>'
+      + (t.src === 'BI' ? '<span title="M盘驳回清单尚未包含此条，来源=BI实时抓取（暂无驳回标签明细）" style="display:inline-block;margin-left:4px;padding:1px 5px;border-radius:6px;font-size:10px;background:#eef2f7;color:#64748b;cursor:help;">BI</span>' : '')
+      + '</td>'
       + '</tr>';
   }
   if (!shown.length) {
