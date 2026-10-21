@@ -254,18 +254,15 @@ body.four-mode .subsidy,body.four-mode .foot{display:none!important}
       <span style="color:#b08c00">赔付率得分口径：达成率 ≤ 目标 记 100 分；超过目标按 <code>min(max((目标-达成+1)×100, 60), 100)</code> 线性降至最低 60 分（口径可校正）。</span>
     </div>
     <div class="tblwrap" id="subsidyTbl"></div>
-    <div class="src-hint" id="subsidyHint">当前为<b>手动测算模式</b>：请在"达成%"列录入各区域已报预估赔付率达成（月/累计口径），在"含税保费"列录入保费（元）→ 自动算得分与补贴。点 footer 的「📦 从M盘更新BI数据」可自动从 M:\下载 的商保险成本 xlsx 回填各区域达成%（本地注入服务每5分钟自动检查新文件）。</div>
+    <div class="src-hint" id="subsidyHint">当前为<b>全自动测算模式</b>：赔付率达成% 由 M:\下载 的商保险成本 xlsx 自动回填（本地注入服务每 5 分钟检查新文件）；含税保费由每日 12:00 自动抓取回填（关机则开机后补抓）。两列仍可手动修正，修正值本机缓存。</div>
   </div>
   <div class="s-foot">
     <span class="kv">赔付率部分加权得分合计占比：<b>60%</b></span>
     <span class="kv">Σ 含税保费：<b id="sumPremium">-</b> 元</span>
     <span class="kv">Σ 测算补贴：<b id="sumSubsidy">-</b> 元</span>
-    <span class="kv" id="biStatus">📦 数据源：<b>M盘 商保险成本</b> 待同步</span>
-    <span style="margin-left:auto;display:flex;gap:8px;align-items:center">
-      <button class="btn" style="padding:6px 14px;font-size:12px;background:#1e5cb3;color:#fff" onclick="fetchBILatest()">📦 从M盘更新BI数据</button>
-      <button class="btn" style="padding:6px 14px;font-size:12px;background:#0b8a3f;color:#fff" onclick="updatePremium()">💰 填充含税保费</button>
-      <button class="btn" style="padding:6px 14px;font-size:12px" onclick="clearInputs()">清空录入</button>
-    </span>
+    <span class="kv" id="biStatus">📦 数据源：<b>M盘 商保险成本</b> 自动同步中…</span>
+    <!-- 2026-10-21：手动按钮已移除（BI 由 8770 注入服务每5分钟自动同步、保费由 12:00 自动服务抓取）。
+         原 fetchBILatest() / updatePremium() / clearInputs() 函数保留，需要时可在控制台调用或恢复入口。 -->
     <div class="upd-tl" id="updTl">
       <span class="upd-tl-title">更新时间轴</span>
       <span class="upd-node" id="updBiNode">
@@ -976,8 +973,8 @@ function renderSubsidy(){
     if(typeof updateSubsidyCard==="function") updateSubsidyCard();
     var hint=document.getElementById("subsidyHint");
     hint.innerHTML = anyRate
-      ? '<b>测算生效中</b>：达成%已就绪（手动或 BI 拉取），含税保费待手填月维度金额。'
-      : '当前为<b>手动测算模式</b>：请录入各'+unitTxt+'达成%与含税保费 → 自动算赔付率得分、综合得分率与补贴。或点 footer「📦 从M盘更新BI数据」一键从 M盘 商保险成本 xlsx 回填达成%。';
+      ? '<b>测算生效中</b>：赔付率达成% 与含税保费均由自动链路回填（BI 每 5 分钟 / 保费每日 12:00），单元格仍可手动修正。'
+      : '当前无赔付率数据：请确认 M:\\下载 的商保险成本 xlsx 已生成（本地注入服务每 5 分钟自动检查），或手动录入各'+unitTxt+'达成%与含税保费 → 自动算赔付率得分、综合得分率与补贴。';
   }
   // 输入事件：保存 + 重算
   Array.prototype.forEach.call(tbody.querySelectorAll('input.in-cell'), function(inp){
@@ -1603,15 +1600,14 @@ function applyBIRates(data){
   });
   var evt = new Event("input", {bubbles:true});
   cells.forEach(function(inp){ inp.dispatchEvent(evt); });
-  var fetchedAt = data.fetched_at || "-";
   var citySet = new Set(); data.rows.forEach(function(r){ citySet.add(_biCityName(r.city)); });
   if(status){
-    status.innerHTML = '✅ 数据源：<b>bi.sankuai.com</b> 拉取成功 · '+fetchedAt+' · '+data.row_count+'行/'+citySet.size+'城市 · 回填对象 '+filled+'/'+cells.length;
+    status.innerHTML = '✅ 数据源：<b>M盘 商保险成本</b>（自动同步）· '+data.row_count+'行/'+citySet.size+'城市 · 回填对象 '+filled+'/'+cells.length;
   }
   if(hint){
     var _unit = state.lvl==="merchant" ? "城市" : "区域";
     hint.innerHTML = filled>0
-      ? '<b>✅ 已自动回填 '+filled+' 个'+_unit+'达成%</b>（bi.sankuai.com 真实数据，'+data.row_count+'行/'+citySet.size+'城市）。含税保费由「💰 填充含税保费」/维度切换自动回填。<br><span style="color:#1565c0">口径：统计范围内赔付率0.00%＝当月零赔付，按满分计入（赔付率越低越好）；BI 中无统计行的单位判为无数据、不参与考核；0%但当月保费=0 的单位已置灰标注"疑未开单"，请人工核实后再计满分。</span>'
+      ? '<b>✅ 已自动回填 '+filled+' 个'+_unit+'达成%</b>（M盘 商保险成本，'+data.row_count+'行/'+citySet.size+'城市）。含税保费由每日 12:00 自动更新回填。<br><span style="color:#1565c0">口径：统计范围内赔付率0.00%＝当月零赔付，按满分计入（赔付率越低越好）；BI 中无统计行的单位判为无数据、不参与考核；0%但当月保费=0 的单位已置灰标注"疑未开单"，请人工核实后再计满分。</span>'
       : '<b>⚠ 已接入BI数据但本月无赔付率</b>，请检查筛选条件或下月再看。';
   }
 }
