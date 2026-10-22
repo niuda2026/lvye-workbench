@@ -151,7 +151,7 @@ table.dt td.spark-td .spark-img{display:block;margin:0 auto}
 </style>
 <script src="../_libs/html2canvas-1.4.1.min.js"></script>
 
-<script src="data.js?10-21-17b83ec3"></script>
+<script src="data.js?10-21-2228b4f9"></script>
 </head>
 <body>
 
@@ -2735,7 +2735,8 @@ function sparkline(vals,color){
     uri='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(s);
     SPARK_URI[key]=uri;
   }
-  return '<td class="spark-td" title="'+tip+'"><img class="spark-img" src="'+uri+'" width="'+W+'" height="'+H+'" alt="" draggable="false"></td>';
+  // data-vals/data-line：导出 Excel 时用它们生成「单元格内文本火花线」（Excel 里的 <img> 会变浮层、筛选时重叠）
+  return '<td class="spark-td" data-vals="'+vs.join(',')+'" data-line="'+color+'" title="'+tip+'"><img class="spark-img" src="'+uri+'" width="'+W+'" height="'+H+'" alt="" draggable="false"></td>';
 }
 function fourTotalScore(r){
   var s=0,any=false;
@@ -2887,14 +2888,28 @@ function exportFour(){
   var table=document.getElementById('four-table');
   if(!table)return;
   var clone=table.cloneNode(true);
-  // 趋势 sparkline：svg img → canvas 转 PNG data-uri（Excel 不认 svg，认 png）
-  clone.querySelectorAll('img.spark-img').forEach(function(im){
-    try{
-      var w=im.width||88,h2=im.height||26;
-      var cv=document.createElement('canvas');cv.width=w*2;cv.height=h2*2;
-      var cx=cv.getContext('2d');cx.scale(2,2);cx.drawImage(im,0,0,w,h2);
-      im.src=cv.toDataURL('image/png');
-    }catch(e){}
+  // 🔴 2026-10-22 修「筛选后趋势图重叠」：Excel 打开 HTML 版 xls 时，单元格里的 <img> 会被转成
+  //   **浮层图片**（不是单元格内容），筛选隐藏行时图片不跟着隐藏，于是全部叠在可见行上。
+  //   改为「单元格内文本火花线」（▁▂▃▄▅▆▇█）——纯文本，跟着单元格走，筛选/排序/复制都不受影响。
+  function _sparkText(raw){
+    var B='▁▂▃▄▅▆▇█';
+    var vs=String(raw||'').split(',').map(Number).filter(function(v){return isFinite(v);});
+    if(!vs.length)return '';
+    var mn=Math.min.apply(null,vs),mx=Math.max.apply(null,vs);
+    if(mx===mn)return new Array(vs.length+1).join('▄');
+    return vs.map(function(v){
+      var k=Math.round((v-mn)/(mx-mn)*7);
+      return B.charAt(Math.max(0,Math.min(7,k)));
+    }).join('');
+  }
+  clone.querySelectorAll('td.spark-td').forEach(function(td){
+    var txt=_sparkText(td.getAttribute('data-vals'));
+    var lineColor=td.getAttribute('data-line');
+    td.innerHTML=txt||'-';
+    if(txt){
+      td.setAttribute('data-spark','1');
+      if(lineColor)td.setAttribute('data-line',lineColor);
+    }
   });
   // 逐格内联计算样式（背景/文字色/加粗/对齐），Excel 打开即所见即所得
   var srcCells=table.querySelectorAll('th,td');
@@ -2916,6 +2931,12 @@ function exportFour(){
     d.setAttribute('style',st);
     d.removeAttribute('class');
   }
+  // 文本火花线单独调字号/字距/颜色（沿用原折线色）；整段样式覆盖上面的 10pt 默认值
+  clone.querySelectorAll('td[data-spark]').forEach(function(td){
+    var c=td.getAttribute('data-line')||'#1E88E5';
+    td.setAttribute('style','border:.5pt solid #C9D8E8;vertical-align:middle;white-space:nowrap;'
+      +'text-align:center;font-size:9pt;letter-spacing:-.3pt;color:'+c+';');
+  });
   // 列宽：用 colgroup/col 定义（Excel 原生支持），不再注入隐藏行——隐藏行会导致导出后标题与数据之间夹一行隐藏空行，筛选失效
   var firstRow=table.querySelector('tbody tr');
   if(firstRow){

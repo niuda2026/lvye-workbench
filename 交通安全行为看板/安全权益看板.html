@@ -151,7 +151,7 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
 </style>
 <script src="../_libs/html2canvas-1.4.1.min.js"></script>
 
-<script src="data.js?10-21-17b83ec3"></script>
+<script src="data.js?10-21-2228b4f9"></script>
 </head>
 <body>
 
@@ -609,7 +609,8 @@ function sparkline(vals,color){
     uri='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(s);
     SPARK_URI[key]=uri;
   }
-  return '<td class="spark-td" title="'+tip+'"><img class="spark-img" src="'+uri+'" width="'+W+'" height="'+H+'" alt="" draggable="false"></td>';
+  // data-vals/data-line：导出 Excel 时生成「单元格内文本火花线」（Excel 里 <img> 会变浮层、筛选时重叠）
+  return '<td class="spark-td" data-vals="'+vs.join(',')+'" data-line="'+color+'" title="'+tip+'"><img class="spark-img" src="'+uri+'" width="'+W+'" height="'+H+'" alt="" draggable="false"></td>';
 }
 
 function renderStation(tab){
@@ -873,6 +874,25 @@ function _xlsRgb2hex(c){
 function exportTableWYSIWYG(table,sheetName,fileName){
   if(!table){alert('未找到可导出的表格');return;}
   var clone=table.cloneNode(true);
+  // 🔴 2026-10-22 修「筛选后趋势图重叠」：Excel 打开 HTML 版 xls 时，单元格里的 <img> 会变成浮层图片，
+  //   筛选隐藏行时图片不跟着隐藏 → 全部叠在可见行上。改为单元格内文本火花线（▁▂▃▄▅▆▇█）。
+  function _sparkText(raw){
+    var B='▁▂▃▄▅▆▇█';
+    var vs2=String(raw||'').split(',').map(Number).filter(function(v){return isFinite(v);});
+    if(!vs2.length)return '';
+    var mn=Math.min.apply(null,vs2),mx=Math.max.apply(null,vs2);
+    if(mx===mn)return new Array(vs2.length+1).join('▄');
+    return vs2.map(function(v){
+      var k=Math.round((v-mn)/(mx-mn)*7);
+      return B.charAt(Math.max(0,Math.min(7,k)));
+    }).join('');
+  }
+  clone.querySelectorAll('td.spark-td').forEach(function(td){
+    var txt=_sparkText(td.getAttribute('data-vals'));
+    var lc=td.getAttribute('data-line');
+    td.innerHTML=txt||'-';
+    if(txt){td.setAttribute('data-spark','1');if(lc)td.setAttribute('data-line',lc);}
+  });
   // 趋势图 svg → PNG（Excel 不认 svg）
   clone.querySelectorAll('img').forEach(function(im){
     var src=im.getAttribute('src')||'';
@@ -913,6 +933,12 @@ function exportTableWYSIWYG(table,sheetName,fileName){
     d.setAttribute('style',st);
     d.removeAttribute('class');
   }
+  // 文本火花线单独调字号/字距/颜色（沿用原折线色）
+  clone.querySelectorAll('td[data-spark]').forEach(function(td){
+    var c=td.getAttribute('data-line')||'#1E88E5';
+    td.setAttribute('style','border:.5pt solid #C9D8E8;vertical-align:middle;white-space:nowrap;'
+      +'text-align:center;font-size:9pt;letter-spacing:-.3pt;color:'+c+';');
+  });
   // 列宽：用 colgroup/col 定义（Excel 原生支持），不再注入隐藏行——隐藏行会导致导出后标题与数据之间夹一行隐藏空行，筛选失效
   var firstRow=table.querySelector('tbody tr');
   if(firstRow){
