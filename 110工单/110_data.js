@@ -1,13 +1,13 @@
 const EMBEDDED_DATA = {
-  "lastUpdated": "2026-10-23 13:10:53",
+  "lastUpdated": "2026-10-23 16:10:19",
   "sourceUrl": "https://fxgl365.com/110/w/desktop/process/list?activeTab=CURRENT",
   "module": "事件处理",
   "kpi": {
-    "total": 4270,
+    "total": 4274,
     "pending": 11,
-    "processing": 1386,
-    "done": 2873,
-    "todayNew": 8,
+    "processing": 1385,
+    "done": 2878,
+    "todayNew": 12,
     "cityCount": 34,
     "regionCount": 5,
     "stationCount": 215
@@ -15,11 +15,11 @@ const EMBEDDED_DATA = {
   "statusDist": [
     {
       "name": "处理完成",
-      "value": 2873
+      "value": 2878
     },
     {
       "name": "处理中",
-      "value": 1386
+      "value": 1385
     },
     {
       "name": "待处理",
@@ -46,9 +46,9 @@ const EMBEDDED_DATA = {
     {
       "name": "青岛市",
       "full": "青岛市",
-      "count": 356,
+      "count": 357,
       "pending": 0,
-      "processing": 55,
+      "processing": 56,
       "done": 301
     },
     {
@@ -70,10 +70,10 @@ const EMBEDDED_DATA = {
     {
       "name": "唐山市",
       "full": "唐山市",
-      "count": 243,
+      "count": 246,
       "pending": 1,
-      "processing": 51,
-      "done": 191
+      "processing": 52,
+      "done": 193
     },
     {
       "name": "张家口市",
@@ -96,8 +96,8 @@ const EMBEDDED_DATA = {
       "full": "洛阳市",
       "count": 187,
       "pending": 0,
-      "processing": 80,
-      "done": 107
+      "processing": 78,
+      "done": 109
     },
     {
       "name": "阜新市",
@@ -248,8 +248,8 @@ const EMBEDDED_DATA = {
       "full": "信阳市",
       "count": 15,
       "pending": 0,
-      "processing": 9,
-      "done": 6
+      "processing": 8,
+      "done": 7
     },
     {
       "name": "淮安市",
@@ -303,7 +303,7 @@ const EMBEDDED_DATA = {
   "typeDist": [
     {
       "name": "交通事故",
-      "value": 3452
+      "value": 3456
     },
     {
       "name": "意外事件",
@@ -353,11 +353,11 @@ const EMBEDDED_DATA = {
   "regionDist": [
     {
       "name": "华北大区--加盟",
-      "value": 2865
+      "value": 2868
     },
     {
       "name": "中南大区--加盟",
-      "value": 962
+      "value": 963
     },
     {
       "name": "华东大区--加盟",
@@ -491,10 +491,58 @@ const EMBEDDED_DATA = {
     },
     {
       "date": "2026-10-23",
-      "count": 8
+      "count": 12
     }
   ],
   "latest": [
+    {
+      "eventNo": "2026102373043",
+      "city": "唐山市",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理完成",
+      "statusRaw": 5,
+      "reportTime": "2026-10-23 14:35:15",
+      "source": "风险线索升级",
+      "region": "华北大区--加盟",
+      "station": "兴必达【唐山】万达站点"
+    },
+    {
+      "eventNo": "2026102373028",
+      "city": "唐山市",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "reportTime": "2026-10-23 14:26:49",
+      "source": "风险线索升级",
+      "region": "华北大区--加盟",
+      "station": "兴必达【唐山】万达站点"
+    },
+    {
+      "eventNo": "2026102167021",
+      "city": "唐山市",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理完成",
+      "statusRaw": 5,
+      "reportTime": "2026-10-23 14:19:35",
+      "source": "风险线索升级",
+      "region": "华北大区--加盟",
+      "station": "兴必达【唐山】万达站点"
+    },
+    {
+      "eventNo": "2026102372792",
+      "city": "青岛市",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "reportTime": "2026-10-23 13:09:41",
+      "source": "风险线索升级",
+      "region": "中南大区--加盟",
+      "station": "兴必达【青岛】正阳路站"
+    },
     {
       "eventNo": "2026102372708",
       "city": "合肥市",
@@ -686,54 +734,6 @@ const EMBEDDED_DATA = {
       "source": "风险线索升级",
       "region": "华北大区--加盟",
       "station": "兴必达【洛阳】洛浦站"
-    },
-    {
-      "eventNo": "2026102168649",
-      "city": "锦州市",
-      "type": "言语冲突事件",
-      "level": "黄色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "reportTime": "2026-10-21 21:33:48",
-      "source": "PACIFIC_UPGRAGE",
-      "region": "华北大区--加盟",
-      "station": "兴必达【锦州】玲珑站"
-    },
-    {
-      "eventNo": "2026102167553",
-      "city": "秦皇岛市",
-      "type": "交通事故",
-      "level": "黄色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "reportTime": "2026-10-21 15:52:20",
-      "source": "PACIFIC_UPGRAGE",
-      "region": "华北大区--加盟",
-      "station": "兴必达【秦皇岛】环岛站"
-    },
-    {
-      "eventNo": "2026102167407",
-      "city": "锦州市",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理完成",
-      "statusRaw": 5,
-      "reportTime": "2026-10-21 15:19:08",
-      "source": "风险线索升级",
-      "region": "华北大区--加盟",
-      "station": "兴必达【锦州】千盛站"
-    },
-    {
-      "eventNo": "2026102167369",
-      "city": "锦州市",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理完成",
-      "statusRaw": 5,
-      "reportTime": "2026-10-21 15:09:31",
-      "source": "风险线索升级",
-      "region": "华北大区--加盟",
-      "station": "兴必达【锦州】锦绣前程站"
     }
   ],
   "records": [
@@ -159894,1153 +159894,6 @@ const EMBEDDED_DATA = {
       }
     },
     {
-      "id": "2026010724952",
-      "title": "",
-      "business": "履约业务-专送",
-      "source": "AUTO_REPORT",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "occurTime": "2026-01-07 18:10:00",
-      "reportTime": "2026-01-07 20:16:25",
-      "updateTime": "2026-10-07 09:06:24",
-      "province": "河南省",
-      "city": "洛阳市",
-      "district": "西工区",
-      "address": "西工区玄武门大街与金谷园路交叉口向东300米处",
-      "summary": "2026年01月07日18点10分左右骑手在玄武门大街送餐途中，沿玄武门大街由东向西行驶时与横穿马路行人发生碰撞，导致对方人员头部受伤，ICU中。",
-      "reporter": "李彬",
-      "handler": "李彬",
-      "region": "华北大区--加盟",
-      "area": "加盟河南区域",
-      "station": "兴必达【洛阳】火车南站",
-      "stationId": 2054901,
-      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】火车南站",
-      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-      "riderName": "李家崎",
-      "riderPhone": "136****8357",
-      "riderStation": "兴必达【洛阳】火车南站",
-      "detail": {
-        "eventNo": "2026010724952",
-        "title": "",
-        "source": "AUTO_REPORT",
-        "type": "交通事故",
-        "level": "蓝色",
-        "statusRaw": 3,
-        "status": "处理中",
-        "occurTime": "2026-01-07 18:10:00",
-        "reportTime": "2026-01-07 20:16:25",
-        "updateTime": "2026-10-07 09:06:24",
-        "endTime": "",
-        "province": "河南省",
-        "city": "洛阳市",
-        "district": "西工区",
-        "address": "西工区玄武门大街与金谷园路交叉口向东300米处",
-        "course": "2026年01月07日18点10分左右骑手在玄武门大街送餐途中，沿玄武门大街由东向西行驶时与横穿马路行人发生碰撞，导致对方人员头部受伤，ICU中。",
-        "region": "华北大区--加盟",
-        "area": "加盟河南区域",
-        "station": "兴必达【洛阳】火车南站",
-        "stationId": 2054901,
-        "stationType": "即时配加盟",
-        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】火车南站",
-        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "riders": [
-          {
-            "riderId": 67124067,
-            "entryDate": "1762049116",
-            "riderPhone": {
-              "data": null,
-              "token": "i-ngX3QIqJi8357",
-              "dataMask": "136****8357",
-              "unknown": null
-            },
-            "jobStatusDesc": "离职",
-            "orgTypeDesc": "即时配加盟",
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXdPOoKSu06717",
-              "dataMask": "41112**********533",
-              "unknown": null
-            },
-            "stationName": "兴必达【洛阳】火车南站",
-            "riderName": "李家崎",
-            "age": "0",
-            "genderDesc": "男",
-            "stationId": "2054901"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "6bc2fb6f": 1,
-          "6f72eaaf": 2,
-          "e6e645c9": 2,
-          "da478aa9": 2,
-          "74d46e3f": 1,
-          "e60e2199": 2,
-          "huyunmeng09": 0,
-          "9d13ef5b": 2,
-          "d1078f9f": 2,
-          "huyunmeng10": 0,
-          "2967240b": "10426019000317031266",
-          "21": 1
-        },
-        "eventTypeInfo": {
-          "33": [
-            5
-          ],
-          "14": 1,
-          "15": 2,
-          "2705531b": 2,
-          "7a16f69a": 1,
-          "19": 0,
-          "328d1fe5": 1,
-          "75aa83b2": 4,
-          "e4067848": "对方ICU中，",
-          "874aad49": 2,
-          "2e9772a9": 2,
-          "5452e09e": 1,
-          "ff537655": 1,
-          "0224cd2b": [
-            1
-          ],
-          "9": [
-            1
-          ],
-          "93": 1,
-          "94": "交警",
-          "10": 1,
-          "32": [
-            2,
-            3
-          ],
-          "719caaaf": 5
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "101998372627",
-        "taskKey": "zs_wait_follow",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1767788185000,
-              "latestTime": 1767788185000,
-              "startTimeLong": 1767788185000,
-              "latestTimeLong": 1767788185000
-            },
-            {
-              "taskKey": "zs_wait_follow",
-              "startTime": 1767833980000,
-              "latestTime": 1767833980000,
-              "startTimeLong": 1767833980000,
-              "latestTimeLong": 1767833980000
-            },
-            {
-              "taskKey": "zs_wait_end_response",
-              "startTime": 1767788193000,
-              "latestTime": 1767833980000,
-              "startTimeLong": 1767788193000,
-              "latestTimeLong": 1767833980000
-            },
-            {
-              "taskKey": "zs_wait_response",
-              "startTime": 1767788185000,
-              "latestTime": 1767788193000,
-              "startTimeLong": 1767788185000,
-              "latestTimeLong": 1767788193000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1792631184000,
-          "delayTime": 1792631184000
-        },
-        "related": null
-      }
-    },
-    {
-      "id": "2026070924128",
-      "title": "",
-      "business": "履约业务-专送",
-      "source": "风险线索升级",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "occurTime": "2026-07-07 11:01:14",
-      "reportTime": "2026-07-09 08:08:13",
-      "updateTime": "2026-10-07 09:07:19",
-      "province": "河南省",
-      "city": "洛阳市",
-      "district": "西工区",
-      "address": "河南省洛阳市西工区西工街道凯旋西路20-2号",
-      "summary": "我在送餐途中骑电动车时自己摔伤，造成本人膝盖脚腕胳膊受伤",
-      "reporter": "李彬",
-      "handler": "李彬",
-      "region": "华北大区--加盟",
-      "area": "加盟河南区域",
-      "station": "兴必达【洛阳】新都汇站",
-      "stationId": 2089371,
-      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】新都汇站",
-      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-      "riderName": "关科建",
-      "riderPhone": "187****2971",
-      "riderStation": "兴必达【洛阳】新都汇站",
-      "detail": {
-        "eventNo": "2026070924128",
-        "title": "",
-        "source": "风险线索升级",
-        "type": "交通事故",
-        "level": "蓝色",
-        "statusRaw": 3,
-        "status": "处理中",
-        "occurTime": "2026-07-07 11:01:14",
-        "reportTime": "2026-07-09 08:08:13",
-        "updateTime": "2026-10-07 09:07:19",
-        "endTime": "",
-        "province": "河南省",
-        "city": "洛阳市",
-        "district": "西工区",
-        "address": "河南省洛阳市西工区西工街道凯旋西路20-2号",
-        "course": "我在送餐途中骑电动车时自己摔伤，造成本人膝盖脚腕胳膊受伤",
-        "region": "华北大区--加盟",
-        "area": "加盟河南区域",
-        "station": "兴必达【洛阳】新都汇站",
-        "stationId": 2089371,
-        "stationType": "即时配加盟",
-        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】新都汇站",
-        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "riders": [
-          {
-            "riderId": 73059594,
-            "entryDate": "1778556371",
-            "riderPhone": {
-              "data": null,
-              "token": "26b@f4lY!4k2971",
-              "dataMask": "187****2971",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "即时配加盟",
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXA2JWufY13389",
-              "dataMask": "41032**********138",
-              "unknown": null
-            },
-            "stationName": "兴必达【洛阳】新都汇站",
-            "riderName": "关科建",
-            "age": "0",
-            "genderDesc": "男",
-            "stationId": "2089371"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "e60e2199": 2,
-          "6bc2fb6f": 1,
-          "9d13ef5b": 2,
-          "6f72eaaf": 2,
-          "e6e645c9": 2,
-          "d1078f9f": 2,
-          "da478aa9": 2,
-          "2967240b": "ACHDLQR37126W00GBASQ",
-          "21": 1,
-          "74d46e3f": 1
-        },
-        "eventTypeInfo": {
-          "33": [
-            4
-          ],
-          "14": 2,
-          "15": 1,
-          "7a16f69a": 1,
-          "19": 1,
-          "be5cd84a": 1,
-          "328d1fe5": 1,
-          "874aad49": 1,
-          "2e9772a9": 2,
-          "5452e09e": 1,
-          "0224cd2b": [
-            3
-          ],
-          "9": [
-            1
-          ],
-          "93": 1,
-          "94": "交警",
-          "10": 2,
-          "32": [
-            3
-          ],
-          "719caaaf": 8
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "105348660783",
-        "taskKey": "zs_wait_follow",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1783555693000,
-              "latestTime": 1783555693000,
-              "startTimeLong": 1783555693000,
-              "latestTimeLong": 1783555693000
-            },
-            {
-              "taskKey": "zs_wait_follow",
-              "startTime": 1783642464000,
-              "latestTime": 1783642464000,
-              "startTimeLong": 1783642464000,
-              "latestTimeLong": 1783642464000
-            },
-            {
-              "taskKey": "zs_wait_end_response",
-              "startTime": 1783555707000,
-              "latestTime": 1783642464000,
-              "startTimeLong": 1783555707000,
-              "latestTimeLong": 1783642464000
-            },
-            {
-              "taskKey": "zs_wait_response",
-              "startTime": 1783555693000,
-              "latestTime": 1783555707000,
-              "startTimeLong": 1783555693000,
-              "latestTimeLong": 1783555707000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1792631239000,
-          "delayTime": 1792631239000
-        },
-        "related": null
-      }
-    },
-    {
-      "id": "2026090533563",
-      "title": "",
-      "business": "履约业务-专送",
-      "source": "AUTO_REPORT",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "occurTime": "2026-09-04 09:21:00",
-      "reportTime": "2026-09-05 19:59:53",
-      "updateTime": "2026-10-07 09:07:51",
-      "province": "河南省",
-      "city": "洛阳市",
-      "district": "孟津区",
-      "address": "河南省洛阳市孟津区城关镇桂花大道与中兴路交叉口西侧",
-      "summary": "2026年9月4日上午09点21分左右，骑手杜灵宝在从家往餐区上班途中，沿桂花大道由西向东行驶至中兴路交叉口时，与同向行驶左转弯掉头的四轮汽车相撞，导致骑手右脚受伤,对方无车损人伤",
-      "reporter": "李彬",
-      "handler": "李彬",
-      "region": "华北大区--加盟",
-      "area": "加盟河南区域",
-      "station": "兴必达【洛阳】百货楼站",
-      "stationId": 2026065,
-      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】百货楼站",
-      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-      "riderName": "杜灵宝",
-      "riderPhone": "132****2973",
-      "riderStation": "兴必达【洛阳】百货楼站",
-      "detail": {
-        "eventNo": "2026090533563",
-        "title": "",
-        "source": "AUTO_REPORT",
-        "type": "交通事故",
-        "level": "蓝色",
-        "statusRaw": 3,
-        "status": "处理中",
-        "occurTime": "2026-09-04 09:21:00",
-        "reportTime": "2026-09-05 19:59:53",
-        "updateTime": "2026-10-07 09:07:51",
-        "endTime": "",
-        "province": "河南省",
-        "city": "洛阳市",
-        "district": "孟津区",
-        "address": "河南省洛阳市孟津区城关镇桂花大道与中兴路交叉口西侧",
-        "course": "2026年9月4日上午09点21分左右，骑手杜灵宝在从家往餐区上班途中，沿桂花大道由西向东行驶至中兴路交叉口时，与同向行驶左转弯掉头的四轮汽车相撞，导致骑手右脚受伤,对方无车损人伤",
-        "region": "华北大区--加盟",
-        "area": "加盟河南区域",
-        "station": "兴必达【洛阳】百货楼站",
-        "stationId": 2026065,
-        "stationType": "即时配加盟",
-        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】百货楼站",
-        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "riders": [
-          {
-            "riderId": 76591919,
-            "entryDate": "1785573404",
-            "riderPhone": {
-              "data": null,
-              "token": "i1AF@RXMqOW2973",
-              "dataMask": "132****2973",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "即时配加盟",
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXUP83Cfn12855",
-              "dataMask": "41032**********111",
-              "unknown": null
-            },
-            "stationName": "兴必达【洛阳】百货楼站",
-            "riderName": "杜灵宝",
-            "age": "0",
-            "genderDesc": "男",
-            "stationId": "2026065"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "e60e2199": 2,
-          "6bc2fb6f": 1,
-          "9d13ef5b": 2,
-          "6f72eaaf": 2,
-          "e6e645c9": 2,
-          "d1078f9f": 2,
-          "da478aa9": 2,
-          "2967240b": "10426099400195130832",
-          "21": 2,
-          "74d46e3f": 2
-        },
-        "eventTypeInfo": {
-          "33": [
-            1
-          ],
-          "14": 2,
-          "15": 1,
-          "7a16f69a": 1,
-          "19": 3,
-          "be5cd84a": 1,
-          "328d1fe5": 1,
-          "874aad49": 2,
-          "2e9772a9": 2,
-          "5452e09e": 1,
-          "ff537655": 2,
-          "0224cd2b": [
-            3
-          ],
-          "9": [
-            1
-          ],
-          "9e9238bd": [
-            1
-          ],
-          "93": 1,
-          "94": "交警",
-          "10": 4,
-          "32": [
-            2,
-            3
-          ],
-          "719caaaf": 2
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "106560620205",
-        "taskKey": "zs_wait_follow",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1788609593000,
-              "latestTime": 1788609593000,
-              "startTimeLong": 1788609593000,
-              "latestTimeLong": 1788609593000
-            },
-            {
-              "taskKey": "zs_wait_follow",
-              "startTime": 1788685174000,
-              "latestTime": 1788685174000,
-              "startTimeLong": 1788685174000,
-              "latestTimeLong": 1788685174000
-            },
-            {
-              "taskKey": "zs_wait_end_response",
-              "startTime": 1788609604000,
-              "latestTime": 1788685174000,
-              "startTimeLong": 1788609604000,
-              "latestTimeLong": 1788685174000
-            },
-            {
-              "taskKey": "zs_wait_response",
-              "startTime": 1788609593000,
-              "latestTime": 1788609604000,
-              "startTimeLong": 1788609593000,
-              "latestTimeLong": 1788609604000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1792631271000,
-          "delayTime": 1792631271000
-        },
-        "related": null
-      }
-    },
-    {
-      "id": "2026082389939",
-      "title": "",
-      "business": "履约业务-专送",
-      "source": "AUTO_REPORT",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "occurTime": "2026-08-22 20:05:00",
-      "reportTime": "2026-08-23 18:13:11",
-      "updateTime": "2026-10-07 09:08:13",
-      "province": "河南省",
-      "city": "洛阳市",
-      "district": "涧西区",
-      "address": "河南省洛阳市涧西区九都西路防洪渠桥头",
-      "summary": "2026年08月22日晚上20点05分左右，骑手张博超从九都西路由西往东顺行走机动车道去商家取餐，到渠边桥头与一名横过马路行人在斑马线上发生碰撞造成对方人员我方骑手人员受伤的事故",
-      "reporter": "李彬",
-      "handler": "李彬",
-      "region": "华北大区--加盟",
-      "area": "加盟河南区域",
-      "station": "兴必达【洛阳】滨河站",
-      "stationId": 2026062,
-      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】滨河站",
-      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-      "riderName": "张博超",
-      "riderPhone": "157****2411",
-      "riderStation": "兴必达【洛阳】滨河站",
-      "detail": {
-        "eventNo": "2026082389939",
-        "title": "",
-        "source": "AUTO_REPORT",
-        "type": "交通事故",
-        "level": "蓝色",
-        "statusRaw": 3,
-        "status": "处理中",
-        "occurTime": "2026-08-22 20:05:00",
-        "reportTime": "2026-08-23 18:13:11",
-        "updateTime": "2026-10-07 09:08:13",
-        "endTime": "",
-        "province": "河南省",
-        "city": "洛阳市",
-        "district": "涧西区",
-        "address": "河南省洛阳市涧西区九都西路防洪渠桥头",
-        "course": "2026年08月22日晚上20点05分左右，骑手张博超从九都西路由西往东顺行走机动车道去商家取餐，到渠边桥头与一名横过马路行人在斑马线上发生碰撞造成对方人员我方骑手人员受伤的事故",
-        "region": "华北大区--加盟",
-        "area": "加盟河南区域",
-        "station": "兴必达【洛阳】滨河站",
-        "stationId": 2026062,
-        "stationType": "即时配加盟",
-        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】滨河站",
-        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "riders": [
-          {
-            "riderId": 70814653,
-            "entryDate": "1773476229",
-            "riderPhone": {
-              "data": null,
-              "token": "ElIjSJ@0I3-2411",
-              "dataMask": "157****2411",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "即时配加盟",
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXUwQKsph35418",
-              "dataMask": "41032**********331",
-              "unknown": null
-            },
-            "stationName": "兴必达【洛阳】滨河站",
-            "riderName": "张博超",
-            "age": "0",
-            "genderDesc": "男",
-            "stationId": "2026062"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "e60e2199": 2,
-          "6bc2fb6f": 1,
-          "9d13ef5b": 2,
-          "e6e645c9": 2,
-          "d1078f9f": 2,
-          "da478aa9": 2,
-          "2967240b": "PLD920264403Q080G79690",
-          "21": 1,
-          "74d46e3f": 1
-        },
-        "eventTypeInfo": {
-          "33": [
-            1
-          ],
-          "14": 1,
-          "15": 2,
-          "2705531b": 2,
-          "7a16f69a": 1,
-          "19": 0,
-          "328d1fe5": 1,
-          "874aad49": 2,
-          "2e9772a9": 2,
-          "5452e09e": 1,
-          "ff537655": 1,
-          "c514e3d2": 1,
-          "0224cd2b": [
-            1
-          ],
-          "9": [
-            1
-          ],
-          "93": 1,
-          "94": "交警",
-          "10": 1,
-          "32": [
-            3
-          ],
-          "719caaaf": 5
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "106284614868",
-        "taskKey": "zs_wait_follow",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1787479991000,
-              "latestTime": 1787479991000,
-              "startTimeLong": 1787479991000,
-              "latestTimeLong": 1787479991000
-            },
-            {
-              "taskKey": "zs_wait_follow",
-              "startTime": 1787480026000,
-              "latestTime": 1787480026000,
-              "startTimeLong": 1787480026000,
-              "latestTimeLong": 1787480026000
-            },
-            {
-              "taskKey": "zs_wait_end_response",
-              "startTime": 1787480004000,
-              "latestTime": 1787480026000,
-              "startTimeLong": 1787480004000,
-              "latestTimeLong": 1787480026000
-            },
-            {
-              "taskKey": "zs_wait_response",
-              "startTime": 1787479991000,
-              "latestTime": 1787480004000,
-              "startTimeLong": 1787479991000,
-              "latestTimeLong": 1787480004000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1792631293000,
-          "delayTime": 1792631293000
-        },
-        "related": null
-      }
-    },
-    {
-      "id": "2026060931075",
-      "title": "",
-      "business": "履约业务-专送",
-      "source": "风险线索升级",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "occurTime": "2026-06-08 23:23:41",
-      "reportTime": "2026-06-09 18:34:22",
-      "updateTime": "2026-10-08 08:18:00",
-      "province": "河南省",
-      "city": "洛阳市",
-      "district": "涧西区",
-      "address": "河南省洛阳市涧西区华源路",
-      "summary": "骑手甘燊在取餐过程中，骑电动车在非机动车道与一名行人发生碰撞，骑手左腿膝盖受伤，对方腿部及鼻子受伤。",
-      "reporter": "李彬",
-      "handler": "李彬",
-      "region": "华北大区--加盟",
-      "area": "加盟河南区域",
-      "station": "V兴必达【洛阳】洛拖站",
-      "stationId": 2074107,
-      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-V兴必达【洛阳】洛拖站",
-      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-      "riderName": "甘燊",
-      "riderPhone": "180****2216",
-      "riderStation": "V兴必达【洛阳】洛拖站",
-      "detail": {
-        "eventNo": "2026060931075",
-        "title": "",
-        "source": "风险线索升级",
-        "type": "交通事故",
-        "level": "蓝色",
-        "statusRaw": 3,
-        "status": "处理中",
-        "occurTime": "2026-06-08 23:23:41",
-        "reportTime": "2026-06-09 18:34:22",
-        "updateTime": "2026-10-08 08:18:00",
-        "endTime": "",
-        "province": "河南省",
-        "city": "洛阳市",
-        "district": "涧西区",
-        "address": "河南省洛阳市涧西区华源路",
-        "course": "骑手甘燊在取餐过程中，骑电动车在非机动车道与一名行人发生碰撞，骑手左腿膝盖受伤，对方腿部及鼻子受伤。",
-        "region": "华北大区--加盟",
-        "area": "加盟河南区域",
-        "station": "V兴必达【洛阳】洛拖站",
-        "stationId": 2074107,
-        "stationType": "即时配加盟",
-        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-V兴必达【洛阳】洛拖站",
-        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "riders": [
-          {
-            "riderId": 70992679,
-            "entryDate": "1773815229",
-            "riderPhone": {
-              "data": null,
-              "token": "27t$APE*0@o2216",
-              "dataMask": "180****2216",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "即时配加盟",
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXEsmrwL787766",
-              "dataMask": "34088**********016",
-              "unknown": null
-            },
-            "stationName": "V兴必达【洛阳】洛拖站",
-            "riderName": "甘燊",
-            "age": "0",
-            "genderDesc": "男",
-            "stationId": "2074107"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "e60e2199": 2,
-          "6bc2fb6f": 1,
-          "9d13ef5b": 2,
-          "6f72eaaf": 2,
-          "e6e645c9": 2,
-          "d1078f9f": 2,
-          "da478aa9": 2,
-          "2967240b": "ACHDLQR37126W00CA268",
-          "21": 1,
-          "74d46e3f": 1
-        },
-        "eventTypeInfo": {
-          "33": [
-            1
-          ],
-          "14": 2,
-          "15": 2,
-          "19": 1,
-          "328d1fe5": 1,
-          "874aad49": 2,
-          "ff537655": 1,
-          "c514e3d2": 1,
-          "0224cd2b": [
-            1,
-            4
-          ],
-          "9": [
-            1
-          ],
-          "93": 1,
-          "94": "交警",
-          "10": 2,
-          "32": [
-            3
-          ],
-          "719caaaf": 8
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "104749144469",
-        "taskKey": "zs_wait_follow",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1781001262000,
-              "latestTime": 1781001262000,
-              "startTimeLong": 1781001262000,
-              "latestTimeLong": 1781001262000
-            },
-            {
-              "taskKey": "zs_wait_follow",
-              "startTime": 1781050341000,
-              "latestTime": 1781050341000,
-              "startTimeLong": 1781050341000,
-              "latestTimeLong": 1781050341000
-            },
-            {
-              "taskKey": "zs_wait_end_response",
-              "startTime": 1781001274000,
-              "latestTime": 1781050341000,
-              "startTimeLong": 1781001274000,
-              "latestTimeLong": 1781050341000
-            },
-            {
-              "taskKey": "zs_wait_response",
-              "startTime": 1781001262000,
-              "latestTime": 1781001274000,
-              "startTimeLong": 1781001262000,
-              "latestTimeLong": 1781001274000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1792714680000,
-          "delayTime": 1792714680000
-        },
-        "related": null
-      }
-    },
-    {
-      "id": "2026082493542",
-      "title": "",
-      "business": "履约业务-专送",
-      "source": "风险线索升级",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "occurTime": "2026-08-23 20:20:00",
-      "reportTime": "2026-08-24 17:19:45",
-      "updateTime": "2026-10-08 08:18:23",
-      "province": "河南省",
-      "city": "信阳市",
-      "district": "浉河区",
-      "address": "河南省信阳市浉河区民权路与社会路交叉路口",
-      "summary": "骑手骑着电瓶车正常行驶时，因前方车辆挡住视线，刮碰到从路边走过的行人，造成行人腰部受伤",
-      "reporter": "李彬",
-      "handler": "李彬",
-      "region": "华北大区--加盟",
-      "area": "加盟河南区域",
-      "station": "兴必达【信阳】和美站",
-      "stationId": 2090785,
-      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-宛申配送组-兴必达【信阳】和美站",
-      "franchisee": "兴必达（江苏）网络科技有限公司【信阳】",
-      "riderName": "柯冬望",
-      "riderPhone": "182****2637",
-      "riderStation": "兴必达【信阳】和美站",
-      "detail": {
-        "eventNo": "2026082493542",
-        "title": "",
-        "source": "风险线索升级",
-        "type": "交通事故",
-        "level": "蓝色",
-        "statusRaw": 3,
-        "status": "处理中",
-        "occurTime": "2026-08-23 20:20:00",
-        "reportTime": "2026-08-24 17:19:45",
-        "updateTime": "2026-10-08 08:18:23",
-        "endTime": "",
-        "province": "河南省",
-        "city": "信阳市",
-        "district": "浉河区",
-        "address": "河南省信阳市浉河区民权路与社会路交叉路口",
-        "course": "骑手骑着电瓶车正常行驶时，因前方车辆挡住视线，刮碰到从路边走过的行人，造成行人腰部受伤",
-        "region": "华北大区--加盟",
-        "area": "加盟河南区域",
-        "station": "兴必达【信阳】和美站",
-        "stationId": 2090785,
-        "stationType": "即时配加盟",
-        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-宛申配送组-兴必达【信阳】和美站",
-        "franchisee": "兴必达（江苏）网络科技有限公司【信阳】",
-        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "riders": [
-          {
-            "riderId": 53229440,
-            "entryDate": "1739851033",
-            "riderPhone": {
-              "data": null,
-              "token": "jQFBefC9$Gy2637",
-              "dataMask": "182****2637",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "即时配加盟",
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXr3dmqdj49829",
-              "dataMask": "41150**********035",
-              "unknown": null
-            },
-            "stationName": "兴必达【信阳】和美站",
-            "riderName": "柯冬望",
-            "age": "0",
-            "genderDesc": "男",
-            "stationId": "2090785"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "e60e2199": 2,
-          "6bc2fb6f": 1,
-          "9d13ef5b": 2,
-          "6f72eaaf": 2,
-          "e6e645c9": 2,
-          "d1078f9f": 2,
-          "da478aa9": 2,
-          "2967240b": "2136904E426C1332630756",
-          "21": 1,
-          "74d46e3f": 2
-        },
-        "eventTypeInfo": {
-          "14": 1,
-          "15": 2,
-          "2705531b": 3,
-          "7a16f69a": 1,
-          "17": "未判",
-          "19": 0,
-          "328d1fe5": 1,
-          "874aad49": 2,
-          "2e9772a9": 2,
-          "5452e09e": 1,
-          "ff537655": 1,
-          "c514e3d2": 1,
-          "0224cd2b": [
-            1
-          ],
-          "9": [
-            1
-          ],
-          "93": 1,
-          "94": "交警",
-          "10": 2,
-          "32": [
-            4
-          ],
-          "719caaaf": 8
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "106302484192",
-        "taskKey": "zs_wait_follow",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1787563185000,
-              "latestTime": 1787563185000,
-              "startTimeLong": 1787563185000,
-              "latestTimeLong": 1787563185000
-            },
-            {
-              "taskKey": "zs_wait_follow",
-              "startTime": 1787563219000,
-              "latestTime": 1787563219000,
-              "startTimeLong": 1787563219000,
-              "latestTimeLong": 1787563219000
-            },
-            {
-              "taskKey": "zs_wait_end_response",
-              "startTime": 1787563196000,
-              "latestTime": 1787563219000,
-              "startTimeLong": 1787563196000,
-              "latestTimeLong": 1787563219000
-            },
-            {
-              "taskKey": "zs_wait_response",
-              "startTime": 1787563185000,
-              "latestTime": 1787563196000,
-              "startTimeLong": 1787563185000,
-              "latestTimeLong": 1787563196000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1792714703000,
-          "delayTime": 1792714703000
-        },
-        "related": null
-      }
-    },
-    {
-      "id": "2026102269065",
-      "title": "",
-      "business": "履约业务-专送",
-      "source": "风险线索升级",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "occurTime": "2026-10-21 16:04:00",
-      "reportTime": "2026-10-22 08:36:04",
-      "updateTime": "2026-10-22 08:37:39",
-      "province": "河南省",
-      "city": "洛阳市",
-      "district": "西工区",
-      "address": "河南省洛阳市西工区河南省洛阳市西工区西工街道中州中路309号",
-      "summary": "骑手骑电动车右拐起步时，车右侧方刮蹭到对方骑车右侧方，造成对方车辆右后轮叶子板位置轻微剐蹭",
-      "reporter": "李彬",
-      "handler": "李彬",
-      "region": "华北大区--加盟",
-      "area": "加盟河南区域",
-      "station": "兴必达【洛阳】洛浦站",
-      "stationId": 2026064,
-      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】洛浦站",
-      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-      "riderName": "王晓栋",
-      "riderPhone": "185****9009",
-      "riderStation": "兴必达【洛阳】洛浦站",
-      "detail": {
-        "eventNo": "2026102269065",
-        "title": "",
-        "source": "风险线索升级",
-        "type": "交通事故",
-        "level": "蓝色",
-        "statusRaw": 3,
-        "status": "处理中",
-        "occurTime": "2026-10-21 16:04:00",
-        "reportTime": "2026-10-22 08:36:04",
-        "updateTime": "2026-10-22 08:37:39",
-        "endTime": "",
-        "province": "河南省",
-        "city": "洛阳市",
-        "district": "西工区",
-        "address": "河南省洛阳市西工区河南省洛阳市西工区西工街道中州中路309号",
-        "course": "骑手骑电动车右拐起步时，车右侧方刮蹭到对方骑车右侧方，造成对方车辆右后轮叶子板位置轻微剐蹭",
-        "region": "华北大区--加盟",
-        "area": "加盟河南区域",
-        "station": "兴必达【洛阳】洛浦站",
-        "stationId": 2026064,
-        "stationType": "即时配加盟",
-        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】洛浦站",
-        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "riders": [
-          {
-            "riderId": 76809123,
-            "entryDate": "1785999051",
-            "riderPhone": {
-              "data": null,
-              "token": "SnBg*kkRvi19009",
-              "dataMask": "185****9009",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "即时配加盟",
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXr8seG3Z02572",
-              "dataMask": "41032**********819",
-              "unknown": null
-            },
-            "stationName": "兴必达【洛阳】洛浦站",
-            "riderName": "王晓栋",
-            "age": "0",
-            "genderDesc": "男",
-            "stationId": "2026064"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "e60e2199": 2,
-          "6bc2fb6f": 1,
-          "9d13ef5b": 2,
-          "6f72eaaf": 2,
-          "e6e645c9": 2,
-          "d1078f9f": 2,
-          "da478aa9": 3,
-          "2967240b": "15149301501662600018461117",
-          "21": 1,
-          "74d46e3f": 1
-        },
-        "eventTypeInfo": {
-          "33": [
-            2
-          ],
-          "7a16f69a": 1,
-          "81a8da9f": 1,
-          "19": 7,
-          "874aad49": 2,
-          "2e9772a9": 2,
-          "5452e09e": 1,
-          "ff537655": 2,
-          "9": [
-            3
-          ],
-          "93": 1,
-          "94": "交警",
-          "10": 1,
-          "32": [
-            3
-          ],
-          "719caaaf": 1
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "107516182400",
-        "taskKey": "zs_wait_end_response",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1792629364000,
-              "latestTime": 1792629364000,
-              "startTimeLong": 1792629364000,
-              "latestTimeLong": 1792629364000
-            },
-            {
-              "taskKey": "zs_wait_end_response",
-              "startTime": 1792629376000,
-              "latestTime": 1792629376000,
-              "startTimeLong": 1792629376000,
-              "latestTimeLong": 1792629376000
-            },
-            {
-              "taskKey": "zs_wait_response",
-              "startTime": 1792629364000,
-              "latestTime": 1792629376000,
-              "startTimeLong": 1792629364000,
-              "latestTimeLong": 1792629376000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1792715776000,
-          "delayTime": 1792715776000
-        },
-        "related": null
-      }
-    },
-    {
       "id": "2026101856708",
       "title": "",
       "business": "履约业务-专送",
@@ -161979,168 +160832,6 @@ const EMBEDDED_DATA = {
           "processType": "PEISONG_ONLINE",
           "delayTimeLong": 1792745510000,
           "delayTime": 1792745510000
-        },
-        "related": null
-      }
-    },
-    {
-      "id": "2026052686759",
-      "title": "",
-      "business": "履约业务-专送",
-      "source": "风险线索升级",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "occurTime": "2026-05-25 21:28:55",
-      "reportTime": "2026-05-26 14:03:15",
-      "updateTime": "2026-10-08 17:12:31",
-      "province": "河南省",
-      "city": "洛阳市",
-      "district": "西工区",
-      "address": "河南省洛阳市西工区洛北街道九都路体育场路39号",
-      "summary": "我在送餐途中骑俩轮电动车，自己撞到栏杆上导致自己头部受伤，全身擦伤",
-      "reporter": "李彬",
-      "handler": "李彬",
-      "region": "华北大区--加盟",
-      "area": "加盟河南区域",
-      "station": "兴必达【洛阳】新都汇站",
-      "stationId": 2089371,
-      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】新都汇站",
-      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-      "riderName": "贾宇浩",
-      "riderPhone": "130****3008",
-      "riderStation": "兴必达【洛阳】新都汇站",
-      "detail": {
-        "eventNo": "2026052686759",
-        "title": "",
-        "source": "风险线索升级",
-        "type": "交通事故",
-        "level": "蓝色",
-        "statusRaw": 3,
-        "status": "处理中",
-        "occurTime": "2026-05-25 21:28:55",
-        "reportTime": "2026-05-26 14:03:15",
-        "updateTime": "2026-10-08 17:12:31",
-        "endTime": "",
-        "province": "河南省",
-        "city": "洛阳市",
-        "district": "西工区",
-        "address": "河南省洛阳市西工区洛北街道九都路体育场路39号",
-        "course": "我在送餐途中骑俩轮电动车，自己撞到栏杆上导致自己头部受伤，全身擦伤",
-        "region": "华北大区--加盟",
-        "area": "加盟河南区域",
-        "station": "兴必达【洛阳】新都汇站",
-        "stationId": 2089371,
-        "stationType": "即时配加盟",
-        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】新都汇站",
-        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "riders": [
-          {
-            "riderId": 73290876,
-            "entryDate": "1779176292",
-            "riderPhone": {
-              "data": null,
-              "token": "2yyt2NlMl&y3008",
-              "dataMask": "130****3008",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "即时配加盟",
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXUJS!OXs18189",
-              "dataMask": "41032**********174",
-              "unknown": null
-            },
-            "stationName": "兴必达【洛阳】新都汇站",
-            "riderName": "贾宇浩",
-            "age": "0",
-            "genderDesc": "男",
-            "stationId": "2089371"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "e60e2199": 2,
-          "6bc2fb6f": 1,
-          "9d13ef5b": 2,
-          "6f72eaaf": 2,
-          "e6e645c9": 2,
-          "d1078f9f": 2,
-          "da478aa9": 2,
-          "2967240b": "10426059300704634775",
-          "21": 2,
-          "74d46e3f": 1
-        },
-        "eventTypeInfo": {
-          "14": 2,
-          "15": 1,
-          "7a16f69a": 1,
-          "81a8da9f": 1,
-          "19": 1,
-          "328d1fe5": 1,
-          "874aad49": 1,
-          "c514e3d2": 1,
-          "0224cd2b": [
-            1
-          ],
-          "9": [
-            1,
-            3
-          ],
-          "93": 1,
-          "94": "交警",
-          "d29c4a95": 1,
-          "10": 2,
-          "32": [
-            1
-          ],
-          "719caaaf": 5
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "104457756754",
-        "taskKey": "zs_wait_follow",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1779775395000,
-              "latestTime": 1779775395000,
-              "startTimeLong": 1779775395000,
-              "latestTimeLong": 1779775395000
-            },
-            {
-              "taskKey": "zs_wait_follow",
-              "startTime": 1779845805000,
-              "latestTime": 1779845805000,
-              "startTimeLong": 1779845805000,
-              "latestTimeLong": 1779845805000
-            },
-            {
-              "taskKey": "zs_wait_end_response",
-              "startTime": 1779775407000,
-              "latestTime": 1779845805000,
-              "startTimeLong": 1779775407000,
-              "latestTimeLong": 1779845805000
-            },
-            {
-              "taskKey": "zs_wait_response",
-              "startTime": 1779775395000,
-              "latestTime": 1779775407000,
-              "startTimeLong": 1779775395000,
-              "latestTimeLong": 1779775407000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1792746751000,
-          "delayTime": 1792746751000
         },
         "related": null
       }
@@ -172320,174 +171011,6 @@ const EMBEDDED_DATA = {
           "processType": "PEISONG_ONLINE",
           "delayTimeLong": 1793165953000,
           "delayTime": 1793165953000
-        },
-        "related": null
-      }
-    },
-    {
-      "id": "2026090428513",
-      "title": "",
-      "business": "履约业务-专送",
-      "source": "AUTO_REPORT",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "occurTime": "2026-09-02 18:40:00",
-      "reportTime": "2026-09-04 08:46:56",
-      "updateTime": "2026-10-21 15:25:24",
-      "province": "河南省",
-      "city": "洛阳市",
-      "district": "西工区",
-      "address": "洛阳市西工区解放路玄武门大街交叉口南200米处",
-      "summary": "2026年9月2日18点40分许，骑手姜子杰驾驶电动两轮车行驶到解放路玄武门大街南200米处，与一个横穿马路的男孩发生碰撞，造成对方受伤，交警判责骑手主责。",
-      "reporter": "李彬",
-      "handler": "李彬",
-      "region": "华北大区--加盟",
-      "area": "加盟河南区域",
-      "station": "兴必达【洛阳】新都汇站",
-      "stationId": 2089371,
-      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】新都汇站",
-      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-      "riderName": "姜子杰",
-      "riderPhone": "176****3896",
-      "riderStation": "兴必达【洛阳】新都汇站",
-      "detail": {
-        "eventNo": "2026090428513",
-        "title": "",
-        "source": "AUTO_REPORT",
-        "type": "交通事故",
-        "level": "蓝色",
-        "statusRaw": 3,
-        "status": "处理中",
-        "occurTime": "2026-09-02 18:40:00",
-        "reportTime": "2026-09-04 08:46:56",
-        "updateTime": "2026-10-21 15:25:24",
-        "endTime": "2026-10-20 16:10:35",
-        "province": "河南省",
-        "city": "洛阳市",
-        "district": "西工区",
-        "address": "洛阳市西工区解放路玄武门大街交叉口南200米处",
-        "course": "2026年9月2日18点40分许，骑手姜子杰驾驶电动两轮车行驶到解放路玄武门大街南200米处，与一个横穿马路的男孩发生碰撞，造成对方受伤，交警判责骑手主责。",
-        "region": "华北大区--加盟",
-        "area": "加盟河南区域",
-        "station": "兴必达【洛阳】新都汇站",
-        "stationId": 2089371,
-        "stationType": "即时配加盟",
-        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】新都汇站",
-        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "riders": [
-          {
-            "riderId": 77431751,
-            "entryDate": "1787557932",
-            "riderPhone": {
-              "data": null,
-              "token": "jnF0!!EZK5E3896",
-              "dataMask": "176****3896",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "即时配加盟",
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXEcRKIXZ60312",
-              "dataMask": "34122**********01X",
-              "unknown": null
-            },
-            "stationName": "兴必达【洛阳】新都汇站",
-            "riderName": "姜子杰",
-            "age": "0",
-            "genderDesc": "男",
-            "stationId": "2089371"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "27f340b6": 2029.44,
-          "6bc2fb6f": 1,
-          "e6e645c9": 2,
-          "da478aa9": 2,
-          "74d46e3f": 1,
-          "e60e2199": 1,
-          "huyunmeng09": 0,
-          "9d13ef5b": 2,
-          "d1078f9f": 2,
-          "huyunmeng10": 0,
-          "2967240b": "2136904E426W1351771913",
-          "21": 1
-        },
-        "eventTypeInfo": {
-          "33": [
-            1
-          ],
-          "14": 2,
-          "15": 2,
-          "7a16f69a": 1,
-          "19": 2,
-          "be5cd84a": 2,
-          "328d1fe5": 1,
-          "874aad49": 2,
-          "2e9772a9": 2,
-          "5452e09e": 1,
-          "ff537655": 1,
-          "0224cd2b": [
-            3
-          ],
-          "9": [
-            1
-          ],
-          "93": 1,
-          "94": "交警",
-          "20": "[{\"name\":\"微信图片_20260907165719_541_83.jpg\",\"uuid\":\"riskmanager110/微信图片_20260907165719_541_83_5t56fl.jpg\"}]",
-          "10": 5,
-          "32": [
-            3
-          ],
-          "719caaaf": 8
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "107504245094",
-        "taskKey": "zs_wait_follow",
-        "checkInfoStatus": "NOT_PASS",
-        "checkInfoResult": "我方受伤人数（与事件经过不一致）。",
-        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "updateAccountId": "system",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1788482816000,
-              "latestTime": 1788482816000,
-              "startTimeLong": 1788482816000,
-              "latestTimeLong": 1788482816000
-            },
-            {
-              "taskKey": "zs_wait_follow",
-              "startTime": 1788570152000,
-              "latestTime": 1792567524000,
-              "startTimeLong": 1788570152000,
-              "latestTimeLong": 1792567524000
-            },
-            {
-              "taskKey": "zs_wait_end_response",
-              "startTime": 1788483664000,
-              "latestTime": 1788570152000,
-              "startTimeLong": 1788483664000,
-              "latestTimeLong": 1788570152000
-            },
-            {
-              "taskKey": "zs_wait_response",
-              "startTime": 1788482816000,
-              "latestTime": 1788483664000,
-              "startTimeLong": 1788482816000,
-              "latestTimeLong": 1788483664000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1793172324000,
-          "delayTime": 1793172324000
         },
         "related": null
       }
@@ -188257,6 +186780,1653 @@ const EMBEDDED_DATA = {
           "processType": "PEISONG_ONLINE",
           "delayTimeLong": 1794026616000,
           "delayTime": 1794026616000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026102372792",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "风险线索升级",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "occurTime": "2026-10-21 15:32:00",
+      "reportTime": "2026-10-23 13:09:41",
+      "updateTime": "2026-10-23 13:10:07",
+      "province": "山东省",
+      "city": "青岛市",
+      "district": "城阳区",
+      "address": "山东省青岛市城阳区山东省青岛市城阳区城阳街道国城路151号",
+      "summary": "2026-10-21 15:32，骑手在山东省青岛市城阳区山东省青岛市城阳区城阳街道国城路151号与三者机动车发生事故，三者车损，已报警，未定责",
+      "reporter": "卢生有",
+      "handler": "卢生有",
+      "region": "中南大区--加盟",
+      "area": "加盟山东区域",
+      "station": "兴必达【青岛】正阳路站",
+      "stationId": 2049940,
+      "orgPath": "配送总部-加盟总部-中南大区--加盟-加盟山东区域-加盟青岛分区-青岛配送1组-兴必达【青岛】正阳路站",
+      "franchisee": "兴必达（江苏）网络科技有限公司【青岛】",
+      "riderName": "刘家国",
+      "riderPhone": "135****4482",
+      "riderStation": "兴必达【青岛】正阳路站",
+      "detail": {
+        "eventNo": "2026102372792",
+        "title": "",
+        "source": "风险线索升级",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-10-21 15:32:00",
+        "reportTime": "2026-10-23 13:09:41",
+        "updateTime": "2026-10-23 13:10:07",
+        "endTime": "",
+        "province": "山东省",
+        "city": "青岛市",
+        "district": "城阳区",
+        "address": "山东省青岛市城阳区山东省青岛市城阳区城阳街道国城路151号",
+        "course": "2026-10-21 15:32，骑手在山东省青岛市城阳区山东省青岛市城阳区城阳街道国城路151号与三者机动车发生事故，三者车损，已报警，未定责",
+        "region": "中南大区--加盟",
+        "area": "加盟山东区域",
+        "station": "兴必达【青岛】正阳路站",
+        "stationId": 2049940,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-中南大区--加盟-加盟山东区域-加盟青岛分区-青岛配送1组-兴必达【青岛】正阳路站",
+        "franchisee": "兴必达（江苏）网络科技有限公司【青岛】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【青岛】",
+        "riders": [
+          {
+            "riderId": 79040143,
+            "entryDate": "2026-10-19",
+            "riderPhone": {
+              "data": null,
+              "token": "jPu5REbY~1r4482",
+              "dataMask": "135****4482",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXiGd1SI518297",
+              "dataMask": "52042**********219",
+              "unknown": null
+            },
+            "stationName": "兴必达【青岛】正阳路站",
+            "riderName": "刘家国",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2049940"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "27f340b6": 0,
+          "6bc2fb6f": 1,
+          "6f72eaaf": 2,
+          "e6e645c9": 2,
+          "da478aa9": 4,
+          "74d46e3f": 1,
+          "e60e2199": 2,
+          "huyunmeng09": 0,
+          "9d13ef5b": 2,
+          "d1078f9f": 2,
+          "huyunmeng10": 0,
+          "2967240b": "PLD920264403Q100U00941",
+          "21": 1
+        },
+        "eventTypeInfo": {
+          "2705531b": 5,
+          "7a16f69a": 2,
+          "17": "未定",
+          "19": 0,
+          "75aa83b2": 4,
+          "e4067848": "未定",
+          "874aad49": 2,
+          "2e9772a9": 2,
+          "5452e09e": 1,
+          "ff537655": 2,
+          "9": [
+            3
+          ],
+          "93": 1,
+          "94": "无",
+          "10": 1,
+          "32": [
+            4
+          ],
+          "719caaaf": 5
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "107545359817",
+        "taskKey": "zs_wait_follow",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "bm_lushengyou06@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_lushengyou06@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1792732181000,
+              "latestTime": 1792732181000,
+              "startTimeLong": 1792732181000,
+              "latestTimeLong": 1792732181000
+            },
+            {
+              "taskKey": "zs_wait_follow",
+              "startTime": 1792732207000,
+              "latestTime": 1792732207000,
+              "startTimeLong": 1792732207000,
+              "latestTimeLong": 1792732207000
+            },
+            {
+              "taskKey": "zs_wait_end_response",
+              "startTime": 1792732188000,
+              "latestTime": 1792732207000,
+              "startTimeLong": 1792732188000,
+              "latestTimeLong": 1792732207000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1792732181000,
+              "latestTime": 1792732188000,
+              "startTimeLong": 1792732181000,
+              "latestTimeLong": 1792732188000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": 1794028207000,
+          "delayTime": 1794028207000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026010724952",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "AUTO_REPORT",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "occurTime": "2026-01-07 18:10:00",
+      "reportTime": "2026-01-07 20:16:25",
+      "updateTime": "2026-10-23 13:47:54",
+      "province": "河南省",
+      "city": "洛阳市",
+      "district": "西工区",
+      "address": "西工区玄武门大街与金谷园路交叉口向东300米处",
+      "summary": "2026年01月07日18点10分左右骑手在玄武门大街送餐途中，沿玄武门大街由东向西行驶时与横穿马路行人发生碰撞，导致对方人员头部受伤，ICU中。",
+      "reporter": "李彬",
+      "handler": "李彬",
+      "region": "华北大区--加盟",
+      "area": "加盟河南区域",
+      "station": "兴必达【洛阳】火车南站",
+      "stationId": 2054901,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】火车南站",
+      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+      "riderName": "李家崎",
+      "riderPhone": "136****8357",
+      "riderStation": "兴必达【洛阳】火车南站",
+      "detail": {
+        "eventNo": "2026010724952",
+        "title": "",
+        "source": "AUTO_REPORT",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-01-07 18:10:00",
+        "reportTime": "2026-01-07 20:16:25",
+        "updateTime": "2026-10-23 13:47:54",
+        "endTime": "",
+        "province": "河南省",
+        "city": "洛阳市",
+        "district": "西工区",
+        "address": "西工区玄武门大街与金谷园路交叉口向东300米处",
+        "course": "2026年01月07日18点10分左右骑手在玄武门大街送餐途中，沿玄武门大街由东向西行驶时与横穿马路行人发生碰撞，导致对方人员头部受伤，ICU中。",
+        "region": "华北大区--加盟",
+        "area": "加盟河南区域",
+        "station": "兴必达【洛阳】火车南站",
+        "stationId": 2054901,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】火车南站",
+        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "riders": [
+          {
+            "riderId": 67124067,
+            "entryDate": "1762049116",
+            "riderPhone": {
+              "data": null,
+              "token": "i-ngX3QIqJi8357",
+              "dataMask": "136****8357",
+              "unknown": null
+            },
+            "jobStatusDesc": "离职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXdPOoKSu06717",
+              "dataMask": "41112**********533",
+              "unknown": null
+            },
+            "stationName": "兴必达【洛阳】火车南站",
+            "riderName": "李家崎",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2054901"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "6bc2fb6f": 1,
+          "6f72eaaf": 2,
+          "e6e645c9": 2,
+          "da478aa9": 2,
+          "74d46e3f": 1,
+          "e60e2199": 2,
+          "huyunmeng09": 0,
+          "9d13ef5b": 2,
+          "d1078f9f": 2,
+          "huyunmeng10": 0,
+          "2967240b": "10426019000317031266",
+          "21": 1
+        },
+        "eventTypeInfo": {
+          "33": [
+            5
+          ],
+          "14": 1,
+          "15": 2,
+          "2705531b": 2,
+          "7a16f69a": 1,
+          "19": 0,
+          "328d1fe5": 1,
+          "75aa83b2": 4,
+          "e4067848": "对方ICU中，",
+          "874aad49": 2,
+          "2e9772a9": 2,
+          "5452e09e": 1,
+          "ff537655": 1,
+          "0224cd2b": [
+            1
+          ],
+          "9": [
+            1
+          ],
+          "93": 1,
+          "94": "交警",
+          "10": 1,
+          "32": [
+            2,
+            3
+          ],
+          "719caaaf": 5
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "101998372627",
+        "taskKey": "zs_wait_follow",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1767788185000,
+              "latestTime": 1767788185000,
+              "startTimeLong": 1767788185000,
+              "latestTimeLong": 1767788185000
+            },
+            {
+              "taskKey": "zs_wait_follow",
+              "startTime": 1767833980000,
+              "latestTime": 1767833980000,
+              "startTimeLong": 1767833980000,
+              "latestTimeLong": 1767833980000
+            },
+            {
+              "taskKey": "zs_wait_end_response",
+              "startTime": 1767788193000,
+              "latestTime": 1767833980000,
+              "startTimeLong": 1767788193000,
+              "latestTimeLong": 1767833980000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1767788185000,
+              "latestTime": 1767788193000,
+              "startTimeLong": 1767788185000,
+              "latestTimeLong": 1767788193000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": 1794030474000,
+          "delayTime": 1794030474000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026070924128",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "风险线索升级",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "occurTime": "2026-07-07 11:01:14",
+      "reportTime": "2026-07-09 08:08:13",
+      "updateTime": "2026-10-23 13:48:40",
+      "province": "河南省",
+      "city": "洛阳市",
+      "district": "西工区",
+      "address": "河南省洛阳市西工区西工街道凯旋西路20-2号",
+      "summary": "我在送餐途中骑电动车时自己摔伤，造成本人膝盖脚腕胳膊受伤",
+      "reporter": "李彬",
+      "handler": "李彬",
+      "region": "华北大区--加盟",
+      "area": "加盟河南区域",
+      "station": "兴必达【洛阳】新都汇站",
+      "stationId": 2089371,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】新都汇站",
+      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+      "riderName": "关科建",
+      "riderPhone": "187****2971",
+      "riderStation": "兴必达【洛阳】新都汇站",
+      "detail": {
+        "eventNo": "2026070924128",
+        "title": "",
+        "source": "风险线索升级",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-07-07 11:01:14",
+        "reportTime": "2026-07-09 08:08:13",
+        "updateTime": "2026-10-23 13:48:40",
+        "endTime": "",
+        "province": "河南省",
+        "city": "洛阳市",
+        "district": "西工区",
+        "address": "河南省洛阳市西工区西工街道凯旋西路20-2号",
+        "course": "我在送餐途中骑电动车时自己摔伤，造成本人膝盖脚腕胳膊受伤",
+        "region": "华北大区--加盟",
+        "area": "加盟河南区域",
+        "station": "兴必达【洛阳】新都汇站",
+        "stationId": 2089371,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】新都汇站",
+        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "riders": [
+          {
+            "riderId": 73059594,
+            "entryDate": "1778556371",
+            "riderPhone": {
+              "data": null,
+              "token": "26b@f4lY!4k2971",
+              "dataMask": "187****2971",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXA2JWufY13389",
+              "dataMask": "41032**********138",
+              "unknown": null
+            },
+            "stationName": "兴必达【洛阳】新都汇站",
+            "riderName": "关科建",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2089371"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "e60e2199": 2,
+          "6bc2fb6f": 1,
+          "9d13ef5b": 2,
+          "6f72eaaf": 2,
+          "e6e645c9": 2,
+          "d1078f9f": 2,
+          "da478aa9": 2,
+          "2967240b": "ACHDLQR37126W00GBASQ",
+          "21": 1,
+          "74d46e3f": 1
+        },
+        "eventTypeInfo": {
+          "33": [
+            4
+          ],
+          "14": 2,
+          "15": 1,
+          "7a16f69a": 1,
+          "19": 1,
+          "be5cd84a": 1,
+          "328d1fe5": 1,
+          "874aad49": 1,
+          "2e9772a9": 2,
+          "5452e09e": 1,
+          "0224cd2b": [
+            3
+          ],
+          "9": [
+            1
+          ],
+          "93": 1,
+          "94": "交警",
+          "10": 2,
+          "32": [
+            3
+          ],
+          "719caaaf": 8
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "105348660783",
+        "taskKey": "zs_wait_follow",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1783555693000,
+              "latestTime": 1783555693000,
+              "startTimeLong": 1783555693000,
+              "latestTimeLong": 1783555693000
+            },
+            {
+              "taskKey": "zs_wait_follow",
+              "startTime": 1783642464000,
+              "latestTime": 1783642464000,
+              "startTimeLong": 1783642464000,
+              "latestTimeLong": 1783642464000
+            },
+            {
+              "taskKey": "zs_wait_end_response",
+              "startTime": 1783555707000,
+              "latestTime": 1783642464000,
+              "startTimeLong": 1783555707000,
+              "latestTimeLong": 1783642464000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1783555693000,
+              "latestTime": 1783555707000,
+              "startTimeLong": 1783555693000,
+              "latestTimeLong": 1783555707000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": 1794030520000,
+          "delayTime": 1794030520000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026090533563",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "AUTO_REPORT",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "occurTime": "2026-09-04 09:21:00",
+      "reportTime": "2026-09-05 19:59:53",
+      "updateTime": "2026-10-23 13:49:08",
+      "province": "河南省",
+      "city": "洛阳市",
+      "district": "孟津区",
+      "address": "河南省洛阳市孟津区城关镇桂花大道与中兴路交叉口西侧",
+      "summary": "2026年9月4日上午09点21分左右，骑手杜灵宝在从家往餐区上班途中，沿桂花大道由西向东行驶至中兴路交叉口时，与同向行驶左转弯掉头的四轮汽车相撞，导致骑手右脚受伤,对方无车损人伤",
+      "reporter": "李彬",
+      "handler": "李彬",
+      "region": "华北大区--加盟",
+      "area": "加盟河南区域",
+      "station": "兴必达【洛阳】百货楼站",
+      "stationId": 2026065,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】百货楼站",
+      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+      "riderName": "杜灵宝",
+      "riderPhone": "132****2973",
+      "riderStation": "兴必达【洛阳】百货楼站",
+      "detail": {
+        "eventNo": "2026090533563",
+        "title": "",
+        "source": "AUTO_REPORT",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-09-04 09:21:00",
+        "reportTime": "2026-09-05 19:59:53",
+        "updateTime": "2026-10-23 13:49:08",
+        "endTime": "",
+        "province": "河南省",
+        "city": "洛阳市",
+        "district": "孟津区",
+        "address": "河南省洛阳市孟津区城关镇桂花大道与中兴路交叉口西侧",
+        "course": "2026年9月4日上午09点21分左右，骑手杜灵宝在从家往餐区上班途中，沿桂花大道由西向东行驶至中兴路交叉口时，与同向行驶左转弯掉头的四轮汽车相撞，导致骑手右脚受伤,对方无车损人伤",
+        "region": "华北大区--加盟",
+        "area": "加盟河南区域",
+        "station": "兴必达【洛阳】百货楼站",
+        "stationId": 2026065,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】百货楼站",
+        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "riders": [
+          {
+            "riderId": 76591919,
+            "entryDate": "1785573404",
+            "riderPhone": {
+              "data": null,
+              "token": "i1AF@RXMqOW2973",
+              "dataMask": "132****2973",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXUP83Cfn12855",
+              "dataMask": "41032**********111",
+              "unknown": null
+            },
+            "stationName": "兴必达【洛阳】百货楼站",
+            "riderName": "杜灵宝",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2026065"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "e60e2199": 2,
+          "6bc2fb6f": 1,
+          "9d13ef5b": 2,
+          "6f72eaaf": 2,
+          "e6e645c9": 2,
+          "d1078f9f": 2,
+          "da478aa9": 2,
+          "2967240b": "10426099400195130832",
+          "21": 2,
+          "74d46e3f": 2
+        },
+        "eventTypeInfo": {
+          "33": [
+            1
+          ],
+          "14": 2,
+          "15": 1,
+          "7a16f69a": 1,
+          "19": 3,
+          "be5cd84a": 1,
+          "328d1fe5": 1,
+          "874aad49": 2,
+          "2e9772a9": 2,
+          "5452e09e": 1,
+          "ff537655": 2,
+          "0224cd2b": [
+            3
+          ],
+          "9": [
+            1
+          ],
+          "9e9238bd": [
+            1
+          ],
+          "93": 1,
+          "94": "交警",
+          "10": 4,
+          "32": [
+            2,
+            3
+          ],
+          "719caaaf": 2
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "106560620205",
+        "taskKey": "zs_wait_follow",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1788609593000,
+              "latestTime": 1788609593000,
+              "startTimeLong": 1788609593000,
+              "latestTimeLong": 1788609593000
+            },
+            {
+              "taskKey": "zs_wait_follow",
+              "startTime": 1788685174000,
+              "latestTime": 1788685174000,
+              "startTimeLong": 1788685174000,
+              "latestTimeLong": 1788685174000
+            },
+            {
+              "taskKey": "zs_wait_end_response",
+              "startTime": 1788609604000,
+              "latestTime": 1788685174000,
+              "startTimeLong": 1788609604000,
+              "latestTimeLong": 1788685174000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1788609593000,
+              "latestTime": 1788609604000,
+              "startTimeLong": 1788609593000,
+              "latestTimeLong": 1788609604000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": 1794030548000,
+          "delayTime": 1794030548000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026082389939",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "AUTO_REPORT",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "occurTime": "2026-08-22 20:05:00",
+      "reportTime": "2026-08-23 18:13:11",
+      "updateTime": "2026-10-23 13:51:54",
+      "province": "河南省",
+      "city": "洛阳市",
+      "district": "涧西区",
+      "address": "河南省洛阳市涧西区九都西路防洪渠桥头",
+      "summary": "2026年08月22日晚上20点05分左右，骑手张博超从九都西路由西往东顺行走机动车道去商家取餐，到渠边桥头与一名横过马路行人在斑马线上发生碰撞造成对方人员我方骑手人员受伤的事故",
+      "reporter": "李彬",
+      "handler": "李彬",
+      "region": "华北大区--加盟",
+      "area": "加盟河南区域",
+      "station": "兴必达【洛阳】滨河站",
+      "stationId": 2026062,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】滨河站",
+      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+      "riderName": "张博超",
+      "riderPhone": "157****2411",
+      "riderStation": "兴必达【洛阳】滨河站",
+      "detail": {
+        "eventNo": "2026082389939",
+        "title": "",
+        "source": "AUTO_REPORT",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-08-22 20:05:00",
+        "reportTime": "2026-08-23 18:13:11",
+        "updateTime": "2026-10-23 13:51:54",
+        "endTime": "",
+        "province": "河南省",
+        "city": "洛阳市",
+        "district": "涧西区",
+        "address": "河南省洛阳市涧西区九都西路防洪渠桥头",
+        "course": "2026年08月22日晚上20点05分左右，骑手张博超从九都西路由西往东顺行走机动车道去商家取餐，到渠边桥头与一名横过马路行人在斑马线上发生碰撞造成对方人员我方骑手人员受伤的事故",
+        "region": "华北大区--加盟",
+        "area": "加盟河南区域",
+        "station": "兴必达【洛阳】滨河站",
+        "stationId": 2026062,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】滨河站",
+        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "riders": [
+          {
+            "riderId": 70814653,
+            "entryDate": "1773476229",
+            "riderPhone": {
+              "data": null,
+              "token": "ElIjSJ@0I3-2411",
+              "dataMask": "157****2411",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXUwQKsph35418",
+              "dataMask": "41032**********331",
+              "unknown": null
+            },
+            "stationName": "兴必达【洛阳】滨河站",
+            "riderName": "张博超",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2026062"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "e60e2199": 2,
+          "6bc2fb6f": 1,
+          "9d13ef5b": 2,
+          "e6e645c9": 2,
+          "d1078f9f": 2,
+          "da478aa9": 2,
+          "2967240b": "PLD920264403Q080G79690",
+          "21": 1,
+          "74d46e3f": 1
+        },
+        "eventTypeInfo": {
+          "33": [
+            1
+          ],
+          "14": 1,
+          "15": 2,
+          "2705531b": 2,
+          "7a16f69a": 1,
+          "19": 0,
+          "328d1fe5": 1,
+          "874aad49": 2,
+          "2e9772a9": 2,
+          "5452e09e": 1,
+          "ff537655": 1,
+          "c514e3d2": 1,
+          "0224cd2b": [
+            1
+          ],
+          "9": [
+            1
+          ],
+          "93": 1,
+          "94": "交警",
+          "10": 1,
+          "32": [
+            3
+          ],
+          "719caaaf": 5
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "106284614868",
+        "taskKey": "zs_wait_follow",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1787479991000,
+              "latestTime": 1787479991000,
+              "startTimeLong": 1787479991000,
+              "latestTimeLong": 1787479991000
+            },
+            {
+              "taskKey": "zs_wait_follow",
+              "startTime": 1787480026000,
+              "latestTime": 1787480026000,
+              "startTimeLong": 1787480026000,
+              "latestTimeLong": 1787480026000
+            },
+            {
+              "taskKey": "zs_wait_end_response",
+              "startTime": 1787480004000,
+              "latestTime": 1787480026000,
+              "startTimeLong": 1787480004000,
+              "latestTimeLong": 1787480026000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1787479991000,
+              "latestTime": 1787480004000,
+              "startTimeLong": 1787479991000,
+              "latestTimeLong": 1787480004000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": 1794030714000,
+          "delayTime": 1794030714000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026102269065",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "风险线索升级",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "occurTime": "2026-10-21 16:04:00",
+      "reportTime": "2026-10-22 08:36:04",
+      "updateTime": "2026-10-23 14:00:05",
+      "province": "河南省",
+      "city": "洛阳市",
+      "district": "西工区",
+      "address": "河南省洛阳市西工区河南省洛阳市西工区西工街道中州中路309号",
+      "summary": "骑手骑电动车右拐起步时，车右侧方刮蹭到对方骑车右侧方，造成对方车辆右后轮叶子板位置轻微剐蹭",
+      "reporter": "李彬",
+      "handler": "李彬",
+      "region": "华北大区--加盟",
+      "area": "加盟河南区域",
+      "station": "兴必达【洛阳】洛浦站",
+      "stationId": 2026064,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】洛浦站",
+      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+      "riderName": "王晓栋",
+      "riderPhone": "185****9009",
+      "riderStation": "兴必达【洛阳】洛浦站",
+      "detail": {
+        "eventNo": "2026102269065",
+        "title": "",
+        "source": "风险线索升级",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-10-21 16:04:00",
+        "reportTime": "2026-10-22 08:36:04",
+        "updateTime": "2026-10-23 14:00:05",
+        "endTime": "",
+        "province": "河南省",
+        "city": "洛阳市",
+        "district": "西工区",
+        "address": "河南省洛阳市西工区河南省洛阳市西工区西工街道中州中路309号",
+        "course": "骑手骑电动车右拐起步时，车右侧方刮蹭到对方骑车右侧方，造成对方车辆右后轮叶子板位置轻微剐蹭",
+        "region": "华北大区--加盟",
+        "area": "加盟河南区域",
+        "station": "兴必达【洛阳】洛浦站",
+        "stationId": 2026064,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】洛浦站",
+        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "riders": [
+          {
+            "riderId": 76809123,
+            "entryDate": "1785999051",
+            "riderPhone": {
+              "data": null,
+              "token": "SnBg*kkRvi19009",
+              "dataMask": "185****9009",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXr8seG3Z02572",
+              "dataMask": "41032**********819",
+              "unknown": null
+            },
+            "stationName": "兴必达【洛阳】洛浦站",
+            "riderName": "王晓栋",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2026064"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "e60e2199": 2,
+          "6bc2fb6f": 1,
+          "9d13ef5b": 2,
+          "6f72eaaf": 2,
+          "e6e645c9": 2,
+          "d1078f9f": 2,
+          "da478aa9": 3,
+          "2967240b": "15149301501662600018461117",
+          "21": 1,
+          "74d46e3f": 1
+        },
+        "eventTypeInfo": {
+          "33": [
+            2
+          ],
+          "7a16f69a": 1,
+          "81a8da9f": 1,
+          "19": 7,
+          "874aad49": 2,
+          "2e9772a9": 2,
+          "5452e09e": 1,
+          "ff537655": 2,
+          "9": [
+            3
+          ],
+          "93": 1,
+          "94": "交警",
+          "10": 1,
+          "32": [
+            3
+          ],
+          "719caaaf": 1
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "107516182400",
+        "taskKey": "zs_wait_follow",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1792629364000,
+              "latestTime": 1792629364000,
+              "startTimeLong": 1792629364000,
+              "latestTimeLong": 1792629364000
+            },
+            {
+              "taskKey": "zs_wait_follow",
+              "startTime": 1792735205000,
+              "latestTime": 1792735205000,
+              "startTimeLong": 1792735205000,
+              "latestTimeLong": 1792735205000
+            },
+            {
+              "taskKey": "zs_wait_end_response",
+              "startTime": 1792629376000,
+              "latestTime": 1792735205000,
+              "startTimeLong": 1792629376000,
+              "latestTimeLong": 1792735205000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1792629364000,
+              "latestTime": 1792629376000,
+              "startTimeLong": 1792629364000,
+              "latestTimeLong": 1792629376000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": 1794031205000,
+          "delayTime": 1794031205000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026052686759",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "风险线索升级",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "occurTime": "2026-05-25 21:28:55",
+      "reportTime": "2026-05-26 14:03:15",
+      "updateTime": "2026-10-23 14:00:26",
+      "province": "河南省",
+      "city": "洛阳市",
+      "district": "西工区",
+      "address": "河南省洛阳市西工区洛北街道九都路体育场路39号",
+      "summary": "我在送餐途中骑俩轮电动车，自己撞到栏杆上导致自己头部受伤，全身擦伤",
+      "reporter": "李彬",
+      "handler": "李彬",
+      "region": "华北大区--加盟",
+      "area": "加盟河南区域",
+      "station": "兴必达【洛阳】新都汇站",
+      "stationId": 2089371,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】新都汇站",
+      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+      "riderName": "贾宇浩",
+      "riderPhone": "130****3008",
+      "riderStation": "兴必达【洛阳】新都汇站",
+      "detail": {
+        "eventNo": "2026052686759",
+        "title": "",
+        "source": "风险线索升级",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-05-25 21:28:55",
+        "reportTime": "2026-05-26 14:03:15",
+        "updateTime": "2026-10-23 14:00:26",
+        "endTime": "",
+        "province": "河南省",
+        "city": "洛阳市",
+        "district": "西工区",
+        "address": "河南省洛阳市西工区洛北街道九都路体育场路39号",
+        "course": "我在送餐途中骑俩轮电动车，自己撞到栏杆上导致自己头部受伤，全身擦伤",
+        "region": "华北大区--加盟",
+        "area": "加盟河南区域",
+        "station": "兴必达【洛阳】新都汇站",
+        "stationId": 2089371,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】新都汇站",
+        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "riders": [
+          {
+            "riderId": 73290876,
+            "entryDate": "1779176292",
+            "riderPhone": {
+              "data": null,
+              "token": "2yyt2NlMl&y3008",
+              "dataMask": "130****3008",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXUJS!OXs18189",
+              "dataMask": "41032**********174",
+              "unknown": null
+            },
+            "stationName": "兴必达【洛阳】新都汇站",
+            "riderName": "贾宇浩",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2089371"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "e60e2199": 2,
+          "6bc2fb6f": 1,
+          "9d13ef5b": 2,
+          "6f72eaaf": 2,
+          "e6e645c9": 2,
+          "d1078f9f": 2,
+          "da478aa9": 2,
+          "2967240b": "10426059300704634775",
+          "21": 2,
+          "74d46e3f": 1
+        },
+        "eventTypeInfo": {
+          "14": 2,
+          "15": 1,
+          "7a16f69a": 1,
+          "81a8da9f": 1,
+          "19": 1,
+          "328d1fe5": 1,
+          "874aad49": 1,
+          "c514e3d2": 1,
+          "0224cd2b": [
+            1
+          ],
+          "9": [
+            1,
+            3
+          ],
+          "93": 1,
+          "94": "交警",
+          "d29c4a95": 1,
+          "10": 2,
+          "32": [
+            1
+          ],
+          "719caaaf": 5
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "104457756754",
+        "taskKey": "zs_wait_follow",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1779775395000,
+              "latestTime": 1779775395000,
+              "startTimeLong": 1779775395000,
+              "latestTimeLong": 1779775395000
+            },
+            {
+              "taskKey": "zs_wait_follow",
+              "startTime": 1779845805000,
+              "latestTime": 1779845805000,
+              "startTimeLong": 1779845805000,
+              "latestTimeLong": 1779845805000
+            },
+            {
+              "taskKey": "zs_wait_end_response",
+              "startTime": 1779775407000,
+              "latestTime": 1779845805000,
+              "startTimeLong": 1779775407000,
+              "latestTimeLong": 1779845805000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1779775395000,
+              "latestTime": 1779775407000,
+              "startTimeLong": 1779775395000,
+              "latestTimeLong": 1779775407000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": 1794031226000,
+          "delayTime": 1794031226000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026102373028",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "风险线索升级",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "occurTime": "2026-10-20 22:30:00",
+      "reportTime": "2026-10-23 14:26:49",
+      "updateTime": "2026-10-23 14:27:19",
+      "province": "河北省",
+      "city": "唐山市",
+      "district": "路南区",
+      "address": "河北省唐山市路南区文化路与新华副道交叉口",
+      "summary": "2026年10月20日22点33分，兴必达【唐山】万达站骑手孙伟在送餐时途径河北省唐山市路南区文化路与新华副道交叉口与三者机动车发生交通事故，事故造成三者车辆受损，经过警方判定骑手全责。",
+      "reporter": "李文龙",
+      "handler": "李文龙",
+      "region": "华北大区--加盟",
+      "area": "加盟津冀区域",
+      "station": "兴必达【唐山】万达站点",
+      "stationId": 144,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟津冀区域-加盟蒙冀分区-唐山配送组-兴必达【唐山】万达站点",
+      "franchisee": "兴必达（江苏）网络科技有限公司【唐山】",
+      "riderName": "孙伟",
+      "riderPhone": "158****0116",
+      "riderStation": "兴必达【唐山】万达站点",
+      "detail": {
+        "eventNo": "2026102373028",
+        "title": "",
+        "source": "风险线索升级",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-10-20 22:30:00",
+        "reportTime": "2026-10-23 14:26:49",
+        "updateTime": "2026-10-23 14:27:19",
+        "endTime": "",
+        "province": "河北省",
+        "city": "唐山市",
+        "district": "路南区",
+        "address": "河北省唐山市路南区文化路与新华副道交叉口",
+        "course": "2026年10月20日22点33分，兴必达【唐山】万达站骑手孙伟在送餐时途径河北省唐山市路南区文化路与新华副道交叉口与三者机动车发生交通事故，事故造成三者车辆受损，经过警方判定骑手全责。",
+        "region": "华北大区--加盟",
+        "area": "加盟津冀区域",
+        "station": "兴必达【唐山】万达站点",
+        "stationId": 144,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟津冀区域-加盟蒙冀分区-唐山配送组-兴必达【唐山】万达站点",
+        "franchisee": "兴必达（江苏）网络科技有限公司【唐山】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【唐山】",
+        "riders": [
+          {
+            "riderId": 71905413,
+            "entryDate": "2026-04-09",
+            "riderPhone": {
+              "data": null,
+              "token": "i166tbGO~i*0116",
+              "dataMask": "158****0116",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXuMGiKp&43374",
+              "dataMask": "13020**********214",
+              "unknown": null
+            },
+            "stationName": "兴必达【唐山】万达站点",
+            "riderName": "孙伟",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "144"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "27f340b6": 0,
+          "6bc2fb6f": 1,
+          "6f72eaaf": 2,
+          "e6e645c9": 2,
+          "da478aa9": 4,
+          "74d46e3f": 1,
+          "e60e2199": 2,
+          "huyunmeng09": 0,
+          "9d13ef5b": 2,
+          "d1078f9f": 2,
+          "huyunmeng10": 0,
+          "2967240b": "10426109000909777877",
+          "21": 1
+        },
+        "eventTypeInfo": {
+          "33": [
+            8
+          ],
+          "11": 3,
+          "7a16f69a": 1,
+          "81a8da9f": 1,
+          "19": 1,
+          "874aad49": 2,
+          "2e9772a9": 2,
+          "5452e09e": 1,
+          "ff537655": 2,
+          "9": [
+            3
+          ],
+          "93": 1,
+          "94": "唐山市交通警察支队",
+          "10": 5,
+          "32": [
+            3
+          ],
+          "719caaaf": 5
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "107546827637",
+        "taskKey": "zs_wait_follow",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "bm_liwenlong113@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_liwenlong113@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1792736809000,
+              "latestTime": 1792736809000,
+              "startTimeLong": 1792736809000,
+              "latestTimeLong": 1792736809000
+            },
+            {
+              "taskKey": "zs_wait_follow",
+              "startTime": 1792736839000,
+              "latestTime": 1792736839000,
+              "startTimeLong": 1792736839000,
+              "latestTimeLong": 1792736839000
+            },
+            {
+              "taskKey": "zs_wait_end_response",
+              "startTime": 1792736820000,
+              "latestTime": 1792736839000,
+              "startTimeLong": 1792736820000,
+              "latestTimeLong": 1792736839000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1792736809000,
+              "latestTime": 1792736820000,
+              "startTimeLong": 1792736809000,
+              "latestTimeLong": 1792736820000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": 1794032839000,
+          "delayTime": 1794032839000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026102373043",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "风险线索升级",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理完成",
+      "statusRaw": 5,
+      "occurTime": "2026-10-21 23:40:00",
+      "reportTime": "2026-10-23 14:35:15",
+      "updateTime": "2026-10-23 14:35:54",
+      "province": "河北省",
+      "city": "唐山市",
+      "district": "路北区",
+      "address": "河北省唐山市路北区新华道开滦宾馆路段",
+      "summary": "2026年10月22日00点06分，兴必达【唐山】万达站骑手刘潍源在送完餐回家途中，走路下楼时途径河北省唐山市路北区新华道开滦宾馆路段自己摔倒，导致骑手受伤，单方事故，未经警方判定。",
+      "reporter": "李文龙",
+      "handler": "李文龙",
+      "region": "华北大区--加盟",
+      "area": "加盟津冀区域",
+      "station": "兴必达【唐山】万达站点",
+      "stationId": 144,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟津冀区域-加盟蒙冀分区-唐山配送组-兴必达【唐山】万达站点",
+      "franchisee": "兴必达（江苏）网络科技有限公司【唐山】",
+      "riderName": "刘潍源",
+      "riderPhone": "185****9336",
+      "riderStation": "兴必达【唐山】万达站点",
+      "detail": {
+        "eventNo": "2026102373043",
+        "title": "",
+        "source": "风险线索升级",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 5,
+        "status": "处理完成",
+        "occurTime": "2026-10-21 23:40:00",
+        "reportTime": "2026-10-23 14:35:15",
+        "updateTime": "2026-10-23 14:35:54",
+        "endTime": "2026-10-23 14:35:52",
+        "province": "河北省",
+        "city": "唐山市",
+        "district": "路北区",
+        "address": "河北省唐山市路北区新华道开滦宾馆路段",
+        "course": "2026年10月22日00点06分，兴必达【唐山】万达站骑手刘潍源在送完餐回家途中，走路下楼时途径河北省唐山市路北区新华道开滦宾馆路段自己摔倒，导致骑手受伤，单方事故，未经警方判定。",
+        "region": "华北大区--加盟",
+        "area": "加盟津冀区域",
+        "station": "兴必达【唐山】万达站点",
+        "stationId": 144,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟津冀区域-加盟蒙冀分区-唐山配送组-兴必达【唐山】万达站点",
+        "franchisee": "兴必达（江苏）网络科技有限公司【唐山】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【唐山】",
+        "riders": [
+          {
+            "riderId": 78718934,
+            "entryDate": "2026-10-08",
+            "riderPhone": {
+              "data": null,
+              "token": "26$8Q!x-@Rq9336",
+              "dataMask": "185****9336",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXpOhCWS!67533",
+              "dataMask": "13022**********236",
+              "unknown": null
+            },
+            "stationName": "兴必达【唐山】万达站点",
+            "riderName": "刘潍源",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "144"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "27f340b6": 0,
+          "6bc2fb6f": 1,
+          "6f72eaaf": 2,
+          "e6e645c9": 2,
+          "da478aa9": 4,
+          "74d46e3f": 1,
+          "e60e2199": 2,
+          "huyunmeng09": 0,
+          "9d13ef5b": 2,
+          "d1078f9f": 2,
+          "huyunmeng10": 0,
+          "2967240b": "ACHDKAD37126W000DOSV",
+          "21": 1
+        },
+        "eventTypeInfo": {
+          "33": [
+            8
+          ],
+          "11": 4,
+          "14": 2,
+          "15": 1,
+          "7a16f69a": 1,
+          "19": 2,
+          "be5cd84a": 1,
+          "328d1fe5": 1,
+          "874aad49": 1,
+          "2e9772a9": 2,
+          "5452e09e": 1,
+          "0224cd2b": [
+            3
+          ],
+          "9": [
+            1
+          ],
+          "93": 1,
+          "94": "唐山市公安局交通管理支队路南交通管理大队",
+          "20": "[{\"name\":\"1ab627108bc800eb6e62566aaf409107.jpg\",\"uuid\":\"riskmanager110/1ab627108bc800eb6e62566aaf409107_kl7qds.jpg\"}]",
+          "10": 5,
+          "32": [
+            3
+          ],
+          "719caaaf": 5
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "107547002894",
+        "taskKey": "zs_wait_follow",
+        "checkInfoStatus": "CHECKING",
+        "checkInfoResult": "",
+        "createAccountId": "bm_liwenlong113@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_liwenlong113@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1792737315000,
+              "latestTime": 1792737315000,
+              "startTimeLong": 1792737315000,
+              "latestTimeLong": 1792737315000
+            },
+            {
+              "taskKey": "zs_wait_follow",
+              "startTime": 1792737341000,
+              "latestTime": 1792737352000,
+              "startTimeLong": 1792737341000,
+              "latestTimeLong": 1792737352000
+            },
+            {
+              "taskKey": "zs_wait_end_response",
+              "startTime": 1792737322000,
+              "latestTime": 1792737341000,
+              "startTimeLong": 1792737322000,
+              "latestTimeLong": 1792737341000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1792737315000,
+              "latestTime": 1792737322000,
+              "startTimeLong": 1792737315000,
+              "latestTimeLong": 1792737322000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": null,
+          "delayTime": null
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026102167021",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "风险线索升级",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理完成",
+      "statusRaw": 5,
+      "occurTime": "2026-10-15 11:24:00",
+      "reportTime": "2026-10-23 14:19:35",
+      "updateTime": "2026-10-23 14:26:36",
+      "province": "河北省",
+      "city": "唐山市",
+      "district": "路北区",
+      "address": "中国河北省唐山市路北区乔屯街道文化路42号",
+      "summary": "2026年10月15日11点24分，兴必达【唐山】万达站骑手张馨皓在送餐时途径中国河北省唐山市路北区乔屯街道文化路42号与三者机动车发生交通事故，事故造成三者车辆受损，经过警方判定骑手全责。",
+      "reporter": "李文龙",
+      "handler": "李文龙",
+      "region": "华北大区--加盟",
+      "area": "加盟津冀区域",
+      "station": "兴必达【唐山】万达站点",
+      "stationId": 144,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟津冀区域-加盟蒙冀分区-唐山配送组-兴必达【唐山】万达站点",
+      "franchisee": "兴必达（江苏）网络科技有限公司【唐山】",
+      "riderName": "张馨浩",
+      "riderPhone": "133****0490",
+      "riderStation": "兴必达【唐山】万达站点",
+      "detail": {
+        "eventNo": "2026102167021",
+        "title": "",
+        "source": "风险线索升级",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 5,
+        "status": "处理完成",
+        "occurTime": "2026-10-15 11:24:00",
+        "reportTime": "2026-10-23 14:19:35",
+        "updateTime": "2026-10-23 14:26:36",
+        "endTime": "2026-10-23 14:20:52",
+        "province": "河北省",
+        "city": "唐山市",
+        "district": "路北区",
+        "address": "中国河北省唐山市路北区乔屯街道文化路42号",
+        "course": "2026年10月15日11点24分，兴必达【唐山】万达站骑手张馨皓在送餐时途径中国河北省唐山市路北区乔屯街道文化路42号与三者机动车发生交通事故，事故造成三者车辆受损，经过警方判定骑手全责。",
+        "region": "华北大区--加盟",
+        "area": "加盟津冀区域",
+        "station": "兴必达【唐山】万达站点",
+        "stationId": 144,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟津冀区域-加盟蒙冀分区-唐山配送组-兴必达【唐山】万达站点",
+        "franchisee": "兴必达（江苏）网络科技有限公司【唐山】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【唐山】",
+        "riders": [
+          {
+            "riderId": 78003476,
+            "entryDate": "1789021609",
+            "riderPhone": {
+              "data": null,
+              "token": "jxxozH@8oUO0490",
+              "dataMask": "133****0490",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXpeZvyks56395",
+              "dataMask": "13022**********314",
+              "unknown": null
+            },
+            "stationName": "兴必达【唐山】万达站点",
+            "riderName": "张馨浩",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "144"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "27f340b6": 0,
+          "6bc2fb6f": 1,
+          "6f72eaaf": 2,
+          "e6e645c9": 2,
+          "da478aa9": 4,
+          "74d46e3f": 1,
+          "e60e2199": 2,
+          "huyunmeng09": 0,
+          "9d13ef5b": 2,
+          "d1078f9f": 2,
+          "huyunmeng10": 0,
+          "2967240b": "PLD920261100Q010O55390",
+          "21": 1
+        },
+        "eventTypeInfo": {
+          "33": [
+            8
+          ],
+          "11": 3,
+          "7a16f69a": 1,
+          "81a8da9f": 1,
+          "19": 1,
+          "874aad49": 2,
+          "2e9772a9": 2,
+          "5452e09e": 1,
+          "ff537655": 2,
+          "9": [
+            3
+          ],
+          "93": 1,
+          "94": "唐山市公安局交通管理支队路北交通管理大队",
+          "20": "[{\"name\":\"5e202bf9f98aa2f3ffd87641329acf6c.jpg\",\"uuid\":\"riskmanager110/5e202bf9f98aa2f3ffd87641329acf6c_4rcs8k.jpg\"}]",
+          "10": 5,
+          "32": [
+            3
+          ],
+          "719caaaf": 5
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "107546624120",
+        "taskKey": "zs_wait_follow",
+        "checkInfoStatus": "PASS",
+        "checkInfoResult": "",
+        "createAccountId": "bm_liwenlong113@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_liwenlong113@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1792736375000,
+              "latestTime": 1792736375000,
+              "startTimeLong": 1792736375000,
+              "latestTimeLong": 1792736375000
+            },
+            {
+              "taskKey": "zs_wait_follow",
+              "startTime": 1792736441000,
+              "latestTime": 1792736452000,
+              "startTimeLong": 1792736441000,
+              "latestTimeLong": 1792736452000
+            },
+            {
+              "taskKey": "zs_wait_end_response",
+              "startTime": 1792736422000,
+              "latestTime": 1792736441000,
+              "startTimeLong": 1792736422000,
+              "latestTimeLong": 1792736441000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1792736375000,
+              "latestTime": 1792736422000,
+              "startTimeLong": 1792736375000,
+              "latestTimeLong": 1792736422000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -207189,7 +207359,7 @@ const EMBEDDED_DATA = {
       "statusRaw": 5,
       "occurTime": "2026-10-03 13:09:17",
       "reportTime": "2026-10-03 13:36:55",
-      "updateTime": "2026-10-22 17:46:48",
+      "updateTime": "2026-10-23 15:58:07",
       "province": "河南省",
       "city": "郑州市",
       "district": "二七区",
@@ -207216,7 +207386,7 @@ const EMBEDDED_DATA = {
         "status": "处理完成",
         "occurTime": "2026-10-03 13:09:17",
         "reportTime": "2026-10-03 13:36:55",
-        "updateTime": "2026-10-22 17:46:48",
+        "updateTime": "2026-10-23 15:58:07",
         "endTime": "2026-10-22 17:46:46",
         "province": "河南省",
         "city": "郑州市",
@@ -207300,7 +207470,7 @@ const EMBEDDED_DATA = {
         "extendInfo": {},
         "processId": "107503428417",
         "taskKey": "jspzsks_wait_follow",
-        "checkInfoStatus": "CHECKING",
+        "checkInfoStatus": "PASS",
         "checkInfoResult": "",
         "createAccountId": "jiaqinwen",
         "updateAccountId": "yueyuewen",
@@ -255275,6 +255445,174 @@ const EMBEDDED_DATA = {
       }
     },
     {
+      "id": "2026090428513",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "AUTO_REPORT",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理完成",
+      "statusRaw": 5,
+      "occurTime": "2026-09-02 18:40:00",
+      "reportTime": "2026-09-04 08:46:56",
+      "updateTime": "2026-10-23 14:04:36",
+      "province": "河南省",
+      "city": "洛阳市",
+      "district": "西工区",
+      "address": "洛阳市西工区解放路玄武门大街交叉口南200米处",
+      "summary": "2026年9月2日18点40分许，骑手姜子杰驾驶电动两轮车行驶到解放路玄武门大街南200米处，与一个横穿马路的男孩发生碰撞，造成对方受伤，交警判责骑手主责。",
+      "reporter": "李彬",
+      "handler": "李彬",
+      "region": "华北大区--加盟",
+      "area": "加盟河南区域",
+      "station": "兴必达【洛阳】新都汇站",
+      "stationId": 2089371,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】新都汇站",
+      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+      "riderName": "姜子杰",
+      "riderPhone": "176****3896",
+      "riderStation": "兴必达【洛阳】新都汇站",
+      "detail": {
+        "eventNo": "2026090428513",
+        "title": "",
+        "source": "AUTO_REPORT",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 5,
+        "status": "处理完成",
+        "occurTime": "2026-09-02 18:40:00",
+        "reportTime": "2026-09-04 08:46:56",
+        "updateTime": "2026-10-23 14:04:36",
+        "endTime": "2026-10-23 14:01:24",
+        "province": "河南省",
+        "city": "洛阳市",
+        "district": "西工区",
+        "address": "洛阳市西工区解放路玄武门大街交叉口南200米处",
+        "course": "2026年9月2日18点40分许，骑手姜子杰驾驶电动两轮车行驶到解放路玄武门大街南200米处，与一个横穿马路的男孩发生碰撞，造成对方受伤，交警判责骑手主责。",
+        "region": "华北大区--加盟",
+        "area": "加盟河南区域",
+        "station": "兴必达【洛阳】新都汇站",
+        "stationId": 2089371,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】新都汇站",
+        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "riders": [
+          {
+            "riderId": 77431751,
+            "entryDate": "1787557932",
+            "riderPhone": {
+              "data": null,
+              "token": "jnF0!!EZK5E3896",
+              "dataMask": "176****3896",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXEcRKIXZ60312",
+              "dataMask": "34122**********01X",
+              "unknown": null
+            },
+            "stationName": "兴必达【洛阳】新都汇站",
+            "riderName": "姜子杰",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2089371"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "27f340b6": 2029.44,
+          "6bc2fb6f": 1,
+          "e6e645c9": 2,
+          "da478aa9": 2,
+          "74d46e3f": 1,
+          "e60e2199": 1,
+          "huyunmeng09": 0,
+          "9d13ef5b": 2,
+          "d1078f9f": 2,
+          "huyunmeng10": 0,
+          "2967240b": "2136904E426W1351771913",
+          "21": 1
+        },
+        "eventTypeInfo": {
+          "33": [
+            1
+          ],
+          "14": 1,
+          "15": 2,
+          "7a16f69a": 1,
+          "19": 2,
+          "be5cd84a": 1,
+          "328d1fe5": 1,
+          "874aad49": 2,
+          "2e9772a9": 2,
+          "5452e09e": 1,
+          "ff537655": 1,
+          "0224cd2b": [
+            3
+          ],
+          "9": [
+            1
+          ],
+          "93": 1,
+          "94": "交警",
+          "20": "[{\"name\":\"微信图片_20260907165719_541_83.jpg\",\"uuid\":\"riskmanager110/微信图片_20260907165719_541_83_5t56fl.jpg\"}]",
+          "10": 5,
+          "32": [
+            3
+          ],
+          "719caaaf": 8
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "107504245094",
+        "taskKey": "zs_wait_follow",
+        "checkInfoStatus": "PASS",
+        "checkInfoResult": "",
+        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1788482816000,
+              "latestTime": 1788482816000,
+              "startTimeLong": 1788482816000,
+              "latestTimeLong": 1788482816000
+            },
+            {
+              "taskKey": "zs_wait_follow",
+              "startTime": 1788570152000,
+              "latestTime": 1792735284000,
+              "startTimeLong": 1788570152000,
+              "latestTimeLong": 1792735284000
+            },
+            {
+              "taskKey": "zs_wait_end_response",
+              "startTime": 1788483664000,
+              "latestTime": 1788570152000,
+              "startTimeLong": 1788483664000,
+              "latestTimeLong": 1788570152000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1788482816000,
+              "latestTime": 1788483664000,
+              "startTimeLong": 1788482816000,
+              "latestTimeLong": 1788483664000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": null,
+          "delayTime": null
+        },
+        "related": null
+      }
+    },
+    {
       "id": "2026090328241",
       "title": "",
       "business": "履约业务-专送",
@@ -275616,6 +275954,173 @@ const EMBEDDED_DATA = {
               "latestTime": 1787571051000,
               "startTimeLong": 1787571029000,
               "latestTimeLong": 1787571051000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": null,
+          "delayTime": null
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026082493542",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "风险线索升级",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理完成",
+      "statusRaw": 5,
+      "occurTime": "2026-08-23 20:20:00",
+      "reportTime": "2026-08-24 17:19:45",
+      "updateTime": "2026-10-23 14:10:37",
+      "province": "河南省",
+      "city": "信阳市",
+      "district": "浉河区",
+      "address": "河南省信阳市浉河区民权路与社会路交叉路口",
+      "summary": "2026年08月23日20点20分，骑手柯冬望驾驶电动两轮车沿民权街由南向北行驶至社会路口时，与过斑马线的三者行人发送碰撞，导致三者受伤，交警判责骑手柯冬望全责。",
+      "reporter": "李彬",
+      "handler": "李彬",
+      "region": "华北大区--加盟",
+      "area": "加盟河南区域",
+      "station": "兴必达【信阳】和美站",
+      "stationId": 2090785,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-宛申配送组-兴必达【信阳】和美站",
+      "franchisee": "兴必达（江苏）网络科技有限公司【信阳】",
+      "riderName": "柯冬望",
+      "riderPhone": "182****2637",
+      "riderStation": "兴必达【信阳】和美站",
+      "detail": {
+        "eventNo": "2026082493542",
+        "title": "",
+        "source": "风险线索升级",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 5,
+        "status": "处理完成",
+        "occurTime": "2026-08-23 20:20:00",
+        "reportTime": "2026-08-24 17:19:45",
+        "updateTime": "2026-10-23 14:10:37",
+        "endTime": "2026-10-23 14:06:25",
+        "province": "河南省",
+        "city": "信阳市",
+        "district": "浉河区",
+        "address": "河南省信阳市浉河区民权路与社会路交叉路口",
+        "course": "2026年08月23日20点20分，骑手柯冬望驾驶电动两轮车沿民权街由南向北行驶至社会路口时，与过斑马线的三者行人发送碰撞，导致三者受伤，交警判责骑手柯冬望全责。",
+        "region": "华北大区--加盟",
+        "area": "加盟河南区域",
+        "station": "兴必达【信阳】和美站",
+        "stationId": 2090785,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-宛申配送组-兴必达【信阳】和美站",
+        "franchisee": "兴必达（江苏）网络科技有限公司【信阳】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "riders": [
+          {
+            "riderId": 53229440,
+            "entryDate": "1739851033",
+            "riderPhone": {
+              "data": null,
+              "token": "jQFBefC9$Gy2637",
+              "dataMask": "182****2637",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXr3dmqdj49829",
+              "dataMask": "41150**********035",
+              "unknown": null
+            },
+            "stationName": "兴必达【信阳】和美站",
+            "riderName": "柯冬望",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2090785"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "27f340b6": 3997.99,
+          "6bc2fb6f": 1,
+          "6f72eaaf": 2,
+          "e6e645c9": 2,
+          "da478aa9": 2,
+          "74d46e3f": 2,
+          "e60e2199": 1,
+          "huyunmeng09": 0,
+          "9d13ef5b": 2,
+          "d1078f9f": 2,
+          "huyunmeng10": 0,
+          "2967240b": "2136904E426C1332630756",
+          "21": 1
+        },
+        "eventTypeInfo": {
+          "14": 1,
+          "15": 2,
+          "7a16f69a": 1,
+          "17": "未判",
+          "19": 3,
+          "328d1fe5": 1,
+          "874aad49": 2,
+          "2e9772a9": 2,
+          "5452e09e": 1,
+          "ff537655": 1,
+          "c514e3d2": 1,
+          "0224cd2b": [
+            1
+          ],
+          "9": [
+            1
+          ],
+          "93": 1,
+          "94": "交警",
+          "20": "[{\"name\":\"微信图片_20260901142914_622_480.jpg\",\"uuid\":\"riskmanager110/微信图片_20260901142914_622_480_i2hby9.jpg\"}]",
+          "10": 2,
+          "32": [
+            4
+          ],
+          "719caaaf": 8
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "106302484192",
+        "taskKey": "zs_wait_follow",
+        "checkInfoStatus": "PASS",
+        "checkInfoResult": "",
+        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1787563185000,
+              "latestTime": 1787563185000,
+              "startTimeLong": 1787563185000,
+              "latestTimeLong": 1787563185000
+            },
+            {
+              "taskKey": "zs_wait_follow",
+              "startTime": 1787563219000,
+              "latestTime": 1792735585000,
+              "startTimeLong": 1787563219000,
+              "latestTimeLong": 1792735585000
+            },
+            {
+              "taskKey": "zs_wait_end_response",
+              "startTime": 1787563196000,
+              "latestTime": 1787563219000,
+              "startTimeLong": 1787563196000,
+              "latestTimeLong": 1787563219000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1787563185000,
+              "latestTime": 1787563196000,
+              "startTimeLong": 1787563185000,
+              "latestTimeLong": 1787563196000
             }
           ],
           "processType": "PEISONG_ONLINE",
@@ -421782,6 +422287,175 @@ const EMBEDDED_DATA = {
               "latestTime": 1784343329000,
               "startTimeLong": 1781055701000,
               "latestTimeLong": 1784343329000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": null,
+          "delayTime": null
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026060931075",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "风险线索升级",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理完成",
+      "statusRaw": 5,
+      "occurTime": "2026-06-08 23:25:41",
+      "reportTime": "2026-06-09 18:34:22",
+      "updateTime": "2026-10-23 14:02:42",
+      "province": "河南省",
+      "city": "洛阳市",
+      "district": "涧西区",
+      "address": "河南省洛阳市涧西区华源路南300米处",
+      "summary": "2026年06月08日23时25分许，骑手甘燊驾驶两轮电动车沿郑州路华源路口南300米处与同向行走的行人发生碰撞，造成对方受伤，交警判定骑手全责，",
+      "reporter": "李彬",
+      "handler": "李彬",
+      "region": "华北大区--加盟",
+      "area": "加盟河南区域",
+      "station": "V兴必达【洛阳】洛拖站",
+      "stationId": 2074107,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-V兴必达【洛阳】洛拖站",
+      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+      "riderName": "甘燊",
+      "riderPhone": "180****2216",
+      "riderStation": "V兴必达【洛阳】洛拖站",
+      "detail": {
+        "eventNo": "2026060931075",
+        "title": "",
+        "source": "风险线索升级",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 5,
+        "status": "处理完成",
+        "occurTime": "2026-06-08 23:25:41",
+        "reportTime": "2026-06-09 18:34:22",
+        "updateTime": "2026-10-23 14:02:42",
+        "endTime": "2026-10-23 13:59:30",
+        "province": "河南省",
+        "city": "洛阳市",
+        "district": "涧西区",
+        "address": "河南省洛阳市涧西区华源路南300米处",
+        "course": "2026年06月08日23时25分许，骑手甘燊驾驶两轮电动车沿郑州路华源路口南300米处与同向行走的行人发生碰撞，造成对方受伤，交警判定骑手全责，",
+        "region": "华北大区--加盟",
+        "area": "加盟河南区域",
+        "station": "V兴必达【洛阳】洛拖站",
+        "stationId": 2074107,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-V兴必达【洛阳】洛拖站",
+        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "riders": [
+          {
+            "riderId": 70992679,
+            "entryDate": "1773815229",
+            "riderPhone": {
+              "data": null,
+              "token": "27t$APE*0@o2216",
+              "dataMask": "180****2216",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXEsmrwL787766",
+              "dataMask": "34088**********016",
+              "unknown": null
+            },
+            "stationName": "V兴必达【洛阳】洛拖站",
+            "riderName": "甘燊",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2074107"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "27f340b6": 4768.5,
+          "6bc2fb6f": 1,
+          "6f72eaaf": 2,
+          "e6e645c9": 2,
+          "da478aa9": 2,
+          "74d46e3f": 1,
+          "e60e2199": 1,
+          "huyunmeng09": 0,
+          "9d13ef5b": 2,
+          "d1078f9f": 2,
+          "huyunmeng10": 0,
+          "2967240b": "ACHDLQR37126W00CA268",
+          "21": 1
+        },
+        "eventTypeInfo": {
+          "33": [
+            1
+          ],
+          "14": 1,
+          "15": 2,
+          "7a16f69a": 1,
+          "19": 1,
+          "328d1fe5": 1,
+          "874aad49": 2,
+          "2e9772a9": 2,
+          "5452e09e": 1,
+          "ff537655": 1,
+          "c514e3d2": 1,
+          "0224cd2b": [
+            1
+          ],
+          "9": [
+            1
+          ],
+          "93": 1,
+          "94": "交警",
+          "20": "[{\"name\":\"微信图片_20260612100719_73_293.png\",\"uuid\":\"riskmanager110/微信图片_20260612100719_73_293_t1hpgm.png\"}]",
+          "10": 2,
+          "32": [
+            3
+          ],
+          "719caaaf": 8
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "104749144469",
+        "taskKey": "zs_wait_follow",
+        "checkInfoStatus": "PASS",
+        "checkInfoResult": "",
+        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1781001262000,
+              "latestTime": 1781001262000,
+              "startTimeLong": 1781001262000,
+              "latestTimeLong": 1781001262000
+            },
+            {
+              "taskKey": "zs_wait_follow",
+              "startTime": 1781050341000,
+              "latestTime": 1792735170000,
+              "startTimeLong": 1781050341000,
+              "latestTimeLong": 1792735170000
+            },
+            {
+              "taskKey": "zs_wait_end_response",
+              "startTime": 1781001274000,
+              "latestTime": 1781050341000,
+              "startTimeLong": 1781001274000,
+              "latestTimeLong": 1781050341000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1781001262000,
+              "latestTime": 1781001274000,
+              "startTimeLong": 1781001262000,
+              "latestTimeLong": 1781001274000
             }
           ],
           "processType": "PEISONG_ONLINE",
