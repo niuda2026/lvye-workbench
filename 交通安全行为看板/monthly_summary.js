@@ -4,7 +4,7 @@ window.MONTHLY_SUMMARY = {
   "2026-09",
   "2026-10"
  ],
- "updated": "2026-10-24 20:10:15",
+ "updated": "2026-10-25 06:35:25",
  "sites": [
   {
    "level": "total",
@@ -95,8 +95,8 @@ window.MONTHLY_SUMMARY = {
      "rate": 98.92
     },
     "speed": {
-     "num": 1160243,
-     "den": 38331462,
+     "num": 1160323,
+     "den": 38333004,
      "rate": 3.03
     },
     "redlight": {
@@ -6024,8 +6024,8 @@ window.MONTHLY_SUMMARY = {
      "rate": 99.52
     },
     "speed": {
-     "num": 41171,
-     "den": 1609619,
+     "num": 41189,
+     "den": 1610268,
      "rate": 2.56
     },
     "redlight": {
@@ -6145,8 +6145,8 @@ window.MONTHLY_SUMMARY = {
      "rate": 99.52
     },
     "speed": {
-     "num": 41171,
-     "den": 1609619,
+     "num": 41189,
+     "den": 1610268,
      "rate": 2.56
     },
     "redlight": {
@@ -6387,8 +6387,8 @@ window.MONTHLY_SUMMARY = {
      "rate": 99.53
     },
     "speed": {
-     "num": 9898,
-     "den": 395286,
+     "num": 9907,
+     "den": 395713,
      "rate": 2.5
     },
     "redlight": {
@@ -6470,8 +6470,8 @@ window.MONTHLY_SUMMARY = {
      "rate": 99.57
     },
     "speed": {
-     "num": 10388,
-     "den": 380722,
+     "num": 10397,
+     "den": 380944,
      "rate": 2.73
     },
     "redlight": {
@@ -11234,8 +11234,8 @@ window.MONTHLY_SUMMARY = {
      "rate": 98.99
     },
     "speed": {
-     "num": 173919,
-     "den": 4872092,
+     "num": 173921,
+     "den": 4872100,
      "rate": 3.57
     },
     "redlight": {
@@ -12444,8 +12444,8 @@ window.MONTHLY_SUMMARY = {
      "rate": 98.85
     },
     "speed": {
-     "num": 106857,
-     "den": 2815677,
+     "num": 106859,
+     "den": 2815685,
      "rate": 3.8
     },
     "redlight": {
@@ -13170,8 +13170,8 @@ window.MONTHLY_SUMMARY = {
      "rate": 98.73
     },
     "speed": {
-     "num": 2198,
-     "den": 54957,
+     "num": 2200,
+     "den": 54965,
      "rate": 4.0
     },
     "redlight": {
@@ -25232,9 +25232,9 @@ window.MONTHLY_SUMMARY = {
      "rate": 98.71
     },
     "speed": {
-     "num": 26017,
-     "den": 762376,
-     "rate": 3.41
+     "num": 26077,
+     "den": 763261,
+     "rate": 3.42
     },
     "redlight": {
      "num": 55858,
@@ -25837,9 +25837,9 @@ window.MONTHLY_SUMMARY = {
      "rate": 99.15
     },
     "speed": {
-     "num": 10977,
-     "den": 296836,
-     "rate": 3.7
+     "num": 11037,
+     "den": 297721,
+     "rate": 3.71
     },
     "redlight": {
      "num": 30729,
@@ -25958,9 +25958,9 @@ window.MONTHLY_SUMMARY = {
      "rate": 99.14
     },
     "speed": {
-     "num": 3710,
-     "den": 112599,
-     "rate": 3.29
+     "num": 3753,
+     "den": 113253,
+     "rate": 3.31
     },
     "redlight": {
      "num": 9341,
@@ -26079,8 +26079,8 @@ window.MONTHLY_SUMMARY = {
      "rate": 98.73
     },
     "speed": {
-     "num": 2907,
-     "den": 79740,
+     "num": 2912,
+     "den": 79779,
      "rate": 3.65
     },
     "redlight": {
@@ -26201,7 +26201,7 @@ window.MONTHLY_SUMMARY = {
     },
     "speed": {
      "num": 1508,
-     "den": 28846,
+     "den": 28848,
      "rate": 5.23
     },
     "redlight": {
@@ -26321,9 +26321,9 @@ window.MONTHLY_SUMMARY = {
      "rate": 98.17
     },
     "speed": {
-     "num": 1418,
-     "den": 33204,
-     "rate": 4.27
+     "num": 1419,
+     "den": 33285,
+     "rate": 4.26
     },
     "redlight": {
      "num": 3171,
@@ -26442,9 +26442,9 @@ window.MONTHLY_SUMMARY = {
      "rate": 99.69
     },
     "speed": {
-     "num": 1434,
-     "den": 42447,
-     "rate": 3.38
+     "num": 1445,
+     "den": 42556,
+     "rate": 3.4
     },
     "redlight": {
      "num": 8426,
