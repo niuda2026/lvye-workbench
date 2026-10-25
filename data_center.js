@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-10-25 09:39:29",
+  "updated_at": "2026-10-25 09:41:42",
   "action_summary": {
     "total": 23,
     "ok": 18,
@@ -278,7 +278,7 @@ window.DATA_CENTER = {
             "latest": "knife_rider_data.js",
             "mtime": "2026-10-25 07:24:33",
             "max_age_hours": 13,
-            "age_hours": 2.2,
+            "age_hours": 2.3,
             "ok": true,
             "note": "每日 07:30/15:00 两次(随总控第2.5步)",
             "fail_hits": [],
@@ -484,7 +484,7 @@ window.DATA_CENTER = {
             "latest": "_crawl_service.log",
             "mtime": "2026-10-20 07:38:32",
             "max_age_hours": 26,
-            "age_hours": 122.0,
+            "age_hours": 122.1,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -788,7 +788,7 @@ window.DATA_CENTER = {
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-10-25 09:23:34",
+        "data_mtime": "2026-10-25 09:39:36",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -799,9 +799,9 @@ window.DATA_CENTER = {
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-10-25 09:23:34",
+            "mtime": "2026-10-25 09:39:36",
             "max_age_hours": 26,
-            "age_hours": 0.3,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
