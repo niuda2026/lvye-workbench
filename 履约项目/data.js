@@ -1,4 +1,4 @@
-var DATA_GEN_TIME = "2026-10-25 10:53:51";
+var DATA_GEN_TIME = "2026-10-25 13:49:38";
 
 var EXEC_DATA = {
   "V兴必达【洛阳】洛拖站": {
@@ -11979,13 +11979,13 @@ var MORNING_DATA = {
     "城市": "青岛",
     "monthlyFine": 0,
     "lastWeekFine": 0,
-    "morningReject": 2,
+    "morningReject": 1,
     "morningFine": 1,
     "selfCheckReject": 0,
     "selfCheckFine": 0,
     "supervisorReject": 0,
     "supervisorFine": 0,
-    "totalFine": 100,
+    "totalFine": 50,
     "boxDisinfectRate": null,
     "boxFakeCount": 0,
     "boxFakeFine": 0,
@@ -11993,9 +11993,9 @@ var MORNING_DATA = {
     "equipFine": 0,
     "equipRate": null,
     "healthCert": null,
-    "daily_meeting": 2,
-    "daily_key_reject": 2,
-    "daily_key_fine": 100,
+    "daily_meeting": 1,
+    "daily_key_reject": 1,
+    "daily_key_fine": 50,
     "daily_app_reject": 0,
     "daily_app_fine": 0,
     "daily_sign_reject": 0,
@@ -15455,9 +15455,9 @@ var MORNING_TAB_DATA = {
     "region": "中南大区",
     "subr": "山东区域",
     "city": "青岛",
-    "total_fine": 100,
-    "daily_key_reject": 2,
-    "daily_key_fine": 100,
+    "total_fine": 50,
+    "daily_key_reject": 1,
+    "daily_key_fine": 50,
     "daily_app_reject": 0,
     "daily_app_fine": 0,
     "daily_sign_reject": 0,
