@@ -1,11 +1,11 @@
 /* 带刀巡检数据：站点维度 + 骑手维度明细
- * 生成时间：2026-10-27 07:19:14
+ * 生成时间：2026-10-27 07:26:03
  * 数据源：巡检工单列表_1793054610436.xls（巡检类型=加盟骑手，检查方式=车辆检查）
  * 站点分母来源：2026-10-01 排班明细（每月1号在册骑手，含本月暂无巡检记录的补零站点）
  * 骑手明细名册来源：2026-10-27 排班明细（最新在职骑手，匹配实时巡检记录）
  */
 var KNIFE_META = {
-  "generated_at": "2026-10-27 07:19:14",
+  "generated_at": "2026-10-27 07:26:03",
   "source_file": "巡检工单列表_1793054610436.xls",
   "source_file_mtime": "2026-10-27 06:43:57",
   "reg_file_date": "2026-10-01",
@@ -2887,6 +2887,24 @@ var KNIFE_DATA = {
     "compliance_num": 29,
     "compliance_rate": 100.0
   },
+  "兴必达【秦皇岛】大学二站": {
+    "region": "华北一区",
+    "subr": "津冀区域",
+    "city": "秦皇岛",
+    "reg_1st": 79,
+    "checked_month": 0,
+    "checked_2plus": 0,
+    "checked_dedup2": 0,
+    "status_no": 0,
+    "status_wait": 0,
+    "status_audit": 0,
+    "status_fail": 0,
+    "status_appeal": 0,
+    "week_cover_num": 0,
+    "week_cover_rate": 0,
+    "compliance_num": 0,
+    "compliance_rate": 0
+  },
   "兴必达【秦皇岛】在水一方东站": {
     "region": "华北一区",
     "subr": "津冀区域",
@@ -2910,24 +2928,6 @@ var KNIFE_DATA = {
     "subr": "辽宁区域",
     "city": "锦州",
     "reg_1st": 40,
-    "checked_month": 0,
-    "checked_2plus": 0,
-    "checked_dedup2": 0,
-    "status_no": 0,
-    "status_wait": 0,
-    "status_audit": 0,
-    "status_fail": 0,
-    "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0,
-    "compliance_num": 0,
-    "compliance_rate": 0
-  },
-  "兴必达【秦皇岛】大学二站": {
-    "region": "华北一区",
-    "subr": "津冀区域",
-    "city": "秦皇岛",
-    "reg_1st": 79,
     "checked_month": 0,
     "checked_2plus": 0,
     "checked_dedup2": 0,
