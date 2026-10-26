@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-10-27 06:36:55",
+  "updated_at": "2026-10-27 06:37:40",
   "action_summary": {
     "total": 23,
     "ok": 16,
@@ -576,7 +576,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-10-26 07:28:14",
             "max_age_hours": 26,
-            "age_hours": 23.1,
+            "age_hours": 23.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -691,7 +691,7 @@ window.DATA_CENTER = {
             "latest": "110_data.js",
             "mtime": "2026-10-26 16:10:14",
             "max_age_hours": 30,
-            "age_hours": 14.4,
+            "age_hours": 14.5,
             "ok": true,
             "note": "盘中守护 11:30/17:30 两次（看板外壳html长期不变，改盯数据文件）",
             "fail_hits": [],
@@ -733,7 +733,7 @@ window.DATA_CENTER = {
         "data_files": [
           "全国站点地图\\data.js"
         ],
-        "data_mtime": "2026-10-26 07:18:19",
+        "data_mtime": "2026-10-27 06:37:40",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -742,7 +742,7 @@ window.DATA_CENTER = {
           {
             "type": "美团站点快照",
             "latest": "meituan_stations_snapshot.json",
-            "mtime": "2026-10-26 07:18:16",
+            "mtime": "2026-10-27 06:37:38",
             "synced": true
           }
         ],
@@ -751,7 +751,7 @@ window.DATA_CENTER = {
             "label": "美团站点快照更新",
             "path": "全国站点地图\\update_stations.log",
             "latest": "update_stations.log",
-            "mtime": "2026-10-27 06:36:54",
+            "mtime": "2026-10-27 06:37:40",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -1062,7 +1062,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-10-26 07:28:14",
             "max_age_hours": 26,
-            "age_hours": 23.1,
+            "age_hours": 23.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1114,7 +1114,7 @@ window.DATA_CENTER = {
             "latest": "insurance_rate_analysis.html",
             "mtime": "2026-09-06 11:04:24",
             "max_age_hours": 216,
-            "age_hours": 1219.5,
+            "age_hours": 1219.6,
             "ok": false,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
