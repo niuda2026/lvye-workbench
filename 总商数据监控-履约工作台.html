@@ -460,7 +460,7 @@ function permSummary(u){
   return b + ' / ' + a;
 }
 
-// 路径处理：把绝对 ... 转为相对 /...，兼容 iframe 同源加载
+// 路径处理：把绝对 D:/兴达数据库/... 转为相对 ./...，兼容 iframe 同源加载
 function relativePath(file){
   if (!file) return file;
   return file.replace(/^D:\/兴达数据库\//i, './').replace(/\\/g, '/');
