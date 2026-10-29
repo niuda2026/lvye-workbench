@@ -1,7 +1,7 @@
 // ============================================================
 // 全国站点地图 - 点位数据
 // 数据来源：美团配送后台「标准站点信息」接口抓取（站点合作状态=合作）
-// 抓取时间：2026-10-29 | 站点总数：160（含骑手宿舍 103）
+// 抓取时间：2026-10-30 | 站点总数：160（含骑手宿舍 103）
 //
 // 字段说明：
 //   name     : 点位名称（美团标准站点名称）
@@ -57,7 +57,7 @@ window.SITE_DATA = [
   { name: "兴必达【北京】果园站", xian: "通州区", city: "北京", province: "北京市", address: "北京市通州区通朝大街311号", category: "meituan", level: "A", lng: 116.633769, lat: 39.892833, stationId: "2088625", franchisee: "兴必达（江苏）网络科技有限公司【北京】", region: "加盟北京区域", district: "华北大区--加盟", roomSize: 70, rentProperty: "门面房（包含小区内）", rentStart: "2026-04-10", rentEnd: "2027-04-09", doorTypeName: "标准门头", mainOrg: "" },
   { name: "兴必达【南京】金盛站", xian: "江宁区", city: "南京", province: "江苏省", address: "南京市江宁区东山街道宏运大道1188号左邻右里家园2#商铺104室", category: "meituan", level: "A", lng: 118.808107, lat: 31.956583, stationId: "2088251", franchisee: "兴必达（江苏）网络科技有限公司【南京】", region: "加盟苏北区域", district: "华东大区--加盟", roomSize: 303.63, rentProperty: "门面房（包含小区内）", rentStart: "2026-09-25", rentEnd: "2027-09-24", doorTypeName: "标准门头", mainOrg: "" },
   { name: "兴必达【秦皇岛】老龙头站", xian: "山海关区", city: "秦皇岛", province: "河北省", address: "风荷云苑A区1-1-07", category: "meituan", level: "A", lng: 119.770561, lat: 40.008587, stationId: "2083951", franchisee: "兴必达（江苏）网络科技有限公司【秦皇岛】", region: "加盟津冀区域", district: "华北大区--加盟", roomSize: 81, rentProperty: "门面房（包含小区内）", rentStart: "2025-10-28", rentEnd: "2026-10-27", doorTypeName: "标准门头", mainOrg: "" },
-  { name: "兴必达【铜陵】财富广场站", xian: "铜官区", city: "铜陵", province: "安徽省", address: "安徽省铜陵市何村路209号", category: "meituan", level: "A", lng: 117.831595, lat: 30.939798, stationId: "2084105", franchisee: "兴必达（江苏）网络科技有限公司【铜陵】", region: "加盟安徽区域", district: "中南大区--加盟", roomSize: 80, rentProperty: "门面房（包含小区内）", rentStart: "2025-11-07", rentEnd: "2026-11-06", doorTypeName: "标准门头", mainOrg: "" },
+  { name: "兴必达【铜陵】财富广场站", xian: "铜官区", city: "铜陵", province: "安徽省", address: "安徽省铜陵市何村路209号", category: "meituan", level: "A", lng: 117.831595, lat: 30.939798, stationId: "2084105", franchisee: "兴必达（江苏）网络科技有限公司【铜陵】", region: "加盟安徽区域", district: "中南大区--加盟", roomSize: 80, rentProperty: "门面房（包含小区内）", rentStart: "2026-11-07", rentEnd: "2027-11-06", doorTypeName: "标准门头", mainOrg: "" },
   { name: "兴必达【合肥】奥体站", xian: "蜀山区", city: "合肥", province: "安徽省", address: "天珑广场14栋106", category: "meituan", level: "B", lng: 117.235063, lat: 31.802872, stationId: "2083410", franchisee: "兴必达（江苏）网络科技有限公司【合肥】", region: "加盟安徽区域", district: "中南大区--加盟", roomSize: 100, rentProperty: "门面房（包含小区内）", rentStart: "2025-10-26", rentEnd: "2027-10-25", doorTypeName: "标准门头", mainOrg: "兴必达【合肥】天珑广场" },
   { name: "兴必达【合肥】天珑广场", xian: "蜀山区", city: "合肥", province: "安徽省", address: "天珑广场14栋106", category: "meituan", level: "A", lng: 117.235063, lat: 31.802872, stationId: "2083412", franchisee: "兴必达（江苏）网络科技有限公司【合肥】", region: "加盟安徽区域", district: "中南大区--加盟", roomSize: 100, rentProperty: "门面房（包含小区内）", rentStart: "2025-10-26", rentEnd: "2027-10-25", doorTypeName: "标准门头", mainOrg: "" },
   { name: "兴必达【合肥】和平广场", xian: "瑶海区", city: "合肥", province: "安徽省", address: "瑶海区南都云庭1栋105商铺", category: "meituan", level: "A", lng: 117.312958, lat: 31.865554, stationId: "2083415", franchisee: "兴必达（江苏）网络科技有限公司【合肥】", region: "加盟安徽区域", district: "中南大区--加盟", roomSize: 106.06, rentProperty: "门面房（包含小区内）", rentStart: "2025-10-26", rentEnd: "2027-10-25", doorTypeName: "标准门头", mainOrg: "" },
