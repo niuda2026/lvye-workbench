@@ -47,9 +47,19 @@
       "short": "考核标准",
       "items": [
         {
-          "key": "checkup_read",
+          "key": "checkup_site",
           "label": "站点建设标准",
-          "file": "履约考核/履约考核标准.html"
+          "file": "履约考核/站点建设标准.html"
+        },
+        {
+          "key": "checkup_veh",
+          "label": "载具管理标准",
+          "file": "履约考核/载具管理标准.html"
+        },
+        {
+          "key": "checkup_equip",
+          "label": "装备合规标准",
+          "file": "履约考核/装备合规标准.html"
         }
       ]
     },
