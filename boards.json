@@ -43,6 +43,17 @@
       ]
     },
     {
+      "title": "履约考核",
+      "short": "考核",
+      "items": [
+        {
+          "key": "checkup_read",
+          "label": "履约考核解读",
+          "file": "履约考核/履约考核解读.html"
+        }
+      ]
+    },
+    {
       "title": "服装标准化",
       "short": "服装",
       "items": [
