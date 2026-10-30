@@ -4,7 +4,7 @@ window.MONTHLY_SUMMARY = {
   "2026-09",
   "2026-10"
  ],
- "updated": "2026-10-31 06:35:39",
+ "updated": "2026-10-31 06:56:08",
  "sites": [
   {
    "level": "total",
@@ -111,19 +111,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 222807,
-      "den": 228974,
+      "num": 232700,
+      "den": 239139,
       "rate": 97.31
      },
      "vis": {
-      "num": 7700910.271461421,
-      "den": 8366881,
-      "rate": 92.04
+      "num": 8031565.215276936,
+      "den": 8722680,
+      "rate": 92.08
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.9
+     "days": 30,
+     "pct": 2.92
     }
    }
   },
@@ -232,19 +232,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 15906,
-      "den": 16264,
-      "rate": 97.8
+      "num": 16757,
+      "den": 17133,
+      "rate": 97.81
      },
      "vis": {
-      "num": 520342.1794679016,
-      "den": 564203,
-      "rate": 92.23
+      "num": 548654.6691209914,
+      "den": 594013,
+      "rate": 92.36
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 4.29
+     "days": 30,
+     "pct": 4.33
     }
    }
   },
@@ -353,19 +353,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 15906,
-      "den": 16264,
-      "rate": 97.8
+      "num": 16757,
+      "den": 17133,
+      "rate": 97.81
      },
      "vis": {
-      "num": 520342.1794679016,
-      "den": 564203,
-      "rate": 92.23
+      "num": 548654.6691209914,
+      "den": 594013,
+      "rate": 92.36
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 4.29
+     "days": 30,
+     "pct": 4.33
     }
    }
   },
@@ -474,19 +474,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1055,
-      "den": 1087,
-      "rate": 97.06
+      "num": 1113,
+      "den": 1146,
+      "rate": 97.12
      },
      "vis": {
-      "num": 38249.30147025263,
-      "den": 39054,
-      "rate": 97.94
+      "num": 40347.612689588845,
+      "den": 41180,
+      "rate": 97.98
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 3.05
+     "days": 30,
+     "pct": 3.0
     }
    }
   },
@@ -595,19 +595,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 192,
-      "den": 192,
+      "num": 203,
+      "den": 203,
       "rate": 100.0
      },
      "vis": {
-      "num": 6581.979875951343,
-      "den": 6709,
-      "rate": 98.11
+      "num": 6950.313209284676,
+      "den": 7086,
+      "rate": 98.09
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.76
+     "days": 30,
+     "pct": 2.67
     }
    }
   },
@@ -716,19 +716,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2382,
-      "den": 2445,
-      "rate": 97.42
+      "num": 2506,
+      "den": 2571,
+      "rate": 97.47
      },
      "vis": {
-      "num": 81200.73333316743,
-      "den": 87335,
-      "rate": 92.98
+      "num": 85731.8363507533,
+      "den": 92118,
+      "rate": 93.07
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.11
+     "days": 30,
+     "pct": 0.1
     }
    }
   },
@@ -837,19 +837,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1010,
-      "den": 1014,
-      "rate": 99.61
+      "num": 1066,
+      "den": 1069,
+      "rate": 99.72
      },
      "vis": {
-      "num": 32360.920265346314,
-      "den": 35151,
-      "rate": 92.06
+      "num": 34177.75690381749,
+      "den": 37104,
+      "rate": 92.11
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.75
+     "days": 30,
+     "pct": 0.72
     }
    }
   },
@@ -958,19 +958,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1597,
-      "den": 1633,
-      "rate": 97.8
+      "num": 1682,
+      "den": 1720,
+      "rate": 97.79
      },
      "vis": {
-      "num": 48540.374958464796,
-      "den": 54044,
-      "rate": 89.82
+      "num": 51208.41922518364,
+      "den": 56921,
+      "rate": 89.96
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.25
+     "days": 30,
+     "pct": 0.24
     }
    }
   },
@@ -1079,18 +1079,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1118,
-      "den": 1140,
-      "rate": 98.07
+      "num": 1180,
+      "den": 1203,
+      "rate": 98.09
      },
      "vis": {
-      "num": 36158.46209956365,
-      "den": 41359,
-      "rate": 87.43
+      "num": 38022.32293872449,
+      "den": 43378,
+      "rate": 87.65
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 0.0
     }
    }
@@ -1200,19 +1200,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 461,
-      "den": 463,
-      "rate": 99.57
+      "num": 485,
+      "den": 487,
+      "rate": 99.59
      },
      "vis": {
-      "num": 14777.209010704744,
-      "den": 16466,
-      "rate": 89.74
+      "num": 15595.21461294564,
+      "den": 17358,
+      "rate": 89.84
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 11.39
+     "days": 30,
+     "pct": 11.73
     }
    }
   },
@@ -1321,19 +1321,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1334,
-      "den": 1340,
-      "rate": 99.55
+      "num": 1404,
+      "den": 1411,
+      "rate": 99.5
      },
      "vis": {
-      "num": 45012.8164756248,
-      "den": 49204,
-      "rate": 91.48
+      "num": 47405.21585743738,
+      "den": 51724,
+      "rate": 91.65
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.48
+     "days": 30,
+     "pct": 0.51
     }
    }
   },
@@ -1442,18 +1442,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 538,
-      "den": 541,
-      "rate": 99.45
+      "num": 565,
+      "den": 569,
+      "rate": 99.3
      },
      "vis": {
-      "num": 17229.188227239487,
-      "den": 17891,
-      "rate": 96.3
+      "num": 18096.93847976474,
+      "den": 18805,
+      "rate": 96.23
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 0.0
     }
    }
@@ -1563,19 +1563,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1727,
-      "den": 1769,
-      "rate": 97.63
+      "num": 1818,
+      "den": 1863,
+      "rate": 97.58
      },
      "vis": {
-      "num": 55473.60065712242,
-      "den": 60297,
-      "rate": 92.0
+      "num": 58423.9405972292,
+      "den": 63380,
+      "rate": 92.18
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.26
+     "days": 30,
+     "pct": 0.25
     }
    }
   },
@@ -1684,19 +1684,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1066,
-      "den": 1154,
-      "rate": 92.37
+      "num": 1125,
+      "den": 1218,
+      "rate": 92.36
      },
      "vis": {
-      "num": 35931.068590836025,
-      "den": 38279,
-      "rate": 93.87
+      "num": 37991.51987709766,
+      "den": 40382,
+      "rate": 94.08
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.06
+     "days": 30,
+     "pct": 1.08
     }
    }
   },
@@ -1805,19 +1805,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1688,
-      "den": 1707,
-      "rate": 98.89
+      "num": 1780,
+      "den": 1799,
+      "rate": 98.94
      },
      "vis": {
-      "num": 55186.377845830044,
-      "den": 59860,
-      "rate": 92.19
+      "num": 57983.06484102478,
+      "den": 62867,
+      "rate": 92.23
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.82
+     "days": 30,
+     "pct": 1.83
     }
    }
   },
@@ -1926,19 +1926,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 886,
-      "den": 910,
-      "rate": 97.36
+      "num": 934,
+      "den": 959,
+      "rate": 97.39
      },
      "vis": {
-      "num": 27825.555056687826,
-      "den": 29946,
-      "rate": 92.92
+      "num": 29364.531827139595,
+      "den": 31544,
+      "rate": 93.09
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.14
+     "days": 30,
+     "pct": 0.13
     }
    }
   },
@@ -2047,18 +2047,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 636,
-      "den": 640,
-      "rate": 99.38
+      "num": 669,
+      "den": 674,
+      "rate": 99.26
      },
      "vis": {
-      "num": 18627.61641711088,
-      "den": 21174,
-      "rate": 87.97
+      "num": 19792.363669858132,
+      "den": 22350,
+      "rate": 88.56
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 0.21
     }
    }
@@ -2168,18 +2168,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 18,
-      "den": 22,
-      "rate": 81.82
+      "num": 19,
+      "den": 24,
+      "rate": 79.17
      },
      "vis": {
-      "num": 464.16722689075635,
-      "den": 501,
-      "rate": 92.65
+      "num": 490.16722689075635,
+      "den": 527,
+      "rate": 93.01
      }
     },
     "high_speed": {
-     "days": 28,
+     "days": 29,
      "pct": 0.0
     }
    }
@@ -2289,18 +2289,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 18,
-      "den": 18,
+      "num": 19,
+      "den": 19,
       "rate": 100.0
      },
      "vis": {
-      "num": 453.1111111111111,
-      "den": 457,
-      "rate": 99.15
+      "num": 481.1111111111111,
+      "den": 485,
+      "rate": 99.2
      }
     },
     "high_speed": {
-     "days": 28,
+     "days": 29,
      "pct": 0.0
     }
    }
@@ -2410,18 +2410,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 26,
-      "den": 26,
+      "num": 27,
+      "den": 27,
       "rate": 100.0
      },
      "vis": {
-      "num": 873.4229691876752,
-      "den": 931,
-      "rate": 93.82
+      "num": 909.4229691876752,
+      "den": 967,
+      "rate": 94.05
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 0.0
     }
    }
@@ -2531,18 +2531,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 36,
-      "den": 36,
+      "num": 38,
+      "den": 38,
       "rate": 100.0
      },
      "vis": {
-      "num": 886.5404331779333,
-      "den": 939,
-      "rate": 94.41
+      "num": 931.1832903207904,
+      "den": 989,
+      "rate": 94.15
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 0.0
     }
    }
@@ -2652,18 +2652,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 18,
-      "den": 18,
+      "num": 19,
+      "den": 19,
       "rate": 100.0
      },
      "vis": {
-      "num": 651.9238115984742,
-      "den": 659,
-      "rate": 98.93
+      "num": 689.9238115984742,
+      "den": 697,
+      "rate": 98.98
      }
     },
     "high_speed": {
-     "days": 28,
+     "days": 29,
      "pct": 0.0
     }
    }
@@ -2894,19 +2894,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 18,
-      "den": 18,
+      "num": 19,
+      "den": 19,
       "rate": 100.0
      },
      "vis": {
-      "num": 772.8333333333333,
-      "den": 781,
-      "rate": 98.95
+      "num": 804.8333333333333,
+      "den": 813,
+      "rate": 99.0
      }
     },
     "high_speed": {
-     "days": 28,
-     "pct": 78.57
+     "days": 29,
+     "pct": 79.31
     }
    }
   },
@@ -3015,18 +3015,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 18,
-      "den": 18,
+      "num": 19,
+      "den": 19,
       "rate": 100.0
      },
      "vis": {
-      "num": 628.0952380952381,
-      "den": 638,
-      "rate": 98.45
+      "num": 666.0952380952381,
+      "den": 676,
+      "rate": 98.53
      }
     },
     "high_speed": {
-     "days": 28,
+     "days": 29,
      "pct": 0.0
     }
    }
@@ -3136,18 +3136,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 45,
-      "den": 54,
-      "rate": 83.33
+      "num": 47,
+      "den": 56,
+      "rate": 83.93
      },
      "vis": {
-      "num": 1892.2560606060606,
-      "den": 1962,
-      "rate": 96.45
+      "num": 1996.2560606060606,
+      "den": 2066,
+      "rate": 96.62
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 0.0
     }
    }
@@ -3257,18 +3257,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 18,
-      "den": 18,
+      "num": 19,
+      "den": 19,
       "rate": 100.0
      },
      "vis": {
-      "num": 537.625,
-      "den": 539,
-      "rate": 99.74
+      "num": 567.625,
+      "den": 569,
+      "rate": 99.76
      }
     },
     "high_speed": {
-     "days": 27,
+     "days": 28,
      "pct": 0.0
     }
    }
@@ -3378,19 +3378,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 8726,
-      "den": 8845,
-      "rate": 98.65
+      "num": 9041,
+      "den": 9163,
+      "rate": 98.67
      },
      "vis": {
-      "num": 309346.68426543276,
-      "den": 329283,
-      "rate": 93.95
+      "num": 320390.76861024083,
+      "den": 341151,
+      "rate": 93.91
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.47
+     "days": 30,
+     "pct": 0.73
     }
    }
   },
@@ -3499,19 +3499,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 8726,
-      "den": 8845,
-      "rate": 98.65
+      "num": 9041,
+      "den": 9163,
+      "rate": 98.67
      },
      "vis": {
-      "num": 309346.68426543276,
-      "den": 329283,
-      "rate": 93.95
+      "num": 320390.76861024083,
+      "den": 341151,
+      "rate": 93.91
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.47
+     "days": 30,
+     "pct": 0.73
     }
    }
   },
@@ -3620,18 +3620,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 924,
-      "den": 924,
+      "num": 955,
+      "den": 955,
       "rate": 100.0
      },
      "vis": {
-      "num": 30255.961251891033,
-      "den": 31923,
-      "rate": 94.78
+      "num": 31325.336169764083,
+      "den": 33034,
+      "rate": 94.83
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 0.19
     }
    }
@@ -3741,18 +3741,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1786,
-      "den": 1841,
+      "num": 1852,
+      "den": 1909,
       "rate": 97.01
      },
      "vis": {
-      "num": 65281.80135507983,
-      "den": 68507,
-      "rate": 95.29
+      "num": 67620.20280294989,
+      "den": 70990,
+      "rate": 95.25
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 0.0
     }
    }
@@ -3824,18 +3824,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2034,
-      "den": 2062,
+      "num": 2110,
+      "den": 2139,
       "rate": 98.64
      },
      "vis": {
-      "num": 66983.62497523057,
-      "den": 70788,
-      "rate": 94.63
+      "num": 69384.53747286412,
+      "den": 73354,
+      "rate": 94.59
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 0.0
     }
    }
@@ -3945,19 +3945,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 268,
-      "den": 268,
+      "num": 277,
+      "den": 277,
       "rate": 100.0
      },
      "vis": {
-      "num": 8195.1443883185,
-      "den": 8858,
-      "rate": 92.52
+      "num": 8410.778659418243,
+      "den": 9115,
+      "rate": 92.27
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.18
+     "days": 30,
+     "pct": 2.11
     }
    }
   },
@@ -4028,19 +4028,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 3667,
-      "den": 3698,
-      "rate": 99.16
+      "num": 3799,
+      "den": 3830,
+      "rate": 99.19
      },
      "vis": {
-      "num": 137144.6451520552,
-      "den": 146994,
-      "rate": 93.3
+      "num": 142122.4063623866,
+      "den": 152403,
+      "rate": 93.25
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.43
+     "days": 30,
+     "pct": 0.44
     }
    }
   },
@@ -4111,19 +4111,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 47,
-      "den": 52,
-      "rate": 90.38
+      "num": 48,
+      "den": 53,
+      "rate": 90.57
      },
      "vis": {
-      "num": 1485.5071428571428,
-      "den": 2213,
-      "rate": 67.13
+      "num": 1527.5071428571428,
+      "den": 2255,
+      "rate": 67.74
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.0
+     "days": 30,
+     "pct": 1.67
     }
    }
   },
@@ -4232,19 +4232,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 3731,
-      "den": 3828,
-      "rate": 97.47
+      "num": 3940,
+      "den": 4043,
+      "rate": 97.45
      },
      "vis": {
-      "num": 124839.71656780795,
-      "den": 135077,
-      "rate": 92.42
+      "num": 131601.47629647012,
+      "den": 142262,
+      "rate": 92.51
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.14
+     "days": 30,
+     "pct": 2.19
     }
    }
   },
@@ -4353,19 +4353,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 3731,
-      "den": 3828,
-      "rate": 97.47
+      "num": 3940,
+      "den": 4043,
+      "rate": 97.45
      },
      "vis": {
-      "num": 124839.71656780795,
-      "den": 135077,
-      "rate": 92.42
+      "num": 131601.47629647012,
+      "den": 142262,
+      "rate": 92.51
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.14
+     "days": 30,
+     "pct": 2.19
     }
    }
   },
@@ -4474,19 +4474,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 977,
-      "den": 989,
-      "rate": 98.79
+      "num": 1033,
+      "den": 1045,
+      "rate": 98.85
      },
      "vis": {
-      "num": 32545.80528626399,
-      "den": 36929,
-      "rate": 88.13
+      "num": 34393.12184535139,
+      "den": 38900,
+      "rate": 88.41
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.86
+     "days": 30,
+     "pct": 3.0
     }
    }
   },
@@ -4595,19 +4595,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 998,
-      "den": 1059,
-      "rate": 94.24
+      "num": 1054,
+      "den": 1118,
+      "rate": 94.28
      },
      "vis": {
-      "num": 34320.48948994499,
-      "den": 36438,
-      "rate": 94.19
+      "num": 36305.270338589806,
+      "den": 38568,
+      "rate": 94.13
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.28
+     "days": 30,
+     "pct": 1.29
     }
    }
   },
@@ -4716,19 +4716,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1041,
-      "den": 1063,
-      "rate": 97.93
+      "num": 1100,
+      "den": 1124,
+      "rate": 97.86
      },
      "vis": {
-      "num": 35069.75672058404,
-      "den": 37943,
-      "rate": 92.43
+      "num": 36862.01853377085,
+      "den": 39855,
+      "rate": 92.49
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 4.27
+     "days": 30,
+     "pct": 4.3
     }
    }
   },
@@ -4837,19 +4837,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 715,
-      "den": 717,
-      "rate": 99.72
+      "num": 753,
+      "den": 756,
+      "rate": 99.6
      },
      "vis": {
-      "num": 22903.665071014915,
-      "den": 23767,
-      "rate": 96.37
+      "num": 24041.06557875805,
+      "den": 24939,
+      "rate": 96.4
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.17
+     "days": 30,
+     "pct": 0.16
     }
    }
   },
@@ -4958,19 +4958,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 27848,
-      "den": 28579,
+      "num": 29339,
+      "den": 30111,
       "rate": 97.44
      },
      "vis": {
-      "num": 859583.251904298,
-      "den": 918219,
-      "rate": 93.61
+      "num": 904288.5039030472,
+      "den": 965284,
+      "rate": 93.68
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.67
+     "days": 30,
+     "pct": 1.65
     }
    }
   },
@@ -5079,19 +5079,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2114,
-      "den": 2128,
-      "rate": 99.34
+      "num": 2193,
+      "den": 2208,
+      "rate": 99.32
      },
      "vis": {
-      "num": 73738.74599510318,
-      "den": 76238,
+      "num": 76594.13660744006,
+      "den": 79188,
       "rate": 96.72
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.23
+     "days": 30,
+     "pct": 1.28
     }
    }
   },
@@ -5200,19 +5200,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2114,
-      "den": 2128,
-      "rate": 99.34
+      "num": 2193,
+      "den": 2208,
+      "rate": 99.32
      },
      "vis": {
-      "num": 73738.74599510318,
-      "den": 76238,
+      "num": 76594.13660744006,
+      "den": 79188,
       "rate": 96.72
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.23
+     "days": 30,
+     "pct": 1.28
     }
    }
   },
@@ -5321,19 +5321,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 24991,
-      "den": 25686,
+      "num": 26371,
+      "den": 27105,
       "rate": 97.29
      },
      "vis": {
-      "num": 762415.2381746521,
-      "den": 817753,
-      "rate": 93.23
+      "num": 803281.3886914995,
+      "den": 860869,
+      "rate": 93.31
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.68
+     "days": 30,
+     "pct": 1.66
     }
    }
   },
@@ -5442,19 +5442,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2491,
-      "den": 2583,
-      "rate": 96.44
+      "num": 2634,
+      "den": 2731,
+      "rate": 96.45
      },
      "vis": {
-      "num": 83352.86906702365,
-      "den": 88958,
-      "rate": 93.7
+      "num": 88537.0196466579,
+      "den": 94361,
+      "rate": 93.83
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.73
+     "days": 30,
+     "pct": 0.71
     }
    }
   },
@@ -5563,19 +5563,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2351,
-      "den": 2444,
-      "rate": 96.19
+      "num": 2473,
+      "den": 2572,
+      "rate": 96.15
      },
      "vis": {
-      "num": 68599.29003636031,
-      "den": 72570,
-      "rate": 94.53
+      "num": 71896.4052409244,
+      "den": 75972,
+      "rate": 94.64
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.57
+     "days": 30,
+     "pct": 1.54
     }
    }
   },
@@ -5684,19 +5684,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1413,
-      "den": 1436,
-      "rate": 98.4
+      "num": 1488,
+      "den": 1513,
+      "rate": 98.35
      },
      "vis": {
-      "num": 44845.46314068709,
-      "den": 47782,
-      "rate": 93.85
+      "num": 47137.92251461576,
+      "den": 50172,
+      "rate": 93.95
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.44
+     "days": 30,
+     "pct": 0.43
     }
    }
   },
@@ -5805,19 +5805,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1229,
-      "den": 1271,
-      "rate": 96.7
+      "num": 1298,
+      "den": 1343,
+      "rate": 96.65
      },
      "vis": {
-      "num": 40115.19980161241,
-      "den": 41283,
-      "rate": 97.17
+      "num": 42297.618109536445,
+      "den": 43547,
+      "rate": 97.13
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.1
+     "days": 30,
+     "pct": 0.09
     }
    }
   },
@@ -5926,19 +5926,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 3019,
-      "den": 3096,
-      "rate": 97.51
+      "num": 3186,
+      "den": 3267,
+      "rate": 97.52
      },
      "vis": {
-      "num": 95694.5183752718,
-      "den": 100881,
-      "rate": 94.86
+      "num": 100557.83403035838,
+      "den": 106067,
+      "rate": 94.81
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.68
+     "days": 30,
+     "pct": 0.67
     }
    }
   },
@@ -6047,19 +6047,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2300,
-      "den": 2380,
-      "rate": 96.64
+      "num": 2419,
+      "den": 2502,
+      "rate": 96.68
      },
      "vis": {
-      "num": 64508.944221254984,
-      "den": 71682,
-      "rate": 89.99
+      "num": 67940.21393465911,
+      "den": 75323,
+      "rate": 90.2
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.02
+     "days": 30,
+     "pct": 2.04
     }
    }
   },
@@ -6168,19 +6168,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1359,
-      "den": 1371,
-      "rate": 99.12
+      "num": 1437,
+      "den": 1452,
+      "rate": 98.97
      },
      "vis": {
-      "num": 40179.701559511836,
-      "den": 43489,
-      "rate": 92.39
+      "num": 42129.722770716624,
+      "den": 45632,
+      "rate": 92.32
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 4.38
+     "days": 30,
+     "pct": 4.41
     }
    }
   },
@@ -6289,19 +6289,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1963,
-      "den": 2042,
-      "rate": 96.13
+      "num": 2078,
+      "den": 2162,
+      "rate": 96.11
      },
      "vis": {
-      "num": 59245.09491566359,
-      "den": 64911,
-      "rate": 91.27
+      "num": 62765.63588916605,
+      "den": 68648,
+      "rate": 91.43
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.48
+     "days": 30,
+     "pct": 0.53
     }
    }
   },
@@ -6410,19 +6410,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2919,
-      "den": 3024,
-      "rate": 96.53
+      "num": 3085,
+      "den": 3195,
+      "rate": 96.56
      },
      "vis": {
-      "num": 86974.13820135256,
-      "den": 94635,
-      "rate": 91.9
+      "num": 91776.70973892142,
+      "den": 99674,
+      "rate": 92.08
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.2
+     "days": 30,
+     "pct": 1.22
     }
    }
   },
@@ -6531,19 +6531,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1785,
-      "den": 1820,
+      "num": 1886,
+      "den": 1923,
       "rate": 98.08
      },
      "vis": {
-      "num": 57767.85952595829,
-      "den": 59773,
-      "rate": 96.65
+      "num": 60824.6286779396,
+      "den": 63002,
+      "rate": 96.54
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.71
+     "days": 30,
+     "pct": 0.72
     }
    }
   },
@@ -6652,19 +6652,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1206,
-      "den": 1215,
-      "rate": 99.26
+      "num": 1272,
+      "den": 1281,
+      "rate": 99.3
      },
      "vis": {
-      "num": 34814.44122618923,
-      "den": 37550,
-      "rate": 92.71
+      "num": 36554.374280725,
+      "den": 39455,
+      "rate": 92.65
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 4.33
+     "days": 30,
+     "pct": 4.24
     }
    }
   },
@@ -6773,19 +6773,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 923,
-      "den": 942,
-      "rate": 97.98
+      "num": 973,
+      "den": 993,
+      "rate": 97.99
      },
      "vis": {
-      "num": 29247.635730582133,
-      "den": 30800,
-      "rate": 94.96
+      "num": 30744.425782540835,
+      "den": 32395,
+      "rate": 94.9
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.53
+     "days": 30,
+     "pct": 1.48
     }
    }
   },
@@ -6894,19 +6894,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1658,
-      "den": 1672,
-      "rate": 99.16
+      "num": 1749,
+      "den": 1763,
+      "rate": 99.21
      },
      "vis": {
-      "num": 45442.778575510354,
-      "den": 50511,
-      "rate": 89.97
+      "num": 47857.11877862954,
+      "den": 53013,
+      "rate": 90.27
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 3.3
+     "days": 30,
+     "pct": 3.19
     }
    }
   },
@@ -7136,18 +7136,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 182,
-      "den": 182,
+      "num": 190,
+      "den": 190,
       "rate": 100.0
      },
      "vis": {
-      "num": 6620.570041426338,
-      "den": 6991,
-      "rate": 94.7
+      "num": 6955.805976090585,
+      "den": 7330,
+      "rate": 94.9
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 0.0
     }
    }
@@ -7257,19 +7257,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 191,
-      "den": 191,
+      "num": 201,
+      "den": 201,
       "rate": 100.0
      },
      "vis": {
-      "num": 4955.733756247104,
-      "den": 5886,
-      "rate": 84.2
+      "num": 5254.953320016667,
+      "den": 6227,
+      "rate": 84.39
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 5.25
+     "days": 30,
+     "pct": 5.08
     }
    }
   },
@@ -7378,19 +7378,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 743,
-      "den": 765,
+      "num": 775,
+      "den": 798,
       "rate": 97.12
      },
      "vis": {
-      "num": 23429.26773454233,
-      "den": 24228,
-      "rate": 96.7
+      "num": 24412.978604107546,
+      "den": 25227,
+      "rate": 96.77
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.03
+     "days": 30,
+     "pct": 1.97
     }
    }
   },
@@ -7499,19 +7499,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 743,
-      "den": 765,
+      "num": 775,
+      "den": 798,
       "rate": 97.12
      },
      "vis": {
-      "num": 23429.26773454233,
-      "den": 24228,
-      "rate": 96.7
+      "num": 24412.978604107546,
+      "den": 25227,
+      "rate": 96.77
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.03
+     "days": 30,
+     "pct": 1.97
     }
    }
   },
@@ -7620,19 +7620,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 29039,
-      "den": 29518,
+      "num": 30452,
+      "den": 30955,
       "rate": 98.38
      },
      "vis": {
-      "num": 1061417.2057262235,
-      "den": 1115017,
-      "rate": 95.19
+      "num": 1110821.4858167707,
+      "den": 1166849,
+      "rate": 95.2
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.18
+     "days": 30,
+     "pct": 1.22
     }
    }
   },
@@ -7741,19 +7741,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 9453,
-      "den": 9606,
-      "rate": 98.41
+      "num": 9899,
+      "den": 10062,
+      "rate": 98.38
      },
      "vis": {
-      "num": 325211.914821017,
-      "den": 339577,
-      "rate": 95.77
+      "num": 339863.0728757719,
+      "den": 354942,
+      "rate": 95.75
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.96
+     "days": 30,
+     "pct": 1.02
     }
    }
   },
@@ -7862,19 +7862,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1742,
-      "den": 1749,
-      "rate": 99.6
+      "num": 1825,
+      "den": 1832,
+      "rate": 99.62
      },
      "vis": {
-      "num": 54152.354848660776,
-      "den": 57060,
-      "rate": 94.9
+      "num": 56512.42962534926,
+      "den": 59569,
+      "rate": 94.87
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.75
+     "days": 30,
+     "pct": 0.85
     }
    }
   },
@@ -7983,19 +7983,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 735,
-      "den": 736,
-      "rate": 99.86
+      "num": 770,
+      "den": 771,
+      "rate": 99.87
      },
      "vis": {
-      "num": 23966.704150952657,
-      "den": 25086,
-      "rate": 95.54
+      "num": 25049.561700625203,
+      "den": 26212,
+      "rate": 95.57
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.87
+     "days": 30,
+     "pct": 0.84
     }
    }
   },
@@ -8104,19 +8104,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 676,
-      "den": 692,
-      "rate": 97.69
+      "num": 704,
+      "den": 722,
+      "rate": 97.51
      },
      "vis": {
-      "num": 20574.819052611874,
-      "den": 21638,
-      "rate": 95.09
+      "num": 21474.50807440879,
+      "den": 22574,
+      "rate": 95.13
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.77
+     "days": 30,
+     "pct": 1.94
     }
    }
   },
@@ -8225,19 +8225,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 878,
-      "den": 897,
-      "rate": 97.88
+      "num": 919,
+      "den": 940,
+      "rate": 97.77
      },
      "vis": {
-      "num": 29728.662658828078,
-      "den": 30730,
-      "rate": 96.74
+      "num": 31078.25788001888,
+      "den": 32102,
+      "rate": 96.81
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.25
+     "days": 30,
+     "pct": 0.32
     }
    }
   },
@@ -8346,19 +8346,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1111,
-      "den": 1145,
-      "rate": 97.03
+      "num": 1163,
+      "den": 1198,
+      "rate": 97.08
      },
      "vis": {
-      "num": 39554.58661981485,
-      "den": 41509,
-      "rate": 95.29
+      "num": 41327.56351037758,
+      "den": 43389,
+      "rate": 95.25
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.02
+     "days": 30,
+     "pct": 1.05
     }
    }
   },
@@ -8467,19 +8467,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 854,
-      "den": 868,
-      "rate": 98.39
+      "num": 896,
+      "den": 910,
+      "rate": 98.46
      },
      "vis": {
-      "num": 28204.64524036427,
-      "den": 29237,
-      "rate": 96.47
+      "num": 29480.271015611408,
+      "den": 30609,
+      "rate": 96.31
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 3.02
+     "days": 30,
+     "pct": 3.15
     }
    }
   },
@@ -8588,19 +8588,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1433,
-      "den": 1445,
-      "rate": 99.17
+      "num": 1502,
+      "den": 1515,
+      "rate": 99.14
      },
      "vis": {
-      "num": 57877.327983072384,
-      "den": 59661,
-      "rate": 97.01
+      "num": 60611.35396185469,
+      "den": 62472,
+      "rate": 97.02
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.29
+     "days": 30,
+     "pct": 1.3
     }
    }
   },
@@ -8709,19 +8709,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 746,
-      "den": 790,
-      "rate": 94.43
+      "num": 779,
+      "den": 826,
+      "rate": 94.31
      },
      "vis": {
-      "num": 25384.22407363065,
-      "den": 26470,
-      "rate": 95.9
+      "num": 26432.99391490049,
+      "den": 27539,
+      "rate": 95.98
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.0
+     "days": 30,
+     "pct": 0.09
     }
    }
   },
@@ -8830,19 +8830,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 446,
-      "den": 449,
-      "rate": 99.33
+      "num": 469,
+      "den": 473,
+      "rate": 99.15
      },
      "vis": {
-      "num": 16829.579490481683,
-      "den": 17448,
-      "rate": 96.46
+      "num": 17689.1987887273,
+      "den": 18343,
+      "rate": 96.44
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.31
+     "days": 30,
+     "pct": 0.44
     }
    }
   },
@@ -8951,19 +8951,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 799,
-      "den": 802,
-      "rate": 99.63
+      "num": 837,
+      "den": 840,
+      "rate": 99.64
      },
      "vis": {
-      "num": 27879.567556856877,
-      "den": 29571,
-      "rate": 94.28
+      "num": 29100.116258155576,
+      "den": 30893,
+      "rate": 94.2
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.37
+     "days": 30,
+     "pct": 0.36
     }
    }
   },
@@ -9072,19 +9072,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 33,
-      "den": 33,
+      "num": 35,
+      "den": 35,
       "rate": 100.0
      },
      "vis": {
-      "num": 1059.4431457431458,
-      "den": 1167,
-      "rate": 90.78
+      "num": 1106.8181457431458,
+      "den": 1240,
+      "rate": 89.26
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.86
+     "days": 30,
+     "pct": 0.83
     }
    }
   },
@@ -9193,19 +9193,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2076,
-      "den": 2103,
-      "rate": 98.72
+      "num": 2190,
+      "den": 2219,
+      "rate": 98.69
      },
      "vis": {
-      "num": 84558.62534423328,
-      "den": 88386,
-      "rate": 95.67
+      "num": 89108.14384972588,
+      "den": 93227,
+      "rate": 95.58
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.49
+     "days": 30,
+     "pct": 1.56
     }
    }
   },
@@ -9314,19 +9314,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2076,
-      "den": 2103,
-      "rate": 98.72
+      "num": 2190,
+      "den": 2219,
+      "rate": 98.69
      },
      "vis": {
-      "num": 84558.62534423328,
-      "den": 88386,
-      "rate": 95.67
+      "num": 89108.14384972588,
+      "den": 93227,
+      "rate": 95.58
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.49
+     "days": 30,
+     "pct": 1.56
     }
    }
   },
@@ -9435,19 +9435,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2978,
-      "den": 3037,
-      "rate": 98.06
+      "num": 3145,
+      "den": 3207,
+      "rate": 98.07
      },
      "vis": {
-      "num": 104838.87632640792,
-      "den": 109562,
-      "rate": 95.69
+      "num": 110298.16176594309,
+      "den": 115366,
+      "rate": 95.61
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.52
+     "days": 30,
+     "pct": 1.5
     }
    }
   },
@@ -9556,19 +9556,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1742,
-      "den": 1786,
-      "rate": 97.54
+      "num": 1844,
+      "den": 1891,
+      "rate": 97.51
      },
      "vis": {
-      "num": 62606.96783158477,
-      "den": 64992,
-      "rate": 96.33
+      "num": 66136.98030154484,
+      "den": 68700,
+      "rate": 96.27
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.59
+     "days": 30,
+     "pct": 0.6
     }
    }
   },
@@ -9677,19 +9677,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 431,
-      "den": 434,
-      "rate": 99.31
+      "num": 453,
+      "den": 455,
+      "rate": 99.56
      },
      "vis": {
-      "num": 14323.18599897728,
-      "den": 14915,
-      "rate": 96.03
+      "num": 14985.029953225647,
+      "den": 15609,
+      "rate": 96.0
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.36
+     "days": 30,
+     "pct": 1.32
     }
    }
   },
@@ -9798,19 +9798,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 805,
-      "den": 817,
-      "rate": 98.53
+      "num": 848,
+      "den": 861,
+      "rate": 98.49
      },
      "vis": {
-      "num": 27908.722495845843,
-      "den": 29655,
-      "rate": 94.11
+      "num": 29176.15151117262,
+      "den": 31057,
+      "rate": 93.94
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.6
+     "days": 30,
+     "pct": 2.59
     }
    }
   },
@@ -9919,19 +9919,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2437,
-      "den": 2520,
-      "rate": 96.71
+      "num": 2578,
+      "den": 2663,
+      "rate": 96.81
      },
      "vis": {
-      "num": 96590.2975141959,
-      "den": 101095,
-      "rate": 95.54
+      "num": 101912.39888050104,
+      "den": 106540,
+      "rate": 95.66
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.28
+     "days": 30,
+     "pct": 1.31
     }
    }
   },
@@ -10040,19 +10040,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1409,
-      "den": 1462,
-      "rate": 96.37
+      "num": 1489,
+      "den": 1543,
+      "rate": 96.5
      },
      "vis": {
-      "num": 54451.17664565188,
-      "den": 57103,
-      "rate": 95.36
+      "num": 57442.99936318489,
+      "den": 60144,
+      "rate": 95.51
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.51
+     "days": 30,
+     "pct": 1.55
     }
    }
   },
@@ -10161,19 +10161,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1028,
-      "den": 1058,
-      "rate": 97.16
+      "num": 1089,
+      "den": 1120,
+      "rate": 97.23
      },
      "vis": {
-      "num": 42139.12086854409,
-      "den": 43992,
-      "rate": 95.79
+      "num": 44469.39951731619,
+      "den": 46396,
+      "rate": 95.85
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.05
+     "days": 30,
+     "pct": 1.07
     }
    }
   },
@@ -10282,19 +10282,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 7222,
-      "den": 7360,
-      "rate": 98.12
+      "num": 7533,
+      "den": 7676,
+      "rate": 98.14
      },
      "vis": {
-      "num": 263904.34455426567,
-      "den": 279139,
-      "rate": 94.54
+      "num": 274409.771703078,
+      "den": 290213,
+      "rate": 94.55
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.93
+     "days": 30,
+     "pct": 1.99
     }
    }
   },
@@ -10403,19 +10403,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1686,
-      "den": 1719,
-      "rate": 98.08
+      "num": 1760,
+      "den": 1794,
+      "rate": 98.1
      },
      "vis": {
-      "num": 59676.908441051295,
-      "den": 63333,
-      "rate": 94.23
+      "num": 62029.1575369486,
+      "den": 65821,
+      "rate": 94.24
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.55
+     "days": 30,
+     "pct": 0.53
     }
    }
   },
@@ -10524,18 +10524,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 441,
-      "den": 440,
-      "rate": 100.23
+      "num": 460,
+      "den": 459,
+      "rate": 100.22
      },
      "vis": {
-      "num": 16653.861001083977,
-      "den": 17202,
-      "rate": 96.81
+      "num": 17327.10616852747,
+      "den": 17912,
+      "rate": 96.73
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 0.0
     }
    }
@@ -10645,19 +10645,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2221,
-      "den": 2279,
-      "rate": 97.46
+      "num": 2316,
+      "den": 2377,
+      "rate": 97.43
      },
      "vis": {
-      "num": 86877.81175379393,
-      "den": 92173,
-      "rate": 94.26
+      "num": 90391.86163475501,
+      "den": 95843,
+      "rate": 94.31
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.59
+     "days": 30,
+     "pct": 0.57
     }
    }
   },
@@ -10766,19 +10766,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 618,
-      "den": 620,
-      "rate": 99.68
+      "num": 644,
+      "den": 646,
+      "rate": 99.69
      },
      "vis": {
-      "num": 20395.09723680248,
-      "den": 21638,
-      "rate": 94.26
+      "num": 21218.221089616334,
+      "den": 22514,
+      "rate": 94.24
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 5.24
+     "days": 30,
+     "pct": 5.58
     }
    }
   },
@@ -10887,19 +10887,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1322,
-      "den": 1336,
-      "rate": 98.95
+      "num": 1379,
+      "den": 1393,
+      "rate": 98.99
      },
      "vis": {
-      "num": 45240.20784113193,
-      "den": 48330,
-      "rate": 93.61
+      "num": 46947.37636678788,
+      "den": 50194,
+      "rate": 93.53
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 3.7
+     "days": 30,
+     "pct": 3.81
     }
    }
   },
@@ -11008,19 +11008,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 934,
-      "den": 966,
-      "rate": 96.69
+      "num": 974,
+      "den": 1007,
+      "rate": 96.72
      },
      "vis": {
-      "num": 35060.45828040278,
-      "den": 36463,
-      "rate": 96.15
+      "num": 36496.04890644341,
+      "den": 37929,
+      "rate": 96.22
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.48
+     "days": 30,
+     "pct": 1.43
     }
    }
   },
@@ -11129,19 +11129,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 3223,
-      "den": 3235,
-      "rate": 99.63
+      "num": 3368,
+      "den": 3381,
+      "rate": 99.62
      },
      "vis": {
-      "num": 126826.8435716234,
-      "den": 133634,
-      "rate": 94.91
+      "num": 132513.09532245834,
+      "den": 139577,
+      "rate": 94.94
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.5
+     "days": 30,
+     "pct": 0.48
     }
    }
   },
@@ -11250,19 +11250,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 710,
-      "den": 710,
+      "num": 742,
+      "den": 742,
       "rate": 100.0
      },
      "vis": {
-      "num": 27386.246410178002,
-      "den": 28670,
-      "rate": 95.52
+      "num": 28566.311537255224,
+      "den": 29866,
+      "rate": 95.65
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.05
+     "days": 30,
+     "pct": 1.02
     }
    }
   },
@@ -11371,19 +11371,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 936,
-      "den": 938,
-      "rate": 99.79
+      "num": 979,
+      "den": 981,
+      "rate": 99.8
      },
      "vis": {
-      "num": 35389.808926417674,
-      "den": 37867,
-      "rate": 93.46
+      "num": 37038.20153441989,
+      "den": 39625,
+      "rate": 93.47
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.56
+     "days": 30,
+     "pct": 0.54
     }
    }
   },
@@ -11492,18 +11492,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 322,
-      "den": 324,
-      "rate": 99.38
+      "num": 336,
+      "den": 339,
+      "rate": 99.12
      },
      "vis": {
-      "num": 10543.874303517412,
-      "den": 10875,
+      "num": 11015.839047107154,
+      "den": 11361,
       "rate": 96.96
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 0.0
     }
    }
@@ -11613,19 +11613,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1255,
-      "den": 1263,
-      "rate": 99.37
+      "num": 1311,
+      "den": 1319,
+      "rate": 99.39
      },
      "vis": {
-      "num": 53506.91393151035,
-      "den": 56222,
-      "rate": 95.17
+      "num": 55892.74320367608,
+      "den": 58725,
+      "rate": 95.18
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.37
+     "days": 30,
+     "pct": 0.36
     }
    }
   },
@@ -11734,19 +11734,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1650,
-      "den": 1657,
-      "rate": 99.58
+      "num": 1739,
+      "den": 1747,
+      "rate": 99.54
      },
      "vis": {
-      "num": 59486.30359447806,
-      "den": 63624,
-      "rate": 93.5
+      "num": 62716.841419290846,
+      "den": 66984,
+      "rate": 93.63
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.45
+     "days": 30,
+     "pct": 0.48
     }
    }
   },
@@ -11855,19 +11855,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1650,
-      "den": 1657,
-      "rate": 99.58
+      "num": 1739,
+      "den": 1747,
+      "rate": 99.54
      },
      "vis": {
-      "num": 59486.30359447806,
-      "den": 63624,
-      "rate": 93.5
+      "num": 62716.841419290846,
+      "den": 66984,
+      "rate": 93.63
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.45
+     "days": 30,
+     "pct": 0.48
     }
    }
   },
@@ -11976,18 +11976,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 29129,
-      "den": 29824,
-      "rate": 97.67
+      "num": 30240,
+      "den": 30964,
+      "rate": 97.66
      },
      "vis": {
-      "num": 917068.7707619718,
-      "den": 1090419,
+      "num": 949895.1379738679,
+      "den": 1129540,
       "rate": 84.1
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 3.18
     }
    }
@@ -12097,19 +12097,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 6431,
-      "den": 6579,
+      "num": 6685,
+      "den": 6839,
       "rate": 97.75
      },
      "vis": {
-      "num": 235589.18940052774,
-      "den": 251188,
-      "rate": 93.79
+      "num": 243912.36544062383,
+      "den": 259947,
+      "rate": 93.83
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 4.79
+     "days": 30,
+     "pct": 4.81
     }
    }
   },
@@ -12218,19 +12218,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2616,
-      "den": 2702,
-      "rate": 96.82
+      "num": 2722,
+      "den": 2813,
+      "rate": 96.77
      },
      "vis": {
-      "num": 100083.62194392421,
-      "den": 106538,
-      "rate": 93.94
+      "num": 103734.83879241385,
+      "den": 110337,
+      "rate": 94.02
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.22
+     "days": 30,
+     "pct": 1.24
     }
    }
   },
@@ -12339,19 +12339,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2824,
-      "den": 2870,
-      "rate": 98.4
+      "num": 2935,
+      "den": 2982,
+      "rate": 98.42
      },
      "vis": {
-      "num": 101905.91286033811,
-      "den": 109025,
-      "rate": 93.47
+      "num": 105418.19642883587,
+      "den": 112770,
+      "rate": 93.48
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 10.56
+     "days": 30,
+     "pct": 10.66
     }
    }
   },
@@ -12460,19 +12460,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 991,
-      "den": 1007,
-      "rate": 98.41
+      "num": 1028,
+      "den": 1044,
+      "rate": 98.47
      },
      "vis": {
-      "num": 33599.6545962654,
-      "den": 35625,
-      "rate": 94.31
+      "num": 34759.33021937417,
+      "den": 36840,
+      "rate": 94.35
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.61
+     "days": 30,
+     "pct": 2.52
     }
    }
   },
@@ -12581,19 +12581,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 7177,
-      "den": 7320,
-      "rate": 98.05
+      "num": 7430,
+      "den": 7580,
+      "rate": 98.02
      },
      "vis": {
-      "num": 256627.4305121533,
-      "den": 272796,
-      "rate": 94.07
+      "num": 265413.07303743175,
+      "den": 282100,
+      "rate": 94.08
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 3.2
+     "days": 30,
+     "pct": 3.18
     }
    }
   },
@@ -12702,19 +12702,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1266,
-      "den": 1316,
-      "rate": 96.2
+      "num": 1312,
+      "den": 1364,
+      "rate": 96.19
      },
      "vis": {
-      "num": 44384.163344140245,
-      "den": 45487,
+      "num": 45904.65414500605,
+      "den": 47042,
       "rate": 97.58
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 4.29
+     "days": 30,
+     "pct": 4.22
     }
    }
   },
@@ -12823,19 +12823,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 425,
-      "den": 425,
+      "num": 439,
+      "den": 439,
       "rate": 100.0
      },
      "vis": {
-      "num": 13903.472827922036,
-      "den": 14173,
-      "rate": 98.1
+      "num": 14351.59271587722,
+      "den": 14665,
+      "rate": 97.86
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.4
+     "days": 30,
+     "pct": 2.32
     }
    }
   },
@@ -12944,19 +12944,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2467,
-      "den": 2530,
-      "rate": 97.51
+      "num": 2553,
+      "den": 2618,
+      "rate": 97.52
      },
      "vis": {
-      "num": 94747.13561797935,
-      "den": 102306,
-      "rate": 92.61
+      "num": 98110.61518272085,
+      "den": 105840,
+      "rate": 92.7
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.48
+     "days": 30,
+     "pct": 1.51
     }
    }
   },
@@ -13065,18 +13065,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 3019,
-      "den": 3049,
-      "rate": 99.02
+      "num": 3126,
+      "den": 3159,
+      "rate": 98.96
      },
      "vis": {
-      "num": 103592.65872211166,
-      "den": 110830,
-      "rate": 93.47
+      "num": 107046.21099382771,
+      "den": 114553,
+      "rate": 93.45
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 4.66
     }
    }
@@ -13186,19 +13186,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 15521,
-      "den": 15925,
+      "num": 16125,
+      "den": 16545,
       "rate": 97.46
      },
      "vis": {
-      "num": 424852.1508492905,
-      "den": 566435,
-      "rate": 75.0
+      "num": 440569.6994958114,
+      "den": 587493,
+      "rate": 74.99
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.76
+     "days": 30,
+     "pct": 2.77
     }
    }
   },
@@ -13307,19 +13307,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2966,
-      "den": 2989,
-      "rate": 99.23
+      "num": 3081,
+      "den": 3106,
+      "rate": 99.2
      },
      "vis": {
-      "num": 102896.87943235111,
-      "den": 111245,
-      "rate": 92.5
+      "num": 106721.3946934462,
+      "den": 115333,
+      "rate": 92.53
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.24
+     "days": 30,
+     "pct": 1.26
     }
    }
   },
@@ -13428,19 +13428,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1060,
-      "den": 1087,
-      "rate": 97.52
+      "num": 1102,
+      "den": 1131,
+      "rate": 97.44
      },
      "vis": {
-      "num": 36417.42108457966,
-      "den": 37999,
-      "rate": 95.84
+      "num": 37740.414092850166,
+      "den": 39359,
+      "rate": 95.89
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.49
+     "days": 30,
+     "pct": 1.59
     }
    }
   },
@@ -13549,19 +13549,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1362,
-      "den": 1383,
-      "rate": 98.48
+      "num": 1412,
+      "den": 1432,
+      "rate": 98.6
      },
      "vis": {
-      "num": 52148.27585998293,
-      "den": 54123,
-      "rate": 96.35
+      "num": 54073.22373659033,
+      "den": 56102,
+      "rate": 96.38
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.13
+     "days": 30,
+     "pct": 0.2
     }
    }
   },
@@ -13670,19 +13670,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1469,
-      "den": 1485,
-      "rate": 98.92
+      "num": 1528,
+      "den": 1545,
+      "rate": 98.9
      },
      "vis": {
-      "num": 51815.270348461534,
-      "den": 53489,
-      "rate": 96.87
+      "num": 53843.591861543115,
+      "den": 55563,
+      "rate": 96.91
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.24
+     "days": 30,
+     "pct": 0.23
     }
    }
   },
@@ -13791,19 +13791,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1396,
-      "den": 1592,
-      "rate": 87.69
+      "num": 1451,
+      "den": 1654,
+      "rate": 87.73
      },
      "vis": {
-      "num": 4867.626510698492,
-      "den": 53845,
-      "rate": 9.04
+      "num": 5115.8641694124235,
+      "den": 55953,
+      "rate": 9.14
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.86
+     "days": 30,
+     "pct": 2.82
     }
    }
   },
@@ -13912,19 +13912,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 535,
-      "den": 532,
-      "rate": 100.56
+      "num": 559,
+      "den": 556,
+      "rate": 100.54
      },
      "vis": {
-      "num": 7836.823879298127,
-      "den": 18253,
-      "rate": 42.93
+      "num": 8128.018586878131,
+      "den": 18992,
+      "rate": 42.8
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 4.09
+     "days": 30,
+     "pct": 3.95
     }
    }
   },
@@ -14033,19 +14033,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 737,
-      "den": 733,
-      "rate": 100.55
+      "num": 766,
+      "den": 762,
+      "rate": 100.52
      },
      "vis": {
-      "num": 26129.544448065935,
-      "den": 27125,
+      "num": 27060.61321650237,
+      "den": 28093,
       "rate": 96.33
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 8.09
+     "days": 30,
+     "pct": 8.06
     }
    }
   },
@@ -14154,19 +14154,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1874,
-      "den": 1898,
-      "rate": 98.74
+      "num": 1945,
+      "den": 1969,
+      "rate": 98.78
      },
      "vis": {
-      "num": 59874.916455845996,
-      "den": 64133,
-      "rate": 93.36
+      "num": 62085.52798940408,
+      "den": 66392,
+      "rate": 93.51
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.66
+     "days": 30,
+     "pct": 0.64
     }
    }
   },
@@ -14275,19 +14275,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1312,
-      "den": 1352,
-      "rate": 97.04
+      "num": 1367,
+      "den": 1408,
+      "rate": 97.09
      },
      "vis": {
-      "num": 5877.580776621535,
-      "den": 44496,
-      "rate": 13.21
+      "num": 6039.722865526781,
+      "den": 46339,
+      "rate": 13.03
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 5.55
+     "days": 30,
+     "pct": 5.62
     }
    }
   },
@@ -14396,18 +14396,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 795,
-      "den": 796,
-      "rate": 99.87
+      "num": 826,
+      "den": 827,
+      "rate": 99.88
      },
      "vis": {
-      "num": 7605.537279415759,
-      "den": 27748,
-      "rate": 27.41
+      "num": 7961.18798247614,
+      "den": 28844,
+      "rate": 27.6
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 6.97
     }
    }
@@ -14517,18 +14517,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2003,
-      "den": 2065,
-      "rate": 97.0
+      "num": 2076,
+      "den": 2142,
+      "rate": 96.92
      },
      "vis": {
-      "num": 69215.83727396834,
-      "den": 73765,
-      "rate": 93.83
+      "num": 71633.70280118073,
+      "den": 76309,
+      "rate": 93.87
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 0.09
     }
    }
@@ -14880,18 +14880,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 18829,
-      "den": 19282,
-      "rate": 97.65
+      "num": 19801,
+      "den": 20280,
+      "rate": 97.64
      },
      "vis": {
-      "num": 624396.1735002871,
-      "den": 660832,
-      "rate": 94.49
+      "num": 655097.9374921218,
+      "den": 693404,
+      "rate": 94.48
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 2.04
     }
    }
@@ -15001,19 +15001,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2499,
-      "den": 2555,
-      "rate": 97.81
+      "num": 2679,
+      "den": 2742,
+      "rate": 97.7
      },
      "vis": {
-      "num": 86019.6754133417,
-      "den": 90121,
-      "rate": 95.45
+      "num": 91581.51765358522,
+      "den": 96092,
+      "rate": 95.31
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.57
+     "days": 30,
+     "pct": 1.6
     }
    }
   },
@@ -15122,19 +15122,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1076,
-      "den": 1096,
-      "rate": 98.18
+      "num": 1125,
+      "den": 1146,
+      "rate": 98.17
      },
      "vis": {
-      "num": 35081.88000523635,
-      "den": 36742,
-      "rate": 95.48
+      "num": 36434.433996696214,
+      "den": 38179,
+      "rate": 95.43
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.75
+     "days": 30,
+     "pct": 1.76
     }
    }
   },
@@ -15243,19 +15243,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1282,
-      "den": 1309,
-      "rate": 97.94
+      "num": 1346,
+      "den": 1373,
+      "rate": 98.03
      },
      "vis": {
-      "num": 47488.27597283961,
-      "den": 49709,
-      "rate": 95.53
+      "num": 49678.305860424625,
+      "den": 52049,
+      "rate": 95.45
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.1
+     "days": 30,
+     "pct": 1.06
     }
    }
   },
@@ -15288,19 +15288,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 141,
-      "den": 150,
-      "rate": 94.0
+      "num": 208,
+      "den": 223,
+      "rate": 93.27
      },
      "vis": {
-      "num": 3449.5194352656863,
-      "den": 3670,
-      "rate": 93.99
+      "num": 5468.777796464371,
+      "den": 5864,
+      "rate": 93.26
      }
     },
     "high_speed": {
-     "days": 3,
-     "pct": 5.85
+     "days": 4,
+     "pct": 5.78
     }
    }
   },
@@ -15409,19 +15409,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1646,
-      "den": 1692,
-      "rate": 97.28
+      "num": 1717,
+      "den": 1763,
+      "rate": 97.39
      },
      "vis": {
-      "num": 54279.170967589154,
-      "den": 57799,
-      "rate": 93.91
+      "num": 56510.79336062697,
+      "den": 60123,
+      "rate": 93.99
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 4.05
+     "days": 30,
+     "pct": 4.01
     }
    }
   },
@@ -15530,19 +15530,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 324,
-      "den": 339,
-      "rate": 95.58
+      "num": 338,
+      "den": 353,
+      "rate": 95.75
      },
      "vis": {
-      "num": 9692.257427534665,
-      "den": 11375,
-      "rate": 85.21
+      "num": 10102.12756989231,
+      "den": 11827,
+      "rate": 85.42
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.09
+     "days": 30,
+     "pct": 2.02
     }
    }
   },
@@ -15651,19 +15651,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 911,
-      "den": 942,
-      "rate": 96.71
+      "num": 952,
+      "den": 983,
+      "rate": 96.85
      },
      "vis": {
-      "num": 30913.241212170255,
-      "den": 32396,
-      "rate": 95.42
+      "num": 32205.492437209403,
+      "den": 33721,
+      "rate": 95.51
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 4.38
+     "days": 30,
+     "pct": 4.31
     }
    }
   },
@@ -15772,19 +15772,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 411,
-      "den": 411,
+      "num": 427,
+      "den": 427,
       "rate": 100.0
      },
      "vis": {
-      "num": 13673.672327884231,
-      "den": 14028,
-      "rate": 97.47
+      "num": 14203.173353525255,
+      "den": 14575,
+      "rate": 97.45
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 5.68
+     "days": 30,
+     "pct": 5.7
     }
    }
   },
@@ -15893,19 +15893,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 10487,
-      "den": 10781,
-      "rate": 97.27
+      "num": 11023,
+      "den": 11333,
+      "rate": 97.26
      },
      "vis": {
-      "num": 345489.50349502225,
-      "den": 366799,
-      "rate": 94.19
+      "num": 362265.2280283999,
+      "den": 384563,
+      "rate": 94.2
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.25
+     "days": 30,
+     "pct": 1.24
     }
    }
   },
@@ -16014,19 +16014,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 722,
-      "den": 782,
-      "rate": 92.33
+      "num": 760,
+      "den": 822,
+      "rate": 92.46
      },
      "vis": {
-      "num": 22857.557302784167,
-      "den": 24089,
-      "rate": 94.89
+      "num": 24031.72662519149,
+      "den": 25328,
+      "rate": 94.88
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.99
+     "days": 30,
+     "pct": 1.92
     }
    }
   },
@@ -16135,19 +16135,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1247,
-      "den": 1248,
+      "num": 1308,
+      "den": 1309,
       "rate": 99.92
      },
      "vis": {
-      "num": 37078.26799054129,
-      "den": 39859,
-      "rate": 93.02
+      "num": 38870.334060144196,
+      "den": 41780,
+      "rate": 93.04
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.04
+     "days": 30,
+     "pct": 1.06
     }
    }
   },
@@ -16256,19 +16256,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 636,
-      "den": 638,
-      "rate": 99.69
+      "num": 669,
+      "den": 671,
+      "rate": 99.7
      },
      "vis": {
-      "num": 20672.78813897261,
-      "den": 21495,
-      "rate": 96.17
+      "num": 21669.2135775691,
+      "den": 22505,
+      "rate": 96.29
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.41
+     "days": 30,
+     "pct": 0.4
     }
    }
   },
@@ -16377,19 +16377,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1204,
-      "den": 1223,
-      "rate": 98.45
+      "num": 1265,
+      "den": 1285,
+      "rate": 98.44
      },
      "vis": {
-      "num": 44789.870404801295,
-      "den": 46497,
-      "rate": 96.33
+      "num": 47055.43840274538,
+      "den": 48821,
+      "rate": 96.38
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.97
+     "days": 30,
+     "pct": 0.93
     }
    }
   },
@@ -16498,19 +16498,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 289,
-      "den": 290,
-      "rate": 99.66
+      "num": 304,
+      "den": 305,
+      "rate": 99.67
      },
      "vis": {
-      "num": 11073.572571798028,
-      "den": 11988,
-      "rate": 92.37
+      "num": 11582.709855818353,
+      "den": 12563,
+      "rate": 92.2
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.65
+     "days": 30,
+     "pct": 0.62
     }
    }
   },
@@ -16619,19 +16619,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1500,
-      "den": 1535,
-      "rate": 97.72
+      "num": 1579,
+      "den": 1616,
+      "rate": 97.71
      },
      "vis": {
-      "num": 48438.54835909091,
-      "den": 51624,
-      "rate": 93.83
+      "num": 50961.02330102376,
+      "den": 54276,
+      "rate": 93.89
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 3.09
+     "days": 30,
+     "pct": 3.07
     }
    }
   },
@@ -16740,19 +16740,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1377,
-      "den": 1420,
-      "rate": 96.97
+      "num": 1449,
+      "den": 1494,
+      "rate": 96.99
      },
      "vis": {
-      "num": 45697.8031022316,
-      "den": 49269,
-      "rate": 92.75
+      "num": 47879.441952588335,
+      "den": 51628,
+      "rate": 92.74
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.69
+     "days": 30,
+     "pct": 0.67
     }
    }
   },
@@ -16861,19 +16861,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1139,
-      "den": 1191,
-      "rate": 95.63
+      "num": 1193,
+      "den": 1248,
+      "rate": 95.59
      },
      "vis": {
-      "num": 37609.31000234955,
-      "den": 39623,
-      "rate": 94.92
+      "num": 39367.15373483978,
+      "den": 41439,
+      "rate": 95.0
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.13
+     "days": 30,
+     "pct": 2.12
     }
    }
   },
@@ -16982,19 +16982,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1243,
-      "den": 1245,
-      "rate": 99.84
+      "num": 1305,
+      "den": 1308,
+      "rate": 99.77
      },
      "vis": {
-      "num": 40519.652763726976,
-      "den": 42225,
-      "rate": 95.96
+      "num": 42287.16331060968,
+      "den": 44136,
+      "rate": 95.81
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.72
+     "days": 30,
+     "pct": 0.75
     }
    }
   },
@@ -17103,19 +17103,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 313,
-      "den": 363,
-      "rate": 86.23
+      "num": 333,
+      "den": 385,
+      "rate": 86.49
      },
      "vis": {
-      "num": 9794.988138985513,
-      "den": 11080,
-      "rate": 88.4
+      "num": 10346.464853499068,
+      "den": 11713,
+      "rate": 88.33
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.25
+     "days": 30,
+     "pct": 1.2
     }
    }
   },
@@ -17224,19 +17224,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 817,
-      "den": 846,
-      "rate": 96.57
+      "num": 858,
+      "den": 890,
+      "rate": 96.4
      },
      "vis": {
-      "num": 26957.14471974121,
-      "den": 29050,
-      "rate": 92.8
+      "num": 28214.558354371264,
+      "den": 30374,
+      "rate": 92.89
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.84
+     "days": 30,
+     "pct": 0.89
     }
    }
   },
@@ -17345,19 +17345,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 4197,
-      "den": 4254,
-      "rate": 98.66
+      "num": 4382,
+      "den": 4442,
+      "rate": 98.65
      },
      "vis": {
-      "num": 138607.82362433398,
-      "den": 146113,
-      "rate": 94.86
+      "num": 144740.39844951112,
+      "den": 152626,
+      "rate": 94.83
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.53
+     "days": 30,
+     "pct": 2.56
     }
    }
   },
@@ -17466,19 +17466,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 164,
-      "den": 163,
-      "rate": 100.61
+      "num": 171,
+      "den": 170,
+      "rate": 100.59
      },
      "vis": {
-      "num": 7246.74038474555,
-      "den": 7654,
-      "rate": 94.68
+      "num": 7579.74038474555,
+      "den": 7987,
+      "rate": 94.9
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 7.55
+     "days": 30,
+     "pct": 7.78
     }
    }
   },
@@ -17587,18 +17587,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 119,
-      "den": 121,
-      "rate": 98.35
+      "num": 125,
+      "den": 127,
+      "rate": 98.43
      },
      "vis": {
-      "num": 5229.769356568223,
-      "den": 5847,
-      "rate": 89.44
+      "num": 5452.587345986212,
+      "den": 6111,
+      "rate": 89.23
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 0.0
     }
    }
@@ -17708,19 +17708,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 189,
-      "den": 189,
+      "num": 196,
+      "den": 196,
       "rate": 100.0
      },
      "vis": {
-      "num": 10024.307497741038,
-      "den": 10725,
-      "rate": 93.47
+      "num": 10404.114220430112,
+      "den": 11132,
+      "rate": 93.46
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.73
+     "days": 30,
+     "pct": 2.64
     }
    }
   },
@@ -17829,19 +17829,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1383,
-      "den": 1409,
-      "rate": 98.15
+      "num": 1443,
+      "den": 1470,
+      "rate": 98.16
      },
      "vis": {
-      "num": 41069.64992432098,
-      "den": 42761,
-      "rate": 96.04
+      "num": 42946.07976283037,
+      "den": 44768,
+      "rate": 95.93
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.81
+     "days": 30,
+     "pct": 1.8
     }
    }
   },
@@ -17950,19 +17950,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1438,
-      "den": 1469,
-      "rate": 97.89
+      "num": 1503,
+      "den": 1535,
+      "rate": 97.92
      },
      "vis": {
-      "num": 46267.442709334595,
-      "den": 48796,
-      "rate": 94.82
+      "num": 48362.239696978206,
+      "den": 50949,
+      "rate": 94.92
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.21
+     "days": 30,
+     "pct": 0.2
     }
    }
   },
@@ -18071,19 +18071,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 864,
-      "den": 863,
-      "rate": 100.12
+      "num": 902,
+      "den": 902,
+      "rate": 100.0
      },
      "vis": {
-      "num": 27493.36507450072,
-      "den": 28916,
-      "rate": 95.08
+      "num": 28654.08836141785,
+      "den": 30190,
+      "rate": 94.91
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 5.41
+     "days": 30,
+     "pct": 5.49
     }
    }
   },
@@ -18192,18 +18192,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 40,
-      "den": 40,
+      "num": 42,
+      "den": 42,
       "rate": 100.0
      },
      "vis": {
-      "num": 1276.5486771226708,
-      "den": 1414,
-      "rate": 90.28
+      "num": 1341.5486771226708,
+      "den": 1489,
+      "rate": 90.1
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 0.0
     }
    }
@@ -18313,19 +18313,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 62568,
-      "den": 64912,
-      "rate": 96.39
+      "num": 65050,
+      "den": 67478,
+      "rate": 96.4
      },
      "vis": {
-      "num": 2288359.248220893,
-      "den": 2445697,
-      "rate": 93.57
+      "num": 2376774.3932195967,
+      "den": 2539653,
+      "rate": 93.59
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 3.33
+     "days": 30,
+     "pct": 3.34
     }
    }
   },
@@ -18434,19 +18434,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 10173,
-      "den": 10597,
-      "rate": 96.0
+      "num": 10569,
+      "den": 11006,
+      "rate": 96.03
      },
      "vis": {
-      "num": 359237.56846822065,
-      "den": 379869,
-      "rate": 94.57
+      "num": 372964.6538831702,
+      "den": 394424,
+      "rate": 94.56
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.59
+     "days": 30,
+     "pct": 1.58
     }
    }
   },
@@ -18555,19 +18555,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1380,
-      "den": 1463,
-      "rate": 94.33
+      "num": 1441,
+      "den": 1526,
+      "rate": 94.43
      },
      "vis": {
-      "num": 47245.470450144225,
-      "den": 52090,
-      "rate": 90.7
+      "num": 49275.593945766246,
+      "den": 54302,
+      "rate": 90.74
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.35
+     "days": 30,
+     "pct": 1.42
     }
    }
   },
@@ -18676,19 +18676,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2227,
-      "den": 2275,
-      "rate": 97.89
+      "num": 2315,
+      "den": 2364,
+      "rate": 97.93
      },
      "vis": {
-      "num": 83025.21838725668,
-      "den": 87562,
-      "rate": 94.82
+      "num": 86202.7074267623,
+      "den": 90974,
+      "rate": 94.76
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 4.44
+     "days": 30,
+     "pct": 4.43
     }
    }
   },
@@ -18797,19 +18797,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2788,
-      "den": 2917,
-      "rate": 95.58
+      "num": 2891,
+      "den": 3025,
+      "rate": 95.57
      },
      "vis": {
-      "num": 106181.8767568552,
-      "den": 107743,
-      "rate": 98.55
+      "num": 110178.62133525524,
+      "den": 111785,
+      "rate": 98.56
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.94
+     "days": 30,
+     "pct": 0.91
     }
    }
   },
@@ -18918,19 +18918,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2173,
-      "den": 2257,
-      "rate": 96.28
+      "num": 2255,
+      "den": 2341,
+      "rate": 96.33
      },
      "vis": {
-      "num": 71807.94578863835,
-      "den": 77295,
-      "rate": 92.9
+      "num": 74355.01962036324,
+      "den": 80047,
+      "rate": 92.89
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.77
+     "days": 30,
+     "pct": 0.75
     }
    }
   },
@@ -19039,19 +19039,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 484,
-      "den": 512,
-      "rate": 94.53
+      "num": 500,
+      "den": 530,
+      "rate": 94.34
      },
      "vis": {
-      "num": 13721.492838141246,
-      "den": 15606,
-      "rate": 87.92
+      "num": 14204.524385760295,
+      "den": 16172,
+      "rate": 87.83
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.41
+     "days": 30,
+     "pct": 1.36
     }
    }
   },
@@ -19160,19 +19160,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1121,
-      "den": 1173,
-      "rate": 95.57
+      "num": 1167,
+      "den": 1220,
+      "rate": 95.66
      },
      "vis": {
-      "num": 37255.56424718487,
-      "den": 39573,
-      "rate": 94.14
+      "num": 38748.1871692628,
+      "den": 41144,
+      "rate": 94.18
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.63
+     "days": 30,
+     "pct": 0.61
     }
    }
   },
@@ -19281,19 +19281,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 14405,
-      "den": 14548,
+      "num": 14984,
+      "den": 15132,
       "rate": 99.02
      },
      "vis": {
-      "num": 543505.5761872446,
-      "den": 577021,
-      "rate": 94.19
+      "num": 564079.1034151084,
+      "den": 598703,
+      "rate": 94.22
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 5.9
+     "days": 30,
+     "pct": 5.94
     }
    }
   },
@@ -19402,19 +19402,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2010,
-      "den": 2074,
-      "rate": 96.91
+      "num": 2089,
+      "den": 2156,
+      "rate": 96.89
      },
      "vis": {
-      "num": 81046.27866583232,
-      "den": 84869,
-      "rate": 95.5
+      "num": 84245.57006112908,
+      "den": 88171,
+      "rate": 95.55
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 14.34
+     "days": 30,
+     "pct": 14.51
     }
    }
   },
@@ -19523,19 +19523,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1682,
-      "den": 1684,
-      "rate": 99.88
+      "num": 1749,
+      "den": 1751,
+      "rate": 99.89
      },
      "vis": {
-      "num": 60507.5417492595,
-      "den": 63085,
-      "rate": 95.91
+      "num": 62650.17521630563,
+      "den": 65297,
+      "rate": 95.95
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 3.69
+     "days": 30,
+     "pct": 3.81
     }
    }
   },
@@ -19644,19 +19644,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2480,
-      "den": 2496,
-      "rate": 99.36
+      "num": 2579,
+      "den": 2594,
+      "rate": 99.42
      },
      "vis": {
-      "num": 84854.03757658397,
-      "den": 88969,
-      "rate": 95.37
+      "num": 88163.03684887665,
+      "den": 92405,
+      "rate": 95.41
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.66
+     "days": 30,
+     "pct": 2.61
     }
    }
   },
@@ -19765,19 +19765,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1342,
-      "den": 1372,
-      "rate": 97.81
+      "num": 1399,
+      "den": 1431,
+      "rate": 97.76
      },
      "vis": {
-      "num": 51861.13464630012,
-      "den": 55344,
-      "rate": 93.71
+      "num": 53729.17161748449,
+      "den": 57354,
+      "rate": 93.68
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.97
+     "days": 30,
+     "pct": 2.99
     }
    }
   },
@@ -19886,19 +19886,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 958,
-      "den": 960,
-      "rate": 99.79
+      "num": 992,
+      "den": 994,
+      "rate": 99.8
      },
      "vis": {
-      "num": 30927.730384346574,
-      "den": 33127,
-      "rate": 93.36
+      "num": 32108.368075711063,
+      "den": 34375,
+      "rate": 93.41
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 11.75
+     "days": 30,
+     "pct": 11.95
     }
    }
   },
@@ -20007,19 +20007,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2058,
-      "den": 2083,
+      "num": 2145,
+      "den": 2171,
       "rate": 98.8
      },
      "vis": {
-      "num": 80979.07685970886,
-      "den": 87365,
-      "rate": 92.69
+      "num": 84125.33001918584,
+      "den": 90702,
+      "rate": 92.75
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.6
+     "days": 30,
+     "pct": 1.58
     }
    }
   },
@@ -20128,19 +20128,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2724,
-      "den": 2730,
-      "rate": 99.78
+      "num": 2835,
+      "den": 2841,
+      "rate": 99.79
      },
      "vis": {
-      "num": 107912.87879635718,
-      "den": 116722,
-      "rate": 92.45
+      "num": 111876.59454067513,
+      "den": 120996,
+      "rate": 92.46
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.26
+     "days": 30,
+     "pct": 0.25
     }
    }
   },
@@ -20211,19 +20211,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 327,
-      "den": 327,
+      "num": 340,
+      "den": 340,
       "rate": 100.0
      },
      "vis": {
-      "num": 11731.483950869906,
-      "den": 12120,
-      "rate": 96.79
+      "num": 12171.778068516966,
+      "den": 12567,
+      "rate": 96.86
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.61
+     "days": 30,
+     "pct": 1.55
     }
    }
   },
@@ -20332,19 +20332,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 824,
-      "den": 822,
-      "rate": 100.24
+      "num": 856,
+      "den": 854,
+      "rate": 100.23
      },
      "vis": {
-      "num": 33685.41355798777,
-      "den": 35420,
-      "rate": 95.1
+      "num": 35009.07896722537,
+      "den": 36836,
+      "rate": 95.04
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 14.25
+     "days": 30,
+     "pct": 14.2
     }
    }
   },
@@ -20453,19 +20453,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 11683,
-      "den": 12074,
-      "rate": 96.76
+      "num": 12161,
+      "den": 12569,
+      "rate": 96.75
      },
      "vis": {
-      "num": 416903.4724917799,
-      "den": 449823,
-      "rate": 92.68
+      "num": 434085.83833795955,
+      "den": 468230,
+      "rate": 92.71
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 3.11
+     "days": 30,
+     "pct": 3.09
     }
    }
   },
@@ -20574,19 +20574,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1462,
-      "den": 1583,
-      "rate": 92.36
+      "num": 1525,
+      "den": 1650,
+      "rate": 92.42
      },
      "vis": {
-      "num": 49973.17593165262,
-      "den": 53950,
-      "rate": 92.63
+      "num": 52031.13980653087,
+      "den": 56122,
+      "rate": 92.71
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.47
+     "days": 30,
+     "pct": 0.45
     }
    }
   },
@@ -20695,19 +20695,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2191,
-      "den": 2241,
+      "num": 2282,
+      "den": 2334,
       "rate": 97.77
      },
      "vis": {
-      "num": 74256.71593426725,
-      "den": 79707,
-      "rate": 93.16
+      "num": 77164.1713482991,
+      "den": 82707,
+      "rate": 93.3
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.68
+     "days": 30,
+     "pct": 1.69
     }
    }
   },
@@ -20816,19 +20816,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 623,
-      "den": 651,
-      "rate": 95.7
+      "num": 650,
+      "den": 679,
+      "rate": 95.73
      },
      "vis": {
-      "num": 23008.561478408297,
-      "den": 24058,
-      "rate": 95.64
+      "num": 24053.474465421285,
+      "den": 25129,
+      "rate": 95.72
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.65
+     "days": 30,
+     "pct": 0.62
     }
    }
   },
@@ -20937,19 +20937,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1442,
-      "den": 1466,
+      "num": 1502,
+      "den": 1527,
       "rate": 98.36
      },
      "vis": {
-      "num": 47712.006754323505,
-      "den": 53080,
-      "rate": 89.89
+      "num": 49742.93930962452,
+      "den": 55349,
+      "rate": 89.87
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.68
+     "days": 30,
+     "pct": 2.64
     }
    }
   },
@@ -21058,19 +21058,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2711,
-      "den": 2825,
-      "rate": 95.96
+      "num": 2817,
+      "den": 2937,
+      "rate": 95.91
      },
      "vis": {
-      "num": 96906.17165496162,
-      "den": 106777,
-      "rate": 90.76
+      "num": 100832.03840589721,
+      "den": 111114,
+      "rate": 90.75
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 7.36
+     "days": 30,
+     "pct": 7.34
     }
    }
   },
@@ -21179,18 +21179,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2092,
-      "den": 2128,
-      "rate": 98.31
+      "num": 2180,
+      "den": 2216,
+      "rate": 98.38
      },
      "vis": {
-      "num": 81418.55896547236,
-      "den": 86145,
+      "num": 85008.78019696832,
+      "den": 89943,
       "rate": 94.51
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 2.28
     }
    }
@@ -21300,19 +21300,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1162,
-      "den": 1180,
-      "rate": 98.47
+      "num": 1205,
+      "den": 1226,
+      "rate": 98.29
      },
      "vis": {
-      "num": 43628.28177269412,
-      "den": 46106,
-      "rate": 94.63
+      "num": 45253.29480521787,
+      "den": 47866,
+      "rate": 94.54
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 6.7
+     "days": 30,
+     "pct": 6.64
     }
    }
   },
@@ -21421,18 +21421,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 26307,
-      "den": 27693,
-      "rate": 95.0
+      "num": 27336,
+      "den": 28771,
+      "rate": 95.01
      },
      "vis": {
-      "num": 968712.631073657,
-      "den": 1038984,
-      "rate": 93.24
+      "num": 1005644.7975833692,
+      "den": 1078296,
+      "rate": 93.26
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 2.67
     }
    }
@@ -21663,18 +21663,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1118,
-      "den": 1467,
-      "rate": 76.21
+      "num": 1202,
+      "den": 1569,
+      "rate": 76.61
      },
      "vis": {
-      "num": 38170.26974029211,
-      "den": 41488,
-      "rate": 92.0
+      "num": 40914.552975238665,
+      "den": 44481,
+      "rate": 91.98
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 1.04
     }
    }
@@ -21784,19 +21784,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1273,
-      "den": 1300,
+      "num": 1321,
+      "den": 1349,
       "rate": 97.92
      },
      "vis": {
-      "num": 49536.89442588075,
-      "den": 51138,
-      "rate": 96.87
+      "num": 51461.38715177054,
+      "den": 53143,
+      "rate": 96.84
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.51
+     "days": 30,
+     "pct": 0.5
     }
    }
   },
@@ -21905,19 +21905,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1502,
-      "den": 1624,
-      "rate": 92.49
+      "num": 1565,
+      "den": 1689,
+      "rate": 92.66
      },
      "vis": {
-      "num": 52235.12909712513,
-      "den": 54515,
-      "rate": 95.82
+      "num": 54416.87418778326,
+      "den": 56759,
+      "rate": 95.87
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 3.36
+     "days": 30,
+     "pct": 3.3
     }
    }
   },
@@ -22026,19 +22026,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2754,
-      "den": 2831,
-      "rate": 97.28
+      "num": 2829,
+      "den": 2907,
+      "rate": 97.32
      },
      "vis": {
-      "num": 106905.24031095694,
-      "den": 116213,
-      "rate": 91.99
+      "num": 109918.61634541245,
+      "den": 119316,
+      "rate": 92.12
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 6.36
+     "days": 30,
+     "pct": 6.32
     }
    }
   },
@@ -22147,19 +22147,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 842,
-      "den": 891,
+      "num": 877,
+      "den": 928,
       "rate": 94.5
      },
      "vis": {
-      "num": 31839.39559726603,
-      "den": 33952,
-      "rate": 93.78
+      "num": 33045.34905667212,
+      "den": 35220,
+      "rate": 93.83
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 4.96
+     "days": 30,
+     "pct": 4.97
     }
    }
   },
@@ -22268,19 +22268,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1210,
-      "den": 1266,
-      "rate": 95.58
+      "num": 1259,
+      "den": 1318,
+      "rate": 95.52
      },
      "vis": {
-      "num": 42654.55794408261,
-      "den": 46285,
-      "rate": 92.16
+      "num": 44285.729619226906,
+      "den": 48082,
+      "rate": 92.1
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.65
+     "days": 30,
+     "pct": 0.63
     }
    }
   },
@@ -22389,19 +22389,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1915,
-      "den": 1931,
-      "rate": 99.17
+      "num": 1994,
+      "den": 2010,
+      "rate": 99.2
      },
      "vis": {
-      "num": 68376.16076261505,
-      "den": 72946,
-      "rate": 93.74
+      "num": 71102.42482834903,
+      "den": 75808,
+      "rate": 93.79
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 3.47
+     "days": 30,
+     "pct": 3.53
     }
    }
   },
@@ -22510,19 +22510,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1809,
-      "den": 1842,
-      "rate": 98.21
+      "num": 1880,
+      "den": 1915,
+      "rate": 98.17
      },
      "vis": {
-      "num": 64569.26286346301,
-      "den": 69412,
-      "rate": 93.02
+      "num": 66948.32664410963,
+      "den": 72076,
+      "rate": 92.89
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 5.55
+     "days": 30,
+     "pct": 5.69
     }
    }
   },
@@ -22631,19 +22631,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1807,
-      "den": 1840,
-      "rate": 98.21
+      "num": 1877,
+      "den": 1911,
+      "rate": 98.22
      },
      "vis": {
-      "num": 67974.38693805796,
-      "den": 72504,
-      "rate": 93.75
+      "num": 70625.08652385481,
+      "den": 75251,
+      "rate": 93.85
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 4.32
+     "days": 30,
+     "pct": 4.23
     }
    }
   },
@@ -22752,19 +22752,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1933,
-      "den": 2020,
-      "rate": 95.69
+      "num": 2011,
+      "den": 2100,
+      "rate": 95.76
      },
      "vis": {
-      "num": 72083.24805388962,
-      "den": 74364,
-      "rate": 96.93
+      "num": 75009.76361385317,
+      "den": 77406,
+      "rate": 96.9
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 4.99
+     "days": 30,
+     "pct": 5.0
     }
    }
   },
@@ -22873,19 +22873,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2538,
-      "den": 2665,
-      "rate": 95.23
+      "num": 2641,
+      "den": 2773,
+      "rate": 95.24
      },
      "vis": {
-      "num": 91407.87440784962,
-      "den": 97137,
-      "rate": 94.1
+      "num": 94785.27888474701,
+      "den": 100750,
+      "rate": 94.08
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.35
+     "days": 30,
+     "pct": 2.37
     }
    }
   },
@@ -22994,19 +22994,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2058,
-      "den": 2205,
-      "rate": 93.33
+      "num": 2139,
+      "den": 2291,
+      "rate": 93.37
      },
      "vis": {
-      "num": 85587.49966141596,
-      "den": 91977,
-      "rate": 93.05
+      "num": 88834.8464322062,
+      "den": 95479,
+      "rate": 93.04
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.78
+     "days": 30,
+     "pct": 0.75
     }
    }
   },
@@ -23115,19 +23115,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 534,
-      "den": 558,
+      "num": 556,
+      "den": 581,
       "rate": 95.7
      },
      "vis": {
-      "num": 18170.4054930424,
-      "den": 20223,
-      "rate": 89.85
+      "num": 19016.119977832976,
+      "den": 21131,
+      "rate": 89.99
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.27
+     "days": 30,
+     "pct": 0.26
     }
    }
   },
@@ -23236,19 +23236,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1446,
-      "den": 1490,
+      "num": 1513,
+      "den": 1559,
       "rate": 97.05
      },
      "vis": {
-      "num": 49846.71791006435,
-      "den": 56215,
-      "rate": 88.67
+      "num": 52202.98794035421,
+      "den": 58726,
+      "rate": 88.89
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.39
+     "days": 30,
+     "pct": 0.38
     }
    }
   },
@@ -23357,19 +23357,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1425,
-      "den": 1486,
-      "rate": 95.9
+      "num": 1485,
+      "den": 1549,
+      "rate": 95.87
      },
      "vis": {
-      "num": 52919.00543942857,
-      "den": 58945,
-      "rate": 89.78
+      "num": 55098.743492711044,
+      "den": 61260,
+      "rate": 89.94
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.62
+     "days": 30,
+     "pct": 0.65
     }
    }
   },
@@ -23478,19 +23478,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1023,
-      "den": 1073,
-      "rate": 95.34
+      "num": 1067,
+      "den": 1118,
+      "rate": 95.44
      },
      "vis": {
-      "num": 36705.14509710378,
-      "den": 38988,
-      "rate": 94.14
+      "num": 38247.272578125165,
+      "den": 40726,
+      "rate": 93.91
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 3.51
+     "days": 30,
+     "pct": 3.55
     }
    }
   },
@@ -23599,19 +23599,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 18569,
-      "den": 19278,
-      "rate": 96.32
+      "num": 19303,
+      "den": 20043,
+      "rate": 96.31
      },
      "vis": {
-      "num": 685338.2218492593,
-      "den": 763892,
-      "rate": 89.72
+      "num": 712377.4516398027,
+      "den": 793668,
+      "rate": 89.76
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.59
+     "days": 30,
+     "pct": 2.63
     }
    }
   },
@@ -23720,19 +23720,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 13857,
-      "den": 14323,
-      "rate": 96.75
+      "num": 14406,
+      "den": 14889,
+      "rate": 96.76
      },
      "vis": {
-      "num": 519071.8907828173,
-      "den": 581194,
-      "rate": 89.31
+      "num": 539138.1174320732,
+      "den": 603431,
+      "rate": 89.35
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 2.17
+     "days": 30,
+     "pct": 2.21
     }
    }
   },
@@ -23841,19 +23841,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1451,
-      "den": 1493,
-      "rate": 97.19
+      "num": 1506,
+      "den": 1549,
+      "rate": 97.22
      },
      "vis": {
-      "num": 55263.6499120232,
-      "den": 63244,
-      "rate": 87.38
+      "num": 57321.37304678746,
+      "den": 65555,
+      "rate": 87.44
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.47
+     "days": 30,
+     "pct": 1.48
     }
    }
   },
@@ -23962,18 +23962,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1043,
-      "den": 1097,
-      "rate": 95.08
+      "num": 1088,
+      "den": 1144,
+      "rate": 95.1
      },
      "vis": {
-      "num": 36527.91112501263,
-      "den": 42624,
-      "rate": 85.7
+      "num": 38174.667799406045,
+      "den": 44428,
+      "rate": 85.92
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 0.0
     }
    }
@@ -24083,19 +24083,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1813,
-      "den": 1815,
+      "num": 1891,
+      "den": 1893,
       "rate": 99.89
      },
      "vis": {
-      "num": 72934.72485448953,
-      "den": 80057,
-      "rate": 91.1
+      "num": 75930.85847529481,
+      "den": 83327,
+      "rate": 91.12
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.09
+     "days": 30,
+     "pct": 0.13
     }
    }
   },
@@ -24204,19 +24204,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2198,
-      "den": 2348,
-      "rate": 93.61
+      "num": 2281,
+      "den": 2437,
+      "rate": 93.6
      },
      "vis": {
-      "num": 84821.42646330905,
-      "den": 95258,
-      "rate": 89.04
+      "num": 87800.04633109305,
+      "den": 98720,
+      "rate": 88.94
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.27
+     "days": 30,
+     "pct": 0.26
     }
    }
   },
@@ -24325,19 +24325,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1314,
-      "den": 1389,
-      "rate": 94.6
+      "num": 1369,
+      "den": 1445,
+      "rate": 94.74
      },
      "vis": {
-      "num": 47821.92307022901,
-      "den": 56169,
-      "rate": 85.14
+      "num": 49707.41512839649,
+      "den": 58331,
+      "rate": 85.22
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 3.63
+     "days": 30,
+     "pct": 3.7
     }
    }
   },
@@ -24446,19 +24446,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2380,
-      "den": 2433,
+      "num": 2470,
+      "den": 2525,
       "rate": 97.82
      },
      "vis": {
-      "num": 98283.35773743907,
-      "den": 105864,
-      "rate": 92.84
+      "num": 102122.91544479477,
+      "den": 109938,
+      "rate": 92.89
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.75
+     "days": 30,
+     "pct": 0.76
     }
    }
   },
@@ -24567,19 +24567,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1510,
-      "den": 1555,
-      "rate": 97.11
+      "num": 1572,
+      "den": 1619,
+      "rate": 97.1
      },
      "vis": {
-      "num": 49243.219410863814,
-      "den": 53058,
-      "rate": 92.81
+      "num": 51060.92197906014,
+      "den": 54995,
+      "rate": 92.85
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 11.03
+     "days": 30,
+     "pct": 11.23
     }
    }
   },
@@ -24688,19 +24688,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2148,
-      "den": 2193,
-      "rate": 97.95
+      "num": 2229,
+      "den": 2277,
+      "rate": 97.89
      },
      "vis": {
-      "num": 74175.67820945029,
-      "den": 84920,
-      "rate": 87.35
+      "num": 77019.91922723918,
+      "den": 88137,
+      "rate": 87.39
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.17
+     "days": 30,
+     "pct": 0.16
     }
    }
   },
@@ -24809,19 +24809,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 4712,
-      "den": 4955,
-      "rate": 95.1
+      "num": 4897,
+      "den": 5154,
+      "rate": 95.01
      },
      "vis": {
-      "num": 166266.33106644402,
-      "den": 182698,
-      "rate": 91.01
+      "num": 173239.3342077309,
+      "den": 190237,
+      "rate": 91.07
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 3.43
+     "days": 30,
+     "pct": 3.45
     }
    }
   },
@@ -24930,19 +24930,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1655,
-      "den": 1694,
-      "rate": 97.7
+      "num": 1719,
+      "den": 1760,
+      "rate": 97.67
      },
      "vis": {
-      "num": 56707.107504185406,
-      "den": 61512,
-      "rate": 92.19
+      "num": 58957.87034316045,
+      "den": 63947,
+      "rate": 92.2
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 0.56
+     "days": 30,
+     "pct": 0.54
     }
    }
   },
@@ -25051,19 +25051,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 2225,
-      "den": 2409,
-      "rate": 92.36
+      "num": 2315,
+      "den": 2510,
+      "rate": 92.23
      },
      "vis": {
-      "num": 81532.67398759302,
-      "den": 91883,
-      "rate": 88.74
+      "num": 85120.94948082328,
+      "den": 95823,
+      "rate": 88.83
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 4.18
+     "days": 30,
+     "pct": 4.21
     }
    }
   },
@@ -25172,19 +25172,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 739,
-      "den": 759,
-      "rate": 97.36
+      "num": 766,
+      "den": 787,
+      "rate": 97.33
      },
      "vis": {
-      "num": 24285.45021913339,
-      "den": 25407,
-      "rate": 95.59
+      "num": 25250.415028214913,
+      "den": 26402,
+      "rate": 95.64
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 8.98
+     "days": 30,
+     "pct": 9.04
     }
    }
   },
@@ -25293,18 +25293,18 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 93,
-      "den": 93,
+      "num": 97,
+      "den": 97,
       "rate": 100.0
      },
      "vis": {
-      "num": 3741.0993555320333,
-      "den": 3896,
-      "rate": 96.02
+      "num": 3910.0993555320333,
+      "den": 4065,
+      "rate": 96.19
      }
     },
     "high_speed": {
-     "days": 29,
+     "days": 30,
      "pct": 0.0
     }
    }
@@ -25414,19 +25414,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 8462,
-      "den": 8644,
-      "rate": 97.89
+      "num": 8777,
+      "den": 8969,
+      "rate": 97.86
      },
      "vis": {
-      "num": 310218.8191973926,
-      "den": 344242,
-      "rate": 90.12
+      "num": 321663.39120408805,
+      "den": 356856,
+      "rate": 90.14
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 10.09
+     "days": 30,
+     "pct": 10.06
     }
    }
   },
@@ -25535,19 +25535,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 3119,
-      "den": 3221,
-      "rate": 96.83
+      "num": 3232,
+      "den": 3339,
+      "rate": 96.8
      },
      "vis": {
-      "num": 107542.79263533758,
-      "den": 118795,
-      "rate": 90.53
+      "num": 111819.79361298059,
+      "den": 123525,
+      "rate": 90.52
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 6.02
+     "days": 30,
+     "pct": 5.95
     }
    }
   },
@@ -25656,19 +25656,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1313,
-      "den": 1348,
-      "rate": 97.4
+      "num": 1366,
+      "den": 1402,
+      "rate": 97.43
      },
      "vis": {
-      "num": 49094.26747383741,
-      "den": 52677,
-      "rate": 93.2
+      "num": 51233.29427535386,
+      "den": 54938,
+      "rate": 93.26
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.69
+     "days": 30,
+     "pct": 1.63
     }
    }
   },
@@ -25777,19 +25777,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 778,
-      "den": 818,
-      "rate": 95.11
+      "num": 803,
+      "den": 845,
+      "rate": 95.03
      },
      "vis": {
-      "num": 27779.327635962138,
-      "den": 30151,
-      "rate": 92.13
+      "num": 28808.02182699528,
+      "den": 31230,
+      "rate": 92.24
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 11.91
+     "days": 30,
+     "pct": 11.92
     }
    }
   },
@@ -25898,19 +25898,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1028,
-      "den": 1055,
-      "rate": 97.44
+      "num": 1063,
+      "den": 1092,
+      "rate": 97.34
      },
      "vis": {
-      "num": 30669.197525537948,
-      "den": 35967,
-      "rate": 85.27
+      "num": 31778.4775106314,
+      "den": 37357,
+      "rate": 85.07
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 4.46
+     "days": 30,
+     "pct": 4.31
     }
    }
   },
@@ -26019,19 +26019,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 5343,
-      "den": 5423,
-      "rate": 98.52
+      "num": 5545,
+      "den": 5630,
+      "rate": 98.49
      },
      "vis": {
-      "num": 202676.0265620548,
-      "den": 225447,
-      "rate": 89.9
+      "num": 209843.5975911072,
+      "den": 233331,
+      "rate": 89.93
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 12.54
+     "days": 30,
+     "pct": 12.52
     }
    }
   },
@@ -26140,19 +26140,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1082,
-      "den": 1137,
-      "rate": 95.16
+      "num": 1122,
+      "den": 1180,
+      "rate": 95.08
      },
      "vis": {
-      "num": 36407.75990280706,
-      "den": 43363,
-      "rate": 83.96
+      "num": 37617.352857791346,
+      "den": 44839,
+      "rate": 83.89
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 6.89
+     "days": 30,
+     "pct": 7.0
     }
    }
   },
@@ -26261,19 +26261,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 929,
-      "den": 936,
-      "rate": 99.25
+      "num": 964,
+      "den": 973,
+      "rate": 99.08
      },
      "vis": {
-      "num": 36477.20313043233,
-      "den": 40445,
-      "rate": 90.19
+      "num": 37727.079929767635,
+      "den": 41780,
+      "rate": 90.3
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 1.97
+     "days": 30,
+     "pct": 2.0
     }
    }
   },
@@ -26382,19 +26382,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 967,
-      "den": 973,
-      "rate": 99.38
+      "num": 1005,
+      "den": 1011,
+      "rate": 99.41
      },
      "vis": {
-      "num": 38803.8290647352,
-      "den": 43270,
-      "rate": 89.68
+      "num": 40248.69732279293,
+      "den": 44824,
+      "rate": 89.79
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 30.16
+     "days": 30,
+     "pct": 29.95
     }
    }
   },
@@ -26503,19 +26503,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 859,
-      "den": 862,
-      "rate": 99.65
+      "num": 892,
+      "den": 895,
+      "rate": 99.66
      },
      "vis": {
-      "num": 29133.559638999905,
-      "den": 32465,
-      "rate": 89.74
+      "num": 30238.63108821117,
+      "den": 33703,
+      "rate": 89.72
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 9.0
+     "days": 30,
+     "pct": 9.12
     }
    }
   },
@@ -26624,19 +26624,19 @@ window.MONTHLY_SUMMARY = {
     },
     "clothing": {
      "cloth": {
-      "num": 1506,
-      "den": 1515,
-      "rate": 99.41
+      "num": 1562,
+      "den": 1571,
+      "rate": 99.43
      },
      "vis": {
-      "num": 61853.674825080474,
-      "den": 65904,
-      "rate": 93.85
+      "num": 64011.836392544275,
+      "den": 68185,
+      "rate": 93.88
      }
     },
     "high_speed": {
-     "days": 29,
-     "pct": 14.66
+     "days": 30,
+     "pct": 14.51
     }
    }
   },
