@@ -1,13 +1,13 @@
 const EMBEDDED_DATA = {
-  "lastUpdated": "2026-10-30 16:10:41",
+  "lastUpdated": "2026-10-30 17:30:48",
   "sourceUrl": "https://fxgl365.com/110/w/desktop/process/list?activeTab=CURRENT",
   "module": "事件处理",
   "kpi": {
-    "total": 4367,
-    "pending": 14,
-    "processing": 1408,
-    "done": 2945,
-    "todayNew": 8,
+    "total": 4368,
+    "pending": 13,
+    "processing": 1407,
+    "done": 2948,
+    "todayNew": 9,
     "cityCount": 34,
     "regionCount": 5,
     "stationCount": 216
@@ -15,15 +15,15 @@ const EMBEDDED_DATA = {
   "statusDist": [
     {
       "name": "处理完成",
-      "value": 2945
+      "value": 2948
     },
     {
       "name": "处理中",
-      "value": 1408
+      "value": 1407
     },
     {
       "name": "待处理",
-      "value": 14
+      "value": 13
     }
   ],
   "cityStats": [
@@ -78,10 +78,10 @@ const EMBEDDED_DATA = {
     {
       "name": "张家口市",
       "full": "张家口市",
-      "count": 232,
+      "count": 233,
       "pending": 0,
-      "processing": 53,
-      "done": 179
+      "processing": 52,
+      "done": 181
     },
     {
       "name": "天津市",
@@ -95,9 +95,9 @@ const EMBEDDED_DATA = {
       "name": "洛阳市",
       "full": "洛阳市",
       "count": 191,
-      "pending": 1,
+      "pending": 0,
       "processing": 80,
-      "done": 110
+      "done": 111
     },
     {
       "name": "阜新市",
@@ -303,7 +303,7 @@ const EMBEDDED_DATA = {
   "typeDist": [
     {
       "name": "交通事故",
-      "value": 3538
+      "value": 3539
     },
     {
       "name": "意外事件",
@@ -353,7 +353,7 @@ const EMBEDDED_DATA = {
   "regionDist": [
     {
       "name": "华北大区--加盟",
-      "value": 2928
+      "value": 2929
     },
     {
       "name": "中南大区--加盟",
@@ -491,17 +491,29 @@ const EMBEDDED_DATA = {
     },
     {
       "date": "2026-10-30",
-      "count": 8
+      "count": 9
     }
   ],
   "latest": [
+    {
+      "eventNo": "2026103093905",
+      "city": "张家口市",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理完成",
+      "statusRaw": 5,
+      "reportTime": "2026-10-30 16:22:46",
+      "source": "风险线索升级",
+      "region": "华北大区--加盟",
+      "station": "兴必达【张家口】宣化东站"
+    },
     {
       "eventNo": "2026103093573",
       "city": "洛阳市",
       "type": "其他安全事件",
       "level": "蓝色",
-      "status": "待处理",
-      "statusRaw": 2,
+      "status": "处理中",
+      "statusRaw": 3,
       "reportTime": "2026-10-30 15:06:52",
       "source": "PACIFIC_UPGRAGE",
       "region": "华北大区--加盟",
@@ -668,8 +680,8 @@ const EMBEDDED_DATA = {
       "city": "张家口市",
       "type": "交通事故",
       "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
+      "status": "处理完成",
+      "statusRaw": 5,
       "reportTime": "2026-10-29 17:47:58",
       "source": "风险线索升级",
       "region": "华北大区--加盟",
@@ -722,18 +734,6 @@ const EMBEDDED_DATA = {
       "source": "PACIFIC_UPGRAGE",
       "region": "华北大区--加盟",
       "station": "兴必达【唐山】万达站点"
-    },
-    {
-      "eventNo": "2026102990577",
-      "city": "西安市",
-      "type": "其他安全事件",
-      "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "reportTime": "2026-10-29 14:42:42",
-      "source": "PACIFIC_UPGRAGE",
-      "region": "华北大区--加盟",
-      "station": "兴必达【西安】枫林华府站"
     }
   ],
   "records": [
@@ -2159,125 +2159,6 @@ const EMBEDDED_DATA = {
           "processType": "PEISONG_ONLINE",
           "delayTimeLong": 1793306142000,
           "delayTime": 1793306142000
-        },
-        "related": null
-      }
-    },
-    {
-      "id": "2026103093573",
-      "title": "人身安全-扬言伤害他人",
-      "business": "履约业务-专送",
-      "source": "PACIFIC_UPGRAGE",
-      "type": "其他安全事件",
-      "level": "蓝色",
-      "status": "待处理",
-      "statusRaw": 2,
-      "occurTime": "2026-10-28 11:31:01",
-      "reportTime": "2026-10-30 15:06:52",
-      "updateTime": "2026-10-30 15:06:52",
-      "province": "河南省",
-      "city": "洛阳市",
-      "district": "西工区",
-      "address": "汉庭(洛阳火车站店)",
-      "summary": "工单号：2555015227\n\n事件经过：骑手表示用户地址定位错了，，产生了虚假点送达罚单，骑手表示要把站长弄死\n\n我方受伤人数、伤情、财损金额：/\n\n其他方受伤人数、伤情、财损金额：/\n\n三者/用户年龄：/\n\n骑手信息：王亚庆150****8209\n\n涉及关键等级判断：蓝\n\n是否涉及订单问题需要处理：1\n\n需要协助处理的订单数量：1\n\n进线人诉求：要求处理",
-      "reporter": "任丽雯",
-      "handler": "郭邦河，李彬，许洁茹",
-      "region": "华北大区--加盟",
-      "area": "加盟河南区域",
-      "station": "兴必达【洛阳】火车南站",
-      "stationId": "",
-      "orgPath": "",
-      "franchisee": "",
-      "riderName": "王亚庆",
-      "riderPhone": "150****8209",
-      "riderStation": "兴必达【洛阳】火车南站",
-      "detail": {
-        "eventNo": "2026103093573",
-        "title": "人身安全-扬言伤害他人",
-        "source": "PACIFIC_UPGRAGE",
-        "type": "其他安全事件",
-        "level": "蓝色",
-        "statusRaw": 2,
-        "status": "待处理",
-        "occurTime": "2026-10-28 11:31:01",
-        "reportTime": "2026-10-30 15:06:52",
-        "updateTime": "2026-10-30 15:06:52",
-        "endTime": "",
-        "province": "河南省",
-        "city": "洛阳市",
-        "district": "西工区",
-        "address": "汉庭(洛阳火车站店)",
-        "course": "工单号：2555015227\n\n事件经过：骑手表示用户地址定位错了，，产生了虚假点送达罚单，骑手表示要把站长弄死\n\n我方受伤人数、伤情、财损金额：/\n\n其他方受伤人数、伤情、财损金额：/\n\n三者/用户年龄：/\n\n骑手信息：王亚庆150****8209\n\n涉及关键等级判断：蓝\n\n是否涉及订单问题需要处理：1\n\n需要协助处理的订单数量：1\n\n进线人诉求：要求处理",
-        "region": "华北大区--加盟",
-        "area": "加盟河南区域",
-        "station": "兴必达【洛阳】火车南站",
-        "stationId": "",
-        "stationType": "",
-        "orgPath": "",
-        "franchisee": "",
-        "cityMerchant": "",
-        "riders": [
-          {
-            "riderId": 78594938,
-            "entryDate": "2026-10-02",
-            "riderPhone": {
-              "data": null,
-              "token": "iLgYFIvq3Cf8209",
-              "dataMask": "150****8209",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "即时配加盟",
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXXIyVNpS53480",
-              "dataMask": "41148**********410",
-              "unknown": null
-            },
-            "stationName": "兴必达【洛阳】火车南站",
-            "riderName": "王亚庆",
-            "age": "0",
-            "genderDesc": "男",
-            "stationId": "2054901"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "0078fe3c": 2,
-          "1e970e68": 2,
-          "4263fd60": 2
-        },
-        "eventTypeInfo": {
-          "5e889f75": 4
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "107696119425",
-        "taskKey": "jspzsks_wait_response",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "renliwen02",
-        "updateAccountId": "renliwen02",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1793344012000,
-              "latestTime": 1793344012000,
-              "startTimeLong": 1793344012000,
-              "latestTimeLong": 1793344012000
-            },
-            {
-              "taskKey": "jspzsks_wait_response",
-              "startTime": 1793344012000,
-              "latestTime": 1793344012000,
-              "startTimeLong": 1793344012000,
-              "latestTimeLong": 1793344012000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1793387212000,
-          "delayTime": 1793387212000
         },
         "related": null
       }
@@ -22868,8 +22749,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -114878,50 +114759,50 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1784608298000,
               "latestTime": 1784608298000,
-              "startTimeLong": 1784608298000,
-              "latestTimeLong": 1784608298000
+              "latestTimeLong": 1784608298000,
+              "startTimeLong": 1784608298000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1785159984000,
               "latestTime": 1785159995000,
-              "startTimeLong": 1785159984000,
-              "latestTimeLong": 1785159995000
+              "latestTimeLong": 1785159995000,
+              "startTimeLong": 1785159984000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1784608298000,
               "latestTime": 1785159984000,
-              "startTimeLong": 1784608298000,
-              "latestTimeLong": 1785159984000
+              "latestTimeLong": 1785159984000,
+              "startTimeLong": 1784608298000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1785159995000,
               "latestTime": 1785159995000,
-              "startTimeLong": 1785159995000,
-              "latestTimeLong": 1785159995000
+              "latestTimeLong": 1785159995000,
+              "startTimeLong": 1785159995000
             },
             {
               "taskKey": "jspzbks_wait_end_response",
               "startTime": 1784614823000,
               "latestTime": 1784614834000,
-              "startTimeLong": 1784614823000,
-              "latestTimeLong": 1784614834000
+              "latestTimeLong": 1784614834000,
+              "startTimeLong": 1784614823000
             },
             {
               "taskKey": "jspzbks_wait_response",
               "startTime": 1784608298000,
               "latestTime": 1784614823000,
-              "startTimeLong": 1784608298000,
-              "latestTimeLong": 1784614823000
+              "latestTimeLong": 1784614823000,
+              "startTimeLong": 1784608298000
             },
             {
               "taskKey": "jspzbks_wait_follow",
               "startTime": 1785154852000,
               "latestTime": 1785154852000,
-              "startTimeLong": 1785154852000,
-              "latestTimeLong": 1785154852000
+              "latestTimeLong": 1785154852000,
+              "startTimeLong": 1785154852000
             }
           ],
           "processType": "PEISONG_ONLINE",
@@ -146534,8 +146415,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1790239469000,
-          "delayTimeLong": 1790239469000
+          "delayTimeLong": 1790239469000,
+          "delayTime": 1790239469000
         },
         "related": null
       }
@@ -160874,166 +160755,6 @@ const EMBEDDED_DATA = {
       }
     },
     {
-      "id": "2026091252783",
-      "title": "交通事故-交通事故致人伤",
-      "business": "履约业务-专送",
-      "source": "PACIFIC_UPGRAGE",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "occurTime": "2026-09-12 12:10:00",
-      "reportTime": "2026-09-12 14:28:17",
-      "updateTime": "2026-10-12 09:06:45",
-      "province": "河南省",
-      "city": "洛阳市",
-      "district": "涧西区",
-      "address": "黄河路15号",
-      "summary": "我方受伤人数、伤情、财损金额：受伤稍后就医\n其他方受伤人数、伤情、财损金额：受伤不严重\n三者/用户年龄：30\n骑手信息：陆玉龙182****7543【加盟】【配送员】兴必达【洛阳】洛浦站，兴必达（江苏）网络科技有限公司\n涉及关键等级判断：交通事故致人伤\n是否涉及订单问题需要处理：否\n需要协助处理的订单数量：无\n问题描述：骑手反馈与三者发生事故，骑手全责，受伤稍后就医，三者受伤无大碍，咨询后续处理\n进线人信息：骑手",
-      "reporter": "吉新星",
-      "handler": "李彬",
-      "region": "华北大区--加盟",
-      "area": "加盟河南区域",
-      "station": "兴必达【洛阳】洛浦站",
-      "stationId": "",
-      "orgPath": "",
-      "franchisee": "",
-      "riderName": "陆玉龙",
-      "riderPhone": "182****7543",
-      "riderStation": "兴必达【洛阳】洛浦站",
-      "detail": {
-        "eventNo": "2026091252783",
-        "title": "交通事故-交通事故致人伤",
-        "source": "PACIFIC_UPGRAGE",
-        "type": "交通事故",
-        "level": "蓝色",
-        "statusRaw": 3,
-        "status": "处理中",
-        "occurTime": "2026-09-12 12:10:00",
-        "reportTime": "2026-09-12 14:28:17",
-        "updateTime": "2026-10-12 09:06:45",
-        "endTime": "",
-        "province": "河南省",
-        "city": "洛阳市",
-        "district": "涧西区",
-        "address": "黄河路15号",
-        "course": "我方受伤人数、伤情、财损金额：受伤稍后就医\n其他方受伤人数、伤情、财损金额：受伤不严重\n三者/用户年龄：30\n骑手信息：陆玉龙182****7543【加盟】【配送员】兴必达【洛阳】洛浦站，兴必达（江苏）网络科技有限公司\n涉及关键等级判断：交通事故致人伤\n是否涉及订单问题需要处理：否\n需要协助处理的订单数量：无\n问题描述：骑手反馈与三者发生事故，骑手全责，受伤稍后就医，三者受伤无大碍，咨询后续处理\n进线人信息：骑手",
-        "region": "华北大区--加盟",
-        "area": "加盟河南区域",
-        "station": "兴必达【洛阳】洛浦站",
-        "stationId": "",
-        "stationType": "",
-        "orgPath": "",
-        "franchisee": "",
-        "cityMerchant": "",
-        "riders": [
-          {
-            "entryDate": "2026-06-27",
-            "riderPhone": {
-              "data": null,
-              "token": "i1k*VyBE@BU7543",
-              "dataMask": "182****7543",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "加盟",
-            "userEmergencyContactName": "陆洪波",
-            "orgEmergencyPhone": {
-              "data": null,
-              "token": "i1*VmLXJcui7730",
-              "dataMask": "157****7730",
-              "unknown": null
-            },
-            "riderName": "陆玉龙",
-            "userEmergencyContactMobile": {
-              "data": null,
-              "token": "j5LCt-93z!19346",
-              "dataMask": "150****9346",
-              "unknown": null
-            },
-            "genderDesc": "男",
-            "riderId": 74649186,
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXrk2qFSD94790",
-              "dataMask": "41032**********314",
-              "unknown": null
-            },
-            "stationName": "兴必达【洛阳】洛浦站",
-            "age": "24",
-            "stationId": "2026064"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "0078fe3c": 2,
-          "001026d9": "无",
-          "1e970e68": 1,
-          "4263fd60": 2
-        },
-        "eventTypeInfo": {
-          "9b6e6c2a": "无",
-          "14": 2,
-          "15": 1,
-          "be5cd84a": 1,
-          "0224cd2b": [
-            3
-          ],
-          "5e889f75": 4,
-          "9": [
-            1
-          ],
-          "60": [
-            1
-          ]
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "106701366356",
-        "taskKey": "jspzsks_wait_follow",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "jixinxing",
-        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1789194497000,
-              "latestTime": 1789194497000,
-              "latestTimeLong": 1789194497000,
-              "startTimeLong": 1789194497000
-            },
-            {
-              "taskKey": "jspzsks_wait_end_response",
-              "startTime": 1789194816000,
-              "latestTime": 1789196067000,
-              "latestTimeLong": 1789196067000,
-              "startTimeLong": 1789194816000
-            },
-            {
-              "taskKey": "jspzsks_wait_response",
-              "startTime": 1789194497000,
-              "latestTime": 1789194816000,
-              "latestTimeLong": 1789194816000,
-              "startTimeLong": 1789194497000
-            },
-            {
-              "taskKey": "jspzsks_wait_follow",
-              "startTime": 1789196067000,
-              "latestTime": 1789196067000,
-              "latestTimeLong": 1789196067000,
-              "startTimeLong": 1789196067000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTime": 1793063205000,
-          "delayTimeLong": 1793063205000
-        },
-        "related": null
-      }
-    },
-    {
       "id": "2026091458040",
       "title": "",
       "business": "履约业务-专送",
@@ -166065,6 +165786,125 @@ const EMBEDDED_DATA = {
           "processType": "PEISONG_ONLINE",
           "delayTimeLong": 1793426939000,
           "delayTime": 1793426939000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026103093573",
+      "title": "人身安全-扬言伤害他人",
+      "business": "履约业务-专送",
+      "source": "PACIFIC_UPGRAGE",
+      "type": "其他安全事件",
+      "level": "蓝色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "occurTime": "2026-10-28 11:31:01",
+      "reportTime": "2026-10-30 15:06:52",
+      "updateTime": "2026-10-30 16:42:33",
+      "province": "河南省",
+      "city": "洛阳市",
+      "district": "西工区",
+      "address": "汉庭(洛阳火车站店)",
+      "summary": "工单号：2555015227\n\n事件经过：骑手表示用户地址定位错了，，产生了虚假点送达罚单，骑手表示要把站长弄死\n\n我方受伤人数、伤情、财损金额：/\n\n其他方受伤人数、伤情、财损金额：/\n\n三者/用户年龄：/\n\n骑手信息：王亚庆150****8209\n\n涉及关键等级判断：蓝\n\n是否涉及订单问题需要处理：1\n\n需要协助处理的订单数量：1\n\n进线人诉求：要求处理",
+      "reporter": "任丽雯",
+      "handler": "李彬",
+      "region": "华北大区--加盟",
+      "area": "加盟河南区域",
+      "station": "兴必达【洛阳】火车南站",
+      "stationId": "",
+      "orgPath": "",
+      "franchisee": "",
+      "riderName": "王亚庆",
+      "riderPhone": "150****8209",
+      "riderStation": "兴必达【洛阳】火车南站",
+      "detail": {
+        "eventNo": "2026103093573",
+        "title": "人身安全-扬言伤害他人",
+        "source": "PACIFIC_UPGRAGE",
+        "type": "其他安全事件",
+        "level": "蓝色",
+        "statusRaw": 2,
+        "status": "待处理",
+        "occurTime": "2026-10-28 11:31:01",
+        "reportTime": "2026-10-30 15:06:52",
+        "updateTime": "2026-10-30 15:06:52",
+        "endTime": "",
+        "province": "河南省",
+        "city": "洛阳市",
+        "district": "西工区",
+        "address": "汉庭(洛阳火车站店)",
+        "course": "工单号：2555015227\n\n事件经过：骑手表示用户地址定位错了，，产生了虚假点送达罚单，骑手表示要把站长弄死\n\n我方受伤人数、伤情、财损金额：/\n\n其他方受伤人数、伤情、财损金额：/\n\n三者/用户年龄：/\n\n骑手信息：王亚庆150****8209\n\n涉及关键等级判断：蓝\n\n是否涉及订单问题需要处理：1\n\n需要协助处理的订单数量：1\n\n进线人诉求：要求处理",
+        "region": "华北大区--加盟",
+        "area": "加盟河南区域",
+        "station": "兴必达【洛阳】火车南站",
+        "stationId": "",
+        "stationType": "",
+        "orgPath": "",
+        "franchisee": "",
+        "cityMerchant": "",
+        "riders": [
+          {
+            "riderId": 78594938,
+            "entryDate": "2026-10-02",
+            "riderPhone": {
+              "data": null,
+              "token": "iLgYFIvq3Cf8209",
+              "dataMask": "150****8209",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXXIyVNpS53480",
+              "dataMask": "41148**********410",
+              "unknown": null
+            },
+            "stationName": "兴必达【洛阳】火车南站",
+            "riderName": "王亚庆",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2054901"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "0078fe3c": 2,
+          "1e970e68": 2,
+          "4263fd60": 2
+        },
+        "eventTypeInfo": {
+          "5e889f75": 4
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "107696119425",
+        "taskKey": "jspzsks_wait_response",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "renliwen02",
+        "updateAccountId": "renliwen02",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1793344012000,
+              "latestTime": 1793344012000,
+              "startTimeLong": 1793344012000,
+              "latestTimeLong": 1793344012000
+            },
+            {
+              "taskKey": "jspzsks_wait_response",
+              "startTime": 1793344012000,
+              "latestTime": 1793344012000,
+              "startTimeLong": 1793344012000,
+              "latestTimeLong": 1793344012000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": 1793387212000,
+          "delayTime": 1793387212000
         },
         "related": null
       }
@@ -184640,34 +184480,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1786596365000,
               "latestTime": 1786596365000,
-              "latestTimeLong": 1786596365000,
-              "startTimeLong": 1786596365000
+              "startTimeLong": 1786596365000,
+              "latestTimeLong": 1786596365000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1786624535000,
               "latestTime": 1786624544000,
-              "latestTimeLong": 1786624544000,
-              "startTimeLong": 1786624535000
+              "startTimeLong": 1786624535000,
+              "latestTimeLong": 1786624544000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1786596365000,
               "latestTime": 1786624535000,
-              "latestTimeLong": 1786624535000,
-              "startTimeLong": 1786596365000
+              "startTimeLong": 1786596365000,
+              "latestTimeLong": 1786624535000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1786624544000,
               "latestTime": 1786624544000,
-              "latestTimeLong": 1786624544000,
-              "startTimeLong": 1786624544000
+              "startTimeLong": 1786624544000,
+              "latestTimeLong": 1786624544000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1794314251000,
-          "delayTimeLong": 1794314251000
+          "delayTimeLong": 1794314251000,
+          "delayTime": 1794314251000
         },
         "related": null
       }
@@ -188632,170 +188472,6 @@ const EMBEDDED_DATA = {
       }
     },
     {
-      "id": "2026102991123",
-      "title": "",
-      "business": "履约业务-专送",
-      "source": "风险线索升级",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "occurTime": "2026-10-28 20:33:00",
-      "reportTime": "2026-10-29 17:47:58",
-      "updateTime": "2026-10-29 17:49:02",
-      "province": "河北省",
-      "city": "张家口市",
-      "district": "桥西区",
-      "address": "河北省张家口市桥西区武城街武城街南城壕0米",
-      "summary": "2026年10月28日20:33分，兴必达【张家口】武城站，骑手苏志文在送餐中途径河北省张家口市桥西区武城街武城街南城壕0米与三者驾驶非机动车发生交通事故，造成三者车辆受损，经警方判责为骑手全责。",
-      "reporter": "张晓佳",
-      "handler": "张晓佳",
-      "region": "华北大区--加盟",
-      "area": "加盟津冀区域",
-      "station": "兴必达【张家口】武城站",
-      "stationId": 2091666,
-      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟津冀区域-加盟张家口分区-统管-张家口配送组-兴必达【张家口】武城站",
-      "franchisee": "兴必达（江苏）网络科技有限公司【张家口】",
-      "riderName": "苏志文",
-      "riderPhone": "132****7794",
-      "riderStation": "兴必达【张家口】武城站",
-      "detail": {
-        "eventNo": "2026102991123",
-        "title": "",
-        "source": "风险线索升级",
-        "type": "交通事故",
-        "level": "蓝色",
-        "statusRaw": 3,
-        "status": "处理中",
-        "occurTime": "2026-10-28 20:33:00",
-        "reportTime": "2026-10-29 17:47:58",
-        "updateTime": "2026-10-29 17:49:02",
-        "endTime": "",
-        "province": "河北省",
-        "city": "张家口市",
-        "district": "桥西区",
-        "address": "河北省张家口市桥西区武城街武城街南城壕0米",
-        "course": "2026年10月28日20:33分，兴必达【张家口】武城站，骑手苏志文在送餐中途径河北省张家口市桥西区武城街武城街南城壕0米与三者驾驶非机动车发生交通事故，造成三者车辆受损，经警方判责为骑手全责。",
-        "region": "华北大区--加盟",
-        "area": "加盟津冀区域",
-        "station": "兴必达【张家口】武城站",
-        "stationId": 2091666,
-        "stationType": "即时配加盟",
-        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟津冀区域-加盟张家口分区-统管-张家口配送组-兴必达【张家口】武城站",
-        "franchisee": "兴必达（江苏）网络科技有限公司【张家口】",
-        "cityMerchant": "兴必达（江苏）网络科技有限公司【张家口】",
-        "riders": [
-          {
-            "riderId": 79138156,
-            "entryDate": "2026-10-23",
-            "riderPhone": {
-              "data": null,
-              "token": "Ei74d42T*CD7794",
-              "dataMask": "132****7794",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "即时配加盟",
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXw4nGTI325165",
-              "dataMask": "13072**********017",
-              "unknown": null
-            },
-            "stationName": "兴必达【张家口】武城站",
-            "riderName": "苏志文",
-            "age": "0",
-            "genderDesc": "男",
-            "stationId": "2091666"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "27f340b6": 0,
-          "6bc2fb6f": 1,
-          "6f72eaaf": 2,
-          "e6e645c9": 2,
-          "da478aa9": 4,
-          "74d46e3f": 1,
-          "e60e2199": 2,
-          "huyunmeng09": 0,
-          "9d13ef5b": 2,
-          "d1078f9f": 2,
-          "huyunmeng10": 0,
-          "2967240b": "10426109401288118339",
-          "21": 1
-        },
-        "eventTypeInfo": {
-          "33": [
-            8
-          ],
-          "11": 2,
-          "7a16f69a": 1,
-          "81a8da9f": 1,
-          "19": 1,
-          "874aad49": 2,
-          "2e9772a9": 2,
-          "5452e09e": 1,
-          "ff537655": 7,
-          "9": [
-            3
-          ],
-          "93": 1,
-          "94": "张家口市公安局交通管理支队桥西交通管理大队",
-          "20": "[{\"name\":\"3c15f2eed92c514c0aca60d2be3425d6.jpg\",\"uuid\":\"riskmanager110/3c15f2eed92c514c0aca60d2be3425d6_6rt190.jpg\"}]",
-          "10": 5,
-          "32": [
-            3
-          ],
-          "719caaaf": 5
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "107673819086",
-        "taskKey": "zs_wait_follow",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "bm_zhangxiaojia41@BMningboxingdazhisongwangluokejiyouxian",
-        "updateAccountId": "bm_zhangxiaojia41@BMningboxingdazhisongwangluokejiyouxian",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1793267278000,
-              "latestTime": 1793267278000,
-              "startTimeLong": 1793267278000,
-              "latestTimeLong": 1793267278000
-            },
-            {
-              "taskKey": "zs_wait_follow",
-              "startTime": 1793267342000,
-              "latestTime": 1793267342000,
-              "startTimeLong": 1793267342000,
-              "latestTimeLong": 1793267342000
-            },
-            {
-              "taskKey": "zs_wait_end_response",
-              "startTime": 1793267321000,
-              "latestTime": 1793267342000,
-              "startTimeLong": 1793267321000,
-              "latestTimeLong": 1793267342000
-            },
-            {
-              "taskKey": "zs_wait_response",
-              "startTime": 1793267278000,
-              "latestTime": 1793267321000,
-              "startTimeLong": 1793267278000,
-              "latestTimeLong": 1793267321000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1794563342000,
-          "delayTime": 1794563342000
-        },
-        "related": null
-      }
-    },
-    {
       "id": "2026093006220",
       "title": "交通事故致人伤-交通事故致人伤",
       "business": "履约业务-专送",
@@ -190798,6 +190474,176 @@ const EMBEDDED_DATA = {
       }
     },
     {
+      "id": "2026103093905",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "风险线索升级",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理完成",
+      "statusRaw": 5,
+      "occurTime": "2026-10-29 14:31:00",
+      "reportTime": "2026-10-30 16:22:46",
+      "updateTime": "2026-10-30 16:30:37",
+      "province": "河北省",
+      "city": "张家口市",
+      "district": "宣化区",
+      "address": "河北省张家口市宣化区清远路步行街内",
+      "summary": "2026年10月29日14:31分，兴必达【张家口】宣化东站，骑手何金宝在取餐中途径河北省张家口市宣化区清远路步行街内与三者驾驶非机动车发生交通事故，造成三者受伤，经警方判责为骑手全责。",
+      "reporter": "张晓佳",
+      "handler": "张晓佳",
+      "region": "华北大区--加盟",
+      "area": "加盟津冀区域",
+      "station": "兴必达【张家口】宣化东站",
+      "stationId": 2015527,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟津冀区域-加盟张家口分区-统管-张家口配送组-兴必达【张家口】宣化东站",
+      "franchisee": "兴必达（江苏）网络科技有限公司【张家口】",
+      "riderName": "何金宝",
+      "riderPhone": "152****9042",
+      "riderStation": "兴必达【张家口】宣化东站",
+      "detail": {
+        "eventNo": "2026103093905",
+        "title": "",
+        "source": "风险线索升级",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 5,
+        "status": "处理完成",
+        "occurTime": "2026-10-29 14:31:00",
+        "reportTime": "2026-10-30 16:22:46",
+        "updateTime": "2026-10-30 16:30:37",
+        "endTime": "2026-10-30 16:25:33",
+        "province": "河北省",
+        "city": "张家口市",
+        "district": "宣化区",
+        "address": "河北省张家口市宣化区清远路步行街内",
+        "course": "2026年10月29日14:31分，兴必达【张家口】宣化东站，骑手何金宝在取餐中途径河北省张家口市宣化区清远路步行街内与三者驾驶非机动车发生交通事故，造成三者受伤，经警方判责为骑手全责。",
+        "region": "华北大区--加盟",
+        "area": "加盟津冀区域",
+        "station": "兴必达【张家口】宣化东站",
+        "stationId": 2015527,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟津冀区域-加盟张家口分区-统管-张家口配送组-兴必达【张家口】宣化东站",
+        "franchisee": "兴必达（江苏）网络科技有限公司【张家口】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【张家口】",
+        "riders": [
+          {
+            "riderId": 78565170,
+            "entryDate": "2026-10-01",
+            "riderPhone": {
+              "data": null,
+              "token": "jQYn!hvo6!e9042",
+              "dataMask": "152****9042",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXrkyTikx07815",
+              "dataMask": "13073**********552",
+              "unknown": null
+            },
+            "stationName": "兴必达【张家口】宣化东站",
+            "riderName": "何金宝",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2015527"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "27f340b6": 0,
+          "6bc2fb6f": 1,
+          "6f72eaaf": 2,
+          "e6e645c9": 2,
+          "da478aa9": 4,
+          "74d46e3f": 1,
+          "e60e2199": 2,
+          "huyunmeng09": 0,
+          "9d13ef5b": 2,
+          "d1078f9f": 2,
+          "huyunmeng10": 0,
+          "2967240b": "2136904E426D1478423554",
+          "21": 1
+        },
+        "eventTypeInfo": {
+          "33": [
+            8
+          ],
+          "11": 2,
+          "14": 1,
+          "15": 2,
+          "7a16f69a": 1,
+          "19": 1,
+          "be5cd84a": 1,
+          "328d1fe5": 1,
+          "874aad49": 2,
+          "2e9772a9": 2,
+          "5452e09e": 1,
+          "ff537655": 7,
+          "0224cd2b": [
+            3
+          ],
+          "9": [
+            1
+          ],
+          "93": 1,
+          "94": "张家口市公安局交通管理支队宣化交通管理大队",
+          "20": "[{\"name\":\"e010ba818c376a4a5e0108fc18e5ef1e.jpg\",\"uuid\":\"riskmanager110/e010ba818c376a4a5e0108fc18e5ef1e_f6fqbj.jpg\"}]",
+          "10": 5,
+          "32": [
+            3
+          ],
+          "719caaaf": 5
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "107698989743",
+        "taskKey": "zs_wait_follow",
+        "checkInfoStatus": "PASS",
+        "checkInfoResult": "",
+        "createAccountId": "bm_zhangxiaojia41@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_zhangxiaojia41@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1793348566000,
+              "latestTime": 1793348566000,
+              "latestTimeLong": 1793348566000,
+              "startTimeLong": 1793348566000
+            },
+            {
+              "taskKey": "zs_wait_follow",
+              "startTime": 1793348630000,
+              "latestTime": 1793348733000,
+              "latestTimeLong": 1793348733000,
+              "startTimeLong": 1793348630000
+            },
+            {
+              "taskKey": "zs_wait_end_response",
+              "startTime": 1793348604000,
+              "latestTime": 1793348630000,
+              "latestTimeLong": 1793348630000,
+              "startTimeLong": 1793348604000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1793348566000,
+              "latestTime": 1793348604000,
+              "latestTimeLong": 1793348604000,
+              "startTimeLong": 1793348566000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTime": null,
+          "delayTimeLong": null
+        },
+        "related": null
+      }
+    },
+    {
       "id": "2026103093398",
       "title": "",
       "business": "履约业务-专送",
@@ -191618,6 +191464,170 @@ const EMBEDDED_DATA = {
           "processType": "PEISONG_ONLINE",
           "delayTime": null,
           "delayTimeLong": null
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026102991123",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "风险线索升级",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理完成",
+      "statusRaw": 5,
+      "occurTime": "2026-10-28 20:33:00",
+      "reportTime": "2026-10-29 17:47:58",
+      "updateTime": "2026-10-30 16:10:36",
+      "province": "河北省",
+      "city": "张家口市",
+      "district": "桥西区",
+      "address": "河北省张家口市桥西区武城街武城街南城壕0米",
+      "summary": "2026年10月28日20:33分，兴必达【张家口】武城站，骑手苏志文在送餐中途径河北省张家口市桥西区武城街武城街南城壕0米与三者驾驶非机动车发生交通事故，造成三者车辆受损，经警方判责为骑手全责。",
+      "reporter": "张晓佳",
+      "handler": "张晓佳",
+      "region": "华北大区--加盟",
+      "area": "加盟津冀区域",
+      "station": "兴必达【张家口】武城站",
+      "stationId": 2091666,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟津冀区域-加盟张家口分区-统管-张家口配送组-兴必达【张家口】武城站",
+      "franchisee": "兴必达（江苏）网络科技有限公司【张家口】",
+      "riderName": "苏志文",
+      "riderPhone": "132****7794",
+      "riderStation": "兴必达【张家口】武城站",
+      "detail": {
+        "eventNo": "2026102991123",
+        "title": "",
+        "source": "风险线索升级",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-10-28 20:33:00",
+        "reportTime": "2026-10-29 17:47:58",
+        "updateTime": "2026-10-29 17:49:02",
+        "endTime": "",
+        "province": "河北省",
+        "city": "张家口市",
+        "district": "桥西区",
+        "address": "河北省张家口市桥西区武城街武城街南城壕0米",
+        "course": "2026年10月28日20:33分，兴必达【张家口】武城站，骑手苏志文在送餐中途径河北省张家口市桥西区武城街武城街南城壕0米与三者驾驶非机动车发生交通事故，造成三者车辆受损，经警方判责为骑手全责。",
+        "region": "华北大区--加盟",
+        "area": "加盟津冀区域",
+        "station": "兴必达【张家口】武城站",
+        "stationId": 2091666,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟津冀区域-加盟张家口分区-统管-张家口配送组-兴必达【张家口】武城站",
+        "franchisee": "兴必达（江苏）网络科技有限公司【张家口】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【张家口】",
+        "riders": [
+          {
+            "riderId": 79138156,
+            "entryDate": "2026-10-23",
+            "riderPhone": {
+              "data": null,
+              "token": "Ei74d42T*CD7794",
+              "dataMask": "132****7794",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXw4nGTI325165",
+              "dataMask": "13072**********017",
+              "unknown": null
+            },
+            "stationName": "兴必达【张家口】武城站",
+            "riderName": "苏志文",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2091666"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "27f340b6": 0,
+          "6bc2fb6f": 1,
+          "6f72eaaf": 2,
+          "e6e645c9": 2,
+          "da478aa9": 4,
+          "74d46e3f": 1,
+          "e60e2199": 2,
+          "huyunmeng09": 0,
+          "9d13ef5b": 2,
+          "d1078f9f": 2,
+          "huyunmeng10": 0,
+          "2967240b": "10426109401288118339",
+          "21": 1
+        },
+        "eventTypeInfo": {
+          "33": [
+            8
+          ],
+          "11": 2,
+          "7a16f69a": 1,
+          "81a8da9f": 1,
+          "19": 1,
+          "874aad49": 2,
+          "2e9772a9": 2,
+          "5452e09e": 1,
+          "ff537655": 7,
+          "9": [
+            3
+          ],
+          "93": 1,
+          "94": "张家口市公安局交通管理支队桥西交通管理大队",
+          "20": "[{\"name\":\"3c15f2eed92c514c0aca60d2be3425d6.jpg\",\"uuid\":\"riskmanager110/3c15f2eed92c514c0aca60d2be3425d6_6rt190.jpg\"}]",
+          "10": 5,
+          "32": [
+            3
+          ],
+          "719caaaf": 5
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "107673819086",
+        "taskKey": "zs_wait_follow",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "bm_zhangxiaojia41@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_zhangxiaojia41@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1793267278000,
+              "latestTime": 1793267278000,
+              "startTimeLong": 1793267278000,
+              "latestTimeLong": 1793267278000
+            },
+            {
+              "taskKey": "zs_wait_follow",
+              "startTime": 1793267342000,
+              "latestTime": 1793267342000,
+              "startTimeLong": 1793267342000,
+              "latestTimeLong": 1793267342000
+            },
+            {
+              "taskKey": "zs_wait_end_response",
+              "startTime": 1793267321000,
+              "latestTime": 1793267342000,
+              "startTimeLong": 1793267321000,
+              "latestTimeLong": 1793267342000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1793267278000,
+              "latestTime": 1793267321000,
+              "startTimeLong": 1793267278000,
+              "latestTimeLong": 1793267321000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": 1794563342000,
+          "delayTime": 1794563342000
         },
         "related": null
       }
@@ -229333,34 +229343,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1790563358000,
               "latestTime": 1790563358000,
-              "latestTimeLong": 1790563358000,
-              "startTimeLong": 1790563358000
+              "startTimeLong": 1790563358000,
+              "latestTimeLong": 1790563358000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1790590801000,
               "latestTime": 1790590808000,
-              "latestTimeLong": 1790590808000,
-              "startTimeLong": 1790590801000
+              "startTimeLong": 1790590801000,
+              "latestTimeLong": 1790590808000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1790563358000,
               "latestTime": 1790590801000,
-              "latestTimeLong": 1790590801000,
-              "startTimeLong": 1790563358000
+              "startTimeLong": 1790563358000,
+              "latestTimeLong": 1790590801000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1790590808000,
               "latestTime": 1790753700000,
-              "latestTimeLong": 1790753700000,
-              "startTimeLong": 1790590808000
+              "startTimeLong": 1790590808000,
+              "latestTimeLong": 1790753700000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -254028,6 +254038,166 @@ const EMBEDDED_DATA = {
       }
     },
     {
+      "id": "2026091252783",
+      "title": "交通事故-交通事故致人伤",
+      "business": "履约业务-专送",
+      "source": "PACIFIC_UPGRAGE",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理完成",
+      "statusRaw": 5,
+      "occurTime": "2026-09-12 12:10:00",
+      "reportTime": "2026-09-12 14:28:17",
+      "updateTime": "2026-10-30 16:30:40",
+      "province": "河南省",
+      "city": "洛阳市",
+      "district": "涧西区",
+      "address": "黄河路与吉林路口北30米",
+      "summary": "2026年9月12日中午12点10分左右，骑手陆玉龙驾驶两轮车行驶到黄河路吉林路口北30米处，超车时与同向行驶的驾驶两轮电动车的对方碰撞，造成骑对方车辆受损的交通事故，交警判责骑手陆玉龙全责。",
+      "reporter": "吉新星",
+      "handler": "李彬",
+      "region": "华北大区--加盟",
+      "area": "加盟河南区域",
+      "station": "兴必达【洛阳】洛浦站",
+      "stationId": "",
+      "orgPath": "",
+      "franchisee": "",
+      "riderName": "陆玉龙",
+      "riderPhone": "182****7543",
+      "riderStation": "兴必达【洛阳】洛浦站",
+      "detail": {
+        "eventNo": "2026091252783",
+        "title": "交通事故-交通事故致人伤",
+        "source": "PACIFIC_UPGRAGE",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-09-12 12:10:00",
+        "reportTime": "2026-09-12 14:28:17",
+        "updateTime": "2026-10-12 09:06:45",
+        "endTime": "",
+        "province": "河南省",
+        "city": "洛阳市",
+        "district": "涧西区",
+        "address": "黄河路15号",
+        "course": "我方受伤人数、伤情、财损金额：受伤稍后就医\n其他方受伤人数、伤情、财损金额：受伤不严重\n三者/用户年龄：30\n骑手信息：陆玉龙182****7543【加盟】【配送员】兴必达【洛阳】洛浦站，兴必达（江苏）网络科技有限公司\n涉及关键等级判断：交通事故致人伤\n是否涉及订单问题需要处理：否\n需要协助处理的订单数量：无\n问题描述：骑手反馈与三者发生事故，骑手全责，受伤稍后就医，三者受伤无大碍，咨询后续处理\n进线人信息：骑手",
+        "region": "华北大区--加盟",
+        "area": "加盟河南区域",
+        "station": "兴必达【洛阳】洛浦站",
+        "stationId": "",
+        "stationType": "",
+        "orgPath": "",
+        "franchisee": "",
+        "cityMerchant": "",
+        "riders": [
+          {
+            "entryDate": "2026-06-27",
+            "riderPhone": {
+              "data": null,
+              "token": "i1k*VyBE@BU7543",
+              "dataMask": "182****7543",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "加盟",
+            "userEmergencyContactName": "陆洪波",
+            "orgEmergencyPhone": {
+              "data": null,
+              "token": "i1*VmLXJcui7730",
+              "dataMask": "157****7730",
+              "unknown": null
+            },
+            "riderName": "陆玉龙",
+            "userEmergencyContactMobile": {
+              "data": null,
+              "token": "j5LCt-93z!19346",
+              "dataMask": "150****9346",
+              "unknown": null
+            },
+            "genderDesc": "男",
+            "riderId": 74649186,
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXrk2qFSD94790",
+              "dataMask": "41032**********314",
+              "unknown": null
+            },
+            "stationName": "兴必达【洛阳】洛浦站",
+            "age": "24",
+            "stationId": "2026064"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "0078fe3c": 2,
+          "001026d9": "无",
+          "1e970e68": 1,
+          "4263fd60": 2
+        },
+        "eventTypeInfo": {
+          "9b6e6c2a": "无",
+          "14": 2,
+          "15": 1,
+          "be5cd84a": 1,
+          "0224cd2b": [
+            3
+          ],
+          "5e889f75": 4,
+          "9": [
+            1
+          ],
+          "60": [
+            1
+          ]
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "106701366356",
+        "taskKey": "jspzsks_wait_follow",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "jixinxing",
+        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1789194497000,
+              "latestTime": 1789194497000,
+              "latestTimeLong": 1789194497000,
+              "startTimeLong": 1789194497000
+            },
+            {
+              "taskKey": "jspzsks_wait_end_response",
+              "startTime": 1789194816000,
+              "latestTime": 1789196067000,
+              "latestTimeLong": 1789196067000,
+              "startTimeLong": 1789194816000
+            },
+            {
+              "taskKey": "jspzsks_wait_response",
+              "startTime": 1789194497000,
+              "latestTime": 1789194816000,
+              "latestTimeLong": 1789194816000,
+              "startTimeLong": 1789194497000
+            },
+            {
+              "taskKey": "jspzsks_wait_follow",
+              "startTime": 1789196067000,
+              "latestTime": 1789196067000,
+              "latestTimeLong": 1789196067000,
+              "startTimeLong": 1789196067000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTime": 1793063205000,
+          "delayTimeLong": 1793063205000
+        },
+        "related": null
+      }
+    },
+    {
       "id": "2026091252117",
       "title": "交通事故-交通事故致人伤",
       "business": "履约业务-专送",
@@ -260010,29 +260180,29 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1788842778000,
               "latestTime": 1788842778000,
-              "latestTimeLong": 1788842778000,
-              "startTimeLong": 1788842778000
+              "startTimeLong": 1788842778000,
+              "latestTimeLong": 1788842778000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1788842797000,
               "latestTime": 1788925763000,
-              "latestTimeLong": 1788925763000,
-              "startTimeLong": 1788842797000
+              "startTimeLong": 1788842797000,
+              "latestTimeLong": 1788925763000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1788842778000,
               "latestTime": 1788842797000,
-              "latestTimeLong": 1788842797000,
-              "startTimeLong": 1788842778000
+              "startTimeLong": 1788842778000,
+              "latestTimeLong": 1788842797000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1788925763000,
               "latestTime": 1790157283000,
-              "latestTimeLong": 1790157283000,
-              "startTimeLong": 1788925763000
+              "startTimeLong": 1788925763000,
+              "latestTimeLong": 1790157283000
             }
           ],
           "processType": "PEISONG_ONLINE",
@@ -267457,34 +267627,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1788579823000,
               "latestTime": 1788579823000,
-              "latestTimeLong": 1788579823000,
-              "startTimeLong": 1788579823000
+              "startTimeLong": 1788579823000,
+              "latestTimeLong": 1788579823000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1788597056000,
               "latestTime": 1788597063000,
-              "latestTimeLong": 1788597063000,
-              "startTimeLong": 1788597056000
+              "startTimeLong": 1788597056000,
+              "latestTimeLong": 1788597063000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1788579823000,
               "latestTime": 1788597056000,
-              "latestTimeLong": 1788597056000,
-              "startTimeLong": 1788579823000
+              "startTimeLong": 1788579823000,
+              "latestTimeLong": 1788597056000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1788597063000,
               "latestTime": 1788598638000,
-              "latestTimeLong": 1788598638000,
-              "startTimeLong": 1788597063000
+              "startTimeLong": 1788597063000,
+              "latestTimeLong": 1788598638000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -314834,8 +315004,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -323188,8 +323358,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -378451,29 +378621,29 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1784017927000,
               "latestTime": 1784017927000,
-              "latestTimeLong": 1784017927000,
-              "startTimeLong": 1784017927000
+              "startTimeLong": 1784017927000,
+              "latestTimeLong": 1784017927000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1784017966000,
               "latestTime": 1784017977000,
-              "latestTimeLong": 1784017977000,
-              "startTimeLong": 1784017966000
+              "startTimeLong": 1784017966000,
+              "latestTimeLong": 1784017977000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1784017927000,
               "latestTime": 1784017966000,
-              "latestTimeLong": 1784017966000,
-              "startTimeLong": 1784017927000
+              "startTimeLong": 1784017927000,
+              "latestTimeLong": 1784017966000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1784017977000,
               "latestTime": 1788162054000,
-              "latestTimeLong": 1788162054000,
-              "startTimeLong": 1784017977000
+              "startTimeLong": 1784017977000,
+              "latestTimeLong": 1788162054000
             }
           ],
           "processType": "PEISONG_ONLINE",
@@ -385363,34 +385533,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1783820005000,
               "latestTime": 1783820005000,
-              "latestTimeLong": 1783820005000,
-              "startTimeLong": 1783820005000
+              "startTimeLong": 1783820005000,
+              "latestTimeLong": 1783820005000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1783820136000,
               "latestTime": 1783820145000,
-              "latestTimeLong": 1783820145000,
-              "startTimeLong": 1783820136000
+              "startTimeLong": 1783820136000,
+              "latestTimeLong": 1783820145000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1783820005000,
               "latestTime": 1783820136000,
-              "latestTimeLong": 1783820136000,
-              "startTimeLong": 1783820005000
+              "startTimeLong": 1783820005000,
+              "latestTimeLong": 1783820136000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1783820145000,
               "latestTime": 1787888278000,
-              "latestTimeLong": 1787888278000,
-              "startTimeLong": 1783820145000
+              "startTimeLong": 1783820145000,
+              "latestTimeLong": 1787888278000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -440319,34 +440489,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1780916851000,
               "latestTime": 1780916851000,
-              "startTimeLong": 1780916851000,
-              "latestTimeLong": 1780916851000
+              "latestTimeLong": 1780916851000,
+              "startTimeLong": 1780916851000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1780920033000,
               "latestTime": 1780920041000,
-              "startTimeLong": 1780920033000,
-              "latestTimeLong": 1780920041000
+              "latestTimeLong": 1780920041000,
+              "startTimeLong": 1780920033000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1780916851000,
               "latestTime": 1780920033000,
-              "startTimeLong": 1780916851000,
-              "latestTimeLong": 1780920033000
+              "latestTimeLong": 1780920033000,
+              "startTimeLong": 1780916851000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1780920041000,
               "latestTime": 1784106094000,
-              "startTimeLong": 1780920041000,
-              "latestTimeLong": 1784106094000
+              "latestTimeLong": 1784106094000,
+              "startTimeLong": 1780920041000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -448424,34 +448594,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1780414526000,
               "latestTime": 1780414526000,
-              "startTimeLong": 1780414526000,
-              "latestTimeLong": 1780414526000
+              "latestTimeLong": 1780414526000,
+              "startTimeLong": 1780414526000
             },
             {
               "taskKey": "zs_wait_follow",
               "startTime": 1780414561000,
               "latestTime": 1780414632000,
-              "startTimeLong": 1780414561000,
-              "latestTimeLong": 1780414632000
+              "latestTimeLong": 1780414632000,
+              "startTimeLong": 1780414561000
             },
             {
               "taskKey": "zs_wait_end_response",
               "startTime": 1780414534000,
               "latestTime": 1780414561000,
-              "startTimeLong": 1780414534000,
-              "latestTimeLong": 1780414561000
+              "latestTimeLong": 1780414561000,
+              "startTimeLong": 1780414534000
             },
             {
               "taskKey": "zs_wait_response",
               "startTime": 1780414526000,
               "latestTime": 1780414534000,
-              "startTimeLong": 1780414526000,
-              "latestTimeLong": 1780414534000
+              "latestTimeLong": 1780414534000,
+              "startTimeLong": 1780414526000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -452583,34 +452753,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1780284798000,
               "latestTime": 1780284798000,
-              "latestTimeLong": 1780284798000,
-              "startTimeLong": 1780284798000
+              "startTimeLong": 1780284798000,
+              "latestTimeLong": 1780284798000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1780285816000,
               "latestTime": 1780285823000,
-              "latestTimeLong": 1780285823000,
-              "startTimeLong": 1780285816000
+              "startTimeLong": 1780285816000,
+              "latestTimeLong": 1780285823000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1780284798000,
               "latestTime": 1780285816000,
-              "latestTimeLong": 1780285816000,
-              "startTimeLong": 1780284798000
+              "startTimeLong": 1780284798000,
+              "latestTimeLong": 1780285816000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1780285823000,
               "latestTime": 1782094045000,
-              "latestTimeLong": 1782094045000,
-              "startTimeLong": 1780285823000
+              "startTimeLong": 1780285823000,
+              "latestTimeLong": 1782094045000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -512842,8 +513012,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -655120,34 +655290,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1766387815000,
               "latestTime": 1766387815000,
-              "latestTimeLong": 1766387815000,
-              "startTimeLong": 1766387815000
+              "startTimeLong": 1766387815000,
+              "latestTimeLong": 1766387815000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1766393086000,
               "latestTime": 1766393094000,
-              "latestTimeLong": 1766393094000,
-              "startTimeLong": 1766393086000
+              "startTimeLong": 1766393086000,
+              "latestTimeLong": 1766393094000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1766387815000,
               "latestTime": 1766393086000,
-              "latestTimeLong": 1766393086000,
-              "startTimeLong": 1766387815000
+              "startTimeLong": 1766387815000,
+              "latestTimeLong": 1766393086000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1766393094000,
               "latestTime": 1770452971000,
-              "latestTimeLong": 1770452971000,
-              "startTimeLong": 1766393094000
+              "startTimeLong": 1766393094000,
+              "latestTimeLong": 1770452971000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }

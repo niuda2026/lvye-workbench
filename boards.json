@@ -43,13 +43,13 @@
       ]
     },
     {
-      "title": "履约考核",
-      "short": "考核",
+      "title": "履约考核标准",
+      "short": "考核标准",
       "items": [
         {
           "key": "checkup_read",
-          "label": "履约考核解读",
-          "file": "履约考核/履约考核解读.html"
+          "label": "站点建设标准",
+          "file": "履约考核/履约考核标准.html"
         }
       ]
     },
