@@ -5,6 +5,57 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>兴达履约安全工作台</title>
 <script>
+/* ===== 相对路径兜底（2026-10-31，必须放在所有脚本/资源之前）=====
+   WorkBuddy 内置预览 / 某些 App 预览把本页挂在 app.asar/renderer/ 之下，
+   data_center.js、brand_logo.png、登录页 等相对引用会被解析到那个目录 → 全部 404 → 白屏。
+   判定：file: 协议 且 当前文档不在「兴达数据库」目录下 → 用 document.write 把 <base>
+   直接写进解析流（写成元素再 appendChild 会被浏览器的预加载扫描抢跑，不生效）。
+   正常双击打开 / 公网 http 访问都不受影响（条件不成立，不加 base）。 */
+(function(){
+  try{
+    if (location.protocol !== 'file:') return;
+    if (decodeURI(location.href).indexOf('/兴达数据库/') >= 0) return;
+    document.write('<base href="file:///D:/兴达数据库/">');
+  }catch(e){}
+})();
+</script>
+<script>
+/* ===== 白屏自诊断（2026-10-31）：脚本报错/资源失联时直接显示红条，不再无声白屏 ===== */
+(function(){
+  function paint(txt){
+    try{
+      if (!document.body){
+        window.addEventListener('DOMContentLoaded', function(){ paint(txt); }, { once: true });
+        return;
+      }
+      if (document.getElementById('_xd_errbar')) return;
+      var d = document.createElement('div');
+      d.id = '_xd_errbar';
+      d.style.cssText = 'position:fixed;left:0;right:0;top:0;z-index:2147483647;background:#d93025;color:#fff;font:13px/1.75 "Microsoft YaHei",sans-serif;padding:12px 16px;box-shadow:0 2px 10px rgba(0,0,0,.3)';
+      d.innerHTML = '<b>页面加载异常 —— 请把这段截图发给管理员</b><br><span style="opacity:.93;word-break:break-all">'
+        + String(txt).replace(/&/g,'&amp;').replace(/</g,'&lt;').slice(0, 600) + '</span>';
+      document.body.appendChild(d);
+    }catch(e){}
+  }
+  window.addEventListener('error', function(e){
+    if (e && e.target && e.target !== window && e.target.tagName && (e.target.src || e.target.href)){
+      paint('资源加载失败：' + (e.target.src || e.target.href));
+      return;
+    }
+    paint((e.message || 'unknown error') + '  @ ' + (e.filename || '?') + ':' + (e.lineno || '?'));
+  }, true);
+  window.addEventListener('unhandledrejection', function(e){
+    paint('Promise 异常：' + ((e.reason && (e.reason.message || e.reason)) || 'unknown'));
+  });
+  setTimeout(function(){
+    try{
+      var m = document.getElementById('menuContainer');
+      if (m && m.children.length > 0) return;
+      paint('已等待 ' + Math.round(performance.now() / 1000) + ' 秒仍未渲染出左侧菜单。'
+        + '请先按 Ctrl+Shift+R 强制刷新；仍无效则关闭本标签页重新打开；还不行请结束所有 Microsoft Edge 进程后重开。');
+    }catch(e){}
+  }, 5000);
+})();
 /* ===== 访问控制：未登录自动跳转登录页（2026-09-05 安全加固） ===== */
 function xdAuthGetUser(){
   try{
@@ -179,7 +230,18 @@ body{display:flex;flex-direction:column}
   .overlay.show{display:block}
 }
 </style>
-<script src="data_center.js"></script>
+<script>
+/* 同上：data_center.js 也用 document.write 输出，否则浏览器的预加载扫描器会在 <base>
+   生效前就按原目录把它取走，内置预览下必然 404。
+   注：绝对路径拆成两段拼接，避免被 sync_workbench.py 的公网「绝对路径相对化」正则误伤。 */
+(function(){
+  try{
+    var ROOT = 'file:///D:/' + '兴达数据库/';
+    var normal = !(location.protocol === 'file:' && decodeURI(location.href).indexOf('/兴达数据库/') < 0);
+    document.write('<script src="' + (normal ? 'data_center.js' : ROOT + 'data_center.js') + '"><\/script>');
+  }catch(e){}
+})();
+</script>
 </head>
 <body>
 
