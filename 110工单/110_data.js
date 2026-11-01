@@ -1,11 +1,11 @@
 const EMBEDDED_DATA = {
-  "lastUpdated": "2026-11-01 16:12:55",
+  "lastUpdated": "2026-11-01 17:30:53",
   "sourceUrl": "https://fxgl365.com/110/w/desktop/process/list?activeTab=CURRENT",
   "module": "事件处理",
   "kpi": {
     "total": 4396,
-    "pending": 10,
-    "processing": 1417,
+    "pending": 9,
+    "processing": 1418,
     "done": 2969,
     "todayNew": 4,
     "cityCount": 34,
@@ -19,11 +19,11 @@ const EMBEDDED_DATA = {
     },
     {
       "name": "处理中",
-      "value": 1417
+      "value": 1418
     },
     {
       "name": "待处理",
-      "value": 10
+      "value": 9
     }
   ],
   "cityStats": [
@@ -95,8 +95,8 @@ const EMBEDDED_DATA = {
       "name": "洛阳市",
       "full": "洛阳市",
       "count": 193,
-      "pending": 1,
-      "processing": 81,
+      "pending": 0,
+      "processing": 82,
       "done": 111
     },
     {
@@ -572,8 +572,8 @@ const EMBEDDED_DATA = {
       "city": "洛阳市",
       "type": "交通事故",
       "level": "蓝色",
-      "status": "待处理",
-      "statusRaw": 2,
+      "status": "处理中",
+      "statusRaw": 3,
       "reportTime": "2026-10-31 17:30:19",
       "source": "风险线索升级",
       "region": "华北大区--加盟",
@@ -1476,172 +1476,6 @@ const EMBEDDED_DATA = {
           "processType": "PEISONG_ONLINE",
           "delayTime": 1792850514000,
           "delayTimeLong": 1792850514000
-        },
-        "related": null
-      }
-    },
-    {
-      "id": "2026103196869",
-      "title": "",
-      "business": "履约业务-专送",
-      "source": "风险线索升级",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "待处理",
-      "statusRaw": 2,
-      "occurTime": "2026-10-31 12:33:00",
-      "reportTime": "2026-10-31 17:30:19",
-      "updateTime": "2026-10-31 17:30:19",
-      "province": "河南省",
-      "city": "洛阳市",
-      "district": "洛龙区",
-      "address": "河南省洛阳市洛龙区河南省洛阳市洛龙区翠云路街道开元大道241号",
-      "summary": "骑手驾驶电动自行车从左侧超车时，与实线变道的出租车发生碰撞",
-      "reporter": "李彬",
-      "handler": "郭邦河，许洁茹，李彬",
-      "region": "华北大区--加盟",
-      "area": "加盟河南区域",
-      "station": "兴必达【洛阳】太康路站",
-      "stationId": 2090192,
-      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】太康路站",
-      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-      "riderName": "李锦龙",
-      "riderPhone": "184****9099",
-      "riderStation": "兴必达【洛阳】太康路站",
-      "detail": {
-        "eventNo": "2026103196869",
-        "title": "",
-        "source": "风险线索升级",
-        "type": "交通事故",
-        "level": "蓝色",
-        "statusRaw": 2,
-        "status": "待处理",
-        "occurTime": "2026-10-31 12:33:00",
-        "reportTime": "2026-10-31 17:30:19",
-        "updateTime": "2026-10-31 17:30:19",
-        "endTime": "",
-        "province": "河南省",
-        "city": "洛阳市",
-        "district": "洛龙区",
-        "address": "河南省洛阳市洛龙区河南省洛阳市洛龙区翠云路街道开元大道241号",
-        "course": "骑手驾驶电动自行车从左侧超车时，与实线变道的出租车发生碰撞",
-        "region": "华北大区--加盟",
-        "area": "加盟河南区域",
-        "station": "兴必达【洛阳】太康路站",
-        "stationId": 2090192,
-        "stationType": "加盟",
-        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】太康路站",
-        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
-        "riders": [
-          {
-            "entryDate": "2026-08-22",
-            "riderPhone": {
-              "data": null,
-              "token": "iVrJb~mWOX59099",
-              "dataMask": "184****9099",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "加盟",
-            "userEmergencyContactName": "李彦惠",
-            "orgEmergencyPhone": {
-              "data": null,
-              "token": "jx3Vf0N9zw-1109",
-              "dataMask": "139****1109",
-              "unknown": null
-            },
-            "riderName": "李锦龙",
-            "orgEmergencyContact": "",
-            "userEmergencyContactMobile": {
-              "data": null,
-              "token": "j0YX@~oT~Lr6972",
-              "dataMask": "183****6972",
-              "unknown": null
-            },
-            "genderDesc": "男",
-            "riderId": 77378568,
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXErjC33D60907",
-              "dataMask": "41038**********739",
-              "unknown": null
-            },
-            "stationName": "兴必达【洛阳】太康路站",
-            "age": "25",
-            "stationId": "2090192"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "e60e2199": 2,
-          "6bc2fb6f": 1,
-          "6f72eaaf": 2,
-          "e6e645c9": 2,
-          "d1078f9f": 2,
-          "2967240b": "PLD920264403Q104H46258",
-          "21": 1,
-          "74d46e3f": 1
-        },
-        "eventTypeInfo": {
-          "33": [
-            6
-          ],
-          "14": 2,
-          "15": 1,
-          "7a16f69a": 1,
-          "81a8da9f": 1,
-          "19": 3,
-          "be5cd84a": 1,
-          "328d1fe5": 1,
-          "874aad49": 2,
-          "2e9772a9": 2,
-          "5452e09e": 1,
-          "ff537655": 2,
-          "0224cd2b": [
-            3
-          ],
-          "9": [
-            1,
-            3
-          ],
-          "93": 1,
-          "94": "交警",
-          "10": 1,
-          "32": [
-            2,
-            3
-          ],
-          "719caaaf": 8
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "107717830708",
-        "taskKey": "zs_wait_response",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1793439019000,
-              "latestTime": 1793439019000,
-              "startTimeLong": 1793439019000,
-              "latestTimeLong": 1793439019000
-            },
-            {
-              "taskKey": "zs_wait_response",
-              "startTime": 1793439019000,
-              "latestTime": 1793439019000,
-              "startTimeLong": 1793439019000,
-              "latestTimeLong": 1793439019000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTime": 1793482219000,
-          "delayTimeLong": 1793482219000
         },
         "related": null
       }
@@ -182803,8 +182637,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1794314251000,
-          "delayTime": 1794314251000
+          "delayTime": 1794314251000,
+          "delayTimeLong": 1794314251000
         },
         "related": null
       }
@@ -191467,6 +191301,172 @@ const EMBEDDED_DATA = {
           "processType": "PEISONG_ONLINE",
           "delayTime": 1794812447000,
           "delayTimeLong": 1794812447000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026103196869",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "风险线索升级",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "occurTime": "2026-10-31 12:33:00",
+      "reportTime": "2026-10-31 17:30:19",
+      "updateTime": "2026-11-01 17:05:10",
+      "province": "河南省",
+      "city": "洛阳市",
+      "district": "洛龙区",
+      "address": "河南省洛阳市洛龙区河南省洛阳市洛龙区翠云路街道开元大道241号",
+      "summary": "骑手驾驶电动自行车从左侧超车时，与实线变道的出租车发生碰撞",
+      "reporter": "李彬",
+      "handler": "李彬",
+      "region": "华北大区--加盟",
+      "area": "加盟河南区域",
+      "station": "兴必达【洛阳】太康路站",
+      "stationId": 2090192,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】太康路站",
+      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+      "riderName": "李锦龙",
+      "riderPhone": "184****9099",
+      "riderStation": "兴必达【洛阳】太康路站",
+      "detail": {
+        "eventNo": "2026103196869",
+        "title": "",
+        "source": "风险线索升级",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 2,
+        "status": "待处理",
+        "occurTime": "2026-10-31 12:33:00",
+        "reportTime": "2026-10-31 17:30:19",
+        "updateTime": "2026-10-31 17:30:19",
+        "endTime": "",
+        "province": "河南省",
+        "city": "洛阳市",
+        "district": "洛龙区",
+        "address": "河南省洛阳市洛龙区河南省洛阳市洛龙区翠云路街道开元大道241号",
+        "course": "骑手驾驶电动自行车从左侧超车时，与实线变道的出租车发生碰撞",
+        "region": "华北大区--加盟",
+        "area": "加盟河南区域",
+        "station": "兴必达【洛阳】太康路站",
+        "stationId": 2090192,
+        "stationType": "加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】太康路站",
+        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "riders": [
+          {
+            "entryDate": "2026-08-22",
+            "riderPhone": {
+              "data": null,
+              "token": "iVrJb~mWOX59099",
+              "dataMask": "184****9099",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "加盟",
+            "userEmergencyContactName": "李彦惠",
+            "orgEmergencyPhone": {
+              "data": null,
+              "token": "jx3Vf0N9zw-1109",
+              "dataMask": "139****1109",
+              "unknown": null
+            },
+            "riderName": "李锦龙",
+            "orgEmergencyContact": "",
+            "userEmergencyContactMobile": {
+              "data": null,
+              "token": "j0YX@~oT~Lr6972",
+              "dataMask": "183****6972",
+              "unknown": null
+            },
+            "genderDesc": "男",
+            "riderId": 77378568,
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXErjC33D60907",
+              "dataMask": "41038**********739",
+              "unknown": null
+            },
+            "stationName": "兴必达【洛阳】太康路站",
+            "age": "25",
+            "stationId": "2090192"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "e60e2199": 2,
+          "6bc2fb6f": 1,
+          "6f72eaaf": 2,
+          "e6e645c9": 2,
+          "d1078f9f": 2,
+          "2967240b": "PLD920264403Q104H46258",
+          "21": 1,
+          "74d46e3f": 1
+        },
+        "eventTypeInfo": {
+          "33": [
+            6
+          ],
+          "14": 2,
+          "15": 1,
+          "7a16f69a": 1,
+          "81a8da9f": 1,
+          "19": 3,
+          "be5cd84a": 1,
+          "328d1fe5": 1,
+          "874aad49": 2,
+          "2e9772a9": 2,
+          "5452e09e": 1,
+          "ff537655": 2,
+          "0224cd2b": [
+            3
+          ],
+          "9": [
+            1,
+            3
+          ],
+          "93": 1,
+          "94": "交警",
+          "10": 1,
+          "32": [
+            2,
+            3
+          ],
+          "719caaaf": 8
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "107717830708",
+        "taskKey": "zs_wait_response",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1793439019000,
+              "latestTime": 1793439019000,
+              "startTimeLong": 1793439019000,
+              "latestTimeLong": 1793439019000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1793439019000,
+              "latestTime": 1793439019000,
+              "startTimeLong": 1793439019000,
+              "latestTimeLong": 1793439019000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTime": 1793482219000,
+          "delayTimeLong": 1793482219000
         },
         "related": null
       }
@@ -233634,8 +233634,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -250181,8 +250181,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -272270,8 +272270,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -319621,8 +319621,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -327975,8 +327975,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -355093,8 +355093,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -457396,8 +457396,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -517595,8 +517595,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -560933,8 +560933,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
