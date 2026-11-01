@@ -1,5 +1,5 @@
 /* 早会处罚统计 · M盘Excel口径（覆盖 data.js 的 MORNING_TAB_DATA）
- * 由 morning_review/_build_meeting_m.py 生成 2026-11-02 06:49:42
+ * 由 morning_review/_build_meeting_m.py 生成 2026-11-02 06:52:09
  * 源: _报备和日常早会驳回清单_2026-10-26-2026-11-01(早会时间)_1793573362136.xlsx · 驳回数据 2026-10-26 ~ 2026-10-31
  * 口径: 签到100/仪容仪表100/其余小项50/报备未通过500（与 _build_penalty_m.py 一致）;
  *       未召开/虚假 沿用 data.js 原值（Excel 无此类数据）
@@ -3192,4 +3192,4 @@ var MORNING_TAB_DATA = {
     "report_fine": 0
   }
 };
-var MORNING_TAB_M_META = {"source": "_报备和日常早会驳回清单_2026-10-26-2026-11-01(早会时间)_1793573362136.xlsx", "from": "2026-10-26", "to": "2026-10-31", "generated_at": "2026-11-02 06:49:42"};
+var MORNING_TAB_M_META = {"source": "_报备和日常早会驳回清单_2026-10-26-2026-11-01(早会时间)_1793573362136.xlsx", "from": "2026-10-26", "to": "2026-10-31", "generated_at": "2026-11-02 06:52:09"};
