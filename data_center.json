@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-03 06:41:02",
+  "updated_at": "2026-11-03 06:41:06",
   "action_summary": {
     "total": 23,
     "ok": 17,
@@ -19,11 +19,11 @@
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-11-03 06:37:13",
-        "all_synced": false,
-        "synced_count": 12,
+        "data_mtime": "2026-11-03 06:41:02",
+        "all_synced": true,
+        "synced_count": 13,
         "missing_count": 0,
-        "unsynced_count": 1,
+        "unsynced_count": 0,
         "sources": [
           {
             "type": "站点-戴盔",
@@ -101,7 +101,7 @@
             "type": "未剔除恶劣天气(单量)",
             "latest": "未剔除恶劣天气_4月15日起数据可用，5月1日起恶劣天气剔除可用_20261102-20261102(天)_1793659227724.xlsx",
             "mtime": "2026-11-03 06:40:35",
-            "synced": false
+            "synced": true
           }
         ],
         "actions": [
@@ -109,7 +109,7 @@
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-11-03 06:41:02",
+            "mtime": "2026-11-03 06:41:05",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -126,7 +126,7 @@
           "total": 1,
           "all_ok": true
         },
-        "all_healthy": false
+        "all_healthy": true
       },
       "boards": [
         {
@@ -570,7 +570,7 @@
           "在职骑手详情\\在职骑手详情.html",
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-11-03 06:37:13",
+        "data_mtime": "2026-11-03 06:41:02",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -643,7 +643,7 @@
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-11-03 06:38:59",
+        "data_mtime": "2026-11-03 06:41:04",
         "all_synced": true,
         "synced_count": 4,
         "missing_count": 0,
@@ -652,7 +652,7 @@
           {
             "type": "BI赔付率快照",
             "latest": "latest.json",
-            "mtime": "2026-11-02 06:49:04",
+            "mtime": "2026-11-03 06:41:04",
             "synced": true
           },
           {
@@ -664,7 +664,7 @@
           {
             "type": "V3内联数据",
             "latest": "v3_data.js",
-            "mtime": "2026-11-03 06:38:59",
+            "mtime": "2026-11-03 06:41:03",
             "synced": true
           },
           {
@@ -679,9 +679,9 @@
             "label": "BI赔付率快照",
             "path": "骑手保障补贴\\bi_data\\latest.json",
             "latest": "latest.json",
-            "mtime": "2026-11-02 06:49:04",
+            "mtime": "2026-11-03 06:41:04",
             "max_age_hours": 26,
-            "age_hours": 23.9,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -705,7 +705,7 @@
             "label": "V3内联数据",
             "path": "骑手保障补贴\\v3_data.js",
             "latest": "v3_data.js",
-            "mtime": "2026-11-03 06:38:59",
+            "mtime": "2026-11-03 06:41:03",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -894,7 +894,7 @@
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-11-03 06:39:54",
+        "data_mtime": "2026-11-03 06:41:05",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -905,7 +905,7 @@
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-11-03 06:39:54",
+            "mtime": "2026-11-03 06:41:05",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -962,7 +962,7 @@
           {
             "type": "交通安全data.js（归档源）",
             "latest": "data.js",
-            "mtime": "2026-11-03 06:37:13",
+            "mtime": "2026-11-03 06:41:02",
             "synced": true
           }
         ],
@@ -1088,7 +1088,7 @@
           {
             "type": "安全权益·工作台源(iframe实时)",
             "latest": "data.js",
-            "mtime": "2026-11-03 06:37:13",
+            "mtime": "2026-11-03 06:41:02",
             "synced": true
           },
           {
@@ -1112,13 +1112,13 @@
           {
             "type": "保险·V3内联数据(实时)",
             "latest": "v3_data.js",
-            "mtime": "2026-11-03 06:38:59",
+            "mtime": "2026-11-03 06:41:03",
             "synced": true
           },
           {
             "type": "保险·BI赔付率快照(实时)",
             "latest": "latest.json",
-            "mtime": "2026-11-02 06:49:04",
+            "mtime": "2026-11-03 06:41:04",
             "synced": true
           },
           {
@@ -1152,7 +1152,7 @@
             "label": "保险赔付补贴监控·V3数据",
             "path": "骑手保障补贴\\v3_data.js",
             "latest": "v3_data.js",
-            "mtime": "2026-11-03 06:38:59",
+            "mtime": "2026-11-03 06:41:03",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -1165,9 +1165,9 @@
             "label": "保险赔付补贴监控·BI快照",
             "path": "骑手保障补贴\\bi_data\\latest.json",
             "latest": "latest.json",
-            "mtime": "2026-11-02 06:49:04",
+            "mtime": "2026-11-03 06:41:04",
             "max_age_hours": 26,
-            "age_hours": 23.9,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
