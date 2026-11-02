@@ -1,7 +1,7 @@
 // ============================================================
 // 全国站点地图 - 点位数据
 // 数据来源：美团配送后台「标准站点信息」接口抓取（站点合作状态=合作）
-// 抓取时间：2026-11-02 | 站点总数：160（含骑手宿舍 102）
+// 抓取时间：2026-11-03 | 站点总数：161（含骑手宿舍 102）
 //
 // 字段说明：
 //   name     : 点位名称（美团标准站点名称）
@@ -14,6 +14,7 @@
 //   扩展字段  : stationId/franchisee/region/district/roomSize/rentProperty/rentStart/rentEnd/doorTypeName/mainOrg
 // ============================================================
 window.SITE_DATA = [
+  { name: "兴必达【信阳】平桥站", xian: "平桥区", city: "信阳", province: "河南省", address: "平安大道平安小区和谐家园1号楼门面", category: "meituan", level: "A", lng: 114.115608, lat: 32.108082, stationId: "2098564", franchisee: "兴必达（江苏）网络科技有限公司【信阳】", region: "加盟河南区域", district: "华北大区--加盟", roomSize: 82, rentProperty: "门面房（包含小区内）", rentStart: "2026-10-31", rentEnd: "2028-10-31", doorTypeName: "标准门头", mainOrg: "" },
   { name: "兴必达【天津】金光站", xian: "西青区", city: "天津", province: "天津市", address: "天津市西青区国兴佳园15号楼103", category: "meituan", level: "A", lng: 117.120227, lat: 39.044343, stationId: "2096775", franchisee: "【专区】兴必达（江苏）网络科技有限公司【天津】", region: "加盟津冀区域", district: "华北大区--加盟", roomSize: 92, rentProperty: "居民小区内（非门面房）", rentStart: "2026-09-01", rentEnd: "2029-08-31", doorTypeName: "无门头", mainOrg: "" },
   { name: "兴必达【秦皇岛】孟营二站", xian: "海港区", city: "秦皇岛", province: "河北省", address: "万和郡小区33栋1门103", category: "meituan", level: "A", lng: 119.528838, lat: 39.918032, stationId: "2096537", franchisee: "兴必达（江苏）网络科技有限公司【秦皇岛】", region: "加盟津冀区域", district: "华北大区--加盟", roomSize: 92, rentProperty: "门面房（包含小区内）", rentStart: "2026-08-29", rentEnd: "2027-08-28", doorTypeName: "标准门头", mainOrg: "" },
   { name: "兴必达【北京】苹果园站", xian: "石景山区", city: "北京", province: "北京市", address: "远洋春秋里A1103", category: "meituan", level: "A", lng: 116.185897, lat: 39.92899, stationId: "2096655", franchisee: "兴必达（江苏）网络科技有限公司【北京】", region: "加盟北京区域", district: "华北大区--加盟", roomSize: 70, rentProperty: "商务办公楼", rentStart: "2026-08-01", rentEnd: "2027-07-31", doorTypeName: "无门头", mainOrg: "" },
