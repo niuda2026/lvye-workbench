@@ -1,6 +1,6 @@
 /* 早会处罚统计 · M盘Excel口径（覆盖 data.js 的 MORNING_TAB_DATA）
- * 由 morning_review/_build_meeting_m.py 生成 2026-11-02 06:52:09
- * 源: _报备和日常早会驳回清单_2026-10-26-2026-11-01(早会时间)_1793573362136.xlsx · 驳回数据 2026-10-26 ~ 2026-10-31
+ * 由 morning_review/_build_meeting_m.py 生成 2026-11-03 06:45:42
+ * 源: _报备和日常早会驳回清单_2026-10-27-2026-11-02(早会时间)_1793659148805.xlsx · 驳回数据 2026-10-27 ~ 2026-10-31
  * 口径: 签到100/仪容仪表100/其余小项50/报备未通过500（与 _build_penalty_m.py 一致）;
  *       未召开/虚假 沿用 data.js 原值（Excel 无此类数据）
  */
@@ -117,15 +117,15 @@ var MORNING_TAB_DATA = {
     "region": "华东大区",
     "subr": "上海区域",
     "city": "上海",
-    "total_fine": 100,
+    "total_fine": 0,
     "not_held_count": 0,
     "not_held_fine": 0,
     "fake_count": 0,
     "fake_fine": 0,
     "daily_key_reject": 0,
     "daily_key_fine": 0,
-    "daily_app_reject": 1.0,
-    "daily_app_fine": 100.0,
+    "daily_app_reject": 0,
+    "daily_app_fine": 0,
     "daily_sign_reject": 0,
     "daily_sign_fine": 0,
     "report_reject": 0,
@@ -1463,24 +1463,6 @@ var MORNING_TAB_DATA = {
     "report_reject": 0,
     "report_fine": 0
   },
-  "兴必达【秦皇岛】东方明珠城二站": {
-    "region": "华北一区",
-    "subr": "津冀区域",
-    "city": "秦皇岛",
-    "total_fine": 0,
-    "not_held_count": 0,
-    "not_held_fine": 0,
-    "fake_count": 0,
-    "fake_fine": 0,
-    "daily_key_reject": 0,
-    "daily_key_fine": 0,
-    "daily_app_reject": 0,
-    "daily_app_fine": 0,
-    "daily_sign_reject": 0,
-    "daily_sign_fine": 0,
-    "report_reject": 0,
-    "report_fine": 0
-  },
   "兴必达【秦皇岛】东方明珠城站": {
     "region": "华北一区",
     "subr": "津冀区域",
@@ -2061,42 +2043,6 @@ var MORNING_TAB_DATA = {
     "region": "华北三区",
     "subr": "中西区域",
     "city": "运城",
-    "total_fine": 0,
-    "not_held_count": 0,
-    "not_held_fine": 0,
-    "fake_count": 0,
-    "fake_fine": 0,
-    "daily_key_reject": 0,
-    "daily_key_fine": 0,
-    "daily_app_reject": 0,
-    "daily_app_fine": 0,
-    "daily_sign_reject": 0,
-    "daily_sign_fine": 0,
-    "report_reject": 0,
-    "report_fine": 0
-  },
-  "兴必达【通辽】东城站": {
-    "region": "华北一区",
-    "subr": "黑吉区域",
-    "city": "通辽",
-    "total_fine": 0,
-    "not_held_count": 0,
-    "not_held_fine": 0,
-    "fake_count": 0,
-    "fake_fine": 0,
-    "daily_key_reject": 0,
-    "daily_key_fine": 0,
-    "daily_app_reject": 0,
-    "daily_app_fine": 0,
-    "daily_sign_reject": 0,
-    "daily_sign_fine": 0,
-    "report_reject": 0,
-    "report_fine": 0
-  },
-  "兴必达【通辽】西城站": {
-    "region": "华北一区",
-    "subr": "黑吉区域",
-    "city": "通辽",
     "total_fine": 0,
     "not_held_count": 0,
     "not_held_fine": 0,
@@ -3192,4 +3138,4 @@ var MORNING_TAB_DATA = {
     "report_fine": 0
   }
 };
-var MORNING_TAB_M_META = {"source": "_报备和日常早会驳回清单_2026-10-26-2026-11-01(早会时间)_1793573362136.xlsx", "from": "2026-10-26", "to": "2026-10-31", "generated_at": "2026-11-02 06:52:09"};
+var MORNING_TAB_M_META = {"source": "_报备和日常早会驳回清单_2026-10-27-2026-11-02(早会时间)_1793659148805.xlsx", "from": "2026-10-27", "to": "2026-10-31", "generated_at": "2026-11-03 06:45:42"};
