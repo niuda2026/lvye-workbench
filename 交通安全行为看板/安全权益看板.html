@@ -598,6 +598,9 @@ function mergeHistForRow(r,keys){
 // 需要补哪几天：DATES 最早一天所在自然周的周一 → 该日（不含）之间、属于上月的日期
 function histDatesForFirstWeek(){
   var H=histDataOf(); if(!H)return [];
+  // 仅在中国时区当前日为周一时补齐上周；普通工作日默认不展示归档历史。
+  var chinaToday=new Date(new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())+'T00:00:00');
+  if(chinaToday.getDay()!==1)return [];
   var have=(typeof DATES!=='undefined'&&DATES)?DATES.filter(function(d){return d&&d.length===5;}):[];
   if(!have.length)return [];
   var first=have.slice().sort()[0];
@@ -607,6 +610,9 @@ function histDatesForFirstWeek(){
   var fdt=new Date(fy,fm-1,fd);
   var dow=fdt.getDay();
   var mon=new Date(fy,fm-1,fd-(dow===0?6:dow-1));
+  var lastMon=new Date(chinaToday.getFullYear(),chinaToday.getMonth(),chinaToday.getDate()-7);
+  var lastSun=new Date(chinaToday.getFullYear(),chinaToday.getMonth(),chinaToday.getDate()-1);
+  if(mon.getTime()!==lastMon.getTime()||lastMon.getMonth()===lastSun.getMonth())return [];
   var out=[];
   Object.keys(H).forEach(function(mo){
     Object.keys(H[mo]||{}).forEach(function(fullDay){
@@ -721,8 +727,9 @@ function renderStation(tab){
   var egWeeks=[], egDays=[];
   if(isEquity){
     var ascAll=dispDates.slice().sort(function(a,b){return a>b?1:a<b?-1:0;});
-    egDays=((selDate&&selDate.length)?ascAll:ascAll.slice(-7)).slice(); // 日维度：日期由小到大（旧→新），默认最多7天
     egWeeks=buildMonthWeeks(ascAll); // 周维度：最新日期所属月的自然周，有数据才出现
+    var defaultDays=(histDatesForFirstWeek().length&&egWeeks.length)?egWeeks[0].days:ascAll.slice(-7);
+    egDays=((selDate&&selDate.length)?ascAll:defaultDays).slice(); // 默认跨月周一展示完整上周
   }
   var dCols=dispDates.map(function(d){return '<th colspan="2">'+d+'<br><small style="font-weight:400">'+m1.label+' / '+m2.label+'</small></th>';}).join('');
   var theadEl=document.getElementById(tab+'-thead');
