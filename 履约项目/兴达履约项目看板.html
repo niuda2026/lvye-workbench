@@ -5425,22 +5425,48 @@ var DEFAULT_TRAINING_PROJECTS = [
   {id:'7841', name:'骑手九月重点关注事项-2026'},
   {id:'7856', name:'2026年9月重点规则测评'}
 ];
+function getTrainingSourceProjects() {
+  var raw = window.TRAINING_DATA || {}, byId = Object.create(null), projects = [];
+  Object.keys(raw).forEach(function(site) {
+    var items = raw[site].projects || {};
+    Object.keys(items).forEach(function(id) {
+      if (!byId[id]) {
+        byId[id] = {id:String(id), name:items[id].name || String(id)};
+        projects.push(byId[id]);
+      }
+    });
+  });
+  // 清单仅决定列序，是否属于本期以站点源数据 projects 键为准。
+  var ordered = [], seen = Object.create(null);
+  (window.TRAINING_PROJECTS || []).concat(projects).forEach(function(p) {
+    var id = String(p.id);
+    if (byId[id] && !seen[id]) { ordered.push(byId[id]); seen[id] = true; }
+  });
+  return ordered;
+}
 function getTrainingProjects() {
+  var candidate;
   try {
     var s = localStorage.getItem('trainingProjects');
-    if (s) return JSON.parse(s);
+    if (s) {
+      var parsed = JSON.parse(s);
+      if (Array.isArray(parsed) && parsed.length) candidate = parsed;
+    }
   } catch(e){}
-  // 无浏览器配置时（如群推送 headless 截图）：优先用导出的配置文件
-  // （配置考试项目弹窗 → 导出配置文件，与本页 localStorage 完全一致），
-  // 其次用数据文件输出的项目清单（随每月数据自动更新），
-  // 最后才用 HTML 内写死的 DEFAULT（会随月份过期，仅最终兜底）。
-  if (window.TRAINING_PROJECTS_CONFIG && window.TRAINING_PROJECTS_CONFIG.length) {
-    return window.TRAINING_PROJECTS_CONFIG.map(function(p){ return {id:String(p.id), name:p.name}; });
-  }
-  if (window.TRAINING_PROJECTS && window.TRAINING_PROJECTS.length) {
-    return window.TRAINING_PROJECTS.map(function(p){ return {id:String(p.id), name:p.name}; });
-  }
-  return DEFAULT_TRAINING_PROJECTS.slice();
+  if (!candidate) candidate = window.TRAINING_PROJECTS_CONFIG;
+  if (!Array.isArray(candidate) || !candidate.length) candidate = window.TRAINING_PROJECTS;
+  if (!Array.isArray(candidate) || !candidate.length) candidate = DEFAULT_TRAINING_PROJECTS;
+  var source = getTrainingSourceProjects(), byId = Object.create(null), seen = Object.create(null), out = [];
+  source.forEach(function(p) { byId[p.id] = p; });
+  // 有源数据时校验配置、补齐本期项目；无证据时不按系统月份删除自定义配置。
+  candidate.concat(source).forEach(function(p) {
+    if (!p || p.id == null) return;
+    var id = String(p.id);
+    if (seen[id] || (source.length && !byId[id])) return;
+    seen[id] = true;
+    out.push(byId[id] || {id:id, name:p.name});
+  });
+  return out;
 }
 function saveTrainingProjects(cfg) {
   localStorage.setItem('trainingProjects', JSON.stringify(cfg));
