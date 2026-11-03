@@ -5444,13 +5444,32 @@ function getTrainingSourceProjects() {
   });
   return ordered;
 }
+function trainingMonthKey(d) {
+  d = d || new Date();
+  return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2);
+}
 function getTrainingProjects() {
-  var candidate;
+  var candidate, fromLocal = false;
   try {
     var s = localStorage.getItem('trainingProjects');
     if (s) {
       var parsed = JSON.parse(s);
-      if (Array.isArray(parsed) && parsed.length) candidate = parsed;
+      if (Array.isArray(parsed) && parsed.length) {
+        var mk = localStorage.getItem('trainingProjectsMonth');
+        if (!mk) {
+          // 老版本保存的配置没有月份标记：视为本月并补写标记，
+          // 避免升级后把用户刚配置的项目当成「上月残留」清掉。
+          localStorage.setItem('trainingProjectsMonth', trainingMonthKey());
+          mk = trainingMonthKey();
+        }
+        // 只认「本月」保存的配置：跨月残留会让上月项目一直挂在列上（2026-11-03 修复点，保留）
+        if (mk === trainingMonthKey()) {
+          candidate = parsed; fromLocal = true;
+        } else {
+          localStorage.removeItem('trainingProjects');
+          localStorage.removeItem('trainingProjectsMonth');
+        }
+      }
     }
   } catch(e){}
   if (!candidate) candidate = window.TRAINING_PROJECTS_CONFIG;
@@ -5458,18 +5477,28 @@ function getTrainingProjects() {
   if (!Array.isArray(candidate) || !candidate.length) candidate = DEFAULT_TRAINING_PROJECTS;
   var source = getTrainingSourceProjects(), byId = Object.create(null), seen = Object.create(null), out = [];
   source.forEach(function(p) { byId[p.id] = p; });
-  // 有源数据时校验配置、补齐本期项目；无证据时不按系统月份删除自定义配置。
-  candidate.concat(source).forEach(function(p) {
+  // 本月手动配置完全信任：源数据里暂时没有的项目也必须保留，
+  // 否则「配置考试项目 → 新增 → 保存」会被静默吞掉（2026-11-04 修复）。
+  // 非手动配置仍按源校验，避免历史项目残留。
+  candidate.forEach(function(p) {
     if (!p || p.id == null) return;
     var id = String(p.id);
-    if (seen[id] || (source.length && !byId[id])) return;
+    if (seen[id]) return;
+    if (!fromLocal && source.length && !byId[id]) return;
     seen[id] = true;
-    out.push(byId[id] || {id:id, name:p.name});
+    out.push(byId[id] || {id:id, name:p.name || id});
+  });
+  // 源里已有但配置未列的项目补到末尾（清单只决定列序，不决定是否展示）
+  source.forEach(function(p) {
+    if (seen[p.id]) return;
+    seen[p.id] = true;
+    out.push(p);
   });
   return out;
 }
 function saveTrainingProjects(cfg) {
   localStorage.setItem('trainingProjects', JSON.stringify(cfg));
+  localStorage.setItem('trainingProjectsMonth', trainingMonthKey());
 }
 // 导出当前项目配置为 training_projects_config.js（供群推送 headless 环境加载，
 // 使推送截图的项目列与本页 localStorage 配置一致）。下载后放到履约项目目录即可。
@@ -5736,28 +5765,44 @@ function addTrainingConfigRow() {
 function resetTrainingConfig() {
   if (confirm('确定恢复为默认考试项目吗？当前自定义内容将丢失。')) {
     localStorage.removeItem('trainingProjects');
+    localStorage.removeItem('trainingProjectsMonth');
     openTrainingConfigModal();
   }
 }
 function saveTrainingConfigFromModal() {
   var rows = document.getElementById('trainingConfigList').querySelectorAll('.tc-row');
-  var cfg = [];
+  var cfg = [], dup = Object.create(null), dups = [];
   for (var i=0;i<rows.length;i++) {
     var id = rows[i].querySelector('.tc-id').value.trim();
     var name = rows[i].querySelector('.tc-name').value.trim();
-    if (id && name) cfg.push({id:id, name:name});
+    if (!id || !name) continue;
+    if (dup[id]) { dups.push(id); continue; }
+    dup[id] = 1;
+    cfg.push({id:id, name:name});
   }
   if (cfg.length === 0) {
     alert('至少保留一个考试项目。');
     return;
   }
   saveTrainingProjects(cfg);
+  // 数据源里暂时没有的项目：仍然保存，但列会显示 0%，需要重新导出考培明细后才有数
+  var srcIds = Object.create(null);
+  getTrainingSourceProjects().forEach(function(p) { srcIds[p.id] = 1; });
+  var noSrc = cfg.filter(function(p) { return !srcIds[p.id]; });
   closeTrainingConfigModal();
   trRenderSite();
   if (trCurSub === 'rider') {
     trInit();
     trRenderRider(1);
   }
+  var msg = '已保存 ' + cfg.length + ' 个考试项目，看板已刷新。';
+  if (dups.length) msg += '\n\n已自动去掉重复的项目ID：' + dups.join('、');
+  if (noSrc.length) {
+    msg += '\n\n注意：以下项目在当前「考培-学习明细记录」里还没有数据，列会先显示 0%，'
+      + '重新导出最新明细并同步数据后才会出数：\n'
+      + noSrc.map(function(p) { return '  ' + p.id + ' ' + p.name; }).join('\n');
+  }
+  alert(msg);
 }
 
 // ─── Tab 8: 骑手维度执行 ─────────────────────────────────────
@@ -7009,7 +7054,7 @@ function closeCheckRulesModal() {
         <button class="btn btn-secondary" onclick="resetTrainingConfig()">恢复默认</button>
         <button class="btn btn-secondary" onclick="exportTrainingConfig()" title="把当前项目配置导出为 training_projects_config.js，放到履约项目目录后，群推送截图即与此处配置一致">⬇ 导出配置文件</button>
       </div>
-      <div class="tc-note">提示：左侧填项目ID，右侧填显示名称。保存后立即生效；如需恢复本月默认项目，点击"恢复默认"。改完配置后请点「导出配置文件」，把下载的 training_projects_config.js 放到履约项目目录（D:\兴达数据库\履约项目\），群推送截图的项目列才会与本页一致。</div>
+      <div class="tc-note">提示：左侧填项目ID，右侧填显示名称。保存后立即生效（本月内一直保留，新增的项目即使考培明细里暂时没有数据也会保留，列先显示 0%）；如需恢复本月默认项目，点击"恢复默认"。改完配置后请点「导出配置文件」，把下载的 training_projects_config.js 放到履约项目目录（D:\兴达数据库\履约项目\），群推送截图的项目列才会与本页一致。</div>
       <div class="tc-actions">
         <button class="btn-cancel" onclick="closeTrainingConfigModal()">取消</button>
         <button class="btn-save" onclick="saveTrainingConfigFromModal()">保存并刷新</button>
