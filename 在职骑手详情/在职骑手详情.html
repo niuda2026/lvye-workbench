@@ -103,7 +103,7 @@ tr:hover td{background:#f0f7ff}
 .empty{text-align:center;padding:40px;color:#90a4ae;font-size:14px}
 .note{padding:8px 16px;font-size:11px;color:#7890a8;background:#f0f7ff}
 .review-link{padding:3px 8px;border:1px solid #90caf9;background:#e3f2fd;color:#1565c0;border-radius:4px;cursor:pointer;font-size:11px}
-.review-link:hover{background:#bbdefb}.review-badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:11px;font-weight:600}.rv-none{background:#eceff1;color:#607d8b}.rv-pending{background:#fff3e0;color:#e65100}.rv-risk{background:#ffebee;color:#c62828}.rv-ok{background:#e8f5e9;color:#2e7d32}.rv-fail{background:#fce4ec;color:#ad1457}
+.review-link:hover{background:#bbdefb}.review-badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:11px;font-weight:600}.rv-none{background:#eceff1;color:#607d8b}.rv-pending{background:#fff3e0;color:#e65100}.rv-risk{background:#ffebee;color:#c62828}.rv-ok{background:#e8f5e9;color:#2e7d32}.rv-fail{background:#fce4ec;color:#ad1457}.rv-lowq{background:#eef2f7;color:#5b6b7c;border:1px dashed #b6c6d8}
 .drawer-mask{display:none;position:fixed;inset:0;background:rgba(13,43,72,.35);z-index:200}.drawer-mask.on{display:block}.drawer{position:absolute;right:0;top:0;height:100%;width:min(520px,94vw);background:#fff;box-shadow:-6px 0 24px rgba(13,71,161,.25);overflow:auto;padding:20px}.drawer h2{font-size:17px;color:#1565c0;margin-bottom:12px}.drawer-close{float:right;border:0;background:none;font-size:22px;color:#7890a8;cursor:pointer}.rv-grid{display:grid;grid-template-columns:110px 1fr;gap:8px 12px;font-size:13px;margin:12px 0}.rv-grid dt{color:#7890a8}.rv-grid dd{margin:0;word-break:break-all}.rv-box{background:#f5f9ff;border:1px solid #cce0f5;border-radius:6px;padding:10px;margin-top:12px;font-size:12px;line-height:1.7}.hc-thumb{height:42px;max-width:64px;object-fit:cover;border-radius:3px;border:1px solid #cce0f5;cursor:zoom-in;display:block}
 .photo-cell{white-space:nowrap}
 .rv-note{color:#7890a8;font-size:11px;margin-top:14px}
@@ -151,7 +151,7 @@ tr:hover td{background:#f0f7ff}
     <option value="365">入职 91-365 天</option>
     <option value="9999">入职 &gt;1 年</option>
   </select>
-  <select id="fReview" aria-label="核查状态"><option value="">全部核查状态</option><option value="uncollected">未采集</option><option value="pending">待核查</option><option value="risk">发现风险线索</option><option value="manual">待人工复核</option><option value="verified">已核验</option><option value="failed">采集失败</option></select>
+  <select id="fReview" aria-label="核查状态"><option value="">全部核查状态</option><option value="uncollected">未采集</option><option value="pending">待核查</option><option value="lowq">需人工看图</option><option value="manual">待人工复核</option><option value="risk">发现风险线索</option><option value="verified">已核验</option><option value="failed">采集失败</option></select>
   <input id="fQ" placeholder="搜索姓名 / 骑手ID / 站点">
   <label class="chk"><input type="checkbox" id="fPre" checked> 含预离职已通过</label>
   <button class="btn-exp" id="btnExp">导出督办名单</button>
@@ -238,8 +238,8 @@ function fmtCert(o,key){
   return (!o.h&&!o.e&&!o.x&&!o.g)?'<span class="cert-none" title="健康证源字段缺失，不能据此认定无证">数据缺失</span>':'<span class="cert-none">未提供</span>';
 }
 
-var RV_LABEL={uncollected:'未采集',pending:'待核查',risk:'发现风险线索',manual:'待人工复核',verified:'已核验',failed:'采集失败'};
-var RV_CLASS={uncollected:'rv-none',pending:'rv-pending',risk:'rv-risk',manual:'rv-pending',verified:'rv-ok',failed:'rv-fail'};
+var RV_LABEL={uncollected:'未采集',pending:'待核查',lowq:'需人工看图',risk:'发现风险线索',manual:'待人工复核',verified:'已核验',failed:'采集失败'};
+var RV_CLASS={uncollected:'rv-none',pending:'rv-pending',lowq:'rv-lowq',risk:'rv-risk',manual:'rv-pending',verified:'rv-ok',failed:'rv-fail'};
 function reviewOf(o){return Object.prototype.hasOwnProperty.call(REVIEW,String(o.r)) ? REVIEW[String(o.r)] || {} : {};}
 function reviewStatus(o){var v=reviewOf(o).status;return Object.prototype.hasOwnProperty.call(RV_LABEL,v)?v:'uncollected';}
 var reviewReturnFocus=null;
@@ -330,7 +330,7 @@ var view=[];
     '在职基数：排班明细 ' + esc(m.sched_date||'-') + '　|　证件状态：烽火台健康证监控 T-1 ' + esc(m.hc_date||'-')
     + '　|　生成 ' + esc(m.gen||'-') + '　|　剩余天数按今日 ' + TODAY + ' 实时计算';
   document.getElementById('noteLine').textContent =
-    '补充说明：标注“历史”的入职日期来自2026-09-16缓存，仅供参考，可能存在重新入职；源字段全空单独列为“源数据缺失”，不直接认定无证；合规率排除源数据缺失人员。口径说明：在职名单以当日排班明细为准（实名），在职骑手数=排班明细全量人数；证件状态由 T-1 健康证监控表按骑手ID左连接；大区按全看板统一口径（区域名称关键词→城市兜底）映射五大区：华北一区/华北二区/华北三区/华东大区/中南大区；表格默认按大区排序；如需剔除「预离职已通过」人员，取消勾选即可。';
+    '补充说明：源表缺行（烽火台健康证监控表未覆盖）的骑手，按既定规则用 2026-11-05 过夜采集的最新档案推算并标注——健康证到期=发证日期+1年、回执单到期=入职日期+20天、入职日期取档案原值，均带“推定/采集”标记，源表有值一律以源表为准、绝不覆盖；区域由同站点映射补齐。推算值用于督办排序，最终以证件原件与总部表为准。口径说明：在职名单以当日排班明细为准（实名）；证件状态由 T-1 健康证监控表按骑手ID左连接；大区按全看板统一口径映射五大区：华北一区/华北二区/华北三区/华东大区/中南大区；合规率 = (在职 − 不合规) / 在职；如需剔除「预离职已通过」人员，取消勾选即可。';
 })();
 
 /* 筛选下拉：多选 + 级联联动（2026-09-29） */
@@ -475,7 +475,18 @@ function sort(){
       t=(a.s||'').localeCompare(b.s||'','zh-Hans-CN'); if(t) return t*d;
       return (a.n||'').localeCompare(b.n||'','zh-Hans-CN')*d;
     }
-    var va=a[k],vb=b[k];
+    /* e/x/h 列已包含推定值，排序必须用生效值，否则推定行会被当成空值排在末尾 */
+    var va, vb;
+    if(k==='e'){ va=a.dE; vb=b.dE; }
+    else if(k==='x'){ va=a.dX; vb=b.dX; }
+    else if(k==='h'){ va=a.dH; vb=b.dH; }
+    else { va=a[k]; vb=b[k]; }
+    if(k==='e'||k==='x'||k==='h'){
+      /* 没有该证件的（不适用）不参与日期排序，永远沉到最后 */
+      var ea=!va, eb=!vb;
+      if(ea!==eb) return ea?1:-1;
+      return String(va).localeCompare(String(vb))*d;
+    }
     if(k==='hd2'||k==='rd'||k==='hd'||k==='r'){
       var na=(va===null||va==='')?-999999:Number(va), nb=(vb===null||vb==='')?-999999:Number(vb);
       return (na-nb)*d;
