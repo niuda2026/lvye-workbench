@@ -102,6 +102,11 @@ tr:hover td{background:#f0f7ff}
 .pager .info{font-weight:600;color:#1a2e45}
 .empty{text-align:center;padding:40px;color:#90a4ae;font-size:14px}
 .note{padding:8px 16px;font-size:11px;color:#7890a8;background:#f0f7ff}
+.review-link{padding:3px 8px;border:1px solid #90caf9;background:#e3f2fd;color:#1565c0;border-radius:4px;cursor:pointer;font-size:11px}
+.review-link:hover{background:#bbdefb}.review-badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:11px;font-weight:600}.rv-none{background:#eceff1;color:#607d8b}.rv-pending{background:#fff3e0;color:#e65100}.rv-risk{background:#ffebee;color:#c62828}.rv-ok{background:#e8f5e9;color:#2e7d32}.rv-fail{background:#fce4ec;color:#ad1457}
+.drawer-mask{display:none;position:fixed;inset:0;background:rgba(13,43,72,.35);z-index:200}.drawer-mask.on{display:block}.drawer{position:absolute;right:0;top:0;height:100%;width:min(520px,94vw);background:#fff;box-shadow:-6px 0 24px rgba(13,71,161,.25);overflow:auto;padding:20px}.drawer h2{font-size:17px;color:#1565c0;margin-bottom:12px}.drawer-close{float:right;border:0;background:none;font-size:22px;color:#7890a8;cursor:pointer}.rv-grid{display:grid;grid-template-columns:110px 1fr;gap:8px 12px;font-size:13px;margin:12px 0}.rv-grid dt{color:#7890a8}.rv-grid dd{margin:0;word-break:break-all}.rv-box{background:#f5f9ff;border:1px solid #cce0f5;border-radius:6px;padding:10px;margin-top:12px;font-size:12px;line-height:1.7}.hc-thumb{height:42px;max-width:64px;object-fit:cover;border-radius:3px;border:1px solid #cce0f5;cursor:zoom-in;display:block}
+.photo-cell{white-space:nowrap}
+.rv-note{color:#7890a8;font-size:11px;margin-top:14px}
 </style>
 </head>
 <body>
@@ -128,6 +133,7 @@ tr:hover td{background:#f0f7ff}
   <div class="msel" id="msSite"></div>
   <select id="fSt">
     <option value="">全部处置状态</option>
+    <option value="missing">源数据缺失·待核实</option>
     <option value="none">双无（立即停用）</option>
     <option value="expired">健康证已过期</option>
     <option value="d7">健康证 7 天内</option>
@@ -145,6 +151,7 @@ tr:hover td{background:#f0f7ff}
     <option value="365">入职 91-365 天</option>
     <option value="9999">入职 &gt;1 年</option>
   </select>
+  <select id="fReview" aria-label="核查状态"><option value="">全部核查状态</option><option value="uncollected">未采集</option><option value="pending">待核查</option><option value="risk">发现风险线索</option><option value="manual">待人工复核</option><option value="verified">已核验</option><option value="failed">采集失败</option></select>
   <input id="fQ" placeholder="搜索姓名 / 骑手ID / 站点">
   <label class="chk"><input type="checkbox" id="fPre" checked> 含预离职已通过</label>
   <button class="btn-exp" id="btnExp">导出督办名单</button>
@@ -162,6 +169,8 @@ tr:hover td{background:#f0f7ff}
       <th data-sort="s">站点</th>
       <th data-sort="r">骑手ID</th>
       <th data-sort="n">姓名</th>
+      <th data-sort="ctp">类型</th>
+      <th data-sort="cd">发证日期</th>
       <th data-sort="h">入职日期</th>
       <th data-sort="hd" class="num">入职天数</th>
       <th data-sort="e">健康证到期</th>
@@ -169,19 +178,92 @@ tr:hover td{background:#f0f7ff}
       <th data-sort="x">回执单到期</th>
       <th data-sort="rd" class="num">回执单剩余</th>
       <th data-sort="st">处置</th>
+      <th data-sort="reviewStatus" class="review-col">核查状态</th>
+      <th class="review-col">照片</th>
+      <th class="review-col">证件详情</th>
     </tr></thead>
     <tbody id="tb"></tbody>
   </table>
 </div>
 <div class="pager" id="pager"></div>
 <div class="note" id="noteLine"></div>
+<div class="drawer-mask" id="reviewMask" data-html2canvas-ignore="true"><section class="drawer" role="dialog" aria-modal="true" aria-labelledby="reviewTitle" tabindex="-1"><button class="drawer-close" id="reviewClose" aria-label="关闭证件详情">×</button><h2 id="reviewTitle">健康证核查详情</h2><div id="reviewContent"></div></section></div>
 
 <script src="../_libs/html2canvas-1.4.1.min.js"></script>
 <script src="health_cert_data.js"></script>
+<script src="hc_review_data.js"></script>
+<script src="hc_supplement_data.js"></script>
+<script src="hc_profile_data.js"></script>
+<script src="hc_derived_data.js"></script>
 <script>
 (function(){
 var META = window.HC_META || {};
 var DATA = window.HC_DATA || [];
+var REVIEW = window.HC_REVIEW_DATA || {};
+var SUPPLEMENT = window.HC_SUPPLEMENT_DATA || {};
+var PROFILE = window.HC_PROFILE_DATA || {};
+var DERIVED = window.HC_DERIVED_DATA || {};
+var DERIVED_AT = (window.HC_DERIVED_META||{}).generatedAt || '';
+var PROFILE_AT = (window.HC_PROFILE_META||{}).sourceAt || '';
+function prof(o){return PROFILE[String(o.r)]||{};}
+function dv(o){return DERIVED[String(o.r)]||{};}
+function certTypeOf(o){
+  var ct=prof(o).ct||dv(o).ct;
+  if(ct===1) return '健康证';
+  if(ct===2) return '回执单';
+  if(o.e) return '健康证';
+  if(o.x) return '回执单';
+  return '';
+}
+function certDateOf(o){return prof(o).cd||dv(o).cd||'';}
+function supp(o){return SUPPLEMENT[String(o.r)]||{};}
+function hireValue(o){return o.h||dv(o).hire||supp(o).hireHistorical||'';}
+function fmtHire(o){
+  if(o.h) return fmtD(o.h);
+  if(dv(o).hire) return fmtD(dv(o).hire)+' <small title="入职日期取自 '+esc(DERIVED_AT)+' 过夜采集的烽火台最新档案（源表该行为空）" style="color:#2f7fd4">采集</small>';
+  if(supp(o).hireHistorical) return fmtD(supp(o).hireHistorical)+' <small title="历史入职（'+esc(supp(o).sourceAt||'')+'缓存），可能存在重新入职，请复核" style="color:#b26a00">历史</small>';
+  return '<span class="cert-none">待补充</span>';
+}
+function fmtCert(o,key){
+  if(o[key]) return fmtD(o[key]);
+  var d=dv(o);
+  if(key==='e'){
+    if(d.e) return fmtD(d.e)+' <small title="按“发证日期+1年”由 '+esc(DERIVED_AT)+' 采集的发证日期推算，源表该行为空" style="color:#b26a00">推定</small>';
+    if((prof(o).ct||d.ct)===2) return '<span class="cert-none" title="该骑手当前证件类型为回执单，不适用健康证到期">不适用</span>';
+  }
+  if(key==='x'){
+    if(d.x) return fmtD(d.x)+' <small title="按“入职+20天”由 '+esc(DERIVED_AT)+' 采集的入职日期推算，源表该行为空" style="color:#b26a00">推定</small>';
+    if((prof(o).ct||d.ct)===1) return '<span class="cert-none" title="该骑手已持有健康证，无需回执单">不适用</span>';
+  }
+  return (!o.h&&!o.e&&!o.x&&!o.g)?'<span class="cert-none" title="健康证源字段缺失，不能据此认定无证">数据缺失</span>':'<span class="cert-none">未提供</span>';
+}
+
+var RV_LABEL={uncollected:'未采集',pending:'待核查',risk:'发现风险线索',manual:'待人工复核',verified:'已核验',failed:'采集失败'};
+var RV_CLASS={uncollected:'rv-none',pending:'rv-pending',risk:'rv-risk',manual:'rv-pending',verified:'rv-ok',failed:'rv-fail'};
+function reviewOf(o){return Object.prototype.hasOwnProperty.call(REVIEW,String(o.r)) ? REVIEW[String(o.r)] || {} : {};}
+function reviewStatus(o){var v=reviewOf(o).status;return Object.prototype.hasOwnProperty.call(RV_LABEL,v)?v:'uncollected';}
+var reviewReturnFocus=null;
+function closeReview(){document.getElementById('reviewMask').classList.remove('on');if(reviewReturnFocus) reviewReturnFocus.focus();}
+function openReview(o){
+  var v=reviewOf(o), k=reviewStatus(o);
+  reviewReturnFocus=document.activeElement;
+  function field(label,value){return '<dt>'+esc(label)+'</dt><dd>'+esc(value||'—')+'</dd>';}
+  var reasons=Array.isArray(v.reasons)?v.reasons:[];
+  document.getElementById('reviewContent').innerHTML='<b>'+esc(o.n)+' · '+esc(o.r)+'</b><p style="font-size:12px;color:#7890a8;margin:6px 0">'+esc(o.c)+' / '+esc(o.s)+'</p>'
+    +'<span class="review-badge '+RV_CLASS[k]+'">'+RV_LABEL[k]+'</span>'
+    +'<div class="rv-box">'+(v.hasImage
+      ?'<img src="http://127.0.0.1:8789/photo/'+encodeURIComponent(String(o.r))+'" alt="健康证原图" style="max-width:100%;border-radius:4px;border:1px solid #cce0f5" onerror="this.outerHTML=\'<span class=cert-none>图片加载失败，请确认核查服务已启动</span>\'">'
+      :'尚未采集照片，本轮批量采集完成后自动出现。')+'</div>'
+    +'<dl class="rv-grid">'+field('体检机构',v.institution)+field('证件编号',v.certificateMasked)+field('识别有效期',v.expiry)+field('二维码摘要',v.qrSummary)+field('采集时间',v.collectedAt)+field('图片是否更新',v.imageChanged===true?'有更新':v.imageChanged===false?'无更新':'未知')+'</dl>'
+    +'<div class="rv-box"><b>风险依据</b><br>'+(reasons.length?reasons.map(esc).join('<br>'):'暂无核查结果；不代表已证实有效。')+'</div>'
+    +'<dl class="rv-grid">'+field('人工结论',v.conclusion)+field('复核人',v.reviewer)+field('复核时间',v.checkedAt)+field('核验依据',v.evidenceSummary)+'</dl>'
+    +'<p class="rv-note">到期状态与真伪核查独立。跨省、二维码协议、域名外观或相似图片均不能单独认定造假。当前不推送核查结果。</p>';
+  document.getElementById('reviewMask').classList.add('on');document.getElementById('reviewClose').focus();
+}
+document.getElementById('reviewClose').onclick=closeReview;
+document.getElementById('reviewMask').onclick=function(e){if(e.target===this) closeReview();};
+document.addEventListener('keydown',function(e){if(!document.getElementById('reviewMask').classList.contains('on')) return;if(e.key==='Escape') closeReview();if(e.key==='Tab'){e.preventDefault();document.getElementById('reviewClose').focus();}});
+document.getElementById('tb').addEventListener('click',function(e){var b=e.target.closest('[data-review-id]');if(!b)return;var id=b.getAttribute('data-review-id');var o=DATA.find(function(x){return String(x.r)===id;});if(o)openReview(o);});
 var TODAY = (function(){ var d=new Date(); function p(n){return n<10?'0'+n:''+n;} return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate()); })();
 
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
@@ -190,23 +272,34 @@ function fmtD(a){ if(!a) return '<span class="cert-none">—</span>'; return esc
 function fmtN(n){ if(n===null) return '<span class="cert-none">—</span>';
   var c = n<0?' class="d-neg"':(n<=7?' class="d-warn"':(n<=30?' class="d-mid"':''));
   return '<span'+c+'>'+n+'天</span>'; }
-function hireDays(o){ return days(TODAY,o.h); }
+function hireDays(o){ return days(TODAY,hireValue(o)); }
 
-var ST_LABEL={'none':'双无·停用','expired':'已过期·停用','d7':'7天内·紧急','d30':'30天内·待办','d90':'90天内·关注','ok':'正常','rexpired':'回执单过期','rd7':'回执单7天·紧急','rnew':'新人待取证','pre':'预离职'};
-var ST_CLS={'none':'b-none','expired':'b-expired','d7':'b-d7','d30':'b-d30','d90':'b-d90','ok':'b-ok','rexpired':'b-expired','rd7':'b-rd7','rnew':'b-rnew','pre':'b-pre'};
+var ST_LABEL={'missing':'源数据缺失·待核实','none':'双无·停用','expired':'已过期·停用','d7':'7天内·紧急','d30':'30天内·待办','d90':'90天内·关注','ok':'正常','rexpired':'回执单过期','rd7':'回执单7天·紧急','rnew':'新人待取证','pre':'预离职'};
+var ST_CLS={'missing':'b-pre','none':'b-none','expired':'b-expired','d7':'b-d7','d30':'b-d30','d90':'b-d90','ok':'b-ok','rexpired':'b-expired','rd7':'b-rd7','rnew':'b-rnew','pre':'b-pre'};
 
 /* 预计算：剩余天数与状态（一次性） */
 DATA.forEach(function(o){
-  o.hd2 = o.e ? days(o.e, TODAY) : null;   // 健康证剩余
-  o.rd  = o.x ? days(o.x, TODAY) : null;   // 回执单剩余
-  o.hd  = hireDays(o);                      // 入职天数
+  var d = dv(o);
+  o.dE = o.e || d.e || '';        // 健康证到期（源→推定）
+  o.dX = o.x || d.x || '';        // 回执单到期（源→推定）
+  o.dH = hireValue(o);            // 入职日期（源→采集→历史）
+  o.eD = !o.e && !!d.e;           // 该到期日是否为推定
+  o.xD = !o.x && !!d.x;
+  o.hd2 = o.dE ? days(o.dE, TODAY) : null;   // 健康证剩余
+  o.rd  = o.dX ? days(o.dX, TODAY) : null;   // 回执单剩余
+  o.hd  = o.dH ? days(TODAY, o.dH) : null;   // 入职天数
   o.st  = statusOf(o);
+  o.reviewStatus = reviewStatus(o);
+  o.hasImg = !!(REVIEW[String(o.r)]||{}).hasImage;
+  o.ctp = certTypeOf(o); o.cd = certDateOf(o);
 });
 function statusOf(o){
+  var ct = prof(o).ct || dv(o).ct || 0;
+  if(!o.dH && !o.dE && !o.dX && !o.g) return 'missing';
   if(o.p===1) return 'pre';
   var h=o.hd2, r=o.rd;
-  if(!o.e && !o.x) return 'none';
-  if(o.e){
+  if(!o.dE && !o.dX) return (ct===1||ct===2)?'rnew':'none';
+  if(o.dE){
     if(h<0) return 'expired';
     if(h<=7) return 'd7';
     if(h<=30) return 'd30';
@@ -228,7 +321,7 @@ var view=[];
     '在职基数：排班明细 ' + esc(m.sched_date||'-') + '　|　证件状态：烽火台健康证监控 T-1 ' + esc(m.hc_date||'-')
     + '　|　生成 ' + esc(m.gen||'-') + '　|　剩余天数按今日 ' + TODAY + ' 实时计算';
   document.getElementById('noteLine').textContent =
-    '口径说明：在职名单以当日排班明细为准（实名），在职骑手数=排班明细全量人数；证件状态由 T-1 健康证监控表按骑手ID左连接；大区按全看板统一口径（区域名称关键词→城市兜底）映射五大区：华北一区/华北二区/华北三区/华东大区/中南大区；表格默认按大区排序；如需剔除「预离职已通过」人员，取消勾选即可。';
+    '补充说明：标注“历史”的入职日期来自2026-09-16缓存，仅供参考，可能存在重新入职；源字段全空单独列为“源数据缺失”，不直接认定无证；合规率排除源数据缺失人员。口径说明：在职名单以当日排班明细为准（实名），在职骑手数=排班明细全量人数；证件状态由 T-1 健康证监控表按骑手ID左连接；大区按全看板统一口径（区域名称关键词→城市兜底）映射五大区：华北一区/华北二区/华北三区/华东大区/中南大区；表格默认按大区排序；如需剔除「预离职已通过」人员，取消勾选即可。';
 })();
 
 /* 筛选下拉：多选 + 级联联动（2026-09-29） */
@@ -343,6 +436,7 @@ function filter(){
     if(!hit('city',o.c)) return false;
     if(!hit('site',o.s)) return false;
     if(st.stt && o.st!==st.stt) return false;
+    if(document.getElementById('fReview').value && o.reviewStatus!==document.getElementById('fReview').value) return false;
     if(st.hire){
       var hd=o.hd; if(hd===null) return false;
       var lim=parseInt(st.hire,10);
@@ -391,12 +485,17 @@ function render(){
     html.push('<tr>'
       +'<td>'+esc(o.b)+'</td><td>'+esc(o.g)+'</td><td>'+esc(o.c)+'</td><td>'+esc(o.s)+'</td>'
       +'<td>'+esc(o.r)+'</td><td>'+esc(o.n)+'</td>'
-      +'<td>'+fmtD(o.h)+'</td><td class="num">'+(o.hd===null?'—':o.hd)+'</td>'
-      +'<td>'+fmtD(o.e)+'</td><td class="num">'+fmtN(o.hd2)+'</td>'
-      +'<td>'+fmtD(o.x)+'</td><td class="num">'+fmtN(o.rd)+'</td>'
-      +'<td><span class="badge '+(ST_CLS[o.st]||'b-pre')+'">'+(ST_LABEL[o.st]||o.st)+'</span></td></tr>');
+      +'<td>'+(o.ctp?'<span class="badge '+(o.ctp==='健康证'?'b-ok':'b-rd7')+'">'+o.ctp+'</span>':'<span class="cert-none">—</span>')+'</td>'
+      +'<td>'+(o.cd?esc(o.cd):'<span class="cert-none">—</span>')+'</td>'
+      +'<td>'+fmtHire(o)+'</td><td class="num">'+(o.hd===null?'待补充':o.hd+(o.h?'':(dv(o).hire?'（采集）':'（历史）')))+'</td>'
+      +'<td>'+fmtCert(o,'e')+'</td><td class="num">'+fmtN(o.hd2)+'</td>'
+      +'<td>'+fmtCert(o,'x')+'</td><td class="num">'+fmtN(o.rd)+'</td>'
+      +'<td><span class="badge '+(ST_CLS[o.st]||'b-pre')+'">'+(ST_LABEL[o.st]||o.st)+'</span></td>'
+      +'<td><span class="review-badge '+(RV_CLASS[o.reviewStatus]||'rv-none')+'">'+(RV_LABEL[o.reviewStatus]||'未采集')+'</span></td>'
+      +'<td class="photo-cell">'+(o.hasImg?'<img class="hc-thumb" loading="lazy" data-review-id="'+esc(String(o.r))+'" title="点击查看原图" src="http://127.0.0.1:8789/thumb/'+encodeURIComponent(String(o.r))+'" alt="证件缩略图" onerror="this.outerHTML=\'<span class=cert-none>未生成</span>\'">':'<span class="cert-none">—</span>')+'</td>'
+      +'<td><button type="button" class="review-link" data-review-id="'+esc(String(o.r))+'">查看详情</button></td></tr>');
   }
-  document.getElementById('tb').innerHTML=html.join('')||'<tr><td colspan="13" class="empty">没有符合条件的骑手</td></tr>';
+  document.getElementById('tb').innerHTML=html.join('')||'<tr><td colspan="17" class="empty">没有符合条件的骑手</td></tr>';
   document.getElementById('rowCount').textContent='筛选 '+total+' 人';
   var end=Math.min(start+st.size,total);
   var pg=document.getElementById('pager');
@@ -419,7 +518,8 @@ function renderStats(){
   var total=view.length;
   var bad=c.none+c.expired+c.rexpired;
   var hasCert=view.filter(function(o){return !!o.e;}).length;
-  var rate=total?((total-bad)/total*100):0;
+  var known=total-view.filter(function(o){return o.st==='missing';}).length;
+  var rate=known?((known-bad)/known*100):null;
   var cov=total?(hasCert/total*100):0;
   var todo=c.expired+c.none+c.d7+c.rd7+c.rexpired;
   var urgent=c.expired+c.none;
@@ -428,13 +528,14 @@ function renderStats(){
   var newOnly=c.rnew+c.rd7+c.rexpired;
   var cards=[
     ['ic0','在职骑手',total,'',''],
+    ['icMissing','源数据缺失',view.filter(function(o){return o.st==='missing';}).length,'warning','待核实，不等于确认无证'],
     ['ic1','当前不合规',bad,'danger','停用 '+urgent+' · 需处理'],
     ['ic2','7 天内到期',d7all,'warning','健康证 '+c.d7+' · 回执单 '+(c.rd7+c.rexpired)],
     ['ic3','30 天内到期',d30all,'warning','本月计划续办'],
     ['ic4','回执单临期',(c.rd7+c.rexpired),'warning','到期即无证上岗'],
     ['ic5','新人待取证',newOnly,'','入职≤30天过渡期'],
     ['ic6','健康证覆盖率',cov.toFixed(1)+'%','',hasCert+' / '+total],
-    ['ic7','上岗合规率',rate.toFixed(2)+'%','ok',(total-bad)+' 人合规']
+    ['ic7','上岗合规率',rate===null?'—':rate.toFixed(2)+'%','ok',rate===null?'排除源数据缺失':(known-bad)+' 人合规']
   ];
   document.getElementById('stats').innerHTML=cards.map(function(x){
     return '<div class="sc '+(x[3]||'')+'"><div class="l">'+x[1]+'</div><div class="n">'+x[2]+'</div><div class="sub">'+(x[4]||'&nbsp;')+'</div></div>';
@@ -480,7 +581,7 @@ function renderRank(){
 }
 
 /* 事件（组织维度已改多选组件，这里只留单选维度） */
-['fSt','fHire'].forEach(function(id){
+['fSt','fHire','fReview'].forEach(function(id){
   document.getElementById(id).addEventListener('change',function(){
     st.stt=document.getElementById('fSt').value; st.hire=document.getElementById('fHire').value;
     filter();
@@ -493,9 +594,9 @@ document.getElementById('btnHelp').addEventListener('click',function(){
     +'更新方式：全自动。M盘监控服务（每60秒扫描）发现新表落地后，会自动重建本看板数据，无需任何手动操作；本页面刷新即可看到最新数据。');
 });
 document.getElementById('btnExp').addEventListener('click',function(){
-  var head=['大区','区域','城市','站点','骑手ID','姓名','入职日期','健康证到期','剩余天数','回执单到期','回执单剩余','处置'];
+  var head=['大区','区域','城市','站点','骑手ID','姓名','类型','发证日期','入职日期','入职日期来源','健康证到期','剩余天数','回执单到期','回执单剩余','处置','核查状态','证件照片'];
   var rows=view.map(function(o){
-    return [o.b,o.g,o.c,o.s,o.r,o.n,o.h||'',o.e||'',(o.hd2===null?'':o.hd2),o.x||'',(o.rd===null?'':o.rd),(ST_LABEL[o.st]||o.st)];
+    return [o.b,o.g,o.c,o.s,o.r,o.n,o.ctp||'',o.cd||'',hireValue(o),(o.h?'健康证源':dv(o).hire?'采集 '+DERIVED_AT:supp(o).hireHistorical?'历史缓存 '+supp(o).sourceAt:'缺失'),o.dE||'',(o.hd2===null?'':o.hd2)+(o.eD?'（推定）':''),o.dX||'',(o.rd===null?'':o.rd)+(o.xD?'（推定）':''),(ST_LABEL[o.st]||o.st),RV_LABEL[o.reviewStatus]||'未采集',o.hasImg?'有':'无'];
   });
   var csv=[head].concat(rows).map(function(r){
     return r.map(function(v){return '"'+String(v==null?'':v).replace(/"/g,'""')+'"';}).join(',');
