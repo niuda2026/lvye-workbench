@@ -277,6 +277,15 @@ function hireDays(o){ return days(TODAY,hireValue(o)); }
 var ST_LABEL={'missing':'源数据缺失·待核实','none':'双无·停用','expired':'已过期·停用','d7':'7天内·紧急','d30':'30天内·待办','d90':'90天内·关注','ok':'正常','rexpired':'回执单过期','rd7':'回执单7天·紧急','rnew':'新人待取证','pre':'预离职'};
 var ST_CLS={'missing':'b-pre','none':'b-none','expired':'b-expired','d7':'b-d7','d30':'b-d30','d90':'b-d90','ok':'b-ok','rexpired':'b-expired','rd7':'b-rd7','rnew':'b-rnew','pre':'b-pre'};
 
+/* 区域回填：源表缺行的骑手没有区域名称，用同站点其他人的区域唯一映射补齐
+   （171 个站点映射全部唯一，无冲突；仅影响展示与筛选，不写回源数据） */
+var SITE_REGION = {};
+DATA.forEach(function(o){ if(o.g && o.s) SITE_REGION[o.s]=o.g; });
+var REGION_FILLED = 0;
+DATA.forEach(function(o){
+  if(!o.g && o.s && SITE_REGION[o.s]){ o.g = SITE_REGION[o.s]; o.gFilled = true; REGION_FILLED++; }
+});
+
 /* 预计算：剩余天数与状态（一次性） */
 DATA.forEach(function(o){
   var d = dv(o);
@@ -483,7 +492,7 @@ function render(){
   for(var i=0;i<slice.length;i++){
     var o=slice[i];
     html.push('<tr>'
-      +'<td>'+esc(o.b)+'</td><td>'+esc(o.g)+'</td><td>'+esc(o.c)+'</td><td>'+esc(o.s)+'</td>'
+      +'<td>'+esc(o.b)+'</td><td'+(o.gFilled?' title="区域由同站点映射补齐（源表该骑手无记录）"':'')+'>'+esc(o.g)+'</td><td>'+esc(o.c)+'</td><td>'+esc(o.s)+'</td>'
       +'<td>'+esc(o.r)+'</td><td>'+esc(o.n)+'</td>'
       +'<td>'+(o.ctp?'<span class="badge '+(o.ctp==='健康证'?'b-ok':'b-rd7')+'">'+o.ctp+'</span>':'<span class="cert-none">—</span>')+'</td>'
       +'<td>'+(o.cd?esc(o.cd):'<span class="cert-none">—</span>')+'</td>'
