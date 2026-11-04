@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-11-05 06:33:41",
+  "updated_at": "2026-11-05 06:34:38",
   "action_summary": {
     "total": 23,
     "ok": 16,
@@ -278,7 +278,7 @@ window.DATA_CENTER = {
             "latest": "knife_rider_data.js",
             "mtime": "2026-11-04 15:18:42",
             "max_age_hours": 13,
-            "age_hours": 15.2,
+            "age_hours": 15.3,
             "ok": false,
             "note": "每日 07:30/15:00 两次(随总控第2.5步)",
             "fail_hits": [],
@@ -681,7 +681,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-11-05 06:31:05",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1167,7 +1167,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-11-05 06:31:05",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],

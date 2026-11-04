@@ -526,8 +526,9 @@ function renderStats(){
   view.forEach(function(o){ if(c[o.st]!==undefined) c[o.st]++; });
   var total=view.length;
   var bad=c.none+c.expired+c.rexpired;
-  var hasCert=view.filter(function(o){return !!o.e;}).length;
+  var hasCert=view.filter(function(o){return o.ctp==='健康证';}).length;
   var known=total-view.filter(function(o){return o.st==='missing';}).length;
+  var derivedN=view.filter(function(o){return o.eD||o.xD||(!o.h&&!supp(o).hireHistorical&&!!dv(o).hire);}).length;
   var rate=known?((known-bad)/known*100):null;
   var cov=total?(hasCert/total*100):0;
   var todo=c.expired+c.none+c.d7+c.rd7+c.rexpired;
@@ -537,7 +538,7 @@ function renderStats(){
   var newOnly=c.rnew+c.rd7+c.rexpired;
   var cards=[
     ['ic0','在职骑手',total,'',''],
-    ['icMissing','源数据缺失',view.filter(function(o){return o.st==='missing';}).length,'warning','待核实，不等于确认无证'],
+    ['icMissing','推定补全',derivedN,'warning','源表缺行，按规则由最新档案推算'],
     ['ic1','当前不合规',bad,'danger','停用 '+urgent+' · 需处理'],
     ['ic2','7 天内到期',d7all,'warning','健康证 '+c.d7+' · 回执单 '+(c.rd7+c.rexpired)],
     ['ic3','30 天内到期',d30all,'warning','本月计划续办'],
