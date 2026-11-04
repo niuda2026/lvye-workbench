@@ -304,7 +304,9 @@ DATA.forEach(function(o){
 });
 function statusOf(o){
   var ct = prof(o).ct || dv(o).ct || 0;
-  if(!o.dH && !o.dE && !o.dX && !o.g) return 'missing';
+  /* 三个日期全都没有 = 既没采集到档案、源表也没这行，属于「未知」。
+     （不能因为区域被回填了就当成已知；更不能直接判双无·停用——这是最伤人的误判） */
+  if(!o.dH && !o.dE && !o.dX) return 'missing';
   if(o.p===1) return 'pre';
   var h=o.hd2, r=o.rd;
   if(!o.dE && !o.dX) return (ct===1||ct===2)?'rnew':'none';
@@ -549,7 +551,7 @@ function renderStats(){
   var newOnly=c.rnew+c.rd7+c.rexpired;
   var cards=[
     ['ic0','在职骑手',total,'',''],
-    ['icMissing','推定补全',derivedN,'warning','源表缺行，按规则由最新档案推算'],
+    ['icMissing','未采集·待核实',view.filter(function(o){return o.st==='missing';}).length,'warning','其中推定补全 '+derivedN+' 人'],
     ['ic1','当前不合规',bad,'danger','停用 '+urgent+' · 需处理'],
     ['ic2','7 天内到期',d7all,'warning','健康证 '+c.d7+' · 回执单 '+(c.rd7+c.rexpired)],
     ['ic3','30 天内到期',d30all,'warning','本月计划续办'],
