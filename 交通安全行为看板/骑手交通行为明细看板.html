@@ -155,7 +155,7 @@ table.dt td.spark-td .spark-img{display:block;margin:0 auto}
      data.js 是单月纯净窗口，换月当天上月日维度会被清掉 → 跨月自然周（如 10-26~11-01）只剩 1 天。
      引入本库后由 fourMergeHistory() 补齐周维度所需的上月日数据，月累计口径不变。 -->
 <script src="daily_history.js?11-02"></script>
-<script src="data.js?11-04-7de5da07"></script>
+<script src="data.js?11-04-86505657"></script>
 </head>
 <body>
 
@@ -241,10 +241,10 @@ table.dt td.spark-td .spark-img{display:block;margin:0 auto}
 
 <script src="./xlsx.full.min.js"></script>
 <script>
-// 数据由 D:\兴达数据库\交通安全行为看板\data.js 通过 <script src> 加载
-// ══════════════════════════════════════════════════════════
-// 工具函数
-// ══════════════════════════════════════════════════════════
+// 数据由 data.js 通过 <script src> 加载
+/ ══════════════════════════════════════════════════════════
+/ 工具函数
+/ ══════════════════════════════════════════════════════════
 function fr(v){
   if(v===null||v===undefined||isNaN(v))return '<span class="rn">-</span>';
   return v.toFixed(2)+'%';
