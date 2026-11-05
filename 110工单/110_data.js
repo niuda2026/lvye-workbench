@@ -1,5 +1,5 @@
 const EMBEDDED_DATA = {
-  "lastUpdated": "2026-11-05 16:11:39",
+  "lastUpdated": "2026-11-05 17:30:48",
   "sourceUrl": "https://fxgl365.com/110/w/desktop/process/list?activeTab=CURRENT",
   "module": "事件处理",
   "kpi": {
@@ -1917,8 +1917,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -114373,8 +114373,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1786455995000,
-          "delayTime": 1786455995000
+          "delayTime": 1786455995000,
+          "delayTimeLong": 1786455995000
         },
         "related": null
       }
@@ -145809,34 +145809,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1776520240000,
               "latestTime": 1776520240000,
-              "startTimeLong": 1776520240000,
-              "latestTimeLong": 1776520240000
+              "latestTimeLong": 1776520240000,
+              "startTimeLong": 1776520240000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1776522714000,
               "latestTime": 1776522718000,
-              "startTimeLong": 1776522714000,
-              "latestTimeLong": 1776522718000
+              "latestTimeLong": 1776522718000,
+              "startTimeLong": 1776522714000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1776520240000,
               "latestTime": 1776522714000,
-              "startTimeLong": 1776520240000,
-              "latestTimeLong": 1776522714000
+              "latestTimeLong": 1776522714000,
+              "startTimeLong": 1776520240000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1776522718000,
               "latestTime": 1789634669000,
-              "startTimeLong": 1776522718000,
-              "latestTimeLong": 1789634669000
+              "latestTimeLong": 1789634669000,
+              "startTimeLong": 1776522718000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1790239469000,
-          "delayTimeLong": 1790239469000
+          "delayTimeLong": 1790239469000,
+          "delayTime": 1790239469000
         },
         "related": null
       }
@@ -185492,8 +185492,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1794666808000,
-          "delayTimeLong": 1794666808000
+          "delayTimeLong": 1794666808000,
+          "delayTime": 1794666808000
         },
         "related": null
       }
@@ -239751,34 +239751,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1790563358000,
               "latestTime": 1790563358000,
-              "latestTimeLong": 1790563358000,
-              "startTimeLong": 1790563358000
+              "startTimeLong": 1790563358000,
+              "latestTimeLong": 1790563358000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1790590801000,
               "latestTime": 1790590808000,
-              "latestTimeLong": 1790590808000,
-              "startTimeLong": 1790590801000
+              "startTimeLong": 1790590801000,
+              "latestTimeLong": 1790590808000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1790563358000,
               "latestTime": 1790590801000,
-              "latestTimeLong": 1790590801000,
-              "startTimeLong": 1790563358000
+              "startTimeLong": 1790563358000,
+              "latestTimeLong": 1790590801000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1790590808000,
               "latestTime": 1790753700000,
-              "latestTimeLong": 1790753700000,
-              "startTimeLong": 1790590808000
+              "startTimeLong": 1790590808000,
+              "latestTimeLong": 1790753700000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -256298,34 +256298,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1789713633000,
               "latestTime": 1789713633000,
-              "startTimeLong": 1789713633000,
-              "latestTimeLong": 1789713633000
+              "latestTimeLong": 1789713633000,
+              "startTimeLong": 1789713633000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1789720241000,
               "latestTime": 1789720248000,
-              "startTimeLong": 1789720241000,
-              "latestTimeLong": 1789720248000
+              "latestTimeLong": 1789720248000,
+              "startTimeLong": 1789720241000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1789713633000,
               "latestTime": 1789720241000,
-              "startTimeLong": 1789713633000,
-              "latestTimeLong": 1789720241000
+              "latestTimeLong": 1789720241000,
+              "startTimeLong": 1789713633000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1789720248000,
               "latestTime": 1792209645000,
-              "startTimeLong": 1789720248000,
-              "latestTimeLong": 1792209645000
+              "latestTimeLong": 1792209645000,
+              "startTimeLong": 1789720248000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -270966,8 +270966,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -293658,34 +293658,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1787966856000,
               "latestTime": 1787966856000,
-              "startTimeLong": 1787966856000,
-              "latestTimeLong": 1787966856000
+              "latestTimeLong": 1787966856000,
+              "startTimeLong": 1787966856000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1787981455000,
               "latestTime": 1787981462000,
-              "startTimeLong": 1787981455000,
-              "latestTimeLong": 1787981462000
+              "latestTimeLong": 1787981462000,
+              "startTimeLong": 1787981455000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1787966856000,
               "latestTime": 1787981455000,
-              "startTimeLong": 1787966856000,
-              "latestTimeLong": 1787981455000
+              "latestTimeLong": 1787981455000,
+              "startTimeLong": 1787966856000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1787981462000,
               "latestTime": 1789703498000,
-              "startTimeLong": 1787981462000,
-              "latestTimeLong": 1789703498000
+              "latestTimeLong": 1789703498000,
+              "startTimeLong": 1787981462000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -325738,29 +325738,29 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1786608251000,
               "latestTime": 1786608251000,
-              "latestTimeLong": 1786608251000,
-              "startTimeLong": 1786608251000
+              "startTimeLong": 1786608251000,
+              "latestTimeLong": 1786608251000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1786608379000,
               "latestTime": 1786608388000,
-              "latestTimeLong": 1786608388000,
-              "startTimeLong": 1786608379000
+              "startTimeLong": 1786608379000,
+              "latestTimeLong": 1786608388000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1786608251000,
               "latestTime": 1786608379000,
-              "latestTimeLong": 1786608379000,
-              "startTimeLong": 1786608251000
+              "startTimeLong": 1786608251000,
+              "latestTimeLong": 1786608379000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1786608388000,
               "latestTime": 1787044042000,
-              "latestTimeLong": 1787044042000,
-              "startTimeLong": 1786608388000
+              "startTimeLong": 1786608388000,
+              "latestTimeLong": 1787044042000
             }
           ],
           "processType": "PEISONG_ONLINE",
@@ -334118,8 +334118,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -361236,8 +361236,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -389407,8 +389407,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -423502,8 +423502,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -567084,29 +567084,29 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1773318895000,
               "latestTime": 1773318895000,
-              "startTimeLong": 1773318895000,
-              "latestTimeLong": 1773318895000
+              "latestTimeLong": 1773318895000,
+              "startTimeLong": 1773318895000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1773319396000,
               "latestTime": 1773319411000,
-              "startTimeLong": 1773319396000,
-              "latestTimeLong": 1773319411000
+              "latestTimeLong": 1773319411000,
+              "startTimeLong": 1773319396000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1773318895000,
               "latestTime": 1773319396000,
-              "startTimeLong": 1773318895000,
-              "latestTimeLong": 1773319396000
+              "latestTimeLong": 1773319396000,
+              "startTimeLong": 1773318895000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1773319411000,
               "latestTime": 1779611977000,
-              "startTimeLong": 1773319411000,
-              "latestTimeLong": 1779611977000
+              "latestTimeLong": 1779611977000,
+              "startTimeLong": 1773319411000
             }
           ],
           "processType": "PEISONG_ONLINE",
@@ -666084,29 +666084,29 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1766387815000,
               "latestTime": 1766387815000,
-              "latestTimeLong": 1766387815000,
-              "startTimeLong": 1766387815000
+              "startTimeLong": 1766387815000,
+              "latestTimeLong": 1766387815000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1766393086000,
               "latestTime": 1766393094000,
-              "latestTimeLong": 1766393094000,
-              "startTimeLong": 1766393086000
+              "startTimeLong": 1766393086000,
+              "latestTimeLong": 1766393094000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1766387815000,
               "latestTime": 1766393086000,
-              "latestTimeLong": 1766393086000,
-              "startTimeLong": 1766387815000
+              "startTimeLong": 1766387815000,
+              "latestTimeLong": 1766393086000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1766393094000,
               "latestTime": 1770452971000,
-              "latestTimeLong": 1770452971000,
-              "startTimeLong": 1766393094000
+              "startTimeLong": 1766393094000,
+              "latestTimeLong": 1770452971000
             }
           ],
           "processType": "PEISONG_ONLINE",
