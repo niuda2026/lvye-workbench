@@ -498,6 +498,38 @@ function sort(){
   });
 }
 
+/* 缩略图加载失败兜底（2026-11-05）
+   背景：照片列的 <img src="http://127.0.0.1:8789/thumb/xxx"> 依赖本机核查服务。
+   8789 一旦挂掉，整列会静默变成「未生成」，看不出是服务没起还是照片真没有。
+   这里改成显式「加载失败·重试」+ 悬浮说明，点击可原地重建 img（带 t= 破缓存），
+   服务恢复后不用整页刷新。 */
+function hcThumbFail(el){
+  var src=el.getAttribute('src')||'';
+  var rid=el.getAttribute('data-review-id')||'';
+  var d=document.createElement('span');
+  d.className='cert-none';
+  d.style.cursor='pointer';
+  d.title='照片服务 127.0.0.1:8789 未响应或图片缺失，点击重试';
+  d.textContent='加载失败·重试';
+  d.onclick=function(){
+    var im=document.createElement('img');
+    im.className='hc-thumb'; im.loading='lazy';
+    im.setAttribute('data-review-id',rid);
+    im.title='点击查看原图'; im.alt='证件缩略图';
+    /* 注意：不要给 src 追加 ?t= 破缓存参数。
+       hc_review_service.py 的 /thumb/ 路由用 path.split('/')[2] 直接当 riderId，
+       带查询串会 RID.fullmatch 失败返回 400 invalid_id，重试必然还是失败。
+       新建 img 元素本身会重新发起请求，服务恢复后即可加载。 */
+    im.src=src;
+    im.onerror=function(){ hcThumbFail(im); };
+    if(d.parentNode) d.parentNode.replaceChild(im,d);
+  };
+  if(el.parentNode) el.parentNode.replaceChild(d,el);
+}
+/* 整个看板脚本包在 (function(){...})() 里，行内 onerror 走的是全局作用域，
+   必须显式挂到 window 上，否则 onerror="this.outerHTML='<span class=cert-none>未生成</span>'" 会报 not defined。 */
+window.hcThumbFail = hcThumbFail;
+
 function render(){
   var total=view.length, pages=Math.max(1,Math.ceil(total/st.size));
   if(st.page>pages) st.page=pages;
@@ -514,7 +546,7 @@ function render(){
       +'<td>'+fmtCert(o,'x')+'</td><td class="num">'+fmtN(o.rd)+'</td>'
       +'<td><span class="badge '+(ST_CLS[o.st]||'b-pre')+'">'+(ST_LABEL[o.st]||o.st)+'</span></td>'
       +'<td><span class="review-badge '+(RV_CLASS[o.reviewStatus]||'rv-none')+'">'+(RV_LABEL[o.reviewStatus]||'未采集')+'</span></td>'
-      +'<td class="photo-cell">'+(o.hasImg?'<img class="hc-thumb" loading="lazy" data-review-id="'+esc(String(o.r))+'" title="点击查看原图" src="http://127.0.0.1:8789/thumb/'+encodeURIComponent(String(o.r))+'" alt="证件缩略图" onerror="this.outerHTML=\'<span class=cert-none>未生成</span>\'">':'<span class="cert-none">—</span>')+'</td>'
+      +'<td class="photo-cell">'+(o.hasImg?'<img class="hc-thumb" loading="lazy" data-review-id="'+esc(String(o.r))+'" title="点击查看原图" src="http://127.0.0.1:8789/thumb/'+encodeURIComponent(String(o.r))+'" alt="证件缩略图" onerror="this.outerHTML='<span class=cert-none>未生成</span>'">':'<span class="cert-none">—</span>')+'</td>'
       +'<td><button type="button" class="review-link" data-review-id="'+esc(String(o.r))+'">查看详情</button></td></tr>');
   }
   document.getElementById('tb').innerHTML=html.join('')||'<tr><td colspan="17" class="empty">没有符合条件的骑手</td></tr>';
