@@ -253,7 +253,7 @@ function openReview(o){
     +'<span class="review-badge '+RV_CLASS[k]+'">'+RV_LABEL[k]+'</span>'
     +'<div class="rv-box">'+(v.hasImage
       ?'<img src="http://127.0.0.1:8789/photo/'+encodeURIComponent(String(o.r))+'" alt="健康证原图" style="max-width:100%;border-radius:4px;border:1px solid #cce0f5" onerror="this.outerHTML=\'<span class=cert-none>图片加载失败，请确认核查服务已启动</span>\'">'
-      :'尚未采集照片，本轮批量采集完成后自动出现。')+'</div>'
+      :'未拿到证件照片。刚入职的会在名单更新后自动补采（一般当天完成）；若长期停留在这个状态，是站点还没在平台上传证件照，需要督办补传——不是看板漏采。')+'</div>'
     +'<dl class="rv-grid">'+field('体检机构',v.institution)+field('证件编号',v.certificateMasked)+field('识别有效期',v.expiry)+field('二维码摘要',v.qrSummary)+field('采集时间',v.collectedAt)+field('图片是否更新',v.imageChanged===true?'有更新':v.imageChanged===false?'无更新':'未知')+'</dl>'
     +'<div class="rv-box"><b>'+(k==='domain_check'?'待核实说明':k==='risk'?'风险依据':'核查说明')+'</b><br>'+(reasons.length?reasons.map(esc).join('<br>'):'暂无核查结果；不代表已证实有效。')+'</div>'
     +'<dl class="rv-grid">'+field('人工结论',v.conclusion)+field('复核人',v.reviewer)+field('复核时间',v.checkedAt)+field('核验依据',v.evidenceSummary)+'</dl>'
