@@ -1,5 +1,5 @@
 const EMBEDDED_DATA = {
-  "lastUpdated": "2026-11-06 16:11:22",
+  "lastUpdated": "2026-11-06 17:30:41",
   "sourceUrl": "https://fxgl365.com/110/w/desktop/process/list?activeTab=CURRENT",
   "module": "事件处理",
   "kpi": {
@@ -22456,20 +22456,20 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1784094637000,
               "latestTime": 1784094637000,
-              "startTimeLong": 1784094637000,
-              "latestTimeLong": 1784094637000
+              "latestTimeLong": 1784094637000,
+              "startTimeLong": 1784094637000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1784094637000,
               "latestTime": 1784363269000,
-              "startTimeLong": 1784094637000,
-              "latestTimeLong": 1784363269000
+              "latestTimeLong": 1784363269000,
+              "startTimeLong": 1784094637000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -114326,55 +114326,55 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1784608298000,
               "latestTime": 1784608298000,
-              "startTimeLong": 1784608298000,
-              "latestTimeLong": 1784608298000
+              "latestTimeLong": 1784608298000,
+              "startTimeLong": 1784608298000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1785159984000,
               "latestTime": 1785159995000,
-              "startTimeLong": 1785159984000,
-              "latestTimeLong": 1785159995000
+              "latestTimeLong": 1785159995000,
+              "startTimeLong": 1785159984000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1784608298000,
               "latestTime": 1785159984000,
-              "startTimeLong": 1784608298000,
-              "latestTimeLong": 1785159984000
+              "latestTimeLong": 1785159984000,
+              "startTimeLong": 1784608298000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1785159995000,
               "latestTime": 1785159995000,
-              "startTimeLong": 1785159995000,
-              "latestTimeLong": 1785159995000
+              "latestTimeLong": 1785159995000,
+              "startTimeLong": 1785159995000
             },
             {
               "taskKey": "jspzbks_wait_end_response",
               "startTime": 1784614823000,
               "latestTime": 1784614834000,
-              "startTimeLong": 1784614823000,
-              "latestTimeLong": 1784614834000
+              "latestTimeLong": 1784614834000,
+              "startTimeLong": 1784614823000
             },
             {
               "taskKey": "jspzbks_wait_response",
               "startTime": 1784608298000,
               "latestTime": 1784614823000,
-              "startTimeLong": 1784608298000,
-              "latestTimeLong": 1784614823000
+              "latestTimeLong": 1784614823000,
+              "startTimeLong": 1784608298000
             },
             {
               "taskKey": "jspzbks_wait_follow",
               "startTime": 1785154852000,
               "latestTime": 1785154852000,
-              "startTimeLong": 1785154852000,
-              "latestTimeLong": 1785154852000
+              "latestTimeLong": 1785154852000,
+              "startTimeLong": 1785154852000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1786455995000,
-          "delayTimeLong": 1786455995000
+          "delayTimeLong": 1786455995000,
+          "delayTime": 1786455995000
         },
         "related": null
       }
@@ -145835,8 +145835,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1790239469000,
-          "delayTimeLong": 1790239469000
+          "delayTimeLong": 1790239469000,
+          "delayTime": 1790239469000
         },
         "related": null
       }
@@ -169069,143 +169069,6 @@ const EMBEDDED_DATA = {
       }
     },
     {
-      "id": "2026100829179",
-      "title": "故意伤害致人伤-故意伤害致人伤",
-      "business": "履约业务-专送",
-      "source": "PACIFIC_UPGRAGE",
-      "type": "暴力冲突事件",
-      "level": "黄色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "occurTime": "2026-10-06 14:54:00",
-      "reportTime": "2026-10-08 15:50:30",
-      "updateTime": "2026-10-23 16:30:30",
-      "province": "安徽省",
-      "city": "滁州市",
-      "district": "南谯区",
-      "address": "龙蟠大道9号",
-      "summary": "【事发时间】：2026-10-06 14:54:00\n【事发地址】：安徽省-滁州市-琅琊区    龙蟠大道9号\n【事件经过】：外卖商家进线反馈，10月6日14:55左右 ，骑手到店等餐，正在给他的单子炒呢，骑手骂骂咧咧的，拳头打了自己眼部，去眼部挫伤，眼角膜疑似脱落，后续关注，报警正在调查当中，要求处罚骑手\n【伤情财损】：骑手人数：无，伤情：无，财损金额：无\n                       三者人数：1人，伤情：眼部受伤，财损金额：无\n                       三者/用户年龄：未知\n【是否报警】：是\n【骑手详细信息】：77511851，吴楷，177****9070，兴必达【滁州】醉翁亭站\n【有无媒体介入】：否\n【是否涉及敏感情况】：否\n【是否有视频音频照片等证据材料】：是\n【涉及关键等级判断】：\n【来电人诉求】：",
-      "reporter": "胡子虎",
-      "handler": "王宇晖",
-      "region": "中南大区--加盟",
-      "area": "加盟安徽区域",
-      "station": "兴必达【滁州】醉翁亭站",
-      "stationId": "",
-      "orgPath": "",
-      "franchisee": "",
-      "riderName": "吴楷",
-      "riderPhone": "177****9070",
-      "riderStation": "兴必达【滁州】醉翁亭站",
-      "detail": {
-        "eventNo": "2026100829179",
-        "title": "故意伤害致人伤-故意伤害致人伤",
-        "source": "PACIFIC_UPGRAGE",
-        "type": "暴力冲突事件",
-        "level": "黄色",
-        "statusRaw": 3,
-        "status": "处理中",
-        "occurTime": "2026-10-06 14:54:00",
-        "reportTime": "2026-10-08 15:50:30",
-        "updateTime": "2026-10-23 16:30:30",
-        "endTime": "",
-        "province": "安徽省",
-        "city": "滁州市",
-        "district": "南谯区",
-        "address": "龙蟠大道9号",
-        "course": "【事发时间】：2026-10-06 14:54:00\n【事发地址】：安徽省-滁州市-琅琊区    龙蟠大道9号\n【事件经过】：外卖商家进线反馈，10月6日14:55左右 ，骑手到店等餐，正在给他的单子炒呢，骑手骂骂咧咧的，拳头打了自己眼部，去眼部挫伤，眼角膜疑似脱落，后续关注，报警正在调查当中，要求处罚骑手\n【伤情财损】：骑手人数：无，伤情：无，财损金额：无\n                       三者人数：1人，伤情：眼部受伤，财损金额：无\n                       三者/用户年龄：未知\n【是否报警】：是\n【骑手详细信息】：77511851，吴楷，177****9070，兴必达【滁州】醉翁亭站\n【有无媒体介入】：否\n【是否涉及敏感情况】：否\n【是否有视频音频照片等证据材料】：是\n【涉及关键等级判断】：\n【来电人诉求】：",
-        "region": "中南大区--加盟",
-        "area": "加盟安徽区域",
-        "station": "兴必达【滁州】醉翁亭站",
-        "stationId": "",
-        "stationType": "",
-        "orgPath": "",
-        "franchisee": "",
-        "cityMerchant": "",
-        "riders": [
-          {
-            "riderId": 77511851,
-            "entryDate": "1787794269",
-            "riderPhone": {
-              "data": null,
-              "token": "jEl.v98SRwx9070",
-              "dataMask": "177****9070",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "即时配加盟",
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXESdC6lP23983",
-              "dataMask": "51152**********712",
-              "unknown": null
-            },
-            "stationName": "兴必达【滁州】醉翁亭站",
-            "riderName": "吴楷",
-            "age": "0",
-            "genderDesc": "男",
-            "stationId": "2034409"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "0078fe3c": 2,
-          "001026d9": "1",
-          "31297c9b": 1,
-          "1e970e68": 1,
-          "4263fd60": 2
-        },
-        "eventTypeInfo": {
-          "9b6e6c2a": "1",
-          "7d3a5959": 2,
-          "5e889f75": 3
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "107185126360",
-        "taskKey": "jspzsks_wait_follow",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "huzihu",
-        "updateAccountId": "wangyuhui19",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1791445830000,
-              "latestTime": 1791445830000,
-              "startTimeLong": 1791445830000,
-              "latestTimeLong": 1791445830000
-            },
-            {
-              "taskKey": "jspzsks_wait_end_response",
-              "startTime": 1791448271000,
-              "latestTime": 1791448278000,
-              "startTimeLong": 1791448271000,
-              "latestTimeLong": 1791448278000
-            },
-            {
-              "taskKey": "jspzsks_wait_response",
-              "startTime": 1791445830000,
-              "latestTime": 1791448271000,
-              "startTimeLong": 1791445830000,
-              "latestTimeLong": 1791448271000
-            },
-            {
-              "taskKey": "jspzsks_wait_follow",
-              "startTime": 1791448278000,
-              "latestTime": 1791448278000,
-              "startTimeLong": 1791448278000,
-              "latestTimeLong": 1791448278000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTime": 1794040230000,
-          "delayTimeLong": 1794040230000
-        },
-        "related": null
-      }
-    },
-    {
       "id": "2026102373799",
       "title": "交通事故-交通事故致人伤",
       "business": "履约业务-专送",
@@ -184163,29 +184026,29 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1793370754000,
               "latestTime": 1793370754000,
-              "latestTimeLong": 1793370754000,
-              "startTimeLong": 1793370754000
+              "startTimeLong": 1793370754000,
+              "latestTimeLong": 1793370754000
             },
             {
               "taskKey": "zs_wait_follow",
               "startTime": 1793370808000,
               "latestTime": 1793370808000,
-              "latestTimeLong": 1793370808000,
-              "startTimeLong": 1793370808000
+              "startTimeLong": 1793370808000,
+              "latestTimeLong": 1793370808000
             },
             {
               "taskKey": "zs_wait_end_response",
               "startTime": 1793370791000,
               "latestTime": 1793370808000,
-              "latestTimeLong": 1793370808000,
-              "startTimeLong": 1793370791000
+              "startTimeLong": 1793370791000,
+              "latestTimeLong": 1793370808000
             },
             {
               "taskKey": "zs_wait_response",
               "startTime": 1793370754000,
               "latestTime": 1793370791000,
-              "latestTimeLong": 1793370791000,
-              "startTimeLong": 1793370754000
+              "startTimeLong": 1793370754000,
+              "latestTimeLong": 1793370791000
             }
           ],
           "processType": "PEISONG_ONLINE",
@@ -194313,6 +194176,143 @@ const EMBEDDED_DATA = {
           "processType": "PEISONG_ONLINE",
           "delayTime": 1795226320000,
           "delayTimeLong": 1795226320000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026100829179",
+      "title": "故意伤害致人伤-故意伤害致人伤",
+      "business": "履约业务-专送",
+      "source": "PACIFIC_UPGRAGE",
+      "type": "暴力冲突事件",
+      "level": "黄色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "occurTime": "2026-10-06 14:54:00",
+      "reportTime": "2026-10-08 15:50:30",
+      "updateTime": "2026-11-06 17:21:31",
+      "province": "安徽省",
+      "city": "滁州市",
+      "district": "南谯区",
+      "address": "龙蟠大道9号",
+      "summary": "【事发时间】：2026-10-06 14:54:00\n【事发地址】：安徽省-滁州市-琅琊区    龙蟠大道9号\n【事件经过】：外卖商家进线反馈，10月6日14:55左右 ，骑手到店等餐，正在给他的单子炒呢，骑手骂骂咧咧的，拳头打了自己眼部，去眼部挫伤，眼角膜疑似脱落，后续关注，报警正在调查当中，要求处罚骑手\n【伤情财损】：骑手人数：无，伤情：无，财损金额：无\n                       三者人数：1人，伤情：眼部受伤，财损金额：无\n                       三者/用户年龄：未知\n【是否报警】：是\n【骑手详细信息】：77511851，吴楷，177****9070，兴必达【滁州】醉翁亭站\n【有无媒体介入】：否\n【是否涉及敏感情况】：否\n【是否有视频音频照片等证据材料】：是\n【涉及关键等级判断】：\n【来电人诉求】：",
+      "reporter": "胡子虎",
+      "handler": "王宇晖",
+      "region": "中南大区--加盟",
+      "area": "加盟安徽区域",
+      "station": "兴必达【滁州】醉翁亭站",
+      "stationId": "",
+      "orgPath": "",
+      "franchisee": "",
+      "riderName": "吴楷",
+      "riderPhone": "177****9070",
+      "riderStation": "兴必达【滁州】醉翁亭站",
+      "detail": {
+        "eventNo": "2026100829179",
+        "title": "故意伤害致人伤-故意伤害致人伤",
+        "source": "PACIFIC_UPGRAGE",
+        "type": "暴力冲突事件",
+        "level": "黄色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-10-06 14:54:00",
+        "reportTime": "2026-10-08 15:50:30",
+        "updateTime": "2026-10-23 16:30:30",
+        "endTime": "",
+        "province": "安徽省",
+        "city": "滁州市",
+        "district": "南谯区",
+        "address": "龙蟠大道9号",
+        "course": "【事发时间】：2026-10-06 14:54:00\n【事发地址】：安徽省-滁州市-琅琊区    龙蟠大道9号\n【事件经过】：外卖商家进线反馈，10月6日14:55左右 ，骑手到店等餐，正在给他的单子炒呢，骑手骂骂咧咧的，拳头打了自己眼部，去眼部挫伤，眼角膜疑似脱落，后续关注，报警正在调查当中，要求处罚骑手\n【伤情财损】：骑手人数：无，伤情：无，财损金额：无\n                       三者人数：1人，伤情：眼部受伤，财损金额：无\n                       三者/用户年龄：未知\n【是否报警】：是\n【骑手详细信息】：77511851，吴楷，177****9070，兴必达【滁州】醉翁亭站\n【有无媒体介入】：否\n【是否涉及敏感情况】：否\n【是否有视频音频照片等证据材料】：是\n【涉及关键等级判断】：\n【来电人诉求】：",
+        "region": "中南大区--加盟",
+        "area": "加盟安徽区域",
+        "station": "兴必达【滁州】醉翁亭站",
+        "stationId": "",
+        "stationType": "",
+        "orgPath": "",
+        "franchisee": "",
+        "cityMerchant": "",
+        "riders": [
+          {
+            "riderId": 77511851,
+            "entryDate": "1787794269",
+            "riderPhone": {
+              "data": null,
+              "token": "jEl.v98SRwx9070",
+              "dataMask": "177****9070",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXESdC6lP23983",
+              "dataMask": "51152**********712",
+              "unknown": null
+            },
+            "stationName": "兴必达【滁州】醉翁亭站",
+            "riderName": "吴楷",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2034409"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "0078fe3c": 2,
+          "001026d9": "1",
+          "31297c9b": 1,
+          "1e970e68": 1,
+          "4263fd60": 2
+        },
+        "eventTypeInfo": {
+          "9b6e6c2a": "1",
+          "7d3a5959": 2,
+          "5e889f75": 3
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "107185126360",
+        "taskKey": "jspzsks_wait_follow",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "huzihu",
+        "updateAccountId": "wangyuhui19",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1791445830000,
+              "latestTime": 1791445830000,
+              "startTimeLong": 1791445830000,
+              "latestTimeLong": 1791445830000
+            },
+            {
+              "taskKey": "jspzsks_wait_end_response",
+              "startTime": 1791448271000,
+              "latestTime": 1791448278000,
+              "startTimeLong": 1791448271000,
+              "latestTimeLong": 1791448278000
+            },
+            {
+              "taskKey": "jspzsks_wait_response",
+              "startTime": 1791445830000,
+              "latestTime": 1791448271000,
+              "startTimeLong": 1791445830000,
+              "latestTimeLong": 1791448271000
+            },
+            {
+              "taskKey": "jspzsks_wait_follow",
+              "startTime": 1791448278000,
+              "latestTime": 1791448278000,
+              "startTimeLong": 1791448278000,
+              "latestTimeLong": 1791448278000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTime": 1794040230000,
+          "delayTimeLong": 1794040230000
         },
         "related": null
       }
@@ -213303,8 +213303,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -239812,8 +239812,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -248262,34 +248262,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1790133356000,
               "latestTime": 1790133356000,
-              "latestTimeLong": 1790133356000,
-              "startTimeLong": 1790133356000
+              "startTimeLong": 1790133356000,
+              "latestTimeLong": 1790133356000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1790134626000,
               "latestTime": 1790134628000,
-              "latestTimeLong": 1790134628000,
-              "startTimeLong": 1790134626000
+              "startTimeLong": 1790134626000,
+              "latestTimeLong": 1790134628000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1790133356000,
               "latestTime": 1790134626000,
-              "latestTimeLong": 1790134626000,
-              "startTimeLong": 1790133356000
+              "startTimeLong": 1790133356000,
+              "latestTimeLong": 1790134626000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1790134628000,
               "latestTime": 1790165149000,
-              "latestTimeLong": 1790165149000,
-              "startTimeLong": 1790134628000
+              "startTimeLong": 1790134628000,
+              "latestTimeLong": 1790165149000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -270975,34 +270975,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1788842778000,
               "latestTime": 1788842778000,
-              "startTimeLong": 1788842778000,
-              "latestTimeLong": 1788842778000
+              "latestTimeLong": 1788842778000,
+              "startTimeLong": 1788842778000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1788842797000,
               "latestTime": 1788925763000,
-              "startTimeLong": 1788842797000,
-              "latestTimeLong": 1788925763000
+              "latestTimeLong": 1788925763000,
+              "startTimeLong": 1788842797000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1788842778000,
               "latestTime": 1788842797000,
-              "startTimeLong": 1788842778000,
-              "latestTimeLong": 1788842797000
+              "latestTimeLong": 1788842797000,
+              "startTimeLong": 1788842778000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1788925763000,
               "latestTime": 1790157283000,
-              "startTimeLong": 1788925763000,
-              "latestTimeLong": 1790157283000
+              "latestTimeLong": 1790157283000,
+              "startTimeLong": 1788925763000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -278422,29 +278422,29 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1788579823000,
               "latestTime": 1788579823000,
-              "startTimeLong": 1788579823000,
-              "latestTimeLong": 1788579823000
+              "latestTimeLong": 1788579823000,
+              "startTimeLong": 1788579823000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1788597056000,
               "latestTime": 1788597063000,
-              "startTimeLong": 1788597056000,
-              "latestTimeLong": 1788597063000
+              "latestTimeLong": 1788597063000,
+              "startTimeLong": 1788597056000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1788579823000,
               "latestTime": 1788597056000,
-              "startTimeLong": 1788579823000,
-              "latestTimeLong": 1788597056000
+              "latestTimeLong": 1788597056000,
+              "startTimeLong": 1788579823000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1788597063000,
               "latestTime": 1788598638000,
-              "startTimeLong": 1788597063000,
-              "latestTimeLong": 1788598638000
+              "latestTimeLong": 1788598638000,
+              "startTimeLong": 1788597063000
             }
           ],
           "processType": "PEISONG_ONLINE",
@@ -293719,8 +293719,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -334119,8 +334119,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -361211,34 +361211,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1785383249000,
               "latestTime": 1785383249000,
-              "latestTimeLong": 1785383249000,
-              "startTimeLong": 1785383249000
+              "startTimeLong": 1785383249000,
+              "latestTimeLong": 1785383249000
             },
             {
               "taskKey": "zs_wait_follow",
               "startTime": 1785383277000,
               "latestTime": 1786431110000,
-              "latestTimeLong": 1786431110000,
-              "startTimeLong": 1785383277000
+              "startTimeLong": 1785383277000,
+              "latestTimeLong": 1786431110000
             },
             {
               "taskKey": "zs_wait_end_response",
               "startTime": 1785383259000,
               "latestTime": 1785383277000,
-              "latestTimeLong": 1785383277000,
-              "startTimeLong": 1785383259000
+              "startTimeLong": 1785383259000,
+              "latestTimeLong": 1785383277000
             },
             {
               "taskKey": "zs_wait_response",
               "startTime": 1785383249000,
               "latestTime": 1785383259000,
-              "latestTimeLong": 1785383259000,
-              "startTimeLong": 1785383249000
+              "startTimeLong": 1785383249000,
+              "latestTimeLong": 1785383259000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -389382,29 +389382,29 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1784017927000,
               "latestTime": 1784017927000,
-              "startTimeLong": 1784017927000,
-              "latestTimeLong": 1784017927000
+              "latestTimeLong": 1784017927000,
+              "startTimeLong": 1784017927000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1784017966000,
               "latestTime": 1784017977000,
-              "startTimeLong": 1784017966000,
-              "latestTimeLong": 1784017977000
+              "latestTimeLong": 1784017977000,
+              "startTimeLong": 1784017966000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1784017927000,
               "latestTime": 1784017966000,
-              "startTimeLong": 1784017927000,
-              "latestTimeLong": 1784017966000
+              "latestTimeLong": 1784017966000,
+              "startTimeLong": 1784017927000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1784017977000,
               "latestTime": 1788162054000,
-              "startTimeLong": 1784017977000,
-              "latestTimeLong": 1788162054000
+              "latestTimeLong": 1788162054000,
+              "startTimeLong": 1784017977000
             }
           ],
           "processType": "PEISONG_ONLINE",
@@ -396294,29 +396294,29 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1783820005000,
               "latestTime": 1783820005000,
-              "latestTimeLong": 1783820005000,
-              "startTimeLong": 1783820005000
+              "startTimeLong": 1783820005000,
+              "latestTimeLong": 1783820005000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1783820136000,
               "latestTime": 1783820145000,
-              "latestTimeLong": 1783820145000,
-              "startTimeLong": 1783820136000
+              "startTimeLong": 1783820136000,
+              "latestTimeLong": 1783820145000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1783820005000,
               "latestTime": 1783820136000,
-              "latestTimeLong": 1783820136000,
-              "startTimeLong": 1783820005000
+              "startTimeLong": 1783820005000,
+              "latestTimeLong": 1783820136000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1783820145000,
               "latestTime": 1787888278000,
-              "latestTimeLong": 1787888278000,
-              "startTimeLong": 1783820145000
+              "startTimeLong": 1783820145000,
+              "latestTimeLong": 1787888278000
             }
           ],
           "processType": "PEISONG_ONLINE",
@@ -423477,34 +423477,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1782473888000,
               "latestTime": 1782473888000,
-              "latestTimeLong": 1782473888000,
-              "startTimeLong": 1782473888000
+              "startTimeLong": 1782473888000,
+              "latestTimeLong": 1782473888000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1782490525000,
               "latestTime": 1782490531000,
-              "latestTimeLong": 1782490531000,
-              "startTimeLong": 1782490525000
+              "startTimeLong": 1782490525000,
+              "latestTimeLong": 1782490531000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1782473888000,
               "latestTime": 1782490525000,
-              "latestTimeLong": 1782490525000,
-              "startTimeLong": 1782473888000
+              "startTimeLong": 1782473888000,
+              "latestTimeLong": 1782490525000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1782490531000,
               "latestTime": 1787719193000,
-              "latestTimeLong": 1787719193000,
-              "startTimeLong": 1782490531000
+              "startTimeLong": 1782490531000,
+              "latestTimeLong": 1787719193000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -451250,29 +451250,29 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1780916851000,
               "latestTime": 1780916851000,
-              "latestTimeLong": 1780916851000,
-              "startTimeLong": 1780916851000
+              "startTimeLong": 1780916851000,
+              "latestTimeLong": 1780916851000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1780920033000,
               "latestTime": 1780920041000,
-              "latestTimeLong": 1780920041000,
-              "startTimeLong": 1780920033000
+              "startTimeLong": 1780920033000,
+              "latestTimeLong": 1780920041000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1780916851000,
               "latestTime": 1780920033000,
-              "latestTimeLong": 1780920033000,
-              "startTimeLong": 1780916851000
+              "startTimeLong": 1780916851000,
+              "latestTimeLong": 1780920033000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1780920041000,
               "latestTime": 1784106094000,
-              "latestTimeLong": 1784106094000,
-              "startTimeLong": 1780920041000
+              "startTimeLong": 1780920041000,
+              "latestTimeLong": 1784106094000
             }
           ],
           "processType": "PEISONG_ONLINE",
@@ -459355,29 +459355,29 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1780414526000,
               "latestTime": 1780414526000,
-              "latestTimeLong": 1780414526000,
-              "startTimeLong": 1780414526000
+              "startTimeLong": 1780414526000,
+              "latestTimeLong": 1780414526000
             },
             {
               "taskKey": "zs_wait_follow",
               "startTime": 1780414561000,
               "latestTime": 1780414632000,
-              "latestTimeLong": 1780414632000,
-              "startTimeLong": 1780414561000
+              "startTimeLong": 1780414561000,
+              "latestTimeLong": 1780414632000
             },
             {
               "taskKey": "zs_wait_end_response",
               "startTime": 1780414534000,
               "latestTime": 1780414561000,
-              "latestTimeLong": 1780414561000,
-              "startTimeLong": 1780414534000
+              "startTimeLong": 1780414534000,
+              "latestTimeLong": 1780414561000
             },
             {
               "taskKey": "zs_wait_response",
               "startTime": 1780414526000,
               "latestTime": 1780414534000,
-              "latestTimeLong": 1780414534000,
-              "startTimeLong": 1780414526000
+              "startTimeLong": 1780414526000,
+              "latestTimeLong": 1780414534000
             }
           ],
           "processType": "PEISONG_ONLINE",
@@ -567111,8 +567111,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -666111,8 +666111,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
