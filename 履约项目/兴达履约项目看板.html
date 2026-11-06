@@ -396,6 +396,22 @@ table.dt td.cb-audit-col{min-width:96px}
     <span class="filter-count" id="filter-count-morning"></span>
   </div>
 
+  <!-- 集约（驻点）早会名单 · 当月需开早会的集约站（2026-11-06 新增） -->
+  <div id="mr-jj-block" style="display:none;margin:10px 0 12px;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
+      <span style="font-size:14px;font-weight:700;color:#1f3a5f;">集约（驻点）早会名单</span>
+      <span id="mr-jj-sub" style="font-size:12px;color:#7d90a5;">（当月需开早会的集约站 · 加载中…）</span>
+      <span id="mr-jj-tag" style="display:inline-block;padding:1px 8px;border-radius:9px;background:#eaf4ff;color:#1d6ec4;font-size:12px;">-</span>
+    </div>
+    <div class="table-wrap" style="max-height:320px;border:1px solid #e3eaf3;border-radius:6px;">
+      <table class="dt" id="tbl-mr-jj">
+        <thead id="thead-mr-jj"></thead>
+        <tbody id="tbody-mr-jj"></tbody>
+      </table>
+    </div>
+    <div id="mr-jj-free" style="font-size:12px;color:#475569;margin-top:6px;line-height:1.9;"></div>
+  </div>
+
   <!-- 早会驳回 · 日期窗口 + 明细（2026-10-15 移至筛选条与明细统计表之间；仅「早会审核管理（日更新）」视图显示；数据源=BI 抓取 ∪ M盘驳回清单，合并去重，范围见副标题） -->
   <div id="mr-rej-block" style="display:none;margin:10px 0 12px;">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
@@ -1153,12 +1169,12 @@ function getSiteInfo(siteName) {
   }
   return {大区:'',区域:'',城市:''};
 }
-function siteInfoCols(siteName) {
+function siteInfoCols(siteName, badge) {
   var info = getSiteInfo(siteName);
   return '<td class="sticky-col" style="left:0;min-width:80px">'+escHtml(info.大区)+'</td>'+
          '<td class="sticky-col" style="left:80px;min-width:80px">'+escHtml(info.区域)+'</td>'+
          '<td class="sticky-col" style="left:160px;min-width:70px">'+escHtml(info.城市)+'</td>'+
-         '<td class="sticky-col sticky-last name-cell" style="left:230px;min-width:150px">'+escHtml(siteName)+'</td>';
+         '<td class="sticky-col sticky-last name-cell" style="left:230px;min-width:150px">'+escHtml(siteName)+(badge||'')+'</td>';
 }
 
 // ─── 颜色标记 ──────────────────────────────────────────────
@@ -1799,6 +1815,8 @@ function renderMorningTab() {
     if (lg) lg.remove();
     var rejBlk = document.getElementById('mr-rej-block');
     if (rejBlk) rejBlk.style.display = 'none';
+    var jjBlk = document.getElementById('mr-jj-block');
+    if (jjBlk) jjBlk.style.display = 'none';
     var stWrap = document.getElementById('ms-status-morning');
     if (stWrap) stWrap.style.display = 'none';
     var stLabel = document.getElementById('sf-label-status-morning');
@@ -2004,7 +2022,12 @@ function renderAuditView() {
       var cell = v.days[days[d].full] || { status: 'none' };
       siteCells += '<td style="text-align:center">' + mrChip(cell) + '</td>';
     }
-    rows += '<tr class="lv-site">' + siteInfoCols(s.site) +
+    var jjBadge = v.jj_need
+      ? '<span style="margin-left:6px;padding:0 6px;border-radius:8px;background:#fff7e6;color:#b45309;font-size:11px;border:1px solid #f3d19e" title="集约(驻点)站 · 在当月早会名单内，需提交早会">驻点</span>'
+      : (v.jj_free
+        ? '<span style="margin-left:6px;padding:0 6px;border-radius:8px;background:#f1f5f9;color:#64748b;font-size:11px;border:1px solid #e2e8f0" title="集约(驻点)站 · 不在当月早会名单内，本月免提交">驻点·免提交</span>'
+        : '');
+    rows += '<tr class="lv-site">' + siteInfoCols(s.site, jjBadge) +
       siteCells +
       '<td>' + fr(v.expected) + '</td><td>' + fr(v.submitted) + '</td>' +
       '<td style="color:' + (v.missing > 0 ? '#e64545' : '#334155') + ';font-weight:' + (v.missing > 0 ? 700 : 400) + '">' + fr(v.missing) + '</td>' +
@@ -2037,9 +2060,131 @@ function renderAuditView() {
     document.getElementById('mr-legend').innerHTML = legend;
   }
 
+  // ── 集约（驻点）早会名单 ──
+  renderJjBlock();
+
   // ── 早会驳回 · 日期窗口 + 明细（数据源=M盘驳回清单，范围随 MR_META.rej_from/rej_to）──
   var blk = document.getElementById('mr-rej-block');
   if (blk) { blk.style.display = ''; renderMrRejBlock(); }
+}
+
+// ─── 集约（驻点）早会名单 · 当月需开早会的集约站（2026-11-06 新增）──
+// 规则：集约站仅在名单内的当月需提交早会，名单外整月免提交（build_meeting_review.py 已按此扣减应提交）。
+// 2026-11-06 补：与顶部筛选条联动 —— 大区/区域/城市/站点 地理筛选 + 审核状态筛选都作用于本名单，
+//   免提交站点清单同步按地理筛选过滤；联动口径与下方明细表完全一致（同一份 sfState['xxx-morning']）。
+function jjFilterVals(dim) {
+  if (typeof sfState === 'undefined' || !sfState) return [];
+  return sfState[dim + '-morning'] || [];
+}
+function jjFiltersActive() {
+  return !!(jjFilterVals('region').length || jjFilterVals('subregion').length ||
+            jjFilterVals('city').length || jjFilterVals('site').length ||
+            jjFilterVals('status').length);
+}
+// 站点归属优先取 data.js（board_site，与主表一致）；不在库的退回名单表自带的大区/区域/城市
+function jjGeo(x) {
+  var key = (x && x.board_site) || '';
+  var info = key ? getSiteInfo(key) : { 大区: '', 区域: '', 城市: '' };
+  return {
+    region: info.大区 || (x && x.region) || '',
+    subr: info.区域 || (x && x.subr) || '',
+    city: info.城市 || (x && x.city) || '',
+    name: key || (x && x.site) || ''
+  };
+}
+function jjMatchGeo(geo) {
+  var rF = jjFilterVals('region'), sF = jjFilterVals('subregion'),
+      cF = jjFilterVals('city'), tF = jjFilterVals('site');
+  if (rF.length && rF.indexOf(geo.region) < 0) return false;
+  if (sF.length && sF.indexOf(geo.subr) < 0) return false;
+  if (cF.length && cF.indexOf(geo.city) < 0) return false;
+  if (tF.length && tF.indexOf(geo.name) < 0) return false;
+  return true;
+}
+// 名单行的 days 是「日期→状态字符串」，与主表「日期→cell对象」不同，故单独判断（近3天任一天命中）
+function jjStatusHit(x, days) {
+  var stF = jjFilterVals('status');
+  if (!stF.length) return true;
+  for (var d = 0; d < days.length; d++) {
+    var st = (x.days || {})[days[d].full] || 'none';
+    var lbl = MR_STATUS_MAP[mrBaseStatus(st)];
+    if (lbl && stF.indexOf(lbl) >= 0) return true;
+  }
+  return false;
+}
+function renderJjBlock() {
+  var blk = document.getElementById('mr-jj-block');
+  if (!blk) return;
+  var jj = (typeof MR_META !== 'undefined' && MR_META && MR_META.jj) ? MR_META.jj : null;
+  if (!jj || !(jj.list || []).length) { blk.style.display = 'none'; return; }
+  blk.style.display = '';
+  var list = jj.list || [], days = (MR_META.days || []);
+  var filtOn = jjFiltersActive();
+  var view = list.filter(function(x){ return jjMatchGeo(jjGeo(x)) && jjStatusHit(x, days); });
+  var sub = document.getElementById('mr-jj-sub');
+  if (sub) sub.textContent = '（' + (jj.month || '') + ' · 名单内 ' + list.length + ' 站需开早会；其余 ' +
+    (jj.free_count || 0) + ' 个集约站本月无需提交 · 源：' + (jj.source || '-') + '）' +
+    (filtOn ? '　· 已联动筛选' : '');
+  var tag = document.getElementById('mr-jj-tag');
+  if (tag) tag.textContent = filtOn
+    ? ('筛选后 ' + view.length + ' / 名单 ' + list.length + ' 站')
+    : ('看板内命中 ' + (jj.need_in_board || 0) + '/' + list.length + ' 站');
+
+  var th = '<tr><th style="min-width:70px">大区</th><th style="min-width:88px">区域</th><th style="min-width:56px">城市</th>' +
+           '<th style="min-width:210px">站点名称</th><th style="text-align:center">首单日期</th><th>KA必说品牌</th>';
+  for (var d = 0; d < days.length; d++) {
+    th += '<th style="text-align:center;background:#0B4F8A;color:#fff">' + escHtml(days[d].date + ' 周' + days[d].weekday) + '</th>';
+  }
+  th += '<th>应提交</th><th>已提交</th><th>未提交</th><th>驳回</th><th style="text-align:center">状态</th></tr>';
+  document.getElementById('thead-mr-jj').innerHTML = th;
+
+  var rows = '';
+  for (var i = 0; i < view.length; i++) {
+    var x = view[i];
+    rows += '<tr>' +
+      '<td>' + escHtml(x.region || '-') + '</td>' +
+      '<td>' + escHtml(x.subr || '-') + '</td>' +
+      '<td>' + escHtml(x.city || '-') + '</td>' +
+      '<td class="name-cell">' + escHtml(x.board_site || x.site) +
+        (x.board_site && x.board_site !== x.site ? ' <span style="color:#94a3b8;font-size:11px">（名单名：' + escHtml(x.site) + '）</span>' : '') + '</td>' +
+      '<td style="text-align:center;font-size:12px;color:#475569">' + escHtml(mrJjDate(x.first_day)) + '</td>' +
+      '<td style="font-size:12px;color:#475569">' + escHtml((x.ka && x.ka !== '#N/A') ? x.ka : '-') + '</td>';
+    for (var d2 = 0; d2 < days.length; d2++) {
+      var st = (x.days || {})[days[d2].full] || 'none';
+      rows += '<td style="text-align:center">' + mrChip({ status: st }) + '</td>';
+    }
+    rows += '<td>' + fr(x.expected || 0) + '</td><td>' + fr(x.submitted || 0) + '</td>' +
+      '<td style="color:' + ((x.missing || 0) > 0 ? '#e64545;font-weight:700' : '#334155') + '">' + fr(x.missing || 0) + '</td>' +
+      '<td style="color:' + ((x.rejected || 0) > 0 ? '#e64545;font-weight:700' : '#334155') + '">' + fr(x.rejected || 0) + '</td>' +
+      '<td style="text-align:center;font-size:12px">' + (x.in_data ? '<span style="color:#15803d">在库</span>' : '<span style="color:#b45309">未在库</span>') + '</td>' +
+      '</tr>';
+  }
+  if (!view.length) {
+    rows = '<tr><td colspan="' + (days.length + 11) + '" style="text-align:center;padding:14px;color:#94a3b8;font-size:13px">' +
+      '当前筛选范围内无名单内集约站（名单共 ' + list.length + ' 站，已按顶部大区/区域/城市/站点/审核状态过滤）' +
+      '　<a href="javascript:void(0)" onclick="clearFilter(\'morning\')" style="color:#1d6ec4">清除筛选</a></td></tr>';
+  }
+  document.getElementById('tbody-mr-jj').innerHTML = rows;
+
+  var free = document.getElementById('mr-jj-free');
+  if (free) {
+    var fsAll = jj.free_sites || [];
+    // 免提交清单同样按地理筛选过滤（审核状态无数据，不参与）；查不到归属的站点保留，避免误隐藏
+    var fs = fsAll.filter(function(n){
+      var info = (typeof getSiteInfo === 'function') ? getSiteInfo(n) : { 大区: '', 区域: '', 城市: '' };
+      if (!info || (!info.大区 && !info.区域 && !info.城市)) return true;
+      return jjMatchGeo({ region: info.大区 || '', subr: info.区域 || '', city: info.城市 || '', name: n });
+    });
+    free.innerHTML = '本月免提交早会的集约站（' + fs.length + (filtOn ? '/' + fsAll.length : '') + ' 个）：' +
+      (fs.length ? fs.map(function(n){ return '<span style="display:inline-block;margin:0 6px 2px 0;padding:1px 8px;border-radius:9px;background:#f1f5f9;color:#475569">' + escHtml(n) + '</span>'; }).join('') : '-') +
+      '<div style="margin-top:4px;color:#94a3b8">※ 该部分站点已从「应提交」中扣减；若其仍有提交会记为「加场」。' +
+      (filtOn ? '（清单已按当前筛选联动过滤）' : '') + '</div>';
+  }
+}
+function mrJjDate(v) {
+  var s = String(v || '').replace(/^#N\/A$/i, '');
+  if (/^\d{8}$/.test(s)) return s.slice(0, 4) + '-' + s.slice(4, 6) + '-' + s.slice(6, 8);
+  return s || '-';
 }
 
 // ─── 早会驳回窗口 + 明细 ───
@@ -6529,6 +6674,10 @@ function closeCheckRulesModal() {
 <li>
 <b>当月新B1建站（首单日期当月）：</b><br>
 每日提交，次月按大区任务自查
+</li>
+<li>
+<b>集约（驻点）站点：</b><br>
+仅在当月《【驻点】早会目标站点清单》内的站点需提交早会；<span class="highlight">名单外的集约站当月整月免提交</span>，名单内按大区奇偶日规则正常提交。当月名单见「早会审核管理（日更新）」页顶部「集约（驻点）早会名单」。
 </li>
 <li>
 <b>早会提交时间（日常早会/报备早会）：</b><br>
