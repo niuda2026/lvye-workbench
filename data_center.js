@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-11-07 06:33:45",
+  "updated_at": "2026-11-07 06:34:08",
   "action_summary": {
     "total": 23,
     "ok": 15,
@@ -21,7 +21,7 @@ window.DATA_CENTER = {
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-11-07 06:31:36",
+        "data_mtime": "2026-11-07 06:34:05",
         "all_synced": false,
         "synced_count": 10,
         "missing_count": 3,
@@ -111,7 +111,7 @@ window.DATA_CENTER = {
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-11-07 06:33:41",
+            "mtime": "2026-11-07 06:34:07",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -267,7 +267,7 @@ window.DATA_CENTER = {
             "latest": "充换电血压_data.js",
             "mtime": "2026-11-06 15:06:48",
             "max_age_hours": 13,
-            "age_hours": 15.4,
+            "age_hours": 15.5,
             "ok": false,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
@@ -572,7 +572,7 @@ window.DATA_CENTER = {
           "在职骑手详情\\在职骑手详情.html",
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-11-07 06:31:36",
+        "data_mtime": "2026-11-07 06:34:05",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -645,7 +645,7 @@ window.DATA_CENTER = {
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-11-07 06:32:10",
+        "data_mtime": "2026-11-07 06:34:06",
         "all_synced": true,
         "synced_count": 4,
         "missing_count": 0,
@@ -666,7 +666,7 @@ window.DATA_CENTER = {
           {
             "type": "V3内联数据",
             "latest": "v3_data.js",
-            "mtime": "2026-11-07 06:32:10",
+            "mtime": "2026-11-07 06:34:06",
             "synced": true
           },
           {
@@ -707,7 +707,7 @@ window.DATA_CENTER = {
             "label": "V3内联数据",
             "path": "骑手保障补贴\\v3_data.js",
             "latest": "v3_data.js",
-            "mtime": "2026-11-07 06:32:10",
+            "mtime": "2026-11-07 06:34:06",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -896,7 +896,7 @@ window.DATA_CENTER = {
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-11-07 06:31:38",
+        "data_mtime": "2026-11-07 06:34:07",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -907,7 +907,7 @@ window.DATA_CENTER = {
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-11-07 06:31:38",
+            "mtime": "2026-11-07 06:34:07",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -964,7 +964,7 @@ window.DATA_CENTER = {
           {
             "type": "交通安全data.js（归档源）",
             "latest": "data.js",
-            "mtime": "2026-11-07 06:31:36",
+            "mtime": "2026-11-07 06:34:05",
             "synced": true
           }
         ],
@@ -1090,7 +1090,7 @@ window.DATA_CENTER = {
           {
             "type": "安全权益·工作台源(iframe实时)",
             "latest": "data.js",
-            "mtime": "2026-11-07 06:31:36",
+            "mtime": "2026-11-07 06:34:05",
             "synced": true
           },
           {
@@ -1114,7 +1114,7 @@ window.DATA_CENTER = {
           {
             "type": "保险·V3内联数据(实时)",
             "latest": "v3_data.js",
-            "mtime": "2026-11-07 06:32:10",
+            "mtime": "2026-11-07 06:34:06",
             "synced": true
           },
           {
@@ -1154,7 +1154,7 @@ window.DATA_CENTER = {
             "label": "保险赔付补贴监控·V3数据",
             "path": "骑手保障补贴\\v3_data.js",
             "latest": "v3_data.js",
-            "mtime": "2026-11-07 06:32:10",
+            "mtime": "2026-11-07 06:34:06",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
