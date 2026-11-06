@@ -5,7 +5,7 @@ window.MONTHLY_SUMMARY = {
   "2026-10",
   "2026-11"
  ],
- "updated": "2026-11-06 07:10:04",
+ "updated": "2026-11-07 06:32:10",
  "sites": [
   {
    "level": "total",
@@ -144,7 +144,7 @@ window.MONTHLY_SUMMARY = {
      "rate": 16.87
     },
     "reverse": {
-     "num": 59477969,
+     "num": 59465249,
      "den": 2292391172,
      "rate": 2.59
     },
@@ -32829,9 +32829,9 @@ window.MONTHLY_SUMMARY = {
      "rate": 20.54
     },
     "reverse": {
-     "num": 1367874,
+     "num": 1355154,
      "den": 75092230,
-     "rate": 1.82
+     "rate": 1.8
     },
     "clothing": {
      "cloth": {
@@ -33306,9 +33306,9 @@ window.MONTHLY_SUMMARY = {
      "rate": 20.96
     },
     "reverse": {
-     "num": 1171775,
+     "num": 1159055,
      "den": 65296432,
-     "rate": 1.79
+     "rate": 1.78
     },
     "clothing": {
      "cloth": {
@@ -33624,9 +33624,9 @@ window.MONTHLY_SUMMARY = {
      "rate": 31.64
     },
     "reverse": {
-     "num": 314764,
+     "num": 302044,
      "den": 9609135,
-     "rate": 3.28
+     "rate": 3.14
     },
     "clothing": {
      "cloth": {
