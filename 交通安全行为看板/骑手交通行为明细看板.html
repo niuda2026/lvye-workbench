@@ -120,6 +120,9 @@ tr.lv-merchant td.cell-bad{background:rgba(198,40,40,.16)!important;color:#c6282
 #four-table{border-collapse:separate;border-spacing:0;contain:paint;border-top:1px solid #1E88E5;border-left:1px solid #1E88E5}
 #four-table th{border-style:solid;border-color:#1E88E5;border-width:0 1px 1px 0}
 #four-table td{border-style:solid;border-color:#e3edf7;border-width:0 1px 1px 0}
+/* 2026-11-07：四项站维度表行高放宽（原 31px 太紧凑），实测行高 31→42；趋势图单元格同步留白 */
+#four-table tbody td{padding:12px 10px;line-height:1.4}
+#four-table tbody td.spark-td{padding:6px 6px}
 #four-thead tr.eg-grp th{top:var(--hdfix,0px);height:32px;padding:4px 10px;font-size:12px;letter-spacing:1px;vertical-align:middle;border-color:rgba(255,255,255,.35);white-space:nowrap}
 #four-thead tr.eg-grp th small{font-size:10px;font-weight:400;opacity:.85;letter-spacing:0}
 #four-thead tr.eg-sub th{top:calc(var(--hdfix,0px) + 32px);padding:4px 5px;font-size:11px;letter-spacing:.3px;line-height:1.25;border-color:rgba(255,255,255,.3)}
