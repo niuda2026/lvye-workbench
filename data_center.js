@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-11-09 06:32:49",
+  "updated_at": "2026-11-09 06:33:23",
   "action_summary": {
     "total": 23,
     "ok": 13,
@@ -214,9 +214,9 @@ window.DATA_CENTER = {
         ],
         "data_mtime": "2026-11-08 15:09:19",
         "all_synced": false,
-        "synced_count": 2,
+        "synced_count": 1,
         "missing_count": 0,
-        "unsynced_count": 5,
+        "unsynced_count": 6,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
@@ -226,9 +226,9 @@ window.DATA_CENTER = {
           },
           {
             "type": "巡检工单列表",
-            "latest": "巡检工单列表_1794090857663.xls",
-            "mtime": "2026-11-08 06:35:47",
-            "synced": true
+            "latest": "巡检工单列表_1794177124835.xls",
+            "mtime": "2026-11-09 06:33:08",
+            "synced": false
           },
           {
             "type": "巡检平台站点检核",
@@ -593,7 +593,7 @@ window.DATA_CENTER = {
             "latest": "_crawl_service.log",
             "mtime": "2026-10-31 16:00:17",
             "max_age_hours": 26,
-            "age_hours": 206.5,
+            "age_hours": 206.6,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -684,7 +684,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-11-08 10:35:59",
             "max_age_hours": 26,
-            "age_hours": 19.9,
+            "age_hours": 20.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -897,7 +897,7 @@ window.DATA_CENTER = {
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-11-09 06:23:54",
+        "data_mtime": "2026-11-09 06:32:57",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -908,9 +908,9 @@ window.DATA_CENTER = {
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-11-09 06:23:54",
+            "mtime": "2026-11-09 06:32:57",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1170,7 +1170,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-11-08 10:35:59",
             "max_age_hours": 26,
-            "age_hours": 19.9,
+            "age_hours": 20.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
