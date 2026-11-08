@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-09 07:12:05",
+  "updated_at": "2026-11-09 07:13:05",
   "action_summary": {
     "total": 23,
     "ok": 15,
@@ -111,7 +111,7 @@
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-11-09 07:11:16",
+            "mtime": "2026-11-09 07:13:05",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -700,7 +700,7 @@
             "latest": "premium_latest.json",
             "mtime": "2026-11-08 13:15:25",
             "max_age_hours": 26,
-            "age_hours": 17.9,
+            "age_hours": 18.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1186,7 +1186,7 @@
             "latest": "premium_latest.json",
             "mtime": "2026-11-08 13:15:25",
             "max_age_hours": 26,
-            "age_hours": 17.9,
+            "age_hours": 18.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
