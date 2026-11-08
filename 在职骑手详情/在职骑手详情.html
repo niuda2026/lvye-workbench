@@ -208,14 +208,21 @@ var PROFILE_AT = (window.HC_PROFILE_META||{}).sourceAt || '';
 function prof(o){return PROFILE[String(o.r)]||{};}
 function dv(o){return DERIVED[String(o.r)]||{};}
 function certTypeOf(o){
+  /* 2026-11-08 修：采集档案是快照，骑手换证后 certType 仍可能是 2（回执单）。
+     源表 d.e（健康证到期）比档案权威：有到期日就说明已办健康证。 */
+  if(o.e) return '健康证';
+  if(o.x) return '回执单';
   var ct=prof(o).ct||dv(o).ct;
   if(ct===1) return '健康证';
   if(ct===2) return '回执单';
-  if(o.e) return '健康证';
-  if(o.x) return '回执单';
   return '';
 }
-function certDateOf(o){return prof(o).cd||dv(o).cd||'';}
+function certDateOf(o){
+  var ct=prof(o).ct||dv(o).ct;
+  /* 档案仍是回执单快照时，其 cd 是「入职日」而非健康证发证日，不能当发证日期显示 */
+  if(o.e && ct===2) return '';
+  return prof(o).cd||dv(o).cd||'';
+}
 function supp(o){return SUPPLEMENT[String(o.r)]||{};}
 function hireValue(o){return o.h||dv(o).hire||supp(o).hireHistorical||'';}
 function fmtHire(o){
@@ -233,6 +240,7 @@ function fmtCert(o,key){
   }
   if(key==='x'){
     if(d.x) return fmtD(d.x)+' <small title="按“入职+20天”由 '+esc(DERIVED_AT)+' 采集的入职日期推算，源表该行为空" style="color:#b26a00">推定</small>';
+    if(o.e) return '<span class="cert-none" title="该骑手已有健康证到期日，无需回执单">不适用</span>';
     if((prof(o).ct||d.ct)===1) return '<span class="cert-none" title="该骑手已持有健康证，无需回执单">不适用</span>';
   }
   return (!o.h&&!o.e&&!o.x&&!o.g)?'<span class="cert-none" title="健康证源字段缺失，不能据此认定无证">数据缺失</span>':'<span class="cert-none">未提供</span>';
