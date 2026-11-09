@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-11-10 06:34:22",
+  "updated_at": "2026-11-10 06:34:50",
   "action_summary": {
     "total": 23,
     "ok": 17,
@@ -859,7 +859,7 @@ window.DATA_CENTER = {
             "latest": "update_stations.log",
             "mtime": "2026-11-04 07:55:49",
             "max_age_hours": 26,
-            "age_hours": 142.6,
+            "age_hours": 142.7,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -895,7 +895,7 @@ window.DATA_CENTER = {
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-11-10 06:32:54",
+        "data_mtime": "2026-11-10 06:34:35",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -906,7 +906,7 @@ window.DATA_CENTER = {
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-11-10 06:32:54",
+            "mtime": "2026-11-10 06:34:35",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -1142,7 +1142,7 @@ window.DATA_CENTER = {
             "latest": "equity_slim_data.js",
             "mtime": "2026-11-09 09:13:45",
             "max_age_hours": 26,
-            "age_hours": 21.3,
+            "age_hours": 21.4,
             "ok": true,
             "note": "8421 按工作台源 mtime 自动重建",
             "fail_hits": [],
