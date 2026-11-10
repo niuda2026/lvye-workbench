@@ -1,9 +1,9 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-11-11 06:56:33",
+  "updated_at": "2026-11-11 06:57:06",
   "action_summary": {
     "total": 23,
-    "ok": 15,
-    "alert": 8,
+    "ok": 17,
+    "alert": 6,
     "missing": 0,
     "alert_groups": [
       "履约项目",
@@ -112,7 +112,7 @@ window.DATA_CENTER = {
             "latest": "update_log.txt",
             "mtime": "2026-11-11 06:53:44",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -210,47 +210,47 @@ window.DATA_CENTER = {
         "data_files": [
           "履约项目\\充换电血压_data.js"
         ],
-        "data_mtime": "2026-11-10 15:09:40",
+        "data_mtime": "2026-11-11 06:56:43",
         "all_synced": false,
-        "synced_count": 0,
+        "synced_count": 6,
         "missing_count": 0,
-        "unsynced_count": 7,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
             "latest": "报备和日常早会驳回清单_报备和日常早会驳回清单_2026-11-04-2026-11-10(早会时间)_1794351194215.xlsx",
             "mtime": "2026-11-11 06:53:15",
-            "synced": false
+            "synced": true
           },
           {
             "type": "巡检工单列表",
             "latest": "巡检工单列表_1794351198267.xls",
             "mtime": "2026-11-11 06:53:54",
-            "synced": false
+            "synced": true
           },
           {
             "type": "巡检平台站点检核",
             "latest": "站点_巡检平台_子项检核明细_【巡检平台站点检核】_子项检核明细查询_1794351281339.xlsx",
             "mtime": "2026-11-11 06:54:41",
-            "synced": false
+            "synced": true
           },
           {
             "type": "考培-学习明细记录",
             "latest": "_考培-学习明细记录_1794351272532.xlsx",
             "mtime": "2026-11-11 06:54:36",
-            "synced": false
+            "synced": true
           },
           {
             "type": "骑手排班明细数据",
             "latest": "骑手排班明细数据_50383623_20261111_065158.xlsx",
             "mtime": "2026-11-11 06:52:21",
-            "synced": false
+            "synced": true
           },
           {
             "type": "表单列表",
             "latest": "表单列表_50383623_20261111_065323.xlsx",
             "mtime": "2026-11-11 06:54:09",
-            "synced": false
+            "synced": true
           },
           {
             "type": "载具审核-骑手明细",
@@ -264,10 +264,10 @@ window.DATA_CENTER = {
             "label": "充换电血压数据构建",
             "path": "履约项目\\充换电血压_data.js",
             "latest": "充换电血压_data.js",
-            "mtime": "2026-11-10 15:09:40",
+            "mtime": "2026-11-11 06:56:43",
             "max_age_hours": 13,
-            "age_hours": 15.8,
-            "ok": false,
+            "age_hours": 0.0,
+            "ok": true,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
             "fail_lines": [],
@@ -277,10 +277,10 @@ window.DATA_CENTER = {
             "label": "带刀巡检数据构建",
             "path": "履约项目\\knife_rider_data.js",
             "latest": "knife_rider_data.js",
-            "mtime": "2026-11-10 15:09:49",
+            "mtime": "2026-11-11 06:56:56",
             "max_age_hours": 13,
-            "age_hours": 15.8,
-            "ok": false,
+            "age_hours": 0.0,
+            "ok": true,
             "note": "每日 07:30/15:00 两次(随总控第2.5步)",
             "fail_hits": [],
             "fail_lines": [],
@@ -314,8 +314,8 @@ window.DATA_CENTER = {
           }
         ],
         "action_stats": {
-          "ok_count": 1,
-          "alert_count": 3,
+          "ok_count": 3,
+          "alert_count": 1,
           "missing_count": 0,
           "total": 4,
           "all_ok": false
@@ -1142,7 +1142,7 @@ window.DATA_CENTER = {
             "latest": "equity_slim_data.js",
             "mtime": "2026-11-10 16:47:52",
             "max_age_hours": 26,
-            "age_hours": 14.1,
+            "age_hours": 14.2,
             "ok": true,
             "note": "8421 按工作台源 mtime 自动重建",
             "fail_hits": [],
