@@ -2997,6 +2997,7 @@ function inspRenderDeduct(days) {
   var dsub = document.getElementById('insp-ddetail-sub');
   if (dsub) dsub.textContent = (rows.length ? '共 ' + rows.length + ' 张扣分单' : '')
     + (_inspDeductSite ? ' · 已筛选站点「' + _inspDeductSite + '」' : '')
+    + ((M.deduct && M.deduct.reasonTotal) ? ' · 原因覆盖 ' + fr(M.deduct.reasonCovered || 0) + '/' + fr(M.deduct.reasonTotal) : '')
     + (ready ? '' : ' · 扣分原因待工单详情抓取接入后显示');
   var hint = document.getElementById('insp-ddetail-hint');
   if (hint) hint.style.display = 'none';
