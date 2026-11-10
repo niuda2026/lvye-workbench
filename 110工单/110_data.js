@@ -1,5 +1,5 @@
 const EMBEDDED_DATA = {
-  "lastUpdated": "2026-11-10 16:11:40",
+  "lastUpdated": "2026-11-10 17:30:48",
   "sourceUrl": "https://fxgl365.com/110/w/desktop/process/list?activeTab=CURRENT",
   "module": "事件处理",
   "kpi": {
@@ -1917,8 +1917,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -2321,7 +2321,7 @@ const EMBEDDED_DATA = {
       "statusRaw": 3,
       "occurTime": "2026-10-21 00:00:00",
       "reportTime": "2026-10-24 10:01:54",
-      "updateTime": "2026-11-05 09:55:18",
+      "updateTime": "2026-11-10 17:27:53",
       "province": "山西省",
       "city": "太原市",
       "district": "杏花岭区",
@@ -114373,8 +114373,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1786455995000,
-          "delayTime": 1786455995000
+          "delayTime": 1786455995000,
+          "delayTimeLong": 1786455995000
         },
         "related": null
       }
@@ -145835,8 +145835,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1790239469000,
-          "delayTime": 1790239469000
+          "delayTime": 1790239469000,
+          "delayTimeLong": 1790239469000
         },
         "related": null
       }
@@ -169682,8 +169682,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1794314251000,
-          "delayTime": 1794314251000
+          "delayTime": 1794314251000,
+          "delayTimeLong": 1794314251000
         },
         "related": null
       }
@@ -179410,157 +179410,6 @@ const EMBEDDED_DATA = {
       }
     },
     {
-      "id": "2026110203352",
-      "title": "违法犯罪-肢体冲突",
-      "business": "履约业务-专送",
-      "source": "PACIFIC_UPGRAGE",
-      "type": "暴力冲突事件",
-      "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "occurTime": "2026-11-02 17:01:00",
-      "reportTime": "2026-11-02 19:18:34",
-      "updateTime": "2026-11-02 21:09:21",
-      "province": "江苏省",
-      "city": "南京市",
-      "district": "江宁区",
-      "address": "兴必达【南京】江宁万达站",
-      "summary": "骑手反馈站长粗暴管理，态度恶劣，推搡自己，表示要开除\n骑手，还会罚款。装备，电池车子都归还站点了，要求退掉\n冷嘉豪197****7785【加盟】【配送员】兴必达【南京】江宁万达站，兴必达（江苏）网络科技有限公司",
-      "reporter": "吉新星",
-      "handler": "许骏峰",
-      "region": "华东大区--加盟",
-      "area": "加盟苏北区域",
-      "station": "兴必达【南京】江宁万达站",
-      "stationId": "",
-      "orgPath": "",
-      "franchisee": "",
-      "riderName": "冷嘉豪",
-      "riderPhone": "197****7785",
-      "riderStation": "兴必达【南京】江宁万达站",
-      "detail": {
-        "eventNo": "2026110203352",
-        "title": "违法犯罪-肢体冲突",
-        "source": "PACIFIC_UPGRAGE",
-        "type": "暴力冲突事件",
-        "level": "蓝色",
-        "statusRaw": 3,
-        "status": "处理中",
-        "occurTime": "2026-11-02 17:01:00",
-        "reportTime": "2026-11-02 19:18:34",
-        "updateTime": "2026-11-02 21:09:21",
-        "endTime": "",
-        "province": "江苏省",
-        "city": "南京市",
-        "district": "江宁区",
-        "address": "兴必达【南京】江宁万达站",
-        "course": "骑手反馈站长粗暴管理，态度恶劣，推搡自己，表示要开除\n骑手，还会罚款。装备，电池车子都归还站点了，要求退掉\n冷嘉豪197****7785【加盟】【配送员】兴必达【南京】江宁万达站，兴必达（江苏）网络科技有限公司",
-        "region": "华东大区--加盟",
-        "area": "加盟苏北区域",
-        "station": "兴必达【南京】江宁万达站",
-        "stationId": "",
-        "stationType": "",
-        "orgPath": "",
-        "franchisee": "",
-        "cityMerchant": "",
-        "riders": [
-          {
-            "entryDate": "2026-10-25",
-            "riderPhone": {
-              "data": null,
-              "token": "Sc2Tr!M1&sU7785",
-              "dataMask": "197****7785",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "加盟",
-            "userEmergencyContactName": "张小玉",
-            "orgEmergencyPhone": {
-              "data": null,
-              "token": "iRGAkRg4UNY3736",
-              "dataMask": "158****3736",
-              "unknown": null
-            },
-            "riderName": "冷嘉豪",
-            "userEmergencyContactMobile": {
-              "data": null,
-              "token": "S&~nR9AR9af6675",
-              "dataMask": "134****6675",
-              "unknown": null
-            },
-            "genderDesc": "男",
-            "riderId": 79184112,
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXnZ&eq4B10423",
-              "dataMask": "34122**********737",
-              "unknown": null
-            },
-            "stationName": "兴必达【南京】江宁万达站",
-            "age": "19",
-            "stationId": "2016506"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "0078fe3c": 2,
-          "1e970e68": 2,
-          "4263fd60": 2
-        },
-        "eventTypeInfo": {
-          "5e889f75": 4,
-          "2db867e4": 1,
-          "e9a09e2e": [
-            1,
-            1
-          ]
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "107757924013",
-        "taskKey": "jspzsks_wait_follow",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "jixinxing",
-        "updateAccountId": "xujunfeng04",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1793618314000,
-              "latestTime": 1793618314000,
-              "startTimeLong": 1793618314000,
-              "latestTimeLong": 1793618314000
-            },
-            {
-              "taskKey": "jspzsks_wait_end_response",
-              "startTime": 1793624662000,
-              "latestTime": 1793624961000,
-              "startTimeLong": 1793624662000,
-              "latestTimeLong": 1793624961000
-            },
-            {
-              "taskKey": "jspzsks_wait_response",
-              "startTime": 1793618314000,
-              "latestTime": 1793624662000,
-              "startTimeLong": 1793618314000,
-              "latestTimeLong": 1793624662000
-            },
-            {
-              "taskKey": "jspzsks_wait_follow",
-              "startTime": 1793624961000,
-              "latestTime": 1793624961000,
-              "startTimeLong": 1793624961000,
-              "latestTimeLong": 1793624961000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1794920961000,
-          "delayTime": 1794920961000
-        },
-        "related": null
-      }
-    },
-    {
       "id": "2026101959456",
       "title": "",
       "business": "履约业务-专送",
@@ -181382,160 +181231,6 @@ const EMBEDDED_DATA = {
       }
     },
     {
-      "id": "2026110304384",
-      "title": "交通事故致人伤-交通事故致人伤",
-      "business": "履约业务-专送",
-      "source": "PACIFIC_UPGRAGE",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "occurTime": "2026-06-28 09:00:00",
-      "reportTime": "2026-11-03 10:14:51",
-      "updateTime": "2026-11-03 23:00:22",
-      "province": "河北省",
-      "city": "秦皇岛市",
-      "district": "海港区",
-      "address": "生态谷小区北门",
-      "summary": "事件经过：三者女儿来电，6月28日9点左右，骑手与三者电瓶车事故，骑手主责，三者74岁多处外伤，电瓶车损坏，7月23日已把材料补齐，后续无进展，站点和保险员都是让找对方，进线需要处置，可以授权电话\n我方受伤人数、伤情、财损金额：\n其他方受伤人数、伤情、财损金额：\n三者/用户年龄：74岁  \n骑手信息：陈学文133****2905兴必达【秦皇岛】北部站\n涉及关键等级判断：\n是否涉及订单问题需要处理：\n需要协助处理的订单数量：\n进线人诉求：\n进线人信息：三者女儿132****0410",
-      "reporter": "聂贺",
-      "handler": "黄可鑫",
-      "region": "华北大区--加盟",
-      "area": "加盟津冀区域",
-      "station": "兴必达【秦皇岛】北部站",
-      "stationId": "",
-      "orgPath": "",
-      "franchisee": "",
-      "riderName": "陈学文",
-      "riderPhone": "133****2905",
-      "riderStation": "兴必达【秦皇岛】北部站",
-      "detail": {
-        "eventNo": "2026110304384",
-        "title": "交通事故致人伤-交通事故致人伤",
-        "source": "PACIFIC_UPGRAGE",
-        "type": "交通事故",
-        "level": "蓝色",
-        "statusRaw": 3,
-        "status": "处理中",
-        "occurTime": "2026-06-28 09:00:00",
-        "reportTime": "2026-11-03 10:14:51",
-        "updateTime": "2026-11-03 23:00:22",
-        "endTime": "",
-        "province": "河北省",
-        "city": "秦皇岛市",
-        "district": "海港区",
-        "address": "生态谷小区北门",
-        "course": "事件经过：三者女儿来电，6月28日9点左右，骑手与三者电瓶车事故，骑手主责，三者74岁多处外伤，电瓶车损坏，7月23日已把材料补齐，后续无进展，站点和保险员都是让找对方，进线需要处置，可以授权电话\n我方受伤人数、伤情、财损金额：\n其他方受伤人数、伤情、财损金额：\n三者/用户年龄：74岁  \n骑手信息：陈学文133****2905兴必达【秦皇岛】北部站\n涉及关键等级判断：\n是否涉及订单问题需要处理：\n需要协助处理的订单数量：\n进线人诉求：\n进线人信息：三者女儿132****0410",
-        "region": "华北大区--加盟",
-        "area": "加盟津冀区域",
-        "station": "兴必达【秦皇岛】北部站",
-        "stationId": "",
-        "stationType": "",
-        "orgPath": "",
-        "franchisee": "",
-        "cityMerchant": "",
-        "riders": [
-          {
-            "riderId": 72396861,
-            "entryDate": "2026-04-22",
-            "riderPhone": {
-              "data": null,
-              "token": "jnKQOfaU-S~2905",
-              "dataMask": "133****2905",
-              "unknown": null
-            },
-            "jobStatusDesc": "离职",
-            "orgTypeDesc": "即时配加盟",
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXw66beIS99231",
-              "dataMask": "13032**********616",
-              "unknown": null
-            },
-            "stationName": "兴必达【秦皇岛】北部站",
-            "riderName": "陈学文",
-            "age": "0",
-            "genderDesc": "男",
-            "stationId": "2075523"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "0078fe3c": 2,
-          "001026d9": "1",
-          "31297c9b": 1,
-          "1e970e68": 1,
-          "4263fd60": 2,
-          "6bc2fb6f": 1,
-          "2967240b": "10426069201355862329",
-          "e60e2199": 2,
-          "6f72eaaf": 2
-        },
-        "eventTypeInfo": {
-          "9b6e6c2a": "1",
-          "14": 2,
-          "15": 1,
-          "be5cd84a": 1,
-          "0224cd2b": [
-            3
-          ],
-          "5e889f75": 4,
-          "9": [
-            1,
-            3
-          ],
-          "60": [
-            1,
-            3
-          ]
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "107764539302",
-        "taskKey": "jspzsks_wait_follow",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "niehe",
-        "updateAccountId": "bm_huangkexin06@BMningboxingdazhisongwangluokejiyouxian",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1793672091000,
-              "latestTime": 1793672091000,
-              "startTimeLong": 1793672091000,
-              "latestTimeLong": 1793672091000
-            },
-            {
-              "taskKey": "jspzsks_wait_end_response",
-              "startTime": 1793718013000,
-              "latestTime": 1793718022000,
-              "startTimeLong": 1793718013000,
-              "latestTimeLong": 1793718022000
-            },
-            {
-              "taskKey": "jspzsks_wait_response",
-              "startTime": 1793672091000,
-              "latestTime": 1793718013000,
-              "startTimeLong": 1793672091000,
-              "latestTimeLong": 1793718013000
-            },
-            {
-              "taskKey": "jspzsks_wait_follow",
-              "startTime": 1793718022000,
-              "latestTime": 1793718022000,
-              "startTimeLong": 1793718022000,
-              "latestTimeLong": 1793718022000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1795014022000,
-          "delayTime": 1795014022000
-        },
-        "related": null
-      }
-    },
-    {
       "id": "2026110407135",
       "title": "",
       "business": "履约业务-专送",
@@ -182195,145 +181890,6 @@ const EMBEDDED_DATA = {
           "processType": "PEISONG_ONLINE",
           "delayTime": 1795064511000,
           "delayTimeLong": 1795064511000
-        },
-        "related": null
-      }
-    },
-    {
-      "id": "2026110305608",
-      "title": "人身安全-扬言自杀/自残",
-      "business": "履约业务-专送",
-      "source": "PACIFIC_UPGRAGE",
-      "type": "意外事件",
-      "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "occurTime": "2026-11-01 17:35:31",
-      "reportTime": "2026-11-03 15:45:38",
-      "updateTime": "2026-11-04 13:47:25",
-      "province": "安徽省",
-      "city": "马鞍山市",
-      "district": "雨山区",
-      "address": "马鞍山",
-      "summary": "骑手表示下雨天，单多，不认可罚单，扬言要去路口撞死",
-      "reporter": "张颖",
-      "handler": "张旭阳",
-      "region": "中南大区--加盟",
-      "area": "加盟安徽区域",
-      "station": "兴必达【马鞍山】雨山公园站",
-      "stationId": "",
-      "orgPath": "",
-      "franchisee": "",
-      "riderName": "程志康",
-      "riderPhone": "193****9341",
-      "riderStation": "兴必达【马鞍山】雨山公园站",
-      "detail": {
-        "eventNo": "2026110305608",
-        "title": "人身安全-扬言自杀/自残",
-        "source": "PACIFIC_UPGRAGE",
-        "type": "意外事件",
-        "level": "蓝色",
-        "statusRaw": 3,
-        "status": "处理中",
-        "occurTime": "2026-11-01 17:35:31",
-        "reportTime": "2026-11-03 15:45:38",
-        "updateTime": "2026-11-04 13:47:25",
-        "endTime": "",
-        "province": "安徽省",
-        "city": "马鞍山市",
-        "district": "雨山区",
-        "address": "马鞍山",
-        "course": "骑手表示下雨天，单多，不认可罚单，扬言要去路口撞死",
-        "region": "中南大区--加盟",
-        "area": "加盟安徽区域",
-        "station": "兴必达【马鞍山】雨山公园站",
-        "stationId": "",
-        "stationType": "",
-        "orgPath": "",
-        "franchisee": "",
-        "cityMerchant": "",
-        "riders": [
-          {
-            "riderId": 74184364,
-            "entryDate": "2026-06-15",
-            "riderPhone": {
-              "data": null,
-              "token": "EpjOY6rellD9341",
-              "dataMask": "193****9341",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "即时配加盟",
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXwEJhhLi91920",
-              "dataMask": "34050**********01X",
-              "unknown": null
-            },
-            "stationName": "兴必达【马鞍山】雨山公园站",
-            "riderName": "程志康",
-            "age": "0",
-            "genderDesc": "男",
-            "stationId": "2088654"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "0078fe3c": 2,
-          "1e970e68": 2,
-          "4263fd60": 2
-        },
-        "eventTypeInfo": {
-          "5e889f75": 4,
-          "9": [
-            3
-          ],
-          "60": [
-            3
-          ]
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "107773753242",
-        "taskKey": "jspzsks_wait_follow",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "zhangying43",
-        "updateAccountId": "bm_zhangxuyang01@BMningboxingdazhisongwangluokejiyouxian",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1793691938000,
-              "latestTime": 1793691938000,
-              "startTimeLong": 1793691938000,
-              "latestTimeLong": 1793691938000
-            },
-            {
-              "taskKey": "jspzsks_wait_end_response",
-              "startTime": 1793691994000,
-              "latestTime": 1793771245000,
-              "startTimeLong": 1793691994000,
-              "latestTimeLong": 1793771245000
-            },
-            {
-              "taskKey": "jspzsks_wait_response",
-              "startTime": 1793691938000,
-              "latestTime": 1793691994000,
-              "startTimeLong": 1793691938000,
-              "latestTimeLong": 1793691994000
-            },
-            {
-              "taskKey": "jspzsks_wait_follow",
-              "startTime": 1793771245000,
-              "latestTime": 1793771245000,
-              "startTimeLong": 1793771245000,
-              "latestTimeLong": 1793771245000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTime": 1795067245000,
-          "delayTimeLong": 1795067245000
         },
         "related": null
       }
@@ -192092,6 +191648,450 @@ const EMBEDDED_DATA = {
           "processType": "PEISONG_ONLINE",
           "delayTime": 1795592693000,
           "delayTimeLong": 1795592693000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026110203352",
+      "title": "违法犯罪-肢体冲突",
+      "business": "履约业务-专送",
+      "source": "PACIFIC_UPGRAGE",
+      "type": "暴力冲突事件",
+      "level": "蓝色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "occurTime": "2026-11-02 17:01:00",
+      "reportTime": "2026-11-02 19:18:34",
+      "updateTime": "2026-11-02 21:09:21",
+      "province": "江苏省",
+      "city": "南京市",
+      "district": "江宁区",
+      "address": "兴必达【南京】江宁万达站",
+      "summary": "骑手反馈站长粗暴管理，态度恶劣，推搡自己，表示要开除\n骑手，还会罚款。装备，电池车子都归还站点了，要求退掉\n冷嘉豪197****7785【加盟】【配送员】兴必达【南京】江宁万达站，兴必达（江苏）网络科技有限公司",
+      "reporter": "吉新星",
+      "handler": "许骏峰",
+      "region": "华东大区--加盟",
+      "area": "加盟苏北区域",
+      "station": "兴必达【南京】江宁万达站",
+      "stationId": "",
+      "orgPath": "",
+      "franchisee": "",
+      "riderName": "冷嘉豪",
+      "riderPhone": "197****7785",
+      "riderStation": "兴必达【南京】江宁万达站",
+      "detail": {
+        "eventNo": "2026110203352",
+        "title": "违法犯罪-肢体冲突",
+        "source": "PACIFIC_UPGRAGE",
+        "type": "暴力冲突事件",
+        "level": "蓝色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-11-02 17:01:00",
+        "reportTime": "2026-11-02 19:18:34",
+        "updateTime": "2026-11-02 21:09:21",
+        "endTime": "",
+        "province": "江苏省",
+        "city": "南京市",
+        "district": "江宁区",
+        "address": "兴必达【南京】江宁万达站",
+        "course": "骑手反馈站长粗暴管理，态度恶劣，推搡自己，表示要开除\n骑手，还会罚款。装备，电池车子都归还站点了，要求退掉\n冷嘉豪197****7785【加盟】【配送员】兴必达【南京】江宁万达站，兴必达（江苏）网络科技有限公司",
+        "region": "华东大区--加盟",
+        "area": "加盟苏北区域",
+        "station": "兴必达【南京】江宁万达站",
+        "stationId": "",
+        "stationType": "",
+        "orgPath": "",
+        "franchisee": "",
+        "cityMerchant": "",
+        "riders": [
+          {
+            "entryDate": "2026-10-25",
+            "riderPhone": {
+              "data": null,
+              "token": "Sc2Tr!M1&sU7785",
+              "dataMask": "197****7785",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "加盟",
+            "userEmergencyContactName": "张小玉",
+            "orgEmergencyPhone": {
+              "data": null,
+              "token": "iRGAkRg4UNY3736",
+              "dataMask": "158****3736",
+              "unknown": null
+            },
+            "riderName": "冷嘉豪",
+            "userEmergencyContactMobile": {
+              "data": null,
+              "token": "S&~nR9AR9af6675",
+              "dataMask": "134****6675",
+              "unknown": null
+            },
+            "genderDesc": "男",
+            "riderId": 79184112,
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXnZ&eq4B10423",
+              "dataMask": "34122**********737",
+              "unknown": null
+            },
+            "stationName": "兴必达【南京】江宁万达站",
+            "age": "19",
+            "stationId": "2016506"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "0078fe3c": 2,
+          "1e970e68": 2,
+          "4263fd60": 2
+        },
+        "eventTypeInfo": {
+          "5e889f75": 4,
+          "2db867e4": 1,
+          "e9a09e2e": [
+            1,
+            1
+          ]
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "107757924013",
+        "taskKey": "jspzsks_wait_follow",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "jixinxing",
+        "updateAccountId": "xujunfeng04",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1793618314000,
+              "latestTime": 1793618314000,
+              "startTimeLong": 1793618314000,
+              "latestTimeLong": 1793618314000
+            },
+            {
+              "taskKey": "jspzsks_wait_end_response",
+              "startTime": 1793624662000,
+              "latestTime": 1793624961000,
+              "startTimeLong": 1793624662000,
+              "latestTimeLong": 1793624961000
+            },
+            {
+              "taskKey": "jspzsks_wait_response",
+              "startTime": 1793618314000,
+              "latestTime": 1793624662000,
+              "startTimeLong": 1793618314000,
+              "latestTimeLong": 1793624662000
+            },
+            {
+              "taskKey": "jspzsks_wait_follow",
+              "startTime": 1793624961000,
+              "latestTime": 1793624961000,
+              "startTimeLong": 1793624961000,
+              "latestTimeLong": 1793624961000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": 1794920961000,
+          "delayTime": 1794920961000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026110304384",
+      "title": "交通事故致人伤-交通事故致人伤",
+      "business": "履约业务-专送",
+      "source": "PACIFIC_UPGRAGE",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "occurTime": "2026-06-28 09:00:00",
+      "reportTime": "2026-11-03 10:14:51",
+      "updateTime": "2026-11-03 23:00:22",
+      "province": "河北省",
+      "city": "秦皇岛市",
+      "district": "海港区",
+      "address": "生态谷小区北门",
+      "summary": "事件经过：三者女儿来电，6月28日9点左右，骑手与三者电瓶车事故，骑手主责，三者74岁多处外伤，电瓶车损坏，7月23日已把材料补齐，后续无进展，站点和保险员都是让找对方，进线需要处置，可以授权电话\n我方受伤人数、伤情、财损金额：\n其他方受伤人数、伤情、财损金额：\n三者/用户年龄：74岁  \n骑手信息：陈学文133****2905兴必达【秦皇岛】北部站\n涉及关键等级判断：\n是否涉及订单问题需要处理：\n需要协助处理的订单数量：\n进线人诉求：\n进线人信息：三者女儿132****0410",
+      "reporter": "聂贺",
+      "handler": "黄可鑫",
+      "region": "华北大区--加盟",
+      "area": "加盟津冀区域",
+      "station": "兴必达【秦皇岛】北部站",
+      "stationId": "",
+      "orgPath": "",
+      "franchisee": "",
+      "riderName": "陈学文",
+      "riderPhone": "133****2905",
+      "riderStation": "兴必达【秦皇岛】北部站",
+      "detail": {
+        "eventNo": "2026110304384",
+        "title": "交通事故致人伤-交通事故致人伤",
+        "source": "PACIFIC_UPGRAGE",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-06-28 09:00:00",
+        "reportTime": "2026-11-03 10:14:51",
+        "updateTime": "2026-11-03 23:00:22",
+        "endTime": "",
+        "province": "河北省",
+        "city": "秦皇岛市",
+        "district": "海港区",
+        "address": "生态谷小区北门",
+        "course": "事件经过：三者女儿来电，6月28日9点左右，骑手与三者电瓶车事故，骑手主责，三者74岁多处外伤，电瓶车损坏，7月23日已把材料补齐，后续无进展，站点和保险员都是让找对方，进线需要处置，可以授权电话\n我方受伤人数、伤情、财损金额：\n其他方受伤人数、伤情、财损金额：\n三者/用户年龄：74岁  \n骑手信息：陈学文133****2905兴必达【秦皇岛】北部站\n涉及关键等级判断：\n是否涉及订单问题需要处理：\n需要协助处理的订单数量：\n进线人诉求：\n进线人信息：三者女儿132****0410",
+        "region": "华北大区--加盟",
+        "area": "加盟津冀区域",
+        "station": "兴必达【秦皇岛】北部站",
+        "stationId": "",
+        "stationType": "",
+        "orgPath": "",
+        "franchisee": "",
+        "cityMerchant": "",
+        "riders": [
+          {
+            "riderId": 72396861,
+            "entryDate": "2026-04-22",
+            "riderPhone": {
+              "data": null,
+              "token": "jnKQOfaU-S~2905",
+              "dataMask": "133****2905",
+              "unknown": null
+            },
+            "jobStatusDesc": "离职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXw66beIS99231",
+              "dataMask": "13032**********616",
+              "unknown": null
+            },
+            "stationName": "兴必达【秦皇岛】北部站",
+            "riderName": "陈学文",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2075523"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "0078fe3c": 2,
+          "001026d9": "1",
+          "31297c9b": 1,
+          "1e970e68": 1,
+          "4263fd60": 2,
+          "6bc2fb6f": 1,
+          "2967240b": "10426069201355862329",
+          "e60e2199": 2,
+          "6f72eaaf": 2
+        },
+        "eventTypeInfo": {
+          "9b6e6c2a": "1",
+          "14": 2,
+          "15": 1,
+          "be5cd84a": 1,
+          "0224cd2b": [
+            3
+          ],
+          "5e889f75": 4,
+          "9": [
+            1,
+            3
+          ],
+          "60": [
+            1,
+            3
+          ]
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "107764539302",
+        "taskKey": "jspzsks_wait_follow",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "niehe",
+        "updateAccountId": "bm_huangkexin06@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1793672091000,
+              "latestTime": 1793672091000,
+              "startTimeLong": 1793672091000,
+              "latestTimeLong": 1793672091000
+            },
+            {
+              "taskKey": "jspzsks_wait_end_response",
+              "startTime": 1793718013000,
+              "latestTime": 1793718022000,
+              "startTimeLong": 1793718013000,
+              "latestTimeLong": 1793718022000
+            },
+            {
+              "taskKey": "jspzsks_wait_response",
+              "startTime": 1793672091000,
+              "latestTime": 1793718013000,
+              "startTimeLong": 1793672091000,
+              "latestTimeLong": 1793718013000
+            },
+            {
+              "taskKey": "jspzsks_wait_follow",
+              "startTime": 1793718022000,
+              "latestTime": 1793718022000,
+              "startTimeLong": 1793718022000,
+              "latestTimeLong": 1793718022000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": 1795014022000,
+          "delayTime": 1795014022000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026110305608",
+      "title": "人身安全-扬言自杀/自残",
+      "business": "履约业务-专送",
+      "source": "PACIFIC_UPGRAGE",
+      "type": "意外事件",
+      "level": "蓝色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "occurTime": "2026-11-01 17:35:31",
+      "reportTime": "2026-11-03 15:45:38",
+      "updateTime": "2026-11-04 13:47:25",
+      "province": "安徽省",
+      "city": "马鞍山市",
+      "district": "雨山区",
+      "address": "马鞍山",
+      "summary": "骑手表示下雨天，单多，不认可罚单，扬言要去路口撞死",
+      "reporter": "张颖",
+      "handler": "张旭阳",
+      "region": "中南大区--加盟",
+      "area": "加盟安徽区域",
+      "station": "兴必达【马鞍山】雨山公园站",
+      "stationId": "",
+      "orgPath": "",
+      "franchisee": "",
+      "riderName": "程志康",
+      "riderPhone": "193****9341",
+      "riderStation": "兴必达【马鞍山】雨山公园站",
+      "detail": {
+        "eventNo": "2026110305608",
+        "title": "人身安全-扬言自杀/自残",
+        "source": "PACIFIC_UPGRAGE",
+        "type": "意外事件",
+        "level": "蓝色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-11-01 17:35:31",
+        "reportTime": "2026-11-03 15:45:38",
+        "updateTime": "2026-11-04 13:47:25",
+        "endTime": "",
+        "province": "安徽省",
+        "city": "马鞍山市",
+        "district": "雨山区",
+        "address": "马鞍山",
+        "course": "骑手表示下雨天，单多，不认可罚单，扬言要去路口撞死",
+        "region": "中南大区--加盟",
+        "area": "加盟安徽区域",
+        "station": "兴必达【马鞍山】雨山公园站",
+        "stationId": "",
+        "stationType": "",
+        "orgPath": "",
+        "franchisee": "",
+        "cityMerchant": "",
+        "riders": [
+          {
+            "riderId": 74184364,
+            "entryDate": "2026-06-15",
+            "riderPhone": {
+              "data": null,
+              "token": "EpjOY6rellD9341",
+              "dataMask": "193****9341",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXwEJhhLi91920",
+              "dataMask": "34050**********01X",
+              "unknown": null
+            },
+            "stationName": "兴必达【马鞍山】雨山公园站",
+            "riderName": "程志康",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2088654"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "0078fe3c": 2,
+          "1e970e68": 2,
+          "4263fd60": 2
+        },
+        "eventTypeInfo": {
+          "5e889f75": 4,
+          "9": [
+            3
+          ],
+          "60": [
+            3
+          ]
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "107773753242",
+        "taskKey": "jspzsks_wait_follow",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "zhangying43",
+        "updateAccountId": "bm_zhangxuyang01@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1793691938000,
+              "latestTime": 1793691938000,
+              "startTimeLong": 1793691938000,
+              "latestTimeLong": 1793691938000
+            },
+            {
+              "taskKey": "jspzsks_wait_end_response",
+              "startTime": 1793691994000,
+              "latestTime": 1793771245000,
+              "startTimeLong": 1793691994000,
+              "latestTimeLong": 1793771245000
+            },
+            {
+              "taskKey": "jspzsks_wait_response",
+              "startTime": 1793691938000,
+              "latestTime": 1793691994000,
+              "startTimeLong": 1793691938000,
+              "latestTimeLong": 1793691994000
+            },
+            {
+              "taskKey": "jspzsks_wait_follow",
+              "startTime": 1793771245000,
+              "latestTime": 1793771245000,
+              "startTimeLong": 1793771245000,
+              "latestTimeLong": 1793771245000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTime": 1795067245000,
+          "delayTimeLong": 1795067245000
         },
         "related": null
       }
@@ -270982,8 +270982,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -293700,8 +293700,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -325780,8 +325780,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -334134,8 +334134,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -389423,8 +389423,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -396335,8 +396335,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -423518,8 +423518,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -451291,8 +451291,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -459396,8 +459396,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -463555,8 +463555,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -523943,8 +523943,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -567281,8 +567281,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
