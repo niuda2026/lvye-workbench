@@ -1,12 +1,12 @@
 const EMBEDDED_DATA = {
-  "lastUpdated": "2026-11-12 13:25:09",
+  "lastUpdated": "2026-11-12 17:30:35",
   "sourceUrl": "https://fxgl365.com/110/w/desktop/process/list?activeTab=CURRENT",
   "module": "事件处理",
   "kpi": {
     "total": 4433,
     "pending": 6,
-    "processing": 1418,
-    "done": 3009,
+    "processing": 1417,
+    "done": 3010,
     "todayNew": 0,
     "cityCount": 34,
     "regionCount": 5,
@@ -15,11 +15,11 @@ const EMBEDDED_DATA = {
   "statusDist": [
     {
       "name": "处理完成",
-      "value": 3009
+      "value": 3010
     },
     {
       "name": "处理中",
-      "value": 1418
+      "value": 1417
     },
     {
       "name": "待处理",
@@ -104,8 +104,8 @@ const EMBEDDED_DATA = {
       "full": "阜新市",
       "count": 144,
       "pending": 0,
-      "processing": 62,
-      "done": 82
+      "processing": 61,
+      "done": 83
     },
     {
       "name": "合肥市",
@@ -620,8 +620,8 @@ const EMBEDDED_DATA = {
       "city": "阜新市",
       "type": "交通事故",
       "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
+      "status": "处理完成",
+      "statusRaw": 5,
       "reportTime": "2026-11-03 18:07:15",
       "source": "AUTO_REPORT",
       "region": "华北大区--加盟",
@@ -3280,7 +3280,7 @@ const EMBEDDED_DATA = {
       "statusRaw": 3,
       "occurTime": "2026-09-19 19:00:00",
       "reportTime": "2026-10-20 14:06:33",
-      "updateTime": "2026-11-11 14:11:16",
+      "updateTime": "2026-11-12 13:42:51",
       "province": "陕西省",
       "city": "西安市",
       "district": "新城区",
@@ -22468,8 +22468,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -145835,8 +145835,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1790239469000,
-          "delayTimeLong": 1790239469000
+          "delayTimeLong": 1790239469000,
+          "delayTime": 1790239469000
         },
         "related": null
       }
@@ -165052,167 +165052,6 @@ const EMBEDDED_DATA = {
       }
     },
     {
-      "id": "2026110306304",
-      "title": "",
-      "business": "履约业务-专送",
-      "source": "AUTO_REPORT",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "occurTime": "2026-11-03 12:05:00",
-      "reportTime": "2026-11-03 18:07:15",
-      "updateTime": "2026-11-03 18:07:25",
-      "province": "辽宁省",
-      "city": "阜新市",
-      "district": "细河区",
-      "address": "细河区中华路东新大街路口",
-      "summary": "2026年11月3日12时05分许，骑手驾驶俩轮电动车由西向东行驶至细河区中华路东新大街路口，三者驾驶机动车右转，俩车躲闪不及发生剐蹭，造成双方车辆受损的后果",
-      "reporter": "李晓娜",
-      "handler": "李晓娜",
-      "region": "华北大区--加盟",
-      "area": "加盟辽宁区域",
-      "station": "兴必达【阜新】细河站",
-      "stationId": 2017254,
-      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟辽宁区域-加盟辽东分区-辽东配送2组-兴必达【阜新】细河站",
-      "franchisee": "兴必达（江苏）网络科技有限公司【阜新】",
-      "riderName": "田继云",
-      "riderPhone": "138****5250",
-      "riderStation": "兴必达【阜新】细河站",
-      "detail": {
-        "eventNo": "2026110306304",
-        "title": "",
-        "source": "AUTO_REPORT",
-        "type": "交通事故",
-        "level": "蓝色",
-        "statusRaw": 3,
-        "status": "处理中",
-        "occurTime": "2026-11-03 12:05:00",
-        "reportTime": "2026-11-03 18:07:15",
-        "updateTime": "2026-11-03 18:07:25",
-        "endTime": "",
-        "province": "辽宁省",
-        "city": "阜新市",
-        "district": "细河区",
-        "address": "细河区中华路东新大街路口",
-        "course": "2026年11月3日12时05分许，骑手驾驶俩轮电动车由西向东行驶至细河区中华路东新大街路口，三者驾驶机动车右转，俩车躲闪不及发生剐蹭，造成双方车辆受损的后果",
-        "region": "华北大区--加盟",
-        "area": "加盟辽宁区域",
-        "station": "兴必达【阜新】细河站",
-        "stationId": 2017254,
-        "stationType": "加盟",
-        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟辽宁区域-加盟辽东分区-辽东配送2组-兴必达【阜新】细河站",
-        "franchisee": "兴必达（江苏）网络科技有限公司【阜新】",
-        "cityMerchant": "兴必达（江苏）网络科技有限公司【阜新】",
-        "riders": [
-          {
-            "entryDate": "2026-10-29",
-            "riderPhone": {
-              "data": null,
-              "token": "i1UVt9TxtK*5250",
-              "dataMask": "138****5250",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "加盟",
-            "userEmergencyContactName": "田夫人",
-            "orgEmergencyPhone": {
-              "data": null,
-              "token": "jnBA0cG3H&59200",
-              "dataMask": "180****9200",
-              "unknown": null
-            },
-            "riderName": "田继云",
-            "userEmergencyContactMobile": {
-              "data": null,
-              "token": "jFTw4T.Cho98275",
-              "dataMask": "138****8275",
-              "unknown": null
-            },
-            "genderDesc": "男",
-            "riderId": 79283727,
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXEAtSJLH03620",
-              "dataMask": "21092**********013",
-              "unknown": null
-            },
-            "stationName": "兴必达【阜新】细河站",
-            "age": "41",
-            "stationId": "2017254"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "e6e645c9": 2,
-          "d1078f9f": 2,
-          "21": 1,
-          "6bc2fb6f": 1,
-          "2967240b": "10426119000131831836",
-          "e60e2199": 2,
-          "6f72eaaf": 2
-        },
-        "eventTypeInfo": {
-          "33": [
-            3
-          ],
-          "14": 2,
-          "15": 1,
-          "19": 2,
-          "9": [
-            1,
-            3
-          ],
-          "93": 1,
-          "94": "辽宁省阜新市细河交警大队",
-          "328d1fe5": 1,
-          "10": 3,
-          "32": [
-            2,
-            3
-          ],
-          "719caaaf": 4
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "107778123448",
-        "taskKey": "zs_wait_end_response",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "bm_lixiaonuo29@BMningboxingdazhisongwangluokejiyouxian",
-        "updateAccountId": "bm_lixiaonuo29@BMningboxingdazhisongwangluokejiyouxian",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1793700435000,
-              "latestTime": 1793700435000,
-              "startTimeLong": 1793700435000,
-              "latestTimeLong": 1793700435000
-            },
-            {
-              "taskKey": "zs_wait_end_response",
-              "startTime": 1793700445000,
-              "latestTime": 1793700445000,
-              "startTimeLong": 1793700445000,
-              "latestTimeLong": 1793700445000
-            },
-            {
-              "taskKey": "zs_wait_response",
-              "startTime": 1793700435000,
-              "latestTime": 1793700445000,
-              "startTimeLong": 1793700435000,
-              "latestTimeLong": 1793700445000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTime": 1793786845000,
-          "delayTimeLong": 1793786845000
-        },
-        "related": null
-      }
-    },
-    {
       "id": "2026102167553",
       "title": "交通事故-交通事故致人伤",
       "business": "履约业务-专送",
@@ -173293,8 +173132,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1794666808000,
-          "delayTimeLong": 1794666808000
+          "delayTimeLong": 1794666808000,
+          "delayTime": 1794666808000
         },
         "related": null
       }
@@ -191875,6 +191714,167 @@ const EMBEDDED_DATA = {
           "processType": "PEISONG_ONLINE",
           "delayTimeLong": null,
           "delayTime": null
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026110306304",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "AUTO_REPORT",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理完成",
+      "statusRaw": 5,
+      "occurTime": "2026-11-03 12:05:00",
+      "reportTime": "2026-11-03 18:07:15",
+      "updateTime": "2026-11-12 16:16:38",
+      "province": "辽宁省",
+      "city": "阜新市",
+      "district": "细河区",
+      "address": "辽宁省阜新市细河区玉中华路东新大街路口",
+      "summary": "2026年11月03日12时05分，田继云骑电动自行车，在辽宁省阜新市细河区玉中华路东新大街路口与高扬驾驶车牌号为粤L0112T小型汽车发生交通事故，造成两车受损，田继云受伤的后果。当事人田继云负主要责任;当事人高扬负次要责任。",
+      "reporter": "李晓娜",
+      "handler": "李晓娜",
+      "region": "华北大区--加盟",
+      "area": "加盟辽宁区域",
+      "station": "兴必达【阜新】细河站",
+      "stationId": 2017254,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟辽宁区域-加盟辽东分区-辽东配送2组-兴必达【阜新】细河站",
+      "franchisee": "兴必达（江苏）网络科技有限公司【阜新】",
+      "riderName": "田继云",
+      "riderPhone": "138****5250",
+      "riderStation": "兴必达【阜新】细河站",
+      "detail": {
+        "eventNo": "2026110306304",
+        "title": "",
+        "source": "AUTO_REPORT",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-11-03 12:05:00",
+        "reportTime": "2026-11-03 18:07:15",
+        "updateTime": "2026-11-03 18:07:25",
+        "endTime": "",
+        "province": "辽宁省",
+        "city": "阜新市",
+        "district": "细河区",
+        "address": "细河区中华路东新大街路口",
+        "course": "2026年11月3日12时05分许，骑手驾驶俩轮电动车由西向东行驶至细河区中华路东新大街路口，三者驾驶机动车右转，俩车躲闪不及发生剐蹭，造成双方车辆受损的后果",
+        "region": "华北大区--加盟",
+        "area": "加盟辽宁区域",
+        "station": "兴必达【阜新】细河站",
+        "stationId": 2017254,
+        "stationType": "加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟辽宁区域-加盟辽东分区-辽东配送2组-兴必达【阜新】细河站",
+        "franchisee": "兴必达（江苏）网络科技有限公司【阜新】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【阜新】",
+        "riders": [
+          {
+            "entryDate": "2026-10-29",
+            "riderPhone": {
+              "data": null,
+              "token": "i1UVt9TxtK*5250",
+              "dataMask": "138****5250",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "加盟",
+            "userEmergencyContactName": "田夫人",
+            "orgEmergencyPhone": {
+              "data": null,
+              "token": "jnBA0cG3H&59200",
+              "dataMask": "180****9200",
+              "unknown": null
+            },
+            "riderName": "田继云",
+            "userEmergencyContactMobile": {
+              "data": null,
+              "token": "jFTw4T.Cho98275",
+              "dataMask": "138****8275",
+              "unknown": null
+            },
+            "genderDesc": "男",
+            "riderId": 79283727,
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXEAtSJLH03620",
+              "dataMask": "21092**********013",
+              "unknown": null
+            },
+            "stationName": "兴必达【阜新】细河站",
+            "age": "41",
+            "stationId": "2017254"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "e6e645c9": 2,
+          "d1078f9f": 2,
+          "21": 1,
+          "6bc2fb6f": 1,
+          "2967240b": "10426119000131831836",
+          "e60e2199": 2,
+          "6f72eaaf": 2
+        },
+        "eventTypeInfo": {
+          "33": [
+            3
+          ],
+          "14": 2,
+          "15": 1,
+          "19": 2,
+          "9": [
+            1,
+            3
+          ],
+          "93": 1,
+          "94": "辽宁省阜新市细河交警大队",
+          "328d1fe5": 1,
+          "10": 3,
+          "32": [
+            2,
+            3
+          ],
+          "719caaaf": 4
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "107778123448",
+        "taskKey": "zs_wait_end_response",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "bm_lixiaonuo29@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_lixiaonuo29@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1793700435000,
+              "latestTime": 1793700435000,
+              "startTimeLong": 1793700435000,
+              "latestTimeLong": 1793700435000
+            },
+            {
+              "taskKey": "zs_wait_end_response",
+              "startTime": 1793700445000,
+              "latestTime": 1793700445000,
+              "startTimeLong": 1793700445000,
+              "latestTimeLong": 1793700445000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1793700435000,
+              "latestTime": 1793700445000,
+              "startTimeLong": 1793700435000,
+              "latestTimeLong": 1793700445000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTime": 1793786845000,
+          "delayTimeLong": 1793786845000
         },
         "related": null
       }
@@ -239629,8 +239629,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -270989,8 +270989,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -278436,8 +278436,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -325787,8 +325787,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -334141,8 +334141,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -361259,8 +361259,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -389430,8 +389430,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -423525,8 +423525,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -459403,8 +459403,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -567288,8 +567288,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
