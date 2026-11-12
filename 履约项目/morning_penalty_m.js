@@ -1,6 +1,6 @@
 /* 早会处罚统计 · M盘Excel口径（覆盖 data.js 的 MORNING_TAB_DATA）
- * 由 morning_review/_build_meeting_m.py 生成 2026-11-12 06:32:41
- * 源: 报备和日常早会驳回清单_报备和日常早会驳回清单_2026-11-05-2026-11-11(早会时间)_1794436285434.xlsx · 驳回数据 2026-11-05 ~ 2026-11-10
+ * 由 morning_review/_build_meeting_m.py 生成 2026-11-13 06:31:56
+ * 源: 报备和日常早会驳回清单_报备和日常早会驳回清单_2026-11-06-2026-11-12(早会时间)_1794522694737.xlsx · 驳回数据 2026-11-07 ~ 2026-11-11
  * 口径: 签到100/仪容仪表100/其余小项50/报备未通过500（与 _build_penalty_m.py 一致）;
  *       未召开/虚假 沿用 data.js 原值（Excel 无此类数据）
  */
@@ -369,15 +369,15 @@ var MORNING_TAB_DATA = {
     "region": "华北二区",
     "subr": "河南区域",
     "city": "信阳",
-    "total_fine": 100,
+    "total_fine": 0,
     "not_held_count": 0,
     "not_held_fine": 0,
     "fake_count": 0,
     "fake_fine": 0,
     "daily_key_reject": 0,
     "daily_key_fine": 0,
-    "daily_app_reject": 1.0,
-    "daily_app_fine": 100.0,
+    "daily_app_reject": 0,
+    "daily_app_fine": 0,
     "daily_sign_reject": 0,
     "daily_sign_fine": 0,
     "report_reject": 0,
@@ -747,7 +747,7 @@ var MORNING_TAB_DATA = {
     "region": "华北一区",
     "subr": "津冀区域",
     "city": "唐山",
-    "total_fine": 200,
+    "total_fine": 0,
     "not_held_count": 0,
     "not_held_fine": 0,
     "fake_count": 0,
@@ -756,8 +756,8 @@ var MORNING_TAB_DATA = {
     "daily_key_fine": 0,
     "daily_app_reject": 0,
     "daily_app_fine": 0,
-    "daily_sign_reject": 2.0,
-    "daily_sign_fine": 200.0,
+    "daily_sign_reject": 0,
+    "daily_sign_fine": 0,
     "report_reject": 0,
     "report_fine": 0
   },
@@ -1899,13 +1899,13 @@ var MORNING_TAB_DATA = {
     "region": "华北三区",
     "subr": "中西区域",
     "city": "西安",
-    "total_fine": 0,
+    "total_fine": 50,
     "not_held_count": 0,
     "not_held_fine": 0,
     "fake_count": 0,
     "fake_fine": 0,
-    "daily_key_reject": 0,
-    "daily_key_fine": 0,
+    "daily_key_reject": 1.0,
+    "daily_key_fine": 50.0,
     "daily_app_reject": 0,
     "daily_app_fine": 0,
     "daily_sign_reject": 0,
@@ -2097,7 +2097,7 @@ var MORNING_TAB_DATA = {
     "region": "华北二区",
     "subr": "河南区域",
     "city": "郑州",
-    "total_fine": 150,
+    "total_fine": 50,
     "not_held_count": 0,
     "not_held_fine": 0,
     "fake_count": 0,
@@ -2106,8 +2106,8 @@ var MORNING_TAB_DATA = {
     "daily_key_fine": 50.0,
     "daily_app_reject": 0,
     "daily_app_fine": 0,
-    "daily_sign_reject": 1.0,
-    "daily_sign_fine": 100.0,
+    "daily_sign_reject": 0,
+    "daily_sign_fine": 0,
     "report_reject": 0,
     "report_fine": 0
   },
@@ -2421,15 +2421,15 @@ var MORNING_TAB_DATA = {
     "region": "华北一区",
     "subr": "辽宁区域",
     "city": "阜新",
-    "total_fine": 0,
+    "total_fine": 100,
     "not_held_count": 0,
     "not_held_fine": 0,
     "fake_count": 0,
     "fake_fine": 0,
     "daily_key_reject": 0,
     "daily_key_fine": 0,
-    "daily_app_reject": 0,
-    "daily_app_fine": 0,
+    "daily_app_reject": 1.0,
+    "daily_app_fine": 100.0,
     "daily_sign_reject": 0,
     "daily_sign_fine": 0,
     "report_reject": 0,
@@ -3156,4 +3156,4 @@ var MORNING_TAB_DATA = {
     "report_fine": 0
   }
 };
-var MORNING_TAB_M_META = {"source": "报备和日常早会驳回清单_报备和日常早会驳回清单_2026-11-05-2026-11-11(早会时间)_1794436285434.xlsx", "from": "2026-11-05", "to": "2026-11-10", "generated_at": "2026-11-12 06:32:41"};
+var MORNING_TAB_M_META = {"source": "报备和日常早会驳回清单_报备和日常早会驳回清单_2026-11-06-2026-11-12(早会时间)_1794522694737.xlsx", "from": "2026-11-07", "to": "2026-11-11", "generated_at": "2026-11-13 06:31:56"};
