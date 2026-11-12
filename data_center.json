@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-13 07:22:01",
+  "updated_at": "2026-11-13 07:24:42",
   "action_summary": {
     "total": 23,
     "ok": 12,
@@ -24,9 +24,9 @@
         ],
         "data_mtime": "2026-11-13 07:21:58",
         "all_synced": false,
-        "synced_count": 10,
+        "synced_count": 8,
         "missing_count": 3,
-        "unsynced_count": 0,
+        "unsynced_count": 2,
         "sources": [
           {
             "type": "站点-戴盔",
@@ -36,20 +36,20 @@
           },
           {
             "type": "站点-速度",
-            "latest": "速度_2026-11-11-2026-11-11(统计日期)_1794438897539.xlsx",
-            "mtime": "2026-11-12 07:15:02",
-            "synced": true
+            "latest": "速度_2026-11-12-2026-11-12(统计日期)_1794525777261.xlsx",
+            "mtime": "2026-11-13 07:23:01",
+            "synced": false
           },
           {
             "type": "站点-闯红灯",
-            "latest": "闯红灯_2026-11-11.xlsx",
-            "mtime": "2026-11-12 07:07:11",
+            "latest": "闯红灯_2026-11-12.xlsx",
+            "mtime": "2026-11-13 07:16:47",
             "synced": true
           },
           {
             "type": "站点-逆行",
-            "latest": "逆行_2026-11-11.xlsx",
-            "mtime": "2026-11-12 07:12:35",
+            "latest": "逆行_2026-11-12.xlsx",
+            "mtime": "2026-11-13 07:20:15",
             "synced": true
           },
           {
@@ -60,19 +60,19 @@
           },
           {
             "type": "骑手维度-速度",
-            "latest": "速度-骑手维度_2026-11-11-2026-11-11(统计日期)_1794438880483.xlsx",
-            "mtime": "2026-11-12 07:14:45",
-            "synced": true
+            "latest": "速度-骑手维度_2026-11-12-2026-11-12(统计日期)_1794525756563.xlsx",
+            "mtime": "2026-11-13 07:22:41",
+            "synced": false
           },
           {
             "type": "骑手维度-闯红灯",
-            "latest": "安全剔除申诉考核监控Copy_闯红灯-骑手维度_2026-11-12-2026-11-12(统计日期)_1794525440585.xlsx",
+            "latest": "闯红灯-骑手维度_2026-11-12.xlsx",
             "mtime": "2026-11-13 07:17:25",
             "synced": true
           },
           {
             "type": "骑手维度-逆行",
-            "latest": "安全剔除申诉考核监控Copy_逆行-骑手维度_2026-11-12-2026-11-12(统计日期)_1794525632727.xlsx",
+            "latest": "逆行-骑手维度_2026-11-12.xlsx",
             "mtime": "2026-11-13 07:20:37",
             "synced": true
           },
@@ -112,7 +112,7 @@
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-11-13 07:22:00",
+            "mtime": "2026-11-13 07:24:42",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -268,7 +268,7 @@
             "latest": "充换电血压_data.js",
             "mtime": "2026-11-13 07:20:00",
             "max_age_hours": 13,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
@@ -281,7 +281,7 @@
             "latest": "knife_rider_data.js",
             "mtime": "2026-11-13 07:20:11",
             "max_age_hours": 13,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "每日 07:30/15:00 两次(随总控第2.5步)",
             "fail_hits": [],
@@ -527,7 +527,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-11-13 07:13:13",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -600,7 +600,7 @@
             "latest": "_crawl_service.log",
             "mtime": "2026-11-11 07:01:03",
             "max_age_hours": 26,
-            "age_hours": 48.3,
+            "age_hours": 48.4,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -704,7 +704,7 @@
             "latest": "premium_latest.json",
             "mtime": "2026-11-11 09:02:16",
             "max_age_hours": 26,
-            "age_hours": 46.3,
+            "age_hours": 46.4,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -868,7 +868,7 @@
             "latest": "update_stations.log",
             "mtime": "2026-11-04 07:55:49",
             "max_age_hours": 26,
-            "age_hours": 215.4,
+            "age_hours": 215.5,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -983,7 +983,7 @@
             "latest": "monthly_summary.js",
             "mtime": "2026-11-13 07:13:16",
             "max_age_hours": 72,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
@@ -1051,7 +1051,7 @@
             "latest": "checkup_files_data.js",
             "mtime": "2026-10-30 11:56:21",
             "max_age_hours": 168,
-            "age_hours": 331.4,
+            "age_hours": 331.5,
             "ok": false,
             "note": "scan_checkup.py 手动扫描（用户按需触发），按 7 天兜底",
             "fail_hits": [],
@@ -1190,7 +1190,7 @@
             "latest": "premium_latest.json",
             "mtime": "2026-11-11 09:02:16",
             "max_age_hours": 26,
-            "age_hours": 46.3,
+            "age_hours": 46.4,
             "ok": false,
             "note": "",
             "fail_hits": [],
