@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-11-14 07:14:53",
+  "updated_at": "2026-11-14 07:18:51",
   "action_summary": {
     "total": 23,
     "ok": 14,
@@ -21,11 +21,11 @@ window.DATA_CENTER = {
         "data_files": [
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-11-14 07:11:39",
+        "data_mtime": "2026-11-14 07:18:47",
         "all_synced": false,
-        "synced_count": 8,
+        "synced_count": 10,
         "missing_count": 3,
-        "unsynced_count": 2,
+        "unsynced_count": 0,
         "sources": [
           {
             "type": "站点-戴盔",
@@ -37,7 +37,7 @@ window.DATA_CENTER = {
             "type": "站点-速度",
             "latest": "速度_2026-11-13-2026-11-13(统计日期)_1794611606686.xlsx",
             "mtime": "2026-11-14 07:13:33",
-            "synced": false
+            "synced": true
           },
           {
             "type": "站点-闯红灯",
@@ -61,7 +61,7 @@ window.DATA_CENTER = {
             "type": "骑手维度-速度",
             "latest": "速度-骑手维度_2026-11-13-2026-11-13(统计日期)_1794611588353.xlsx",
             "mtime": "2026-11-14 07:13:14",
-            "synced": false
+            "synced": true
           },
           {
             "type": "骑手维度-闯红灯",
@@ -111,7 +111,7 @@ window.DATA_CENTER = {
             "label": "交通安全数据更新",
             "path": "交通安全行为看板\\update_log.txt",
             "latest": "update_log.txt",
-            "mtime": "2026-11-14 07:14:53",
+            "mtime": "2026-11-14 07:18:50",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -267,7 +267,7 @@ window.DATA_CENTER = {
             "latest": "充换电血压_data.js",
             "mtime": "2026-11-14 07:06:22",
             "max_age_hours": 13,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
@@ -280,7 +280,7 @@ window.DATA_CENTER = {
             "latest": "knife_rider_data.js",
             "mtime": "2026-11-14 07:06:52",
             "max_age_hours": 13,
-            "age_hours": 0.1,
+            "age_hours": 0.2,
             "ok": true,
             "note": "每日 07:30/15:00 两次(随总控第2.5步)",
             "fail_hits": [],
@@ -306,7 +306,7 @@ window.DATA_CENTER = {
             "latest": "daily_refresh_log.txt",
             "mtime": "2026-11-14 07:12:35",
             "max_age_hours": 13,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": false,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
             "fail_hits": [
@@ -576,7 +576,7 @@ window.DATA_CENTER = {
           "在职骑手详情\\在职骑手详情.html",
           "交通安全行为看板\\data.js"
         ],
-        "data_mtime": "2026-11-14 07:11:39",
+        "data_mtime": "2026-11-14 07:18:47",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -596,7 +596,7 @@ window.DATA_CENTER = {
             "latest": "_crawl_service.log",
             "mtime": "2026-11-11 07:01:03",
             "max_age_hours": 26,
-            "age_hours": 72.2,
+            "age_hours": 72.3,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -649,7 +649,7 @@ window.DATA_CENTER = {
           "bi_insurance\\premium_latest.json",
           "美团保险\\insurance_data.js"
         ],
-        "data_mtime": "2026-11-14 07:11:40",
+        "data_mtime": "2026-11-14 07:18:48",
         "all_synced": true,
         "synced_count": 4,
         "missing_count": 0,
@@ -670,7 +670,7 @@ window.DATA_CENTER = {
           {
             "type": "V3内联数据",
             "latest": "v3_data.js",
-            "mtime": "2026-11-14 07:11:40",
+            "mtime": "2026-11-14 07:18:48",
             "synced": true
           },
           {
@@ -687,7 +687,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-11-14 06:36:03",
             "max_age_hours": 26,
-            "age_hours": 0.6,
+            "age_hours": 0.7,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -700,7 +700,7 @@ window.DATA_CENTER = {
             "latest": "premium_latest.json",
             "mtime": "2026-11-13 19:50:58",
             "max_age_hours": 26,
-            "age_hours": 11.4,
+            "age_hours": 11.5,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -711,9 +711,9 @@ window.DATA_CENTER = {
             "label": "V3内联数据",
             "path": "骑手保障补贴\\v3_data.js",
             "latest": "v3_data.js",
-            "mtime": "2026-11-14 07:11:40",
+            "mtime": "2026-11-14 07:18:48",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -726,7 +726,7 @@ window.DATA_CENTER = {
             "latest": "insurance_data.js",
             "mtime": "2026-11-12 07:12:55",
             "max_age_hours": 72,
-            "age_hours": 48.0,
+            "age_hours": 48.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -802,7 +802,7 @@ window.DATA_CENTER = {
             "latest": "110_data.js",
             "mtime": "2026-11-13 19:19:16",
             "max_age_hours": 30,
-            "age_hours": 11.9,
+            "age_hours": 12.0,
             "ok": true,
             "note": "盘中守护 11:30/17:30 两次（看板外壳html长期不变，改盯数据文件）",
             "fail_hits": [],
@@ -864,7 +864,7 @@ window.DATA_CENTER = {
             "latest": "update_stations.log",
             "mtime": "2026-11-04 07:55:49",
             "max_age_hours": 26,
-            "age_hours": 239.3,
+            "age_hours": 239.4,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -900,7 +900,7 @@ window.DATA_CENTER = {
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-11-14 07:12:46",
+        "data_mtime": "2026-11-14 07:18:50",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -911,7 +911,7 @@ window.DATA_CENTER = {
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-11-14 07:12:46",
+            "mtime": "2026-11-14 07:18:50",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
@@ -968,7 +968,7 @@ window.DATA_CENTER = {
           {
             "type": "交通安全data.js（归档源）",
             "latest": "data.js",
-            "mtime": "2026-11-14 07:11:39",
+            "mtime": "2026-11-14 07:18:47",
             "synced": true
           }
         ],
@@ -1047,7 +1047,7 @@ window.DATA_CENTER = {
             "latest": "checkup_files_data.js",
             "mtime": "2026-10-30 11:56:21",
             "max_age_hours": 168,
-            "age_hours": 355.3,
+            "age_hours": 355.4,
             "ok": false,
             "note": "scan_checkup.py 手动扫描（用户按需触发），按 7 天兜底",
             "fail_hits": [],
@@ -1094,7 +1094,7 @@ window.DATA_CENTER = {
           {
             "type": "安全权益·工作台源(iframe实时)",
             "latest": "data.js",
-            "mtime": "2026-11-14 07:11:39",
+            "mtime": "2026-11-14 07:18:47",
             "synced": true
           },
           {
@@ -1118,7 +1118,7 @@ window.DATA_CENTER = {
           {
             "type": "保险·V3内联数据(实时)",
             "latest": "v3_data.js",
-            "mtime": "2026-11-14 07:11:40",
+            "mtime": "2026-11-14 07:18:48",
             "synced": true
           },
           {
@@ -1158,9 +1158,9 @@ window.DATA_CENTER = {
             "label": "保险赔付补贴监控·V3数据",
             "path": "骑手保障补贴\\v3_data.js",
             "latest": "v3_data.js",
-            "mtime": "2026-11-14 07:11:40",
+            "mtime": "2026-11-14 07:18:48",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1173,7 +1173,7 @@ window.DATA_CENTER = {
             "latest": "latest.json",
             "mtime": "2026-11-14 06:36:03",
             "max_age_hours": 26,
-            "age_hours": 0.6,
+            "age_hours": 0.7,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1186,7 +1186,7 @@ window.DATA_CENTER = {
             "latest": "premium_latest.json",
             "mtime": "2026-11-13 19:50:58",
             "max_age_hours": 26,
-            "age_hours": 11.4,
+            "age_hours": 11.5,
             "ok": true,
             "note": "",
             "fail_hits": [],
