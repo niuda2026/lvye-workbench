@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14 06:33:43",
+  "updated_at": "2026-11-14 06:34:39",
   "action_summary": {
     "total": 23,
     "ok": 15,
@@ -213,9 +213,9 @@
         ],
         "data_mtime": "2026-11-13 19:10:41",
         "all_synced": false,
-        "synced_count": 2,
+        "synced_count": 1,
         "missing_count": 0,
-        "unsynced_count": 5,
+        "unsynced_count": 6,
         "sources": [
           {
             "type": "报备和日常早会驳回清单",
@@ -249,9 +249,9 @@
           },
           {
             "type": "表单列表",
-            "latest": "表单列表_50383623_20261113_063053.xlsx",
-            "mtime": "2026-11-13 07:11:34",
-            "synced": true
+            "latest": "表单列表_50383623_20261114_063122.xlsx",
+            "mtime": "2026-11-14 06:34:04",
+            "synced": false
           },
           {
             "type": "载具审核-骑手明细",
@@ -592,7 +592,7 @@
             "latest": "_crawl_service.log",
             "mtime": "2026-11-11 07:01:03",
             "max_age_hours": 26,
-            "age_hours": 71.5,
+            "age_hours": 71.6,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -722,7 +722,7 @@
             "latest": "insurance_data.js",
             "mtime": "2026-11-12 07:12:55",
             "max_age_hours": 72,
-            "age_hours": 47.3,
+            "age_hours": 47.4,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -798,7 +798,7 @@
             "latest": "110_data.js",
             "mtime": "2026-11-13 19:19:16",
             "max_age_hours": 30,
-            "age_hours": 11.2,
+            "age_hours": 11.3,
             "ok": true,
             "note": "盘中守护 11:30/17:30 两次（看板外壳html长期不变，改盯数据文件）",
             "fail_hits": [],
@@ -896,7 +896,7 @@
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-11-14 06:32:29",
+        "data_mtime": "2026-11-14 06:34:36",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -907,7 +907,7 @@
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-11-14 06:32:29",
+            "mtime": "2026-11-14 06:34:36",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
