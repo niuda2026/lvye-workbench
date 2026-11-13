@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-11-14 07:11:42",
+  "updated_at": "2026-11-14 07:12:13",
   "action_summary": {
     "total": 23,
     "ok": 14,
@@ -700,7 +700,7 @@ window.DATA_CENTER = {
             "latest": "premium_latest.json",
             "mtime": "2026-11-13 19:50:58",
             "max_age_hours": 26,
-            "age_hours": 11.3,
+            "age_hours": 11.4,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1186,7 +1186,7 @@ window.DATA_CENTER = {
             "latest": "premium_latest.json",
             "mtime": "2026-11-13 19:50:58",
             "max_age_hours": 26,
-            "age_hours": 11.3,
+            "age_hours": 11.4,
             "ok": true,
             "note": "",
             "fail_hits": [],
