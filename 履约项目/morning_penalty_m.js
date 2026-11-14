@@ -1,6 +1,6 @@
 /* 早会处罚统计 · M盘Excel口径（覆盖 data.js 的 MORNING_TAB_DATA）
- * 由 morning_review/_build_meeting_m.py 生成 2026-11-14 06:38:49
- * 源: 报备和日常早会驳回清单_报备和日常早会驳回清单_2026-11-07-2026-11-13(早会时间)_1794609119430.xlsx · 驳回数据 2026-11-07 ~ 2026-11-11
+ * 由 morning_review/_build_meeting_m.py 生成 2026-11-15 06:38:00
+ * 源: 报备和日常早会驳回清单_报备和日常早会驳回清单_2026-11-08-2026-11-14(早会时间)_1794695473912.xlsx · 驳回数据 2026-11-09 ~ 2026-11-11
  * 口径: 签到100/仪容仪表100/其余小项50/报备未通过500（与 _build_penalty_m.py 一致）;
  *       未召开/虚假 沿用 data.js 原值（Excel 无此类数据）
  */
@@ -1881,13 +1881,13 @@ var MORNING_TAB_DATA = {
     "region": "华北三区",
     "subr": "中西区域",
     "city": "西安",
-    "total_fine": 50,
+    "total_fine": 0,
     "not_held_count": 0,
     "not_held_fine": 0,
     "fake_count": 0,
     "fake_fine": 0,
-    "daily_key_reject": 1.0,
-    "daily_key_fine": 50.0,
+    "daily_key_reject": 0,
+    "daily_key_fine": 0,
     "daily_app_reject": 0,
     "daily_app_fine": 0,
     "daily_sign_reject": 0,
@@ -2331,15 +2331,15 @@ var MORNING_TAB_DATA = {
     "region": "华北一区",
     "subr": "黑吉区域",
     "city": "长春",
-    "total_fine": 100,
+    "total_fine": 0,
     "not_held_count": 0,
     "not_held_fine": 0,
     "fake_count": 0,
     "fake_fine": 0,
     "daily_key_reject": 0,
     "daily_key_fine": 0,
-    "daily_app_reject": 1.0,
-    "daily_app_fine": 100.0,
+    "daily_app_reject": 0,
+    "daily_app_fine": 0,
     "daily_sign_reject": 0,
     "daily_sign_fine": 0,
     "report_reject": 0,
@@ -3156,4 +3156,4 @@ var MORNING_TAB_DATA = {
     "report_fine": 0
   }
 };
-var MORNING_TAB_M_META = {"source": "报备和日常早会驳回清单_报备和日常早会驳回清单_2026-11-07-2026-11-13(早会时间)_1794609119430.xlsx", "from": "2026-11-07", "to": "2026-11-11", "generated_at": "2026-11-14 06:38:49"};
+var MORNING_TAB_M_META = {"source": "报备和日常早会驳回清单_报备和日常早会驳回清单_2026-11-08-2026-11-14(早会时间)_1794695473912.xlsx", "from": "2026-11-09", "to": "2026-11-11", "generated_at": "2026-11-15 06:38:00"};
