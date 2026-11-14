@@ -1,13 +1,14 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-11-15 07:12:02",
+  "updated_at": "2026-11-15 07:13:01",
   "action_summary": {
     "total": 23,
-    "ok": 14,
-    "alert": 9,
+    "ok": 13,
+    "alert": 10,
     "missing": 0,
     "alert_groups": [
       "履约项目",
       "骑手管理",
+      "保险",
       "站点地图",
       "履约驾驶舱",
       "安全周报"
@@ -290,7 +291,7 @@ window.DATA_CENTER = {
             "latest": "knife_rider_data.js",
             "mtime": "2026-11-15 06:45:05",
             "max_age_hours": 13,
-            "age_hours": 0.4,
+            "age_hours": 0.5,
             "ok": true,
             "note": "每日 07:30/15:00 两次(随总控第2.5步)",
             "fail_hits": [],
@@ -660,10 +661,10 @@ window.DATA_CENTER = {
           "美团保险\\insurance_data.js"
         ],
         "data_mtime": "2026-11-15 07:11:59",
-        "all_synced": true,
-        "synced_count": 4,
+        "all_synced": false,
+        "synced_count": 3,
         "missing_count": 0,
-        "unsynced_count": 0,
+        "unsynced_count": 1,
         "sources": [
           {
             "type": "BI赔付率快照",
@@ -687,7 +688,7 @@ window.DATA_CENTER = {
             "type": "美团保险数据",
             "latest": "insurance_data.js",
             "mtime": "2026-11-12 07:12:55",
-            "synced": true
+            "synced": false
           }
         ],
         "actions": [
@@ -737,7 +738,7 @@ window.DATA_CENTER = {
             "mtime": "2026-11-12 07:12:55",
             "max_age_hours": 72,
             "age_hours": 72.0,
-            "ok": true,
+            "ok": false,
             "note": "",
             "fail_hits": [],
             "fail_lines": [],
@@ -745,13 +746,13 @@ window.DATA_CENTER = {
           }
         ],
         "action_stats": {
-          "ok_count": 4,
-          "alert_count": 0,
+          "ok_count": 3,
+          "alert_count": 1,
           "missing_count": 0,
           "total": 4,
-          "all_ok": true
+          "all_ok": false
         },
-        "all_healthy": true
+        "all_healthy": false
       },
       "boards": [
         {
@@ -910,7 +911,7 @@ window.DATA_CENTER = {
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-11-15 07:12:01",
+        "data_mtime": "2026-11-15 07:12:21",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -921,7 +922,7 @@ window.DATA_CENTER = {
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-11-15 07:12:01",
+            "mtime": "2026-11-15 07:12:21",
             "max_age_hours": 26,
             "age_hours": 0.0,
             "ok": true,
