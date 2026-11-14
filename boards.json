@@ -23,6 +23,11 @@
           "key": "safe_highway",
           "label": "高速监控看板",
           "file": "交通安全行为看板/高速监控看板.html"
+        },
+        {
+          "key": "accident_ledger",
+          "label": "事故台账",
+          "file": "事故台账/事故台账看板.html"
         }
       ]
     },
