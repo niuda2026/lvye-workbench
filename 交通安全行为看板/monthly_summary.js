@@ -5,7 +5,7 @@ window.MONTHLY_SUMMARY = {
   "2026-10",
   "2026-11"
  ],
- "updated": "2026-11-17 06:34:46",
+ "updated": "2026-11-17 06:54:47",
  "sites": [
   {
    "level": "total",
