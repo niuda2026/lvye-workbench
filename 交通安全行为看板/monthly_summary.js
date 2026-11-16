@@ -5,7 +5,7 @@ window.MONTHLY_SUMMARY = {
   "2026-10",
   "2026-11"
  ],
- "updated": "2026-11-17 06:54:47",
+ "updated": "2026-11-17 07:11:45",
  "sites": [
   {
    "level": "total",
@@ -129,9 +129,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 145784,
-     "den": 147521,
-     "rate": 98.82
+     "num": 155664,
+     "den": 157492,
+     "rate": 98.84
     },
     "speed": {
      "num": 718126,
@@ -288,9 +288,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 12666,
-     "den": 12764,
-     "rate": 99.23
+     "num": 13510,
+     "den": 13614,
+     "rate": 99.24
     },
     "speed": {
      "num": 100202,
@@ -447,9 +447,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 12666,
-     "den": 12764,
-     "rate": 99.23
+     "num": 13510,
+     "den": 13614,
+     "rate": 99.24
     },
     "speed": {
      "num": 100202,
@@ -606,9 +606,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 810,
-     "den": 815,
-     "rate": 99.39
+     "num": 861,
+     "den": 867,
+     "rate": 99.31
     },
     "speed": {
      "num": 5249,
@@ -765,9 +765,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 154,
-     "den": 156,
-     "rate": 98.72
+     "num": 163,
+     "den": 165,
+     "rate": 98.79
     },
     "speed": {
      "num": 810,
@@ -924,9 +924,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1888,
-     "den": 1899,
-     "rate": 99.42
+     "num": 2012,
+     "den": 2024,
+     "rate": 99.41
     },
     "speed": {
      "num": 14789,
@@ -1083,9 +1083,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 772,
-     "den": 780,
-     "rate": 98.97
+     "num": 826,
+     "den": 834,
+     "rate": 99.04
     },
     "speed": {
      "num": 7492,
@@ -1242,9 +1242,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1196,
-     "den": 1200,
-     "rate": 99.67
+     "num": 1275,
+     "den": 1279,
+     "rate": 99.69
     },
     "speed": {
      "num": 5817,
@@ -1401,9 +1401,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 961,
-     "den": 974,
-     "rate": 98.67
+     "num": 1027,
+     "den": 1041,
+     "rate": 98.66
     },
     "speed": {
      "num": 12899,
@@ -1560,9 +1560,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 367,
-     "den": 370,
-     "rate": 99.19
+     "num": 390,
+     "den": 393,
+     "rate": 99.24
     },
     "speed": {
      "num": 4564,
@@ -1719,9 +1719,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 985,
-     "den": 990,
-     "rate": 99.49
+     "num": 1048,
+     "den": 1053,
+     "rate": 99.53
     },
     "speed": {
      "num": 5119,
@@ -1878,9 +1878,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 384,
-     "den": 394,
-     "rate": 97.46
+     "num": 410,
+     "den": 420,
+     "rate": 97.62
     },
     "speed": {
      "num": 952,
@@ -2037,9 +2037,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1279,
-     "den": 1293,
-     "rate": 98.92
+     "num": 1359,
+     "den": 1375,
+     "rate": 98.84
     },
     "speed": {
      "num": 10364,
@@ -2196,9 +2196,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 834,
-     "den": 838,
-     "rate": 99.52
+     "num": 892,
+     "den": 896,
+     "rate": 99.55
     },
     "speed": {
      "num": 9590,
@@ -2355,9 +2355,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1290,
-     "den": 1298,
-     "rate": 99.38
+     "num": 1373,
+     "den": 1381,
+     "rate": 99.42
     },
     "speed": {
      "num": 11341,
@@ -2514,9 +2514,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1082,
-     "den": 1085,
-     "rate": 99.72
+     "num": 1168,
+     "den": 1171,
+     "rate": 99.74
     },
     "speed": {
      "num": 7774,
@@ -2673,9 +2673,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 494,
-     "den": 499,
-     "rate": 99.0
+     "num": 525,
+     "den": 531,
+     "rate": 98.87
     },
     "speed": {
      "num": 2782,
@@ -2832,8 +2832,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 15,
-     "den": 15,
+     "num": 16,
+     "den": 16,
      "rate": 100.0
     },
     "speed": {
@@ -2991,8 +2991,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 15,
-     "den": 15,
+     "num": 16,
+     "den": 16,
      "rate": 100.0
     },
     "speed": {
@@ -3150,8 +3150,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 17,
-     "den": 17,
+     "num": 18,
+     "den": 18,
      "rate": 100.0
     },
     "speed": {
@@ -3309,8 +3309,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 28,
-     "den": 28,
+     "num": 29,
+     "den": 29,
      "rate": 100.0
     },
     "speed": {
@@ -3468,8 +3468,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 14,
-     "den": 14,
+     "num": 15,
+     "den": 15,
      "rate": 100.0
     },
     "speed": {
@@ -3627,9 +3627,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 14,
-     "den": 15,
-     "rate": 93.33
+     "num": 15,
+     "den": 16,
+     "rate": 93.75
     },
     "speed": {
      "num": 58,
@@ -3786,8 +3786,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 15,
-     "den": 15,
+     "num": 16,
+     "den": 16,
      "rate": 100.0
     },
     "speed": {
@@ -3945,8 +3945,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 35,
-     "den": 35,
+     "num": 37,
+     "den": 37,
      "rate": 100.0
     },
     "speed": {
@@ -4104,9 +4104,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 13,
-     "den": 14,
-     "rate": 92.86
+     "num": 14,
+     "den": 15,
+     "rate": 93.33
     },
     "speed": {
      "num": 83,
@@ -4263,9 +4263,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 4673,
-     "den": 4693,
-     "rate": 99.57
+     "num": 4993,
+     "den": 5014,
+     "rate": 99.58
     },
     "speed": {
      "num": 31769,
@@ -4422,9 +4422,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 4673,
-     "den": 4693,
-     "rate": 99.57
+     "num": 4993,
+     "den": 5014,
+     "rate": 99.58
     },
     "speed": {
      "num": 31769,
@@ -4581,9 +4581,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 504,
-     "den": 507,
-     "rate": 99.41
+     "num": 540,
+     "den": 543,
+     "rate": 99.45
     },
     "speed": {
      "num": 966,
@@ -4740,9 +4740,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 970,
-     "den": 977,
-     "rate": 99.28
+     "num": 1035,
+     "den": 1043,
+     "rate": 99.23
     },
     "speed": {
      "num": 7693,
@@ -4861,9 +4861,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1057,
-     "den": 1064,
-     "rate": 99.34
+     "num": 1127,
+     "den": 1134,
+     "rate": 99.38
     },
     "speed": {
      "num": 8337,
@@ -5020,8 +5020,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 138,
-     "den": 138,
+     "num": 147,
+     "den": 147,
      "rate": 100.0
     },
     "speed": {
@@ -5141,9 +5141,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1991,
-     "den": 1993,
-     "rate": 99.9
+     "num": 2130,
+     "den": 2132,
+     "rate": 99.91
     },
     "speed": {
      "num": 14356,
@@ -5262,9 +5262,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 13,
-     "den": 14,
-     "rate": 92.86
+     "num": 14,
+     "den": 15,
+     "rate": 93.33
     },
     "speed": {
      "num": 0,
@@ -5421,9 +5421,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 3140,
-     "den": 3178,
-     "rate": 98.8
+     "num": 3345,
+     "den": 3387,
+     "rate": 98.76
     },
     "speed": {
      "num": 9786,
@@ -5580,9 +5580,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 3140,
-     "den": 3178,
-     "rate": 98.8
+     "num": 3345,
+     "den": 3387,
+     "rate": 98.76
     },
     "speed": {
      "num": 9786,
@@ -5739,9 +5739,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 824,
-     "den": 836,
-     "rate": 98.56
+     "num": 878,
+     "den": 890,
+     "rate": 98.65
     },
     "speed": {
      "num": 1859,
@@ -5898,9 +5898,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 887,
-     "den": 898,
-     "rate": 98.78
+     "num": 948,
+     "den": 959,
+     "rate": 98.85
     },
     "speed": {
      "num": 4638,
@@ -6057,9 +6057,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 862,
-     "den": 870,
-     "rate": 99.08
+     "num": 915,
+     "den": 926,
+     "rate": 98.81
     },
     "speed": {
      "num": 1820,
@@ -6216,9 +6216,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 567,
-     "den": 574,
-     "rate": 98.78
+     "num": 604,
+     "den": 612,
+     "rate": 98.69
     },
     "speed": {
      "num": 1469,
@@ -6375,8 +6375,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 22557,
-     "den": 22736,
+     "num": 24123,
+     "den": 24315,
      "rate": 99.21
     },
     "speed": {
@@ -6534,9 +6534,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1233,
-     "den": 1240,
-     "rate": 99.44
+     "num": 1318,
+     "den": 1325,
+     "rate": 99.47
     },
     "speed": {
      "num": 2352,
@@ -6693,9 +6693,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1233,
-     "den": 1240,
-     "rate": 99.44
+     "num": 1318,
+     "den": 1325,
+     "rate": 99.47
     },
     "speed": {
      "num": 2352,
@@ -6852,9 +6852,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 20787,
-     "den": 20957,
-     "rate": 99.19
+     "num": 22233,
+     "den": 22416,
+     "rate": 99.18
     },
     "speed": {
      "num": 98174,
@@ -7011,9 +7011,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1774,
-     "den": 1784,
-     "rate": 99.44
+     "num": 1901,
+     "den": 1911,
+     "rate": 99.48
     },
     "speed": {
      "num": 7310,
@@ -7170,9 +7170,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1229,
-     "den": 1238,
-     "rate": 99.27
+     "num": 1315,
+     "den": 1324,
+     "rate": 99.32
     },
     "speed": {
      "num": 4504,
@@ -7329,9 +7329,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1014,
-     "den": 1020,
-     "rate": 99.41
+     "num": 1085,
+     "den": 1092,
+     "rate": 99.36
     },
     "speed": {
      "num": 3947,
@@ -7488,9 +7488,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1815,
-     "den": 1833,
-     "rate": 99.02
+     "num": 1941,
+     "den": 1960,
+     "rate": 99.03
     },
     "speed": {
      "num": 8024,
@@ -7647,9 +7647,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1105,
-     "den": 1122,
-     "rate": 98.48
+     "num": 1183,
+     "den": 1200,
+     "rate": 98.58
     },
     "speed": {
      "num": 6665,
@@ -7806,9 +7806,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 2589,
-     "den": 2604,
-     "rate": 99.42
+     "num": 2767,
+     "den": 2783,
+     "rate": 99.43
     },
     "speed": {
      "num": 11983,
@@ -7965,9 +7965,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1502,
-     "den": 1517,
-     "rate": 99.01
+     "num": 1612,
+     "den": 1628,
+     "rate": 99.02
     },
     "speed": {
      "num": 8650,
@@ -8124,9 +8124,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 987,
-     "den": 990,
-     "rate": 99.7
+     "num": 1053,
+     "den": 1056,
+     "rate": 99.72
     },
     "speed": {
      "num": 5189,
@@ -8283,9 +8283,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 720,
-     "den": 730,
-     "rate": 98.63
+     "num": 769,
+     "den": 779,
+     "rate": 98.72
     },
     "speed": {
      "num": 4213,
@@ -8601,8 +8601,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 155,
-     "den": 155,
+     "num": 166,
+     "den": 166,
      "rate": 100.0
     },
     "speed": {
@@ -8760,9 +8760,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 2211,
-     "den": 2222,
-     "rate": 99.5
+     "num": 2363,
+     "den": 2376,
+     "rate": 99.45
     },
     "speed": {
      "num": 12125,
@@ -8919,9 +8919,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 2454,
-     "den": 2471,
-     "rate": 99.31
+     "num": 2620,
+     "den": 2638,
+     "rate": 99.32
     },
     "speed": {
      "num": 6503,
@@ -9078,9 +9078,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1725,
-     "den": 1747,
-     "rate": 98.74
+     "num": 1846,
+     "den": 1871,
+     "rate": 98.66
     },
     "speed": {
      "num": 9208,
@@ -9237,9 +9237,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1372,
-     "den": 1387,
-     "rate": 98.92
+     "num": 1468,
+     "den": 1485,
+     "rate": 98.86
     },
     "speed": {
      "num": 8731,
@@ -9396,9 +9396,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 135,
-     "den": 137,
-     "rate": 98.54
+     "num": 144,
+     "den": 147,
+     "rate": 97.96
     },
     "speed": {
      "num": 533,
@@ -9555,9 +9555,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 537,
-     "den": 539,
-     "rate": 99.63
+     "num": 572,
+     "den": 574,
+     "rate": 99.65
     },
     "speed": {
      "num": 956,
@@ -9714,9 +9714,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 537,
-     "den": 539,
-     "rate": 99.63
+     "num": 572,
+     "den": 574,
+     "rate": 99.65
     },
     "speed": {
      "num": 956,
@@ -9873,9 +9873,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 20928,
-     "den": 21199,
-     "rate": 98.72
+     "num": 22326,
+     "den": 22622,
+     "rate": 98.69
     },
     "speed": {
      "num": 96646,
@@ -10032,9 +10032,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 6740,
-     "den": 6805,
-     "rate": 99.04
+     "num": 7191,
+     "den": 7264,
+     "rate": 99.0
     },
     "speed": {
      "num": 36285,
@@ -10191,9 +10191,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1222,
-     "den": 1234,
-     "rate": 99.03
+     "num": 1300,
+     "den": 1314,
+     "rate": 98.93
     },
     "speed": {
      "num": 6380,
@@ -10350,9 +10350,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 557,
-     "den": 561,
-     "rate": 99.29
+     "num": 596,
+     "den": 601,
+     "rate": 99.17
     },
     "speed": {
      "num": 4498,
@@ -10509,9 +10509,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 453,
-     "den": 462,
-     "rate": 98.05
+     "num": 482,
+     "den": 491,
+     "rate": 98.17
     },
     "speed": {
      "num": 1713,
@@ -10668,9 +10668,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 615,
-     "den": 620,
-     "rate": 99.19
+     "num": 656,
+     "den": 662,
+     "rate": 99.09
     },
     "speed": {
      "num": 4432,
@@ -10827,9 +10827,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 781,
-     "den": 790,
-     "rate": 98.86
+     "num": 837,
+     "den": 846,
+     "rate": 98.94
     },
     "speed": {
      "num": 3008,
@@ -10986,9 +10986,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 579,
-     "den": 584,
-     "rate": 99.14
+     "num": 617,
+     "den": 622,
+     "rate": 99.2
     },
     "speed": {
      "num": 2908,
@@ -11145,9 +11145,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1023,
-     "den": 1029,
-     "rate": 99.42
+     "num": 1093,
+     "den": 1099,
+     "rate": 99.45
     },
     "speed": {
      "num": 5644,
@@ -11304,9 +11304,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 545,
-     "den": 550,
-     "rate": 99.09
+     "num": 582,
+     "den": 587,
+     "rate": 99.15
     },
     "speed": {
      "num": 1592,
@@ -11463,9 +11463,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 364,
-     "den": 368,
-     "rate": 98.91
+     "num": 388,
+     "den": 393,
+     "rate": 98.73
     },
     "speed": {
      "num": 2436,
@@ -11622,9 +11622,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 563,
-     "den": 568,
-     "rate": 99.12
+     "num": 599,
+     "den": 607,
+     "rate": 98.68
     },
     "speed": {
      "num": 3580,
@@ -11781,9 +11781,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 38,
-     "den": 39,
-     "rate": 97.44
+     "num": 41,
+     "den": 42,
+     "rate": 97.62
     },
     "speed": {
      "num": 94,
@@ -11940,9 +11940,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1661,
-     "den": 1688,
-     "rate": 98.4
+     "num": 1768,
+     "den": 1799,
+     "rate": 98.28
     },
     "speed": {
      "num": 10803,
@@ -12099,9 +12099,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1661,
-     "den": 1688,
-     "rate": 98.4
+     "num": 1768,
+     "den": 1799,
+     "rate": 98.28
     },
     "speed": {
      "num": 10803,
@@ -12258,9 +12258,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 2463,
-     "den": 2497,
-     "rate": 98.64
+     "num": 2629,
+     "den": 2665,
+     "rate": 98.65
     },
     "speed": {
      "num": 14459,
@@ -12417,9 +12417,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1507,
-     "den": 1526,
-     "rate": 98.75
+     "num": 1607,
+     "den": 1627,
+     "rate": 98.77
     },
     "speed": {
      "num": 9360,
@@ -12576,9 +12576,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 315,
-     "den": 319,
-     "rate": 98.75
+     "num": 337,
+     "den": 342,
+     "rate": 98.54
     },
     "speed": {
      "num": 1034,
@@ -12735,9 +12735,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 641,
-     "den": 652,
-     "rate": 98.31
+     "num": 685,
+     "den": 696,
+     "rate": 98.42
     },
     "speed": {
      "num": 4065,
@@ -12894,9 +12894,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1968,
-     "den": 2007,
-     "rate": 98.06
+     "num": 2098,
+     "den": 2140,
+     "rate": 98.04
     },
     "speed": {
      "num": 7421,
@@ -13053,9 +13053,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1095,
-     "den": 1117,
-     "rate": 98.03
+     "num": 1167,
+     "den": 1192,
+     "rate": 97.9
     },
     "speed": {
      "num": 3723,
@@ -13212,9 +13212,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 873,
-     "den": 890,
-     "rate": 98.09
+     "num": 931,
+     "den": 948,
+     "rate": 98.21
     },
     "speed": {
      "num": 3698,
@@ -13371,8 +13371,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 4574,
-     "den": 4619,
+     "num": 4886,
+     "den": 4934,
      "rate": 99.03
     },
     "speed": {
@@ -13530,9 +13530,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1089,
-     "den": 1101,
-     "rate": 98.91
+     "num": 1162,
+     "den": 1175,
+     "rate": 98.89
     },
     "speed": {
      "num": 3177,
@@ -13689,9 +13689,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 281,
-     "den": 282,
-     "rate": 99.65
+     "num": 300,
+     "den": 301,
+     "rate": 99.67
     },
     "speed": {
      "num": 340,
@@ -13848,9 +13848,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1367,
-     "den": 1382,
-     "rate": 98.91
+     "num": 1463,
+     "den": 1478,
+     "rate": 98.99
     },
     "speed": {
      "num": 6243,
@@ -14007,9 +14007,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 411,
-     "den": 413,
-     "rate": 99.52
+     "num": 438,
+     "den": 441,
+     "rate": 99.32
     },
     "speed": {
      "num": 2235,
@@ -14166,9 +14166,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 817,
-     "den": 823,
-     "rate": 99.27
+     "num": 872,
+     "den": 878,
+     "rate": 99.32
     },
     "speed": {
      "num": 2887,
@@ -14325,9 +14325,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 609,
-     "den": 618,
-     "rate": 98.54
+     "num": 651,
+     "den": 661,
+     "rate": 98.49
     },
     "speed": {
      "num": 2827,
@@ -14484,9 +14484,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 2172,
-     "den": 2216,
-     "rate": 98.01
+     "num": 2317,
+     "den": 2363,
+     "rate": 98.05
     },
     "speed": {
      "num": 7141,
@@ -14643,9 +14643,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 462,
-     "den": 468,
-     "rate": 98.72
+     "num": 495,
+     "den": 501,
+     "rate": 98.8
     },
     "speed": {
      "num": 1805,
@@ -14802,9 +14802,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 603,
-     "den": 617,
-     "rate": 97.73
+     "num": 641,
+     "den": 656,
+     "rate": 97.71
     },
     "speed": {
      "num": 1895,
@@ -14961,9 +14961,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 215,
-     "den": 219,
-     "rate": 98.17
+     "num": 229,
+     "den": 233,
+     "rate": 98.28
     },
     "speed": {
      "num": 394,
@@ -15120,9 +15120,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 892,
-     "den": 912,
-     "rate": 97.81
+     "num": 952,
+     "den": 973,
+     "rate": 97.84
     },
     "speed": {
      "num": 3047,
@@ -15279,9 +15279,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1350,
-     "den": 1367,
-     "rate": 98.76
+     "num": 1437,
+     "den": 1457,
+     "rate": 98.63
     },
     "speed": {
      "num": 2828,
@@ -15438,9 +15438,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1350,
-     "den": 1367,
-     "rate": 98.76
+     "num": 1437,
+     "den": 1457,
+     "rate": 98.63
     },
     "speed": {
      "num": 2828,
@@ -15597,8 +15597,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 16583,
-     "den": 16780,
+     "num": 17675,
+     "den": 17884,
      "rate": 98.83
     },
     "speed": {
@@ -15756,9 +15756,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 3875,
-     "den": 3911,
-     "rate": 99.08
+     "num": 4129,
+     "den": 4167,
+     "rate": 99.09
     },
     "speed": {
      "num": 25850,
@@ -15915,9 +15915,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1637,
-     "den": 1651,
-     "rate": 99.15
+     "num": 1744,
+     "den": 1760,
+     "rate": 99.09
     },
     "speed": {
      "num": 11030,
@@ -16074,9 +16074,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1680,
-     "den": 1697,
-     "rate": 99.0
+     "num": 1791,
+     "den": 1808,
+     "rate": 99.06
     },
     "speed": {
      "num": 10872,
@@ -16233,9 +16233,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 558,
-     "den": 563,
-     "rate": 99.11
+     "num": 594,
+     "den": 599,
+     "rate": 99.17
     },
     "speed": {
      "num": 3948,
@@ -16392,9 +16392,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 3778,
-     "den": 3808,
-     "rate": 99.21
+     "num": 4028,
+     "den": 4061,
+     "rate": 99.19
     },
     "speed": {
      "num": 16155,
@@ -16551,9 +16551,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 680,
-     "den": 682,
-     "rate": 99.71
+     "num": 724,
+     "den": 726,
+     "rate": 99.72
     },
     "speed": {
      "num": 2830,
@@ -16710,9 +16710,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 220,
-     "den": 223,
-     "rate": 98.65
+     "num": 233,
+     "den": 236,
+     "rate": 98.73
     },
     "speed": {
      "num": 367,
@@ -16869,9 +16869,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1276,
-     "den": 1287,
-     "rate": 99.15
+     "num": 1361,
+     "den": 1372,
+     "rate": 99.2
     },
     "speed": {
      "num": 4841,
@@ -17028,9 +17028,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1602,
-     "den": 1616,
-     "rate": 99.13
+     "num": 1710,
+     "den": 1727,
+     "rate": 99.02
     },
     "speed": {
      "num": 8117,
@@ -17187,9 +17187,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 8930,
-     "den": 9061,
-     "rate": 98.55
+     "num": 9518,
+     "den": 9656,
+     "rate": 98.57
     },
     "speed": {
      "num": 62211,
@@ -17346,9 +17346,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1694,
-     "den": 1734,
-     "rate": 97.69
+     "num": 1802,
+     "den": 1845,
+     "rate": 97.67
     },
     "speed": {
      "num": 11597,
@@ -17505,9 +17505,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 596,
-     "den": 605,
-     "rate": 98.51
+     "num": 634,
+     "den": 644,
+     "rate": 98.45
     },
     "speed": {
      "num": 3951,
@@ -17664,9 +17664,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 805,
-     "den": 810,
-     "rate": 99.38
+     "num": 863,
+     "den": 869,
+     "rate": 99.31
     },
     "speed": {
      "num": 4395,
@@ -17823,9 +17823,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 860,
-     "den": 868,
-     "rate": 99.08
+     "num": 917,
+     "den": 925,
+     "rate": 99.14
     },
     "speed": {
      "num": 5425,
@@ -17982,9 +17982,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 770,
-     "den": 788,
-     "rate": 97.72
+     "num": 823,
+     "den": 842,
+     "rate": 97.74
     },
     "speed": {
      "num": 4256,
@@ -18141,9 +18141,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 335,
-     "den": 343,
-     "rate": 97.67
+     "num": 357,
+     "den": 365,
+     "rate": 97.81
     },
     "speed": {
      "num": 1258,
@@ -18300,9 +18300,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 446,
-     "den": 451,
-     "rate": 98.89
+     "num": 475,
+     "den": 480,
+     "rate": 98.96
     },
     "speed": {
      "num": 2792,
@@ -18459,9 +18459,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1081,
-     "den": 1095,
-     "rate": 98.72
+     "num": 1151,
+     "den": 1165,
+     "rate": 98.8
     },
     "speed": {
      "num": 6926,
@@ -18618,9 +18618,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 832,
-     "den": 843,
-     "rate": 98.7
+     "num": 888,
+     "den": 899,
+     "rate": 98.78
     },
     "speed": {
      "num": 6324,
@@ -18777,9 +18777,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 460,
-     "den": 466,
-     "rate": 98.71
+     "num": 489,
+     "den": 496,
+     "rate": 98.59
     },
     "speed": {
      "num": 3516,
@@ -18936,9 +18936,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1051,
-     "den": 1058,
-     "rate": 99.34
+     "num": 1119,
+     "den": 1126,
+     "rate": 99.38
     },
     "speed": {
      "num": 11771,
@@ -19095,9 +19095,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 14451,
-     "den": 14622,
-     "rate": 98.83
+     "num": 15444,
+     "den": 15622,
+     "rate": 98.86
     },
     "speed": {
      "num": 63653,
@@ -19254,9 +19254,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 2799,
-     "den": 2822,
-     "rate": 99.18
+     "num": 2986,
+     "den": 3011,
+     "rate": 99.17
     },
     "speed": {
      "num": 9545,
@@ -19413,9 +19413,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 773,
-     "den": 787,
-     "rate": 98.22
+     "num": 827,
+     "den": 841,
+     "rate": 98.34
     },
     "speed": {
      "num": 2562,
@@ -19572,9 +19572,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 990,
-     "den": 990,
-     "rate": 100.0
+     "num": 1058,
+     "den": 1059,
+     "rate": 99.91
     },
     "speed": {
      "num": 4795,
@@ -19655,9 +19655,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1036,
-     "den": 1045,
-     "rate": 99.14
+     "num": 1101,
+     "den": 1111,
+     "rate": 99.1
     },
     "speed": {
      "num": 2188,
@@ -19814,9 +19814,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 954,
-     "den": 976,
-     "rate": 97.75
+     "num": 1017,
+     "den": 1040,
+     "rate": 97.79
     },
     "speed": {
      "num": 3845,
@@ -19973,9 +19973,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 196,
-     "den": 201,
-     "rate": 97.51
+     "num": 208,
+     "den": 213,
+     "rate": 97.65
     },
     "speed": {
      "num": 1094,
@@ -20132,9 +20132,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 552,
-     "den": 568,
-     "rate": 97.18
+     "num": 590,
+     "den": 607,
+     "rate": 97.2
     },
     "speed": {
      "num": 2204,
@@ -20291,9 +20291,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 206,
-     "den": 207,
-     "rate": 99.52
+     "num": 219,
+     "den": 220,
+     "rate": 99.55
     },
     "speed": {
      "num": 547,
@@ -20450,9 +20450,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 8020,
-     "den": 8126,
-     "rate": 98.7
+     "num": 8572,
+     "den": 8681,
+     "rate": 98.74
     },
     "speed": {
      "num": 38074,
@@ -20609,9 +20609,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 578,
-     "den": 585,
-     "rate": 98.8
+     "num": 619,
+     "den": 626,
+     "rate": 98.88
     },
     "speed": {
      "num": 3290,
@@ -20768,9 +20768,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 952,
-     "den": 968,
-     "rate": 98.35
+     "num": 1019,
+     "den": 1035,
+     "rate": 98.45
     },
     "speed": {
      "num": 6983,
@@ -20927,9 +20927,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 481,
-     "den": 489,
-     "rate": 98.36
+     "num": 515,
+     "den": 524,
+     "rate": 98.28
     },
     "speed": {
      "num": 3442,
@@ -21086,9 +21086,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 933,
-     "den": 939,
-     "rate": 99.36
+     "num": 997,
+     "den": 1003,
+     "rate": 99.4
     },
     "speed": {
      "num": 3894,
@@ -21245,9 +21245,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 219,
-     "den": 220,
-     "rate": 99.55
+     "num": 234,
+     "den": 235,
+     "rate": 99.57
     },
     "speed": {
      "num": 349,
@@ -21404,9 +21404,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1116,
-     "den": 1141,
-     "rate": 97.81
+     "num": 1191,
+     "den": 1216,
+     "rate": 97.94
     },
     "speed": {
      "num": 5657,
@@ -21563,9 +21563,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1197,
-     "den": 1210,
-     "rate": 98.93
+     "num": 1284,
+     "den": 1297,
+     "rate": 99.0
     },
     "speed": {
      "num": 4792,
@@ -21722,8 +21722,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 796,
-     "den": 811,
+     "num": 849,
+     "den": 865,
      "rate": 98.15
     },
     "speed": {
@@ -21881,9 +21881,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 881,
-     "den": 891,
-     "rate": 98.88
+     "num": 937,
+     "den": 948,
+     "rate": 98.84
     },
     "speed": {
      "num": 2858,
@@ -22040,9 +22040,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 248,
-     "den": 250,
-     "rate": 99.2
+     "num": 265,
+     "den": 267,
+     "rate": 99.25
     },
     "speed": {
      "num": 919,
@@ -22199,9 +22199,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 619,
-     "den": 622,
-     "rate": 99.52
+     "num": 662,
+     "den": 665,
+     "rate": 99.55
     },
     "speed": {
      "num": 2170,
@@ -22358,9 +22358,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 2678,
-     "den": 2698,
-     "rate": 99.26
+     "num": 2869,
+     "den": 2890,
+     "rate": 99.27
     },
     "speed": {
      "num": 12189,
@@ -22517,9 +22517,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 95,
-     "den": 97,
-     "rate": 97.94
+     "num": 100,
+     "den": 102,
+     "rate": 98.04
     },
     "speed": {
      "num": 749,
@@ -22676,8 +22676,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 80,
-     "den": 80,
+     "num": 85,
+     "den": 85,
      "rate": 100.0
     },
     "speed": {
@@ -22835,8 +22835,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 128,
-     "den": 128,
+     "num": 136,
+     "den": 136,
      "rate": 100.0
     },
     "speed": {
@@ -22994,9 +22994,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 883,
-     "den": 889,
-     "rate": 99.33
+     "num": 946,
+     "den": 952,
+     "rate": 99.37
     },
     "speed": {
      "num": 3565,
@@ -23153,9 +23153,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 934,
-     "den": 940,
-     "rate": 99.36
+     "num": 1003,
+     "den": 1010,
+     "rate": 99.31
     },
     "speed": {
      "num": 3083,
@@ -23312,9 +23312,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 531,
-     "den": 537,
-     "rate": 98.88
+     "num": 570,
+     "den": 576,
+     "rate": 98.96
     },
     "speed": {
      "num": 3592,
@@ -23471,8 +23471,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 27,
-     "den": 27,
+     "num": 29,
+     "den": 29,
      "rate": 100.0
     },
     "speed": {
@@ -23630,9 +23630,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 35895,
-     "den": 36453,
-     "rate": 98.47
+     "num": 38377,
+     "den": 38949,
+     "rate": 98.53
     },
     "speed": {
      "num": 148440,
@@ -23789,9 +23789,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 5772,
-     "den": 5820,
-     "rate": 99.18
+     "num": 6154,
+     "den": 6204,
+     "rate": 99.19
     },
     "speed": {
      "num": 21101,
@@ -23948,9 +23948,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 877,
-     "den": 886,
-     "rate": 98.98
+     "num": 935,
+     "den": 944,
+     "rate": 99.05
     },
     "speed": {
      "num": 2959,
@@ -24107,9 +24107,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1234,
-     "den": 1247,
-     "rate": 98.96
+     "num": 1321,
+     "den": 1334,
+     "rate": 99.03
     },
     "speed": {
      "num": 4897,
@@ -24266,9 +24266,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1551,
-     "den": 1560,
-     "rate": 99.42
+     "num": 1655,
+     "den": 1664,
+     "rate": 99.46
     },
     "speed": {
      "num": 5440,
@@ -24425,9 +24425,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1214,
-     "den": 1229,
-     "rate": 98.78
+     "num": 1295,
+     "den": 1312,
+     "rate": 98.7
     },
     "speed": {
      "num": 4873,
@@ -24584,8 +24584,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 265,
-     "den": 265,
+     "num": 279,
+     "den": 279,
      "rate": 100.0
     },
     "speed": {
@@ -24743,9 +24743,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 631,
-     "den": 633,
-     "rate": 99.68
+     "num": 669,
+     "den": 671,
+     "rate": 99.7
     },
     "speed": {
      "num": 2111,
@@ -24902,9 +24902,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 8618,
-     "den": 8729,
-     "rate": 98.73
+     "num": 9177,
+     "den": 9291,
+     "rate": 98.77
     },
     "speed": {
      "num": 52231,
@@ -25061,9 +25061,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1220,
-     "den": 1229,
-     "rate": 99.27
+     "num": 1299,
+     "den": 1308,
+     "rate": 99.31
     },
     "speed": {
      "num": 1088,
@@ -25220,9 +25220,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1009,
-     "den": 1013,
-     "rate": 99.61
+     "num": 1078,
+     "den": 1082,
+     "rate": 99.63
     },
     "speed": {
      "num": 4185,
@@ -25379,9 +25379,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1342,
-     "den": 1362,
-     "rate": 98.53
+     "num": 1431,
+     "den": 1451,
+     "rate": 98.62
     },
     "speed": {
      "num": 9016,
@@ -25538,9 +25538,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 821,
-     "den": 837,
-     "rate": 98.09
+     "num": 876,
+     "den": 892,
+     "rate": 98.21
     },
     "speed": {
      "num": 5275,
@@ -25697,9 +25697,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 535,
-     "den": 543,
-     "rate": 98.53
+     "num": 566,
+     "den": 574,
+     "rate": 98.61
     },
     "speed": {
      "num": 1306,
@@ -25856,8 +25856,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1293,
-     "den": 1324,
+     "num": 1375,
+     "den": 1408,
      "rate": 97.66
     },
     "speed": {
@@ -26015,8 +26015,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1662,
-     "den": 1678,
+     "num": 1769,
+     "den": 1786,
      "rate": 99.05
     },
     "speed": {
@@ -26136,8 +26136,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 208,
-     "den": 208,
+     "num": 222,
+     "den": 222,
      "rate": 100.0
     },
     "speed": {
@@ -26295,9 +26295,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 528,
-     "den": 535,
-     "rate": 98.69
+     "num": 561,
+     "den": 568,
+     "rate": 98.77
     },
     "speed": {
      "num": 1136,
@@ -26454,9 +26454,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 7085,
-     "den": 7185,
-     "rate": 98.61
+     "num": 7597,
+     "den": 7701,
+     "rate": 98.65
     },
     "speed": {
      "num": 33534,
@@ -26613,9 +26613,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 959,
-     "den": 972,
-     "rate": 98.66
+     "num": 1027,
+     "den": 1040,
+     "rate": 98.75
     },
     "speed": {
      "num": 1926,
@@ -26772,9 +26772,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1314,
-     "den": 1325,
-     "rate": 99.17
+     "num": 1408,
+     "den": 1420,
+     "rate": 99.15
     },
     "speed": {
      "num": 3206,
@@ -26931,9 +26931,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 428,
-     "den": 445,
-     "rate": 96.18
+     "num": 466,
+     "den": 483,
+     "rate": 96.48
     },
     "speed": {
      "num": 2061,
@@ -27090,9 +27090,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 877,
-     "den": 888,
-     "rate": 98.76
+     "num": 939,
+     "den": 951,
+     "rate": 98.74
     },
     "speed": {
      "num": 6203,
@@ -27249,9 +27249,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1608,
-     "den": 1633,
-     "rate": 98.47
+     "num": 1729,
+     "den": 1755,
+     "rate": 98.52
     },
     "speed": {
      "num": 9976,
@@ -27408,9 +27408,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1230,
-     "den": 1240,
-     "rate": 99.19
+     "num": 1309,
+     "den": 1319,
+     "rate": 99.24
     },
     "speed": {
      "num": 5851,
@@ -27567,8 +27567,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 669,
-     "den": 682,
+     "num": 719,
+     "den": 733,
      "rate": 98.09
     },
     "speed": {
@@ -27726,9 +27726,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 14420,
-     "den": 14719,
-     "rate": 97.97
+     "num": 15449,
+     "den": 15753,
+     "rate": 98.07
     },
     "speed": {
      "num": 41574,
@@ -27885,9 +27885,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1173,
-     "den": 1199,
-     "rate": 97.83
+     "num": 1256,
+     "den": 1282,
+     "rate": 97.97
     },
     "speed": {
      "num": 2921,
@@ -28044,9 +28044,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 720,
-     "den": 733,
-     "rate": 98.23
+     "num": 776,
+     "den": 789,
+     "rate": 98.35
     },
     "speed": {
      "num": 1742,
@@ -28203,9 +28203,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 921,
-     "den": 931,
-     "rate": 98.93
+     "num": 981,
+     "den": 991,
+     "rate": 98.99
     },
     "speed": {
      "num": 1713,
@@ -28362,9 +28362,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1067,
-     "den": 1076,
-     "rate": 99.16
+     "num": 1141,
+     "den": 1150,
+     "rate": 99.22
     },
     "speed": {
      "num": 3381,
@@ -28521,9 +28521,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 496,
-     "den": 513,
-     "rate": 96.69
+     "num": 536,
+     "den": 553,
+     "rate": 96.93
     },
     "speed": {
      "num": 1207,
@@ -28680,9 +28680,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 699,
-     "den": 709,
-     "rate": 98.59
+     "num": 749,
+     "den": 759,
+     "rate": 98.68
     },
     "speed": {
      "num": 1410,
@@ -28839,9 +28839,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1030,
-     "den": 1066,
-     "rate": 96.62
+     "num": 1104,
+     "den": 1140,
+     "rate": 96.84
     },
     "speed": {
      "num": 2760,
@@ -28998,9 +28998,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 998,
-     "den": 1020,
-     "rate": 97.84
+     "num": 1065,
+     "den": 1087,
+     "rate": 97.98
     },
     "speed": {
      "num": 4321,
@@ -29157,9 +29157,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1007,
-     "den": 1034,
-     "rate": 97.39
+     "num": 1082,
+     "den": 1109,
+     "rate": 97.57
     },
     "speed": {
      "num": 3389,
@@ -29316,9 +29316,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1125,
-     "den": 1140,
-     "rate": 98.68
+     "num": 1206,
+     "den": 1221,
+     "rate": 98.77
     },
     "speed": {
      "num": 4768,
@@ -29475,9 +29475,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1426,
-     "den": 1467,
-     "rate": 97.21
+     "num": 1531,
+     "den": 1574,
+     "rate": 97.27
     },
     "speed": {
      "num": 5504,
@@ -29634,9 +29634,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1078,
-     "den": 1098,
-     "rate": 98.18
+     "num": 1152,
+     "den": 1173,
+     "rate": 98.21
     },
     "speed": {
      "num": 1497,
@@ -29793,9 +29793,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 296,
-     "den": 302,
-     "rate": 98.01
+     "num": 316,
+     "den": 322,
+     "rate": 98.14
     },
     "speed": {
      "num": 518,
@@ -29952,9 +29952,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 893,
-     "den": 910,
-     "rate": 98.13
+     "num": 957,
+     "den": 974,
+     "rate": 98.25
     },
     "speed": {
      "num": 2622,
@@ -30111,9 +30111,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 895,
-     "den": 911,
-     "rate": 98.24
+     "num": 961,
+     "den": 979,
+     "rate": 98.16
     },
     "speed": {
      "num": 2635,
@@ -30270,9 +30270,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 596,
-     "den": 610,
-     "rate": 97.7
+     "num": 636,
+     "den": 650,
+     "rate": 97.85
     },
     "speed": {
      "num": 1186,
@@ -30429,9 +30429,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 11287,
-     "den": 11449,
-     "rate": 98.59
+     "num": 12026,
+     "den": 12195,
+     "rate": 98.61
     },
     "speed": {
      "num": 49124,
@@ -30588,9 +30588,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 8372,
-     "den": 8489,
-     "rate": 98.62
+     "num": 8927,
+     "den": 9049,
+     "rate": 98.65
     },
     "speed": {
      "num": 32613,
@@ -30747,9 +30747,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 914,
-     "den": 923,
-     "rate": 99.02
+     "num": 979,
+     "den": 988,
+     "rate": 99.09
     },
     "speed": {
      "num": 3771,
@@ -30906,9 +30906,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 653,
-     "den": 658,
-     "rate": 99.24
+     "num": 698,
+     "den": 704,
+     "rate": 99.15
     },
     "speed": {
      "num": 2545,
@@ -31065,9 +31065,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1172,
-     "den": 1183,
-     "rate": 99.07
+     "num": 1247,
+     "den": 1259,
+     "rate": 99.05
     },
     "speed": {
      "num": 3714,
@@ -31224,9 +31224,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1290,
-     "den": 1318,
-     "rate": 97.88
+     "num": 1377,
+     "den": 1405,
+     "rate": 98.01
     },
     "speed": {
      "num": 4725,
@@ -31383,9 +31383,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 825,
-     "den": 838,
-     "rate": 98.45
+     "num": 879,
+     "den": 893,
+     "rate": 98.43
     },
     "speed": {
      "num": 3824,
@@ -31542,9 +31542,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1386,
-     "den": 1404,
-     "rate": 98.72
+     "num": 1476,
+     "den": 1496,
+     "rate": 98.66
     },
     "speed": {
      "num": 5838,
@@ -31701,9 +31701,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 867,
-     "den": 878,
-     "rate": 98.75
+     "num": 924,
+     "den": 935,
+     "rate": 98.82
     },
     "speed": {
      "num": 3174,
@@ -31860,9 +31860,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1265,
-     "den": 1287,
-     "rate": 98.29
+     "num": 1347,
+     "den": 1369,
+     "rate": 98.39
     },
     "speed": {
      "num": 5022,
@@ -32019,9 +32019,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 2915,
-     "den": 2960,
-     "rate": 98.48
+     "num": 3099,
+     "den": 3146,
+     "rate": 98.51
     },
     "speed": {
      "num": 16511,
@@ -32178,9 +32178,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1048,
-     "den": 1056,
-     "rate": 99.24
+     "num": 1117,
+     "den": 1126,
+     "rate": 99.2
     },
     "speed": {
      "num": 2833,
@@ -32337,9 +32337,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 1384,
-     "den": 1419,
-     "rate": 97.53
+     "num": 1471,
+     "den": 1507,
+     "rate": 97.61
     },
     "speed": {
      "num": 11678,
@@ -32496,9 +32496,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 428,
-     "den": 430,
-     "rate": 99.53
+     "num": 454,
+     "den": 456,
+     "rate": 99.56
     },
     "speed": {
      "num": 1897,
@@ -32655,8 +32655,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 55,
-     "den": 55,
+     "num": 57,
+     "den": 57,
      "rate": 100.0
     },
     "speed": {
@@ -32814,9 +32814,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 3604,
-     "den": 3647,
-     "rate": 98.82
+     "num": 3845,
+     "den": 3890,
+     "rate": 98.84
     },
     "speed": {
      "num": 12808,
@@ -32973,9 +32973,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 551,
-     "den": 558,
-     "rate": 98.75
+     "num": 584,
+     "den": 591,
+     "rate": 98.82
     },
     "speed": {
      "num": 4716,
@@ -33132,9 +33132,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 551,
-     "den": 558,
-     "rate": 98.75
+     "num": 584,
+     "den": 591,
+     "rate": 98.82
     },
     "speed": {
      "num": 4716,
@@ -33291,9 +33291,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 3053,
-     "den": 3089,
-     "rate": 98.83
+     "num": 3261,
+     "den": 3299,
+     "rate": 98.85
     },
     "speed": {
      "num": 8092,
@@ -33450,8 +33450,8 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 655,
-     "den": 669,
+     "num": 701,
+     "den": 716,
      "rate": 97.91
     },
     "speed": {
@@ -33609,9 +33609,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 541,
-     "den": 550,
-     "rate": 98.36
+     "num": 575,
+     "den": 585,
+     "rate": 98.29
     },
     "speed": {
      "num": 2299,
@@ -33768,9 +33768,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 532,
-     "den": 536,
-     "rate": 99.25
+     "num": 570,
+     "den": 574,
+     "rate": 99.3
     },
     "speed": {
      "num": 969,
@@ -33927,9 +33927,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 488,
-     "den": 492,
-     "rate": 99.19
+     "num": 518,
+     "den": 522,
+     "rate": 99.23
     },
     "speed": {
      "num": 1061,
@@ -34086,9 +34086,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 837,
-     "den": 842,
-     "rate": 99.41
+     "num": 897,
+     "den": 902,
+     "rate": 99.45
     },
     "speed": {
      "num": 935,
@@ -34245,9 +34245,9 @@ window.MONTHLY_SUMMARY = {
    },
    "2026-11": {
     "helmet": {
-     "num": 4,
-     "den": 5,
-     "rate": 80.0
+     "num": 5,
+     "den": 6,
+     "rate": 83.33
     },
     "speed": {
      "num": 24,
