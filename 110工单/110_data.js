@@ -1,13 +1,13 @@
 const EMBEDDED_DATA = {
-  "lastUpdated": "2026-11-17 13:14:20",
+  "lastUpdated": "2026-11-17 16:03:37",
   "sourceUrl": "https://fxgl365.com/110/w/desktop/process/list?activeTab=CURRENT",
   "module": "事件处理",
   "kpi": {
-    "total": 1177,
-    "pending": 7,
-    "processing": 438,
-    "done": 732,
-    "todayNew": 4,
+    "total": 1178,
+    "pending": 6,
+    "processing": 439,
+    "done": 733,
+    "todayNew": 5,
     "cityCount": 29,
     "regionCount": 4,
     "stationCount": 134
@@ -15,15 +15,15 @@ const EMBEDDED_DATA = {
   "statusDist": [
     {
       "name": "处理完成",
-      "value": 732
+      "value": 733
     },
     {
       "name": "处理中",
-      "value": 438
+      "value": 439
     },
     {
       "name": "待处理",
-      "value": 7
+      "value": 6
     }
   ],
   "cityStats": [
@@ -54,10 +54,10 @@ const EMBEDDED_DATA = {
     {
       "name": "秦皇岛市",
       "full": "秦皇岛市",
-      "count": 22,
+      "count": 23,
       "pending": 0,
       "processing": 11,
-      "done": 11
+      "done": 12
     },
     {
       "name": "上海市",
@@ -167,8 +167,8 @@ const EMBEDDED_DATA = {
       "name": "北京市",
       "full": "北京市",
       "count": 6,
-      "pending": 1,
-      "processing": 5,
+      "pending": 0,
+      "processing": 6,
       "done": 0
     },
     {
@@ -267,7 +267,7 @@ const EMBEDDED_DATA = {
     },
     {
       "name": "意外事件",
-      "value": 138
+      "value": 139
     },
     {
       "name": "言语冲突事件",
@@ -305,7 +305,7 @@ const EMBEDDED_DATA = {
   "regionDist": [
     {
       "name": "华北大区--加盟",
-      "value": 1070
+      "value": 1071
     },
     {
       "name": "中南大区--加盟",
@@ -439,10 +439,22 @@ const EMBEDDED_DATA = {
     },
     {
       "date": "2026-11-17",
-      "count": 4
+      "count": 5
     }
   ],
   "latest": [
+    {
+      "eventNo": "2026110307106",
+      "city": "秦皇岛市",
+      "type": "意外事件",
+      "level": "蓝色",
+      "status": "处理完成",
+      "statusRaw": 5,
+      "reportTime": "2026-11-17 14:20:00",
+      "source": "风险线索升级",
+      "region": "华北大区--加盟",
+      "station": "兴必达【秦皇岛】大学二站"
+    },
     {
       "eventNo": "2026111746407",
       "city": "阜新市",
@@ -460,8 +472,8 @@ const EMBEDDED_DATA = {
       "city": "北京市",
       "type": "暴力冲突事件",
       "level": "黄色",
-      "status": "待处理",
-      "statusRaw": 2,
+      "status": "处理中",
+      "statusRaw": 3,
       "reportTime": "2026-11-17 12:40:33",
       "source": "PACIFIC_UPGRAGE",
       "region": "未抓取",
@@ -670,18 +682,6 @@ const EMBEDDED_DATA = {
       "source": "风险线索升级",
       "region": "华北大区--加盟",
       "station": "兴必达【天津】昆仑站"
-    },
-    {
-      "eventNo": "2026111643858",
-      "city": "天津市",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理完成",
-      "statusRaw": 5,
-      "reportTime": "2026-11-16 14:57:13",
-      "source": "风险线索升级",
-      "region": "华北大区--加盟",
-      "station": "兴必达【天津】张家窝站"
     }
   ],
   "records": [
@@ -832,8 +832,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1786900657000,
-          "delayTimeLong": 1786900657000
+          "delayTimeLong": 1786900657000,
+          "delayTime": 1786900657000
         },
         "related": null
       }
@@ -980,8 +980,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1786901005000,
-          "delayTimeLong": 1786901005000
+          "delayTimeLong": 1786901005000,
+          "delayTime": 1786901005000
         },
         "related": null
       }
@@ -1300,8 +1300,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": 1794927862000,
-          "delayTimeLong": 1794927862000
+          "delayTimeLong": 1794927862000,
+          "delayTime": 1794927862000
         },
         "related": null
       }
@@ -1437,8 +1437,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": 1794932774000,
-          "delayTime": 1794932774000
+          "delayTime": 1794932774000,
+          "delayTimeLong": 1794932774000
         },
         "related": null
       }
@@ -1605,8 +1605,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1795070867000,
-          "delayTimeLong": 1795070867000
+          "delayTimeLong": 1795070867000,
+          "delayTime": 1795070867000
         },
         "related": null
       }
@@ -1775,8 +1775,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1795070887000,
-          "delayTimeLong": 1795070887000
+          "delayTimeLong": 1795070887000,
+          "delayTime": 1795070887000
         },
         "related": null
       }
@@ -2110,8 +2110,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1795070921000,
-          "delayTimeLong": 1795070921000
+          "delayTimeLong": 1795070921000,
+          "delayTime": 1795070921000
         },
         "related": null
       }
@@ -3062,8 +3062,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -3194,8 +3194,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -3326,8 +3326,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -3903,8 +3903,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -4184,8 +4184,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -4318,8 +4318,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -5318,8 +5318,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -5758,8 +5758,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -6036,8 +6036,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -6318,8 +6318,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -6457,8 +6457,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -6591,8 +6591,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -6717,8 +6717,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -6988,8 +6988,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -7133,8 +7133,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -7271,8 +7271,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -7906,8 +7906,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -8040,8 +8040,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -8508,8 +8508,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -8648,8 +8648,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -8813,8 +8813,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -8978,8 +8978,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -9296,8 +9296,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -9606,8 +9606,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -9760,8 +9760,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -9925,8 +9925,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -10561,8 +10561,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -10723,8 +10723,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -10867,8 +10867,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -11344,8 +11344,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -11620,8 +11620,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -11919,8 +11919,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -12249,8 +12249,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -12889,8 +12889,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -13021,8 +13021,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -14704,8 +14704,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -14996,8 +14996,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -15697,8 +15697,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -16131,8 +16131,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -16426,8 +16426,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -16732,8 +16732,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -17134,8 +17134,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -17474,8 +17474,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -18298,8 +18298,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -18426,8 +18426,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -18554,8 +18554,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -18963,8 +18963,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -19679,8 +19679,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -19975,8 +19975,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -20265,8 +20265,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -20573,8 +20573,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -20999,8 +20999,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -22005,8 +22005,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -22157,8 +22157,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -22471,8 +22471,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -22805,8 +22805,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -22976,8 +22976,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -23145,8 +23145,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -24698,8 +24698,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -24853,8 +24853,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -24982,8 +24982,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -25819,8 +25819,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -25992,8 +25992,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -26163,8 +26163,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -26633,8 +26633,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -26971,8 +26971,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -27139,8 +27139,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -27448,8 +27448,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -27617,8 +27617,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -27772,8 +27772,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -27935,8 +27935,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -28274,8 +28274,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -28876,8 +28876,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -29005,8 +29005,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -29962,8 +29962,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -30113,8 +30113,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -30242,8 +30242,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -30840,8 +30840,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -31313,8 +31313,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -31454,8 +31454,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -31635,8 +31635,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -31922,8 +31922,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -32441,8 +32441,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -32745,8 +32745,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -33359,8 +33359,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -33527,8 +33527,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -33682,8 +33682,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -33837,8 +33837,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -34527,8 +34527,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -34865,8 +34865,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -35201,8 +35201,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -35368,8 +35368,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -36680,8 +36680,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -36997,8 +36997,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -37161,8 +37161,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -37645,8 +37645,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -37974,8 +37974,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -38797,8 +38797,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -39133,8 +39133,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -39786,8 +39786,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -39958,8 +39958,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -40129,8 +40129,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -40297,8 +40297,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -40954,8 +40954,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -41447,8 +41447,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -41613,8 +41613,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -41780,8 +41780,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -42278,8 +42278,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -42950,8 +42950,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -43587,8 +43587,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -44707,8 +44707,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -44864,8 +44864,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -45190,8 +45190,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -45813,8 +45813,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -46607,8 +46607,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -47870,8 +47870,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -48195,8 +48195,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -49153,8 +49153,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -49467,8 +49467,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -49615,8 +49615,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -50706,8 +50706,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -51185,8 +51185,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -52770,8 +52770,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -52926,8 +52926,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -53088,8 +53088,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1751506273000,
-          "delayTime": 1751506273000
+          "delayTime": 1751506273000,
+          "delayTimeLong": 1751506273000
         },
         "related": null
       }
@@ -53379,8 +53379,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1753064766000,
-          "delayTimeLong": 1753064766000
+          "delayTimeLong": 1753064766000,
+          "delayTime": 1753064766000
         },
         "related": null
       }
@@ -53968,8 +53968,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1754961114000,
-          "delayTimeLong": 1754961114000
+          "delayTimeLong": 1754961114000,
+          "delayTime": 1754961114000
         },
         "related": null
       }
@@ -54417,8 +54417,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1755153867000,
-          "delayTime": 1755153867000
+          "delayTime": 1755153867000,
+          "delayTimeLong": 1755153867000
         },
         "related": null
       }
@@ -54573,8 +54573,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1755187225000,
-          "delayTime": 1755187225000
+          "delayTime": 1755187225000,
+          "delayTimeLong": 1755187225000
         },
         "related": null
       }
@@ -54713,8 +54713,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1755603318000,
-          "delayTimeLong": 1755603318000
+          "delayTimeLong": 1755603318000,
+          "delayTime": 1755603318000
         },
         "related": null
       }
@@ -55495,8 +55495,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1756949550000,
-          "delayTime": 1756949550000
+          "delayTime": 1756949550000,
+          "delayTimeLong": 1756949550000
         },
         "related": null
       }
@@ -56254,8 +56254,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1776437756000,
-          "delayTime": 1776437756000
+          "delayTime": 1776437756000,
+          "delayTimeLong": 1776437756000
         },
         "related": null
       }
@@ -56682,8 +56682,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1776833469000,
-          "delayTime": 1776833469000
+          "delayTime": 1776833469000,
+          "delayTimeLong": 1776833469000
         },
         "related": null
       }
@@ -56842,8 +56842,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1777297368000,
-          "delayTimeLong": 1777297368000
+          "delayTimeLong": 1777297368000,
+          "delayTime": 1777297368000
         },
         "related": null
       }
@@ -57149,8 +57149,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1777700513000,
-          "delayTimeLong": 1777700513000
+          "delayTimeLong": 1777700513000,
+          "delayTime": 1777700513000
         },
         "related": null
       }
@@ -58066,8 +58066,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1783092222000,
-          "delayTimeLong": 1783092222000
+          "delayTimeLong": 1783092222000,
+          "delayTime": 1783092222000
         },
         "related": null
       }
@@ -58214,8 +58214,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1783167938000,
-          "delayTimeLong": 1783167938000
+          "delayTimeLong": 1783167938000,
+          "delayTime": 1783167938000
         },
         "related": null
       }
@@ -58356,8 +58356,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1783213604000,
-          "delayTime": 1783213604000
+          "delayTime": 1783213604000,
+          "delayTimeLong": 1783213604000
         },
         "related": null
       }
@@ -59092,8 +59092,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1784771844000,
-          "delayTimeLong": 1784771844000
+          "delayTimeLong": 1784771844000,
+          "delayTime": 1784771844000
         },
         "related": null
       }
@@ -60102,8 +60102,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1785759146000,
-          "delayTime": 1785759146000
+          "delayTime": 1785759146000,
+          "delayTimeLong": 1785759146000
         },
         "related": null
       }
@@ -60235,8 +60235,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1785768217000,
-          "delayTimeLong": 1785768217000
+          "delayTimeLong": 1785768217000,
+          "delayTime": 1785768217000
         },
         "related": null
       }
@@ -60685,8 +60685,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1786090882000,
-          "delayTime": 1786090882000
+          "delayTime": 1786090882000,
+          "delayTimeLong": 1786090882000
         },
         "related": null
       }
@@ -60994,8 +60994,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1786644294000,
-          "delayTime": 1786644294000
+          "delayTime": 1786644294000,
+          "delayTimeLong": 1786644294000
         },
         "related": null
       }
@@ -62460,8 +62460,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1786881355000,
-          "delayTime": 1786881355000
+          "delayTime": 1786881355000,
+          "delayTimeLong": 1786881355000
         },
         "related": null
       }
@@ -62766,8 +62766,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1787275121000,
-          "delayTimeLong": 1787275121000
+          "delayTimeLong": 1787275121000,
+          "delayTime": 1787275121000
         },
         "related": null
       }
@@ -62917,8 +62917,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1787294869000,
-          "delayTimeLong": 1787294869000
+          "delayTimeLong": 1787294869000,
+          "delayTime": 1787294869000
         },
         "related": null
       }
@@ -63200,8 +63200,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1787390266000,
-          "delayTimeLong": 1787390266000
+          "delayTimeLong": 1787390266000,
+          "delayTime": 1787390266000
         },
         "related": null
       }
@@ -63957,8 +63957,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1787757488000,
-          "delayTimeLong": 1787757488000
+          "delayTimeLong": 1787757488000,
+          "delayTime": 1787757488000
         },
         "related": null
       }
@@ -64572,8 +64572,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1787881489000,
-          "delayTimeLong": 1787881489000
+          "delayTimeLong": 1787881489000,
+          "delayTime": 1787881489000
         },
         "related": null
       }
@@ -64753,8 +64753,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1787995959000,
-          "delayTime": 1787995959000
+          "delayTime": 1787995959000,
+          "delayTimeLong": 1787995959000
         },
         "related": null
       }
@@ -64917,8 +64917,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1788073549000,
-          "delayTime": 1788073549000
+          "delayTime": 1788073549000,
+          "delayTimeLong": 1788073549000
         },
         "related": null
       }
@@ -65086,8 +65086,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1788075453000,
-          "delayTimeLong": 1788075453000
+          "delayTimeLong": 1788075453000,
+          "delayTime": 1788075453000
         },
         "related": null
       }
@@ -65252,8 +65252,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1788152408000,
-          "delayTimeLong": 1788152408000
+          "delayTimeLong": 1788152408000,
+          "delayTime": 1788152408000
         },
         "related": null
       }
@@ -65590,8 +65590,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1788152924000,
-          "delayTime": 1788152924000
+          "delayTime": 1788152924000,
+          "delayTimeLong": 1788152924000
         },
         "related": null
       }
@@ -65929,8 +65929,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1788153329000,
-          "delayTime": 1788153329000
+          "delayTime": 1788153329000,
+          "delayTimeLong": 1788153329000
         },
         "related": null
       }
@@ -66424,8 +66424,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1788153995000,
-          "delayTimeLong": 1788153995000
+          "delayTimeLong": 1788153995000,
+          "delayTime": 1788153995000
         },
         "related": null
       }
@@ -66922,8 +66922,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1788154865000,
-          "delayTimeLong": 1788154865000
+          "delayTimeLong": 1788154865000,
+          "delayTime": 1788154865000
         },
         "related": null
       }
@@ -67257,8 +67257,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1788155631000,
-          "delayTimeLong": 1788155631000
+          "delayTimeLong": 1788155631000,
+          "delayTime": 1788155631000
         },
         "related": null
       }
@@ -67427,8 +67427,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1788155856000,
-          "delayTime": 1788155856000
+          "delayTime": 1788155856000,
+          "delayTimeLong": 1788155856000
         },
         "related": null
       }
@@ -67765,8 +67765,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1788160035000,
-          "delayTimeLong": 1788160035000
+          "delayTimeLong": 1788160035000,
+          "delayTime": 1788160035000
         },
         "related": null
       }
@@ -68436,8 +68436,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1788164224000,
-          "delayTimeLong": 1788164224000
+          "delayTimeLong": 1788164224000,
+          "delayTime": 1788164224000
         },
         "related": null
       }
@@ -68768,8 +68768,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1788165240000,
-          "delayTime": 1788165240000
+          "delayTime": 1788165240000,
+          "delayTimeLong": 1788165240000
         },
         "related": null
       }
@@ -69245,8 +69245,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1788174043000,
-          "delayTime": 1788174043000
+          "delayTime": 1788174043000,
+          "delayTimeLong": 1788174043000
         },
         "related": null
       }
@@ -69411,8 +69411,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1788176875000,
-          "delayTimeLong": 1788176875000
+          "delayTimeLong": 1788176875000,
+          "delayTime": 1788176875000
         },
         "related": null
       }
@@ -69885,8 +69885,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1788767690000,
-          "delayTimeLong": 1788767690000
+          "delayTimeLong": 1788767690000,
+          "delayTime": 1788767690000
         },
         "related": null
       }
@@ -70375,8 +70375,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1788967469000,
-          "delayTimeLong": 1788967469000
+          "delayTimeLong": 1788967469000,
+          "delayTime": 1788967469000
         },
         "related": null
       }
@@ -71351,8 +71351,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1789365235000,
-          "delayTime": 1789365235000
+          "delayTime": 1789365235000,
+          "delayTimeLong": 1789365235000
         },
         "related": null
       }
@@ -71521,8 +71521,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1789977179000,
-          "delayTime": 1789977179000
+          "delayTime": 1789977179000,
+          "delayTimeLong": 1789977179000
         },
         "related": null
       }
@@ -71683,8 +71683,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1789977464000,
-          "delayTimeLong": 1789977464000
+          "delayTimeLong": 1789977464000,
+          "delayTime": 1789977464000
         },
         "related": null
       }
@@ -72009,8 +72009,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1789977872000,
-          "delayTime": 1789977872000
+          "delayTime": 1789977872000,
+          "delayTimeLong": 1789977872000
         },
         "related": null
       }
@@ -72176,8 +72176,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1789978078000,
-          "delayTime": 1789978078000
+          "delayTime": 1789978078000,
+          "delayTimeLong": 1789978078000
         },
         "related": null
       }
@@ -72500,8 +72500,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1789979976000,
-          "delayTimeLong": 1789979976000
+          "delayTimeLong": 1789979976000,
+          "delayTime": 1789979976000
         },
         "related": null
       }
@@ -72662,8 +72662,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1789980115000,
-          "delayTimeLong": 1789980115000
+          "delayTimeLong": 1789980115000,
+          "delayTime": 1789980115000
         },
         "related": null
       }
@@ -72824,8 +72824,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1789980360000,
-          "delayTimeLong": 1789980360000
+          "delayTimeLong": 1789980360000,
+          "delayTime": 1789980360000
         },
         "related": null
       }
@@ -73966,8 +73966,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1789981712000,
-          "delayTime": 1789981712000
+          "delayTime": 1789981712000,
+          "delayTimeLong": 1789981712000
         },
         "related": null
       }
@@ -75253,8 +75253,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1789983368000,
-          "delayTime": 1789983368000
+          "delayTime": 1789983368000,
+          "delayTimeLong": 1789983368000
         },
         "related": null
       }
@@ -75583,8 +75583,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1789984131000,
-          "delayTimeLong": 1789984131000
+          "delayTimeLong": 1789984131000,
+          "delayTime": 1789984131000
         },
         "related": null
       }
@@ -76084,8 +76084,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1789984746000,
-          "delayTimeLong": 1789984746000
+          "delayTimeLong": 1789984746000,
+          "delayTime": 1789984746000
         },
         "related": null
       }
@@ -76577,8 +76577,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1789985520000,
-          "delayTime": 1789985520000
+          "delayTime": 1789985520000,
+          "delayTimeLong": 1789985520000
         },
         "related": null
       }
@@ -77230,8 +77230,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1789986417000,
-          "delayTimeLong": 1789986417000
+          "delayTimeLong": 1789986417000,
+          "delayTime": 1789986417000
         },
         "related": null
       }
@@ -77388,8 +77388,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1789986583000,
-          "delayTime": 1789986583000
+          "delayTime": 1789986583000,
+          "delayTimeLong": 1789986583000
         },
         "related": null
       }
@@ -78354,8 +78354,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1790692459000,
-          "delayTimeLong": 1790692459000
+          "delayTimeLong": 1790692459000,
+          "delayTime": 1790692459000
         },
         "related": null
       }
@@ -78502,8 +78502,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1790855803000,
-          "delayTime": 1790855803000
+          "delayTime": 1790855803000,
+          "delayTimeLong": 1790855803000
         },
         "related": null
       }
@@ -79482,8 +79482,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1791355363000,
-          "delayTime": 1791355363000
+          "delayTime": 1791355363000,
+          "delayTimeLong": 1791355363000
         },
         "related": null
       }
@@ -79637,8 +79637,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1791355450000,
-          "delayTime": 1791355450000
+          "delayTime": 1791355450000,
+          "delayTimeLong": 1791355450000
         },
         "related": null
       }
@@ -79944,8 +79944,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1791553314000,
-          "delayTime": 1791553314000
+          "delayTime": 1791553314000,
+          "delayTimeLong": 1791553314000
         },
         "related": null
       }
@@ -80281,8 +80281,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1791959300000,
-          "delayTime": 1791959300000
+          "delayTime": 1791959300000,
+          "delayTimeLong": 1791959300000
         },
         "related": null
       }
@@ -81112,8 +81112,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1791962492000,
-          "delayTime": 1791962492000
+          "delayTime": 1791962492000,
+          "delayTimeLong": 1791962492000
         },
         "related": null
       }
@@ -81436,8 +81436,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1791962989000,
-          "delayTimeLong": 1791962989000
+          "delayTimeLong": 1791962989000,
+          "delayTime": 1791962989000
         },
         "related": null
       }
@@ -81598,8 +81598,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1791963482000,
-          "delayTimeLong": 1791963482000
+          "delayTimeLong": 1791963482000,
+          "delayTime": 1791963482000
         },
         "related": null
       }
@@ -81751,8 +81751,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1791963879000,
-          "delayTime": 1791963879000
+          "delayTime": 1791963879000,
+          "delayTimeLong": 1791963879000
         },
         "related": null
       }
@@ -81904,8 +81904,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1791964309000,
-          "delayTime": 1791964309000
+          "delayTime": 1791964309000,
+          "delayTimeLong": 1791964309000
         },
         "related": null
       }
@@ -82720,8 +82720,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1791965884000,
-          "delayTimeLong": 1791965884000
+          "delayTimeLong": 1791965884000,
+          "delayTime": 1791965884000
         },
         "related": null
       }
@@ -83388,8 +83388,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1791966561000,
-          "delayTime": 1791966561000
+          "delayTime": 1791966561000,
+          "delayTimeLong": 1791966561000
         },
         "related": null
       }
@@ -84004,8 +84004,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1792304403000,
-          "delayTimeLong": 1792304403000
+          "delayTimeLong": 1792304403000,
+          "delayTime": 1792304403000
         },
         "related": null
       }
@@ -84149,8 +84149,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1792398913000,
-          "delayTime": 1792398913000
+          "delayTime": 1792398913000,
+          "delayTimeLong": 1792398913000
         },
         "related": null
       }
@@ -84444,8 +84444,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1792500914000,
-          "delayTimeLong": 1792500914000
+          "delayTimeLong": 1792500914000,
+          "delayTime": 1792500914000
         },
         "related": null
       }
@@ -84705,8 +84705,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1793346715000,
-          "delayTimeLong": 1793346715000
+          "delayTimeLong": 1793346715000,
+          "delayTime": 1793346715000
         },
         "related": null
       }
@@ -85216,8 +85216,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1793685002000,
-          "delayTime": 1793685002000
+          "delayTime": 1793685002000,
+          "delayTimeLong": 1793685002000
         },
         "related": null
       }
@@ -85657,8 +85657,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1793775603000,
-          "delayTime": 1793775603000
+          "delayTime": 1793775603000,
+          "delayTimeLong": 1793775603000
         },
         "related": null
       }
@@ -85822,8 +85822,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1793778729000,
-          "delayTime": 1793778729000
+          "delayTime": 1793778729000,
+          "delayTimeLong": 1793778729000
         },
         "related": null
       }
@@ -86106,8 +86106,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1794122499000,
-          "delayTimeLong": 1794122499000
+          "delayTimeLong": 1794122499000,
+          "delayTime": 1794122499000
         },
         "related": null
       }
@@ -86377,8 +86377,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1794281920000,
-          "delayTime": 1794281920000
+          "delayTime": 1794281920000,
+          "delayTimeLong": 1794281920000
         },
         "related": null
       }
@@ -86693,147 +86693,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1794382868000,
-          "delayTimeLong": 1794382868000
-        },
-        "related": null
-      }
-    },
-    {
-      "id": "2026111746340",
-      "title": "违法犯罪-肢体冲突",
-      "business": "履约业务-专送",
-      "source": "PACIFIC_UPGRAGE",
-      "type": "暴力冲突事件",
-      "level": "黄色",
-      "status": "待处理",
-      "statusRaw": 2,
-      "occurTime": "2026-11-17 12:00:00",
-      "reportTime": "2026-11-17 12:40:33",
-      "updateTime": "2026-11-17 12:40:33",
-      "province": "北京市",
-      "city": "北京市",
-      "district": "石景山区",
-      "address": "北京市石景山区苹果园南路69号院",
-      "summary": "服务单ID：2573749808\n联系站长，表示骑手和商家起冲突，骑手有流血，有报警 ，双方都去派出所了，具体情况不详，应该是商家卡餐，站长表示自己手里有100多个骑手，要是不处理商家，自己会以自己的方式闹大，告知先对接骑手本人，骑手信息\n何文军159****3795，站长要求知道后续的处理结果\n骑手信息：何文军159****3795 兴必达【北京】苹果园站\n我方受伤人数、伤情、财损金额：人伤\n其他方受伤人数、伤情、财损金额：/\n三者/用户年龄：/\n涉及关键等级判断：黄\n是否涉及订单问题需要处理：/\n需要协助处理的订单数量：/\n进线人诉求：要求处罚商家\n进线人信息：177****7196站长",
-      "reporter": "付永闪",
-      "handler": "殷实，赵岩，王希",
-      "region": "未抓取",
-      "area": "未抓取",
-      "station": "兴必达【北京】苹果园站",
-      "stationId": "",
-      "orgPath": "",
-      "franchisee": "",
-      "riderName": "何文军",
-      "riderPhone": "159****3795",
-      "riderStation": "兴必达【北京】苹果园站",
-      "detail": {
-        "eventNo": "2026111746340",
-        "title": "违法犯罪-肢体冲突",
-        "source": "PACIFIC_UPGRAGE",
-        "type": "暴力冲突事件",
-        "level": "黄色",
-        "statusRaw": 2,
-        "status": "待处理",
-        "occurTime": "2026-11-17 12:00:00",
-        "reportTime": "2026-11-17 12:40:33",
-        "updateTime": "2026-11-17 12:40:33",
-        "endTime": "",
-        "province": "北京市",
-        "city": "北京市",
-        "district": "石景山区",
-        "address": "北京市石景山区苹果园南路69号院",
-        "course": "服务单ID：2573749808\n联系站长，表示骑手和商家起冲突，骑手有流血，有报警 ，双方都去派出所了，具体情况不详，应该是商家卡餐，站长表示自己手里有100多个骑手，要是不处理商家，自己会以自己的方式闹大，告知先对接骑手本人，骑手信息\n何文军159****3795，站长要求知道后续的处理结果\n骑手信息：何文军159****3795 兴必达【北京】苹果园站\n我方受伤人数、伤情、财损金额：人伤\n其他方受伤人数、伤情、财损金额：/\n三者/用户年龄：/\n涉及关键等级判断：黄\n是否涉及订单问题需要处理：/\n需要协助处理的订单数量：/\n进线人诉求：要求处罚商家\n进线人信息：177****7196站长",
-        "region": "",
-        "area": "",
-        "station": "兴必达【北京】苹果园站",
-        "stationId": "",
-        "stationType": "",
-        "orgPath": "",
-        "franchisee": "",
-        "cityMerchant": "",
-        "riders": [
-          {
-            "entryDate": "2026-11-14",
-            "riderPhone": {
-              "data": null,
-              "token": "jnJl7$H1C0o3795",
-              "dataMask": "159****3795",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "加盟",
-            "userEmergencyContactName": "马建华",
-            "orgEmergencyPhone": {
-              "data": null,
-              "token": "jac3@JXwqhL1000",
-              "dataMask": "187****1000",
-              "unknown": null
-            },
-            "riderName": "何文军",
-            "userEmergencyContactMobile": {
-              "data": null,
-              "token": "j!Av~7Oq1NW9221",
-              "dataMask": "133****9221",
-              "unknown": null
-            },
-            "genderDesc": "男",
-            "riderId": 79692162,
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXX!inMRJ484256",
-              "dataMask": "15042**********952",
-              "unknown": null
-            },
-            "stationName": "兴必达【北京】苹果园站",
-            "age": "47",
-            "stationId": "2096655"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "0078fe3c": 2,
-          "001026d9": "无",
-          "1e970e68": 1,
-          "4263fd60": 2
-        },
-        "eventTypeInfo": {
-          "9b6e6c2a": "无",
-          "5e889f75": 3,
-          "2db867e4": 1,
-          "e9a09e2e": [
-            1,
-            1
-          ]
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "108146192627",
-        "taskKey": "general",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "fuyongshan02",
-        "updateAccountId": "fuyongshan02",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1794890433000,
-              "latestTime": 1794890433000,
-              "startTimeLong": 1794890433000,
-              "latestTimeLong": 1794890433000
-            },
-            {
-              "taskKey": "general",
-              "startTime": 1794890433000,
-              "latestTime": 1794890433000,
-              "startTimeLong": 1794890433000,
-              "latestTimeLong": 1794890433000
-            }
-          ],
-          "processType": "NORMAL",
-          "delayTime": 1794904833000,
-          "delayTimeLong": 1794904833000
+          "delayTimeLong": 1794382868000,
+          "delayTime": 1794382868000
         },
         "related": null
       }
@@ -86986,8 +86847,167 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1794986333000,
-          "delayTime": 1794986333000
+          "delayTime": 1794986333000,
+          "delayTimeLong": 1794986333000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026110924470",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "AUTO_REPORT",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "occurTime": "2026-11-07 19:10:00",
+      "reportTime": "2026-11-09 18:50:13",
+      "updateTime": "2026-11-17 15:25:56",
+      "province": "辽宁省",
+      "city": "阜新市",
+      "district": "细河区",
+      "address": "八一路人民大街",
+      "summary": "2026年11月07日19时10分，三者驾驶电动自行车，沿人民大街由南向北行驶违反交通信号时，与骑手驾驶的电动自行车相撞，造成车辆部分损坏，李忠贤受伤后果\n三者负全部责任，骑手李宁无责任。",
+      "reporter": "李晓娜",
+      "handler": "李晓娜",
+      "region": "华北大区--加盟",
+      "area": "加盟辽宁区域",
+      "station": "兴必达【阜新】细河站",
+      "stationId": 2017254,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟辽宁区域-加盟辽东分区-辽东配送2组-兴必达【阜新】细河站",
+      "franchisee": "兴必达（江苏）网络科技有限公司【阜新】",
+      "riderName": "李宁",
+      "riderPhone": "134****0423",
+      "riderStation": "兴必达【阜新】细河站",
+      "detail": {
+        "eventNo": "2026110924470",
+        "title": "",
+        "source": "AUTO_REPORT",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-11-07 19:10:00",
+        "reportTime": "2026-11-09 18:50:13",
+        "updateTime": "2026-11-17 15:25:56",
+        "endTime": "2026-11-16 10:51:34",
+        "province": "辽宁省",
+        "city": "阜新市",
+        "district": "细河区",
+        "address": "八一路人民大街",
+        "course": "2026年11月07日19时10分，三者驾驶电动自行车，沿人民大街由南向北行驶违反交通信号时，与骑手驾驶的电动自行车相撞，造成车辆部分损坏，李忠贤受伤后果\n三者负全部责任，骑手李宁无责任。",
+        "region": "华北大区--加盟",
+        "area": "加盟辽宁区域",
+        "station": "兴必达【阜新】细河站",
+        "stationId": 2017254,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟辽宁区域-加盟辽东分区-辽东配送2组-兴必达【阜新】细河站",
+        "franchisee": "兴必达（江苏）网络科技有限公司【阜新】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【阜新】",
+        "riders": [
+          {
+            "riderId": 79042336,
+            "entryDate": "2026-10-19",
+            "riderPhone": {
+              "data": null,
+              "token": "j*g@.3qdX$n0423",
+              "dataMask": "134****0423",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXU1afaXz40808",
+              "dataMask": "21092**********011",
+              "unknown": null
+            },
+            "stationName": "兴必达【阜新】细河站",
+            "riderName": "李宁",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2017254"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "e60e2199": 3,
+          "huyunmeng09": 0,
+          "27f340b6": 0,
+          "6bc2fb6f": 2,
+          "6f72eaaf": 2,
+          "e6e645c9": 2,
+          "d1078f9f": 2,
+          "huyunmeng10": 0,
+          "21": 1,
+          "74d46e3f": 1
+        },
+        "eventTypeInfo": {
+          "11": 2,
+          "14": 1,
+          "15": 2,
+          "7a16f69a": 2,
+          "81a8da9f": 1,
+          "19": 5,
+          "be5cd84a": 1,
+          "328d1fe5": 1,
+          "874aad49": 2,
+          "2e9772a9": 2,
+          "5452e09e": 1,
+          "ff537655": 7,
+          "0224cd2b": [
+            3
+          ],
+          "9": [
+            1,
+            3
+          ],
+          "93": 1,
+          "94": "辽宁省阜新市细河交警大队",
+          "20": "[{\"name\":\"微信图片_20261116104652_504_144.jpg\",\"uuid\":\"riskmanager110/微信图片_20261116104652_504_144_9yu95u.jpg\"}]",
+          "10": 3,
+          "32": [
+            2
+          ],
+          "719caaaf": 4
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "108150601816",
+        "taskKey": "zs_wait_end_response",
+        "checkInfoStatus": "NOT_PASS",
+        "checkInfoResult": "我方受伤人数（与事件经过不一致），对方受伤人数（与事件经过不一致）。",
+        "createAccountId": "bm_lixiaonuo29@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "system",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1794221413000,
+              "latestTime": 1794221413000,
+              "startTimeLong": 1794221413000,
+              "latestTimeLong": 1794221413000
+            },
+            {
+              "taskKey": "zs_wait_end_response",
+              "startTime": 1794221425000,
+              "latestTime": 1794900356000,
+              "startTimeLong": 1794221425000,
+              "latestTimeLong": 1794900356000
+            },
+            {
+              "taskKey": "zs_wait_response",
+              "startTime": 1794221413000,
+              "latestTime": 1794221425000,
+              "startTimeLong": 1794221413000,
+              "latestTimeLong": 1794221425000
+            }
+          ],
+          "processType": "PEISONG_ONLINE",
+          "delayTimeLong": 1794986756000,
+          "delayTime": 1794986756000
         },
         "related": null
       }
@@ -87306,8 +87326,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1795160157000,
-          "delayTimeLong": 1795160157000
+          "delayTimeLong": 1795160157000,
+          "delayTime": 1795160157000
         },
         "related": null
       }
@@ -87459,8 +87479,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1795183427000,
-          "delayTime": 1795183427000
+          "delayTime": 1795183427000,
+          "delayTimeLong": 1795183427000
         },
         "related": null
       }
@@ -87793,8 +87813,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1795251363000,
-          "delayTime": 1795251363000
+          "delayTime": 1795251363000,
+          "delayTimeLong": 1795251363000
         },
         "related": null
       }
@@ -88254,8 +88274,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1795252099000,
-          "delayTime": 1795252099000
+          "delayTime": 1795252099000,
+          "delayTimeLong": 1795252099000
         },
         "related": null
       }
@@ -88405,8 +88425,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1795252181000,
-          "delayTimeLong": 1795252181000
+          "delayTimeLong": 1795252181000,
+          "delayTime": 1795252181000
         },
         "related": null
       }
@@ -88580,8 +88600,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1795252271000,
-          "delayTime": 1795252271000
+          "delayTime": 1795252271000,
+          "delayTimeLong": 1795252271000
         },
         "related": null
       }
@@ -88732,8 +88752,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1795252661000,
-          "delayTimeLong": 1795252661000
+          "delayTimeLong": 1795252661000,
+          "delayTime": 1795252661000
         },
         "related": null
       }
@@ -89056,8 +89076,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1795253131000,
-          "delayTimeLong": 1795253131000
+          "delayTimeLong": 1795253131000,
+          "delayTime": 1795253131000
         },
         "related": null
       }
@@ -89548,8 +89568,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1795391738000,
-          "delayTimeLong": 1795391738000
+          "delayTimeLong": 1795391738000,
+          "delayTime": 1795391738000
         },
         "related": null
       }
@@ -89721,8 +89741,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1795391868000,
-          "delayTime": 1795391868000
+          "delayTime": 1795391868000,
+          "delayTimeLong": 1795391868000
         },
         "related": null
       }
@@ -90212,8 +90232,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1795399025000,
-          "delayTime": 1795399025000
+          "delayTime": 1795399025000,
+          "delayTimeLong": 1795399025000
         },
         "related": null
       }
@@ -90531,8 +90551,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1795403906000,
-          "delayTimeLong": 1795403906000
+          "delayTimeLong": 1795403906000,
+          "delayTime": 1795403906000
         },
         "related": null
       }
@@ -90693,8 +90713,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1795426705000,
-          "delayTimeLong": 1795426705000
+          "delayTimeLong": 1795426705000,
+          "delayTime": 1795426705000
         },
         "related": null
       }
@@ -91488,8 +91508,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1795514017000,
-          "delayTimeLong": 1795514017000
+          "delayTimeLong": 1795514017000,
+          "delayTime": 1795514017000
         },
         "related": null
       }
@@ -91822,8 +91842,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1795580470000,
-          "delayTimeLong": 1795580470000
+          "delayTimeLong": 1795580470000,
+          "delayTime": 1795580470000
         },
         "related": null
       }
@@ -92278,8 +92298,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1795943108000,
-          "delayTime": 1795943108000
+          "delayTime": 1795943108000,
+          "delayTimeLong": 1795943108000
         },
         "related": null
       }
@@ -92439,8 +92459,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1795943115000,
-          "delayTimeLong": 1795943115000
+          "delayTimeLong": 1795943115000,
+          "delayTime": 1795943115000
         },
         "related": null
       }
@@ -93035,8 +93055,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": 1796033884000,
-          "delayTimeLong": 1796033884000
+          "delayTimeLong": 1796033884000,
+          "delayTime": 1796033884000
         },
         "related": null
       }
@@ -93194,6 +93214,145 @@ const EMBEDDED_DATA = {
       }
     },
     {
+      "id": "2026110307106",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "风险线索升级",
+      "type": "意外事件",
+      "level": "蓝色",
+      "status": "处理完成",
+      "statusRaw": 5,
+      "occurTime": "2026-10-30 17:56:00",
+      "reportTime": "2026-11-17 14:20:00",
+      "updateTime": "2026-11-17 14:22:57",
+      "province": "河北省",
+      "city": "秦皇岛市",
+      "district": "海港区",
+      "address": "河北省秦皇岛市海港区白塔岭街道河北大街西段273-16号",
+      "summary": "事故街道：河北省秦皇岛市海港区白塔岭街道河北大街西段273-16号\n事故时间：2026-10-30 17:56\n事故经过：骑手取餐途中，下坡不小心摔倒，右脚背受伤，已自行就医。已报警122。",
+      "reporter": "黄可鑫",
+      "handler": "黄可鑫",
+      "region": "华北大区--加盟",
+      "area": "加盟津冀区域",
+      "station": "兴必达【秦皇岛】大学二站",
+      "stationId": 2036810,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟津冀区域-加盟天秦分区-秦皇岛配送组-兴必达【秦皇岛】大学二站",
+      "franchisee": "兴必达（江苏）网络科技有限公司【秦皇岛】",
+      "riderName": "崔晓娴",
+      "riderPhone": "186****2122",
+      "riderStation": "兴必达【秦皇岛】大学二站",
+      "detail": {
+        "eventNo": "2026110307106",
+        "title": "",
+        "source": "风险线索升级",
+        "type": "意外事件",
+        "level": "蓝色",
+        "statusRaw": 5,
+        "status": "处理完成",
+        "occurTime": "2026-10-30 17:56:00",
+        "reportTime": "2026-11-17 14:20:00",
+        "updateTime": "2026-11-17 14:22:57",
+        "endTime": "2026-11-17 14:22:54",
+        "province": "河北省",
+        "city": "秦皇岛市",
+        "district": "海港区",
+        "address": "河北省秦皇岛市海港区白塔岭街道河北大街西段273-16号",
+        "course": "事故街道：河北省秦皇岛市海港区白塔岭街道河北大街西段273-16号\n事故时间：2026-10-30 17:56\n事故经过：骑手取餐途中，下坡不小心摔倒，右脚背受伤，已自行就医。已报警122。",
+        "region": "华北大区--加盟",
+        "area": "加盟津冀区域",
+        "station": "兴必达【秦皇岛】大学二站",
+        "stationId": 2036810,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟津冀区域-加盟天秦分区-秦皇岛配送组-兴必达【秦皇岛】大学二站",
+        "franchisee": "兴必达（江苏）网络科技有限公司【秦皇岛】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司",
+        "riders": [
+          {
+            "riderId": 70976707,
+            "entryDate": "2026-03-18",
+            "riderPhone": {
+              "data": null,
+              "token": "i*jbtb5BQA-2122",
+              "dataMask": "186****2122",
+              "unknown": null
+            },
+            "jobStatusDesc": "离职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXUfm3x&j81853",
+              "dataMask": "21072**********920",
+              "unknown": null
+            },
+            "stationName": "兴必达【秦皇岛】大学二站",
+            "riderName": "崔晓娴",
+            "age": "0",
+            "genderDesc": "女",
+            "stationId": "2036810"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 3,
+          "e60e2199": 2,
+          "huyunmeng09": 0,
+          "27f340b6": 0,
+          "6bc2fb6f": 1,
+          "6f72eaaf": 2,
+          "e6e645c9": 2,
+          "d1078f9f": 2,
+          "huyunmeng10": 0,
+          "2967240b": "2136904E426B1480782891",
+          "21": 1,
+          "74d46e3f": 1
+        },
+        "eventTypeInfo": {
+          "56": "意外摔伤",
+          "14": 2,
+          "15": 1,
+          "95cd529a": 5,
+          "be5cd84a": 1,
+          "0224cd2b": [
+            3
+          ],
+          "60": [
+            1
+          ],
+          "328d1fe5": 1,
+          "31": "意外摔伤"
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "108148582209",
+        "taskKey": "general",
+        "checkInfoStatus": "CHECKING",
+        "checkInfoResult": "",
+        "createAccountId": "bm_huangkexin06@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_huangkexin06@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1794896400000,
+              "latestTime": 1794896400000,
+              "startTimeLong": 1794896400000,
+              "latestTimeLong": 1794896400000
+            },
+            {
+              "taskKey": "general",
+              "startTime": 1794896400000,
+              "latestTime": 1794896574000,
+              "startTimeLong": 1794896400000,
+              "latestTimeLong": 1794896574000
+            }
+          ],
+          "processType": "NORMAL",
+          "delayTime": null,
+          "delayTimeLong": null
+        },
+        "related": null
+      }
+    },
+    {
       "id": "2026111746407",
       "title": "",
       "business": "履约业务-专送",
@@ -93326,8 +93485,147 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026111746340",
+      "title": "违法犯罪-肢体冲突",
+      "business": "履约业务-专送",
+      "source": "PACIFIC_UPGRAGE",
+      "type": "暴力冲突事件",
+      "level": "黄色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "occurTime": "2026-11-17 12:00:00",
+      "reportTime": "2026-11-17 12:40:33",
+      "updateTime": "2026-11-17 15:06:11",
+      "province": "北京市",
+      "city": "北京市",
+      "district": "石景山区",
+      "address": "北京市石景山区苹果园南路69号院",
+      "summary": "服务单ID：2573749808\n联系站长，表示骑手和商家起冲突，骑手有流血，有报警 ，双方都去派出所了，具体情况不详，应该是商家卡餐，站长表示自己手里有100多个骑手，要是不处理商家，自己会以自己的方式闹大，告知先对接骑手本人，骑手信息\n何文军159****3795，站长要求知道后续的处理结果\n骑手信息：何文军159****3795 兴必达【北京】苹果园站\n我方受伤人数、伤情、财损金额：人伤\n其他方受伤人数、伤情、财损金额：/\n三者/用户年龄：/\n涉及关键等级判断：黄\n是否涉及订单问题需要处理：/\n需要协助处理的订单数量：/\n进线人诉求：要求处罚商家\n进线人信息：177****7196站长",
+      "reporter": "付永闪",
+      "handler": "赵岩",
+      "region": "未抓取",
+      "area": "未抓取",
+      "station": "兴必达【北京】苹果园站",
+      "stationId": "",
+      "orgPath": "",
+      "franchisee": "",
+      "riderName": "何文军",
+      "riderPhone": "159****3795",
+      "riderStation": "兴必达【北京】苹果园站",
+      "detail": {
+        "eventNo": "2026111746340",
+        "title": "违法犯罪-肢体冲突",
+        "source": "PACIFIC_UPGRAGE",
+        "type": "暴力冲突事件",
+        "level": "黄色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-11-17 12:00:00",
+        "reportTime": "2026-11-17 12:40:33",
+        "updateTime": "2026-11-17 15:06:11",
+        "endTime": "",
+        "province": "北京市",
+        "city": "北京市",
+        "district": "石景山区",
+        "address": "北京市石景山区苹果园南路69号院",
+        "course": "服务单ID：2573749808\n联系站长，表示骑手和商家起冲突，骑手有流血，有报警 ，双方都去派出所了，具体情况不详，应该是商家卡餐，站长表示自己手里有100多个骑手，要是不处理商家，自己会以自己的方式闹大，告知先对接骑手本人，骑手信息\n何文军159****3795，站长要求知道后续的处理结果\n骑手信息：何文军159****3795 兴必达【北京】苹果园站\n我方受伤人数、伤情、财损金额：人伤\n其他方受伤人数、伤情、财损金额：/\n三者/用户年龄：/\n涉及关键等级判断：黄\n是否涉及订单问题需要处理：/\n需要协助处理的订单数量：/\n进线人诉求：要求处罚商家\n进线人信息：177****7196站长",
+        "region": "",
+        "area": "",
+        "station": "兴必达【北京】苹果园站",
+        "stationId": "",
+        "stationType": "",
+        "orgPath": "",
+        "franchisee": "",
+        "cityMerchant": "",
+        "riders": [
+          {
+            "entryDate": "2026-11-14",
+            "riderPhone": {
+              "data": null,
+              "token": "jnJl7$H1C0o3795",
+              "dataMask": "159****3795",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "加盟",
+            "userEmergencyContactName": "马建华",
+            "orgEmergencyPhone": {
+              "data": null,
+              "token": "jac3@JXwqhL1000",
+              "dataMask": "187****1000",
+              "unknown": null
+            },
+            "riderName": "何文军",
+            "userEmergencyContactMobile": {
+              "data": null,
+              "token": "j!Av~7Oq1NW9221",
+              "dataMask": "133****9221",
+              "unknown": null
+            },
+            "genderDesc": "男",
+            "riderId": 79692162,
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXX!inMRJ484256",
+              "dataMask": "15042**********952",
+              "unknown": null
+            },
+            "stationName": "兴必达【北京】苹果园站",
+            "age": "47",
+            "stationId": "2096655"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "0078fe3c": 2,
+          "001026d9": "无",
+          "1e970e68": 1,
+          "4263fd60": 2
+        },
+        "eventTypeInfo": {
+          "9b6e6c2a": "无",
+          "5e889f75": 3,
+          "2db867e4": 1,
+          "e9a09e2e": [
+            1,
+            1
+          ]
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "108146192627",
+        "taskKey": "general",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "fuyongshan02",
+        "updateAccountId": "zhaoyan08",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1794890433000,
+              "latestTime": 1794890433000,
+              "startTimeLong": 1794890433000,
+              "latestTimeLong": 1794890433000
+            },
+            {
+              "taskKey": "general",
+              "startTime": 1794890433000,
+              "latestTime": 1794899171000,
+              "startTimeLong": 1794890433000,
+              "latestTimeLong": 1794899171000
+            }
+          ],
+          "processType": "NORMAL",
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -93470,8 +93768,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -93603,8 +93901,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -93729,8 +94027,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -93868,8 +94166,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -95488,8 +95786,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -95945,8 +96243,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -96217,8 +96515,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -98289,8 +98587,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -98589,8 +98887,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -98884,8 +99182,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -99639,8 +99937,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -100087,8 +100385,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -100104,7 +100402,7 @@ const EMBEDDED_DATA = {
       "statusRaw": 4,
       "occurTime": "2026-10-31 15:40:00",
       "reportTime": "2026-11-13 11:46:19",
-      "updateTime": "2026-11-13 14:11:06",
+      "updateTime": "2026-11-17 14:11:34",
       "province": "安徽省",
       "city": "铜陵市",
       "district": "铜官区",
@@ -100131,7 +100429,7 @@ const EMBEDDED_DATA = {
         "status": "处理中",
         "occurTime": "2026-10-31 15:40:00",
         "reportTime": "2026-11-13 11:46:19",
-        "updateTime": "2026-11-13 14:11:06",
+        "updateTime": "2026-11-17 14:11:34",
         "endTime": "2026-11-13 14:11:04",
         "province": "安徽省",
         "city": "铜陵市",
@@ -100225,8 +100523,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -100493,8 +100791,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -100648,8 +100946,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -101083,8 +101381,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -101542,8 +101840,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -101853,8 +102151,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -102006,8 +102304,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -102160,8 +102458,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -102316,8 +102614,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -102469,8 +102767,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -102764,8 +103062,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -103073,8 +103371,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -103537,8 +103835,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -103679,8 +103977,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -103982,8 +104280,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -104860,16 +105158,16 @@ const EMBEDDED_DATA = {
       "source": "AUTO_REPORT",
       "type": "交通事故",
       "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
+      "status": "处理完成",
+      "statusRaw": 5,
       "occurTime": "2026-05-03 09:56:00",
       "reportTime": "2026-11-12 10:51:31",
-      "updateTime": "2026-11-16 11:21:40",
+      "updateTime": "2026-11-17 14:12:37",
       "province": "辽宁省",
       "city": "阜新市",
       "district": "细河区",
       "address": "海鑫国际小区内",
-      "summary": "2026年5月3日9时56分，骑手胡程炜驾驶俩轮电动车由东向西内部路与由南向北的机动车发生相撞，造成车辆部分损坏的后果，骑手无伤，三者无伤，；骑手主责，三者次责",
+      "summary": "2026年5月3日9时56分，骑手胡程炜驾驶俩轮电动车由东向西行驶在海鑫国际小区内内部路与由南向北的机动车发生相撞，造成车辆部分损坏的后果，骑手无伤，三者无伤，；骑手主责，三者次责",
       "reporter": "李晓娜",
       "handler": "李晓娜",
       "region": "华北大区--加盟",
@@ -104887,17 +105185,17 @@ const EMBEDDED_DATA = {
         "source": "AUTO_REPORT",
         "type": "交通事故",
         "level": "蓝色",
-        "statusRaw": 3,
-        "status": "处理中",
+        "statusRaw": 5,
+        "status": "处理完成",
         "occurTime": "2026-05-03 09:56:00",
         "reportTime": "2026-11-12 10:51:31",
-        "updateTime": "2026-11-16 11:21:40",
-        "endTime": "2026-11-15 18:18:52",
+        "updateTime": "2026-11-17 14:12:37",
+        "endTime": "2026-11-17 14:09:34",
         "province": "辽宁省",
         "city": "阜新市",
         "district": "细河区",
         "address": "海鑫国际小区内",
-        "course": "2026年5月3日9时56分，骑手胡程炜驾驶俩轮电动车由东向西内部路与由南向北的机动车发生相撞，造成车辆部分损坏的后果，骑手无伤，三者无伤，；骑手主责，三者次责",
+        "course": "2026年5月3日9时56分，骑手胡程炜驾驶俩轮电动车由东向西行驶在海鑫国际小区内内部路与由南向北的机动车发生相撞，造成车辆部分损坏的后果，骑手无伤，三者无伤，；骑手主责，三者次责",
         "region": "华北大区--加盟",
         "area": "加盟辽宁区域",
         "station": "兴必达【阜新】细河站",
@@ -104974,10 +105272,10 @@ const EMBEDDED_DATA = {
         "extendInfo": {},
         "processId": "108076903722",
         "taskKey": "general",
-        "checkInfoStatus": "NOT_PASS",
-        "checkInfoResult": "事件经过（需用陈述句描述清楚事件经过，包含时间、地点、经过、人物、结果）。",
+        "checkInfoStatus": "PASS",
+        "checkInfoResult": "",
         "createAccountId": "bm_lixiaonuo29@BMningboxingdazhisongwangluokejiyouxian",
-        "updateAccountId": "system",
+        "updateAccountId": "bm_lixiaonuo29@BMningboxingdazhisongwangluokejiyouxian",
         "audit": {
           "taskKeyTimeDtoList": [
             {
@@ -104990,14 +105288,14 @@ const EMBEDDED_DATA = {
             {
               "taskKey": "general",
               "startTime": 1794451891000,
-              "latestTime": 1794799300000,
+              "latestTime": 1794895774000,
               "startTimeLong": 1794451891000,
-              "latestTimeLong": 1794799300000
+              "latestTimeLong": 1794895774000
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -105149,8 +105447,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -105742,8 +106040,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -105884,8 +106182,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -106166,8 +106464,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -106569,8 +106867,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -106736,8 +107034,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -107307,8 +107605,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -107715,8 +108013,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -108145,8 +108443,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -108297,8 +108595,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -108457,8 +108755,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -108735,8 +109033,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -108986,8 +109284,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -109147,165 +109445,6 @@ const EMBEDDED_DATA = {
               "latestTime": 1794224824000,
               "startTimeLong": 1794224810000,
               "latestTimeLong": 1794224824000
-            }
-          ],
-          "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
-        },
-        "related": null
-      }
-    },
-    {
-      "id": "2026110924470",
-      "title": "",
-      "business": "履约业务-专送",
-      "source": "AUTO_REPORT",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理完成",
-      "statusRaw": 5,
-      "occurTime": "2026-11-07 19:10:00",
-      "reportTime": "2026-11-09 18:50:13",
-      "updateTime": "2026-11-16 10:51:36",
-      "province": "辽宁省",
-      "city": "阜新市",
-      "district": "细河区",
-      "address": "八一路人民大街",
-      "summary": "2026年11月07日19时10分，三者驾驶电动自行车，沿人民大街由南向北行驶违反交通信号时，与骑手驾驶的电动自行车相撞，造成车辆部分损坏，李忠贤受伤后果\n三者负全部责任，骑手李宁无责任。",
-      "reporter": "李晓娜",
-      "handler": "李晓娜",
-      "region": "华北大区--加盟",
-      "area": "加盟辽宁区域",
-      "station": "兴必达【阜新】细河站",
-      "stationId": 2017254,
-      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟辽宁区域-加盟辽东分区-辽东配送2组-兴必达【阜新】细河站",
-      "franchisee": "兴必达（江苏）网络科技有限公司【阜新】",
-      "riderName": "李宁",
-      "riderPhone": "134****0423",
-      "riderStation": "兴必达【阜新】细河站",
-      "detail": {
-        "eventNo": "2026110924470",
-        "title": "",
-        "source": "AUTO_REPORT",
-        "type": "交通事故",
-        "level": "蓝色",
-        "statusRaw": 5,
-        "status": "处理完成",
-        "occurTime": "2026-11-07 19:10:00",
-        "reportTime": "2026-11-09 18:50:13",
-        "updateTime": "2026-11-16 10:51:36",
-        "endTime": "2026-11-16 10:51:34",
-        "province": "辽宁省",
-        "city": "阜新市",
-        "district": "细河区",
-        "address": "八一路人民大街",
-        "course": "2026年11月07日19时10分，三者驾驶电动自行车，沿人民大街由南向北行驶违反交通信号时，与骑手驾驶的电动自行车相撞，造成车辆部分损坏，李忠贤受伤后果\n三者负全部责任，骑手李宁无责任。",
-        "region": "华北大区--加盟",
-        "area": "加盟辽宁区域",
-        "station": "兴必达【阜新】细河站",
-        "stationId": 2017254,
-        "stationType": "即时配加盟",
-        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟辽宁区域-加盟辽东分区-辽东配送2组-兴必达【阜新】细河站",
-        "franchisee": "兴必达（江苏）网络科技有限公司【阜新】",
-        "cityMerchant": "兴必达（江苏）网络科技有限公司【阜新】",
-        "riders": [
-          {
-            "riderId": 79042336,
-            "entryDate": "2026-10-19",
-            "riderPhone": {
-              "data": null,
-              "token": "j*g@.3qdX$n0423",
-              "dataMask": "134****0423",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "即时配加盟",
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXU1afaXz40808",
-              "dataMask": "21092**********011",
-              "unknown": null
-            },
-            "stationName": "兴必达【阜新】细河站",
-            "riderName": "李宁",
-            "age": "0",
-            "genderDesc": "男",
-            "stationId": "2017254"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "e60e2199": 3,
-          "huyunmeng09": 0,
-          "27f340b6": 0,
-          "6bc2fb6f": 2,
-          "6f72eaaf": 2,
-          "e6e645c9": 2,
-          "d1078f9f": 2,
-          "huyunmeng10": 0,
-          "21": 1,
-          "74d46e3f": 1
-        },
-        "eventTypeInfo": {
-          "11": 2,
-          "14": 1,
-          "15": 2,
-          "7a16f69a": 2,
-          "81a8da9f": 1,
-          "19": 5,
-          "be5cd84a": 1,
-          "328d1fe5": 1,
-          "874aad49": 2,
-          "2e9772a9": 2,
-          "5452e09e": 1,
-          "ff537655": 7,
-          "0224cd2b": [
-            3
-          ],
-          "9": [
-            1,
-            3
-          ],
-          "93": 1,
-          "94": "辽宁省阜新市细河交警大队",
-          "20": "[{\"name\":\"微信图片_20261116104652_504_144.jpg\",\"uuid\":\"riskmanager110/微信图片_20261116104652_504_144_9yu95u.jpg\"}]",
-          "10": 3,
-          "32": [
-            2
-          ],
-          "719caaaf": 4
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "107935262142",
-        "taskKey": "zs_wait_end_response",
-        "checkInfoStatus": "CHECKING",
-        "checkInfoResult": "",
-        "createAccountId": "bm_lixiaonuo29@BMningboxingdazhisongwangluokejiyouxian",
-        "updateAccountId": "bm_lixiaonuo29@BMningboxingdazhisongwangluokejiyouxian",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1794221413000,
-              "latestTime": 1794221413000,
-              "startTimeLong": 1794221413000,
-              "latestTimeLong": 1794221413000
-            },
-            {
-              "taskKey": "zs_wait_end_response",
-              "startTime": 1794221425000,
-              "latestTime": 1794797494000,
-              "startTimeLong": 1794221425000,
-              "latestTimeLong": 1794797494000
-            },
-            {
-              "taskKey": "zs_wait_response",
-              "startTime": 1794221413000,
-              "latestTime": 1794221425000,
-              "startTimeLong": 1794221413000,
-              "latestTimeLong": 1794221425000
             }
           ],
           "processType": "PEISONG_ONLINE",
@@ -109612,8 +109751,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -110424,8 +110563,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -110778,8 +110917,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -110943,8 +111082,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -111446,8 +111585,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -111774,8 +111913,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -112941,8 +113080,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -113123,8 +113262,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -113290,8 +113429,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -113470,8 +113609,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -113796,8 +113935,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -113966,8 +114105,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -114302,8 +114441,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -114634,8 +114773,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -114962,8 +115101,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -115470,8 +115609,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -115942,8 +116081,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -116238,8 +116377,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -116368,8 +116507,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -116655,8 +116794,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -117328,8 +117467,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -117490,8 +117629,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -117657,8 +117796,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -118157,8 +118296,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -118325,8 +118464,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -118835,8 +118974,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -120512,8 +120651,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -120674,8 +120813,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -121498,8 +121637,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -121669,8 +121808,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -121984,8 +122123,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -123593,8 +123732,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -123761,8 +123900,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -124418,8 +124557,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -125278,8 +125417,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -125746,8 +125885,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -126410,8 +126549,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -127380,8 +127519,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -127701,8 +127840,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -127863,8 +128002,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -128034,8 +128173,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -128366,8 +128505,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -129522,8 +129661,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -129659,8 +129798,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -129831,8 +129970,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -129986,8 +130125,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -130323,8 +130462,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -130970,8 +131109,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -131641,8 +131780,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -132279,8 +132418,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -132608,8 +132747,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -132778,8 +132917,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -132940,8 +133079,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -133132,8 +133271,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -133470,8 +133609,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -133989,8 +134128,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -134318,8 +134457,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -134648,8 +134787,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -135325,8 +135464,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -135994,8 +136133,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -136648,8 +136787,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -136964,8 +137103,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -137461,8 +137600,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -137623,8 +137762,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -137794,8 +137933,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -137939,8 +138078,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -138103,8 +138242,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -138258,8 +138397,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -138429,8 +138568,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -139092,8 +139231,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -139576,8 +139715,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -139757,8 +139896,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -140089,8 +140228,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -140718,8 +140857,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -141884,8 +142023,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -142049,8 +142188,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -142219,8 +142358,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -142391,8 +142530,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -142723,8 +142862,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -142895,8 +143034,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -143065,8 +143204,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -143401,8 +143540,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -143572,8 +143711,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -144891,8 +145030,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -145216,8 +145355,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -145712,8 +145851,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -146512,8 +146651,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -146849,8 +146988,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -147355,8 +147494,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -147658,8 +147797,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -148151,8 +148290,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -148810,8 +148949,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -149142,8 +149281,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -149297,8 +149436,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -149962,8 +150101,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -150454,8 +150593,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -150755,8 +150894,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -150923,8 +151062,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -151256,8 +151395,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -152383,8 +152522,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -152553,8 +152692,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -152877,8 +153016,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -153689,8 +153828,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -154006,8 +154145,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -154168,8 +154307,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -154641,8 +154780,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -154796,8 +154935,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -155922,8 +156061,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -156077,8 +156216,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -156696,8 +156835,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -156857,8 +156996,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -157016,8 +157155,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -157186,8 +157325,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -157510,8 +157649,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -157824,8 +157963,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -157986,8 +158125,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -158148,8 +158287,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -158478,8 +158617,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -158801,8 +158940,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -158956,8 +159095,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -159411,8 +159550,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -160219,8 +160358,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -160388,8 +160527,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -161035,8 +161174,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -161521,8 +161660,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -162829,8 +162968,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -163638,8 +163777,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -163806,8 +163945,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -164128,8 +164267,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -165113,8 +165252,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -165268,8 +165407,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -165438,8 +165577,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -166402,8 +166541,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -166870,8 +167009,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -167037,8 +167176,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -167207,8 +167346,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -167361,8 +167500,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -167516,8 +167655,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -167841,8 +167980,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -168007,8 +168146,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -168807,8 +168946,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -168978,8 +169117,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -169139,8 +169278,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -169308,8 +169447,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -169631,8 +169770,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -169794,8 +169933,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -170068,8 +170207,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -170373,8 +170512,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -170687,8 +170826,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -171204,8 +171343,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -171532,8 +171671,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -171693,8 +171832,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -172031,8 +172170,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -172361,8 +172500,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -172529,8 +172668,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -172998,8 +173137,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -173778,8 +173917,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -173944,8 +174083,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -175196,8 +175335,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -175365,8 +175504,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -175847,8 +175986,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -176007,8 +176146,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -176520,8 +176659,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -177233,8 +177372,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -177373,8 +177512,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -177670,8 +177809,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -177840,8 +177979,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -178323,8 +178462,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -178639,8 +178778,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -179571,8 +179710,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -180044,8 +180183,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -180364,8 +180503,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -180689,8 +180828,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -181482,8 +181621,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -182102,8 +182241,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -182900,8 +183039,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -183216,8 +183355,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -183379,8 +183518,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -183527,8 +183666,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -183817,8 +183956,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -184417,8 +184556,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -184581,8 +184720,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -184736,8 +184875,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -185197,8 +185336,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -185345,8 +185484,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -185501,8 +185640,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -185656,8 +185795,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -185804,8 +185943,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -185973,8 +186112,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -186126,8 +186265,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": null,
-          "delayTime": null
+          "delayTime": null,
+          "delayTimeLong": null
         },
         "related": null
       }
@@ -186284,8 +186423,8 @@ const EMBEDDED_DATA = {
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -186931,7 +187070,7 @@ const EMBEDDED_DATA = {
       "31": "履约业务-专送",
       "32": "履约业务-众包"
     },
-    "userCount": 228,
+    "userCount": 226,
     "statusNote": "status=4 推断为「处理中（跟进/待关单）」，原始整数保留于 statusRaw",
     "detailNote": "详情字段来自 getEventDetail.tenantBasicInfo（大区/区域/站点/组织路径）"
   }
