@@ -1,6 +1,6 @@
 /* 早会处罚统计 · M盘Excel口径（覆盖 data.js 的 MORNING_TAB_DATA）
- * 由 morning_review/_build_meeting_m.py 生成 2026-11-18 06:32:03
- * 源: 报备和日常早会驳回清单_报备和日常早会驳回清单_2026-11-11-2026-11-17(早会时间)_1794954669752.xlsx · 驳回数据 2026-11-11 ~ 2026-11-16
+ * 由 morning_review/_build_meeting_m.py 生成 2026-11-19 06:31:53
+ * 源: 报备和日常早会驳回清单_报备和日常早会驳回清单_2026-11-12-2026-11-18(早会时间)_1795041077611.xlsx · 驳回数据 2026-11-16 ~ 2026-11-17
  * 口径: 签到100/仪容仪表100/其余小项50/报备未通过500（与 _build_penalty_m.py 一致）;
  *       未召开/虚假 沿用 data.js 原值（Excel 无此类数据）
  */
@@ -1485,15 +1485,15 @@ var MORNING_TAB_DATA = {
     "region": "华北一区",
     "subr": "津冀区域",
     "city": "秦皇岛",
-    "total_fine": 0,
+    "total_fine": 100,
     "not_held_count": 0,
     "not_held_fine": 0,
     "fake_count": 0,
     "fake_fine": 0,
     "daily_key_reject": 0,
     "daily_key_fine": 0,
-    "daily_app_reject": 0,
-    "daily_app_fine": 0,
+    "daily_app_reject": 1.0,
+    "daily_app_fine": 100.0,
     "daily_sign_reject": 0,
     "daily_sign_fine": 0,
     "report_reject": 0,
@@ -1917,13 +1917,13 @@ var MORNING_TAB_DATA = {
     "region": "华北三区",
     "subr": "中西区域",
     "city": "西安",
-    "total_fine": 50,
+    "total_fine": 0,
     "not_held_count": 0,
     "not_held_fine": 0,
     "fake_count": 0,
     "fake_fine": 0,
-    "daily_key_reject": 1.0,
-    "daily_key_fine": 50.0,
+    "daily_key_reject": 0,
+    "daily_key_fine": 0,
     "daily_app_reject": 0,
     "daily_app_fine": 0,
     "daily_sign_reject": 0,
@@ -2439,15 +2439,15 @@ var MORNING_TAB_DATA = {
     "region": "华北一区",
     "subr": "辽宁区域",
     "city": "阜新",
-    "total_fine": 100,
+    "total_fine": 0,
     "not_held_count": 0,
     "not_held_fine": 0,
     "fake_count": 0,
     "fake_fine": 0,
     "daily_key_reject": 0,
     "daily_key_fine": 0,
-    "daily_app_reject": 1.0,
-    "daily_app_fine": 100.0,
+    "daily_app_reject": 0,
+    "daily_app_fine": 0,
     "daily_sign_reject": 0,
     "daily_sign_fine": 0,
     "report_reject": 0,
@@ -3174,4 +3174,4 @@ var MORNING_TAB_DATA = {
     "report_fine": 0
   }
 };
-var MORNING_TAB_M_META = {"source": "报备和日常早会驳回清单_报备和日常早会驳回清单_2026-11-11-2026-11-17(早会时间)_1794954669752.xlsx", "from": "2026-11-11", "to": "2026-11-16", "generated_at": "2026-11-18 06:32:03"};
+var MORNING_TAB_M_META = {"source": "报备和日常早会驳回清单_报备和日常早会驳回清单_2026-11-12-2026-11-18(早会时间)_1795041077611.xlsx", "from": "2026-11-16", "to": "2026-11-17", "generated_at": "2026-11-19 06:31:53"};
