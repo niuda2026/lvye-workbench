@@ -1,7 +1,7 @@
 // ============================================================
 // 全国站点地图 - 点位数据
 // 数据来源：美团配送后台「标准站点信息」接口抓取（站点合作状态=合作）
-// 抓取时间：2026-11-20 | 站点总数：158（含骑手宿舍 95）
+// 抓取时间：2026-11-20 | 站点总数：158（含骑手宿舍 96）
 //
 // 字段说明：
 //   name     : 点位名称（美团标准站点名称）
@@ -194,6 +194,7 @@ window.SITE_DATA = [
   { name: "兴必达【洛阳】新都汇站宿舍1", xian: "西工区", city: "洛阳", province: "河南省", address: "融祥花园四号楼102", category: "dorm", level: "A", lng: 112.415118, lat: 34.679992, stationName: "兴必达【洛阳】新都汇站", stationId: "2089371", roomNum: 4, roomSize: "135.68", rentStart: "2026-06-01", rentEnd: "2027-05-31" },
   { name: "兴必达【合肥】大唐国际宿舍1", xian: "蜀山区", city: "合肥", province: "安徽省", address: "合肥市蜀山区望江西路92号 秀水花园6幢110室", category: "dorm", level: "A", lng: 117.240299, lat: 31.831883, stationName: "兴必达【合肥】大唐国际", stationId: "2088705", roomNum: 4, roomSize: "114.95", rentStart: "2026-04-20", rentEnd: "2027-04-19" },
   { name: "兴必达【合肥】港汇广场站宿舍1", xian: "蜀山区", city: "合肥", province: "安徽省", address: "合肥市蜀山区望江西路92号 秀水花园6幢110室", category: "dorm", level: "A", lng: 117.240299, lat: 31.831883, stationName: "兴必达【合肥】港汇广场站", stationId: "2088685", roomNum: 4, roomSize: "114.95", rentStart: "2026-04-20", rentEnd: "2027-04-19" },
+  { name: "兴必达【青岛】城阳国学公园站宿舍1", xian: "城阳区", city: "青岛", province: "山东省", address: "山东省青岛市城阳区青特小镇A区25号楼1单元702", category: "dorm", level: "A", lng: 120.452973, lat: 36.318147, stationName: "兴必达【青岛】城阳国学公园站", stationId: "2088667", roomNum: 6, roomSize: "125", rentStart: "2026-04-11", rentEnd: "2027-04-10" },
   { name: "兴必达【北京】果园站宿舍1", xian: "未识别", city: "北京", province: "江西省", address: "幸福时光小区5单元202", category: "dorm", level: "A", lng: 115.875545, lat: 28.581796, stationName: "兴必达【北京】果园站", stationId: "2088625", roomNum: 3, roomSize: "80", rentStart: "2026-07-13", rentEnd: "2027-07-12" },
   { name: "兴必达【南京】金盛站宿舍1", xian: "江宁区", city: "南京", province: "江苏省", address: "新宁之家205号宿舍", category: "dorm", level: "A", lng: 118.84107, lat: 31.942071, stationName: "兴必达【南京】金盛站", stationId: "2088251", roomNum: 1, roomSize: "31", rentStart: "2026-03-24", rentEnd: "2027-03-23" },
   { name: "兴必达【南京】金盛站宿舍2", xian: "江宁区", city: "南京", province: "江苏省", address: "新宁之家206号宿舍", category: "dorm", level: "A", lng: 118.841069, lat: 31.942082, stationName: "兴必达【南京】金盛站", stationId: "2088251", roomNum: 1, roomSize: "31", rentStart: "2026-03-24", rentEnd: "2027-03-23" },
