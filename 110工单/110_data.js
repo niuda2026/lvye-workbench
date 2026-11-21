@@ -1,13 +1,13 @@
 const EMBEDDED_DATA = {
-  "lastUpdated": "2026-11-20 18:48:26",
+  "lastUpdated": "2026-11-21 11:30:38",
   "sourceUrl": "https://fxgl365.com/110/w/desktop/process/list?activeTab=CURRENT",
   "module": "事件处理",
   "kpi": {
-    "total": 1199,
-    "pending": 6,
+    "total": 1200,
+    "pending": 7,
     "processing": 454,
     "done": 739,
-    "todayNew": 5,
+    "todayNew": 1,
     "cityCount": 29,
     "regionCount": 4,
     "stationCount": 136
@@ -23,7 +23,7 @@ const EMBEDDED_DATA = {
     },
     {
       "name": "待处理",
-      "value": 6
+      "value": 7
     }
   ],
   "cityStats": [
@@ -70,8 +70,8 @@ const EMBEDDED_DATA = {
     {
       "name": "洛阳市",
       "full": "洛阳市",
-      "count": 16,
-      "pending": 0,
+      "count": 17,
+      "pending": 1,
       "processing": 14,
       "done": 2
     },
@@ -263,7 +263,7 @@ const EMBEDDED_DATA = {
   "typeDist": [
     {
       "name": "交通事故",
-      "value": 926
+      "value": 927
     },
     {
       "name": "意外事件",
@@ -305,7 +305,7 @@ const EMBEDDED_DATA = {
   "regionDist": [
     {
       "name": "华北大区--加盟",
-      "value": 1089
+      "value": 1090
     },
     {
       "name": "中南大区--加盟",
@@ -321,10 +321,6 @@ const EMBEDDED_DATA = {
     }
   ],
   "trend": [
-    {
-      "date": "2026-10-18",
-      "count": 1
-    },
     {
       "date": "2026-10-19",
       "count": 3
@@ -440,9 +436,25 @@ const EMBEDDED_DATA = {
     {
       "date": "2026-11-20",
       "count": 5
+    },
+    {
+      "date": "2026-11-21",
+      "count": 1
     }
   ],
   "latest": [
+    {
+      "eventNo": "2026112157594",
+      "city": "洛阳市",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "待处理",
+      "statusRaw": 2,
+      "reportTime": "2026-11-21 09:08:40",
+      "source": "风险线索升级",
+      "region": "华北大区--加盟",
+      "station": "兴必达【洛阳】关林站"
+    },
     {
       "eventNo": "2026112056493",
       "city": "张家口市",
@@ -670,18 +682,6 @@ const EMBEDDED_DATA = {
       "source": "风险线索升级",
       "region": "华东大区--加盟",
       "station": "兴必达【上海】金桥站"
-    },
-    {
-      "eventNo": "2026111747508",
-      "city": "合肥市",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "处理中",
-      "statusRaw": 3,
-      "reportTime": "2026-11-17 17:38:31",
-      "source": "PACIFIC_UPGRAGE",
-      "region": "中南大区--加盟",
-      "station": "兴必达【合肥】奥体站"
     }
   ],
   "records": [
@@ -2461,6 +2461,160 @@ const EMBEDDED_DATA = {
           "processType": "PEISONG_ONLINE",
           "delayTimeLong": 1795203440000,
           "delayTime": 1795203440000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026112157594",
+      "title": "",
+      "business": "履约业务-专送",
+      "source": "风险线索升级",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "待处理",
+      "statusRaw": 2,
+      "occurTime": "2026-11-20 14:43:00",
+      "reportTime": "2026-11-21 09:08:40",
+      "updateTime": "2026-11-21 09:08:40",
+      "province": "河南省",
+      "city": "洛阳市",
+      "district": "洛龙区",
+      "address": "河南省洛阳市洛龙区河南省洛阳市洛龙区太康东路街道钱江路70号",
+      "summary": "骑手送餐过程中，在顾客小区地库内与一辆机动车发生碰撞，造成对方车辆右前门及后门中间位置剐蹭、凹陷、破损，对方车辆仍可正常行驶；骑手本人膝盖受伤，自述疑似未骨折，尚未就医检查。",
+      "reporter": "李彬",
+      "handler": "郭邦河，牛艳朝，李彬",
+      "region": "华北大区--加盟",
+      "area": "加盟河南区域",
+      "station": "兴必达【洛阳】关林站",
+      "stationId": 2026066,
+      "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】关林站",
+      "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+      "riderName": "王官政",
+      "riderPhone": "188****5371",
+      "riderStation": "兴必达【洛阳】关林站",
+      "detail": {
+        "eventNo": "2026112157594",
+        "title": "",
+        "source": "风险线索升级",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 2,
+        "status": "待处理",
+        "occurTime": "2026-11-20 14:43:00",
+        "reportTime": "2026-11-21 09:08:40",
+        "updateTime": "2026-11-21 09:08:40",
+        "endTime": "",
+        "province": "河南省",
+        "city": "洛阳市",
+        "district": "洛龙区",
+        "address": "河南省洛阳市洛龙区河南省洛阳市洛龙区太康东路街道钱江路70号",
+        "course": "骑手送餐过程中，在顾客小区地库内与一辆机动车发生碰撞，造成对方车辆右前门及后门中间位置剐蹭、凹陷、破损，对方车辆仍可正常行驶；骑手本人膝盖受伤，自述疑似未骨折，尚未就医检查。",
+        "region": "华北大区--加盟",
+        "area": "加盟河南区域",
+        "station": "兴必达【洛阳】关林站",
+        "stationId": 2026066,
+        "stationType": "即时配加盟",
+        "orgPath": "配送总部-加盟总部-华北大区--加盟-加盟河南区域-加盟豫南分区-洛阳配送1组-兴必达【洛阳】关林站",
+        "franchisee": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "cityMerchant": "兴必达（江苏）网络科技有限公司【洛阳】",
+        "riders": [
+          {
+            "riderId": 77898042,
+            "entryDate": "2026-09-07",
+            "riderPhone": {
+              "data": null,
+              "token": "2lH~pDxuCXi5371",
+              "dataMask": "188****5371",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXnuoDxfj10929",
+              "dataMask": "41032**********159",
+              "unknown": null
+            },
+            "stationName": "兴必达【洛阳】关林站",
+            "riderName": "王官政",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2026066"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "e60e2199": 2,
+          "6bc2fb6f": 1,
+          "9d13ef5b": 2,
+          "6f72eaaf": 2,
+          "e6e645c9": 2,
+          "d1078f9f": 2,
+          "da478aa9": 2,
+          "2967240b": "2136904E426H1535539194",
+          "21": 1,
+          "74d46e3f": 1
+        },
+        "eventTypeInfo": {
+          "33": [
+            1
+          ],
+          "14": 2,
+          "15": 1,
+          "7a16f69a": 1,
+          "81a8da9f": 1,
+          "19": 3,
+          "be5cd84a": 1,
+          "328d1fe5": 1,
+          "874aad49": 2,
+          "2e9772a9": 2,
+          "5452e09e": 1,
+          "ff537655": 2,
+          "0224cd2b": [
+            3
+          ],
+          "9": [
+            1,
+            3
+          ],
+          "93": 1,
+          "94": "交警",
+          "10": 4,
+          "32": [
+            2,
+            3
+          ],
+          "719caaaf": 5
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "108231343996",
+        "taskKey": "general",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "updateAccountId": "bm_libin552@BMningboxingdazhisongwangluokejiyouxian",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1795223320000,
+              "latestTime": 1795223320000,
+              "startTimeLong": 1795223320000,
+              "latestTimeLong": 1795223320000
+            },
+            {
+              "taskKey": "general",
+              "startTime": 1795223320000,
+              "latestTime": 1795223320000,
+              "startTimeLong": 1795223320000,
+              "latestTimeLong": 1795223320000
+            }
+          ],
+          "processType": "NORMAL",
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -94266,7 +94420,7 @@ const EMBEDDED_DATA = {
       "statusRaw": 3,
       "occurTime": "2026-11-18 18:15:08",
       "reportTime": "2026-11-18 19:05:07",
-      "updateTime": "2026-11-19 11:05:38",
+      "updateTime": "2026-11-21 10:34:49",
       "province": "河北省",
       "city": "秦皇岛市",
       "district": "海港区",
