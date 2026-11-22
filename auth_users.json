@@ -329,28 +329,6 @@
       ]
     },
     {
-      "name": "纪如意",
-      "mobile": "9485",
-      "code": "",
-      "role": "安全专员",
-      "area": "华北一区/黑吉区域/通辽",
-      "boards": [
-        "safe_equity",
-        "safe_station",
-        "safe_rider",
-        "safe_highway",
-        "project",
-        "clothing_main",
-        "clothing_rate",
-        "rider_detail",
-        "rider_control"
-      ],
-      "areas": [
-        "华北一区"
-      ],
-      "report_date": "2026-08-31"
-    },
-    {
       "name": "黄可鑫",
       "mobile": "7777",
       "code": "",
@@ -471,7 +449,7 @@
       "mobile": "0320",
       "code": "",
       "role": "安全专员",
-      "area": "华北一区/黑吉区域/长春",
+      "area": "华北一区/黑吉区域/长春/通辽",
       "boards": [
         "safe_equity",
         "safe_station",
@@ -487,13 +465,6 @@
         "华北一区"
       ],
       "report_date": "2026-10-19"
-    },
-    {
-      "name": "郭栋",
-      "mobile": "6688",
-      "code": "",
-      "role": "人事专员",
-      "area": "兴达总部/人资部"
     },
     {
       "name": "张晓佳",
