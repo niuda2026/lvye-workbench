@@ -240,31 +240,6 @@
       "area": "兴达总部/履约核心业务部/履约管理组"
     },
     {
-      "name": "那龙",
-      "mobile": "3333",
-      "code": "",
-      "role": "大区副总",
-      "area": "中南大区",
-      "boards": [
-        "safe_equity",
-        "safe_station",
-        "safe_rider",
-        "safe_highway",
-        "project",
-        "clothing_main",
-        "clothing_rate",
-        "rider_detail"
-      ],
-      "areas": [
-        "中南大区",
-        "兴达总部",
-        "华东大区",
-        "华北一区",
-        "华北三区",
-        "华北二区"
-      ]
-    },
-    {
       "name": "王静",
       "mobile": "5583",
       "code": "",
