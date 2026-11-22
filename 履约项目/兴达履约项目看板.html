@@ -3044,8 +3044,9 @@ var PENALTY_COLS = [
 //   背景：该列每月第一周匹配进上月（T-1月）数据，第二周起不再需要，需手动清理。
 //   口径：清空时本看板按「源总罚款 - 本行健康证金额」重算展示总金额，表格总金额列、
 //         KPI 卡片汇总、总金额弹窗合计同步扣减；源数据文件不写回，点「恢复」原样还原。
-//   持久：localStorage 记录清空状态 + 数据生成戳；脚本重新生成数据后
-//         生成戳变化 → 自动失效并恢复显示新数据，无需手动恢复。
+//   持久：localStorage 记录清空状态；2026-11-22 用户定「清空保持到手动恢复」——
+//         数据每天重建（generated_at 变化）不再让清空失效，只有自己点「↺ 恢复」才还原。
+//         旧版按 generated_at 戳判定，导致清空撑不过一天（今早 06:31/06:34 两次重建即失效），已废弃。
 // ════════════════════════════════════════════════════════════════
 var PENALTY_HC_KEY = '健康证处罚金额';
 function penaltyHcStamp(kind) {
@@ -3060,10 +3061,8 @@ function penaltyHcCleared(kind) {
     if (!raw) return false;
     var o = JSON.parse(raw);
     if (!o || !o.cleared) return false;
-    if (o.stamp !== penaltyHcStamp(kind)) {   // 数据已重新生成 → 自动恢复
-      localStorage.removeItem('xdPenaltyHcClear_' + kind);
-      return false;
-    }
+    // 2026-11-22 改「保持到手动恢复」：不再因 generated_at 变化自动失效。
+    // 只有用户主动点「↺ 恢复」（cleared=false）才会返回 false。
     return true;
   } catch (e) { return false; }
 }
@@ -3587,7 +3586,7 @@ function renderPenaltyTab(kind) {
     if (PENALTY_COLS[c].key === PENALTY_HC_KEY) {
       var hcOn = penaltyHcCleared(kind);
       hcBtn = '<button class="pen-hc-clear' + (hcOn ? ' on' : '') + '"'
-        + ' title="' + (hcOn ? '已清空（总罚款已扣减健康证金额），点击恢复' : '一键清空本列，并从总罚款中扣减健康证金额；不改源文件，下期数据生成后自动恢复') + '"'
+        + ' title="' + (hcOn ? '已清空（总罚款已扣减健康证金额），点击恢复' : '一键清空本列，并从总罚款中扣减健康证金额；不改源文件，清空后一直保持，点此按钮或「↺ 恢复」才还原') + '"'
         + ' onclick="event.stopPropagation();penaltyToggleHcClear(\'' + kind + '\')">'
         + (hcOn ? '↺ 恢复' : '✕ 清空') + '</button>';
     }
