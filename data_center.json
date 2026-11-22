@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-22 09:33:07",
+  "updated_at": "2026-11-22 09:34:20",
   "action_summary": {
     "total": 23,
     "ok": 15,
@@ -316,7 +316,7 @@
             "latest": "daily_refresh_log.txt",
             "mtime": "2026-11-22 09:13:09",
             "max_age_hours": 13,
-            "age_hours": 0.3,
+            "age_hours": 0.4,
             "ok": false,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
             "fail_hits": [
@@ -606,7 +606,7 @@
             "latest": "_crawl_service.log",
             "mtime": "2026-11-20 18:48:34",
             "max_age_hours": 26,
-            "age_hours": 38.7,
+            "age_hours": 38.8,
             "ok": false,
             "note": "",
             "fail_hits": [],
@@ -812,7 +812,7 @@
             "latest": "110_data.js",
             "mtime": "2026-11-21 17:30:26",
             "max_age_hours": 30,
-            "age_hours": 16.0,
+            "age_hours": 16.1,
             "ok": true,
             "note": "盘中守护 11:30/17:30 两次（看板外壳html长期不变，改盯数据文件）",
             "fail_hits": [],
