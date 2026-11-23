@@ -1085,7 +1085,7 @@ table.dt td.cb-audit-col{min-width:96px}
 <!-- 血压审核/异常跟进 6 列（2026-10-25）：独立数据文件，重建 充换电血压_data.js 不会覆盖 -->
 <script src="血压审核_extra.js"></script>
 <script src="knife_rider_data.js"></script>
-<script src="box_rider_data.js?v=202611231055"></script>
+<script src="box_rider_data.js?v=202611231517"></script>
 <script src="inspection_data.js"></script>
 <!-- 巡检平台 · 日维度实时数据（烽火巡检平台抓取聚合，inspection/build_inspection_v2.py 生成） -->
 <script src="inspection_daily_data.js"></script>
@@ -5009,7 +5009,7 @@ function renderChargeBPTab() {
   cbInitOnce();
   cbApplyBoard();
   var columns = [
-    {key:'bp_rate',          label:'检测率',   isPct:true, isSumRatio:true},
+    {key:'bp_rate',          label:'覆盖率',   isPct:true, isSumRatio:true},
     {key:'bp_num',           label:'已上传',   isPct:false, isSumRatio:false},
     {key:'bp_den',           label:'在职骑手', isPct:false, isSumRatio:false},
     {key:'bp_not',           label:'未上传',   isPct:false, isSumRatio:false, isBad:true},
@@ -5038,7 +5038,7 @@ function renderChargeBPTab() {
   ];
   // 两级中文表头：每组=率+分子+分母+未上传，与「早会审核」等看板风格一致
   var headerGroups = [
-    {label:'血压检测率',            colspan:4, bgColor:'#c4b5fd', textColor:'#4c1d95'},
+    {label:'血压覆盖率',            colspan:4, bgColor:'#c4b5fd', textColor:'#4c1d95'},
     {label:'测压视频审核',          colspan:3, bgColor:'#fdba74', textColor:'#7c2d12', colClass:'cb-audit-col'},
     {label:'血压异常跟进',          colspan:3, bgColor:'#fecaca', textColor:'#991b1b', colClass:'cb-audit-col'},
     {label:'载具审核通过率', colspan:4, bgColor:'#e5e7eb', textColor:'#374151'},
@@ -5089,7 +5089,7 @@ function cbSiteCards(){
   var html =
       cbCard('在职骑手（分母）', bpD.toLocaleString(), '当天排班在册', '')
     + cbCard('有排班站点', sites.toLocaleString(), '共 '+totalSites+' 站', '')
-    + cbCard('血压检测率', pct(bpN,bpD), '血压已上传 '+bpN.toLocaleString()+' 人 / 未上传 '+(bpD-bpN).toLocaleString()+' 人', cls(bpN,bpD))
+    + cbCard('血压覆盖率', pct(bpN,bpD), '血压已上传 '+bpN.toLocaleString()+' 人 / 未上传 '+(bpD-bpN).toLocaleString()+' 人', cls(bpN,bpD))
     + cbCard('充换电上传提交率', pct(upN,upD), '已上传 '+upN.toLocaleString()+' 人（充电∪换电去重）', cls(upN,upD))
     + cbCard('充换电审核通过率', pct(ckN,ckD), '通过 '+ckN.toLocaleString()+' / 已出结果 '+ckD.toLocaleString()+' / 未通过 '+(ckD-ckN).toLocaleString()+' 人', cls(ckN,ckD))
     + cbCard('载具审核通过率', pct(vN,vD), '通过 '+vN.toLocaleString()+' / 已出结果 '+vD.toLocaleString()+' / 未通过 '+(vD-vN).toLocaleString()+' 人', cls(vN,vD));
