@@ -1086,6 +1086,8 @@ table.dt td.cb-audit-col{min-width:96px}
 <script src="血压审核_extra.js"></script>
 <script src="knife_rider_data.js"></script>
 <script src="box_rider_data.js?v=202611231517"></script>
+<!-- 健康证骑手级源（骑手维度执行 tab 发证/到期/剩余天数） -->
+<script src="../在职骑手详情/health_cert_data.js"></script>
 <script src="inspection_data.js"></script>
 <!-- 巡检平台 · 日维度实时数据（烽火巡检平台抓取聚合，inspection/build_inspection_v2.py 生成） -->
 <script src="inspection_daily_data.js"></script>
@@ -6148,6 +6150,116 @@ function saveTrainingConfigFromModal() {
   alert(msg);
 }
 
+
+// ─── 骑手维度执行 · 多源按骑手ID对齐补齐（2026-11-23）──────────────
+// 列口径与其他看板一致；当日无此人/无该源 → 显示 '-'，绝不拿最新可用日填。
+var RIDER_ENRICHED = null;
+function _ridKey(v){ return String(v == null ? '' : v).replace(/\.0$/, '').trim(); }
+function buildRiderEnrich(){
+  if (RIDER_ENRICHED) return RIDER_ENRICHED;
+  var M = {};
+  function slot(rid){ rid = _ridKey(rid); if(!rid) return null; if(!M[rid]) M[rid] = {bp:'',charge:'',vehicle:'',knife:'',box:'',helmet:'',train:{},bpAudit:'',cert:'',issue:'',expire:'',hcRemain:''}; return M[rid]; }
+
+  // 血压 / 充换电：CB_REC = [rid, 类型(B血压/S换电/C充电), 日期, 状态, 时间, ..., 站点]
+  var recs = window.CB_REC || [];
+  for (var i=0;i<recs.length;i++){
+    var r = recs[i], o = slot(r[0]); if(!o) continue;
+    var st = String(r[3]||'');
+    if (r[1] === 'B') { if(st==='已提交'||st==='待审核'||st==='审核通过') o.bp='已上报'; }
+    else if (r[1] === 'S' || r[1] === 'C') {
+      if (st==='审核通过') o.charge='审核通过';
+      else if (!o.charge || o.charge==='已提交') o.charge = (st==='已提交')?'已提交':st;
+    }
+  }
+  // 血压审核6列：合并成合规率文本（与「测压视频审核」看板同名）
+  var bpa = window.CB_BP_RIDER || {};
+  for (var rid in bpa){ var o2=slot(rid); if(!o2) continue; var a=bpa[rid];
+    o2.bpAudit = (a && a[2]!=null) ? (Number(a[2]).toFixed(1)+'%') : ''; }
+  // 载具审核：CB_RIDER_VEHICLE = [类型, 状态, 日期, '']
+  var veh = window.CB_RIDER_VEHICLE || {};
+  for (var rid2 in veh){ var o3=slot(rid2); if(!o3) continue; var v=veh[rid2];
+    o3.vehicle = (v&&v[1]) ? String(v[1]) : ''; }
+  // 带刀巡检：KNIFE_LATEST 值[7]=整改状态
+  var kn = window.KNIFE_LATEST || {};
+  for (var rid3 in kn){ var o4=slot(rid3); if(!o4) continue; var k=kn[rid3];
+    o4.knife = (k&&k[7]) ? String(k[7]) : ''; }
+  // 餐箱消毒：BOX_LATEST 值[2]=审核状态；BOX_ORDER 值[0]=是否有单、[1]=运单量
+  var bx = window.BOX_LATEST || {};
+  for (var rid4 in bx){ var o5=slot(rid4); if(!o5) continue; var b=bx[rid4];
+    o5.box = (b&&b[2]) ? String(b[2]) : ''; }
+  var bo = window.BOX_ORDER || {};
+  for (var rid5 in bo){ var o6=slot(rid5); if(!o6) continue; var q=bo[rid5];
+    if (q && q[0] === '是') o6.orders = q[1]; }
+  // 头盔合规：CHECK_ALL_ROWS = 本月被抽检拍照骑手；CHECK_FAIL_ROWS = 其中不合格项。
+  // 只在被抽检人群内判定；未出现在抽检名单的骑手保持空（'-'），不臆造。
+  var badHelmet = {};
+  var cf = (typeof CHECK_FAIL_ROWS !== 'undefined') ? CHECK_FAIL_ROWS : [];
+  for (var i2=0;i2<cf.length;i2++){
+    if (cf[i2].helmet_qualified === '不合格') badHelmet[_ridKey(cf[i2].rid)] = 1;
+  }
+  var ca = (typeof CHECK_ALL_ROWS !== 'undefined') ? CHECK_ALL_ROWS : [];
+  for (var i5=0;i5<ca.length;i5++){
+    var rid5 = _ridKey(ca[i5].rid), o7 = slot(rid5); if(!o7) continue;
+    o7.helmet = badHelmet[rid5] ? '不合格' : '合格';
+  }
+  // 培训：TRAINING_RIDER_DATA[].projects = {项目ID: 状态}
+  var tr = window.TRAINING_RIDER_DATA || [];
+  for (var i3=0;i3<tr.length;i3++){
+    var t=tr[i3], o8=slot(t.rid); if(!o8) continue;
+    var pj=t.projects||{};
+    for (var pid in pj) o8.train[pid]=pj[pid];
+  }
+  // 健康证：HC_DATA = [{r:骑手ID, h:发证日期, e:健康证到期, ...}]
+  var hc = window.HC_DATA || [];
+  var today = new Date(); today.setHours(0,0,0,0);
+  for (var i4=0;i4<hc.length;i4++){
+    var h=hc[i4], o9=slot(h.r); if(!o9) continue;
+    o9.issue = h.h || ''; o9.expire = h.e || '';
+    if (h.e){ var ed=parseDateStr(h.e);
+      if (ed){ o9.hcRemain = Math.ceil((ed - today)/(1000*60*60*24)) + '天'; } }
+  }
+  RIDER_ENRICHED = M;
+  return M;
+}
+function riderEnrich(rid){ var m=buildRiderEnrich(); return m[_ridKey(rid)] || null; }
+// 列定义：h=表头标题（沿用各看板原名），get=取值(r,info,en)，kind=state 时用红黄绿着色
+// 基础4列 sticky；其余按「基础信息 → 日常执行 → 培训考试 → 证件」顺序
+var RIDER_COLS = [
+  {h:'大区', get:function(r,info){ return info.大区; }},
+  {h:'区域', get:function(r,info){ return info.区域; }},
+  {h:'城市', get:function(r,info){ return info.城市; }},
+  {h:'站点', get:function(r){ return r[3]; }},
+  {h:'骑手ID', get:function(r){ return r[4]; }},
+  {h:'姓名', get:function(r){ return r[5]; }},
+  {h:'入职时间', get:function(r){ return r[6]; }},
+  {h:'有单天数', get:function(r,info,en){ return en.orders==null?'':en.orders; }},
+  {h:'小组', get:function(r){ return r[8]; }},
+  {h:'餐箱消毒', get:function(r,info,en){ return en.box; }, kind:'state'},
+  {h:'带刀巡检', get:function(r,info,en){ return en.knife; }, kind:'state'},
+  {h:'血压覆盖率', get:function(r,info,en){ return en.bp; }, kind:'state'},
+  {h:'测压视频审核合规率', get:function(r,info,en){ return en.bpAudit; }},
+  {h:'载具审核通过率', get:function(r,info,en){ return en.vehicle; }, kind:'state'},
+  {h:'充换电上传提交率', get:function(r,info,en){ return en.charge; }, kind:'state'},
+  {h:'头盔合规', get:function(r,info,en){ return en.helmet; }, kind:'state'},
+  // 考培项目：标题与 data.js TRAINING_PROJECTS 同步（取项目名，去掉"加盟"前缀）
+  {h:'华北新骑手安全专项培训', get:function(r,info,en){ return en.train['4284']||''; }, kind:'state'},
+  {h:'风险骑手安全培训', get:function(r,info,en){ return en.train['5503']||''; }, kind:'state'},
+  {h:'新骑手入门测试', get:function(r,info,en){ return en.train['4681']||''; }, kind:'state'},
+  {h:'顾客实际位置与地图定位不符', get:function(r,info,en){ return en.train['7989']||''; }, kind:'state'},
+  {h:'骑手十一月重点关注事项-2026', get:function(r,info,en){ return en.train['7991']||''; }, kind:'state'},
+  {h:'11月重点规则测评', get:function(r,info,en){ return en.train['8006']||''; }, kind:'state'},
+  {h:'发证日期', get:function(r,info,en){ return en.issue; }},
+  {h:'健康证到期', get:function(r,info,en){ return en.expire; }},
+  {h:'剩余天数', get:function(r,info,en){ return en.hcRemain; }}
+];
+
+function cellVal(v, cls){ if(v==null||v==='') return '<td class="rn">-</td>';
+  var s=String(v); var c=cls||'';
+  if(s==='是'||s==='已通过'||s==='无需整改'||s==='整改通过'||s==='已上报'||s==='合格') c='rg';
+  else if(s==='否'||s==='已驳回'||s==='审核不通过'||s==='超时未整改'||s==='待整改'||s==='不合格') c='rr';
+  else if(s==='审核中'||s==='待审核'||s==='已提交') c='ry';
+  return '<td'+(c?' class="'+c+'"':'')+'>'+escHtml(s)+'</td>'; }
+
 // ─── Tab 8: 骑手维度执行 ─────────────────────────────────────
 
 // ─── 证书日期计算 ──────────────────────────────────────────
@@ -6218,10 +6330,14 @@ function getFilteredRiderData() {
     var knifeState = sfState['knife-rider']||[];
     var bpState = sfState['bp-rider']||[];
     var boxState = sfState['boxDisinfect-rider']||[];
-    if (helmetState.length > 0 && helmetState.indexOf(r[9]) < 0) continue;
-    if (knifeState.length > 0 && knifeState.indexOf(r[10]) < 0) continue;
-    if (bpState.length > 0 && bpState.indexOf(r[11]) < 0) continue;
-    if (boxState.length > 0 && boxState.indexOf(String(r[13]||'')) < 0) continue;
+    // 筛选判骑手级对齐后的实际值（旧版判 r[9..13] 空列 → 筛选永远为空）
+    if (helmetState.length > 0 || knifeState.length > 0 || bpState.length > 0 || boxState.length > 0){
+      var en = riderEnrich(r[4]) || {};
+      if (helmetState.length > 0 && helmetState.indexOf(en.helmet||'') < 0) continue;
+      if (knifeState.length > 0 && knifeState.indexOf(en.knife||'') < 0) continue;
+      if (bpState.length > 0 && bpState.indexOf((en.bp==='已上报')?'是':'否') < 0) continue;
+      if (boxState.length > 0 && boxState.indexOf((en.box==='已通过')?'是':'否') < 0) continue;
+    }
     out.push(r);
   }
   return out;
@@ -6275,20 +6391,16 @@ function renderRiderTabPage(page) {
   initMsFilter('bp-rider', ['是','否'], []);
   initMsFilter('boxDisinfect-rider', ['是','否'], []);
 
-  // Thead
+  // Thead —— 与数据行共用 RIDER_COLS 定义，杜绝列数错位
   var thead = '<tr>';
-  thead += '<th class="sticky-col" style="left:0;min-width:80px">大区</th>';
-  thead += '<th class="sticky-col" style="left:80px;min-width:100px">区域</th>';
-  // 原来这里是一个 colspan=7 的「站点信息 / 骑手维度」大格，后面又重复声明了骑手ID/姓名/入职时间/有单天数/小组 5 列，
-  // 导致表头逻辑列 27 vs 数据行 22，从第 3 列起整体错位 5 列（表头「骑手ID」下面是「消毒」值）。
-  // 现按数据行实际列结构拆成「城市」「站点」，与数据行 22 列一一对应（sticky left 与数据行城市/站点严格对齐）。
-  thead += '<th class="sticky-col sticky-last" style="left:180px;min-width:80px">城市</th>';
-  thead += '<th class="sticky-col sticky-last" style="left:260px;min-width:180px">站点</th>';
-  thead += '<th>骑手ID</th><th>姓名</th><th>入职时间</th><th>有单天数</th><th>小组</th>';
-  thead += '<th>消毒</th><th>带刀</th><th>血压</th><th>载具</th><th>充换电</th>';
-  thead += '<th>华北新骑手安全专项培训</th><th>风险骑手安全培训(26年6月)</th>';
-  thead += '<th>新骑手入门测试</th><th>热浪来袭 我有秘籍</th><th>骑手七月重点关注事项-2026</th>';
-  thead += '<th>发证日期</th><th>到期时间</th><th>剩余天数</th>';
+  var _stickyL = [0,80,180,260];
+  for (var ci=0; ci<RIDER_COLS.length; ci++){
+    var col=RIDER_COLS[ci];
+    var st = (ci<4) ? ' class="sticky-col'+(ci===3?' sticky-last':'')+'" style="left:'+_stickyL[ci]+'px;min-width:'+(ci===3?180:(ci===1?100:80))+'px"' : '';
+    var mw = (ci>=4 && ci<=21) ? ';min-width:96px;white-space:nowrap' : '';
+    var st2 = st ? st.replace('style="','style="'+mw) : (mw ? ' style="'+mw.replace(';min','min')+';"' : '');
+    thead += '<th'+st2+'>'+col.h+'</th>';
+  }
   thead += '</tr>';
   document.getElementById('thead-rider').innerHTML = thead;
 
@@ -6311,33 +6423,26 @@ function renderRiderTabPage(page) {
     var info = getSiteInfo(r[3]);
 
     if (info.区域 !== prevRegion) {
-      rows += '<tr class="lv-subregion"><td class="sticky-col" style="left:0;min-width:80px" colspan="22">'+escHtml(info.区域)+'汇总</td></tr>';
+      rows += '<tr class="lv-subregion"><td class="sticky-col" style="left:0;min-width:80px" colspan="'+RIDER_COLS.length+'">'+escHtml(info.区域)+'汇总</td></tr>';
       prevRegion = info.区域;
       prevCity = '';
     }
     if (info.城市 !== prevCity) {
-      rows += '<tr class="lv-merchant"><td class="sticky-col" style="left:0;min-width:80px" colspan="22">'+escHtml(info.城市)+'</td></tr>';
+      rows += '<tr class="lv-merchant"><td class="sticky-col" style="left:0;min-width:80px" colspan="'+RIDER_COLS.length+'">'+escHtml(info.城市)+'</td></tr>';
       prevCity = info.城市;
     }
 
     rows += '<tr class="lv-site">';
-    rows += '<td class="sticky-col" style="left:0;min-width:80px">'+escHtml(info.大区)+'</td>';
-    rows += '<td class="sticky-col" style="left:80px;min-width:100px">'+escHtml(info.区域)+'</td>';
-    rows += '<td class="sticky-col sticky-last" style="left:180px;min-width:80px">'+escHtml(info.城市)+'</td>';
-    rows += '<td class="sticky-col sticky-last name-cell" style="left:260px;min-width:180px">'+escHtml(r[3])+'</td>';
-    var maxJ = Math.min(r.length, 19);
-    for (var j=4;j<maxJ;j++) {
-      var v = r[j];
-      if (v === '是') rows += '<td class="rg">是</td>';
-      else if (v === '否') rows += '<td class="rr">否</td>';
-      else if (v == null || v === '') rows += '<td class="rn">-</td>';
-      else rows += '<td>'+escHtml(String(v))+'</td>';
+    var en = riderEnrich(r[4]) || {};
+    for (var ci=0; ci<RIDER_COLS.length; ci++){
+      var col=RIDER_COLS[ci];
+      var v = col.get(r, info, en);
+      if (ci<4){
+        var st = ' class="sticky-col'+(ci===3?' sticky-last name-cell':'')+'" style="left:'+_stickyL[ci]+'px;min-width:'+(ci===3?180:(ci===1?100:80))+'px"';
+        rows += '<td'+st+'>'+escHtml(String(v==null?'':v))+'</td>';
+      } else if (col.kind==='state') rows += cellVal(v);
+      else rows += '<td>'+(v==null||v===''?'<span class="rn">-</span>':escHtml(String(v)))+'</td>';
     }
-    // 证书日期列（发证日期、到期时间、剩余天数）
-    var certInfo = calcCertDates(r);
-    rows += '<td>'+escHtml(certInfo.issueText)+'</td>';
-    rows += '<td>'+escHtml(certInfo.expireText)+'</td>';
-    rows += '<td class="'+certInfo.remainCls+'">'+escHtml(certInfo.remainText)+'</td>';
     rows += '</tr>';
   }
   document.getElementById('tbody-rider').innerHTML = rows;
