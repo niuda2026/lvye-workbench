@@ -105,6 +105,16 @@
           "key": "checkup_safety",
           "label": "合作商安全管理规范",
           "file": "履约考核/合作商安全管理规范.html"
+        },
+        {
+          "key": "checkup_insurance_appeal",
+          "label": "保险超时报案申诉剔除机制",
+          "file": "履约考核/保险超时报案申诉剔除机制.html"
+        },
+        {
+          "key": "checkup_info_security",
+          "label": "合作商信息安全及系统账号管理规则",
+          "file": "履约考核/合作商信息安全及系统账号管理规则.html"
         }
       ]
     },
