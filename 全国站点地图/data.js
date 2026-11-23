@@ -1,7 +1,7 @@
 // ============================================================
 // 全国站点地图 - 点位数据
 // 数据来源：美团配送后台「标准站点信息」接口抓取（站点合作状态=合作）
-// 抓取时间：2026-11-23 | 站点总数：158（含骑手宿舍 96）
+// 抓取时间：2026-11-24 | 站点总数：158（含骑手宿舍 96）
 //
 // 字段说明：
 //   name     : 点位名称（美团标准站点名称）
@@ -144,7 +144,7 @@ window.SITE_DATA = [
   { name: "兴必达【锦州】曼哈顿站", xian: "太和区", city: "锦州", province: "辽宁省", address: "太和区凌南东里河畔家园19-36号", category: "meituan", level: "B", lng: 121.159137, lat: 41.082455, stationId: "2015973", franchisee: "兴必达（江苏）网络科技有限公司【锦州】", region: "加盟辽宁区域", district: "华北大区--加盟", roomSize: 96.64, rentProperty: "门面房（包含小区内）", rentStart: "2026-06-01", rentEnd: "2026-11-30", doorTypeName: "标准门头", mainOrg: "兴必达【锦州】兴隆和太和站" },
   { name: "兴必达【青岛】北江路站", xian: "黄岛区", city: "青岛", province: "山东省", address: "山东省青岛市黄岛区紫金山小区13号楼3单元101室", category: "meituan", level: "A", lng: 120.184259, lat: 35.964281, stationId: "2016251", franchisee: "兴必达（江苏）网络科技有限公司【青岛】", region: "加盟山东区域", district: "中南大区--加盟", roomSize: 83.11, rentProperty: "门面房（包含小区内）", rentStart: "2026-04-01", rentEnd: "2028-03-31", doorTypeName: "标准门头", mainOrg: "" },
   { name: "兴必达【唐山】银泰城站", xian: "路南区", city: "唐山", province: "河北省", address: "金色雅居5-9底商", category: "meituan", level: "A", lng: 118.169643, lat: 39.619706, stationId: "2034614", franchisee: "兴必达（江苏）网络科技有限公司【唐山】", region: "加盟津冀区域", district: "华北大区--加盟", roomSize: 120, rentProperty: "门面房（包含小区内）", rentStart: "2026-02-01", rentEnd: "2027-01-31", doorTypeName: "标准门头", mainOrg: "" },
-  { name: "兴必达【张家口】银座站", xian: "桥东区", city: "张家口", province: "河北省", address: "张家口市桥东区茶坊路1号天阳花园小区9号楼1屋04", category: "meituan", level: "A", lng: 114.891035, lat: 40.789295, stationId: "2017172", franchisee: "兴必达（江苏）网络科技有限公司【张家口】", region: "加盟津冀区域", district: "华北大区--加盟", roomSize: 58.51, rentProperty: "门面房（包含小区内）", rentStart: "2024-11-21", rentEnd: "2026-11-20", doorTypeName: "标准门头", mainOrg: "" },
+  { name: "兴必达【张家口】银座站", xian: "桥东区", city: "张家口", province: "河北省", address: "张家口市桥东区茶坊路1号天阳花园小区9号楼1屋04", category: "meituan", level: "A", lng: 114.891035, lat: 40.789295, stationId: "2017172", franchisee: "兴必达（江苏）网络科技有限公司【张家口】", region: "加盟津冀区域", district: "华北大区--加盟", roomSize: 58.51, rentProperty: "门面房（包含小区内）", rentStart: "2026-11-21", rentEnd: "2028-11-20", doorTypeName: "标准门头", mainOrg: "" },
   { name: "兴必达【临沂】兰山区站", xian: "兰山区", city: "临沂", province: "山东省", address: "临沂市兰山区银雀山街道启阳路与商城路交汇北10米", category: "meituan", level: "A", lng: 118.325212, lat: 35.057304, stationId: "2008478", franchisee: "兴必达（江苏）网络科技有限公司【临沂】", region: "加盟山东区域", district: "中南大区--加盟", roomSize: 72, rentProperty: "门面房（包含小区内）", rentStart: "2026-09-24", rentEnd: "2029-09-23", doorTypeName: "标准门头", mainOrg: "" },
   { name: "兴必达【阜阳】人民路站", xian: "颍州区", city: "阜阳", province: "安徽省", address: "颍州区华轩中鑫御景2号楼108室", category: "meituan", level: "A", lng: 115.794281, lat: 32.913959, stationId: "2023025", franchisee: "兴必达（江苏）网络科技有限公司【阜阳】", region: "加盟安徽区域", district: "中南大区--加盟", roomSize: 120, rentProperty: "门面房（包含小区内）", rentStart: "2025-04-15", rentEnd: "2027-04-14", doorTypeName: "标准门头", mainOrg: "" },
   { name: "兴必达【秦皇岛】乐购站", xian: "海港区", city: "秦皇岛", province: "河北省", address: "河北省秦皇岛市海港区兴龙国际城9-5号", category: "meituan", level: "A", lng: 119.607298, lat: 39.937249, stationId: "2015408", franchisee: "兴必达（江苏）网络科技有限公司【秦皇岛】", region: "加盟津冀区域", district: "华北大区--加盟", roomSize: 100, rentProperty: "门面房（包含小区内）", rentStart: "2026-05-01", rentEnd: "2027-04-30", doorTypeName: "标准门头", mainOrg: "" },
