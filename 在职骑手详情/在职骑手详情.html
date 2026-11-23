@@ -107,6 +107,25 @@ tr:hover td{background:#f0f7ff}
 .drawer-mask{display:none;position:fixed;inset:0;background:rgba(13,43,72,.35);z-index:200}.drawer-mask.on{display:block}.drawer{position:absolute;right:0;top:0;height:100%;width:min(520px,94vw);background:#fff;box-shadow:-6px 0 24px rgba(13,71,161,.25);overflow:auto;padding:20px}.drawer h2{font-size:17px;color:#1565c0;margin-bottom:12px}.drawer-close{float:right;border:0;background:none;font-size:22px;color:#7890a8;cursor:pointer}.rv-grid{display:grid;grid-template-columns:110px 1fr;gap:8px 12px;font-size:13px;margin:12px 0}.rv-grid dt{color:#7890a8}.rv-grid dd{margin:0;word-break:break-all}.rv-box{background:#f5f9ff;border:1px solid #cce0f5;border-radius:6px;padding:10px;margin-top:12px;font-size:12px;line-height:1.7}.hc-thumb{height:42px;max-width:64px;object-fit:cover;border-radius:3px;border:1px solid #cce0f5;cursor:zoom-in;display:block}
 .photo-cell{white-space:nowrap}
 .rv-note{color:#7890a8;font-size:11px;margin-top:14px}
+.risk-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:11px 16px;margin:10px 0;border:1px solid #f0c9a8;background:#fff8f0;border-radius:8px;font-size:13px}
+.risk-bar b{color:#a2400a}
+.risk-bar .rb-item{padding:3px 10px;border-radius:12px;background:#fff;border:1px solid #ecd9c6}
+.risk-bar .rb-item i{font-style:normal;font-weight:700}
+.risk-bar .rb-link{margin-left:auto;color:#0b5e8a;cursor:pointer;text-decoration:underline;font-size:12px}
+.rb-P1{color:#b3261e;background:#ffebee!important;border-color:#f2b8b5!important}
+.rb-P2{color:#9a4a00;background:#fff3e0!important;border-color:#f3c98b!important}
+.rb-P3{color:#6a4b9c;background:#f1ebfa!important;border-color:#cdbde6!important}
+.rb-P0{color:#4b6478;background:#eef3f8!important;border-color:#d5e0ea!important}
+.rb-loc{color:#b3261e;background:#ffebee;border:1px solid #f2b8b5;padding:1px 7px;border-radius:10px;font-size:11px}
+.rb-ok{color:#2e7d32;background:#e8f5e9;border:1px solid #b7dfbd;padding:1px 7px;border-radius:10px;font-size:11px}
+.rb-ch{display:inline-block;max-width:210px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:bottom;font-size:11px;color:#42637d}
+.rv-verify{margin-top:12px;border-top:1px solid #e3ebf3;padding-top:12px}
+.rv-verify .rvf{display:grid;grid-template-columns:88px 1fr;gap:7px 10px;align-items:center;font-size:12px}
+.rv-verify select,.rv-verify input,.rv-verify textarea{font:inherit;padding:5px 7px;border:1px solid #cbd8e5;border-radius:5px;background:#fff;color:#1f2937;width:100%}
+.rv-verify textarea{min-height:52px;resize:vertical}
+.rv-verify button{margin-top:9px;padding:6px 15px;border:0;border-radius:5px;background:#0f766e;color:#fff;cursor:pointer}
+.rv-verify button:disabled{background:#9fb7b5;cursor:not-allowed}
+.rv-verify .rvf-hint{grid-column:1/-1;color:#7a8c9e;font-size:11px}
 </style>
 </head>
 <body>
@@ -123,6 +142,7 @@ tr:hover td{background:#f0f7ff}
 </div>
 
 <div class="todo" id="todoBar"></div>
+<div class="risk-bar" id="riskBar"></div>
 
 <div class="stats" id="stats"></div>
 
@@ -152,6 +172,11 @@ tr:hover td{background:#f0f7ff}
     <option value="9999">入职 &gt;1 年</option>
   </select>
   <select id="fReview" aria-label="核查状态"><option value="">全部核查状态</option><option value="uncollected">未采集</option><option value="pending">待核查</option><option value="lowq">需人工看图</option><option value="domain_check">域名待核实</option><option value="manual">待人工复核</option><option value="risk">发现风险线索</option><option value="verified">已核验</option><option value="failed">采集失败</option></select>
+  <select id="fRisk" aria-label="风险等级"><option value="">全部风险等级</option><option value="P1">P1 高危域名</option><option value="P2">P2 批量聚集</option><option value="P3">P3 属地线索</option><option value="P0">P0 无线索</option></select>
+  <select id="fLoc" aria-label="属地判定"><option value="">全部属地判定</option><option value="非属地线索">非属地线索</option><option value="属地">属地</option><option value="待核实">待核实</option></select>
+  <select id="fP1" aria-label="P1识别"><option value="">全部P1识别</option><option value="qr">P1 解出二维码</option><option value="cert">P1 读到证件编号</option><option value="prov">P1 识别发证省</option><option value="lowq">P1 低质量图</option></select>
+  <select id="fModel" aria-label="自研对标"><option value="">全部自研对标</option><option value="A级-高危">A级 高危</option><option value="B级-重点">B级 重点</option><option value="C级-关注">C级 关注</option><option value="hq">总部535名单</option><option value="new">名单外新发现</option></select>
+  <select id="fVerify" aria-label="核验结果"><option value="">全部核验结果</option><option value="pending">待核验</option><option value="valid">已核验通过</option><option value="invalid">判定虚假</option><option value="reissued">已换证</option><option value="appeal">申诉中</option></select>
   <input id="fQ" placeholder="搜索姓名 / 骑手ID / 站点">
   <label class="chk"><input type="checkbox" id="fPre" checked> 含预离职已通过</label>
   <button class="btn-exp" id="btnExp">导出督办名单</button>
@@ -179,6 +204,14 @@ tr:hover td{background:#f0f7ff}
       <th data-sort="rd" class="num">回执单剩余</th>
       <th data-sort="st">处置</th>
       <th data-sort="reviewStatus" class="review-col">核查状态</th>
+      <th data-sort="risk" class="review-col">风险等级</th>
+      <th data-sort="mdScore" class="review-col">自研对标</th>
+      <th data-sort="loc" class="review-col">属地判定</th>
+      <th data-sort="p1Cert" class="review-col">P1证件编号</th>
+      <th data-sort="p1Prov" class="review-col">P1发证省</th>
+      <th data-sort="p1Qr" class="review-col">P1二维码</th>
+      <th data-sort="channel" class="review-col">官方验真渠道</th>
+      <th data-sort="verify" class="review-col">核验结果</th>
       <th class="review-col">照片</th>
       <th class="review-col">证件详情</th>
     </tr></thead>
@@ -192,6 +225,9 @@ tr:hover td{background:#f0f7ff}
 <script src="../_libs/html2canvas-1.4.1.min.js"></script>
 <script src="health_cert_data.js"></script>
 <script src="hc_review_data.js"></script>
+<script src="hc_risk_data.js"></script>
+<script src="hc_p1_data.js"></script>
+<script src="hc_model_data.js"></script>
 <script src="hc_supplement_data.js"></script>
 <script src="hc_profile_data.js"></script>
 <script src="hc_derived_data.js"></script>
@@ -200,6 +236,12 @@ tr:hover td{background:#f0f7ff}
 var META = window.HC_META || {};
 var DATA = window.HC_DATA || [];
 var REVIEW = window.HC_REVIEW_DATA || {};
+var RISK = window.HC_RISK_DATA || {};
+var RISK_META = window.HC_RISK_META || {};
+var P1 = window.HC_P1_DATA || {};
+var P1_META = window.HC_P1_META || {};
+var MODEL = window.HC_MODEL_DATA || {};
+var MODEL_META = window.HC_MODEL_META || {};
 var SUPPLEMENT = window.HC_SUPPLEMENT_DATA || {};
 var PROFILE = window.HC_PROFILE_DATA || {};
 var DERIVED = window.HC_DERIVED_DATA || {};
@@ -248,10 +290,45 @@ function fmtCert(o,key){
 
 var RV_LABEL={uncollected:'未采集',pending:'待核查',lowq:'需人工看图',domain_check:'域名待核实',risk:'发现风险线索',manual:'待人工复核',verified:'已核验',failed:'采集失败'};
 var RV_CLASS={uncollected:'rv-none',pending:'rv-pending',lowq:'rv-lowq',domain_check:'rv-dom',risk:'rv-risk',manual:'rv-pending',verified:'rv-ok',failed:'rv-fail'};
+var VERIFY_LABEL={valid:'已核验通过',invalid:'判定虚假',reissued:'已换证',appeal:'申诉中'};
+var VERIFY_CLASS={valid:'rv-ok',invalid:'rv-risk',reissued:'rv-ok',appeal:'rv-pending'};
 function reviewOf(o){return Object.prototype.hasOwnProperty.call(REVIEW,String(o.r)) ? REVIEW[String(o.r)] || {} : {};}
 function reviewStatus(o){var v=reviewOf(o).status;return Object.prototype.hasOwnProperty.call(RV_LABEL,v)?v:'uncollected';}
 var reviewReturnFocus=null;
 function closeReview(){document.getElementById('reviewMask').classList.remove('on');if(reviewReturnFocus) reviewReturnFocus.focus();}
+/* P0：核验结果写回（本机 8789 私密服务；token 只留内存，不落 localStorage） */
+var VERIFY_TOKEN='';
+function saveVerify(o,btn){
+  var msg=document.getElementById('vfMsg'); if(!msg) return;
+  var g=function(id){var e=document.getElementById(id);return e?e.value:'';};
+  var result=g('vfResult'), reviewer=g('vfReviewer').trim(), evidence=g('vfEvidence').trim(), code=g('vfCode').trim();
+  if(!result){ msg.textContent='请先选择核验结论'; return; }
+  if(!code && !VERIFY_TOKEN){ msg.textContent='请填写解锁码（私密目录 unlock_code.txt）'; return; }
+  btn.disabled=true; msg.textContent='正在保存…';
+  var API='http://127.0.0.1:8789';
+  function post(path,headers,body){
+    return fetch(API+path,{method:'POST',headers:headers,
+      body:body===undefined?undefined:JSON.stringify(body),
+      mode:'cors',cache:'no-store',credentials:'omit',referrerPolicy:'no-referrer'})
+      .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); });
+  }
+  var p=VERIFY_TOKEN?Promise.resolve({token:VERIFY_TOKEN}):post('/api/unlock',{'Content-Type':'application/json'},{code:code});
+  p.then(function(u){
+    VERIFY_TOKEN=u.token;
+    return post('/api/verify/save/'+encodeURIComponent(String(o.r)),
+      {'Content-Type':'application/json','Authorization':'Bearer '+VERIFY_TOKEN},
+      {verify:result,reviewer:reviewer,evidence:evidence,channel:o.channel||'',at:new Date().toISOString()});
+  }).then(function(res){
+    o.verify=result;
+    var rv=reviewOf(o); rv.verify=result; rv.reviewer=reviewer; rv.evidenceSummary=evidence;
+    msg.textContent='已保存 · '+(res.savedAt||'');
+    btn.disabled=false; render(); renderStats(); renderRiskBar();
+  }).catch(function(err){
+    msg.textContent='保存失败：'+err.message+'（请确认从 8765 打开看板、解锁码正确、8789 服务已启动）';
+    btn.disabled=false;
+  });
+}
+
 function openReview(o){
   var v=reviewOf(o), k=reviewStatus(o);
   reviewReturnFocus=document.activeElement;
@@ -265,7 +342,38 @@ function openReview(o){
     +'<dl class="rv-grid">'+field('体检机构',v.institution)+field('证件编号',v.certificateMasked)+field('识别有效期',v.expiry)+field('二维码摘要',v.qrSummary)+field('采集时间',v.collectedAt)+field('图片是否更新',v.imageChanged===true?'有更新':v.imageChanged===false?'无更新':'未知')+'</dl>'
     +'<div class="rv-box"><b>'+(k==='domain_check'?'待核实说明':k==='risk'?'风险依据':'核查说明')+'</b><br>'+(reasons.length?reasons.map(esc).join('<br>'):'暂无核查结果；不代表已证实有效。')+'</div>'
     +'<dl class="rv-grid">'+field('人工结论',v.conclusion)+field('复核人',v.reviewer)+field('复核时间',v.checkedAt)+field('核验依据',v.evidenceSummary)+'</dl>'
+    +'<div class="rv-box"><b>官方验真与风险线索</b><br>'
+      +'风险等级：<span class="review-badge rb-'+o.risk+'">'+o.risk+'</span>　属地判定：<span class="'+(o.loc==='非属地线索'?'rb-loc':'')+'">'+esc(o.loc)+'</span>'
+      +(o.locEvi?'<br>判定依据：'+esc(o.locEvi):'')+'<br>'
+      +'验真渠道：'+(o.channel?esc(o.channel):'未映射')+'（'+esc(o.method||'—')+'）'
+      +(o.verifyUrl?'　<a href="'+esc(o.verifyUrl)+'" target="_blank" rel="noopener" style="color:#0b5e8a">打开官方入口</a>':'')+'<br>'
+      +'二维码域名：'+esc(o.dom||'未解出')+(o.domFlag?'　<span style="color:#b3261e">'+esc(o.domFlag)+'</span>':'')
+      +(o.domCount?'　（同域名共 '+o.domCount+' 人）':'')+'</div>'
+    +'<div class="rv-box"><b>P1 三引擎识别（线索，非核验结论）</b><br>'
+      +'二维码：'+(o.p1Qr?esc(o.p1Qr.slice(0,180)):'未解出')+'（'+esc(o.p1Eng||'未运行')+'）<br>'
+      +'证件编号：'+esc(o.p1Cert||'未读到')+'　发证省：'+esc(o.p1Prov||'未识别')+'　识别有效期：'+esc(o.p1Date||'未识别')+'<br>'
+      +'图像质量：'+(o.p1Q===null?'—':o.p1Q+' 分')+'　OCR 行数：'+o.p1Ocr
+      +((o.p1.lines&&o.p1.lines.length)?'<br><span style="font-size:11px;color:#7a8c9e">'+o.p1.lines.map(esc).join('<br>')+'</span>':'')+'</div>'
+    +'<div class="rv-box"><b>自研对标模型（总部535名单逆向，非官方模型）</b><br>'
+      +'对标等级：<span class="review-badge rb-'+(o.mdLevel.indexOf('A级')===0?'risk':(o.mdLevel.indexOf('B级')===0?'dom':(o.mdLevel.indexOf('C级')===0?'pending':'none')))+'">'+esc(o.mdLevel)+'</span>　得分 <b>'+o.mdScore+'</b>'
+      +(o.mdHQ?'　<span style="color:#b3261e">★ 总部535名单命中'+(o.mdHQType?'（'+esc(o.mdHQType)+'）':'')+'</span>':'')+'<br>'
+      +'命中依据：'+esc(o.mdWhy||'无——需官方验真，不能凭此认定有效或造假')+'</div>'
+    +'<div class="rv-verify"><b>官方核验结果录入</b>'
+      +'<div class="rvf"><label>核验结论</label><select id="vfResult"><option value="">待核验</option><option value="valid">已核验通过</option><option value="invalid">判定虚假</option><option value="reissued">已换证</option><option value="appeal">申诉中</option></select>'
+      +'<label>核验人</label><input id="vfReviewer" maxlength="40" placeholder="姓名或工号">'
+      +'<label>核验依据</label><textarea id="vfEvidence" maxlength="200" placeholder="官方渠道 + 查询结果 + 凭证要点"></textarea>'
+      +'<label>解锁码</label><input id="vfCode" type="password" maxlength="256" autocomplete="off" placeholder="本机私密目录 unlock_code.txt；一次会话只需填一次">'
+      +'<div class="rvf-hint">核验结果保存在本机私密目录，看板只读展示；不会推送群消息，也不会改动抓取链路。</div>'
+      +'<label></label><button type="button" id="vfSave">保存核验结果</button>'
+      +'<div class="rvf-hint" id="vfMsg"></div></div></div>'
     +'<p class="rv-note">到期状态与真伪核查独立。跨省、二维码协议、域名外观或相似图片均不能单独认定造假。当前不推送核查结果。</p>';
+  var sv=document.getElementById('vfSave');
+  if(sv) sv.onclick=function(){ saveVerify(o,this); };
+  var vr=document.getElementById('vfResult');
+  if(vr) vr.value=o.verify||'';
+  var rv=document.getElementById('vfReviewer'); if(rv) rv.value=(v.reviewer||'');
+  var re=document.getElementById('vfEvidence'); if(re) re.value=(v.evidenceSummary||'');
+  var rc=document.getElementById('vfCode'); if(rc) rc.value=VERIFY_TOKEN||'';
   document.getElementById('reviewMask').classList.add('on');document.getElementById('reviewClose').focus();
 }
 document.getElementById('reviewClose').onclick=closeReview;
@@ -308,6 +416,48 @@ DATA.forEach(function(o){
   o.st  = statusOf(o);
   o.reviewStatus = reviewStatus(o);
   o.hasImg = !!(REVIEW[String(o.r)]||{}).hasImage;
+  var rk = RISK[String(o.r)] || {};
+  o.risk = rk.risk || 'P0';
+  o.loc = rk.loc || '待核实';
+  o.locConf = rk.locConf || '低';
+  o.locEvi = rk.locEvi || '';
+  o.channel = rk.channel || '';
+  o.method = rk.method || '';
+  o.verifyUrl = rk.url || '';
+  o.dom = rk.domain || '';
+  o.domFlag = rk.domFlag || '';
+  o.domCount = rk.domCount || 0;
+  o.verify = (REVIEW[String(o.r)]||{}).verify || '';
+  /* P1 三引擎 + Windows OCR 结果：只补充线索，不覆盖人工核验结论 */
+  var px = P1[String(o.r)] || {};
+  o.p1 = px;
+  o.p1Cert = px.cert || '';
+  o.p1Prov = px.province || '';
+  o.p1Qr = px.qr || '';
+  o.p1Eng = px.qrEngine || '';
+  o.p1Q = (px.quality && typeof px.quality.score === 'number') ? px.quality.score : null;
+  o.p1Date = px.validUntil || '';
+  o.p1Ocr = px.ocrLines || 0;
+  var qm = /^https?:\/\/([^\/#?]+)/i.exec(o.p1Qr);
+  o.p1Domain = qm ? qm[1].toLowerCase() : '';
+  o.p1Status = o.p1Qr ? 'qr' : (o.p1Cert ? 'cert' : (o.p1Prov ? 'prov' : ''));
+  /* 自研对标模型（总部535名单逆向规则）：只作线索，不覆盖人工核验 */
+  var md = MODEL[String(o.r)] || {};
+  o.mdScore = md.score || 0;
+  o.mdLevel = md.level || 'D级-暂无线索';
+  o.mdWhy = md.why || '';
+  o.mdHQ = md.hq ? 1 : 0;
+  o.mdHQType = md.hqType || '';
+  o.mdDom = md.dom || '';
+  /* P1 读到的发证省比旧 OCR 机构文本更可靠：优先刷新属地判定 */
+  if(o.p1Prov && rk.prov){
+    if(o.p1Prov !== rk.prov){
+      o.loc='非属地线索'; o.locConf='高'; o.locEvi='P1 OCR 发证省：'+o.p1Prov+'（工作地省：'+rk.prov+'）';
+      if(o.risk==='P0') o.risk='P3';
+    }else{
+      o.loc='属地'; o.locConf='高'; o.locEvi='P1 OCR 发证省：'+o.p1Prov;
+    }
+  }
   o.ctp = certTypeOf(o); o.cd = certDateOf(o);
 });
 function statusOf(o){
@@ -456,6 +606,23 @@ function filter(){
     if(!hit('site',o.s)) return false;
     if(st.stt && o.st!==st.stt) return false;
     if(document.getElementById('fReview').value && o.reviewStatus!==document.getElementById('fReview').value) return false;
+    if(document.getElementById('fRisk').value && o.risk!==document.getElementById('fRisk').value) return false;
+    if(document.getElementById('fLoc').value && o.loc!==document.getElementById('fLoc').value) return false;
+    var fp=document.getElementById('fP1').value;
+    if(fp==='lowq'){ if(o.p1Q===null||o.p1Q>=55) return false; }
+    else if(fp==='qr'){ if(!o.p1Qr) return false; }
+    else if(fp==='cert'){ if(!o.p1Cert) return false; }
+    else if(fp==='prov'){ if(!o.p1Prov) return false; }
+    var fm=document.getElementById('fModel').value;
+    if(fm){
+      if(fm==='hq'){ if(!o.mdHQ) return false; }
+      else if(fm==='new'){ if(o.mdHQ||o.mdScore<25) return false; }
+      else if(o.mdLevel!==fm) return false;
+    }
+    if(document.getElementById('fVerify').value){
+      var fv=document.getElementById('fVerify').value;
+      if(fv==='pending' ? !!o.verify : o.verify!==fv) return false;
+    }
     if(st.hire){
       var hd=o.hd; if(hd===null) return false;
       var lim=parseInt(st.hire,10);
@@ -464,10 +631,43 @@ function filter(){
       else if(lim===365){ if(!(hd>90&&hd<=365)) return false; }
       else { if(!(hd>365)) return false; }
     }
-    if(q){ var s=(o.s+' '+o.r+' '+o.n+' '+o.c).toLowerCase(); if(s.indexOf(q)===-1) return false; }
+    if(q){ var s=(o.s+' '+o.r+' '+o.n+' '+o.c+' '+o.p1Cert+' '+o.p1Domain).toLowerCase(); if(s.indexOf(q)===-1) return false; }
     return true;
   });
-  sort(); st.page=1; render(); renderStats(); renderRank();
+  sort(); st.page=1; render(); renderStats(); renderRiskBar(); renderRank();
+}
+
+/* P0：12/20 集中检查倒计时 + 风险分层汇总 */
+function renderRiskBar(){
+  var box=document.getElementById('riskBar'); if(!box) return;
+  var dl=RISK_META.deadline||'2026-12-20';
+  var left=days(dl,TODAY);
+  function n(fn){ return view.filter(fn).length; }
+  var p1=n(function(o){return o.risk==='P1';}), p2=n(function(o){return o.risk==='P2';});
+  var p3=n(function(o){return o.risk==='P3';}), nonlocal=n(function(o){return o.loc==='非属地线索';});
+  var todo=n(function(o){return (o.risk==='P1'||o.risk==='P2'||o.risk==='P3')&&!o.verify;});
+  var verified=n(function(o){return !!o.verify;});
+  var p1qr=n(function(o){return !!o.p1Qr;}), p1cert=n(function(o){return !!o.p1Cert;});
+  var lowq=n(function(o){return o.p1Q!==null&&o.p1Q<55;});
+  var mdA=n(function(o){return o.mdLevel.indexOf('A级')===0;}), mdHQ=n(function(o){return !!o.mdHQ;});
+  box.innerHTML='<b>12/20 集中检查</b>'
+    +'<span class="rb-item">距落罚 <i style="color:#c62828">'+(left===null?'—':(left>=0?left+' 天':'已过'))+'</i></span>'
+    +'<span class="rb-item rb-P1">P1 高危 <i>'+p1+'</i></span>'
+    +'<span class="rb-item rb-P2">P2 批量 <i>'+p2+'</i></span>'
+    +'<span class="rb-item rb-P3">P3 属地 <i>'+p3+'</i></span>'
+    +'<span class="rb-item">非属地线索 <i style="color:#b3261e">'+nonlocal+'</i></span>'
+    +'<span class="rb-item">已核验 <i style="color:#2e7d32">'+verified+'</i></span>'
+    +'<span class="rb-item">P1解出二维码 <i style="color:#1565c0">'+p1qr+'</i></span>'
+    +'<span class="rb-item">P1读到编号 <i style="color:#1565c0">'+p1cert+'</i></span>'
+    +'<span class="rb-item">低质量图 <i style="color:#b26a00">'+lowq+'</i></span>'
+    +'<span class="rb-item" title="自研模型对标命中，非总部官方结果">自研A级 <i style="color:#c62828">'+mdA+'</i></span>'
+    +'<span class="rb-item" title="命中总部本次下发535名单">★总部名单 <i style="color:#c62828">'+mdHQ+'</i></span>'
+    +'<span class="rb-link" id="rbTodo">只看未整改（'+todo+'）</span>';
+  var b=document.getElementById('rbTodo');
+  if(b) b.onclick=function(){
+    var f=document.getElementById('fVerify'); if(!f) return;
+    f.value=f.value==='pending'?'':'pending'; filter();
+  };
 }
 
 function sort(){
@@ -554,10 +754,22 @@ function render(){
       +'<td>'+fmtCert(o,'x')+'</td><td class="num">'+fmtN(o.rd)+'</td>'
       +'<td><span class="badge '+(ST_CLS[o.st]||'b-pre')+'">'+(ST_LABEL[o.st]||o.st)+'</span></td>'
       +'<td><span class="review-badge '+(RV_CLASS[o.reviewStatus]||'rv-none')+'">'+(RV_LABEL[o.reviewStatus]||'未采集')+'</span></td>'
+      +'<td><span class="review-badge rb-'+o.risk+'" title="'+esc(o.domFlag||(o.domCount?'批量出现 '+o.domCount+' 人':'未命中批量线索'))+'">'+o.risk+'</span>'
+        +(o.domFlag?'<div style="font-size:10px;color:#b3261e">'+esc(o.domFlag.slice(0,8))+'</div>':(o.domCount?'<div style="font-size:10px;color:#9a4a00">批量 '+o.domCount+'</div>':''))+'</td>'
+      +'<td title="'+esc(o.mdWhy||'自研模型未命中')+'"><span class="review-badge rb-'+(o.mdLevel.indexOf('A级')===0?'risk':(o.mdLevel.indexOf('B级')===0?'dom':(o.mdLevel.indexOf('C级')===0?'pending':'none')))+'">'+esc(o.mdLevel.replace('级-',''))+' '+o.mdScore+'</span>'
+        +(o.mdHQ?'<div style="font-size:10px;color:#b3261e">★总部名单</div>':(o.mdScore>=25?'<div style="font-size:10px;color:#9a4a00">名单外发现</div>':''))+'</td>'
+      +'<td><span class="'+(o.loc==='非属地线索'?'rb-loc':'')+'" title="'+esc(o.locEvi||'暂无可判定字段（需 OCR 升级）')+'">'+esc(o.loc)+'</span>'
+        +(o.locConf==='高'||o.locConf==='中'?'<div style="font-size:10px;color:#7a8c9e">'+o.locConf+'置信</div>':'')+'</td>'
+      +'<td title="'+(o.p1Q!==null?'图像质量 '+o.p1Q+' 分':'未跑 P1 识别')+'">'+(o.p1Cert?'<span style="font-family:monospace;font-size:11px">'+esc(o.p1Cert.slice(0,18))+'</span>':'<span class="cert-none">—</span>')
+        +(o.p1Q!==null?'<div style="font-size:10px;color:'+(o.p1Q<55?'#b3261e':'#7a8c9e')+'">质 '+o.p1Q+'</div>':'')+'</td>'
+      +'<td>'+(o.p1Prov?esc(o.p1Prov):'<span class="cert-none">—</span>')+'</td>'
+      +'<td title="'+esc(o.p1Qr||'未解出')+'">'+(o.p1Domain?'<span style="font-size:11px;color:#0b5e8a">'+esc(o.p1Domain.slice(0,20))+'</span>':(o.p1Qr?'<span style="font-size:10px;color:#7a8c9e">'+esc(o.p1Eng)+' · '+esc(o.p1Qr.slice(0,10))+'</span>':'<span class="cert-none">—</span>'))+'</td>'
+      +'<td>'+(o.channel?'<span class="rb-ch" title="'+esc(o.method+'｜'+o.channel)+(o.verifyUrl?'｜点击打开官方入口':'')+'">'+(o.verifyUrl?'<a href="'+esc(o.verifyUrl)+'" target="_blank" rel="noopener" style="color:#0b5e8a">'+esc(o.channel.slice(0,16))+'</a>':esc(o.channel.slice(0,16)))+'</span>':'<span class="cert-none">无渠道</span>')+'</td>'
+      +'<td><span class="review-badge '+(VERIFY_CLASS[o.verify]||'rv-none')+'">'+(VERIFY_LABEL[o.verify]||'待核验')+'</span></td>'
       +'<td class="photo-cell">'+(o.hasImg?'<img class="hc-thumb" loading="lazy" data-review-id="'+esc(String(o.r))+'" title="点击查看原图" src="http://127.0.0.1:8789/thumb/'+encodeURIComponent(String(o.r))+'" alt="证件缩略图" onerror="hcThumbFail(this)">':'<span class="cert-none">—</span>')+'</td>'
       +'<td><button type="button" class="review-link" data-review-id="'+esc(String(o.r))+'">查看详情</button></td></tr>');
   }
-  document.getElementById('tb').innerHTML=html.join('')||'<tr><td colspan="17" class="empty">没有符合条件的骑手</td></tr>';
+  document.getElementById('tb').innerHTML=html.join('')||'<tr><td colspan="26" class="empty">没有符合条件的骑手</td></tr>';
   document.getElementById('rowCount').textContent='筛选 '+total+' 人';
   var end=Math.min(start+st.size,total);
   var pg=document.getElementById('pager');
@@ -644,7 +856,7 @@ function renderRank(){
 }
 
 /* 事件（组织维度已改多选组件，这里只留单选维度） */
-['fSt','fHire','fReview'].forEach(function(id){
+['fSt','fHire','fReview','fRisk','fLoc','fP1','fModel','fVerify'].forEach(function(id){
   document.getElementById(id).addEventListener('change',function(){
     st.stt=document.getElementById('fSt').value; st.hire=document.getElementById('fHire').value;
     filter();
@@ -657,9 +869,12 @@ document.getElementById('btnHelp').addEventListener('click',function(){
     +'更新方式：全自动。M盘监控服务（每60秒扫描）发现新表落地后，会自动重建本看板数据，无需任何手动操作；本页面刷新即可看到最新数据。');
 });
 document.getElementById('btnExp').addEventListener('click',function(){
-  var head=['大区','区域','城市','站点','骑手ID','姓名','类型','发证日期','入职日期','入职日期来源','健康证到期','剩余天数','回执单到期','回执单剩余','处置','核查状态','证件照片'];
+  var head=['大区','区域','城市','站点','骑手ID','姓名','类型','发证日期','入职日期','入职日期来源','健康证到期','剩余天数','回执单到期','回执单剩余','处置','核查状态','照片','风险等级','自研对标','自研得分','总部名单','自研命中依据','属地判定','判定依据','官方验真渠道','核验结果','核验人','二维码域名','二维码摘要','P1证件编号','P1发证省','P1二维码','P1图像质量'];
   var rows=view.map(function(o){
-    return [o.b,o.g,o.c,o.s,o.r,o.n,o.ctp||'',o.cd||'',hireValue(o),(o.h?'健康证源':dv(o).hire?'采集 '+DERIVED_AT:supp(o).hireHistorical?'历史缓存 '+supp(o).sourceAt:'缺失'),o.dE||'',(o.hd2===null?'':o.hd2)+(o.eD?'（推定）':''),o.dX||'',(o.rd===null?'':o.rd)+(o.xD?'（推定）':''),(ST_LABEL[o.st]||o.st),RV_LABEL[o.reviewStatus]||'未采集',o.hasImg?'有':'无'];
+    var rv=reviewOf(o);
+    return [o.b,o.g,o.c,o.s,o.r,o.n,o.ctp||'',o.cd||'',hireValue(o),(o.h?'健康证源':dv(o).hire?'采集 '+DERIVED_AT:supp(o).hireHistorical?'历史缓存 '+supp(o).sourceAt:'缺失'),o.dE||'',(o.hd2===null?'':o.hd2)+(o.eD?'（推定）':''),o.dX||'',(o.rd===null?'':o.rd)+(o.xD?'（推定）':''),(ST_LABEL[o.st]||o.st),RV_LABEL[o.reviewStatus]||'未采集',o.hasImg?'有':'无',
+      o.risk,o.mdLevel,o.mdScore,o.mdHQ?'是':'否',o.mdWhy,o.loc,o.locEvi,o.channel,o.verify||'',rv.reviewer||'',o.dom,rv.qrSummary||'',
+      o.p1Cert,o.p1Prov,o.p1Qr,o.p1Q===null?'':o.p1Q];
   });
   var csv=[head].concat(rows).map(function(r){
     return r.map(function(v){return '"'+String(v==null?'':v).replace(/"/g,'""')+'"';}).join(',');
