@@ -174,10 +174,9 @@ tr:hover td{background:#f0f7ff}
   <select id="fReview" aria-label="核查状态"><option value="">全部核查状态</option><option value="uncollected">未采集</option><option value="pending">待核查</option><option value="lowq">需人工看图</option><option value="domain_check">域名待核实</option><option value="manual">待人工复核</option><option value="risk">发现风险线索</option><option value="verified">已核验</option><option value="failed">采集失败</option></select>
   <select id="fRisk" aria-label="风险等级"><option value="">全部风险等级</option><option value="P1">P1 高危域名</option><option value="P2">P2 批量聚集</option><option value="P3">P3 属地线索</option><option value="P0">P0 无线索</option></select>
   <select id="fLoc" aria-label="属地判定"><option value="">全部属地判定</option><option value="非属地线索">非属地线索</option><option value="属地">属地</option><option value="待核实">待核实</option></select>
-  <select id="fP1" aria-label="P1识别"><option value="">全部P1识别</option><option value="qr">P1 解出二维码</option><option value="cert">P1 读到证件编号</option><option value="prov">P1 识别发证省</option><option value="lowq">P1 低质量图</option></select>
+  <select id="fHit" aria-label="命中类型"><option value="">全部命中类型</option><option value="虚假域名">虚假域名</option><option value="异地健康证团伙">异地健康证团伙</option><option value="异地线索（待聚集确认）">异地线索</option><option value="AI生成健康证">AI生成健康证</option><option value="未命中">未命中</option></select>
   <select id="fModel" aria-label="自研对标"><option value="">全部自研对标</option><option value="A级-高危">A级 高危</option><option value="B级-重点">B级 重点</option><option value="C级-关注">C级 关注</option><option value="hq">总部535名单</option><option value="new">名单外新发现</option></select>
-  <select id="fP2" aria-label="P2精准识别"><option value="">全部P2识别</option><option value="has">P2 有识别结果</option><option value="cert">P2 读到证件编号</option><option value="prov">P2 识别发证省</option><option value="rot">P2 旋转图纠正</option></select>
-  <select id="fVerify" aria-label="核验结果"><option value="">全部核验结果</option><option value="pending">待核验</option><option value="valid">已核验通过</option><option value="invalid">判定虚假</option><option value="reissued">已换证</option><option value="appeal">申诉中</option></select>
+  <select id="fVerify" aria-label="核验结果"><option value="">全部核验结果</option><option value="pending">待核验</option><option value="hit">线索命中（待核验）</option><option value="valid">已核验通过</option><option value="invalid">判定虚假</option><option value="reissued">已换证</option><option value="appeal">申诉中</option></select>
   <select id="fAudit" aria-label="审核状态"><option value="">全部审核状态</option><option value="VERIFIED_INVALID">判定虚假（已核验）</option><option value="VERIFIED_VALID">核验通过</option><option value="REISSUED">已换证待复核</option><option value="APPEAL">申诉中</option><option value="EXPIRED">已过期（非假证）</option><option value="NO_CHANNEL">无官方验真渠道</option><option value="SUSPECT">模型线索待确认</option><option value="MANUAL">待人工看图</option><option value="PENDING">待核验</option></select>
   <input id="fQ" placeholder="搜索姓名 / 骑手ID / 站点">
   <label class="chk"><input type="checkbox" id="fPre" checked> 含预离职已通过</label>
@@ -209,12 +208,7 @@ tr:hover td{background:#f0f7ff}
       <th data-sort="risk" class="review-col">风险等级</th>
       <th data-sort="mdScore" class="review-col">自研对标</th>
       <th data-sort="loc" class="review-col">属地判定</th>
-      <th data-sort="p1Cert" class="review-col">P1证件编号</th>
-      <th data-sort="p1Prov" class="review-col">P1发证省</th>
-      <th data-sort="p1Qr" class="review-col">P1二维码</th>
-      <th data-sort="p2Cert" class="review-col">P2证件编号</th>
-      <th data-sort="p2Prov" class="review-col">P2发证省</th>
-      <th data-sort="p2Date" class="review-col">P2有效期</th>
+      <th data-sort="htHit" class="review-col">命中类型</th>
       <th data-sort="p4Name" class="review-col">证面姓名</th><th data-sort="p4Org" class="review-col">体检机构</th><th data-sort="p4DomCat" class="review-col">QR域名</th>
       <th data-sort="channel" class="review-col">官方验真渠道</th>
       <th data-sort="verify" class="review-col">核验结果</th>
@@ -237,6 +231,7 @@ tr:hover td{background:#f0f7ff}
 <script src="hc_model_data.js"></script>
 <script src="hc_paddle_data.js"></script>
 <script src="hc_qr_domain_data.js"></script>
+<script src="hc_hittype_data.js"></script>
 <script src="hc_supplement_data.js"></script>
 <script src="hc_profile_data.js"></script>
 <script src="hc_derived_data.js"></script>
@@ -301,8 +296,21 @@ function fmtCert(o,key){
 
 var RV_LABEL={uncollected:'未采集',pending:'待核查',lowq:'需人工看图',domain_check:'域名待核实',risk:'发现风险线索',manual:'待人工复核',verified:'已核验',failed:'采集失败'};
 var RV_CLASS={uncollected:'rv-none',pending:'rv-pending',lowq:'rv-lowq',domain_check:'rv-dom',risk:'rv-risk',manual:'rv-pending',verified:'rv-ok',failed:'rv-fail'};
-var VERIFY_LABEL={valid:'已核验通过',invalid:'判定虚假',reissued:'已换证',appeal:'申诉中'};
-var VERIFY_CLASS={valid:'rv-ok',invalid:'rv-risk',reissued:'rv-ok',appeal:'rv-pending'};
+var VERIFY_LABEL={valid:'已核验通过',invalid:'判定虚假',reissued:'已换证',appeal:'申诉中',hit:'线索命中（待核验）'};
+var VERIFY_CLASS={valid:'rv-ok',invalid:'rv-risk',reissued:'rv-ok',appeal:'rv-pending',hit:'rv-risk'};
+/* 风险等级小字释义：把 P 级代码和「批量 250」讲清楚，不再只给模糊代号 */
+var RISK_SHORT={P1:'可疑域名',P2:'批量聚集',P3:'属地线索',P0:'暂无线索'};
+var RISK_HELP={P1:'P1 高危域名：二维码域名命中可疑TLD / 测试子域 / 非医疗域名 / 裸IP',
+  P2:'P2 批量聚集：同一二维码域名出现≥5人；「同域名 N 人」即共用该二维码入口的人数',
+  P3:'P3 属地线索：体检机构发证省与跑单省不一致',
+  P0:'P0 暂无线索：未命中上述模型特征'};
+function locConfText(o){
+  if(o.locConf==='高') return o.loc==='非属地线索'?'高可信·跨省发证':'高可信·发证省一致';
+  if(o.locConf==='中') return '中可信·二维码归属';
+  return '';
+}
+var HIT_AUDIT_LABEL={'虚假域名':'命中虚假域名（待官方确认）','异地健康证团伙':'命中异地团伙（待官方确认）',
+  'AI生成健康证':'命中AI生成（待官方确认）','异地线索（待聚集确认）':'命中异地线索（待确认）'};
 /* 2026-11-24 审核状态机：过期与假证分开，未接入地区单列，不与「已核验」混为一谈 */
 var AUDIT_CLASS={VERIFIED_INVALID:'rv-risk',VERIFIED_VALID:'rv-ok',REISSUED:'rv-ok',APPEAL:'rv-pending',
   EXPIRED:'rv-dom',NO_CHANNEL:'rv-lowq',SUSPECT:'rv-dom',MANUAL:'rv-pending',PENDING:'rv-none'};
@@ -335,7 +343,7 @@ function saveVerify(o,btn){
       {'Content-Type':'application/json','Authorization':'Bearer '+VERIFY_TOKEN},
       {verify:result,reviewer:reviewer,evidence:evidence,channel:o.channel||'',at:new Date().toISOString()});
   }).then(function(res){
-    o.verify=result;
+    o.verify=result; o.verifyShow=result;
     /* 写回后立即同步审核状态，避免表格仍显示「待核验」 */
     if(result==='valid'||result==='invalid'||result==='reissued'||result==='appeal'){
       o.audit={valid:'VERIFIED_VALID',invalid:'VERIFIED_INVALID',reissued:'REISSUED',appeal:'APPEAL'}[result];
@@ -364,10 +372,11 @@ function openReview(o){
     +'<div class="rv-box"><b>'+(k==='domain_check'?'待核实说明':k==='risk'?'风险依据':'核查说明')+'</b><br>'+(reasons.length?reasons.map(esc).join('<br>'):'暂无核查结果；不代表已证实有效。')+'</div>'
     +'<dl class="rv-grid">'+field('人工结论',v.conclusion)+field('复核人',v.reviewer)+field('复核时间',v.checkedAt)+field('核验依据',v.evidenceSummary)+'</dl>'
     +'<div class="rv-box"><b>审核状态（过期 ≠ 假证）</b><br>'
-      +'<span class="review-badge '+(AUDIT_CLASS[o.audit]||'rv-none')+'">'+(AUDIT_LABEL[o.audit]||o.audit||'待核验')+'</span>'
+      +'<span class="review-badge '+(AUDIT_CLASS[o.audit]||'rv-none')+'">'+(o.auditLabel||AUDIT_LABEL[o.audit]||o.audit||'待核验')+'</span>'
       +(o.auditNote?'<br>'+esc(o.auditNote):'')+'</div>'
     +'<div class="rv-box"><b>官方验真与风险线索</b><br>'
-      +'风险等级：<span class="review-badge rb-'+o.risk+'">'+o.risk+'</span>　属地判定：<span class="'+(o.loc==='非属地线索'?'rb-loc':'')+'">'+esc(o.loc)+'</span>'
+      +'风险等级：<span class="review-badge rb-'+o.risk+'">'+o.risk+' '+esc(RISK_SHORT[o.risk]||'')+'</span>　属地判定：<span class="'+(o.loc==='非属地线索'?'rb-loc':'')+'">'+esc(o.loc)+'</span>'+(locConfText(o)?'（'+locConfText(o)+'）':'')
+      +'<br>命中类型：'+esc(o.htHit||'未命中')+(o.htReason?'（'+esc(o.htReason)+'）':'')
       +(o.locEvi?'<br>判定依据：'+esc(o.locEvi):'')+'<br>'
       +'验真渠道：'+(o.channel?esc(o.channel):'未映射')+'（'+esc(o.method||'—')+'）'
       +(o.verifyUrl?'　<a href="'+esc(o.verifyUrl)+'" target="_blank" rel="noopener" style="color:#0b5e8a">打开官方入口</a>':'')+'<br>'
@@ -516,6 +525,17 @@ DATA.forEach(function(o){
     }else{
       o.loc='属地'; o.locConf='高'; o.locEvi=provSrc+' 发证省：'+provVal;
     }
+  }
+  /* 命中类型：逆向方法论的本地判定（不依赖总部名单） */
+  var ht = (window.HC_HITTYPE_DATA||{})[String(o.r)] || {};
+  o.htHit = ht.hit || '未命中'; o.htReason = ht.reason || ''; o.htConf = ht.conf || '';
+  /* 命中类型联动核验结果/审核状态：已识别到虚假域名等线索，就不能再显示「待核验 / 无官方验真渠道」。
+     红线：模型命中只作线索，绝不直接判假；官方写回和「过期（非假证）」优先级更高，不被覆盖。 */
+  o.verifyShow = o.verify || (o.htHit!=='未命中' ? 'hit' : '');
+  if(!o.verify && o.htHit!=='未命中' && o.audit!=='EXPIRED'){
+    o.audit = 'SUSPECT';
+    o.auditLabel = HIT_AUDIT_LABEL[o.htHit] || '模型线索待官方确认';
+    o.auditNote = (o.htReason||'本地规则命中')+'；须官方验真结案，不直接判假';
   }
   o.ctp = certTypeOf(o); o.cd = certDateOf(o);
 });
@@ -667,16 +687,8 @@ function filter(){
     if(document.getElementById('fReview').value && o.reviewStatus!==document.getElementById('fReview').value) return false;
     if(document.getElementById('fRisk').value && o.risk!==document.getElementById('fRisk').value) return false;
     if(document.getElementById('fLoc').value && o.loc!==document.getElementById('fLoc').value) return false;
-    var fp=document.getElementById('fP1').value;
-    if(fp==='lowq'){ if(o.p1Q===null||o.p1Q>=55) return false; }
-    else if(fp==='qr'){ if(!o.p1Qr) return false; }
-    else if(fp==='cert'){ if(!o.p1Cert) return false; }
-    else if(fp==='prov'){ if(!o.p1Prov) return false; }
-    var f2=document.getElementById('fP2').value;
-    if(f2==='has'){ if(!o.p2Has) return false; }
-    else if(f2==='cert'){ if(!o.p2Cert) return false; }
-    else if(f2==='prov'){ if(!o.p2Prov) return false; }
-    else if(f2==='rot'){ if(!o.p2Angle||o.p2Angle==='0') return false; }
+    var fh=document.getElementById('fHit').value;
+    if(fh && o.htHit!==fh) return false;
     var fm=document.getElementById('fModel').value;
     if(fm){
       if(fm==='hq'){ if(!o.mdHQ) return false; }
@@ -685,7 +697,7 @@ function filter(){
     }
     if(document.getElementById('fVerify').value){
       var fv=document.getElementById('fVerify').value;
-      if(fv==='pending' ? !!o.verify : o.verify!==fv) return false;
+      if(fv==='pending' ? !!o.verifyShow : o.verifyShow!==fv) return false;
     }
     if(document.getElementById('fAudit').value && o.audit!==document.getElementById('fAudit').value) return false;
     if(st.hire){
@@ -822,29 +834,24 @@ function render(){
       +'<td>'+fmtCert(o,'x')+'</td><td class="num">'+fmtN(o.rd)+'</td>'
       +'<td><span class="badge '+(ST_CLS[o.st]||'b-pre')+'">'+(ST_LABEL[o.st]||o.st)+'</span></td>'
       +'<td><span class="review-badge '+(RV_CLASS[o.reviewStatus]||'rv-none')+'">'+(RV_LABEL[o.reviewStatus]||'未采集')+'</span></td>'
-      +'<td><span class="review-badge rb-'+o.risk+'" title="'+esc(o.domFlag||(o.domCount?'批量出现 '+o.domCount+' 人':'未命中批量线索'))+'">'+o.risk+'</span>'
-        +(o.domFlag?'<div style="font-size:10px;color:#b3261e">'+esc(o.domFlag.slice(0,8))+'</div>':(o.domCount?'<div style="font-size:10px;color:#9a4a00">批量 '+o.domCount+'</div>':''))+'</td>'
+      +'<td><span class="review-badge rb-'+o.risk+'" title="'+esc(RISK_HELP[o.risk]||'未命中模型特征')+'">'+o.risk+' '+esc(RISK_SHORT[o.risk]||'')+'</span>'
+        +(o.domFlag?'<div style="font-size:11px;font-weight:600;color:#a31812" title="'+esc(o.domFlag)+'">域名特征：'+esc(o.domFlag.slice(0,8))+'</div>':(o.domCount?'<div style="font-size:11px;font-weight:600;color:#7a3d00" title="同一二维码域名共 '+o.domCount+' 人使用">同域名 '+o.domCount+' 人</div>':''))+'</td>'
       +'<td title="'+esc(o.mdWhy||'自研模型未命中')+'"><span class="review-badge rb-'+(o.mdLevel.indexOf('A级')===0?'risk':(o.mdLevel.indexOf('B级')===0?'dom':(o.mdLevel.indexOf('C级')===0?'pending':'none')))+'">'+esc(o.mdLevel.replace('级-',''))+' '+o.mdScore+'</span>'
         +(o.mdHQ?'<div style="font-size:10px;color:#b3261e">★总部名单</div>':(o.mdScore>=25?'<div style="font-size:10px;color:#9a4a00">名单外发现</div>':''))+'</td>'
       +'<td><span class="'+(o.loc==='非属地线索'?'rb-loc':'')+'" title="'+esc(o.locEvi||'暂无可判定字段（需 OCR 升级）')+'">'+esc(o.loc)+'</span>'
-        +(o.locConf==='高'||o.locConf==='中'?'<div style="font-size:10px;color:#7a8c9e">'+o.locConf+'置信</div>':'')+'</td>'
-      +'<td title="'+(o.p1Q!==null?'图像质量 '+o.p1Q+' 分':'未跑 P1 识别')+'">'+(o.p1Cert?'<span style="font-family:monospace;font-size:11px">'+esc(o.p1Cert.slice(0,18))+'</span>':'<span class="cert-none">—</span>')
+        +(locConfText(o)?'<div style="font-size:11px;color:#54687c" title="'+esc(o.locEvi||'')+'">'+locConfText(o)+'</div>':'')+'</td>'
+      /* p4HitTypeDone */+'<td title="'+esc(o.htReason||'本地规则判定（不依赖总部名单）')+'">'+(o.htHit==='未命中'?'<span class=cert-none>—</span>':'<span style="font-weight:600;color:'+(o.htHit.indexOf('异地')>=0?'#b3261e':(o.htHit==='AI生成健康证'?'#6a1b9a':'#9a4a00'))+'">'+esc(o.htHit)+'</span>')+'</td>'
         +(o.p1Q!==null?'<div style="font-size:10px;color:'+(o.p1Q<55?'#b3261e':'#7a8c9e')+'">质 '+o.p1Q+'</div>':'')+'</td>'
-      +'<td>'+(o.p1Prov?esc(o.p1Prov):'<span class="cert-none">—</span>')+'</td>'
-      +'<td title="'+esc(o.p1Qr||'未解出')+'">'+(o.p1Domain?'<span style="font-size:11px;color:#0b5e8a">'+esc(o.p1Domain.slice(0,20))+'</span>':(o.p1Qr?'<span style="font-size:10px;color:#7a8c9e">'+esc(o.p1Eng)+' · '+esc(o.p1Qr.slice(0,10))+'</span>':'<span class="cert-none">—</span>'))+'</td>'
-      +'<td title="PaddleOCR 精准识别（'+(o.p2Angle?esc(o.p2Angle)+'方向':'未跑P2')+'，'+o.p2Lines+'行）">'+(o.p2Cert?'<span style="font-family:monospace;font-size:11px;color:#1b5e20;font-weight:600">'+esc(o.p2Cert.slice(0,18))+'</span>':'<span class="cert-none">—</span>')+'</td>'
-      +'<td title="P2 发证省">'+(o.p2Prov?'<span style="color:#1b5e20;font-weight:600">'+esc(o.p2Prov)+'</span>':'<span class="cert-none">—</span>')+'</td>'
-      +'<td title="P2 识别有效期">'+(o.p2Date?esc(o.p2Date):'<span class="cert-none">—</span>')+(o.p2Angle&&o.p2Angle!=='0'?'<span style="font-size:10px;color:#7a8c9e"> ↻'+esc(o.p2Angle)+'</span>':'')+'</td>'
       /* p4NameCellMarker */+'<td title="证面姓名(花名册对齐)">'+(o.p4Name?('<span style="color:#1b5e20;font-weight:600">'+esc(o.p4Name)+'</span>'+(o.p4NameConf==='fuzzy'?'<span style="font-size:10px;color:#e65100">≈</span>':'')+(o.p4Name&&o.p4RiderName&&o.p4Name!==o.p4RiderName?'<span style="font-size:10px;color:#c62828">≠花名册</span>':'')):'<span class=cert-none>—</span>')+'</td>'
       +'<td title="体检机构(属地判定依据)">'+(o.p4Org?esc(String(o.p4Org).slice(0,16)):'<span class=cert-none>—</span>')+'</td>'
       +'<td title="QR域名类别">'+(o.p4DomCat?(o.p4DomCat==='suspect'?'<span style="color:#c62828;font-weight:600">可疑域名</span>':o.p4DomCat==='gov'?'<span style="color:#1b5e20">政务</span>':o.p4DomCat==='meituan'?'<span style="color:#1b5e20">美团</span>':esc(String(o.p4Dom).slice(0,14))):'<span class=cert-none>—</span>')+'</td>'
       +'<td>'+(o.channel?'<span class="rb-ch" title="'+esc(o.method+'｜'+o.channel)+(o.verifyUrl?'｜点击打开官方入口':'')+'">'+(o.verifyUrl?'<a href="'+esc(o.verifyUrl)+'" target="_blank" rel="noopener" style="color:#0b5e8a">'+esc(o.channel.slice(0,16))+'</a>':esc(o.channel.slice(0,16)))+'</span>':'<span class="cert-none">无渠道</span>')+'</td>'
-      +'<td><span class="review-badge '+(VERIFY_CLASS[o.verify]||'rv-none')+'">'+(VERIFY_LABEL[o.verify]||'待核验')+'</span></td>'
-      +'<td title="'+esc(o.auditNote||'')+'"><span class="review-badge '+(AUDIT_CLASS[o.audit]||'rv-none')+'">'+(AUDIT_LABEL[o.audit]||o.audit||'待核验')+'</span></td>'
+      +'<td><span class="review-badge '+(VERIFY_CLASS[o.verifyShow]||'rv-none')+'">'+(VERIFY_LABEL[o.verifyShow]||'待核验')+'</span></td>'
+      +'<td title="'+esc(o.auditNote||'')+'"><span class="review-badge '+(AUDIT_CLASS[o.audit]||'rv-none')+'">'+(o.auditLabel||AUDIT_LABEL[o.audit]||o.audit||'待核验')+'</span></td>'
       +'<td class="photo-cell">'+(o.hasImg?'<img class="hc-thumb" loading="lazy" data-review-id="'+esc(String(o.r))+'" title="点击查看原图" src="http://127.0.0.1:8789/thumb/'+encodeURIComponent(String(o.r))+'" alt="证件缩略图" onerror="hcThumbFail(this)">':'<span class="cert-none">—</span>')+'</td>'
       +'<td><button type="button" class="review-link" data-review-id="'+esc(String(o.r))+'">查看详情</button></td></tr>');
   }
-  document.getElementById('tb').innerHTML=html.join('')||'<tr><td colspan="30" class="empty">没有符合条件的骑手</td></tr>';
+  document.getElementById('tb').innerHTML=html.join('')||'<tr><td colspan="25" class="empty">没有符合条件的骑手</td></tr>';
   document.getElementById('rowCount').textContent='筛选 '+total+' 人';
   var end=Math.min(start+st.size,total);
   var pg=document.getElementById('pager');
@@ -931,7 +938,7 @@ function renderRank(){
 }
 
 /* 事件（组织维度已改多选组件，这里只留单选维度） */
-['fSt','fHire','fReview','fRisk','fLoc','fP1','fP2','fModel','fVerify','fAudit'].forEach(function(id){
+['fSt','fHire','fReview','fRisk','fLoc','fHit','fModel','fVerify','fAudit'].forEach(function(id){
   document.getElementById(id).addEventListener('change',function(){
     st.stt=document.getElementById('fSt').value; st.hire=document.getElementById('fHire').value;
     filter();
@@ -944,11 +951,11 @@ document.getElementById('btnHelp').addEventListener('click',function(){
     +'更新方式：全自动。M盘监控服务（每60秒扫描）发现新表落地后，会自动重建本看板数据，无需任何手动操作；本页面刷新即可看到最新数据。');
 });
 document.getElementById('btnExp').addEventListener('click',function(){
-  var head=['大区','区域','城市','站点','骑手ID','姓名','类型','发证日期','入职日期','入职日期来源','健康证到期','剩余天数','回执单到期','回执单剩余','处置','核查状态','照片','风险等级','自研对标','自研得分','总部名单','自研命中依据','属地判定','判定依据','官方验真渠道','核验结果','核验人','二维码域名','二维码摘要','P1证件编号','P1发证省','P1二维码','P1图像质量','P2证件编号','P2发证省','P2有效期','P2识别方向'];
+  var head=['大区','区域','城市','站点','骑手ID','姓名','类型','发证日期','入职日期','入职日期来源','健康证到期','剩余天数','回执单到期','回执单剩余','处置','核查状态','照片','风险等级','自研对标','自研得分','总部名单','自研命中依据','属地判定','判定依据','命中类型','官方验真渠道','核验结果','审核状态','核验人','二维码域名','二维码摘要','P1证件编号','P1发证省','P1二维码','P1图像质量','P2证件编号','P2发证省','P2有效期','P2识别方向'];
   var rows=view.map(function(o){
     var rv=reviewOf(o);
     return [o.b,o.g,o.c,o.s,o.r,o.n,o.ctp||'',o.cd||'',hireValue(o),(o.h?'健康证源':dv(o).hire?'采集 '+DERIVED_AT:supp(o).hireHistorical?'历史缓存 '+supp(o).sourceAt:'缺失'),o.dE||'',(o.hd2===null?'':o.hd2)+(o.eD?'（推定）':''),o.dX||'',(o.rd===null?'':o.rd)+(o.xD?'（推定）':''),(ST_LABEL[o.st]||o.st),RV_LABEL[o.reviewStatus]||'未采集',o.hasImg?'有':'无',
-      o.risk,o.mdLevel,o.mdScore,o.mdHQ?'是':'否',o.mdWhy,o.loc,o.locEvi,o.channel,o.verify||'',rv.reviewer||'',o.dom,rv.qrSummary||'',
+      o.risk,o.mdLevel,o.mdScore,o.mdHQ?'是':'否',o.loc,o.locEvi,o.htHit||'未命中',o.channel,o.verifyShow||'',o.auditLabel||AUDIT_LABEL[o.audit]||o.audit||'',rv.reviewer||'',o.dom,rv.qrSummary||'',
       o.p1Cert,o.p1Prov,o.p1Qr,o.p1Q===null?'':o.p1Q,
       o.p2Cert,o.p2Prov,o.p2Date,o.p2Angle];
   });
