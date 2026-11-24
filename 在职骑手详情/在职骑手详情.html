@@ -215,6 +215,7 @@ tr:hover td{background:#f0f7ff}
       <th data-sort="p2Cert" class="review-col">P2证件编号</th>
       <th data-sort="p2Prov" class="review-col">P2发证省</th>
       <th data-sort="p2Date" class="review-col">P2有效期</th>
+      <th data-sort="p4Name" class="review-col">证面姓名</th><th data-sort="p4Org" class="review-col">体检机构</th><th data-sort="p4DomCat" class="review-col">QR域名</th>
       <th data-sort="channel" class="review-col">官方验真渠道</th>
       <th data-sort="verify" class="review-col">核验结果</th>
       <th data-sort="audit" class="review-col">审核状态</th>
@@ -235,6 +236,7 @@ tr:hover td{background:#f0f7ff}
 <script src="hc_p1_data.js"></script>
 <script src="hc_model_data.js"></script>
 <script src="hc_paddle_data.js"></script>
+<script src="hc_qr_domain_data.js"></script>
 <script src="hc_supplement_data.js"></script>
 <script src="hc_profile_data.js"></script>
 <script src="hc_derived_data.js"></script>
@@ -486,6 +488,15 @@ DATA.forEach(function(o){
   o.p2Angle = pp.angle || '';
   o.p2Lines = pp.ocrLines || 0;
   o.p2Has = !!(o.p2Cert || o.p2Prov || o.p2Date);
+  /* P4：证面姓名(花名册对齐)/体检机构/QR域名画像 —— 线索，不下真伪结论 */
+  o.p4Name = pp.name || '';
+  o.p4NameConf = pp.nameConf || '';
+  o.p4RiderName = pp.riderName || o.n || '';
+  o.p4Org = pp.org || '';
+  var qd = (window.HC_QRDOMAIN_DATA || {})[String(o.r)] || {};
+  o.p4DomCat = qd.cat || '';
+  o.p4DomScore = qd.score || 0;
+  o.p4Dom = qd.dom || '';
   /* 自研对标模型（总部535名单逆向规则）：只作线索，不覆盖人工核验 */
   var md = MODEL[String(o.r)] || {};
   o.mdScore = md.score || 0;
@@ -824,6 +835,9 @@ function render(){
       +'<td title="PaddleOCR 精准识别（'+(o.p2Angle?esc(o.p2Angle)+'方向':'未跑P2')+'，'+o.p2Lines+'行）">'+(o.p2Cert?'<span style="font-family:monospace;font-size:11px;color:#1b5e20;font-weight:600">'+esc(o.p2Cert.slice(0,18))+'</span>':'<span class="cert-none">—</span>')+'</td>'
       +'<td title="P2 发证省">'+(o.p2Prov?'<span style="color:#1b5e20;font-weight:600">'+esc(o.p2Prov)+'</span>':'<span class="cert-none">—</span>')+'</td>'
       +'<td title="P2 识别有效期">'+(o.p2Date?esc(o.p2Date):'<span class="cert-none">—</span>')+(o.p2Angle&&o.p2Angle!=='0'?'<span style="font-size:10px;color:#7a8c9e"> ↻'+esc(o.p2Angle)+'</span>':'')+'</td>'
+      /* p4NameCellMarker */+'<td title="证面姓名(花名册对齐)">'+(o.p4Name?('<span style="color:#1b5e20;font-weight:600">'+esc(o.p4Name)+'</span>'+(o.p4NameConf==='fuzzy'?'<span style="font-size:10px;color:#e65100">≈</span>':'')+(o.p4Name&&o.p4RiderName&&o.p4Name!==o.p4RiderName?'<span style="font-size:10px;color:#c62828">≠花名册</span>':'')):'<span class=cert-none>—</span>')+'</td>'
+      +'<td title="体检机构(属地判定依据)">'+(o.p4Org?esc(String(o.p4Org).slice(0,16)):'<span class=cert-none>—</span>')+'</td>'
+      +'<td title="QR域名类别">'+(o.p4DomCat?(o.p4DomCat==='suspect'?'<span style="color:#c62828;font-weight:600">可疑域名</span>':o.p4DomCat==='gov'?'<span style="color:#1b5e20">政务</span>':o.p4DomCat==='meituan'?'<span style="color:#1b5e20">美团</span>':esc(String(o.p4Dom).slice(0,14))):'<span class=cert-none>—</span>')+'</td>'
       +'<td>'+(o.channel?'<span class="rb-ch" title="'+esc(o.method+'｜'+o.channel)+(o.verifyUrl?'｜点击打开官方入口':'')+'">'+(o.verifyUrl?'<a href="'+esc(o.verifyUrl)+'" target="_blank" rel="noopener" style="color:#0b5e8a">'+esc(o.channel.slice(0,16))+'</a>':esc(o.channel.slice(0,16)))+'</span>':'<span class="cert-none">无渠道</span>')+'</td>'
       +'<td><span class="review-badge '+(VERIFY_CLASS[o.verify]||'rv-none')+'">'+(VERIFY_LABEL[o.verify]||'待核验')+'</span></td>'
       +'<td title="'+esc(o.auditNote||'')+'"><span class="review-badge '+(AUDIT_CLASS[o.audit]||'rv-none')+'">'+(AUDIT_LABEL[o.audit]||o.audit||'待核验')+'</span></td>'

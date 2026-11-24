@@ -1,5 +1,5 @@
 const EMBEDDED_DATA = {
-  "lastUpdated": "2026-11-23 17:30:16",
+  "lastUpdated": "2026-11-24 11:32:25",
   "sourceUrl": "https://fxgl365.com/110/w/desktop/process/list?activeTab=CURRENT",
   "module": "事件处理",
   "kpi": {
@@ -7,7 +7,7 @@ const EMBEDDED_DATA = {
     "pending": 6,
     "processing": 479,
     "done": 777,
-    "todayNew": 21,
+    "todayNew": 0,
     "cityCount": 30,
     "regionCount": 4,
     "stationCount": 143
@@ -112186,7 +112186,7 @@ const EMBEDDED_DATA = {
       "statusRaw": 4,
       "occurTime": "2026-10-31 15:40:00",
       "reportTime": "2026-11-13 11:46:19",
-      "updateTime": "2026-11-22 13:31:49",
+      "updateTime": "2026-11-23 18:39:31",
       "province": "安徽省",
       "city": "铜陵市",
       "district": "铜官区",
