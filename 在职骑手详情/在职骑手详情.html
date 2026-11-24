@@ -95,6 +95,7 @@ tr:hover td{background:#f0f7ff}
 .b-rnew{background:#e3f2fd;color:#1565c0}
 .b-pre{background:#eceff1;color:#607d8b}
 .cert-none{color:#90a4ae;font-style:italic}
+.org-none{display:inline-block;font-size:11px;color:#6b7c8f;background:#eef2f6;border:1px solid #d6e0e9;border-radius:4px;padding:0 5px;cursor:help}
 .pager{display:flex;gap:8px;align-items:center;justify-content:center;padding:12px 16px 26px;flex-wrap:wrap;font-size:13px;color:#5c7a9e}
 .pager button{padding:5px 13px;border:1px solid #90caf9;background:#fff;color:#1565c0;border-radius:4px;cursor:pointer;font-size:13px}
 .pager button:disabled{opacity:.4;cursor:default}
@@ -117,6 +118,7 @@ tr:hover td{background:#f0f7ff}
 .rb-P3{color:#6a4b9c;background:#f1ebfa!important;border-color:#cdbde6!important}
 .rb-P0{color:#4b6478;background:#eef3f8!important;border-color:#d5e0ea!important}
 .rb-loc{color:#b3261e;background:#ffebee;border:1px solid #f2b8b5;padding:1px 7px;border-radius:10px;font-size:11px}
+.rb-wait{color:#6b7c8f;background:#eef2f6;border:1px solid #d6e0e9;padding:1px 7px;border-radius:10px;font-size:11px}
 .rb-ok{color:#2e7d32;background:#e8f5e9;border:1px solid #b7dfbd;padding:1px 7px;border-radius:10px;font-size:11px}
 .rb-ch{display:inline-block;max-width:210px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:bottom;font-size:11px;color:#42637d}
 .rv-verify{margin-top:12px;border-top:1px solid #e3ebf3;padding-top:12px}
@@ -175,6 +177,7 @@ tr:hover td{background:#f0f7ff}
   <select id="fRisk" aria-label="风险等级"><option value="">全部风险等级</option><option value="P1">P1 高危域名</option><option value="P2">P2 批量聚集</option><option value="P3">P3 属地线索</option><option value="P0">P0 无线索</option></select>
   <select id="fLoc" aria-label="属地判定"><option value="">全部属地判定</option><option value="非属地线索">非属地线索</option><option value="属地">属地</option><option value="待核实">待核实</option></select>
   <select id="fHit" aria-label="命中类型"><option value="">全部命中类型</option><option value="虚假域名">虚假域名</option><option value="异地健康证团伙">异地健康证团伙</option><option value="异地线索（待聚集确认）">异地线索</option><option value="AI生成健康证">AI生成健康证</option><option value="未命中">未命中</option></select>
+  <select id="fOrgState" aria-label="体检机构状态"><option value="">全部机构状态</option><option value="has">已识别机构</option><option value="seal-only">仅盖章</option><option value="no-org-text">证面无机构名</option><option value="no-field">无机构栏</option><option value="unread">待识读</option><option value="no-photo">无照片</option></select>
   <select id="fModel" aria-label="自研对标"><option value="">全部自研对标</option><option value="A级-高危">A级 高危</option><option value="B级-重点">B级 重点</option><option value="C级-关注">C级 关注</option><option value="hq">总部535名单</option><option value="new">名单外新发现</option></select>
   <select id="fVerify" aria-label="核验结果"><option value="">全部核验结果</option><option value="pending">待核验</option><option value="hit">线索命中（待核验）</option><option value="valid">已核验通过</option><option value="invalid">判定虚假</option><option value="reissued">已换证</option><option value="appeal">申诉中</option></select>
   <select id="fAudit" aria-label="审核状态"><option value="">全部审核状态</option><option value="VERIFIED_INVALID">判定虚假（已核验）</option><option value="VERIFIED_VALID">核验通过</option><option value="REISSUED">已换证待复核</option><option value="APPEAL">申诉中</option><option value="EXPIRED">已过期（非假证）</option><option value="NO_CHANNEL">无官方验真渠道</option><option value="SUSPECT">模型线索待确认</option><option value="MANUAL">待人工看图</option><option value="PENDING">待核验</option></select>
@@ -296,6 +299,14 @@ function fmtCert(o,key){
 
 var RV_LABEL={uncollected:'未采集',pending:'待核查',lowq:'需人工看图',domain_check:'域名待核实',risk:'发现风险线索',manual:'待人工复核',verified:'已核验',failed:'采集失败'};
 var RV_CLASS={uncollected:'rv-none',pending:'rv-pending',lowq:'rv-lowq',domain_check:'rv-dom',risk:'rv-risk',manual:'rv-pending',verified:'rv-ok',failed:'rv-fail'};
+/* 体检机构为空的原因（来自 hc_risk_data.js 的 orgState），避免把「证上本来没有」误当成漏识别 */
+var ORG_STATE={
+  'no-field':['无机构栏','该证件为体检确认单/仅盖合作商章，证面本来就没有体检机构栏'],
+  'seal-only':['仅盖章','证面“体检单位/发证单位”后为空，机构名只印在红色公章上'],
+  'no-photo':['无照片','未取到照片或照片不可读'],
+  'no-org-text':['证面无机构名','整张证面/OCR 文本里没有任何体检机构字样'],
+  'unread':['待识读','证面有机构信息但未抽出，需人工核对']
+};
 var VERIFY_LABEL={valid:'已核验通过',invalid:'判定虚假',reissued:'已换证',appeal:'申诉中',hit:'线索命中（待核验）'};
 var VERIFY_CLASS={valid:'rv-ok',invalid:'rv-risk',reissued:'rv-ok',appeal:'rv-pending',hit:'rv-risk'};
 /* 风险等级小字释义：把 P 级代码和「批量 250」讲清楚，不再只给模糊代号 */
@@ -308,6 +319,21 @@ function locConfText(o){
   if(o.locConf==='高') return o.loc==='非属地线索'?'高可信·跨省发证':'高可信·发证省一致';
   if(o.locConf==='中') return '中可信·二维码归属';
   return '';
+}
+/* 属地「待核实」的真实原因：让用户一眼看出是「证面本来没有」，不是漏识别 */
+function locWhy(o){
+  if(o.locEvi) return o.locEvi;
+  if(o.loc==='待核实'){
+    var s=o.orgState;
+    if(s==='no-org-text') return '证面未印体检机构名称，无机构省可判';
+    if(s==='no-field') return '该版式没有体检机构栏（只印发证机关章）';
+    if(s==='seal-only') return '机构名只在红章上，章面多为“体检专用章”无全称';
+    if(s==='unread') return '照片模糊/旋转，机构字段待人工识读';
+    if(s==='no-photo') return '未上传证面照片，无法判属地';
+    if(o.p4Org) return '机构名只到街道/乡镇级，无省市级地名';
+    return '证面可判信息不足';
+  }
+  return '证面可判信息不足';
 }
 var HIT_AUDIT_LABEL={'虚假域名':'命中虚假域名（待官方确认）','异地健康证团伙':'命中异地团伙（待官方确认）',
   'AI生成健康证':'命中AI生成（待官方确认）','异地线索（待聚集确认）':'命中异地线索（待确认）'};
@@ -460,6 +486,8 @@ DATA.forEach(function(o){
   o.locConf = rk.locConf || '低';
   o.locEvi = rk.locEvi || '';
   o.channel = rk.channel || '';
+  /* 体检机构为空时给出原因，避免整列「—」看不出是真没有还是漏识别 */
+  o.orgState = rk.orgState || '';
   o.method = rk.method || '';
   o.verifyUrl = rk.url || '';
   o.dom = rk.domain || '';
@@ -514,18 +542,11 @@ DATA.forEach(function(o){
   o.mdHQ = md.hq ? 1 : 0;
   o.mdHQType = md.hqType || '';
   o.mdDom = md.dom || '';
-  /* 发证省判定优先级：P2(PaddleOCR) > P1(Windows OCR) > 旧OCR机构文本。
-     PaddleOCR 对旋转/模糊图识别更可靠，实测修正了多起 P1 误读。 */
-  var provSrc = o.p2Prov ? 'P2' : (o.p1Prov ? 'P1' : '');
-  var provVal = o.p2Prov || o.p1Prov || '';
-  if(provVal && rk.prov){
-    if(provVal !== rk.prov){
-      o.loc='非属地线索'; o.locConf='高'; o.locEvi=provSrc+' 发证省：'+provVal+'（工作地省：'+rk.prov+'）';
-      if(o.risk==='P0') o.risk='P3';
-    }else{
-      o.loc='属地'; o.locConf='高'; o.locEvi=provSrc+' 发证省：'+provVal;
-    }
-  }
+  /* 🔴 属地判定唯一来源 = hc_risk_data.js（build_hc_risk.py 产出），页面不再自己算。
+     2026-11-24 删除的旧逻辑：用「P2发证省 vs rk.prov」重算并覆盖 rk.loc，两个坑——
+     ① rk.prov 是渠道表备注列（「河北（市级）」「直辖市」），根本不是省名；
+     ② 字符串直比不归一，「上海市」≠「上海」。
+     两坑叠加把 5600+ 人误标成「非属地线索」，用户看到的「乱标跨省发证」即出自此。 */
   /* 命中类型：逆向方法论的本地判定（不依赖总部名单） */
   var ht = (window.HC_HITTYPE_DATA||{})[String(o.r)] || {};
   o.htHit = ht.hit || '未命中'; o.htReason = ht.reason || ''; o.htConf = ht.conf || '';
@@ -700,6 +721,11 @@ function filter(){
       if(fv==='pending' ? !!o.verifyShow : o.verifyShow!==fv) return false;
     }
     if(document.getElementById('fAudit').value && o.audit!==document.getElementById('fAudit').value) return false;
+    var fos=document.getElementById('fOrgState');
+    if(fos&&fos.value){
+      if(fos.value==='has'){ if(!o.p4Org) return false; }
+      else if(o.p4Org || o.orgState!==fos.value) return false;
+    }
     if(st.hire){
       var hd=o.hd; if(hd===null) return false;
       var lim=parseInt(st.hire,10);
@@ -838,12 +864,12 @@ function render(){
         +(o.domFlag?'<div style="font-size:11px;font-weight:600;color:#a31812" title="'+esc(o.domFlag)+'">域名特征：'+esc(o.domFlag.slice(0,8))+'</div>':(o.domCount?'<div style="font-size:11px;font-weight:600;color:#7a3d00" title="同一二维码域名共 '+o.domCount+' 人使用">同域名 '+o.domCount+' 人</div>':''))+'</td>'
       +'<td title="'+esc(o.mdWhy||'自研模型未命中')+'"><span class="review-badge rb-'+(o.mdLevel.indexOf('A级')===0?'risk':(o.mdLevel.indexOf('B级')===0?'dom':(o.mdLevel.indexOf('C级')===0?'pending':'none')))+'">'+esc(o.mdLevel.replace('级-',''))+' '+o.mdScore+'</span>'
         +(o.mdHQ?'<div style="font-size:10px;color:#b3261e">★总部名单</div>':(o.mdScore>=25?'<div style="font-size:10px;color:#9a4a00">名单外发现</div>':''))+'</td>'
-      +'<td><span class="'+(o.loc==='非属地线索'?'rb-loc':'')+'" title="'+esc(o.locEvi||'暂无可判定字段（需 OCR 升级）')+'">'+esc(o.loc)+'</span>'
+      +'<td><span class="'+(o.loc==='非属地线索'?'rb-loc':(o.loc==='待核实'?'rb-wait':''))+'" title="'+esc(locWhy(o))+'">'+esc(o.loc)+'</span>'
         +(locConfText(o)?'<div style="font-size:11px;color:#54687c" title="'+esc(o.locEvi||'')+'">'+locConfText(o)+'</div>':'')+'</td>'
       /* p4HitTypeDone */+'<td title="'+esc(o.htReason||'本地规则判定（不依赖总部名单）')+'">'+(o.htHit==='未命中'?'<span class=cert-none>—</span>':'<span style="font-weight:600;color:'+(o.htHit.indexOf('异地')>=0?'#b3261e':(o.htHit==='AI生成健康证'?'#6a1b9a':'#9a4a00'))+'">'+esc(o.htHit)+'</span>')+'</td>'
         +(o.p1Q!==null?'<div style="font-size:10px;color:'+(o.p1Q<55?'#b3261e':'#7a8c9e')+'">质 '+o.p1Q+'</div>':'')+'</td>'
       /* p4NameCellMarker */+'<td title="证面姓名(花名册对齐)">'+(o.p4Name?('<span style="color:#1b5e20;font-weight:600">'+esc(o.p4Name)+'</span>'+(o.p4NameConf==='fuzzy'?'<span style="font-size:10px;color:#e65100">≈</span>':'')+(o.p4Name&&o.p4RiderName&&o.p4Name!==o.p4RiderName?'<span style="font-size:10px;color:#c62828">≠花名册</span>':'')):'<span class=cert-none>—</span>')+'</td>'
-      +'<td title="体检机构(属地判定依据)">'+(o.p4Org?esc(String(o.p4Org).slice(0,16)):'<span class=cert-none>—</span>')+'</td>'
+      +'<td title="体检机构(属地判定依据)">'+(o.p4Org?esc(String(o.p4Org).slice(0,16)):(function(){var s=ORG_STATE[o.orgState];return s?'<span class="org-none" title="'+esc(s[1])+'">'+s[0]+'</span>':'<span class=cert-none>—</span>';})())+'</td>'
       +'<td title="QR域名类别">'+(o.p4DomCat?(o.p4DomCat==='suspect'?'<span style="color:#c62828;font-weight:600">可疑域名</span>':o.p4DomCat==='gov'?'<span style="color:#1b5e20">政务</span>':o.p4DomCat==='meituan'?'<span style="color:#1b5e20">美团</span>':esc(String(o.p4Dom).slice(0,14))):'<span class=cert-none>—</span>')+'</td>'
       +'<td>'+(o.channel?'<span class="rb-ch" title="'+esc(o.method+'｜'+o.channel)+(o.verifyUrl?'｜点击打开官方入口':'')+'">'+(o.verifyUrl?'<a href="'+esc(o.verifyUrl)+'" target="_blank" rel="noopener" style="color:#0b5e8a">'+esc(o.channel.slice(0,16))+'</a>':esc(o.channel.slice(0,16)))+'</span>':'<span class="cert-none">无渠道</span>')+'</td>'
       +'<td><span class="review-badge '+(VERIFY_CLASS[o.verifyShow]||'rv-none')+'">'+(VERIFY_LABEL[o.verifyShow]||'待核验')+'</span></td>'
@@ -938,7 +964,7 @@ function renderRank(){
 }
 
 /* 事件（组织维度已改多选组件，这里只留单选维度） */
-['fSt','fHire','fReview','fRisk','fLoc','fHit','fModel','fVerify','fAudit'].forEach(function(id){
+['fSt','fHire','fReview','fRisk','fLoc','fHit','fModel','fVerify','fAudit','fOrgState'].forEach(function(id){
   document.getElementById(id).addEventListener('change',function(){
     st.stt=document.getElementById('fSt').value; st.hire=document.getElementById('fHire').value;
     filter();
