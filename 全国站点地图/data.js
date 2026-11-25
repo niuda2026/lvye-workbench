@@ -1,7 +1,7 @@
 // ============================================================
 // 全国站点地图 - 点位数据
 // 数据来源：美团配送后台「标准站点信息」接口抓取（站点合作状态=合作）
-// 抓取时间：2026-11-25 | 站点总数：158（含骑手宿舍 101）
+// 抓取时间：2026-11-26 | 站点总数：158（含骑手宿舍 101）
 //
 // 字段说明：
 //   name     : 点位名称（美团标准站点名称）
@@ -206,8 +206,8 @@ window.SITE_DATA = [
   { name: "兴必达【南京】金盛站宿舍8", xian: "江宁区", city: "南京", province: "江苏省", address: "新宁之家214号宿舍", category: "dorm", level: "A", lng: 118.84107, lat: 31.942145, stationName: "兴必达【南京】金盛站", stationId: "2088251", roomNum: 1, roomSize: "35", rentStart: "2026-04-14", rentEnd: "2027-04-13" },
   { name: "兴必达【秦皇岛】老龙头站宿舍1", xian: "海港区", city: "秦皇岛", province: "河北省", address: "民族南路99号1101号", category: "dorm", level: "A", lng: 119.607912, lat: 39.929473, stationName: "兴必达【秦皇岛】老龙头站", stationId: "2083951", roomNum: 3, roomSize: "140.72", rentStart: "2026-09-01", rentEnd: "2027-08-31" },
   { name: "兴必达【铜陵】财富广场站宿舍1", xian: "铜官区", city: "铜陵", province: "安徽省", address: "五松新村146栋303室", category: "dorm", level: "A", lng: 117.804803, lat: 30.931408, stationName: "兴必达【铜陵】财富广场站", stationId: "2084105", roomNum: 4, roomSize: "135.11", rentStart: "2026-10-10", rentEnd: "2027-10-09" },
-  { name: "兴必达【合肥】奥体站宿舍1", xian: "蜀山区", city: "合肥", province: "安徽省", address: "安徽省合肥市蜀山区金寨南路229号浅水湾e墅时代花园C4栋101室", category: "dorm", level: "A", lng: 117.232548, lat: 31.792944, stationName: "兴必达【合肥】奥体站", stationId: "2083410", roomNum: 3, roomSize: "134.79", rentStart: "2025-12-15", rentEnd: "2026-12-14" },
-  { name: "兴必达【合肥】天珑广场宿舍1", xian: "蜀山区", city: "合肥", province: "安徽省", address: "安徽省合肥市蜀山区金寨南路229号浅水湾e墅时代花园C4栋101室", category: "dorm", level: "A", lng: 117.232548, lat: 31.792944, stationName: "兴必达【合肥】天珑广场", stationId: "2083412", roomNum: 3, roomSize: "134.79", rentStart: "2025-12-15", rentEnd: "2026-12-14" },
+  { name: "兴必达【合肥】奥体站宿舍1", xian: "蜀山区", city: "合肥", province: "安徽省", address: "安徽省合肥市蜀山区金寨南路229号浅水湾e墅时代花园C4栋101室", category: "dorm", level: "A", lng: 117.232548, lat: 31.792944, stationName: "兴必达【合肥】奥体站", stationId: "2083410", roomNum: 3, roomSize: "134.79", rentStart: "2026-11-25", rentEnd: "2029-12-24" },
+  { name: "兴必达【合肥】天珑广场宿舍1", xian: "蜀山区", city: "合肥", province: "安徽省", address: "安徽省合肥市蜀山区金寨南路229号浅水湾e墅时代花园C4栋101室", category: "dorm", level: "A", lng: 117.232548, lat: 31.792944, stationName: "兴必达【合肥】天珑广场", stationId: "2083412", roomNum: 3, roomSize: "134.79", rentStart: "2026-11-25", rentEnd: "2029-12-24" },
   { name: "兴必达【合肥】和平广场宿舍1", xian: "瑶海区", city: "合肥", province: "安徽省", address: "临淮苑6栋2802", category: "dorm", level: "A", lng: 117.31317, lat: 31.870343, stationName: "兴必达【合肥】和平广场", stationId: "2083415", roomNum: 4, roomSize: "107.19", rentStart: "2026-09-26", rentEnd: "2027-09-25" },
   { name: "兴必达【天津】圣光站宿舍1", xian: "东丽区", city: "天津", province: "天津市", address: "天津市东丽区恒大名都花园二期13-1-101", category: "dorm", level: "A", lng: 117.4195, lat: 39.171985, stationName: "兴必达【天津】圣光站", stationId: "2083487", roomNum: 5, roomSize: "183", rentStart: "2026-01-08", rentEnd: "2027-01-07" },
   { name: "兴必达【上海】北洋泾宿舍1", xian: "浦东新区", city: "上海", province: "上海市", address: "上海市固山路万信R酒店", category: "dorm", level: "A", lng: 121.559656, lat: 31.239639, stationName: "兴必达【上海】北洋泾", stationId: "2083776", roomNum: 1, roomSize: "65", rentStart: "2025-10-01", rentEnd: "2028-10-01" },
@@ -222,7 +222,7 @@ window.SITE_DATA = [
   { name: "兴必达【合肥】龙居站宿舍1", xian: "蜀山区", city: "合肥", province: "安徽省", address: "蜀山区颐和花园澄苑9栋804室", category: "dorm", level: "A", lng: 117.242186, lat: 31.864265, stationName: "兴必达【合肥】龙居站", stationId: "2055136", roomNum: 4, roomSize: "143.48", rentStart: "2025-12-10", rentEnd: "2026-12-09" },
   { name: "兴必达【洛阳】火车南站宿舍1", xian: "西工区", city: "洛阳", province: "河南省", address: "荣祥花园4-1-负2", category: "dorm", level: "A", lng: 112.415155, lat: 34.68004, stationName: "兴必达【洛阳】火车南站", stationId: "2054901", roomNum: 4, roomSize: "135.68", rentStart: "2026-06-01", rentEnd: "2027-05-31" },
   { name: "兴必达【青岛】正阳路站宿舍1", xian: "城阳区", city: "青岛", province: "山东省", address: "加州风景32号楼2单元901", category: "dorm", level: "A", lng: 120.408806, lat: 36.308289, stationName: "兴必达【青岛】正阳路站", stationId: "2049940", roomNum: 4, roomSize: "139.18", rentStart: "2026-05-01", rentEnd: "2027-04-30" },
-  { name: "兴必达【西安】北院门站宿舍1", xian: "莲湖区", city: "西安", province: "陕西省", address: "莲湖区红庙坡安置小区6号楼2单元102", category: "dorm", level: "A", lng: 108.927144, lat: 34.287223, stationName: "兴必达【西安】北院门站", stationId: "2048924", roomNum: 3, roomSize: "129.5", rentStart: "2025-11-15", rentEnd: "2026-11-14" },
+  { name: "兴必达【西安】北院门站宿舍1", xian: "莲湖区", city: "西安", province: "陕西省", address: "莲湖区红庙坡安置小区6号楼2单元102", category: "dorm", level: "A", lng: 108.927144, lat: 34.287223, stationName: "兴必达【西安】北院门站", stationId: "2048924", roomNum: 3, roomSize: "129.5", rentStart: "2026-11-15", rentEnd: "2027-11-14" },
   { name: "兴必达【西安】东关站宿舍1", xian: "碑林区", city: "西安", province: "陕西省", address: "东窑坊5号楼2单元3102室", category: "dorm", level: "A", lng: 108.994811, lat: 34.265854, stationName: "兴必达【西安】东关站", stationId: "2048925", roomNum: 3, roomSize: "122", rentStart: "2026-04-10", rentEnd: "2027-04-09" },
   { name: "兴必达【西安】汉城站宿舍1", xian: "未央区", city: "西安", province: "陕西省", address: "陕西省西安市未央区曹家庙社区4号楼2单元2604室", category: "dorm", level: "A", lng: 108.967731, lat: 34.320373, stationName: "兴必达【西安】汉城站", stationId: "2048923", roomNum: 3, roomSize: "132", rentStart: "2025-12-25", rentEnd: "2026-12-14" },
   { name: "兴必达【上海】徐家汇站宿舍1", xian: "徐汇区", city: "上海", province: "上海市", address: "上海市徐汇区百花街350号上海晟寓公寓853房间", category: "dorm", level: "A", lng: 121.457436, lat: 31.129414, stationName: "兴必达【上海】徐家汇站", stationId: "2015620", roomNum: 1, roomSize: "20", rentStart: "2026-01-01", rentEnd: "2028-12-31" },

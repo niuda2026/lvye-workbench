@@ -1,5 +1,5 @@
 window.DATA_CENTER = {
-  "updated_at": "2026-11-26 06:35:18",
+  "updated_at": "2026-11-26 06:36:36",
   "action_summary": {
     "total": 23,
     "ok": 13,
@@ -113,7 +113,7 @@ window.DATA_CENTER = {
             "latest": "update_log.txt",
             "mtime": "2026-11-26 06:32:39",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -736,7 +736,7 @@ window.DATA_CENTER = {
             "latest": "premium_latest.json",
             "mtime": "2026-11-25 09:38:43",
             "max_age_hours": 26,
-            "age_hours": 20.9,
+            "age_hours": 21.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -880,7 +880,7 @@ window.DATA_CENTER = {
         "data_files": [
           "全国站点地图\\data.js"
         ],
-        "data_mtime": "2026-11-25 07:14:04",
+        "data_mtime": "2026-11-26 06:36:36",
         "all_synced": true,
         "synced_count": 1,
         "missing_count": 0,
@@ -889,7 +889,7 @@ window.DATA_CENTER = {
           {
             "type": "美团站点快照",
             "latest": "meituan_stations_snapshot.json",
-            "mtime": "2026-11-25 07:14:01",
+            "mtime": "2026-11-26 06:36:34",
             "synced": true
           }
         ],
@@ -898,9 +898,9 @@ window.DATA_CENTER = {
             "label": "美团站点快照更新",
             "path": "全国站点地图\\update_stations.log",
             "latest": "update_stations.log",
-            "mtime": "2026-11-25 07:14:04",
+            "mtime": "2026-11-26 06:36:36",
             "max_age_hours": 26,
-            "age_hours": 23.4,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1083,7 +1083,7 @@ window.DATA_CENTER = {
             "latest": "checkup_files_data.js",
             "mtime": "2026-10-30 11:56:21",
             "max_age_hours": 168,
-            "age_hours": 642.6,
+            "age_hours": 642.7,
             "ok": false,
             "note": "scan_checkup.py 手动扫描（用户按需触发），按 7 天兜底",
             "fail_hits": [],
@@ -1222,7 +1222,7 @@ window.DATA_CENTER = {
             "latest": "premium_latest.json",
             "mtime": "2026-11-25 09:38:43",
             "max_age_hours": 26,
-            "age_hours": 20.9,
+            "age_hours": 21.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
