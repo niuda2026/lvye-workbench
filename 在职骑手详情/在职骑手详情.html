@@ -176,7 +176,7 @@ tr:hover td{background:#f0f7ff}
   <select id="fReview" aria-label="核查状态"><option value="">全部核查状态</option><option value="uncollected">未采集</option><option value="pending">待核查</option><option value="lowq">需人工看图</option><option value="domain_check">域名待核实</option><option value="manual">待人工复核</option><option value="risk">发现风险线索</option><option value="verified">已核验</option><option value="failed">采集失败</option></select>
   <select id="fRisk" aria-label="风险等级"><option value="">全部风险等级</option><option value="P1">P1 高危域名</option><option value="P2">P2 批量聚集</option><option value="P3">P3 属地线索</option><option value="P0">P0 无线索</option></select>
   <select id="fLoc" aria-label="属地判定"><option value="">全部属地判定</option><option value="非属地线索">非属地线索</option><option value="属地">属地</option><option value="待核实">待核实</option></select>
-  <select id="fHit" aria-label="命中类型"><option value="">全部命中类型</option><option value="虚假域名">虚假域名</option><option value="异地健康证团伙">异地健康证团伙</option><option value="异地线索（待聚集确认）">异地线索</option><option value="AI生成健康证">AI生成健康证</option><option value="未命中">未命中</option></select>
+  <select id="fHit" aria-label="命中类型"><option value="">全部命中类型</option><option value="虚假域名">虚假域名</option><option value="第三方查询站（待核验）">第三方查询站（待核验）</option><option value="异地健康证团伙">异地健康证团伙</option><option value="异地线索（待聚集确认）">异地线索</option><option value="AI生成健康证">AI生成健康证</option><option value="未命中">未命中</option></select>
   <select id="fOrgState" aria-label="体检机构状态"><option value="">全部机构状态</option><option value="has">已识别机构</option><option value="seal-only">仅盖章</option><option value="no-org-text">证面无机构名</option><option value="no-field">无机构栏</option><option value="unread">待识读</option><option value="no-photo">无照片</option></select>
   <select id="fModel" aria-label="自研对标"><option value="">全部自研对标</option><option value="A级-高危">A级 高危</option><option value="B级-重点">B级 重点</option><option value="C级-关注">C级 关注</option><option value="hq">总部535名单</option><option value="new">名单外新发现</option></select>
   <select id="fVerify" aria-label="核验结果"><option value="">全部核验结果</option><option value="pending">待核验</option><option value="hit">线索命中（待核验）</option><option value="valid">已核验通过</option><option value="invalid">判定虚假</option><option value="reissued">已换证</option><option value="appeal">申诉中</option></select>
@@ -336,7 +336,8 @@ function locWhy(o){
   return '证面可判信息不足';
 }
 var HIT_AUDIT_LABEL={'虚假域名':'命中虚假域名（待官方确认）','异地健康证团伙':'命中异地团伙（待官方确认）',
-  'AI生成健康证':'命中AI生成（待官方确认）','异地线索（待聚集确认）':'命中异地线索（待确认）'};
+  'AI生成健康证':'命中AI生成（待官方确认）','异地线索（待聚集确认）':'命中异地线索（待确认）',
+  '第三方查询站（待核验）':'第三方查询站（待官方核验）'};
 /* 2026-11-24 审核状态机：过期与假证分开，未接入地区单列，不与「已核验」混为一谈 */
 var AUDIT_CLASS={VERIFIED_INVALID:'rv-risk',VERIFIED_VALID:'rv-ok',REISSUED:'rv-ok',APPEAL:'rv-pending',
   EXPIRED:'rv-dom',NO_CHANNEL:'rv-lowq',SUSPECT:'rv-dom',MANUAL:'rv-pending',PENDING:'rv-none'};
@@ -866,7 +867,7 @@ function render(){
         +(o.mdHQ?'<div style="font-size:10px;color:#b3261e">★总部名单</div>':(o.mdScore>=25?'<div style="font-size:10px;color:#9a4a00">名单外发现</div>':''))+'</td>'
       +'<td><span class="'+(o.loc==='非属地线索'?'rb-loc':(o.loc==='待核实'?'rb-wait':''))+'" title="'+esc(locWhy(o))+'">'+esc(o.loc)+'</span>'
         +(locConfText(o)?'<div style="font-size:11px;color:#54687c" title="'+esc(o.locEvi||'')+'">'+locConfText(o)+'</div>':'')+'</td>'
-      /* p4HitTypeDone */+'<td title="'+esc(o.htReason||'本地规则判定（不依赖总部名单）')+'">'+(o.htHit==='未命中'?'<span class=cert-none>—</span>':'<span style="font-weight:600;color:'+(o.htHit.indexOf('异地')>=0?'#b3261e':(o.htHit==='AI生成健康证'?'#6a1b9a':'#9a4a00'))+'">'+esc(o.htHit)+'</span>')+'</td>'
+      /* p4HitTypeDone */+'<td title="'+esc(o.htReason||'本地规则判定（不依赖总部名单）')+'">'+(o.htHit==='未命中'?'<span class=cert-none>—</span>':'<span style="font-weight:'+(o.htHit.indexOf('第三方查询站')===0?'400':'600')+';color:'+(o.htHit.indexOf('第三方查询站')===0?'#54687c':(o.htHit.indexOf('异地')>=0?'#b3261e':(o.htHit==='AI生成健康证'?'#6a1b9a':'#9a4a00')))+'">'+esc(o.htHit)+'</span>')+'</td>'
       /* p4NameCellMarker */+'<td title="证面姓名(花名册对齐)">'+(o.p4Name?('<span style="color:#1b5e20;font-weight:600">'+esc(o.p4Name)+'</span>'+(o.p4NameConf==='fuzzy'?'<span style="font-size:10px;color:#e65100">≈</span>':'')+(o.p4Name&&o.p4RiderName&&o.p4Name!==o.p4RiderName?'<span style="font-size:10px;color:#c62828">≠花名册</span>':'')):'<span class=cert-none>—</span>')+'</td>'
       +'<td title="体检机构(属地判定依据)">'+(o.p4Org?esc(String(o.p4Org).slice(0,16)):(function(){var s=ORG_STATE[o.orgState];return s?'<span class="org-none" title="'+esc(s[1])+'">'+s[0]+'</span>':'<span class=cert-none>—</span>';})())+'</td>'
       +'<td title="QR域名类别">'+(o.p4DomCat?(o.p4DomCat==='suspect'?'<span style="color:#c62828;font-weight:600">可疑域名</span>':o.p4DomCat==='gov'?'<span style="color:#1b5e20">政务</span>':o.p4DomCat==='meituan'?'<span style="color:#1b5e20">美团</span>':esc(String(o.p4Dom).slice(0,14))):'<span class=cert-none>—</span>')+'</td>'
