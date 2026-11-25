@@ -1,11 +1,11 @@
 /* 带刀巡检数据：站点维度 + 骑手维度明细
- * 生成时间：2026-11-26 06:47:42
+ * 生成时间：2026-11-26 07:15:11
  * 数据源：巡检工单列表_1795645884962.xls（巡检类型=加盟骑手，检查方式=车辆检查）
  * 站点分母来源：2026-11-01 排班明细（每月1号在册骑手，含本月暂无巡检记录的补零站点）
  * 骑手明细名册来源：2026-11-26 排班明细（最新在职骑手，匹配实时巡检记录）
  */
 var KNIFE_META = {
-  "generated_at": "2026-11-26 06:47:42",
+  "generated_at": "2026-11-26 07:15:11",
   "source_file": "巡检工单列表_1795645884962.xls",
   "source_file_mtime": "2026-11-26 06:31:55",
   "reg_file_date": "2026-11-01",
@@ -2761,11 +2761,11 @@ var KNIFE_DATA = {
     "compliance_num": 81,
     "compliance_rate": 100.0
   },
-  "兴必达【天津】昆仑站": {
+  "兴必达【锦州】曼哈顿站": {
     "region": "华北一区",
-    "subr": "津冀区域",
-    "city": "天津",
-    "reg_1st": 64,
+    "subr": "辽宁区域",
+    "city": "锦州",
+    "reg_1st": 61,
     "checked_month": 0,
     "checked_2plus": 0,
     "checked_dedup2": 0,
@@ -2779,29 +2779,11 @@ var KNIFE_DATA = {
     "compliance_num": 0,
     "compliance_rate": 0
   },
-  "兴必达【阜阳】颖东站": {
-    "region": "中南大区",
-    "subr": "安徽区域",
-    "city": "阜阳",
-    "reg_1st": 46,
-    "checked_month": 0,
-    "checked_2plus": 0,
-    "checked_dedup2": 0,
-    "status_no": 0,
-    "status_wait": 0,
-    "status_audit": 0,
-    "status_fail": 0,
-    "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0,
-    "compliance_num": 0,
-    "compliance_rate": 0
-  },
-  "兴必达【青岛】曼哈顿站": {
-    "region": "中南大区",
-    "subr": "山东区域",
-    "city": "青岛",
-    "reg_1st": 81,
+  "兴必达【锦州】凌河站": {
+    "region": "华北一区",
+    "subr": "辽宁区域",
+    "city": "锦州",
+    "reg_1st": 52,
     "checked_month": 0,
     "checked_2plus": 0,
     "checked_dedup2": 0,
@@ -2833,11 +2815,29 @@ var KNIFE_DATA = {
     "compliance_num": 0,
     "compliance_rate": 0
   },
-  "兴必达【锦州】凌河站": {
-    "region": "华北一区",
-    "subr": "辽宁区域",
-    "city": "锦州",
-    "reg_1st": 52,
+  "兴必达【青岛】城阳国学公园站": {
+    "region": "中南大区",
+    "subr": "山东区域",
+    "city": "青岛",
+    "reg_1st": 66,
+    "checked_month": 0,
+    "checked_2plus": 0,
+    "checked_dedup2": 0,
+    "status_no": 0,
+    "status_wait": 0,
+    "status_audit": 0,
+    "status_fail": 0,
+    "status_appeal": 0,
+    "week_cover_num": 0,
+    "week_cover_rate": 0,
+    "compliance_num": 0,
+    "compliance_rate": 0
+  },
+  "兴必达【青岛】城阳国货站": {
+    "region": "中南大区",
+    "subr": "山东区域",
+    "city": "青岛",
+    "reg_1st": 24,
     "checked_month": 0,
     "checked_2plus": 0,
     "checked_dedup2": 0,
@@ -2887,11 +2887,11 @@ var KNIFE_DATA = {
     "compliance_num": 0,
     "compliance_rate": 0
   },
-  "兴必达【锦州】曼哈顿站": {
+  "兴必达【天津】昆仑站": {
     "region": "华北一区",
-    "subr": "辽宁区域",
-    "city": "锦州",
-    "reg_1st": 61,
+    "subr": "津冀区域",
+    "city": "天津",
+    "reg_1st": 64,
     "checked_month": 0,
     "checked_2plus": 0,
     "checked_dedup2": 0,
@@ -2905,29 +2905,11 @@ var KNIFE_DATA = {
     "compliance_num": 0,
     "compliance_rate": 0
   },
-  "兴必达【青岛】城阳国货站": {
+  "兴必达【青岛】曼哈顿站": {
     "region": "中南大区",
     "subr": "山东区域",
     "city": "青岛",
-    "reg_1st": 24,
-    "checked_month": 0,
-    "checked_2plus": 0,
-    "checked_dedup2": 0,
-    "status_no": 0,
-    "status_wait": 0,
-    "status_audit": 0,
-    "status_fail": 0,
-    "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0,
-    "compliance_num": 0,
-    "compliance_rate": 0
-  },
-  "兴必达【青岛】城阳国学公园站": {
-    "region": "中南大区",
-    "subr": "山东区域",
-    "city": "青岛",
-    "reg_1st": 66,
+    "reg_1st": 81,
     "checked_month": 0,
     "checked_2plus": 0,
     "checked_dedup2": 0,
@@ -2946,6 +2928,24 @@ var KNIFE_DATA = {
     "subr": "上海区域",
     "city": "上海",
     "reg_1st": 57,
+    "checked_month": 0,
+    "checked_2plus": 0,
+    "checked_dedup2": 0,
+    "status_no": 0,
+    "status_wait": 0,
+    "status_audit": 0,
+    "status_fail": 0,
+    "status_appeal": 0,
+    "week_cover_num": 0,
+    "week_cover_rate": 0,
+    "compliance_num": 0,
+    "compliance_rate": 0
+  },
+  "兴必达【阜阳】颖东站": {
+    "region": "中南大区",
+    "subr": "安徽区域",
+    "city": "阜阳",
+    "reg_1st": 46,
     "checked_month": 0,
     "checked_2plus": 0,
     "checked_dedup2": 0,
