@@ -115,6 +115,191 @@
           "key": "checkup_info_security",
           "label": "合作商信息安全及系统账号管理规则",
           "file": "履约考核/合作商信息安全及系统账号管理规则.html"
+        },
+        {
+          "key": "checkup_tax",
+          "label": "合作商无欠税与骑手完税管理规范",
+          "file": "履约考核/合作商无欠税与骑手完税管理规范.html"
+        },
+        {
+          "key": "checkup_talk_supplement",
+          "label": "合作商约谈管理规范补充规定",
+          "file": "履约考核/合作商约谈管理规范补充规定.html"
+        },
+        {
+          "key": "checkup_mix_supplement",
+          "label": "异商混送引退管理标准补充说明",
+          "file": "履约考核/异商混送引退管理标准补充说明.html"
+        },
+        {
+          "key": "checkup_station_rider_behavior",
+          "label": "站长服务骑手行为规范",
+          "file": "履约考核/站长服务骑手行为规范.html"
+        },
+        {
+          "key": "checkup_city_bottom_kpi",
+          "label": "城市商末位考核结果通知",
+          "file": "履约考核/城市商末位考核结果通知.html"
+        },
+        {
+          "key": "checkup_penalty_types",
+          "label": "违规违约扣款类型定义",
+          "file": "履约考核/违规违约扣款类型定义.html"
+        },
+        {
+          "key": "checkup_rider_home",
+          "label": "骑手之家建设运营管理办法",
+          "file": "履约考核/骑手之家建设运营管理办法.html"
+        },
+        {
+          "key": "checkup_bizrule_s2",
+          "label": "商管规则补充规定二",
+          "file": "履约考核/商管规则补充规定二.html"
+        },
+        {
+          "key": "checkup_bizrule_s2_note",
+          "label": "商管规则补充规定二补充说明",
+          "file": "履约考核/商管规则补充规定二补充说明.html"
+        },
+        {
+          "key": "checkup_bizrule_s3",
+          "label": "商管规则补充规定三",
+          "file": "履约考核/商管规则补充规定三.html"
+        },
+        {
+          "key": "checkup_bizrule_s1",
+          "label": "商管规则补充规定",
+          "file": "履约考核/商管规则补充规定.html"
+        },
+        {
+          "key": "checkup_salary_guarantee",
+          "label": "配送人员薪酬保障管理标准",
+          "file": "履约考核/配送人员薪酬保障管理标准.html"
+        },
+        {
+          "key": "checkup_kpi_settle_202610",
+          "label": "2026年10月考核结算方案",
+          "file": "履约考核/2026年10月考核结算方案.html"
+        },
+        {
+          "key": "checkup_exit_rule_note",
+          "label": "专送合作商退出规则补充说明",
+          "file": "履约考核/专送合作商退出规则补充说明.html"
+        },
+        {
+          "key": "checkup_area_opt",
+          "label": "加盟配送区域优化管理规范",
+          "file": "履约考核/加盟配送区域优化管理规范.html"
+        },
+        {
+          "key": "checkup_ka_bid",
+          "label": "KA业务招投标管理规范",
+          "file": "履约考核/KA业务招投标管理规范.html"
+        },
+        {
+          "key": "checkup_area_mgmt",
+          "label": "配送区域管理规范",
+          "file": "履约考核/配送区域管理规范.html"
+        },
+        {
+          "key": "checkup_enterprise_self",
+          "label": "企客自建业务承接管理规范",
+          "file": "履约考核/企客自建业务承接管理规范.html"
+        },
+        {
+          "key": "checkup_single_city",
+          "label": "单城单商管理标准",
+          "file": "履约考核/单城单商管理标准.html"
+        },
+        {
+          "key": "checkup_develop",
+          "label": "专送合作商发展管理规范",
+          "file": "履约考核/专送合作商发展管理规范.html"
+        },
+        {
+          "key": "checkup_ma",
+          "label": "合作商收并购管理标准",
+          "file": "履约考核/合作商收并购管理标准.html"
+        },
+        {
+          "key": "checkup_bizrule_plan",
+          "label": "商管规则补充方案",
+          "file": "履约考核/商管规则补充方案.html"
+        },
+        {
+          "key": "checkup_mix_exit",
+          "label": "异商混送引退管理标准",
+          "file": "履约考核/异商混送引退管理标准.html"
+        },
+        {
+          "key": "checkup_site_exit",
+          "label": "站点退出管理规范",
+          "file": "履约考核/站点退出管理规范.html"
+        },
+        {
+          "key": "checkup_bid",
+          "label": "专送合作商招投标管理规范",
+          "file": "履约考核/专送合作商招投标管理规范.html"
+        },
+        {
+          "key": "checkup_rider_subsidy",
+          "label": "骑手保障补贴考核方案",
+          "file": "履约考核/骑手保障补贴考核方案.html"
+        },
+        {
+          "key": "checkup_110_fill",
+          "label": "110工单合规填报考核标准",
+          "file": "履约考核/110工单合规填报考核标准.html"
+        },
+        {
+          "key": "checkup_safety_ledger",
+          "label": "安全台账管理指导手册",
+          "file": "履约考核/安全台账管理指导手册.html"
+        },
+        {
+          "key": "checkup_integrity",
+          "label": "诚信经营管理规范",
+          "file": "履约考核/诚信经营管理规范.html"
+        },
+        {
+          "key": "checkup_license_change",
+          "label": "工商信息变更及资质管理标准",
+          "file": "履约考核/工商信息变更及资质管理标准.html"
+        },
+        {
+          "key": "checkup_deposit",
+          "label": "合作商保证金管理办法",
+          "file": "履约考核/合作商保证金管理办法.html"
+        },
+        {
+          "key": "checkup_kpi_settle_202609",
+          "label": "2026年9月考核结算方案",
+          "file": "履约考核/2026年9月考核结算方案.html"
+        },
+        {
+          "key": "checkup_fair_compete",
+          "label": "非公平竞争管理办法",
+          "file": "履约考核/非公平竞争管理办法.html"
+        },
+        {
+          "key": "checkup_battery_rent",
+          "label": "配送人员车电租赁管理标准",
+          "file": "履约考核/配送人员车电租赁管理标准.html"
+        },
+        {
+          "key": "checkup_ebike_rent",
+          "label": "电动车租赁管理标准激励版",
+          "file": "履约考核/电动车租赁管理标准激励版.html"
+        },
+        {
+          "key": "checkup_empower",
+          "label": "赋能活动配置管理标准",
+          "file": "履约考核/赋能活动配置管理标准.html"
+        },
+        {
+          "key": "checkup_zhi_product",
+          "label": "智赋产品使用标准",
+          "file": "履约考核/智赋产品使用标准.html"
         }
       ]
     },
