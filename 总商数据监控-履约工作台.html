@@ -166,6 +166,34 @@ body{display:flex;flex-direction:column}
 .menu-item:hover{background:var(--sidebar-hover);color:#fff}
 .menu-item.active{background:var(--sidebar-active);color:#fff}
 .menu-item.active::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:3px;background:var(--accent);border-radius:0 2px 2px 0}
+/* 三级分类（2026-11-26）：大分组下的子分类标题，可折叠 */
+.menu-sub-title{display:flex;align-items:center;height:30px;padding:0 10px 0 40px;font-size:11.5px;font-weight:600;letter-spacing:.2px;color:rgba(176,190,197,.78);cursor:pointer;white-space:nowrap;overflow:hidden;border-top:1px solid rgba(255,255,255,.05);margin-top:2px;transition:.15s;user-select:none}
+.menu-sub-title:first-child{border-top:none;margin-top:0}
+.menu-sub-title:hover{background:rgba(255,255,255,.05);color:#cfd8dc}
+.menu-sub-title.open{color:#e3eaee}
+.sub-arrow{display:inline-block;width:12px;flex-shrink:0;font-size:9px;opacity:.65;transition:transform .2s;transform:rotate(0deg)}
+.menu-sub-title.open .sub-arrow{transform:rotate(90deg)}
+.sub-name{overflow:hidden;text-overflow:ellipsis;flex:1}
+.sub-n{flex-shrink:0;margin-left:6px;font-size:10px;font-weight:500;color:rgba(176,190,197,.55);background:rgba(255,255,255,.07);border-radius:8px;padding:0 5px;line-height:15px}
+.sub-items{overflow:hidden;max-height:0;transition:max-height .22s ease}
+.sub-items.open{max-height:1400px}
+.menu-item.sub-item{padding-left:56px}
+.menu-item.sub-item .menu-text{font-size:12.5px}
+.sidebar.collapsed .menu-sub-title,
+.sidebar.collapsed .sub-items{display:none}
+/* 弹窗内的三级分类 */
+.flyout-body{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden}
+.flyout-body::-webkit-scrollbar{width:5px}
+.flyout-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.16);border-radius:3px}
+.group-flyout .flyout-sub{display:flex;align-items:center;gap:8px;padding:9px 14px;font-size:12px;font-weight:600;color:#b0bec5;letter-spacing:.2px;cursor:pointer;border-top:1px solid rgba(255,255,255,.06);transition:.15s}
+.group-flyout .flyout-sub:first-child{border-top:none}
+.group-flyout .flyout-sub:hover{background:rgba(0,188,212,.14);color:#fff}
+.group-flyout .flyout-sub .fs-arrow{font-size:9px;opacity:.6;transition:transform .2s}
+.group-flyout .flyout-sub.open .fs-arrow{transform:rotate(90deg)}
+.group-flyout .flyout-sub .fs-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.group-flyout .flyout-sub .fs-n{font-size:10px;font-weight:500;color:rgba(176,190,197,.6);background:rgba(255,255,255,.08);border-radius:8px;padding:0 5px;line-height:15px}
+.flyout-subs{overflow:hidden;max-height:0;transition:max-height .2s ease;background:rgba(0,0,0,.12)}
+.flyout-subs.open{max-height:1600px}
 .menu-text{font-size:13px;opacity:1;transition:opacity .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sidebar.collapsed .menu-text{opacity:0;width:0}
 .sidebar.collapsed .menu-item{padding-left:19px}
@@ -178,13 +206,13 @@ body{display:flex;flex-direction:column}
 .sidebar.collapsed .menu-item:hover::after{
   display:none
 }
-.group-flyout{display:none;position:absolute;left:100%;top:0;min-width:200px;background:#1e2a35;border-radius:0 8px 8px 0;box-shadow:4px 0 16px rgba(0,0,0,.35);z-index:200;overflow:hidden}
-.group-flyout .flyout-title{padding:12px 14px 8px;font-size:12px;color:#90a4ae;font-weight:600;letter-spacing:.5px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.06)}
-.group-flyout .flyout-item{display:flex;align-items:center;height:40px;padding:0 14px;font-size:13px;color:#cfd8dc;cursor:pointer;transition:background .15s;white-space:nowrap}
+.group-flyout{display:none;position:absolute;left:100%;top:0;width:320px;max-width:46vw;background:#1e2a35;border-radius:0 8px 8px 0;box-shadow:4px 0 16px rgba(0,0,0,.35);z-index:200;overflow:hidden}
+.group-flyout .flyout-title{flex-shrink:0;padding:12px 14px 8px;font-size:12px;color:#90a4ae;font-weight:600;letter-spacing:.5px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.06)}
+.group-flyout .flyout-item{position:relative;display:flex;align-items:center;min-height:34px;padding:7px 14px 7px 26px;font-size:12.5px;color:#cfd8dc;cursor:pointer;transition:background .15s;white-space:normal;line-height:1.45;word-break:break-word}
 .group-flyout .flyout-item:hover{background:rgba(0,188,212,.15);color:#fff}
 .group-flyout .flyout-item.active{background:rgba(0,188,212,.22);color:#fff}
 .group-flyout .flyout-item.active::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:3px;background:var(--accent);border-radius:0 2px 2px 0}
-.sidebar.collapsed .group-header:hover > .group-flyout{display:block}
+.sidebar.collapsed .group-header:hover > .group-flyout{display:flex;flex-direction:column}
 
 .sidebar-footer{padding:10px 16px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:var(--text-muted);white-space:nowrap;opacity:1;transition:opacity .2s}
 .sidebar.collapsed .sidebar-footer{opacity:0}
@@ -430,56 +458,70 @@ var navGroups = [
     title: '履约考核标准', short: '考核标准',
     icon: '<path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-1 14l-4-4 1.4-1.4L11 14.2l5.6-5.6L18 10l-7 7z"/>',
     items: [
-      { key: 'checkup_site', label: '站点建设标准', file: '履约考核/站点建设标准.html' },
-      { key: 'checkup_veh', label: '载具管理标准', file: '履约考核/载具管理标准.html' },
-      { key: 'checkup_equip', label: '装备合规标准', file: '履约考核/装备合规标准.html' },
-      { key: 'checkup_std', label: '标准化检查标准', file: '履约考核/标准化检查标准.html' },
-      { key: 'checkup_acc', label: '百万单事故申诉指南', file: '履约考核/百万单事故数申诉指南.html' },
-      { key: 'checkup_staff', label: '安全管理人员配备', file: '履约考核/安全管理人员配备规范.html' },
-      { key: 'checkup_talk', label: '合作商约谈管理规范', file: '履约考核/合作商约谈管理规范.html' },
-      { key: 'checkup_rule', label: '异常单数据剔除规则', file: '履约考核/合作商异常单数据剔除规则.html' },
-      { key: 'checkup_ka', label: 'KA品牌单月度考核制度', file: '履约考核/KA品牌单月度考核制度.html' },
-      { key: 'checkup_complaint', label: '投诉响应处理指南', file: '履约考核/配送人员投诉响应处理指南.html' },
-      { key: 'checkup_safety', label: '合作商安全管理规范', file: '履约考核/合作商安全管理规范.html' },
-      { key: 'checkup_insurance_appeal', label: '保险超时报案申诉剔除机制', file: '履约考核/保险超时报案申诉剔除机制.html' },
-      { key: 'checkup_info_security', label: '合作商信息安全及系统账号管理规则', file: '履约考核/合作商信息安全及系统账号管理规则.html' },
-      { key: 'checkup_tax', label: '合作商无欠税与骑手完税管理规范', file: '履约考核/合作商无欠税与骑手完税管理规范.html' },
-      { key: 'checkup_talk_supplement', label: '合作商约谈管理规范补充规定', file: '履约考核/合作商约谈管理规范补充规定.html' },
-      { key: 'checkup_mix_supplement', label: '异商混送引退管理标准补充说明', file: '履约考核/异商混送引退管理标准补充说明.html' },
-      { key: 'checkup_station_rider_behavior', label: '站长服务骑手行为规范', file: '履约考核/站长服务骑手行为规范.html' },
-      { key: 'checkup_city_bottom_kpi', label: '城市商末位考核结果通知', file: '履约考核/城市商末位考核结果通知.html' },
-      { key: 'checkup_penalty_types', label: '违规违约扣款类型定义', file: '履约考核/违规违约扣款类型定义.html' },
-      { key: 'checkup_rider_home', label: '骑手之家建设运营管理办法', file: '履约考核/骑手之家建设运营管理办法.html' },
-      { key: 'checkup_bizrule_s2', label: '商管规则补充规定二', file: '履约考核/商管规则补充规定二.html' },
-      { key: 'checkup_bizrule_s2_note', label: '商管规则补充规定二补充说明', file: '履约考核/商管规则补充规定二补充说明.html' },
-      { key: 'checkup_bizrule_s3', label: '商管规则补充规定三', file: '履约考核/商管规则补充规定三.html' },
-      { key: 'checkup_bizrule_s1', label: '商管规则补充规定', file: '履约考核/商管规则补充规定.html' },
-      { key: 'checkup_salary_guarantee', label: '配送人员薪酬保障管理标准', file: '履约考核/配送人员薪酬保障管理标准.html' },
-      { key: 'checkup_kpi_settle_202610', label: '2026年10月考核结算方案', file: '履约考核/2026年10月考核结算方案.html' },
-      { key: 'checkup_exit_rule_note', label: '专送合作商退出规则补充说明', file: '履约考核/专送合作商退出规则补充说明.html' },
-      { key: 'checkup_area_opt', label: '加盟配送区域优化管理规范', file: '履约考核/加盟配送区域优化管理规范.html' },
-      { key: 'checkup_ka_bid', label: 'KA业务招投标管理规范', file: '履约考核/KA业务招投标管理规范.html' },
-      { key: 'checkup_area_mgmt', label: '配送区域管理规范', file: '履约考核/配送区域管理规范.html' },
-      { key: 'checkup_enterprise_self', label: '企客自建业务承接管理规范', file: '履约考核/企客自建业务承接管理规范.html' },
-      { key: 'checkup_single_city', label: '单城单商管理标准', file: '履约考核/单城单商管理标准.html' },
-      { key: 'checkup_develop', label: '专送合作商发展管理规范', file: '履约考核/专送合作商发展管理规范.html' },
-      { key: 'checkup_ma', label: '合作商收并购管理标准', file: '履约考核/合作商收并购管理标准.html' },
-      { key: 'checkup_bizrule_plan', label: '商管规则补充方案', file: '履约考核/商管规则补充方案.html' },
-      { key: 'checkup_mix_exit', label: '异商混送引退管理标准', file: '履约考核/异商混送引退管理标准.html' },
-      { key: 'checkup_site_exit', label: '站点退出管理规范', file: '履约考核/站点退出管理规范.html' },
-      { key: 'checkup_bid', label: '专送合作商招投标管理规范', file: '履约考核/专送合作商招投标管理规范.html' },
-      { key: 'checkup_rider_subsidy', label: '骑手保障补贴考核方案', file: '履约考核/骑手保障补贴考核方案.html' },
-      { key: 'checkup_110_fill', label: '110工单合规填报考核标准', file: '履约考核/110工单合规填报考核标准.html' },
-      { key: 'checkup_safety_ledger', label: '安全台账管理指导手册', file: '履约考核/安全台账管理指导手册.html' },
-      { key: 'checkup_integrity', label: '诚信经营管理规范', file: '履约考核/诚信经营管理规范.html' },
-      { key: 'checkup_license_change', label: '工商信息变更及资质管理标准', file: '履约考核/工商信息变更及资质管理标准.html' },
-      { key: 'checkup_deposit', label: '合作商保证金管理办法', file: '履约考核/合作商保证金管理办法.html' },
-      { key: 'checkup_kpi_settle_202609', label: '2026年9月考核结算方案', file: '履约考核/2026年9月考核结算方案.html' },
-      { key: 'checkup_fair_compete', label: '非公平竞争管理办法', file: '履约考核/非公平竞争管理办法.html' },
-      { key: 'checkup_battery_rent', label: '配送人员车电租赁管理标准', file: '履约考核/配送人员车电租赁管理标准.html' },
-      { key: 'checkup_ebike_rent', label: '电动车租赁管理标准激励版', file: '履约考核/电动车租赁管理标准激励版.html' },
-      { key: 'checkup_empower', label: '赋能活动配置管理标准', file: '履约考核/赋能活动配置管理标准.html' },
-      { key: 'checkup_zhi_product', label: '智赋产品使用标准', file: '履约考核/智赋产品使用标准.html' },
+      { key: 'checkup_mix_supplement', sub: '一、发展·塑形', label: '异商混送引退补充说明', file: '履约考核/异商混送引退管理标准补充说明.html' },
+      { key: 'checkup_bizrule_s2', sub: '一、发展·塑形', label: '商管规则补充规定二', file: '履约考核/商管规则补充规定二.html' },
+      { key: 'checkup_bizrule_s2_note', sub: '一、发展·塑形', label: '商管规则补充规定二补充说明', file: '履约考核/商管规则补充规定二补充说明.html' },
+      { key: 'checkup_bizrule_s3', sub: '一、发展·塑形', label: '商管规则补充规定三', file: '履约考核/商管规则补充规定三.html' },
+      { key: 'checkup_bizrule_s1', sub: '一、发展·塑形', label: '商管规则补充规定', file: '履约考核/商管规则补充规定.html' },
+      { key: 'checkup_exit_rule_note', sub: '一、发展·塑形', label: '专送合作商退出规则补充说明', file: '履约考核/专送合作商退出规则补充说明.html' },
+      { key: 'checkup_area_opt', sub: '一、发展·塑形', label: '加盟配送区域优化管理规范', file: '履约考核/加盟配送区域优化管理规范.html' },
+      { key: 'checkup_ka_bid', sub: '一、发展·塑形', label: 'KA业务招投标管理规范', file: '履约考核/KA业务招投标管理规范.html' },
+      { key: 'checkup_area_mgmt', sub: '一、发展·塑形', label: '配送区域管理规范', file: '履约考核/配送区域管理规范.html' },
+      { key: 'checkup_enterprise_self', sub: '一、发展·塑形', label: '企客自建业务承接管理规范', file: '履约考核/企客自建业务承接管理规范.html' },
+      { key: 'checkup_single_city', sub: '一、发展·塑形', label: '单城单商管理标准', file: '履约考核/单城单商管理标准.html' },
+      { key: 'checkup_develop', sub: '一、发展·塑形', label: '专送合作商发展管理规范', file: '履约考核/专送合作商发展管理规范.html' },
+      { key: 'checkup_ma', sub: '一、发展·塑形', label: '合作商收并购管理标准', file: '履约考核/合作商收并购管理标准.html' },
+      { key: 'checkup_bizrule_plan', sub: '一、发展·塑形', label: '商管规则补充方案', file: '履约考核/商管规则补充方案.html' },
+      { key: 'checkup_mix_exit', sub: '一、发展·塑形', label: '异商混送引退管理标准', file: '履约考核/异商混送引退管理标准.html' },
+      { key: 'checkup_site_exit', sub: '一、发展·塑形', label: '站点退出管理规范', file: '履约考核/站点退出管理规范.html' },
+      { key: 'checkup_bid', sub: '一、发展·塑形', label: '专送合作商招投标管理规范', file: '履约考核/专送合作商招投标管理规范.html' },
+      { key: 'checkup_site', sub: '二、安全·履约', label: '站点建设标准', file: '履约考核/站点建设标准.html' },
+      { key: 'checkup_equip', sub: '二、安全·履约', label: '装备合规标准', file: '履约考核/装备合规标准.html' },
+      { key: 'checkup_std', sub: '二、安全·履约', label: '标准化检查标准', file: '履约考核/标准化检查标准.html' },
+      { key: 'checkup_acc', sub: '二、安全·履约', label: '百万单事故申诉指南', file: '履约考核/百万单事故数申诉指南.html' },
+      { key: 'checkup_staff', sub: '二、安全·履约', label: '安全管理人员配备', file: '履约考核/安全管理人员配备规范.html' },
+      { key: 'checkup_safety', sub: '二、安全·履约', label: '合作商安全管理规范', file: '履约考核/合作商安全管理规范.html' },
+      { key: 'checkup_insurance_appeal', sub: '二、安全·履约', label: '保险超时报案申诉剔除机制', file: '履约考核/保险超时报案申诉剔除机制.html' },
+      { key: 'checkup_info_security', sub: '二、安全·履约', label: '合作商信息安全及系统账号管理规则', file: '履约考核/合作商信息安全及系统账号管理规则.html' },
+      { key: 'checkup_station_rider_behavior', sub: '二、安全·履约', label: '站长服务骑手行为规范', file: '履约考核/站长服务骑手行为规范.html' },
+      { key: 'checkup_110_fill', sub: '二、安全·履约', label: '110工单合规填报考核标准', file: '履约考核/110工单合规填报考核标准.html' },
+      { key: 'checkup_safety_ledger', sub: '二、安全·履约', label: '安全台账管理指导手册', file: '履约考核/安全台账管理指导手册.html' },
+      { key: 'checkup_integrity', sub: '二、安全·履约', label: '诚信经营管理规范', file: '履约考核/诚信经营管理规范.html' },
+      { key: 'checkup_license_change', sub: '二、安全·履约', label: '工商信息变更及资质管理标准', file: '履约考核/工商信息变更及资质管理标准.html' },
+      { key: 'checkup_talk', sub: '三、非公·权益', label: '合作商约谈管理规范', file: '履约考核/合作商约谈管理规范.html' },
+      { key: 'checkup_rule', sub: '三、非公·权益', label: '异常单数据剔除规则', file: '履约考核/合作商异常单数据剔除规则.html' },
+      { key: 'checkup_complaint', sub: '三、非公·权益', label: '投诉响应处理指南', file: '履约考核/配送人员投诉响应处理指南.html' },
+      { key: 'checkup_tax', sub: '三、非公·权益', label: '无欠税与骑手完税规范', file: '履约考核/合作商无欠税与骑手完税管理规范.html' },
+      { key: 'checkup_talk_supplement', sub: '三、非公·权益', label: '约谈管理规范补充规定', file: '履约考核/合作商约谈管理规范补充规定.html' },
+      { key: 'checkup_rider_home', sub: '三、非公·权益', label: '骑手之家建设运营管理办法', file: '履约考核/骑手之家建设运营管理办法.html' },
+      { key: 'checkup_salary_guarantee', sub: '三、非公·权益', label: '配送人员薪酬保障管理标准', file: '履约考核/配送人员薪酬保障管理标准.html' },
+      { key: 'checkup_rider_subsidy', sub: '三、非公·权益', label: '骑手保障补贴考核方案', file: '履约考核/骑手保障补贴考核方案.html' },
+      { key: 'checkup_deposit', sub: '三、非公·权益', label: '合作商保证金管理办法', file: '履约考核/合作商保证金管理办法.html' },
+      { key: 'checkup_fair_compete', sub: '三、非公·权益', label: '非公平竞争管理办法', file: '履约考核/非公平竞争管理办法.html' },
+      { key: 'checkup_empower', sub: '三、非公·权益', label: '赋能活动配置管理标准', file: '履约考核/赋能活动配置管理标准.html' },
+      { key: 'checkup_zhi_product', sub: '三、非公·权益', label: '智赋产品使用标准', file: '履约考核/智赋产品使用标准.html' },
+      { key: 'checkup_veh', sub: '四、装备·载具', label: '载具管理标准', file: '履约考核/载具管理标准.html' },
+      { key: 'checkup_battery_rent', sub: '四、装备·载具', label: '配送人员车电租赁管理标准', file: '履约考核/配送人员车电租赁管理标准.html' },
+      { key: 'checkup_ebike_rent', sub: '四、装备·载具', label: '电动车租赁管理标准激励版', file: '履约考核/电动车租赁管理标准激励版.html' },
+      { key: 'checkup_recruit', sub: '五、招聘·三方', label: '招聘与三方管理规范', file: '履约考核/招聘与三方管理规范.html' },
+      { key: 'checkup_2026_equity', sub: '2026年权益考核', label: '2026年权益考核', file: '履约考核/2026年权益考核.html' },
+      { key: 'checkup_2026_star09', sub: '2026年星级考核', label: '2026年9月星级考核', file: '履约考核/2026年9月星级考核.html' },
+      { key: 'checkup_2026_star10', sub: '2026年星级考核', label: '2026年10月星级考核', file: '履约考核/2026年10月星级考核.html' },
+      { key: 'checkup_2026_star11', sub: '2026年星级考核', label: '2026年11月星级考核', file: '履约考核/2026年11月星级考核.html' },
+      { key: 'checkup_star11_main', sub: '2026年星级考核', label: '2026年11月星级考核制度（普适版）', file: '履约考核/2026年11月星级考核制度（普适版）.html' },
+      { key: 'checkup_2026_fee09', sub: '2026年服务费', label: '2026年9月服务费结算', file: '履约考核/2026年9月服务费结算.html' },
+      { key: 'checkup_2026_fee10', sub: '2026年服务费', label: '2026年10月服务费结算', file: '履约考核/2026年10月服务费结算.html' },
+      { key: 'checkup_2026_fee11', sub: '2026年服务费', label: '2026年11月服务费结算', file: '履约考核/2026年11月服务费结算.html' },
+      { key: 'checkup_fee11_main', sub: '2026年服务费', label: '2026年11月服务费结算方案（普适版）', file: '履约考核/2026年11月服务费结算方案（普适版）.html' },
+      { key: 'checkup_2026_winter', sub: '2026年冬季·夏战', label: '2026年冬季相关政策', file: '履约考核/2026年冬季相关政策.html' },
+      { key: 'checkup_2026_summer', sub: '2026年冬季·夏战', label: '2026年夏战相关政策', file: '履约考核/2026年夏战相关政策.html' },
+      { key: 'checkup_2026_rating', sub: '2026年合作商评级', label: '2026年合作商评级', file: '履约考核/2026年合作商评级.html' },
+      { key: 'checkup_2026_honor', sub: '2026年度荣誉', label: '2026年度荣誉', file: '履约考核/2026年度荣誉.html' },
+      { key: 'checkup_ka', sub: '月度考核·结算', label: 'KA品牌单考核制度', file: '履约考核/KA品牌单月度考核制度.html' },
+      { key: 'checkup_city_bottom_kpi', sub: '月度考核·结算', label: '城市商末位考核结果通知', file: '履约考核/城市商末位考核结果通知.html' },
+      { key: 'checkup_penalty_types', sub: '月度考核·结算', label: '违规违约扣款类型定义', file: '履约考核/违规违约扣款类型定义.html' },
+      { key: 'checkup_kpi_settle_202610', sub: '月度考核·结算', label: '2026年10月考核结算方案', file: '履约考核/2026年10月考核结算方案.html' },
+      { key: 'checkup_kpi_settle_202609', sub: '月度考核·结算', label: '2026年9月考核结算方案', file: '履约考核/2026年9月考核结算方案.html' },
     ]
   },
   {
@@ -587,6 +629,7 @@ function relativePath(file){
 // ===== State =====
 var activeItem = null;
 var expandedGroups = {}; // gi -> bool
+var expandedSubs = {};   // "gi|si" -> bool 三级分类展开状态
 
 // ===== Build Navigation =====
 function loadBoardConfig(){
@@ -623,6 +666,24 @@ function buildNav(){
       if (!firstFileItem && item.file) firstFileItem = { groupIdx: gi, itemIdx: ii };
     });
 
+    /* 三级分类：按 item.sub 分桶，只有多桶时才折叠显示 */
+    var buckets = [], bmap = {};
+    items.forEach(function(item){
+      var name = item.sub || '';
+      if (!bmap[name]){ bmap[name] = { name: name, list: [] }; buckets.push(bmap[name]); }
+      bmap[name].list.push(item);
+    });
+    var hasSub = buckets.length > 1;
+    /* 当前选中项所在分类强制展开，避免刷新后看不到自己 */
+    if (hasSub && activeItem && activeItem.groupIdx === gi){
+      var actItem = group.items[activeItem.itemIdx];
+      if (actItem && actItem.sub){
+        for (var bi = 0; bi < buckets.length; bi++){
+          if (buckets[bi].name === actItem.sub) expandedSubs[gi + '|' + bi] = true;
+        }
+      }
+    }
+
     var expanded = expandedGroups[gi] !== false; // 默认展开
     html += '<div class="menu-group">';
     html += '<div class="group-header' + (activeItem && activeItem.groupIdx === gi ? ' active' : '') + '" data-gi="' + gi + '" data-title="' + escAttr(group.title) + '" onclick="toggleGroup(' + gi + ')">';
@@ -631,20 +692,42 @@ function buildNav(){
     html += '<div class="group-title">' + escHtml(group.title) + '</div>';
     html += '</div>';
     html += '<div class="group-arrow' + (expanded ? '' : ' collapsed') + '">▼</div>';
-    /* flyout: shown on hover when sidebar collapsed */
+    /* flyout: shown on hover when sidebar collapsed；同样按三级分类折叠 */
     html += '<div class="group-flyout">';
     html += '<div class="flyout-title">' + escHtml(group.title) + '</div>';
-    items.forEach(function(item, ii){
-      var isActive = activeItem && activeItem.groupIdx === gi && activeItem.itemIdx === ii;
-      html += '<div class="flyout-item' + (isActive ? ' active' : '') + '" onclick="event.stopPropagation();selectItem(' + gi + ',' + ii + ')">' + escHtml(item.label) + '</div>';
+    html += '<div class="flyout-body">';
+    buckets.forEach(function(bk, si){
+      var open = hasSub ? !!expandedSubs[gi + '|' + si] : true;
+      if (hasSub){
+        html += '<div class="flyout-sub' + (open ? ' open' : '') + '" onclick="event.stopPropagation();toggleFlySub(this,' + gi + ',' + si + ')">'
+              + '<span class="fs-arrow">▶</span><span class="fs-name">' + escHtml(bk.name) + '</span><span class="fs-n">' + bk.list.length + '</span></div>';
+        html += '<div class="flyout-subs' + (open ? ' open' : '') + '" id="flySub_' + gi + '_' + si + '">';
+      }
+      bk.list.forEach(function(item){
+        var ii = group.items.indexOf(item);
+        var isActive = activeItem && activeItem.groupIdx === gi && activeItem.itemIdx === ii;
+        html += '<div class="flyout-item' + (isActive ? ' active' : '') + '" onclick="event.stopPropagation();selectItem(' + gi + ',' + ii + ')">' + escHtml(item.label) + '</div>';
+      });
+      if (hasSub) html += '</div>';
     });
     html += '</div>';
     html += '</div>';
-    html += '<div class="group-items' + (expanded ? '' : ' collapsed') + '" id="groupItems_' + gi + '" style="max-height:' + (items.length * 38) + 'px">';
-    items.forEach(function(item, ii){
-      var isActive = activeItem && activeItem.groupIdx === gi && activeItem.itemIdx === ii;
-      html += '<div class="menu-item' + (isActive ? ' active' : '') + '" data-key="' + item.key + '" data-title="' + escAttr(item.label) + '" onclick="selectItem(' + gi + ',' + ii + ')">';
-      html += '<div class="menu-text">' + escHtml(item.label) + '</div>';
+    html += '</div>';
+    html += '<div class="group-items' + (expanded ? '' : ' collapsed') + '" id="groupItems_' + gi + '">';
+    buckets.forEach(function(bk, si){
+      var open = hasSub ? !!expandedSubs[gi + '|' + si] : true;
+      if (hasSub){
+        html += '<div class="menu-sub-title' + (open ? ' open' : '') + '" onclick="toggleSub(this,' + gi + ',' + si + ')">'
+              + '<span class="sub-arrow">▶</span><span class="sub-name">' + escHtml(bk.name) + '</span><span class="sub-n">' + bk.list.length + '</span></div>';
+      }
+      html += '<div class="sub-items' + (open ? ' open' : '') + '" id="subWrap_' + gi + '_' + si + '">';
+      bk.list.forEach(function(item){
+        var ii = group.items.indexOf(item);
+        var isActive = activeItem && activeItem.groupIdx === gi && activeItem.itemIdx === ii;
+        html += '<div class="menu-item' + (hasSub ? ' sub-item' : '') + (isActive ? ' active' : '') + '" data-key="' + item.key + '" data-si="' + si + '" data-title="' + escAttr(item.label) + '" onclick="selectItem(' + gi + ',' + ii + ')">';
+        html += '<div class="menu-text">' + escHtml(item.label) + '</div>';
+        html += '</div>';
+      });
       html += '</div>';
     });
     html += '</div>';
@@ -653,6 +736,12 @@ function buildNav(){
 
   container.innerHTML = html;
 
+  // 展开的分组不限高，避免子分类展开后被裁剪
+  navGroups.forEach(function(g, gi){
+    var el = document.getElementById('groupItems_' + gi);
+    if (el && !el.classList.contains('collapsed')) el.style.maxHeight = 'none';
+  });
+
   // 默认停留欢迎页，不自动打开任何看板（用户可在左侧菜单或欢迎页 tile 选择）
 }
 
@@ -660,6 +749,65 @@ function toggleGroup(gi){
   expandedGroups[gi] = !expandedGroups[gi];
   buildNav();
 }
+
+// 折叠/展开三级分类（侧栏）
+function toggleSub(el, gi, si){
+  var key = gi + '|' + si;
+  expandedSubs[key] = !expandedSubs[key];
+  var open = !!expandedSubs[key];
+  var box = document.getElementById('subWrap_' + gi + '_' + si);
+  var grp = document.getElementById('groupItems_' + gi);
+  if (el) el.classList.toggle('open', open);
+  if (box) box.classList.toggle('open', open);
+  if (!grp) return;
+  if (open){
+    grp.style.maxHeight = 'none';
+  } else {
+    // 等收起动画结束后再回收高度，避免内容被瞬间裁掉
+    setTimeout(function(){
+      var g2 = document.getElementById('groupItems_' + gi);
+      if (g2 && !g2.classList.contains('collapsed')) g2.style.maxHeight = 'none';
+    }, 240);
+  }
+}
+
+// 折叠/展开三级分类（收缩态弹窗）
+function toggleFlySub(el, gi, si){
+  var key = gi + '|' + si;
+  expandedSubs[key] = !expandedSubs[key];
+  var open = !!expandedSubs[key];
+  var box = document.getElementById('flySub_' + gi + '_' + si);
+  if (el) el.classList.toggle('open', open);
+  if (box) box.classList.toggle('open', open);
+  var f = el ? el.closest('.group-flyout') : null;
+  if (f) fitFlyout(f.parentNode, f);
+}
+
+// 让收缩态弹窗始终完整落在视口内（分类展开后自动收高并滚动）
+function fitFlyout(headerEl, flyEl){
+  if (!headerEl || !flyEl) return;
+  flyEl.style.maxHeight = 'none';
+  flyEl.style.top = '0px';
+  requestAnimationFrame(function(){
+    var r = headerEl.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var pad = 12;
+    var avail = vh - r.top - pad;
+    if (avail < 240) avail = 240;
+    flyEl.style.maxHeight = avail + 'px';   /* 只封顶，不压缩，展开分类时能自然长高 */
+    var need = flyEl.scrollHeight;
+    if (need > avail){
+      var shift = Math.min(Math.max(r.top - pad, 0), need - avail);
+      if (shift > 0) flyEl.style.top = (-shift) + 'px';
+    }
+  });
+}
+document.addEventListener('mouseover', function(e){
+  var h = e.target && e.target.closest ? e.target.closest('.group-header') : null;
+  if (!h || !document.getElementById('sidebar').classList.contains('collapsed')) return;
+  var f = h.querySelector('.group-flyout');
+  if (f) fitFlyout(h, f);
+});
 
 // ===== Select Item =====
 function selectItem(gi, ii){
@@ -670,6 +818,20 @@ function selectItem(gi, ii){
   if (target) target.classList.add('active');
   var header = document.querySelector('.group-header[data-gi="' + gi + '"]');
   if (header) header.classList.add('active');
+
+  // 选中项若在收起的三级分类里，自动展开该分类
+  if (target && target.getAttribute('data-si')){
+    var siSel = target.getAttribute('data-si');
+    var box = document.getElementById('subWrap_' + gi + '_' + siSel);
+    if (box && !box.classList.contains('open')){
+      box.classList.add('open');
+      expandedSubs[gi + '|' + siSel] = true;
+      var hd = box.previousElementSibling;
+      if (hd && hd.classList.contains('menu-sub-title')) hd.classList.add('open');
+      var grp = document.getElementById('groupItems_' + gi);
+      if (grp) grp.style.maxHeight = 'none';
+    }
+  }
 
   activeItem = { groupIdx: gi, itemIdx: ii };
 

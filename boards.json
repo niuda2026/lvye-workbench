@@ -52,254 +52,388 @@
       "short": "考核标准",
       "items": [
         {
-          "key": "checkup_site",
-          "label": "站点建设标准",
-          "file": "履约考核/站点建设标准.html"
-        },
-        {
-          "key": "checkup_veh",
-          "label": "载具管理标准",
-          "file": "履约考核/载具管理标准.html"
-        },
-        {
-          "key": "checkup_equip",
-          "label": "装备合规标准",
-          "file": "履约考核/装备合规标准.html"
-        },
-        {
-          "key": "checkup_std",
-          "label": "标准化检查标准",
-          "file": "履约考核/标准化检查标准.html"
-        },
-        {
-          "key": "checkup_acc",
-          "label": "百万单事故申诉指南",
-          "file": "履约考核/百万单事故数申诉指南.html"
-        },
-        {
-          "key": "checkup_staff",
-          "label": "安全管理人员配备",
-          "file": "履约考核/安全管理人员配备规范.html"
-        },
-        {
-          "key": "checkup_talk",
-          "label": "合作商约谈管理规范",
-          "file": "履约考核/合作商约谈管理规范.html"
-        },
-        {
-          "key": "checkup_rule",
-          "label": "异常单数据剔除规则",
-          "file": "履约考核/合作商异常单数据剔除规则.html"
-        },
-        {
-          "key": "checkup_ka",
-          "label": "KA品牌单月度考核制度",
-          "file": "履约考核/KA品牌单月度考核制度.html"
-        },
-        {
-          "key": "checkup_complaint",
-          "label": "投诉响应处理指南",
-          "file": "履约考核/配送人员投诉响应处理指南.html"
-        },
-        {
-          "key": "checkup_safety",
-          "label": "合作商安全管理规范",
-          "file": "履约考核/合作商安全管理规范.html"
-        },
-        {
-          "key": "checkup_insurance_appeal",
-          "label": "保险超时报案申诉剔除机制",
-          "file": "履约考核/保险超时报案申诉剔除机制.html"
-        },
-        {
-          "key": "checkup_info_security",
-          "label": "合作商信息安全及系统账号管理规则",
-          "file": "履约考核/合作商信息安全及系统账号管理规则.html"
-        },
-        {
-          "key": "checkup_tax",
-          "label": "合作商无欠税与骑手完税管理规范",
-          "file": "履约考核/合作商无欠税与骑手完税管理规范.html"
-        },
-        {
-          "key": "checkup_talk_supplement",
-          "label": "合作商约谈管理规范补充规定",
-          "file": "履约考核/合作商约谈管理规范补充规定.html"
-        },
-        {
           "key": "checkup_mix_supplement",
-          "label": "异商混送引退管理标准补充说明",
+          "sub": "一、发展·塑形",
+          "label": "异商混送引退补充说明",
           "file": "履约考核/异商混送引退管理标准补充说明.html"
         },
         {
-          "key": "checkup_station_rider_behavior",
-          "label": "站长服务骑手行为规范",
-          "file": "履约考核/站长服务骑手行为规范.html"
-        },
-        {
-          "key": "checkup_city_bottom_kpi",
-          "label": "城市商末位考核结果通知",
-          "file": "履约考核/城市商末位考核结果通知.html"
-        },
-        {
-          "key": "checkup_penalty_types",
-          "label": "违规违约扣款类型定义",
-          "file": "履约考核/违规违约扣款类型定义.html"
-        },
-        {
-          "key": "checkup_rider_home",
-          "label": "骑手之家建设运营管理办法",
-          "file": "履约考核/骑手之家建设运营管理办法.html"
-        },
-        {
           "key": "checkup_bizrule_s2",
+          "sub": "一、发展·塑形",
           "label": "商管规则补充规定二",
           "file": "履约考核/商管规则补充规定二.html"
         },
         {
           "key": "checkup_bizrule_s2_note",
+          "sub": "一、发展·塑形",
           "label": "商管规则补充规定二补充说明",
           "file": "履约考核/商管规则补充规定二补充说明.html"
         },
         {
           "key": "checkup_bizrule_s3",
+          "sub": "一、发展·塑形",
           "label": "商管规则补充规定三",
           "file": "履约考核/商管规则补充规定三.html"
         },
         {
           "key": "checkup_bizrule_s1",
+          "sub": "一、发展·塑形",
           "label": "商管规则补充规定",
           "file": "履约考核/商管规则补充规定.html"
         },
         {
-          "key": "checkup_salary_guarantee",
-          "label": "配送人员薪酬保障管理标准",
-          "file": "履约考核/配送人员薪酬保障管理标准.html"
-        },
-        {
-          "key": "checkup_kpi_settle_202610",
-          "label": "2026年10月考核结算方案",
-          "file": "履约考核/2026年10月考核结算方案.html"
-        },
-        {
           "key": "checkup_exit_rule_note",
+          "sub": "一、发展·塑形",
           "label": "专送合作商退出规则补充说明",
           "file": "履约考核/专送合作商退出规则补充说明.html"
         },
         {
           "key": "checkup_area_opt",
+          "sub": "一、发展·塑形",
           "label": "加盟配送区域优化管理规范",
           "file": "履约考核/加盟配送区域优化管理规范.html"
         },
         {
           "key": "checkup_ka_bid",
+          "sub": "一、发展·塑形",
           "label": "KA业务招投标管理规范",
           "file": "履约考核/KA业务招投标管理规范.html"
         },
         {
           "key": "checkup_area_mgmt",
+          "sub": "一、发展·塑形",
           "label": "配送区域管理规范",
           "file": "履约考核/配送区域管理规范.html"
         },
         {
           "key": "checkup_enterprise_self",
+          "sub": "一、发展·塑形",
           "label": "企客自建业务承接管理规范",
           "file": "履约考核/企客自建业务承接管理规范.html"
         },
         {
           "key": "checkup_single_city",
+          "sub": "一、发展·塑形",
           "label": "单城单商管理标准",
           "file": "履约考核/单城单商管理标准.html"
         },
         {
           "key": "checkup_develop",
+          "sub": "一、发展·塑形",
           "label": "专送合作商发展管理规范",
           "file": "履约考核/专送合作商发展管理规范.html"
         },
         {
           "key": "checkup_ma",
+          "sub": "一、发展·塑形",
           "label": "合作商收并购管理标准",
           "file": "履约考核/合作商收并购管理标准.html"
         },
         {
           "key": "checkup_bizrule_plan",
+          "sub": "一、发展·塑形",
           "label": "商管规则补充方案",
           "file": "履约考核/商管规则补充方案.html"
         },
         {
           "key": "checkup_mix_exit",
+          "sub": "一、发展·塑形",
           "label": "异商混送引退管理标准",
           "file": "履约考核/异商混送引退管理标准.html"
         },
         {
           "key": "checkup_site_exit",
+          "sub": "一、发展·塑形",
           "label": "站点退出管理规范",
           "file": "履约考核/站点退出管理规范.html"
         },
         {
           "key": "checkup_bid",
+          "sub": "一、发展·塑形",
           "label": "专送合作商招投标管理规范",
           "file": "履约考核/专送合作商招投标管理规范.html"
         },
         {
-          "key": "checkup_rider_subsidy",
-          "label": "骑手保障补贴考核方案",
-          "file": "履约考核/骑手保障补贴考核方案.html"
+          "key": "checkup_site",
+          "sub": "二、安全·履约",
+          "label": "站点建设标准",
+          "file": "履约考核/站点建设标准.html"
+        },
+        {
+          "key": "checkup_equip",
+          "sub": "二、安全·履约",
+          "label": "装备合规标准",
+          "file": "履约考核/装备合规标准.html"
+        },
+        {
+          "key": "checkup_std",
+          "sub": "二、安全·履约",
+          "label": "标准化检查标准",
+          "file": "履约考核/标准化检查标准.html"
+        },
+        {
+          "key": "checkup_acc",
+          "sub": "二、安全·履约",
+          "label": "百万单事故申诉指南",
+          "file": "履约考核/百万单事故数申诉指南.html"
+        },
+        {
+          "key": "checkup_staff",
+          "sub": "二、安全·履约",
+          "label": "安全管理人员配备",
+          "file": "履约考核/安全管理人员配备规范.html"
+        },
+        {
+          "key": "checkup_safety",
+          "sub": "二、安全·履约",
+          "label": "合作商安全管理规范",
+          "file": "履约考核/合作商安全管理规范.html"
+        },
+        {
+          "key": "checkup_insurance_appeal",
+          "sub": "二、安全·履约",
+          "label": "保险超时报案申诉剔除机制",
+          "file": "履约考核/保险超时报案申诉剔除机制.html"
+        },
+        {
+          "key": "checkup_info_security",
+          "sub": "二、安全·履约",
+          "label": "合作商信息安全及系统账号管理规则",
+          "file": "履约考核/合作商信息安全及系统账号管理规则.html"
+        },
+        {
+          "key": "checkup_station_rider_behavior",
+          "sub": "二、安全·履约",
+          "label": "站长服务骑手行为规范",
+          "file": "履约考核/站长服务骑手行为规范.html"
         },
         {
           "key": "checkup_110_fill",
+          "sub": "二、安全·履约",
           "label": "110工单合规填报考核标准",
           "file": "履约考核/110工单合规填报考核标准.html"
         },
         {
           "key": "checkup_safety_ledger",
+          "sub": "二、安全·履约",
           "label": "安全台账管理指导手册",
           "file": "履约考核/安全台账管理指导手册.html"
         },
         {
           "key": "checkup_integrity",
+          "sub": "二、安全·履约",
           "label": "诚信经营管理规范",
           "file": "履约考核/诚信经营管理规范.html"
         },
         {
           "key": "checkup_license_change",
+          "sub": "二、安全·履约",
           "label": "工商信息变更及资质管理标准",
           "file": "履约考核/工商信息变更及资质管理标准.html"
         },
         {
+          "key": "checkup_talk",
+          "sub": "三、非公·权益",
+          "label": "合作商约谈管理规范",
+          "file": "履约考核/合作商约谈管理规范.html"
+        },
+        {
+          "key": "checkup_rule",
+          "sub": "三、非公·权益",
+          "label": "异常单数据剔除规则",
+          "file": "履约考核/合作商异常单数据剔除规则.html"
+        },
+        {
+          "key": "checkup_complaint",
+          "sub": "三、非公·权益",
+          "label": "投诉响应处理指南",
+          "file": "履约考核/配送人员投诉响应处理指南.html"
+        },
+        {
+          "key": "checkup_tax",
+          "sub": "三、非公·权益",
+          "label": "无欠税与骑手完税规范",
+          "file": "履约考核/合作商无欠税与骑手完税管理规范.html"
+        },
+        {
+          "key": "checkup_talk_supplement",
+          "sub": "三、非公·权益",
+          "label": "约谈管理规范补充规定",
+          "file": "履约考核/合作商约谈管理规范补充规定.html"
+        },
+        {
+          "key": "checkup_rider_home",
+          "sub": "三、非公·权益",
+          "label": "骑手之家建设运营管理办法",
+          "file": "履约考核/骑手之家建设运营管理办法.html"
+        },
+        {
+          "key": "checkup_salary_guarantee",
+          "sub": "三、非公·权益",
+          "label": "配送人员薪酬保障管理标准",
+          "file": "履约考核/配送人员薪酬保障管理标准.html"
+        },
+        {
+          "key": "checkup_rider_subsidy",
+          "sub": "三、非公·权益",
+          "label": "骑手保障补贴考核方案",
+          "file": "履约考核/骑手保障补贴考核方案.html"
+        },
+        {
           "key": "checkup_deposit",
+          "sub": "三、非公·权益",
           "label": "合作商保证金管理办法",
           "file": "履约考核/合作商保证金管理办法.html"
         },
         {
-          "key": "checkup_kpi_settle_202609",
-          "label": "2026年9月考核结算方案",
-          "file": "履约考核/2026年9月考核结算方案.html"
-        },
-        {
           "key": "checkup_fair_compete",
+          "sub": "三、非公·权益",
           "label": "非公平竞争管理办法",
           "file": "履约考核/非公平竞争管理办法.html"
         },
         {
-          "key": "checkup_battery_rent",
-          "label": "配送人员车电租赁管理标准",
-          "file": "履约考核/配送人员车电租赁管理标准.html"
-        },
-        {
-          "key": "checkup_ebike_rent",
-          "label": "电动车租赁管理标准激励版",
-          "file": "履约考核/电动车租赁管理标准激励版.html"
-        },
-        {
           "key": "checkup_empower",
+          "sub": "三、非公·权益",
           "label": "赋能活动配置管理标准",
           "file": "履约考核/赋能活动配置管理标准.html"
         },
         {
           "key": "checkup_zhi_product",
+          "sub": "三、非公·权益",
           "label": "智赋产品使用标准",
           "file": "履约考核/智赋产品使用标准.html"
+        },
+        {
+          "key": "checkup_veh",
+          "sub": "四、装备·载具",
+          "label": "载具管理标准",
+          "file": "履约考核/载具管理标准.html"
+        },
+        {
+          "key": "checkup_battery_rent",
+          "sub": "四、装备·载具",
+          "label": "配送人员车电租赁管理标准",
+          "file": "履约考核/配送人员车电租赁管理标准.html"
+        },
+        {
+          "key": "checkup_ebike_rent",
+          "sub": "四、装备·载具",
+          "label": "电动车租赁管理标准激励版",
+          "file": "履约考核/电动车租赁管理标准激励版.html"
+        },
+        {
+          "key": "checkup_recruit",
+          "sub": "五、招聘·三方",
+          "label": "招聘与三方管理规范",
+          "file": "履约考核/招聘与三方管理规范.html"
+        },
+        {
+          "key": "checkup_2026_equity",
+          "sub": "2026年权益考核",
+          "label": "2026年权益考核",
+          "file": "履约考核/2026年权益考核.html"
+        },
+        {
+          "key": "checkup_2026_star09",
+          "sub": "2026年星级考核",
+          "label": "2026年9月星级考核",
+          "file": "履约考核/2026年9月星级考核.html"
+        },
+        {
+          "key": "checkup_2026_star10",
+          "sub": "2026年星级考核",
+          "label": "2026年10月星级考核",
+          "file": "履约考核/2026年10月星级考核.html"
+        },
+        {
+          "key": "checkup_2026_star11",
+          "sub": "2026年星级考核",
+          "label": "2026年11月星级考核",
+          "file": "履约考核/2026年11月星级考核.html"
+        },
+        {
+          "key": "checkup_star11_main",
+          "sub": "2026年星级考核",
+          "label": "2026年11月星级考核制度（普适版）",
+          "file": "履约考核/2026年11月星级考核制度（普适版）.html"
+        },
+        {
+          "key": "checkup_2026_fee09",
+          "sub": "2026年服务费",
+          "label": "2026年9月服务费结算",
+          "file": "履约考核/2026年9月服务费结算.html"
+        },
+        {
+          "key": "checkup_2026_fee10",
+          "sub": "2026年服务费",
+          "label": "2026年10月服务费结算",
+          "file": "履约考核/2026年10月服务费结算.html"
+        },
+        {
+          "key": "checkup_2026_fee11",
+          "sub": "2026年服务费",
+          "label": "2026年11月服务费结算",
+          "file": "履约考核/2026年11月服务费结算.html"
+        },
+        {
+          "key": "checkup_fee11_main",
+          "sub": "2026年服务费",
+          "label": "2026年11月服务费结算方案（普适版）",
+          "file": "履约考核/2026年11月服务费结算方案（普适版）.html"
+        },
+        {
+          "key": "checkup_2026_winter",
+          "sub": "2026年冬季·夏战",
+          "label": "2026年冬季相关政策",
+          "file": "履约考核/2026年冬季相关政策.html"
+        },
+        {
+          "key": "checkup_2026_summer",
+          "sub": "2026年冬季·夏战",
+          "label": "2026年夏战相关政策",
+          "file": "履约考核/2026年夏战相关政策.html"
+        },
+        {
+          "key": "checkup_2026_rating",
+          "sub": "2026年合作商评级",
+          "label": "2026年合作商评级",
+          "file": "履约考核/2026年合作商评级.html"
+        },
+        {
+          "key": "checkup_2026_honor",
+          "sub": "2026年度荣誉",
+          "label": "2026年度荣誉",
+          "file": "履约考核/2026年度荣誉.html"
+        },
+        {
+          "key": "checkup_ka",
+          "sub": "月度考核·结算",
+          "label": "KA品牌单考核制度",
+          "file": "履约考核/KA品牌单月度考核制度.html"
+        },
+        {
+          "key": "checkup_city_bottom_kpi",
+          "sub": "月度考核·结算",
+          "label": "城市商末位考核结果通知",
+          "file": "履约考核/城市商末位考核结果通知.html"
+        },
+        {
+          "key": "checkup_penalty_types",
+          "sub": "月度考核·结算",
+          "label": "违规违约扣款类型定义",
+          "file": "履约考核/违规违约扣款类型定义.html"
+        },
+        {
+          "key": "checkup_kpi_settle_202610",
+          "sub": "月度考核·结算",
+          "label": "2026年10月考核结算方案",
+          "file": "履约考核/2026年10月考核结算方案.html"
+        },
+        {
+          "key": "checkup_kpi_settle_202609",
+          "sub": "月度考核·结算",
+          "label": "2026年9月考核结算方案",
+          "file": "履约考核/2026年9月考核结算方案.html"
         }
       ]
     },
