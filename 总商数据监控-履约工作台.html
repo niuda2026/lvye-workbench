@@ -299,6 +299,7 @@ body{display:flex;flex-direction:column}
   <div class="notify-left">
     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
     <div class="notify-items" id="notifyItems">
+      <span onclick="loadBoard('project')">【血压新规·12/1 灰测】测压截止 16 日 17:00 → <b>20 日 17:00</b>；三级高血压就医凭证 24 日 24:00 → <b>26 日 24:00</b>（详见「充换电血压看板 › 充换电血压上传规则」）</span>
       <span onclick="loadBoard('data_center')">【数据更新】每日 07:00 / 07:20 / 07:40 自动刷新保险赔付、BI 赔付率与骑手明细数据</span>
       <span onclick="loadBoard('project')">【口径说明】看板分母＝在职名册/在册骑手，分子＝名册内已上报（与手动导出口径不同）</span>
       <span onclick="loadBoard('project')">【带刀巡检】当月覆盖率 ≥50% 视为合格，站点行已按绿/红标色</span>
@@ -509,6 +510,8 @@ var navGroups = [
       { key: 'checkup_2026_star10', sub: '2026年星级考核', label: '2026年10月星级考核', file: '履约考核/2026年10月星级考核.html' },
       { key: 'checkup_2026_star11', sub: '2026年星级考核', label: '2026年11月星级考核', file: '履约考核/2026年11月星级考核.html' },
       { key: 'checkup_star11_main', sub: '2026年星级考核', label: '2026年11月星级考核制度（普适版）', file: '履约考核/2026年11月星级考核制度（普适版）.html' },
+      { key: 'checkup_star10_main', sub: '2026年星级考核', label: '2026年10月星级考核制度（普适版）', file: '履约考核/2026年10月星级考核制度（普适版）.html' },
+      { key: 'checkup_star09_main', sub: '2026年星级考核', label: '2026年9月星级考核制度（普适版）', file: '履约考核/2026年9月星级考核制度（普适版）.html' },
       { key: 'checkup_2026_fee09', sub: '2026年服务费', label: '2026年9月服务费结算', file: '履约考核/2026年9月服务费结算.html' },
       { key: 'checkup_2026_fee10', sub: '2026年服务费', label: '2026年10月服务费结算', file: '履约考核/2026年10月服务费结算.html' },
       { key: 'checkup_2026_fee11', sub: '2026年服务费', label: '2026年11月服务费结算', file: '履约考核/2026年11月服务费结算.html' },
@@ -918,6 +921,7 @@ function escAttr(s){
 // 数据源：data_center.js（window.DATA_CENTER，scan_data_center.py 随 M 盘落地/同步自动再生）。
 // 仅替换 .notify-items 内容为无缝轮播，条高/背景/字号不动；window.DATA_CENTER 缺失时保持原静态公告。
 var NOTIFY_LEGACY = [
+  { t: '【血压新规·12/1 灰测】测压截止 16 日 17:00 → 20 日 17:00；三级高血压就医凭证 24 日 24:00 → 26 日 24:00（详见「充换电血压看板 › 充换电血压上传规则」）', k: 'project' },
   { t: '【数据更新】每日 07:00 / 07:20 / 07:40 自动刷新保险赔付、BI 赔付率与骑手明细数据', k: 'data_center' },
   { t: '【口径说明】看板分母＝在职名册/在册骑手，分子＝名册内已上报（与手动导出口径不同）', k: 'project' },
   { t: '【带刀巡检】当月覆盖率 ≥50% 视为合格，站点行已按绿/红标色', k: 'project' }

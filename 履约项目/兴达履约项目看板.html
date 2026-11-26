@@ -1085,7 +1085,7 @@ table.dt td.cb-audit-col{min-width:96px}
 <!-- 血压审核/异常跟进 6 列（2026-10-25）：独立数据文件，重建 充换电血压_data.js 不会覆盖 -->
 <script src="血压审核_extra.js"></script>
 <script src="knife_rider_data.js"></script>
-<script src="box_rider_data.js?v=202611261510"></script>
+<script src="box_rider_data.js?v=202611270612"></script>
 <!-- 健康证骑手级源（骑手维度执行 tab 发证/到期/剩余天数） -->
 <script src="../在职骑手详情/health_cert_data.js"></script>
 <script src="../在职骑手详情/hc_profile_data.js"></script>
@@ -7080,12 +7080,16 @@ function closeCheckRulesModal() {
 <tr><td style="border:1px solid #ddd;padding:5px;color:#d32f2f;font-weight:700;">高血压三级</td><td style="border:1px solid #ddd;padding:5px;color:#d32f2f;font-weight:700;">&gt;179</td><td style="border:1px solid #ddd;padding:5px;color:#d32f2f;font-weight:700;">&gt;110</td></tr>
 </table>
 <div style="font-weight:700;color:#333;margin:6px 0 3px;">2. 血压测量要求</div>
+<div style="padding:6px;background:#e8f6ec;border:1px solid #c9e8d4;border-radius:4px;font-size:12px;margin-bottom:8px;">
+<b>2026 年 11 月口径调整（12 月 1 日灰测生效）：</b>血压测量截止时间由每月 <b>16 日 17:00</b> 调整为 <b>20 日 17:00</b>；高血压三级骑手就医凭证上传截止由每月 <b>24 日 24:00</b> 调整为 <b>26 日 24:00</b>。其余口径不变，血压指标集看板正常使用。
+</div>
 <div style="padding:6px;background:#fffbe6;border:1px solid #ffe58f;border-radius:4px;font-size:12px;margin-bottom:8px;">
 骑手需应测尽测，<b>100% 测量</b>。
 </div>
 <ul style="margin:0 0 8px;padding-left:18px;">
 <li><b>当月新注册骑手：</b>完成规范测压视频学习 → 完成测压授权 → 需在跑单前完成血压测量并上传，否则会被限制接单。</li>
-<li><b>非当月新注册骑手：</b>需在当月 <span class="highlight">16 日（含）</span>前完成血压测量并上传，否则会被限制接单。</li>
+<li><b>非当月新注册骑手：</b>需在当月 <span class="highlight">20 日 17:00 前</span>完成血压测量并上传，否则会被限制接单。<span style="font-size:11px;color:#666;">（原为 16 日，2026 年 12 月 1 日灰测起调整）</span></li>
+<li><b>高血压三级骑手就医凭证：</b>需在当月 <span class="highlight">26 日 24:00 前</span>完成就诊凭证上传，否则按「就诊闭环率」不达标问责。<span style="font-size:11px;color:#666;">（原为 24 日，2026 年 12 月 1 日灰测起调整）</span></li>
 </ul>
 <div style="font-weight:700;color:#333;margin:6px 0 3px;">3. 视频测量动作规范</div>
 <table style="width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:12px;">
