@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-28 06:39:33",
+  "updated_at": "2026-11-28 06:40:47",
   "action_summary": {
     "total": 23,
     "ok": 14,
@@ -314,7 +314,7 @@
             "latest": "daily_refresh_log.txt",
             "mtime": "2026-11-28 06:25:15",
             "max_age_hours": 13,
-            "age_hours": 0.2,
+            "age_hours": 0.3,
             "ok": false,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
             "fail_hits": [
@@ -1394,7 +1394,7 @@
             "latest": "_crawl_service.log",
             "mtime": "2026-11-27 16:31:13",
             "max_age_hours": 26,
-            "age_hours": 14.1,
+            "age_hours": 14.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1600,7 +1600,7 @@
             "latest": "110_data.js",
             "mtime": "2026-11-27 17:30:40",
             "max_age_hours": 30,
-            "age_hours": 13.1,
+            "age_hours": 13.2,
             "ok": true,
             "note": "盘中守护 11:30/17:30 两次（看板外壳html长期不变，改盯数据文件）",
             "fail_hits": [],
@@ -1698,7 +1698,7 @@
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-11-28 06:35:13",
+        "data_mtime": "2026-11-28 06:40:16",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -1709,9 +1709,9 @@
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-11-28 06:35:13",
+            "mtime": "2026-11-28 06:40:16",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 0.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
