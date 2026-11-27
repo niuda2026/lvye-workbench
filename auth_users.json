@@ -451,7 +451,19 @@
       "code": "",
       "role": "安全专员",
       "area": "华北一区/津冀区域/张家口",
-      "boards": [],
+      "boards": [
+        "safe_equity",
+        "safe_station",
+        "safe_rider",
+        "safe_highway",
+        "accident_ledger",
+        "project",
+        "ledger",
+        "ins_meituan",
+        "gongdan",
+        "station_map",
+        "monthly_summary"
+      ],
       "areas": [
         "华北一区"
       ]
