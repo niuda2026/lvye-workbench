@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-11-27 16:27:05",
+  "updated_at": "2026-11-28 06:13:47",
   "action_summary": {
     "total": 23,
-    "ok": 17,
-    "alert": 6,
+    "ok": 14,
+    "alert": 9,
     "missing": 0,
     "alert_groups": [
       "履约项目",
@@ -111,7 +111,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-11-27 16:21:57",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 13.9,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -219,7 +219,7 @@
         "data_files": [
           "履约项目\\充换电血压_data.js"
         ],
-        "data_mtime": "2026-11-27 07:20:32",
+        "data_mtime": "2026-11-27 16:40:14",
         "all_synced": false,
         "synced_count": 6,
         "missing_count": 0,
@@ -273,10 +273,10 @@
             "label": "充换电血压数据构建",
             "path": "履约项目\\充换电血压_data.js",
             "latest": "充换电血压_data.js",
-            "mtime": "2026-11-27 07:20:32",
+            "mtime": "2026-11-27 16:40:14",
             "max_age_hours": 13,
-            "age_hours": 9.1,
-            "ok": true,
+            "age_hours": 13.6,
+            "ok": false,
             "note": "每日 07:30/15:00 两次",
             "fail_hits": [],
             "fail_lines": [],
@@ -286,10 +286,10 @@
             "label": "带刀巡检数据构建",
             "path": "履约项目\\knife_rider_data.js",
             "latest": "knife_rider_data.js",
-            "mtime": "2026-11-27 07:20:44",
+            "mtime": "2026-11-27 16:41:08",
             "max_age_hours": 13,
-            "age_hours": 9.1,
-            "ok": true,
+            "age_hours": 13.5,
+            "ok": false,
             "note": "每日 07:30/15:00 两次(随总控第2.5步)",
             "fail_hits": [],
             "fail_lines": [],
@@ -301,7 +301,7 @@
             "latest": "vehicle_audit_rider.json",
             "mtime": "2026-11-06 07:05:07",
             "max_age_hours": 30,
-            "age_hours": 513.4,
+            "age_hours": 527.1,
             "ok": false,
             "note": "早间自动化重建(暂停BI抓取，改从M盘_审核明细_*.xlsx)",
             "fail_hits": [],
@@ -312,19 +312,23 @@
             "label": "每日刷新·抓取成败",
             "path": "daily_refresh_log.txt",
             "latest": "daily_refresh_log.txt",
-            "mtime": "2026-11-27 16:23:11",
+            "mtime": "2026-11-28 05:23:48",
             "max_age_hours": 13,
-            "age_hours": 0.1,
-            "ok": true,
+            "age_hours": 0.8,
+            "ok": false,
             "note": "解析最后一次刷新日志：抓取失败即告警（文件新≠数据新）",
-            "fail_hits": [],
-            "fail_lines": [],
-            "block_time": "2026-11-27 16:23:11"
+            "fail_hits": [
+              "失败(退出"
+            ],
+            "fail_lines": [
+              "第0步 载具审核(骑手维度)M盘审核明细重建: 失败(退出码 1) · M:\\下载 下未找到 _审核明细_*.xlsx，请确认文件已放入"
+            ],
+            "block_time": "2026-11-27 17:03:14"
           }
         ],
         "action_stats": {
-          "ok_count": 3,
-          "alert_count": 1,
+          "ok_count": 0,
+          "alert_count": 4,
           "missing_count": 0,
           "total": 4,
           "all_ok": false
@@ -393,9 +397,9 @@
       "monitor": null,
       "boards": [
         {
-          "key": "checkup_mix_supplement",
-          "label": "异商混送引退补充说明",
-          "file": "D:/兴达数据库/履约考核/异商混送引退管理标准补充说明.html",
+          "key": "img_g08",
+          "label": "异商混送调分补充协议（西安·2026年11月）",
+          "file": "D:/兴达数据库/履约考核/异商混送调分补充协议（西安·2026年11月）.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -403,9 +407,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_bizrule_s2",
-          "label": "商管规则补充规定二",
-          "file": "D:/兴达数据库/履约考核/商管规则补充规定二.html",
+          "key": "img_g09",
+          "label": "异商混送调分补充协议（北上广深·2026年11月）",
+          "file": "D:/兴达数据库/履约考核/异商混送调分补充协议（北上广深·2026年11月）.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -413,9 +417,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_bizrule_s2_note",
-          "label": "商管规则补充规定二补充说明",
-          "file": "D:/兴达数据库/履约考核/商管规则补充规定二补充说明.html",
+          "key": "img_g14",
+          "label": "2026年11月专送合作商培训管理规则",
+          "file": "D:/兴达数据库/履约考核/2026年11月专送合作商培训管理规则.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -423,9 +427,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_bizrule_s3",
-          "label": "商管规则补充规定三",
-          "file": "D:/兴达数据库/履约考核/商管规则补充规定三.html",
+          "key": "img_g26",
+          "label": "专送合作商虚假行为管理规范",
+          "file": "D:/兴达数据库/履约考核/专送合作商虚假行为管理规范.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -433,9 +437,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_bizrule_s1",
-          "label": "商管规则补充规定",
-          "file": "D:/兴达数据库/履约考核/商管规则补充规定.html",
+          "key": "img_g27",
+          "label": "城市经理服务能力评价标准补充协议",
+          "file": "D:/兴达数据库/履约考核/城市经理服务能力评价标准补充协议.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -443,9 +447,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_exit_rule_note",
-          "label": "专送合作商退出规则补充说明",
-          "file": "D:/兴达数据库/履约考核/专送合作商退出规则补充说明.html",
+          "key": "img_g30",
+          "label": "专送合作商塑型管理标准补充说明",
+          "file": "D:/兴达数据库/履约考核/专送合作商塑型管理标准补充说明.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -453,47 +457,7 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_area_opt",
-          "label": "加盟配送区域优化管理规范",
-          "file": "D:/兴达数据库/履约考核/加盟配送区域优化管理规范.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_ka_bid",
-          "label": "KA业务招投标管理规范",
-          "file": "D:/兴达数据库/履约考核/KA业务招投标管理规范.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_area_mgmt",
-          "label": "配送区域管理规范",
-          "file": "D:/兴达数据库/履约考核/配送区域管理规范.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_enterprise_self",
-          "label": "企客自建业务承接管理规范",
-          "file": "D:/兴达数据库/履约考核/企客自建业务承接管理规范.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_single_city",
+          "key": "img_g31",
           "label": "单城单商管理标准",
           "file": "D:/兴达数据库/履约考核/单城单商管理标准.html",
           "tabs": [],
@@ -503,7 +467,7 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_develop",
+          "key": "img_g32",
           "label": "专送合作商发展管理规范",
           "file": "D:/兴达数据库/履约考核/专送合作商发展管理规范.html",
           "tabs": [],
@@ -513,7 +477,77 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_ma",
+          "key": "img_g33",
+          "label": "专送合作商城市经理服务能力评价标准",
+          "file": "D:/兴达数据库/履约考核/专送合作商城市经理服务能力评价标准.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g34",
+          "label": "专送合作商塑型管理标准",
+          "file": "D:/兴达数据库/履约考核/专送合作商塑型管理标准.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g35",
+          "label": "专送合作商塑型管理标准补充说明二",
+          "file": "D:/兴达数据库/履约考核/专送合作商塑型管理标准补充说明二.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g36",
+          "label": "专送合作商大区健康评价标准（2026年6月迭代）",
+          "file": "D:/兴达数据库/履约考核/专送合作商大区健康评价标准（2026年6月迭代）.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g38",
+          "label": "专送合作商异商混送引退管理标准（9月迭代）",
+          "file": "D:/兴达数据库/履约考核/专送合作商异商混送引退管理标准（9月迭代）.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g39",
+          "label": "专送合作商异商混送引退管理标准补充说明（2026年11月）",
+          "file": "D:/兴达数据库/履约考核/异商混送引退管理标准补充说明（2026年11月）.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g40",
+          "label": "专送合作商招投标管理规范",
+          "file": "D:/兴达数据库/履约考核/专送合作商招投标管理规范.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g41",
           "label": "合作商收并购管理标准",
           "file": "D:/兴达数据库/履约考核/合作商收并购管理标准.html",
           "tabs": [],
@@ -523,9 +557,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_bizrule_plan",
-          "label": "商管规则补充方案",
-          "file": "D:/兴达数据库/履约考核/商管规则补充方案.html",
+          "key": "img_g45",
+          "label": "专送合作商站点置换管理规范",
+          "file": "D:/兴达数据库/履约考核/专送合作商站点置换管理规范.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -533,18 +567,8 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_mix_exit",
-          "label": "异商混送引退管理标准",
-          "file": "D:/兴达数据库/履约考核/异商混送引退管理标准.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_site_exit",
-          "label": "站点退出管理规范",
+          "key": "img_g46",
+          "label": "专送合作商站点退出管理规范",
           "file": "D:/兴达数据库/履约考核/站点退出管理规范.html",
           "tabs": [],
           "tab_keys": [],
@@ -553,9 +577,29 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_bid",
-          "label": "专送合作商招投标管理规范",
-          "file": "D:/兴达数据库/履约考核/专送合作商招投标管理规范.html",
+          "key": "img_g47",
+          "label": "城市商末位考核结果通知",
+          "file": "D:/兴达数据库/履约考核/城市商末位考核结果通知.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g61",
+          "label": "合作商共建委员会章程V7",
+          "file": "D:/兴达数据库/履约考核/合作商共建委员会章程V7.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g76",
+          "label": "商管规则补充规定三",
+          "file": "D:/兴达数据库/履约考核/商管规则补充规定三.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -594,7 +638,7 @@
         },
         {
           "key": "checkup_acc",
-          "label": "百万单事故申诉指南",
+          "label": "百万单事故数申诉指南",
           "file": "D:/兴达数据库/履约考核/百万单事故数申诉指南.html",
           "tabs": [],
           "tab_keys": [],
@@ -604,7 +648,7 @@
         },
         {
           "key": "checkup_staff",
-          "label": "安全管理人员配备",
+          "label": "安全管理人员配备规范",
           "file": "D:/兴达数据库/履约考核/安全管理人员配备规范.html",
           "tabs": [],
           "tab_keys": [],
@@ -613,7 +657,7 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_safety",
+          "key": "img_g29",
           "label": "合作商安全管理规范",
           "file": "D:/兴达数据库/履约考核/合作商安全管理规范.html",
           "tabs": [],
@@ -623,7 +667,47 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_insurance_appeal",
+          "key": "img_g37",
+          "label": "专送合作商安全管理人员配备规范",
+          "file": "D:/兴达数据库/履约考核/专送合作商安全管理人员配备规范.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g44",
+          "label": "专送合作商站点建设管理标准7.0",
+          "file": "D:/兴达数据库/履约考核/专送合作商站点建设管理标准7.0.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g48",
+          "label": "专送合作商站长服务能力评价标准",
+          "file": "D:/兴达数据库/履约考核/专送合作商站长服务能力评价标准.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g54",
+          "label": "专送合作商配送人员限制功能管控标准",
+          "file": "D:/兴达数据库/履约考核/专送合作商配送人员限制功能管控标准.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g55",
           "label": "保险超时报案申诉剔除机制",
           "file": "D:/兴达数据库/履约考核/保险超时报案申诉剔除机制.html",
           "tabs": [],
@@ -633,7 +717,17 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_info_security",
+          "key": "img_g58",
+          "label": "加盟商站智能化血压测压考核管理标准",
+          "file": "D:/兴达数据库/履约考核/加盟商站智能化血压测压考核管理标准.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g60",
           "label": "合作商信息安全及系统账号管理规则",
           "file": "D:/兴达数据库/履约考核/合作商信息安全及系统账号管理规则.html",
           "tabs": [],
@@ -643,9 +737,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_station_rider_behavior",
-          "label": "站长服务骑手行为规范",
-          "file": "D:/兴达数据库/履约考核/站长服务骑手行为规范.html",
+          "key": "img_g62",
+          "label": "工商信息变更及资质管理标准",
+          "file": "D:/兴达数据库/履约考核/工商信息变更及资质管理标准.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -653,9 +747,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_110_fill",
-          "label": "110工单合规填报考核标准",
-          "file": "D:/兴达数据库/履约考核/110工单合规填报考核标准.html",
+          "key": "img_g65",
+          "label": "合作商标准化检查管理办法",
+          "file": "D:/兴达数据库/履约考核/合作商标准化检查管理办法.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -663,17 +757,7 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_safety_ledger",
-          "label": "安全台账管理指导手册",
-          "file": "D:/兴达数据库/履约考核/安全台账管理指导手册.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_integrity",
+          "key": "img_g66",
           "label": "诚信经营管理规范",
           "file": "D:/兴达数据库/履约考核/诚信经营管理规范.html",
           "tabs": [],
@@ -683,9 +767,19 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_license_change",
-          "label": "工商信息变更及资质管理标准",
-          "file": "D:/兴达数据库/履约考核/工商信息变更及资质管理标准.html",
+          "key": "img_g73",
+          "label": "百万单事故数指标申诉指南",
+          "file": "D:/兴达数据库/履约考核/百万单事故数指标申诉指南.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g78",
+          "label": "110工单合规填报考核标准",
+          "file": "D:/兴达数据库/履约考核/110工单合规填报考核标准.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -704,7 +798,7 @@
         },
         {
           "key": "checkup_rule",
-          "label": "异常单数据剔除规则",
+          "label": "合作商异常单数据剔除规则",
           "file": "D:/兴达数据库/履约考核/合作商异常单数据剔除规则.html",
           "tabs": [],
           "tab_keys": [],
@@ -714,7 +808,7 @@
         },
         {
           "key": "checkup_complaint",
-          "label": "投诉响应处理指南",
+          "label": "配送人员投诉响应处理指南",
           "file": "D:/兴达数据库/履约考核/配送人员投诉响应处理指南.html",
           "tabs": [],
           "tab_keys": [],
@@ -723,9 +817,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_tax",
-          "label": "无欠税与骑手完税规范",
-          "file": "D:/兴达数据库/履约考核/合作商无欠税与骑手完税管理规范.html",
+          "key": "img_g16",
+          "label": "专送合作商权益激励规则（2026年9月-2027年2月）",
+          "file": "D:/兴达数据库/履约考核/专送合作商权益激励规则（2026年9月-2027年2月）.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -733,9 +827,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_talk_supplement",
-          "label": "约谈管理规范补充规定",
-          "file": "D:/兴达数据库/履约考核/合作商约谈管理规范补充规定.html",
+          "key": "img_g17",
+          "label": "权益激励规则补充规定一（烟台威海·2026年11月）",
+          "file": "D:/兴达数据库/履约考核/权益激励规则补充规定一（烟台威海·2026年11月）.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -743,7 +837,47 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_rider_home",
+          "key": "img_g18",
+          "label": "专送合作商骑手保障补贴考核方案",
+          "file": "D:/兴达数据库/履约考核/专送合作商骑手保障补贴考核方案.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g19",
+          "label": "骑手保障补贴考核方案补充方案",
+          "file": "D:/兴达数据库/履约考核/骑手保障补贴考核方案补充方案.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g28",
+          "label": "合作商保证金管理办法补充规定",
+          "file": "D:/兴达数据库/履约考核/合作商保证金管理办法补充规定.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g42",
+          "label": "专送合作商服务转型（骑手之家建设运营）管理办法迭代",
+          "file": "D:/兴达数据库/履约考核/专送合作商服务转型（骑手之家建设运营）管理办法迭代.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g43",
           "label": "骑手之家建设运营管理办法",
           "file": "D:/兴达数据库/履约考核/骑手之家建设运营管理办法.html",
           "tabs": [],
@@ -753,9 +887,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_salary_guarantee",
-          "label": "配送人员薪酬保障管理标准",
-          "file": "D:/兴达数据库/履约考核/配送人员薪酬保障管理标准.html",
+          "key": "img_g51",
+          "label": "配送人员薪酬保障管理标准（非薪动力）",
+          "file": "D:/兴达数据库/履约考核/配送人员薪酬保障管理标准（非薪动力）.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -763,9 +897,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_rider_subsidy",
-          "label": "骑手保障补贴考核方案",
-          "file": "D:/兴达数据库/履约考核/骑手保障补贴考核方案.html",
+          "key": "img_g52",
+          "label": "配送人员薪酬保障管理标准（薪动力）",
+          "file": "D:/兴达数据库/履约考核/配送人员薪酬保障管理标准（薪动力）.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -773,9 +907,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_deposit",
-          "label": "合作商保证金管理办法",
-          "file": "D:/兴达数据库/履约考核/合作商保证金管理办法.html",
+          "key": "img_g56",
+          "label": "加盟合作商配送人员薪酬保障管理标准补充规定（薪）",
+          "file": "D:/兴达数据库/履约考核/加盟合作商配送人员薪酬保障管理标准补充规定（薪）.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -783,9 +917,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_fair_compete",
-          "label": "非公平竞争管理办法",
-          "file": "D:/兴达数据库/履约考核/非公平竞争管理办法.html",
+          "key": "img_g57",
+          "label": "加盟合作商配送人员薪酬保障管理标准补充规定（非薪）",
+          "file": "D:/兴达数据库/履约考核/加盟合作商配送人员薪酬保障管理标准补充规定（非薪）.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -793,7 +927,27 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_empower",
+          "key": "img_g63",
+          "label": "合作商异常单数据剔除规则（V76）",
+          "file": "D:/兴达数据库/履约考核/合作商异常单数据剔除规则（V76）.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g64",
+          "label": "合作商无欠税与骑手完税管理规范",
+          "file": "D:/兴达数据库/履约考核/合作商无欠税与骑手完税管理规范.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g67",
           "label": "赋能活动配置管理标准",
           "file": "D:/兴达数据库/履约考核/赋能活动配置管理标准.html",
           "tabs": [],
@@ -803,9 +957,59 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_zhi_product",
-          "label": "智赋产品使用标准",
-          "file": "D:/兴达数据库/履约考核/智赋产品使用标准.html",
+          "key": "img_g68",
+          "label": "合作商配送人员投诉问题响应处理指南",
+          "file": "D:/兴达数据库/履约考核/合作商配送人员投诉问题响应处理指南.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g70",
+          "label": "合作商高价骑手管控规则",
+          "file": "D:/兴达数据库/履约考核/合作商高价骑手管控规则.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g71",
+          "label": "对商版-合作商无欠税骑手完税管理规范",
+          "file": "D:/兴达数据库/履约考核/对商版-合作商无欠税骑手完税管理规范.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g74",
+          "label": "专送合作商约谈管理规范",
+          "file": "D:/兴达数据库/履约考核/专送合作商约谈管理规范.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g75",
+          "label": "专送合作商约谈管理规范补充规定",
+          "file": "D:/兴达数据库/履约考核/专送合作商约谈管理规范补充规定.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g77",
+          "label": "非公平竞争管理办法",
+          "file": "D:/兴达数据库/履约考核/非公平竞争管理办法.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -823,17 +1027,7 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_battery_rent",
-          "label": "配送人员车电租赁管理标准",
-          "file": "D:/兴达数据库/履约考核/配送人员车电租赁管理标准.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_ebike_rent",
+          "key": "img_g50",
           "label": "电动车租赁管理标准激励版",
           "file": "D:/兴达数据库/履约考核/电动车租赁管理标准激励版.html",
           "tabs": [],
@@ -843,7 +1037,47 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_recruit",
+          "key": "img_g53",
+          "label": "配送人员车电租赁管理标准",
+          "file": "D:/兴达数据库/履约考核/配送人员车电租赁管理标准.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g69",
+          "label": "合作商骑手载具安全管理标准",
+          "file": "D:/兴达数据库/履约考核/合作商骑手载具安全管理标准.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g72",
+          "label": "智能头盔试点城市考核管理标准",
+          "file": "D:/兴达数据库/履约考核/智能头盔试点城市考核管理标准.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g25",
+          "label": "专送合作商用工管理规范",
+          "file": "D:/兴达数据库/履约考核/专送合作商用工管理规范.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g49",
           "label": "招聘与三方管理规范",
           "file": "D:/兴达数据库/履约考核/招聘与三方管理规范.html",
           "tabs": [],
@@ -853,9 +1087,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_2026_equity",
-          "label": "2026年权益考核",
-          "file": "D:/兴达数据库/履约考核/2026年权益考核.html",
+          "key": "img_g59",
+          "label": "合作商使用招聘资源及赋能工具标准",
+          "file": "D:/兴达数据库/履约考核/合作商使用招聘资源及赋能工具标准.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -863,37 +1097,7 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_2026_star09",
-          "label": "2026年9月星级考核",
-          "file": "D:/兴达数据库/履约考核/2026年9月星级考核.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_2026_star10",
-          "label": "2026年10月星级考核",
-          "file": "D:/兴达数据库/履约考核/2026年10月星级考核.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_2026_star11",
-          "label": "2026年11月星级考核",
-          "file": "D:/兴达数据库/履约考核/2026年11月星级考核.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_star11_main",
+          "key": "img_g01",
           "label": "2026年11月星级考核制度（普适版）",
           "file": "D:/兴达数据库/履约考核/2026年11月星级考核制度（普适版）.html",
           "tabs": [],
@@ -903,57 +1107,7 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_star10_main",
-          "label": "2026年10月星级考核制度（普适版）",
-          "file": "D:/兴达数据库/履约考核/2026年10月星级考核制度（普适版）.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_star09_main",
-          "label": "2026年9月星级考核制度（普适版）",
-          "file": "D:/兴达数据库/履约考核/2026年9月星级考核制度（普适版）.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_2026_fee09",
-          "label": "2026年9月服务费结算",
-          "file": "D:/兴达数据库/履约考核/2026年9月服务费结算.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_2026_fee10",
-          "label": "2026年10月服务费结算",
-          "file": "D:/兴达数据库/履约考核/2026年10月服务费结算.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_2026_fee11",
-          "label": "2026年11月服务费结算",
-          "file": "D:/兴达数据库/履约考核/2026年11月服务费结算.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_fee11_main",
+          "key": "img_g02",
           "label": "2026年11月服务费结算方案（普适版）",
           "file": "D:/兴达数据库/履约考核/2026年11月服务费结算方案（普适版）.html",
           "tabs": [],
@@ -963,9 +1117,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_2026_fee_trend",
-          "label": "2026年服务费三版对照（9/10/11月）",
-          "file": "D:/兴达数据库/履约考核/2026年服务费三版对照.html",
+          "key": "img_g03",
+          "label": "2026年11月服务费结算方案（瓜分奖）",
+          "file": "D:/兴达数据库/履约考核/2026年11月服务费结算方案（瓜分奖）.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -973,9 +1127,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_2026_winter",
-          "label": "2026年冬季相关政策",
-          "file": "D:/兴达数据库/履约考核/2026年冬季相关政策.html",
+          "key": "img_g05",
+          "label": "2026年11月KA品牌单月度考核制度（薪动力版）",
+          "file": "D:/兴达数据库/履约考核/2026年11月KA品牌单月度考核制度（薪动力版）.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -983,9 +1137,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_2026_summer",
-          "label": "2026年夏战相关政策",
-          "file": "D:/兴达数据库/履约考核/2026年夏战相关政策.html",
+          "key": "img_g06",
+          "label": "2026年11月非试点城市精细化排班调分补充协议",
+          "file": "D:/兴达数据库/履约考核/2026年11月非试点城市精细化排班调分补充协议.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -993,9 +1147,9 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_2026_rating",
-          "label": "2026年合作商评级",
-          "file": "D:/兴达数据库/履约考核/2026年合作商评级.html",
+          "key": "img_g07",
+          "label": "2026年11月安徽精细化排班调分补充协议",
+          "file": "D:/兴达数据库/履约考核/2026年11月安徽精细化排班调分补充协议.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -1003,9 +1157,109 @@
           "is_self_monitor": false
         },
         {
-          "key": "checkup_2026_honor",
-          "label": "2026年度荣誉",
-          "file": "D:/兴达数据库/履约考核/2026年度荣誉.html",
+          "key": "img_g10",
+          "label": "快优单准时率调分补充协议（2026年11月）",
+          "file": "D:/兴达数据库/履约考核/快优单准时率调分补充协议（2026年11月）.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g11",
+          "label": "KA品牌运力调分补充协议（2026年11月）",
+          "file": "D:/兴达数据库/履约考核/KA品牌运力调分补充协议（2026年11月）.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g12",
+          "label": "2026年11月星级考核制度（V2）",
+          "file": "D:/兴达数据库/履约考核/2026年11月星级考核制度（V2）.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g15",
+          "label": "2026年11月服务费结算方案（联盟签约版·郑州）",
+          "file": "D:/兴达数据库/履约考核/2026年11月服务费结算方案（联盟签约版·郑州）.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g20",
+          "label": "2026年11月服务费结算方案补充协议2",
+          "file": "D:/兴达数据库/履约考核/2026年11月服务费结算方案补充协议2.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g21",
+          "label": "2026年11月服务费结算方案补充协议3",
+          "file": "D:/兴达数据库/履约考核/2026年11月服务费结算方案补充协议3.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g22",
+          "label": "2026年11月服务费结算方案补充协议4",
+          "file": "D:/兴达数据库/履约考核/2026年11月服务费结算方案补充协议4.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g23",
+          "label": "有效骑手留存调分补充协议（2026年11月）",
+          "file": "D:/兴达数据库/履约考核/有效骑手留存调分补充协议（2026年11月）.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g04",
+          "label": "2026年11月活动激励金月度考核（体验版）",
+          "file": "D:/兴达数据库/履约考核/2026年11月活动激励金月度考核（体验版）.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g13",
+          "label": "2025年荣誉激励举措使用说明",
+          "file": "D:/兴达数据库/履约考核/2025年荣誉激励举措使用说明.html",
+          "tabs": [],
+          "tab_keys": [],
+          "monitored": false,
+          "available": true,
+          "is_self_monitor": false
+        },
+        {
+          "key": "img_g24",
+          "label": "专送合作商年度荣誉奖项管理规范补充规范",
+          "file": "D:/兴达数据库/履约考核/专送合作商年度荣誉奖项管理规范补充规范.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -1014,48 +1268,8 @@
         },
         {
           "key": "checkup_ka",
-          "label": "KA品牌单考核制度",
+          "label": "KA品牌单月度考核制度",
           "file": "D:/兴达数据库/履约考核/KA品牌单月度考核制度.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_city_bottom_kpi",
-          "label": "城市商末位考核结果通知",
-          "file": "D:/兴达数据库/履约考核/城市商末位考核结果通知.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_penalty_types",
-          "label": "违规违约扣款类型定义",
-          "file": "D:/兴达数据库/履约考核/违规违约扣款类型定义.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_kpi_settle_202610",
-          "label": "2026年10月考核结算方案",
-          "file": "D:/兴达数据库/履约考核/2026年10月考核结算方案.html",
-          "tabs": [],
-          "tab_keys": [],
-          "monitored": false,
-          "available": true,
-          "is_self_monitor": false
-        },
-        {
-          "key": "checkup_kpi_settle_202609",
-          "label": "2026年9月考核结算方案",
-          "file": "D:/兴达数据库/履约考核/2026年9月考核结算方案.html",
           "tabs": [],
           "tab_keys": [],
           "monitored": false,
@@ -1097,7 +1311,7 @@
             "latest": "update_log.txt",
             "mtime": "2026-11-27 16:23:06",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 13.8,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1168,9 +1382,9 @@
             "label": "在职骑手CDP抓取",
             "path": "在职骑手详情\\_crawl_service.log",
             "latest": "_crawl_service.log",
-            "mtime": "2026-11-27 16:20:18",
+            "mtime": "2026-11-27 16:31:13",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 13.7,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1261,7 +1475,7 @@
             "latest": "latest.json",
             "mtime": "2026-11-27 09:05:29",
             "max_age_hours": 26,
-            "age_hours": 7.4,
+            "age_hours": 21.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1274,7 +1488,7 @@
             "latest": "premium_latest.json",
             "mtime": "2026-11-27 09:03:02",
             "max_age_hours": 26,
-            "age_hours": 7.4,
+            "age_hours": 21.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1287,7 +1501,7 @@
             "latest": "v3_data.js",
             "mtime": "2026-11-27 16:23:13",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 13.8,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1300,7 +1514,7 @@
             "latest": "insurance_data.js",
             "mtime": "2026-11-26 07:14:49",
             "max_age_hours": 72,
-            "age_hours": 33.2,
+            "age_hours": 47.0,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1374,9 +1588,9 @@
             "label": "110工单数据更新",
             "path": "110工单\\110_data.js",
             "latest": "110_data.js",
-            "mtime": "2026-11-27 16:26:28",
+            "mtime": "2026-11-27 17:30:40",
             "max_age_hours": 30,
-            "age_hours": 0.0,
+            "age_hours": 12.7,
             "ok": true,
             "note": "盘中守护 11:30/17:30 两次（看板外壳html长期不变，改盯数据文件）",
             "fail_hits": [],
@@ -1438,7 +1652,7 @@
             "latest": "update_stations.log",
             "mtime": "2026-11-27 16:27:05",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 13.8,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1474,7 +1688,7 @@
         "data_files": [
           "可视化大屏\\_大屏数据.js"
         ],
-        "data_mtime": "2026-11-27 16:26:16",
+        "data_mtime": "2026-11-28 05:24:04",
         "all_synced": true,
         "synced_count": 0,
         "missing_count": 0,
@@ -1485,9 +1699,9 @@
             "label": "可视化大屏数据刷新",
             "path": "可视化大屏\\_大屏数据.js",
             "latest": "_大屏数据.js",
-            "mtime": "2026-11-27 16:26:16",
+            "mtime": "2026-11-28 05:24:04",
             "max_age_hours": 26,
-            "age_hours": 0.0,
+            "age_hours": 0.8,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1553,7 +1767,7 @@
             "latest": "monthly_summary.js",
             "mtime": "2026-11-27 16:23:13",
             "max_age_hours": 72,
-            "age_hours": 0.1,
+            "age_hours": 13.8,
             "ok": true,
             "note": "月度归档，可适当放宽",
             "fail_hits": [],
@@ -1621,7 +1835,7 @@
             "latest": "checkup_files_data.js",
             "mtime": "2026-10-30 11:56:21",
             "max_age_hours": 168,
-            "age_hours": 676.5,
+            "age_hours": 690.3,
             "ok": false,
             "note": "scan_checkup.py 手动扫描（用户按需触发），按 7 天兜底",
             "fail_hits": [],
@@ -1721,7 +1935,7 @@
             "latest": "equity_slim_data.js",
             "mtime": "2026-11-23 10:46:25",
             "max_age_hours": 26,
-            "age_hours": 101.7,
+            "age_hours": 115.5,
             "ok": false,
             "note": "8421 按工作台源 mtime 自动重建",
             "fail_hits": [],
@@ -1734,7 +1948,7 @@
             "latest": "v3_data.js",
             "mtime": "2026-11-27 16:23:13",
             "max_age_hours": 26,
-            "age_hours": 0.1,
+            "age_hours": 13.8,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1747,7 +1961,7 @@
             "latest": "latest.json",
             "mtime": "2026-11-27 09:05:29",
             "max_age_hours": 26,
-            "age_hours": 7.4,
+            "age_hours": 21.1,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1760,7 +1974,7 @@
             "latest": "premium_latest.json",
             "mtime": "2026-11-27 09:03:02",
             "max_age_hours": 26,
-            "age_hours": 7.4,
+            "age_hours": 21.2,
             "ok": true,
             "note": "",
             "fail_hits": [],
@@ -1773,7 +1987,7 @@
             "latest": "compliance.json",
             "mtime": "2026-09-28 05:46:42",
             "max_age_hours": 216,
-            "age_hours": 1450.7,
+            "age_hours": 1464.5,
             "ok": false,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
@@ -1786,7 +2000,7 @@
             "latest": "accident.json",
             "mtime": "2026-09-28 05:46:42",
             "max_age_hours": 216,
-            "age_hours": 1450.7,
+            "age_hours": 1464.5,
             "ok": false,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
@@ -1799,7 +2013,7 @@
             "latest": "insurance_rate_analysis.html",
             "mtime": "2026-09-06 11:04:24",
             "max_age_hours": 216,
-            "age_hours": 1973.4,
+            "age_hours": 1987.2,
             "ok": false,
             "note": "每周一例会前手工更新",
             "fail_hits": [],
