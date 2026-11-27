@@ -1,4 +1,4 @@
-var DATA_GEN_TIME = "2026-11-27 16:25:07";
+var DATA_GEN_TIME = "2026-11-28 06:34:05";
 
 var EXEC_DATA = {
   "V兴必达【洛阳】洛拖站": {
@@ -8299,13 +8299,13 @@ var MORNING_DATA = {
     "城市": "合肥",
     "monthlyFine": 0,
     "lastWeekFine": 0,
-    "morningReject": 0,
-    "morningFine": 0,
+    "morningReject": 2,
+    "morningFine": 2,
     "selfCheckReject": 0,
     "selfCheckFine": 0,
     "supervisorReject": 0,
     "supervisorFine": 0,
-    "totalFine": 0,
+    "totalFine": 200,
     "boxDisinfectRate": null,
     "boxFakeCount": 0,
     "boxFakeFine": 0,
@@ -8313,13 +8313,13 @@ var MORNING_DATA = {
     "equipFine": 0,
     "equipRate": null,
     "healthCert": null,
-    "daily_meeting": 0,
+    "daily_meeting": 2,
     "daily_key_reject": 0,
     "daily_key_fine": 0,
     "daily_app_reject": 0,
     "daily_app_fine": 0,
-    "daily_sign_reject": 0,
-    "daily_sign_fine": 0,
+    "daily_sign_reject": 2,
+    "daily_sign_fine": 200,
     "report": 0,
     "not_held": 0,
     "fake": 0
@@ -13385,13 +13385,13 @@ var MORNING_TAB_DATA = {
     "region": "中南大区",
     "subr": "安徽区域",
     "city": "合肥",
-    "total_fine": 0,
+    "total_fine": 200,
     "daily_key_reject": 0,
     "daily_key_fine": 0,
     "daily_app_reject": 0,
     "daily_app_fine": 0,
-    "daily_sign_reject": 0,
-    "daily_sign_fine": 0,
+    "daily_sign_reject": 2,
+    "daily_sign_fine": 200,
     "report_reject": 0,
     "report_fine": 0,
     "not_held_count": 0,
@@ -33302,7 +33302,7 @@ var SITE_INFO = {
   }
 };
 
-var LATEST_DATE = "11-27";
+var LATEST_DATE = "11-28";
 
 var REGION_ORDER = ["华北一区", "华北二区", "华北三区", "华东大区", "中南大区"];
 
