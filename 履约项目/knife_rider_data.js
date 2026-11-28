@@ -1,11 +1,11 @@
 /* 带刀巡检数据：站点维度 + 骑手维度明细
- * 生成时间：2026-11-28 07:24:40
+ * 生成时间：2026-11-28 16:57:03
  * 数据源：巡检工单列表_1795732276498.xls（巡检类型=加盟骑手，检查方式=车辆检查）
  * 站点分母来源：2026-11-01 排班明细（每月1号在册骑手，含本月暂无巡检记录的补零站点）
  * 骑手明细名册来源：2026-11-28 排班明细（最新在职骑手，匹配实时巡检记录）
  */
 var KNIFE_META = {
-  "generated_at": "2026-11-28 07:24:40",
+  "generated_at": "2026-11-28 16:57:03",
   "source_file": "巡检工单列表_1795732276498.xls",
   "source_file_mtime": "2026-11-27 06:31:54",
   "reg_file_date": "2026-11-01",
@@ -2869,29 +2869,11 @@ var KNIFE_DATA = {
     "compliance_num": 81,
     "compliance_rate": 100.0
   },
-  "兴必达【通辽】东城站": {
-    "region": "",
-    "subr": "",
-    "city": "",
-    "reg_1st": 53,
-    "checked_month": 0,
-    "checked_2plus": 0,
-    "checked_dedup2": 0,
-    "status_no": 0,
-    "status_wait": 0,
-    "status_audit": 0,
-    "status_fail": 0,
-    "status_appeal": 0,
-    "week_cover_num": 0,
-    "week_cover_rate": 0,
-    "compliance_num": 0,
-    "compliance_rate": 0
-  },
-  "兴必达【锦州】曼哈顿站": {
+  "兴必达【锦州】凌河站": {
     "region": "华北一区",
     "subr": "辽宁区域",
     "city": "锦州",
-    "reg_1st": 61,
+    "reg_1st": 52,
     "checked_month": 0,
     "checked_2plus": 0,
     "checked_dedup2": 0,
@@ -2923,11 +2905,11 @@ var KNIFE_DATA = {
     "compliance_num": 0,
     "compliance_rate": 0
   },
-  "兴必达【锦州】凌河站": {
+  "兴必达【锦州】曼哈顿站": {
     "region": "华北一区",
     "subr": "辽宁区域",
     "city": "锦州",
-    "reg_1st": 52,
+    "reg_1st": 61,
     "checked_month": 0,
     "checked_2plus": 0,
     "checked_dedup2": 0,
@@ -2946,6 +2928,24 @@ var KNIFE_DATA = {
     "subr": "辽宁区域",
     "city": "锦州",
     "reg_1st": 65,
+    "checked_month": 0,
+    "checked_2plus": 0,
+    "checked_dedup2": 0,
+    "status_no": 0,
+    "status_wait": 0,
+    "status_audit": 0,
+    "status_fail": 0,
+    "status_appeal": 0,
+    "week_cover_num": 0,
+    "week_cover_rate": 0,
+    "compliance_num": 0,
+    "compliance_rate": 0
+  },
+  "兴必达【通辽】东城站": {
+    "region": "",
+    "subr": "",
+    "city": "",
+    "reg_1st": 53,
     "checked_month": 0,
     "checked_2plus": 0,
     "checked_dedup2": 0,
