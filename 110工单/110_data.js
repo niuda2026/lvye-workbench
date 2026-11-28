@@ -1,12 +1,12 @@
 const EMBEDDED_DATA = {
-  "lastUpdated": "2026-11-28 17:09:14",
+  "lastUpdated": "2026-11-28 17:30:09",
   "sourceUrl": "https://fxgl365.com/110/w/desktop/process/list?activeTab=CURRENT",
   "module": "事件处理",
   "kpi": {
     "total": 1307,
-    "pending": 9,
-    "processing": 490,
-    "done": 808,
+    "pending": 7,
+    "processing": 491,
+    "done": 809,
     "todayNew": 6,
     "cityCount": 31,
     "regionCount": 4,
@@ -15,15 +15,15 @@ const EMBEDDED_DATA = {
   "statusDist": [
     {
       "name": "处理完成",
-      "value": 808
+      "value": 809
     },
     {
       "name": "处理中",
-      "value": 490
+      "value": 491
     },
     {
       "name": "待处理",
-      "value": 9
+      "value": 7
     }
   ],
   "cityStats": [
@@ -92,14 +92,6 @@ const EMBEDDED_DATA = {
       "done": 3
     },
     {
-      "name": "天津市",
-      "full": "天津市",
-      "count": 20,
-      "pending": 1,
-      "processing": 4,
-      "done": 15
-    },
-    {
       "name": "锦州市",
       "full": "锦州市",
       "count": 20,
@@ -108,12 +100,20 @@ const EMBEDDED_DATA = {
       "done": 11
     },
     {
+      "name": "天津市",
+      "full": "天津市",
+      "count": 20,
+      "pending": 0,
+      "processing": 5,
+      "done": 15
+    },
+    {
       "name": "唐山市",
       "full": "唐山市",
       "count": 18,
-      "pending": 2,
+      "pending": 1,
       "processing": 4,
-      "done": 12
+      "done": 13
     },
     {
       "name": "合肥市",
@@ -476,8 +476,8 @@ const EMBEDDED_DATA = {
       "city": "天津市",
       "type": "交通事故",
       "level": "蓝色",
-      "status": "待处理",
-      "statusRaw": 2,
+      "status": "处理中",
+      "statusRaw": 3,
       "reportTime": "2026-11-28 16:21:54",
       "source": "PACIFIC_UPGRAGE",
       "region": "华北大区--加盟",
@@ -488,8 +488,8 @@ const EMBEDDED_DATA = {
       "city": "唐山市",
       "type": "暴力冲突事件",
       "level": "黄色",
-      "status": "待处理",
-      "statusRaw": 2,
+      "status": "处理完成",
+      "statusRaw": 5,
       "reportTime": "2026-11-28 15:33:23",
       "source": "PACIFIC_UPGRAGE",
       "region": "华北大区--加盟",
@@ -1396,140 +1396,6 @@ const EMBEDDED_DATA = {
           "processType": "PEISONG_ONLINE",
           "delayTime": 1795893623000,
           "delayTimeLong": 1795893623000
-        },
-        "related": null
-      }
-    },
-    {
-      "id": "2026112879938",
-      "title": "交通事故致人伤-交通事故致人伤",
-      "business": "履约业务-专送",
-      "source": "PACIFIC_UPGRAGE",
-      "type": "交通事故",
-      "level": "蓝色",
-      "status": "待处理",
-      "statusRaw": 2,
-      "occurTime": "2026-10-18 17:30:00",
-      "reportTime": "2026-11-28 16:21:54",
-      "updateTime": "2026-11-28 16:21:55",
-      "province": "天津市",
-      "city": "天津市",
-      "district": "武清区",
-      "address": "帕古岗镇",
-      "summary": "我方受伤人数、伤情、财损金额：无\n其他方受伤人数、伤情、财损金额：受伤已就医\n三者/用户年龄：5+\n骑手信息：刘子傲192****2470【加盟】【配送员】兴必达【天津】汊沽港站，兴必达（江苏）网络科技有限公司\n涉及关键等级判断：交通事故致人伤\n是否涉及订单问题需要处理：否\n需要协助处理的订单数量：无\n问题描述：三者家属反馈三者与骑手发生事故，骑手主责，孩子受伤已就医检查，骑手一直没有赔偿医疗费用\n进线人信息：三者家属",
-      "reporter": "吉新星",
-      "handler": "赵光远，黄可鑫，李文龙，牛艳朝",
-      "region": "华北大区--加盟",
-      "area": "加盟津冀区域",
-      "station": "兴必达【天津】汊沽港站",
-      "stationId": "",
-      "orgPath": "",
-      "franchisee": "",
-      "riderName": "刘子傲",
-      "riderPhone": "192****2470",
-      "riderStation": "兴必达【天津】汊沽港站",
-      "detail": {
-        "eventNo": "2026112879938",
-        "title": "交通事故致人伤-交通事故致人伤",
-        "source": "PACIFIC_UPGRAGE",
-        "type": "交通事故",
-        "level": "蓝色",
-        "statusRaw": 2,
-        "status": "待处理",
-        "occurTime": "2026-10-18 17:30:00",
-        "reportTime": "2026-11-28 16:21:54",
-        "updateTime": "2026-11-28 16:21:55",
-        "endTime": "",
-        "province": "天津市",
-        "city": "天津市",
-        "district": "武清区",
-        "address": "帕古岗镇",
-        "course": "我方受伤人数、伤情、财损金额：无\n其他方受伤人数、伤情、财损金额：受伤已就医\n三者/用户年龄：5+\n骑手信息：刘子傲192****2470【加盟】【配送员】兴必达【天津】汊沽港站，兴必达（江苏）网络科技有限公司\n涉及关键等级判断：交通事故致人伤\n是否涉及订单问题需要处理：否\n需要协助处理的订单数量：无\n问题描述：三者家属反馈三者与骑手发生事故，骑手主责，孩子受伤已就医检查，骑手一直没有赔偿医疗费用\n进线人信息：三者家属",
-        "region": "华北大区--加盟",
-        "area": "加盟津冀区域",
-        "station": "兴必达【天津】汊沽港站",
-        "stationId": "",
-        "stationType": "",
-        "orgPath": "",
-        "franchisee": "",
-        "cityMerchant": "",
-        "riders": [
-          {
-            "riderId": 76803633,
-            "entryDate": "2026-08-06",
-            "riderPhone": {
-              "data": null,
-              "token": "EXuL*d7.miC2470",
-              "dataMask": "192****2470",
-              "unknown": null
-            },
-            "jobStatusDesc": "离职",
-            "orgTypeDesc": "即时配加盟",
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXXu2U2zdp00015",
-              "dataMask": "12011**********215",
-              "unknown": null
-            },
-            "stationName": "兴必达【天津】汊沽港站",
-            "riderName": "刘子傲",
-            "age": "0",
-            "genderDesc": "男",
-            "stationId": "2082534"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "0078fe3c": 2,
-          "001026d9": "交警",
-          "31297c9b": 1,
-          "1e970e68": 1,
-          "4263fd60": 2
-        },
-        "eventTypeInfo": {
-          "9b6e6c2a": "交警",
-          "14": 1,
-          "15": 2,
-          "be5cd84a": 1,
-          "0224cd2b": [
-            3
-          ],
-          "5e889f75": 4,
-          "9": [
-            1
-          ],
-          "60": [
-            1
-          ]
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "108531605262",
-        "taskKey": "general",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "jixinxing",
-        "updateAccountId": "jixinxing",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1795854114000,
-              "latestTime": 1795854114000,
-              "startTimeLong": 1795854114000,
-              "latestTimeLong": 1795854114000
-            },
-            {
-              "taskKey": "general",
-              "startTime": 1795854114000,
-              "latestTime": 1795854114000,
-              "startTimeLong": 1795854114000,
-              "latestTimeLong": 1795854114000
-            }
-          ],
-          "processType": "NORMAL",
-          "delayTimeLong": 1795897314000,
-          "delayTime": 1795897314000
         },
         "related": null
       }
@@ -9329,34 +9195,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1780414526000,
               "latestTime": 1780414526000,
-              "latestTimeLong": 1780414526000,
-              "startTimeLong": 1780414526000
+              "startTimeLong": 1780414526000,
+              "latestTimeLong": 1780414526000
             },
             {
               "taskKey": "zs_wait_follow",
               "startTime": 1780414561000,
               "latestTime": 1780414632000,
-              "latestTimeLong": 1780414632000,
-              "startTimeLong": 1780414561000
+              "startTimeLong": 1780414561000,
+              "latestTimeLong": 1780414632000
             },
             {
               "taskKey": "zs_wait_end_response",
               "startTime": 1780414534000,
               "latestTime": 1780414561000,
-              "latestTimeLong": 1780414561000,
-              "startTimeLong": 1780414534000
+              "startTimeLong": 1780414534000,
+              "latestTimeLong": 1780414561000
             },
             {
               "taskKey": "zs_wait_response",
               "startTime": 1780414526000,
               "latestTime": 1780414534000,
-              "latestTimeLong": 1780414534000,
-              "startTimeLong": 1780414526000
+              "startTimeLong": 1780414526000,
+              "latestTimeLong": 1780414534000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTime": null,
-          "delayTimeLong": null
+          "delayTimeLong": null,
+          "delayTime": null
         },
         "related": null
       }
@@ -89509,132 +89375,6 @@ const EMBEDDED_DATA = {
       }
     },
     {
-      "id": "2026112879745",
-      "title": "违法犯罪-肢体冲突",
-      "business": "履约业务-专送",
-      "source": "PACIFIC_UPGRAGE",
-      "type": "暴力冲突事件",
-      "level": "黄色",
-      "status": "待处理",
-      "statusRaw": 2,
-      "occurTime": "2026-11-27 23:17:00",
-      "reportTime": "2026-11-28 15:33:23",
-      "updateTime": "2026-11-28 15:33:23",
-      "province": "河北省",
-      "city": "唐山市",
-      "district": "路北区",
-      "address": "悦富强城2",
-      "summary": "事件名称：黄#故意人伤#1127唐山加盟骑手史新达被顾客打伤\n事件经过：反馈在配送过程中被顾客无故殴打导致肢体受伤无法抬起已就医，对方无人伤，无物损，需要协助处理班次问题，最近几天没办法跑单\n我方受伤人数、伤情、财损金额：胳膊受伤门诊，无物损\n其他方受伤人数、伤情、财损金额：无人伤，无物损\n三者/用户年龄：\n骑手信息：史新达152****6829兴必达【唐山】八方站\n涉及关键等级判断：报警，就医\n是否涉及订单问题需要处理：否\n需要协助处理的订单数量：无\n进线人诉求：班次问题\n进线人信息：",
-      "reporter": "刘志奇",
-      "handler": "杨一鸣",
-      "region": "华北大区--加盟",
-      "area": "加盟津冀区域",
-      "station": "兴必达【唐山】八方站",
-      "stationId": "",
-      "orgPath": "",
-      "franchisee": "",
-      "riderName": "史新达",
-      "riderPhone": "152****6829",
-      "riderStation": "兴必达【唐山】八方站",
-      "detail": {
-        "eventNo": "2026112879745",
-        "title": "违法犯罪-肢体冲突",
-        "source": "PACIFIC_UPGRAGE",
-        "type": "暴力冲突事件",
-        "level": "黄色",
-        "statusRaw": 3,
-        "status": "处理中",
-        "occurTime": "2026-11-27 23:17:00",
-        "reportTime": "2026-11-28 15:33:23",
-        "updateTime": "2026-11-28 17:06:31",
-        "endTime": "",
-        "province": "河北省",
-        "city": "唐山市",
-        "district": "路北区",
-        "address": "悦富强城2",
-        "course": "事件名称：黄#故意人伤#1127唐山加盟骑手史新达被顾客打伤\n事件经过：反馈在配送过程中被顾客无故殴打导致肢体受伤无法抬起已就医，对方无人伤，无物损，需要协助处理班次问题，最近几天没办法跑单\n我方受伤人数、伤情、财损金额：胳膊受伤门诊，无物损\n其他方受伤人数、伤情、财损金额：无人伤，无物损\n三者/用户年龄：\n骑手信息：史新达152****6829兴必达【唐山】八方站\n涉及关键等级判断：报警，就医\n是否涉及订单问题需要处理：否\n需要协助处理的订单数量：无\n进线人诉求：班次问题\n进线人信息：",
-        "region": "华北大区--加盟",
-        "area": "加盟津冀区域",
-        "station": "兴必达【唐山】八方站",
-        "stationId": "",
-        "stationType": "",
-        "orgPath": "",
-        "franchisee": "",
-        "cityMerchant": "",
-        "riders": [
-          {
-            "riderId": 79934765,
-            "entryDate": "2026-11-26",
-            "riderPhone": {
-              "data": null,
-              "token": "SBCzLYMwzHI6829",
-              "dataMask": "152****6829",
-              "unknown": null
-            },
-            "jobStatusDesc": "在职",
-            "orgTypeDesc": "即时配加盟",
-            "riderIdentity": {
-              "data": null,
-              "token": "id_XXXXX5DmdVon25593",
-              "dataMask": "13032**********316",
-              "unknown": null
-            },
-            "stationName": "兴必达【唐山】八方站",
-            "riderName": "史新达",
-            "age": "0",
-            "genderDesc": "男",
-            "stationId": "2089179"
-          }
-        ],
-        "tenantCustomInfo": {
-          "25": 2,
-          "0078fe3c": 2,
-          "001026d9": "1",
-          "1e970e68": 1,
-          "4263fd60": 2
-        },
-        "eventTypeInfo": {
-          "9b6e6c2a": "1",
-          "5e889f75": 3,
-          "2db867e4": 1,
-          "e9a09e2e": [
-            1,
-            1
-          ]
-        },
-        "attachments": [],
-        "extendInfo": {},
-        "processId": "108530894347",
-        "taskKey": "general",
-        "checkInfoStatus": "WAITING",
-        "checkInfoResult": "",
-        "createAccountId": "liuzhiqi04",
-        "updateAccountId": "yangyiming03",
-        "audit": {
-          "taskKeyTimeDtoList": [
-            {
-              "taskKey": "faqi",
-              "startTime": 1795851203000,
-              "latestTime": 1795851203000,
-              "latestTimeLong": 1795851203000,
-              "startTimeLong": 1795851203000
-            },
-            {
-              "taskKey": "general",
-              "startTime": 1795851203000,
-              "latestTime": 1795856791000,
-              "latestTimeLong": 1795856791000,
-              "startTimeLong": 1795851203000
-            }
-          ],
-          "processType": "NORMAL",
-          "delayTime": null,
-          "delayTimeLong": null
-        },
-        "related": null
-      }
-    },
-    {
       "id": "2026110819031",
       "title": "",
       "business": "履约业务-专送",
@@ -91998,34 +91738,34 @@ const EMBEDDED_DATA = {
               "taskKey": "faqi",
               "startTime": 1794723767000,
               "latestTime": 1794723767000,
-              "startTimeLong": 1794723767000,
-              "latestTimeLong": 1794723767000
+              "latestTimeLong": 1794723767000,
+              "startTimeLong": 1794723767000
             },
             {
               "taskKey": "jspzsks_wait_end_response",
               "startTime": 1794737877000,
               "latestTime": 1794737884000,
-              "startTimeLong": 1794737877000,
-              "latestTimeLong": 1794737884000
+              "latestTimeLong": 1794737884000,
+              "startTimeLong": 1794737877000
             },
             {
               "taskKey": "jspzsks_wait_response",
               "startTime": 1794723767000,
               "latestTime": 1794737877000,
-              "startTimeLong": 1794723767000,
-              "latestTimeLong": 1794737877000
+              "latestTimeLong": 1794737877000,
+              "startTimeLong": 1794723767000
             },
             {
               "taskKey": "jspzsks_wait_follow",
               "startTime": 1794737884000,
               "latestTime": 1794737884000,
-              "startTimeLong": 1794737884000,
-              "latestTimeLong": 1794737884000
+              "latestTimeLong": 1794737884000,
+              "startTimeLong": 1794737884000
             }
           ],
           "processType": "PEISONG_ONLINE",
-          "delayTimeLong": 1796883647000,
-          "delayTime": 1796883647000
+          "delayTime": 1796883647000,
+          "delayTimeLong": 1796883647000
         },
         "related": null
       }
@@ -92663,6 +92403,266 @@ const EMBEDDED_DATA = {
               "latestTime": 1795855024000,
               "startTimeLong": 1795854700000,
               "latestTimeLong": 1795855024000
+            }
+          ],
+          "processType": "NORMAL",
+          "delayTime": null,
+          "delayTimeLong": null
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026112879938",
+      "title": "交通事故致人伤-交通事故致人伤",
+      "business": "履约业务-专送",
+      "source": "PACIFIC_UPGRAGE",
+      "type": "交通事故",
+      "level": "蓝色",
+      "status": "处理中",
+      "statusRaw": 3,
+      "occurTime": "2026-10-18 17:30:00",
+      "reportTime": "2026-11-28 16:21:54",
+      "updateTime": "2026-11-28 17:24:23",
+      "province": "天津市",
+      "city": "天津市",
+      "district": "武清区",
+      "address": "帕古岗镇",
+      "summary": "我方受伤人数、伤情、财损金额：无\n其他方受伤人数、伤情、财损金额：受伤已就医\n三者/用户年龄：5+\n骑手信息：刘子傲192****2470【加盟】【配送员】兴必达【天津】汊沽港站，兴必达（江苏）网络科技有限公司\n涉及关键等级判断：交通事故致人伤\n是否涉及订单问题需要处理：否\n需要协助处理的订单数量：无\n问题描述：三者家属反馈三者与骑手发生事故，骑手主责，孩子受伤已就医检查，骑手一直没有赔偿医疗费用\n进线人信息：三者家属",
+      "reporter": "吉新星",
+      "handler": "赵光远",
+      "region": "华北大区--加盟",
+      "area": "加盟津冀区域",
+      "station": "兴必达【天津】汊沽港站",
+      "stationId": "",
+      "orgPath": "",
+      "franchisee": "",
+      "riderName": "刘子傲",
+      "riderPhone": "192****2470",
+      "riderStation": "兴必达【天津】汊沽港站",
+      "detail": {
+        "eventNo": "2026112879938",
+        "title": "交通事故致人伤-交通事故致人伤",
+        "source": "PACIFIC_UPGRAGE",
+        "type": "交通事故",
+        "level": "蓝色",
+        "statusRaw": 2,
+        "status": "待处理",
+        "occurTime": "2026-10-18 17:30:00",
+        "reportTime": "2026-11-28 16:21:54",
+        "updateTime": "2026-11-28 16:21:55",
+        "endTime": "",
+        "province": "天津市",
+        "city": "天津市",
+        "district": "武清区",
+        "address": "帕古岗镇",
+        "course": "我方受伤人数、伤情、财损金额：无\n其他方受伤人数、伤情、财损金额：受伤已就医\n三者/用户年龄：5+\n骑手信息：刘子傲192****2470【加盟】【配送员】兴必达【天津】汊沽港站，兴必达（江苏）网络科技有限公司\n涉及关键等级判断：交通事故致人伤\n是否涉及订单问题需要处理：否\n需要协助处理的订单数量：无\n问题描述：三者家属反馈三者与骑手发生事故，骑手主责，孩子受伤已就医检查，骑手一直没有赔偿医疗费用\n进线人信息：三者家属",
+        "region": "华北大区--加盟",
+        "area": "加盟津冀区域",
+        "station": "兴必达【天津】汊沽港站",
+        "stationId": "",
+        "stationType": "",
+        "orgPath": "",
+        "franchisee": "",
+        "cityMerchant": "",
+        "riders": [
+          {
+            "riderId": 76803633,
+            "entryDate": "2026-08-06",
+            "riderPhone": {
+              "data": null,
+              "token": "EXuL*d7.miC2470",
+              "dataMask": "192****2470",
+              "unknown": null
+            },
+            "jobStatusDesc": "离职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXXu2U2zdp00015",
+              "dataMask": "12011**********215",
+              "unknown": null
+            },
+            "stationName": "兴必达【天津】汊沽港站",
+            "riderName": "刘子傲",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2082534"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "0078fe3c": 2,
+          "001026d9": "交警",
+          "31297c9b": 1,
+          "1e970e68": 1,
+          "4263fd60": 2
+        },
+        "eventTypeInfo": {
+          "9b6e6c2a": "交警",
+          "14": 1,
+          "15": 2,
+          "be5cd84a": 1,
+          "0224cd2b": [
+            3
+          ],
+          "5e889f75": 4,
+          "9": [
+            1
+          ],
+          "60": [
+            1
+          ]
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "108531605262",
+        "taskKey": "general",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "jixinxing",
+        "updateAccountId": "jixinxing",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1795854114000,
+              "latestTime": 1795854114000,
+              "startTimeLong": 1795854114000,
+              "latestTimeLong": 1795854114000
+            },
+            {
+              "taskKey": "general",
+              "startTime": 1795854114000,
+              "latestTime": 1795854114000,
+              "startTimeLong": 1795854114000,
+              "latestTimeLong": 1795854114000
+            }
+          ],
+          "processType": "NORMAL",
+          "delayTimeLong": 1795897314000,
+          "delayTime": 1795897314000
+        },
+        "related": null
+      }
+    },
+    {
+      "id": "2026112879745",
+      "title": "违法犯罪-肢体冲突",
+      "business": "履约业务-专送",
+      "source": "PACIFIC_UPGRAGE",
+      "type": "暴力冲突事件",
+      "level": "黄色",
+      "status": "处理完成",
+      "statusRaw": 5,
+      "occurTime": "2026-11-27 23:17:00",
+      "reportTime": "2026-11-28 15:33:23",
+      "updateTime": "2026-11-28 17:12:48",
+      "province": "河北省",
+      "city": "唐山市",
+      "district": "路北区",
+      "address": "悦富强城2",
+      "summary": "事件名称：黄#故意人伤#1127唐山加盟骑手史新达被顾客打伤\n事件经过：反馈在配送过程中被顾客无故殴打导致肢体受伤无法抬起已就医，对方无人伤，无物损，需要协助处理班次问题，最近几天没办法跑单\n我方受伤人数、伤情、财损金额：胳膊受伤门诊，无物损\n其他方受伤人数、伤情、财损金额：无人伤，无物损\n三者/用户年龄：\n骑手信息：史新达152****6829兴必达【唐山】八方站\n涉及关键等级判断：报警，就医\n是否涉及订单问题需要处理：否\n需要协助处理的订单数量：无\n进线人诉求：班次问题\n进线人信息：",
+      "reporter": "刘志奇",
+      "handler": "杨一鸣",
+      "region": "华北大区--加盟",
+      "area": "加盟津冀区域",
+      "station": "兴必达【唐山】八方站",
+      "stationId": "",
+      "orgPath": "",
+      "franchisee": "",
+      "riderName": "史新达",
+      "riderPhone": "152****6829",
+      "riderStation": "兴必达【唐山】八方站",
+      "detail": {
+        "eventNo": "2026112879745",
+        "title": "违法犯罪-肢体冲突",
+        "source": "PACIFIC_UPGRAGE",
+        "type": "暴力冲突事件",
+        "level": "黄色",
+        "statusRaw": 3,
+        "status": "处理中",
+        "occurTime": "2026-11-27 23:17:00",
+        "reportTime": "2026-11-28 15:33:23",
+        "updateTime": "2026-11-28 17:06:31",
+        "endTime": "",
+        "province": "河北省",
+        "city": "唐山市",
+        "district": "路北区",
+        "address": "悦富强城2",
+        "course": "事件名称：黄#故意人伤#1127唐山加盟骑手史新达被顾客打伤\n事件经过：反馈在配送过程中被顾客无故殴打导致肢体受伤无法抬起已就医，对方无人伤，无物损，需要协助处理班次问题，最近几天没办法跑单\n我方受伤人数、伤情、财损金额：胳膊受伤门诊，无物损\n其他方受伤人数、伤情、财损金额：无人伤，无物损\n三者/用户年龄：\n骑手信息：史新达152****6829兴必达【唐山】八方站\n涉及关键等级判断：报警，就医\n是否涉及订单问题需要处理：否\n需要协助处理的订单数量：无\n进线人诉求：班次问题\n进线人信息：",
+        "region": "华北大区--加盟",
+        "area": "加盟津冀区域",
+        "station": "兴必达【唐山】八方站",
+        "stationId": "",
+        "stationType": "",
+        "orgPath": "",
+        "franchisee": "",
+        "cityMerchant": "",
+        "riders": [
+          {
+            "riderId": 79934765,
+            "entryDate": "2026-11-26",
+            "riderPhone": {
+              "data": null,
+              "token": "SBCzLYMwzHI6829",
+              "dataMask": "152****6829",
+              "unknown": null
+            },
+            "jobStatusDesc": "在职",
+            "orgTypeDesc": "即时配加盟",
+            "riderIdentity": {
+              "data": null,
+              "token": "id_XXXXX5DmdVon25593",
+              "dataMask": "13032**********316",
+              "unknown": null
+            },
+            "stationName": "兴必达【唐山】八方站",
+            "riderName": "史新达",
+            "age": "0",
+            "genderDesc": "男",
+            "stationId": "2089179"
+          }
+        ],
+        "tenantCustomInfo": {
+          "25": 2,
+          "0078fe3c": 2,
+          "001026d9": "1",
+          "1e970e68": 1,
+          "4263fd60": 2
+        },
+        "eventTypeInfo": {
+          "9b6e6c2a": "1",
+          "5e889f75": 3,
+          "2db867e4": 1,
+          "e9a09e2e": [
+            1,
+            1
+          ]
+        },
+        "attachments": [],
+        "extendInfo": {},
+        "processId": "108530894347",
+        "taskKey": "general",
+        "checkInfoStatus": "WAITING",
+        "checkInfoResult": "",
+        "createAccountId": "liuzhiqi04",
+        "updateAccountId": "yangyiming03",
+        "audit": {
+          "taskKeyTimeDtoList": [
+            {
+              "taskKey": "faqi",
+              "startTime": 1795851203000,
+              "latestTime": 1795851203000,
+              "latestTimeLong": 1795851203000,
+              "startTimeLong": 1795851203000
+            },
+            {
+              "taskKey": "general",
+              "startTime": 1795851203000,
+              "latestTime": 1795856791000,
+              "latestTimeLong": 1795856791000,
+              "startTimeLong": 1795851203000
             }
           ],
           "processType": "NORMAL",
